@@ -1,0 +1,100 @@
+Propellerhead Remote Mapping File
+File Format Version	1.0.0
+Control Surface Manufacturer	Zapperment
+Control Surface Model	ReBridge
+Map Version	3.0.1
+
+Scope	Propellerheads	Master Keyboard
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+Map	keyboard		Keyboard
+Map	pitchBendWheel		Pitch Bend
+Map	channelPressure		Channel Pressure
+Map	modulationWheel		Mod Wheel
+Map	breath		Breath
+Map	expressionPedal		Expression
+Map	sustainPedal		Damper Pedal
+
+Scope	Propellerheads	SubTractor Analog Synthesizer
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+Map	controlA1		Osc1 Wave
+Map	controlA2		Osc1 Octave
+Map	controlA3		Osc2 Wave
+Map	controlA4		Osc2 Octave
+Map	controlA5		FM Amount
+Map	controlA6		Osc Mix
+Map	controlA7		Noise Decay
+Map	controlA8		Noise Level
+Map	controlD1		Filter Freq
+Map	controlD2		Filter Res
+Map	controlD3		Filter Env Amount
+Map	controlD4		Filter2 Freq
+Map	controlD5		Filter Env Attack
+Map	controlD6		Filter Env Decay
+Map	controlD7		Filter Env Sustain
+Map	controlD8		Filter Env Release
+Map	controlB1		LFO1 Rate
+Map	controlB2		LFO1 Amount
+Map	controlB3		LFO2 Rate
+Map	controlB4		LFO2 Amount
+Map	controlB5		Amp Env Attack
+Map	controlB6		Amp Env Decay
+Map	controlB7		Amp Env Sustain
+Map	controlB8		Amp Env Release
+
+Scope	Propellerheads	Combinator
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+Map	controlA1		Rotary 1
+Map	controlA2		Rotary 2
+Map	controlA3		Rotary 3
+Map	controlA4		Rotary 4
+Map	controlA5		Rotary 5
+Map	controlA6		Rotary 6
+Map	controlA7		Rotary 7
+Map	controlA8		Rotary 8
+Map	controlB1		Rotary 9
+Map	controlB2		Rotary 10
+Map	controlB3		Rotary 11
+Map	controlB4		Rotary 12
+Map	controlB5		Rotary 13
+Map	controlB6		Rotary 14
+Map	controlB7		Rotary 15
+Map	controlB8		Rotary 16
+Map	controlC1		Rotary 17
+Map	controlC2		Rotary 18
+Map	controlC3		Rotary 19
+Map	controlC4		Rotary 20
+Map	controlC5		Rotary 21
+Map	controlC6		Rotary 22
+Map	controlC7		Rotary 23
+Map	controlC8		Rotary 24
+Map	controlD1		Button 1
+Map	controlD2		Button 2
+Map	controlD3		Button 3
+Map	controlD4		Button 4
+Map	controlD5		Button 5
+Map	controlD6		Button 6
+Map	controlD7		Button 7
+Map	controlD8		Button 8
+Map	controlE1		Button 9
+Map	controlE2		Button 10
+Map	controlE3		Button 11
+Map	controlE4		Button 12
+Map	controlE5		Button 13
+Map	controlE6		Button 14
+Map	controlE7		Button 15
+Map	controlE8		Button 16
+Map	controlF1		Rotary 25
+Map	controlF2		Rotary 26
+Map	controlF3		Rotary 27
+Map	controlF4		Rotary 28
+Map	controlF5		Rotary 29
+Map	controlF6		Rotary 30
+Map	controlF7		Rotary 31
+Map	controlF8		Rotary 32
+
+Scope	Propellerheads	Reason Document			
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+Map	targetPrevTrack		Target Previous Track
+Map	targetNextTrack		Target Next Track
+Map	selectPrevPatch		Select Prev Patch for Target Device
+Map	selectNextPatch		Select Next Patch for Target Device

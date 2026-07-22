@@ -1,0 +1,28 @@
+{
+  "name": "rebridge (isolated)",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+
+  // Node.js is only here because the Claude Code CLI itself is an npm package
+  // and needs it to run — the rebridge project has no runtime dependency on it.
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+
+  // The named volume below is created by Docker owned by root:root, but we run
+  // as the non-root vscode user, so it must be chowned before Claude Code can
+  // write its login credentials into it.
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && npm install -g @anthropic-ai/claude-code",
+
+  // Only this repo folder is bind-mounted into the container (the devcontainer
+  // default), so Claude has no filesystem access to anything else on the host.
+  // Claude Code's own config/login is kept in a named volume rather than a
+  // host bind mount, so it persists across rebuilds without touching ~/.claude
+  // on the host.
+  "mounts": [
+    "source=rebridge-claude-config,target=/home/vscode/.claude,type=volume"
+  ],
+
+  "remoteUser": "vscode"
+}
