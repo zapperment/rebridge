@@ -42,9 +42,100 @@ local __bundle_require, __bundle_loaded, __bundle_register, __bundle_modules = (
 	return require, loaded, register, modules
 end)(require)
 __bundle_register("__root", function(require, _LOADED, __bundle_register, __bundle_modules)
-local getColourForValue = require("src.utils.colour.getColourForValue")
+local getColour = require("src.utils.colour.getColour")
+local items = require("src.config.items")
 
-Items = {
+function remote_init()
+  local itemsToDefine = {}
+  for name, item in pairs(items) do
+    table.insert(itemsToDefine, {
+      name = name,
+      input = item.input,
+      output = item.output,
+      min = item.min,
+      max = item.max,
+    })
+    item.index = #itemsToDefine
+    item.lastInputTime = 0
+    item.updateValue = false
+    item.updateColour = false
+  end
+  remote.define_items(itemsToDefine)
+end
+
+-- Launch Control -> Remote
+function remote_process_midi(event)
+  local processed = false
+  for _, item in pairs(items) do
+    if item.controller ~= nil then
+      local match = remote.match_midi(item.midi, event)
+      if match ~= nil then
+        item.lastInputTime = remote.get_time_ms()
+        -- Remote -> Reason
+        remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = match.x })
+        processed = true
+      end
+    end
+  end
+  return processed
+end
+
+-- Reason -> Remote
+function remote_set_state(changed_items)
+  local now = remote.get_time_ms()
+  for _, item in pairs(items) do
+    for _, changedItemIndex in ipairs(changed_items) do
+      if item.index == changedItemIndex then
+        item.updateColour = true
+        if now - item.lastInputTime > 100 then
+          item.updateValue = true
+        end
+      end
+    end
+  end
+end
+
+-- Remote -> Launch Control
+function remote_deliver_midi()
+  local events = {}
+  for _, item in pairs(items) do
+    if item.updateValue then
+      local value = remote.get_item_value(item.index)
+      table.insert(events, remote.make_midi(item.midi, { x = value }))
+      item.updateValue = false
+    end
+    if item.updateColour then
+      local value = remote.get_item_value(item.index)
+      table.insert(events,
+        remote.make_midi(
+          "f0 00 20 29 02 15 01 53 xx " .. getColour(item.colour, value) .. " f7",
+          { x = item.controller }))
+      item.updateColour = false
+    end
+  end
+  return events
+end
+
+function remote_prepare_for_use()
+  return {
+    -- turn on DAW mode
+    remote.make_midi("f0 00 20 29 02 15 02 7f f7"),
+    remote.make_midi("b6 45 00"),
+    remote.make_midi("b6 48 00"),
+    remote.make_midi("b6 49 00"),
+  }
+end
+
+function remote_release_from_use()
+  return {
+    -- turn off DAW mode
+    remote.make_midi("F0 00 20 29 02 15 02 00 F7"),
+  }
+end
+
+end)
+__bundle_register("src.config.items", function(require, _LOADED, __bundle_register, __bundle_modules)
+return {
   encoder1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0d xx", controller = 13, colour = "fhyd" },
   encoder2 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0e xx", controller = 14, colour = "tang" },
   encoder3 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0f xx", controller = 15, colour = "suns" },
@@ -71,107 +162,13 @@ Items = {
   encoder24 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 24 xx", controller = 36, colour = "flam" }
 }
 
-Colours = {
-  fhyd = "fe3636",
-  tang = "f66c02",
-  duri = "dbc302",
-  poml = "85961f",
-  tiff = "14bfaf",
-  coco = "1a2f96",
-  plum = "624bad",
-  flam = "fd39d4",
-  ceru = "0ea4ee",
-  suns = "fff034",
-  aqua = "0f9c8e",
-  fore = "3dc300"
-}
+end)
+__bundle_register("src.utils.colour.getColour", function(require, _LOADED, __bundle_register, __bundle_modules)
+local colours = require("src.config.colours")
+local getColourForValue = require("src.utils.colour.getColourForValue");
 
-function remote_init()
-  local itemsToDefine = {}
-  for name, item in pairs(Items) do
-    table.insert(itemsToDefine, {
-      name = name,
-      input = item.input,
-      output = item.output,
-      min = item.min,
-      max = item.max,
-    })
-    item.index = #itemsToDefine
-    item.lastInputTime = 0
-    item.updateValue = false
-    item.updateColour = false
-  end
-  remote.define_items(itemsToDefine)
-end
-
--- Launch Control -> Remote
-function remote_process_midi(event)
-  local processed = false
-  for _, item in pairs(Items) do
-    if item.controller ~= nil then
-      local match = remote.match_midi(item.midi, event)
-      if match ~= nil then
-        item.lastInputTime = remote.get_time_ms()
-        -- Remote -> Reason
-        remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = match.x })
-        processed = true
-      end
-    end
-  end
-  return processed
-end
-
--- Reason -> Remote
-function remote_set_state(changed_items)
-  local now = remote.get_time_ms()
-  for _, item in pairs(Items) do
-    for _, changedItemIndex in ipairs(changed_items) do
-      if item.index == changedItemIndex then
-        item.updateColour = true
-        if now - item.lastInputTime > 100 then
-          item.updateValue = true
-        end
-      end
-    end
-  end
-end
-
--- Remote -> Launch Control
-function remote_deliver_midi()
-  local events = {}
-  for _, item in pairs(Items) do
-    if item.updateValue then
-      local value = remote.get_item_value(item.index)
-      table.insert(events, remote.make_midi(item.midi, { x = value }))
-      item.updateValue = false
-    end
-    if item.updateColour then
-      local value = remote.get_item_value(item.index)
-      table.insert(events,
-        remote.make_midi(
-          "f0 00 20 29 02 15 01 53 xx " .. getColourForValue(Colours[item.colour], value) .. " f7",
-          { x = item.controller }))
-      item.updateColour = false
-    end
-  end
-  return events
-end
-
-function remote_prepare_for_use()
-  return {
-    -- turn on DAW mode
-    remote.make_midi("f0 00 20 29 02 15 02 7f f7"),
-    remote.make_midi("b6 45 00"),
-    remote.make_midi("b6 48 00"),
-    remote.make_midi("b6 49 00"),
-  }
-end
-
-function remote_release_from_use()
-  return {
-    -- turn off DAW mode
-    remote.make_midi("F0 00 20 29 02 15 02 00 F7"),
-  }
+return function(name, value)
+  return getColourForValue(colours[name], value)
 end
 
 end)
@@ -270,6 +267,23 @@ return function(hex)
   local b = num % 256
   return r, g, b
 end
+
+end)
+__bundle_register("src.config.colours", function(require, _LOADED, __bundle_register, __bundle_modules)
+return {
+  fhyd = "fe3636",
+  tang = "f66c02",
+  duri = "dbc302",
+  poml = "85961f",
+  tiff = "14bfaf",
+  coco = "1a2f96",
+  plum = "624bad",
+  flam = "fd39d4",
+  ceru = "0ea4ee",
+  suns = "fff034",
+  aqua = "0f9c8e",
+  fore = "3dc300"
+}
 
 end)
 return __bundle_require("__root")
