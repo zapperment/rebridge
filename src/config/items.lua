@@ -22,5 +22,13 @@ return {
   encoder21 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 21 xx", controller = 33, colour = "aqua" },
   encoder22 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 22 xx", controller = 34, colour = "coco" },
   encoder23 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 23 xx", controller = 35, colour = "plum" },
-  encoder24 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 24 xx", controller = 36, colour = "flam" }
+  encoder24 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 24 xx", controller = 36, colour = "flam" },
+  fader1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 05 xx", controller = 5 },
+  fader2 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 06 xx", controller = 6 },
+  fader3 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 07 xx", controller = 7 },
+  fader4 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 08 xx", controller = 8 },
+  fader5 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 09 xx", controller = 9 },
+  fader6 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0a xx", controller = 10 },
+  fader7 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0b xx", controller = 11 },
+  fader8 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0c xx", controller = 12 },
 }

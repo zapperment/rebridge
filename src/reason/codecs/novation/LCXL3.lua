@@ -1,5 +1,10 @@
-local getColour = require("src.utils.colour.getColour")
 local items = require("src.config.items")
+local processFaders = require("src.processMidi.faders")
+local processEncoders = require("src.processMidi.encoders")
+local setFaders = require("src.setState.faders")
+local setEncoders = require("src.setState.encoders")
+local deliverFaders = require("src.deliverMidi.faders")
+local deliverEncoders = require("src.deliverMidi.encoders")
 
 function remote_init()
   local itemsToDefine = {}
@@ -21,54 +26,26 @@ end
 
 -- Launch Control -> Remote
 function remote_process_midi(event)
-  local processed = false
-  for _, item in pairs(items) do
-    if item.controller ~= nil then
-      local match = remote.match_midi(item.midi, event)
-      if match ~= nil then
-        item.lastInputTime = remote.get_time_ms()
-        -- Remote -> Reason
-        remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = match.x })
-        processed = true
-      end
-    end
-  end
-  return processed
+  return processFaders(event) or processEncoders(event)
 end
 
 -- Reason -> Remote
-function remote_set_state(changed_items)
-  local now = remote.get_time_ms()
-  for _, item in pairs(items) do
-    for _, changedItemIndex in ipairs(changed_items) do
-      if item.index == changedItemIndex then
-        item.updateColour = true
-        if now - item.lastInputTime > 100 then
-          item.updateValue = true
-        end
-      end
-    end
-  end
+function remote_set_state(changedItems)
+  setEncoders(changedItems)
+  setFaders(changedItems)
 end
 
 -- Remote -> Launch Control
 function remote_deliver_midi()
   local events = {}
-  for _, item in pairs(items) do
-    if item.updateValue then
-      local value = remote.get_item_value(item.index)
-      table.insert(events, remote.make_midi(item.midi, { x = value }))
-      item.updateValue = false
-    end
-    if item.updateColour then
-      local value = remote.get_item_value(item.index)
-      table.insert(events,
-        remote.make_midi(
-          "f0 00 20 29 02 15 01 53 xx " .. getColour(item.colour, value) .. " f7",
-          { x = item.controller }))
-      item.updateColour = false
-    end
+
+  for _, event in ipairs(deliverEncoders()) do
+    table.insert(events, event)
   end
+  for _, event in ipairs(deliverFaders()) do
+    table.insert(events, event)
+  end
+
   return events
 end
 

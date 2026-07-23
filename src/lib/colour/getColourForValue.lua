@@ -1,7 +1,7 @@
-local hexToRgb = require("src.utils.colour.hexToRgb")
-local rgbToHsb = require("src.utils.colour.rgbToHsb")
-local hsbToRgb = require("src.utils.colour.hsbToRgb")
-local to7Bit = require("src.utils.colour.to7Bit")
+local hexToRgb = require("src.lib.colour.hexToRgb")
+local rgbToHsb = require("src.lib.colour.rgbToHsb")
+local hsbToRgb = require("src.lib.colour.hsbToRgb")
+local to7Bit = require("src.lib.colour.to7Bit")
 
 return function(hex, value)
   local r, g, b = hexToRgb(hex)
