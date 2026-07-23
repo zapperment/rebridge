@@ -16,7 +16,7 @@
   // lua5.1 matches the Lua version embedded in Reason's remote codec engine.
   // Debian bookworm's package is the last 5.1.x release (5.1.5); we symlink
   // `lua` to it since the package only installs the `lua5.1` binary name.
-  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && npm install -g @anthropic-ai/claude-code && sudo apt-get update && sudo apt-get install -y lua5.1 && sudo ln -sf /usr/bin/lua5.1 /usr/local/bin/lua",
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && npm install -g @anthropic-ai/claude-code && sudo apt-get update && sudo apt-get install -y lua5.1 && sudo ln -sf /usr/bin/lua5.1 /usr/local/bin/lua && npm install -g luabundler",
 
   // Only this repo folder is bind-mounted into the container (the devcontainer
   // default), so Claude has no filesystem access to anything else on the host.
