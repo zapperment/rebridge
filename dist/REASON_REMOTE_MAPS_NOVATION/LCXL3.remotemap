@@ -1,0 +1,32 @@
+Propellerhead Remote Mapping File
+File Format Version	1.0.0
+Control Surface Manufacturer	Novation
+Control Surface Model	Launch Control XL3
+Map Version	3.0.1
+
+Scope	Propellerheads	Combinator
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+Map	encoder1		Rotary 1
+Map	encoder2		Rotary 2
+Map	encoder3		Rotary 3
+Map	encoder4		Rotary 4
+Map	encoder5		Rotary 5
+Map	encoder6		Rotary 6
+Map	encoder7		Rotary 7
+Map	encoder8		Rotary 8
+Map	encoder9		Rotary 9
+Map	encoder10		Rotary 10
+Map	encoder11		Rotary 11
+Map	encoder12		Rotary 12
+Map	encoder13		Rotary 13
+Map	encoder14		Rotary 14
+Map	encoder15		Rotary 15
+Map	encoder16		Rotary 16
+Map	encoder17		Rotary 17
+Map	encoder18		Rotary 18
+Map	encoder19		Rotary 19
+Map	encoder20		Rotary 20
+Map	encoder21		Rotary 21
+Map	encoder22		Rotary 22
+Map	encoder23		Rotary 23
+Map	encoder24		Rotary 24

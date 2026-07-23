@@ -6,7 +6,7 @@ function remote_supported_control_surfaces()
       model = "ReBridge",
       source = "ReBridge.lua",
       picture = "ReBridge.png",
-      in_ports = { { description = "Input"} },
+      in_ports = { { description = "Input" }},
       out_ports = { { description = "Output" }, { description = "Callback to Live" } },
       setup_info_text = "Control Reason and Ableton Live with Novation Launch Control XL 3 and master keyboard simultaneously",
       has_keyboard=true
