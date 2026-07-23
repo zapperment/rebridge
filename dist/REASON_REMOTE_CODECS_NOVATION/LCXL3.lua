@@ -42,7 +42,7 @@ local __bundle_require, __bundle_loaded, __bundle_register, __bundle_modules = (
 	return require, loaded, register, modules
 end)(require)
 __bundle_register("__root", function(require, _LOADED, __bundle_register, __bundle_modules)
-local colourUtils = require("src.lib.colourUtils")
+local getColourForValue = require("src.utils.colour.getColourForValue")
 
 Items = {
   encoder1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0d xx", controller = 13, colour = "fhyd" },
@@ -148,7 +148,8 @@ function remote_deliver_midi()
     if item.updateColour then
       local value = remote.get_item_value(item.index)
       table.insert(events,
-        remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colourUtils.getColourForValue(Colours[item.colour], value) .. " f7",
+        remote.make_midi(
+          "f0 00 20 29 02 15 01 53 xx " .. getColourForValue(Colours[item.colour], value) .. " f7",
           { x = item.controller }))
       item.updateColour = false
     end
@@ -172,82 +173,15 @@ function remote_release_from_use()
     remote.make_midi("F0 00 20 29 02 15 02 00 F7"),
   }
 end
+
 end)
-__bundle_register("src.lib.colourUtils", function(require, _LOADED, __bundle_register, __bundle_modules)
-  local function hexToRgb(hex)
-    local num = tonumber(hex, 16)
-    local r = math.floor(num / 65536) % 256
-    local g = math.floor(num / 256) % 256
-    local b = num % 256
-    return r, g, b
-  end
+__bundle_register("src.utils.colour.getColourForValue", function(require, _LOADED, __bundle_register, __bundle_modules)
+local hexToRgb = require("src.utils.colour.hexToRgb")
+local rgbToHsb = require("src.utils.colour.rgbToHsb")
+local hsbToRgb = require("src.utils.colour.hsbToRgb")
+local to7Bit = require("src.utils.colour.to7Bit")
 
-  local function rgbToHsb(r, g, b)
-    r = r / 255
-    g = g / 255
-    b = b / 255
-    local max = math.max(r, g, b)
-    local min = math.min(r, g, b)
-    local delta = max - min
-
-    local h = 0
-    if delta ~= 0 then
-      if max == r then
-        h = 60 * (((g - b) / delta) % 6)
-      elseif max == g then
-        h = 60 * ((b - r) / delta + 2)
-      else
-        h = 60 * ((r - g) / delta + 4)
-      end
-    end
-    if h < 0 then h = h + 360 end
-
-    local s = 0
-    if max ~= 0 then s = delta / max end
-
-    return h, s, max
-  end
-
-  local function hsbToRgb(h, s, b)
-    local c = b * s
-    local x = c * (1 - math.abs((h / 60) % 2 - 1))
-    local m = b - c
-
-    local r1, g1, b1
-    if h < 60 then
-      r1, g1, b1 = c, x, 0
-    elseif h < 120 then
-      r1, g1, b1 = x, c, 0
-    elseif h < 180 then
-      r1, g1, b1 = 0, c, x
-    elseif h < 240 then
-      r1, g1, b1 = 0, x, c
-    elseif h < 300 then
-      r1, g1, b1 = x, 0, c
-    else
-      r1, g1, b1 = c, 0, x
-    end
-
-    return
-        math.floor((r1 + m) * 255 + 0.5),
-        math.floor((g1 + m) * 255 + 0.5),
-        math.floor((b1 + m) * 255 + 0.5)
-  end
-
-  local function to7Bit(v)
-    return math.floor((v * 127 / 255) + 0.5)
-  end
-
--- Computes a 7-bit RGB sysex colour string for a Launch Control style
--- controller, given a base colour and a 0-127 value.
---
--- value = 0    -> B at 5% of the original brightness
--- value = 95   -> original colour, unchanged
--- value = 1-94 -> B interpolated between the 0 and 95 cases
--- value = 127  -> S at 70% of the original saturation (B unchanged)
--- value = 96-126 -> S interpolated between the 95 and 127 cases
-
-local function getColourForValue(hex, value)
+return function(hex, value)
   local r, g, b = hexToRgb(hex)
   local h, s, brightness = rgbToHsb(r, g, b)
 
@@ -265,9 +199,77 @@ local function getColourForValue(hex, value)
   return string.format("%02x %02x %02x", to7Bit(nr), to7Bit(ng), to7Bit(nb))
 end
 
-return {
-  getColourForValue = getColourForValue
-}
+end)
+__bundle_register("src.utils.colour.to7Bit", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(v)
+  return math.floor((v * 127 / 255) + 0.5)
+end
+
+end)
+__bundle_register("src.utils.colour.hsbToRgb", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(h, s, b)
+  local c = b * s
+  local x = c * (1 - math.abs((h / 60) % 2 - 1))
+  local m = b - c
+
+  local r1, g1, b1
+  if h < 60 then
+    r1, g1, b1 = c, x, 0
+  elseif h < 120 then
+    r1, g1, b1 = x, c, 0
+  elseif h < 180 then
+    r1, g1, b1 = 0, c, x
+  elseif h < 240 then
+    r1, g1, b1 = 0, x, c
+  elseif h < 300 then
+    r1, g1, b1 = x, 0, c
+  else
+    r1, g1, b1 = c, 0, x
+  end
+
+  return
+      math.floor((r1 + m) * 255 + 0.5),
+      math.floor((g1 + m) * 255 + 0.5),
+      math.floor((b1 + m) * 255 + 0.5)
+end
+
+end)
+__bundle_register("src.utils.colour.rgbToHsb", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(r, g, b)
+  r = r / 255
+  g = g / 255
+  b = b / 255
+  local max = math.max(r, g, b)
+  local min = math.min(r, g, b)
+  local delta = max - min
+
+  local h = 0
+  if delta ~= 0 then
+    if max == r then
+      h = 60 * (((g - b) / delta) % 6)
+    elseif max == g then
+      h = 60 * ((b - r) / delta + 2)
+    else
+      h = 60 * ((r - g) / delta + 4)
+    end
+  end
+  if h < 0 then h = h + 360 end
+
+  local s = 0
+  if max ~= 0 then s = delta / max end
+
+  return h, s, max
+end
+
+end)
+__bundle_register("src.utils.colour.hexToRgb", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(hex)
+  local num = tonumber(hex, 16)
+  local r = math.floor(num / 65536) % 256
+  local g = math.floor(num / 256) % 256
+  local b = num % 256
+  return r, g, b
+end
 
 end)
 return __bundle_require("__root")

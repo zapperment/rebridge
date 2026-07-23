@@ -1,4 +1,4 @@
-local colourUtils = require("src.lib.colourUtils")
+local getColourForValue = require("src.utils.colour.getColourForValue")
 
 Items = {
   encoder1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0d xx", controller = 13, colour = "fhyd" },
@@ -104,7 +104,8 @@ function remote_deliver_midi()
     if item.updateColour then
       local value = remote.get_item_value(item.index)
       table.insert(events,
-        remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colourUtils.getColourForValue(Colours[item.colour], value) .. " f7",
+        remote.make_midi(
+          "f0 00 20 29 02 15 01 53 xx " .. getColourForValue(Colours[item.colour], value) .. " f7",
           { x = item.controller }))
       item.updateColour = false
     end

@@ -29,7 +29,7 @@ source "$env_file"
 set +a
 
 if ! luabundler bundle "src/reason/codecs/novation/LCXL3.lua" -p "?.lua" -o "dist/REASON_REMOTE_CODECS_NOVATION/LCXL3.lua"; then
-    log "Error: bundling the Lua script failed — did you install luabundler?"
+    log "Error: bundling the Lua script failed"
     exit 1
 fi
 
