@@ -43,12 +43,17 @@ local __bundle_require, __bundle_loaded, __bundle_register, __bundle_modules = (
 end)(require)
 __bundle_register("__root", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
-local processFaders = require("src.processMidi.faders")
 local processEncoders = require("src.processMidi.encoders")
-local setFaders = require("src.setState.faders")
+local processFaders = require("src.processMidi.faders")
+local processButtons = require("src.processMidi.buttons")
 local setEncoders = require("src.setState.encoders")
-local deliverFaders = require("src.deliverMidi.faders")
+local setFaders = require("src.setState.faders")
+local setButtons = require("src.setState.buttons")
 local deliverEncoders = require("src.deliverMidi.encoders")
+local deliverFaders = require("src.deliverMidi.faders")
+local deliverButtons = require("src.deliverMidi.buttons")
+local deliverDisplay = require("src.deliverMidi.display")
+local stateUtils = require("src.lib.state.utils")
 
 function remote_init()
   local itemsToDefine = {}
@@ -61,25 +66,23 @@ function remote_init()
       max = item.max,
     })
     item.index = #itemsToDefine
-    item.lastInputTime = 0
-    item.updateValue = false
-    item.updateColour = false
   end
   remote.define_items(itemsToDefine)
 end
 
--- Launch Control -> Remote
+-- Remote surface (Launch Control) -> remote codec -> host (Reason)
 function remote_process_midi(event)
-  return processFaders(event) or processEncoders(event)
+  return processEncoders(event) or processFaders(event) or processButtons(event)
 end
 
--- Reason -> Remote
+-- Host (Reason) -> remote codec
 function remote_set_state(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
+  setButtons(changedItems)
 end
 
--- Remote -> Launch Control
+-- Remote codec -> remote surface (Launch Control)
 function remote_deliver_midi()
   local events = {}
 
@@ -87,6 +90,12 @@ function remote_deliver_midi()
     table.insert(events, event)
   end
   for _, event in ipairs(deliverFaders()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverButtons()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverDisplay()) do
     table.insert(events, event)
   end
 
@@ -97,6 +106,7 @@ function remote_prepare_for_use()
   return {
     -- turn on DAW mode
     remote.make_midi("f0 00 20 29 02 15 02 7f f7"),
+    remote.make_midi("b6 1e 02"),
     remote.make_midi("b6 45 00"),
     remote.make_midi("b6 48 00"),
     remote.make_midi("b6 49 00"),
@@ -109,86 +119,6 @@ function remote_release_from_use()
     remote.make_midi("F0 00 20 29 02 15 02 00 F7"),
   }
 end
-
-end)
-__bundle_register("src.deliverMidi.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
-local stateUtils = require("src.lib.state.utils")
-local items = require("src.config.items")
-
--- called regularly by the codec to update the remote surface (Launch Control)
-return function()
-  local events = {}
-  for i = 1, 24 do
-    local path, enabled, changed
-    local item = items["encoder" .. i]
-
-    path = "encoder" .. i .. ".enabled"
-    if stateUtils.hasChanged(path) then
-      stateUtils.update(path)
-      enabled = stateUtils.get(path)
-      changed = true
-      if not enabled then
-        -- turn of encoder's LED
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx 00 00 00 f7", { x = item.controller }))
-      end
-    else
-      enabled = stateUtils.get(path)
-    end
-
-    if enabled then
-      path = "encoder" .. i .. ".value"
-      if changed or stateUtils.hasChanged(path) then
-        stateUtils.update(path)
-        local value = stateUtils.get(path)
-        table.insert(events, remote.make_midi(item.midi, { x = value }))
-      end
-      path = "encoder" .. i .. ".colour"
-      if changed or stateUtils.hasChanged(path) then
-        stateUtils.update(path)
-        local colour = stateUtils.get(path)
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colour .. " f7", { x = item.controller }))
-      end
-    end
-  end
-  return events
-end
-
-end)
-__bundle_register("src.config.items", function(require, _LOADED, __bundle_register, __bundle_modules)
-return {
-  encoder1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0d xx", controller = 13, colour = "fhyd" },
-  encoder2 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0e xx", controller = 14, colour = "tang" },
-  encoder3 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0f xx", controller = 15, colour = "suns" },
-  encoder4 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 10 xx", controller = 16, colour = "fore" },
-  encoder5 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 11 xx", controller = 17, colour = "aqua" },
-  encoder6 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 12 xx", controller = 18, colour = "coco" },
-  encoder7 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 13 xx", controller = 19, colour = "plum" },
-  encoder8 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 14 xx", controller = 20, colour = "flam" },
-  encoder9 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 15 xx", controller = 21, colour = "fhyd" },
-  encoder10 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 16 xx", controller = 22, colour = "tang" },
-  encoder11 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 17 xx", controller = 23, colour = "suns" },
-  encoder12 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 18 xx", controller = 24, colour = "fore" },
-  encoder13 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 19 xx", controller = 25, colour = "aqua" },
-  encoder14 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1a xx", controller = 26, colour = "coco" },
-  encoder15 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1b xx", controller = 27, colour = "plum" },
-  encoder16 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1c xx", controller = 28, colour = "flam" },
-  encoder17 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1d xx", controller = 29, colour = "fhyd" },
-  encoder18 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1e xx", controller = 30, colour = "tang" },
-  encoder19 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1f xx", controller = 31, colour = "suns" },
-  encoder20 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 20 xx", controller = 32, colour = "fore" },
-  encoder21 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 21 xx", controller = 33, colour = "aqua" },
-  encoder22 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 22 xx", controller = 34, colour = "coco" },
-  encoder23 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 23 xx", controller = 35, colour = "plum" },
-  encoder24 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 24 xx", controller = 36, colour = "flam" },
-  fader1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 05 xx", controller = 5 },
-  fader2 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 06 xx", controller = 6 },
-  fader3 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 07 xx", controller = 7 },
-  fader4 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 08 xx", controller = 8 },
-  fader5 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 09 xx", controller = 9 },
-  fader6 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0a xx", controller = 10 },
-  fader7 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0b xx", controller = 11 },
-  fader8 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0c xx", controller = 12 },
-}
 
 end)
 __bundle_register("src.lib.state.utils", function(require, _LOADED, __bundle_register, __bundle_modules)
@@ -606,6 +536,234 @@ function StateManager:new()
                 next = false
             }
         },
+        button1 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button2 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button3 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button4 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button5 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button6 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button7 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button8 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button9 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button10 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button11 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button12 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button13 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button14 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button15 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button16 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        display = {
+            current = " ",
+            next = " "
+        }
     }
     setmetatable(instance, self)
     self.__index = self
@@ -733,6 +891,149 @@ return {
 }
 
 end)
+__bundle_register("src.deliverMidi.display", function(require, _LOADED, __bundle_register, __bundle_modules)
+local stateUtils = require("src.lib.state.utils")
+
+local function textToHex(str)
+  local lines = {}
+  for line in (str .. "\n"):gmatch("(.-)\n") do
+    table.insert(lines, line)
+  end
+
+  local hex_lines = {}
+  for _, line in ipairs(lines) do
+    local bytes = {}
+    for i = 1, #line do
+      local byte = string.byte(line, i)
+      table.insert(bytes, string.format("%02x", byte))
+    end
+    table.insert(hex_lines, table.concat(bytes, " "))
+  end
+
+  return hex_lines
+end
+
+-- called regularly by the codec to update the remote surface (Launch Control)
+return function()
+  local events = {}
+  if stateUtils.hasChanged("display") then
+    local text = stateUtils.update("display")
+    -- Configure display: arrangement 2 (3 lines)
+    table.insert(events, remote.make_midi("f0 00 20 29 02 15 04 35 62 f7"))
+
+    local target = "35" -- stationary display
+    local lines = textToHex(text)
+
+    for field, hex in ipairs(lines) do
+      local fieldByte = string.format("%02x", field - 1) -- 00h, 01h, 02h...
+      table.insert(events, remote.make_midi(
+        "f0 00 20 29 02 15 06 " .. target .. " " .. fieldByte .. " " .. hex .. " f7"
+      ))
+    end
+
+    -- Trigger display
+    table.insert(events, remote.make_midi("f0 00 20 29 02 15 04 35 7f f7"))
+  end
+  return events
+end
+
+end)
+__bundle_register("src.deliverMidi.buttons", function(require, _LOADED, __bundle_register, __bundle_modules)
+local stateUtils = require("src.lib.state.utils")
+local items = require("src.config.items")
+
+-- called regularly by the codec to update the remote surface (Launch Control)
+return function()
+  local events = {}
+  local message = ""
+  for i = 1, 16 do
+    local path, enabled
+    local enabledChanged = false
+    local item = items["button" .. i]
+
+    path = "button" .. i .. ".enabled"
+    if stateUtils.hasChanged(path) then
+      stateUtils.update(path)
+      enabled = stateUtils.get(path)
+      enabledChanged = true
+      if not enabled then
+        -- turn of button's LED
+        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx 00 00 00 f7", { x = item.controller }))
+      end
+    else
+      enabled = stateUtils.get(path)
+    end
+
+    if enabled then
+      path = "button" .. i .. ".value"
+      if enabledChanged or stateUtils.hasChanged(path) then
+        stateUtils.update(path)
+        -- no MIDI command sent out for button change
+      end
+      path = "button" .. i .. ".colour"
+      if enabledChanged or stateUtils.hasChanged(path) then
+        local colour = stateUtils.update(path)
+        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colour .. " f7", { x = item.controller }))
+      end
+    end
+  end
+  return events
+end
+
+end)
+__bundle_register("src.config.items", function(require, _LOADED, __bundle_register, __bundle_modules)
+return {
+  encoder1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0d xx", controller = 13, colour = "fhyd" },
+  encoder2 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0e xx", controller = 14, colour = "tang" },
+  encoder3 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0f xx", controller = 15, colour = "suns" },
+  encoder4 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 10 xx", controller = 16, colour = "fore" },
+  encoder5 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 11 xx", controller = 17, colour = "aqua" },
+  encoder6 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 12 xx", controller = 18, colour = "coco" },
+  encoder7 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 13 xx", controller = 19, colour = "plum" },
+  encoder8 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 14 xx", controller = 20, colour = "flam" },
+  encoder9 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 15 xx", controller = 21, colour = "fhyd" },
+  encoder10 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 16 xx", controller = 22, colour = "tang" },
+  encoder11 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 17 xx", controller = 23, colour = "suns" },
+  encoder12 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 18 xx", controller = 24, colour = "fore" },
+  encoder13 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 19 xx", controller = 25, colour = "aqua" },
+  encoder14 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1a xx", controller = 26, colour = "coco" },
+  encoder15 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1b xx", controller = 27, colour = "plum" },
+  encoder16 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1c xx", controller = 28, colour = "flam" },
+  encoder17 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1d xx", controller = 29, colour = "fhyd" },
+  encoder18 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1e xx", controller = 30, colour = "tang" },
+  encoder19 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 1f xx", controller = 31, colour = "suns" },
+  encoder20 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 20 xx", controller = 32, colour = "fore" },
+  encoder21 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 21 xx", controller = 33, colour = "aqua" },
+  encoder22 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 22 xx", controller = 34, colour = "coco" },
+  encoder23 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 23 xx", controller = 35, colour = "plum" },
+  encoder24 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 24 xx", controller = 36, colour = "flam" },
+  fader1 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 05 xx", controller = 5 },
+  fader2 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 06 xx", controller = 6 },
+  fader3 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 07 xx", controller = 7 },
+  fader4 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 08 xx", controller = 8 },
+  fader5 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 09 xx", controller = 9 },
+  fader6 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0a xx", controller = 10 },
+  fader7 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0b xx", controller = 11 },
+  fader8 = { input = "value", output = "value", min = 0, max = 127, midi = "bf 0c xx", controller = 12 },
+  button1 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 25 7f", controller = 37, colour = "fhyd" },
+  button2 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 26 7f", controller = 38, colour = "tang" },
+  button3 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 27 7f", controller = 39, colour = "suns" },
+  button4 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 28 7f", controller = 40, colour = "fore" },
+  button5 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 29 7f", controller = 41, colour = "aqua" },
+  button6 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 2a 7f", controller = 42, colour = "coco" },
+  button7 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 2b 7f", controller = 43, colour = "plum" },
+  button8 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 2c 7f", controller = 44, colour = "flam" },
+  button9 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 2d 7f", controller = 45, colour = "fhyd" },
+  button10 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 2e 7f", controller = 46, colour = "tang" },
+  button11 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 2f 7f", controller = 47, colour = "suns" },
+  button12 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 30 7f", controller = 48, colour = "fore" },
+  button13 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 31 7f", controller = 49, colour = "aqua" },
+  button14 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 32 7f", controller = 50, colour = "coco" },
+  button15 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 33 7f", controller = 51, colour = "plum" },
+  button16 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 34 7f", controller = 52, colour = "flam" },
+}
+
+end)
 __bundle_register("src.deliverMidi.faders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local stateUtils = require("src.lib.state.utils")
 
@@ -751,25 +1052,66 @@ return function()
 end
 
 end)
-__bundle_register("src.setState.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
+__bundle_register("src.deliverMidi.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
+local stateUtils = require("src.lib.state.utils")
+local items = require("src.config.items")
+
+-- called regularly by the codec to update the remote surface (Launch Control)
+return function()
+  local events = {}
+  for i = 1, 24 do
+    local path, enabled, changed
+    local item = items["encoder" .. i]
+
+    path = "encoder" .. i .. ".enabled"
+    if stateUtils.hasChanged(path) then
+      enabled = stateUtils.update(path)
+      changed = true
+      if not enabled then
+        -- turn of encoder's LED
+        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx 00 00 00 f7", { x = item.controller }))
+      end
+    else
+      enabled = stateUtils.get(path)
+    end
+
+    if enabled then
+      path = "encoder" .. i .. ".value"
+      if changed or stateUtils.hasChanged(path) then
+        local value = stateUtils.update(path)
+        table.insert(events, remote.make_midi(item.midi, { x = value }))
+      end
+      path = "encoder" .. i .. ".colour"
+      if changed or stateUtils.hasChanged(path) then
+        local colour = stateUtils.update(path)
+        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colour .. " f7", { x = item.controller }))
+      end
+    end
+  end
+  return events
+end
+
+end)
+__bundle_register("src.setState.buttons", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
 local stateUtils = require("src.lib.state.utils")
 local getColour = require("src.lib.colour.getColour")
 
--- handles changes of the encoders from the host (Reason)
+-- handles changes of the buttons of the host (Reason)
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
-    for i = 1, 24 do
-      local encoder = "encoder" .. i
-      if changedItemIndex == items[encoder].index then
+    for i = 1, 16 do
+      local button = "button" .. i
+      if changedItemIndex == items[button].index then
         if changedItem.is_enabled then
-          local hostValue = changedItem.value
-          stateUtils.set(encoder .. ".enabled", true)
-          stateUtils.set(encoder .. ".value", hostValue)
-          stateUtils.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
+          local hostValue = changedItem.value > 0 and true or false
+          stateUtils.set(button .. ".enabled", true)
+          stateUtils.set(button .. ".value", hostValue)
+          local colourValue = changedItem.value > 0 and 95 or 1
+          stateUtils.set(button .. ".colour", getColour(items[button].colour, colourValue))
         else
-          stateUtils.set(encoder .. ".enabled", false)
+          stateUtils.set(button .. ".enabled", false)
         end
       end
     end
@@ -906,7 +1248,7 @@ local items = require("src.config.items")
 local constants = require("src.config.constants")
 local stateUtils = require("src.lib.state.utils")
 
--- handles changes of the faders from the host (Reason)
+-- handles changes of the faders of the host (Reason)
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
@@ -956,26 +1298,53 @@ return {
 }
 
 end)
-__bundle_register("src.processMidi.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
+__bundle_register("src.setState.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
 local stateUtils = require("src.lib.state.utils")
 local getColour = require("src.lib.colour.getColour")
 
--- handles changes of the faders from the remote surface (Launch Control)
+-- handles changes of the encoders of the host (Reason)
+return function(changedItems)
+  for _, changedItemIndex in ipairs(changedItems) do
+    local changedItem = remote.get_item_state(changedItemIndex)
+    for i = 1, 24 do
+      local encoder = "encoder" .. i
+      if changedItemIndex == items[encoder].index then
+        if changedItem.is_enabled then
+          local hostValue = changedItem.value
+          stateUtils.set(encoder .. ".enabled", true)
+          stateUtils.set(encoder .. ".value", hostValue)
+          stateUtils.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
+        else
+          stateUtils.set(encoder .. ".enabled", false)
+        end
+      end
+    end
+  end
+end
+
+end)
+__bundle_register("src.processMidi.buttons", function(require, _LOADED, __bundle_register, __bundle_modules)
+local items = require("src.config.items")
+local stateUtils = require("src.lib.state.utils")
+local getColour = require("src.lib.colour.getColour")
+
+-- handles changes of the buttons of the remote surface (Launch Control)
 return function(event)
   local processed = false
 
-  for i = 1, 24 do
-    local encoder = "encoder" .. i
-    local item = items[encoder]
+  for i = 1, 16 do
+    local button = "button" .. i
+    local item = items[button]
     local match = remote.match_midi(item.midi, event)
-    if match and stateUtils.get(encoder .. ".enabled") then
-      local remoteSurfaceValue = match.x
-      stateUtils.set(encoder .. ".value", remoteSurfaceValue)
-      stateUtils.set(encoder .. ".colour", getColour(item.colour, remoteSurfaceValue))
+    if match and stateUtils.get(button .. ".enabled") then
+      local turnedOn = stateUtils.flip(button .. ".value")
+      local colourValue = turnedOn and 95 or 1
+      stateUtils.set(button .. ".colour", getColour(item.colour, colourValue))
 
       -- update host (Reason)
-      remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = remoteSurfaceValue })
+      local hostValue = turnedOn and 127 or 0
+      remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = hostValue })
       processed = true
     end
   end
@@ -989,7 +1358,7 @@ local items = require("src.config.items")
 local constants = require("src.config.constants")
 local stateUtils = require("src.lib.state.utils")
 
--- handles changes of the faders from the remote surface (Launch Control)
+-- handles changes of the faders of the remote surface (Launch Control)
 return function(event)
   local processed = false
 
@@ -1035,6 +1404,33 @@ return function(event)
     end
   end
 
+  return processed
+end
+
+end)
+__bundle_register("src.processMidi.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
+local items = require("src.config.items")
+local stateUtils = require("src.lib.state.utils")
+local getColour = require("src.lib.colour.getColour")
+
+-- handles changes of the encoders of the remote surface (Launch Control)
+return function(event)
+  local processed = false
+
+  for i = 1, 24 do
+    local encoder = "encoder" .. i
+    local item = items[encoder]
+    local match = remote.match_midi(item.midi, event)
+    if match and stateUtils.get(encoder .. ".enabled") then
+      local remoteSurfaceValue = match.x
+      stateUtils.set(encoder .. ".value", remoteSurfaceValue)
+      stateUtils.set(encoder .. ".colour", getColour(item.colour, remoteSurfaceValue))
+
+      -- update host (Reason)
+      remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = remoteSurfaceValue })
+      processed = true
+    end
+  end
   return processed
 end
 

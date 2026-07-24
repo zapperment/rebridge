@@ -373,6 +373,234 @@ function StateManager:new()
                 next = false
             }
         },
+        button1 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button2 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button3 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button4 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button5 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button6 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button7 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button8 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button9 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button10 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button11 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button12 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button13 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button14 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button15 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        button16 = {
+            value = {
+                current = false,
+                next = false,
+            },
+            colour = {
+                current = "00 00 00",
+                next = "00 00 00",
+            },
+            enabled = {
+                current = false,
+                next = false
+            }
+        },
+        display = {
+            current = " ",
+            next = " "
+        }
     }
     setmetatable(instance, self)
     self.__index = self

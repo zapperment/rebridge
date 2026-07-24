@@ -1,10 +1,15 @@
 local items = require("src.config.items")
-local processFaders = require("src.processMidi.faders")
 local processEncoders = require("src.processMidi.encoders")
-local setFaders = require("src.setState.faders")
+local processFaders = require("src.processMidi.faders")
+local processButtons = require("src.processMidi.buttons")
 local setEncoders = require("src.setState.encoders")
-local deliverFaders = require("src.deliverMidi.faders")
+local setFaders = require("src.setState.faders")
+local setButtons = require("src.setState.buttons")
 local deliverEncoders = require("src.deliverMidi.encoders")
+local deliverFaders = require("src.deliverMidi.faders")
+local deliverButtons = require("src.deliverMidi.buttons")
+local deliverDisplay = require("src.deliverMidi.display")
+local stateUtils = require("src.lib.state.utils")
 
 function remote_init()
   local itemsToDefine = {}
@@ -17,25 +22,23 @@ function remote_init()
       max = item.max,
     })
     item.index = #itemsToDefine
-    item.lastInputTime = 0
-    item.updateValue = false
-    item.updateColour = false
   end
   remote.define_items(itemsToDefine)
 end
 
--- Launch Control -> Remote
+-- Remote surface (Launch Control) -> remote codec -> host (Reason)
 function remote_process_midi(event)
-  return processFaders(event) or processEncoders(event)
+  return processEncoders(event) or processFaders(event) or processButtons(event)
 end
 
--- Reason -> Remote
+-- Host (Reason) -> remote codec
 function remote_set_state(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
+  setButtons(changedItems)
 end
 
--- Remote -> Launch Control
+-- Remote codec -> remote surface (Launch Control)
 function remote_deliver_midi()
   local events = {}
 
@@ -43,6 +46,12 @@ function remote_deliver_midi()
     table.insert(events, event)
   end
   for _, event in ipairs(deliverFaders()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverButtons()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverDisplay()) do
     table.insert(events, event)
   end
 
@@ -53,6 +62,7 @@ function remote_prepare_for_use()
   return {
     -- turn on DAW mode
     remote.make_midi("f0 00 20 29 02 15 02 7f f7"),
+    remote.make_midi("b6 1e 02"),
     remote.make_midi("b6 45 00"),
     remote.make_midi("b6 48 00"),
     remote.make_midi("b6 49 00"),

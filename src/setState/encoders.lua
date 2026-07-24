@@ -2,7 +2,7 @@ local items = require("src.config.items")
 local stateUtils = require("src.lib.state.utils")
 local getColour = require("src.lib.colour.getColour")
 
--- handles changes of the encoders from the host (Reason)
+-- handles changes of the encoders of the host (Reason)
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)

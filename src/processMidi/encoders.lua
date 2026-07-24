@@ -2,7 +2,7 @@ local items = require("src.config.items")
 local stateUtils = require("src.lib.state.utils")
 local getColour = require("src.lib.colour.getColour")
 
--- handles changes of the faders from the remote surface (Launch Control)
+-- handles changes of the encoders of the remote surface (Launch Control)
 return function(event)
   local processed = false
 

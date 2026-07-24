@@ -3,7 +3,7 @@ local items = require("src.config.items")
 local constants = require("src.config.constants")
 local stateUtils = require("src.lib.state.utils")
 
--- handles changes of the faders from the host (Reason)
+-- handles changes of the faders of the host (Reason)
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)

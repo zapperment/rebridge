@@ -3,7 +3,7 @@ local items = require("src.config.items")
 local constants = require("src.config.constants")
 local stateUtils = require("src.lib.state.utils")
 
--- handles changes of the faders from the remote surface (Launch Control)
+-- handles changes of the faders of the remote surface (Launch Control)
 return function(event)
   local processed = false
 
