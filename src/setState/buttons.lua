@@ -1,5 +1,5 @@
 local items = require("src.config.items")
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the buttons of the host (Reason)
@@ -11,12 +11,12 @@ return function(changedItems)
       if changedItemIndex == items[button].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value > 0 and true or false
-          stateUtils.set(button .. ".enabled", true)
-          stateUtils.set(button .. ".value", hostValue)
+          state.set(button .. ".enabled", true)
+          state.set(button .. ".value", hostValue)
           local colourValue = changedItem.value > 0 and 95 or 1
-          stateUtils.set(button .. ".colour", getColour(items[button].colour, colourValue))
+          state.set(button .. ".colour", getColour(items[button].colour, colourValue))
         else
-          stateUtils.set(button .. ".enabled", false)
+          state.set(button .. ".enabled", false)
         end
       end
     end

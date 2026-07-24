@@ -1,7 +1,7 @@
 local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
-local constants = require("src.config.constants")
-local stateUtils = require("src.lib.state.utils")
+local const = require("src.config.constants")
+local state = require("src.lib.state._")
 
 -- handles changes of the faders of the remote surface (Launch Control)
 return function(event)
@@ -13,29 +13,29 @@ return function(event)
     if ret then
       local remoteSurfaceValue = ret.x
       local hostValue = faderStates[fader].host
-      local state = stateUtils.get(fader)
-      if state == constants.fader.unknown then
+      local status = state.get(fader)
+      if status == const.fader.unknown then
         -- it is goes here when the codec has just been loaded and
         -- we receive a CC from a fader for the first time
-        if remoteSurfaceValue >= hostValue - constants.pickupTolerance and remoteSurfaceValue <= hostValue + constants.pickupTolerance then
-          stateUtils.set(fader, constants.fader.inSync)
+        if remoteSurfaceValue >= hostValue - const.pickupTolerance and remoteSurfaceValue <= hostValue + const.pickupTolerance then
+          state.set(fader, const.fader.inSync)
         elseif remoteSurfaceValue < hostValue then
-          stateUtils.set(fader, constants.fader.tooLow)
+          state.set(fader, const.fader.tooLow)
         elseif remoteSurfaceValue > hostValue then
-          stateUtils.set(fader, constants.fader.tooHigh)
+          state.set(fader, const.fader.tooHigh)
         end
-      elseif state == constants.fader.tooLow then
+      elseif status == const.fader.tooLow then
         if remoteSurfaceValue >= hostValue then
-          stateUtils.set(fader, constants.fader.inSync)
+          state.set(fader, const.fader.inSync)
         end
-      elseif state == constants.fader.tooHigh then
+      elseif status == const.fader.tooHigh then
         if remoteSurfaceValue <= hostValue then
-          stateUtils.set(fader, constants.fader.inSync)
+          state.set(fader, const.fader.inSync)
         end
       end
       faderStates[fader].remoteSurface = remoteSurfaceValue
 
-      if stateUtils.getNext(fader) == constants.fader.inSync then
+      if state.getNext(fader) == const.fader.inSync then
         faderStates[fader].host = remoteSurfaceValue
 
         -- CODEC => REASON

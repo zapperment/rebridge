@@ -9,7 +9,8 @@ local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
 local deliverButtons = require("src.deliverMidi.buttons")
 local deliverDisplay = require("src.deliverMidi.display")
-local stateUtils = require("src.lib.state.utils")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local debug = require("src.lib.debug._")
 
 function remote_init()
   local itemsToDefine = {}
@@ -24,6 +25,7 @@ function remote_init()
     item.index = #itemsToDefine
   end
   remote.define_items(itemsToDefine)
+  debug.log("LCXL3 remote coded initialised successfully!")
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
@@ -39,7 +41,11 @@ function remote_set_state(changedItems)
 end
 
 -- Remote codec -> remote surface (Launch Control)
-function remote_deliver_midi()
+function remote_deliver_midi(_, port)
+  if port == 2 then
+    return debug.dump()
+  end
+
   local events = {}
 
   for _, event in ipairs(deliverEncoders()) do
@@ -61,7 +67,7 @@ end
 function remote_prepare_for_use()
   return {
     -- turn on DAW mode
-    remote.make_midi("f0 00 20 29 02 15 02 7f f7"),
+    makeSysexEvent("02 7f"),
     remote.make_midi("b6 1e 02"),
     remote.make_midi("b6 45 00"),
     remote.make_midi("b6 48 00"),
@@ -72,6 +78,6 @@ end
 function remote_release_from_use()
   return {
     -- turn off DAW mode
-    remote.make_midi("F0 00 20 29 02 15 02 00 F7"),
+    makeSysexEvent("02 00"),
   }
 end

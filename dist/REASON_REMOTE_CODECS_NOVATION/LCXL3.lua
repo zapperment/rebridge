@@ -53,7 +53,8 @@ local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
 local deliverButtons = require("src.deliverMidi.buttons")
 local deliverDisplay = require("src.deliverMidi.display")
-local stateUtils = require("src.lib.state.utils")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local debug = require("src.lib.debug._")
 
 function remote_init()
   local itemsToDefine = {}
@@ -68,6 +69,7 @@ function remote_init()
     item.index = #itemsToDefine
   end
   remote.define_items(itemsToDefine)
+  debug.log("LCXL3 remote coded initialised successfully!")
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
@@ -83,7 +85,11 @@ function remote_set_state(changedItems)
 end
 
 -- Remote codec -> remote surface (Launch Control)
-function remote_deliver_midi()
+function remote_deliver_midi(_, port)
+  if port == 2 then
+    return debug.dump()
+  end
+
   local events = {}
 
   for _, event in ipairs(deliverEncoders()) do
@@ -105,7 +111,7 @@ end
 function remote_prepare_for_use()
   return {
     -- turn on DAW mode
-    remote.make_midi("f0 00 20 29 02 15 02 7f f7"),
+    makeSysexEvent("02 7f"),
     remote.make_midi("b6 1e 02"),
     remote.make_midi("b6 45 00"),
     remote.make_midi("b6 48 00"),
@@ -116,12 +122,191 @@ end
 function remote_release_from_use()
   return {
     -- turn off DAW mode
-    remote.make_midi("F0 00 20 29 02 15 02 00 F7"),
+    makeSysexEvent("02 00"),
   }
 end
 
 end)
-__bundle_register("src.lib.state.utils", function(require, _LOADED, __bundle_register, __bundle_modules)
+__bundle_register("src.lib.debug._", function(require, _LOADED, __bundle_register, __bundle_modules)
+local concatenateKeys = require("src.lib.debug.concatenateKeys")
+local logWithLogMessages = require("src.lib.debug.log")
+local dumpWithLogMessages = require("src.lib.debug.dump")
+
+local logMessages = {}
+
+local function log(message)
+  logWithLogMessages(logMessages, message)
+end
+
+local function dump()
+  local events = dumpWithLogMessages(logMessages)
+  logMessages = {}
+  return events
+end
+
+return {
+  concatenateKeys = concatenateKeys,
+  log = log,
+  dump = dump
+}
+
+end)
+__bundle_register("src.lib.debug.dump", function(require, _LOADED, __bundle_register, __bundle_modules)
+local makeLogEvent = require("src.lib.midi.makeLogEvent")
+
+return function(logMessages)
+  local events = {}
+  for _, message in pairs(logMessages) do
+    table.insert(events, makeLogEvent(message))
+  end
+  return events
+end
+
+end)
+__bundle_register("src.lib.midi.makeLogEvent", function(require, _LOADED, __bundle_register, __bundle_modules)
+local const = require("src.config.constants")
+local textToHex = require("src.lib.hex.textToHex")
+
+return function(msg)
+  local event = const.debugSysexHeader .. " " .. textToHex(msg) .. "F7"
+  return remote.make_midi(event)
+end
+
+end)
+__bundle_register("src.lib.hex.textToHex", function(require, _LOADED, __bundle_register, __bundle_modules)
+local decToHex = require("src.lib.hex.decToHex")
+
+return function(text)
+  local hex = ""
+  local textLen = string.len(text)
+  for i = 1, textLen do
+    hex = hex .. decToHex(string.byte(text, i))
+    if i ~= textLen then
+      hex = hex .. " "
+    end
+  end
+  return hex
+end
+
+end)
+__bundle_register("src.lib.hex.decToHex", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(decimalValue)
+  return string.format("%02X", decimalValue)
+end
+
+end)
+__bundle_register("src.config.constants", function(require, _LOADED, __bundle_register, __bundle_modules)
+return {
+  pickupTolerance = 10,
+  maxLogMessages = 100,
+  sysexHeader = "f0 00 20 29 02 15",
+  debugSysexHeader = "f0 00 20 29 02 0a 02",
+  fader = {
+    unknown = 0,
+    tooLow = 1,
+    inSync = 2,
+    tooHigh = 3,
+    unassigned = 4
+  }
+}
+
+end)
+__bundle_register("src.lib.debug.log", function(require, _LOADED, __bundle_register, __bundle_modules)
+local const = require("src.config.constants")
+
+return function(logMessages, message)
+  table.insert(logMessages, message)
+  -- if the codec is not running in debug mode, the logs are never dumped
+  -- we need to limit the number of log messages to prevent memory leaks
+  if #logMessages > const.maxLogMessages then
+    table.remove(logMessages, 1)
+  end
+end
+
+end)
+__bundle_register("src.lib.debug.concatenateKeys", function(require, _LOADED, __bundle_register, __bundle_modules)
+-- this function accepts a table and returns a string with
+-- all the keys in the table; you can specify keys to exclude
+-- in the output by providing a second argument
+return function(tbl, excludeKeys)
+  local keys = {}
+  local exclude = {}
+
+  -- Populate the exclude table for O(1) lookups
+  for _, key in ipairs(excludeKeys or {}) do
+    exclude[key] = true
+  end
+
+  for key, _ in pairs(tbl) do
+    if not exclude[key] then
+      table.insert(keys, tostring(key))
+    end
+  end
+
+  return table.concat(keys, ",")
+end
+
+end)
+__bundle_register("src.lib.midi.makeSysexEvent", function(require, _LOADED, __bundle_register, __bundle_modules)
+local const = require("src.config.constants")
+
+return function(payload, options)
+  return remote.make_midi(const.sysexHeader .. " " .. payload .. " f7", options or {})
+end
+
+end)
+__bundle_register("src.deliverMidi.display", function(require, _LOADED, __bundle_register, __bundle_modules)
+local state = require("src.lib.state._")
+local textLinesToHex = require("src.lib.hex.textLinesToHex")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+
+-- called regularly by the codec to update the remote surface (Launch Control)
+return function()
+  local events = {}
+  if state.hasChanged("display") then
+    local text = state.update("display")
+    -- Configure display: arrangement 2 (3 lines)
+    table.insert(events, makeSysexEvent("04 35 62"))
+
+    local target = "35" -- stationary display
+    local lines = textLinesToHex(text)
+
+    for field, hex in ipairs(lines) do
+      local fieldByte = string.format("%02x", field - 1) -- 00h, 01h, 02h...
+      table.insert(events, makeSysexEvent(
+        "06 " .. target .. " " .. fieldByte .. " " .. hex
+      ))
+    end
+
+    -- Trigger display
+    table.insert(events, makeSysexEvent("04 35 7f"))
+  end
+  return events
+end
+
+end)
+__bundle_register("src.lib.hex.textLinesToHex", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(str)
+  local lines = {}
+  for line in (str .. "\n"):gmatch("(.-)\n") do
+    table.insert(lines, line)
+  end
+
+  local hexLines = {}
+  for _, line in ipairs(lines) do
+    local bytes = {}
+    for i = 1, #line do
+      local byte = string.byte(line, i)
+      table.insert(bytes, string.format("%02x", byte))
+    end
+    table.insert(hexLines, table.concat(bytes, " "))
+  end
+
+  return hexLines
+end
+
+end)
+__bundle_register("src.lib.state._", function(require, _LOADED, __bundle_register, __bundle_modules)
 local StateManager = require("src.lib.state.StateManager")
 
 local stateManager = StateManager:new()
@@ -161,7 +346,7 @@ return {
 
 end)
 __bundle_register("src.lib.state.StateManager", function(require, _LOADED, __bundle_register, __bundle_modules)
-local constants = require("src.config.constants")
+local const = require("src.config.constants")
 local getValueFromPath = require("src.lib.table.getValueFromPath")
 
 local StateManager = {}
@@ -169,36 +354,36 @@ local StateManager = {}
 function StateManager:new()
     local instance = {
         fader1 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader2 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader3 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader4 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader5 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader6 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader7 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader8 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         encoder1 = {
             value = {
@@ -878,102 +1063,42 @@ return function(tbl, path)
 end
 
 end)
-__bundle_register("src.config.constants", function(require, _LOADED, __bundle_register, __bundle_modules)
-return {
-  pickupTolerance = 10,
-  fader = {
-    unknown = 0,
-    tooLow = 1,
-    inSync = 2,
-    tooHigh = 3,
-    unassigned = 4
-  }
-}
-
-end)
-__bundle_register("src.deliverMidi.display", function(require, _LOADED, __bundle_register, __bundle_modules)
-local stateUtils = require("src.lib.state.utils")
-
-local function textToHex(str)
-  local lines = {}
-  for line in (str .. "\n"):gmatch("(.-)\n") do
-    table.insert(lines, line)
-  end
-
-  local hex_lines = {}
-  for _, line in ipairs(lines) do
-    local bytes = {}
-    for i = 1, #line do
-      local byte = string.byte(line, i)
-      table.insert(bytes, string.format("%02x", byte))
-    end
-    table.insert(hex_lines, table.concat(bytes, " "))
-  end
-
-  return hex_lines
-end
-
--- called regularly by the codec to update the remote surface (Launch Control)
-return function()
-  local events = {}
-  if stateUtils.hasChanged("display") then
-    local text = stateUtils.update("display")
-    -- Configure display: arrangement 2 (3 lines)
-    table.insert(events, remote.make_midi("f0 00 20 29 02 15 04 35 62 f7"))
-
-    local target = "35" -- stationary display
-    local lines = textToHex(text)
-
-    for field, hex in ipairs(lines) do
-      local fieldByte = string.format("%02x", field - 1) -- 00h, 01h, 02h...
-      table.insert(events, remote.make_midi(
-        "f0 00 20 29 02 15 06 " .. target .. " " .. fieldByte .. " " .. hex .. " f7"
-      ))
-    end
-
-    -- Trigger display
-    table.insert(events, remote.make_midi("f0 00 20 29 02 15 04 35 7f f7"))
-  end
-  return events
-end
-
-end)
 __bundle_register("src.deliverMidi.buttons", function(require, _LOADED, __bundle_register, __bundle_modules)
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local items = require("src.config.items")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
-  local message = ""
   for i = 1, 16 do
     local path, enabled
     local enabledChanged = false
     local item = items["button" .. i]
 
     path = "button" .. i .. ".enabled"
-    if stateUtils.hasChanged(path) then
-      stateUtils.update(path)
-      enabled = stateUtils.get(path)
+    if state.hasChanged(path) then
+      state.update(path)
+      enabled = state.get(path)
       enabledChanged = true
       if not enabled then
         -- turn of button's LED
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx 00 00 00 f7", { x = item.controller }))
+        table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
       end
     else
-      enabled = stateUtils.get(path)
+      enabled = state.get(path)
     end
 
     if enabled then
       path = "button" .. i .. ".value"
-      if enabledChanged or stateUtils.hasChanged(path) then
-        stateUtils.update(path)
+      if enabledChanged or state.hasChanged(path) then
+        state.update(path)
         -- no MIDI command sent out for button change
       end
       path = "button" .. i .. ".colour"
-      if enabledChanged or stateUtils.hasChanged(path) then
-        local colour = stateUtils.update(path)
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colour .. " f7", { x = item.controller }))
+      if enabledChanged or state.hasChanged(path) then
+        local colour = state.update(path)
+        table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
     end
   end
@@ -1035,17 +1160,17 @@ return {
 
 end)
 __bundle_register("src.deliverMidi.faders", function(require, _LOADED, __bundle_register, __bundle_modules)
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
   for i = 1, 8 do
     local fader = "fader" .. i
-    if stateUtils.hasChanged(fader) then
+    if state.hasChanged(fader) then
       -- currently not sending any fader CCs to remote surface
       -- we may change this later
-      stateUtils.update(fader)
+      state.update(fader)
     end
   end
   return events
@@ -1053,8 +1178,9 @@ end
 
 end)
 __bundle_register("src.deliverMidi.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local items = require("src.config.items")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -1064,27 +1190,27 @@ return function()
     local item = items["encoder" .. i]
 
     path = "encoder" .. i .. ".enabled"
-    if stateUtils.hasChanged(path) then
-      enabled = stateUtils.update(path)
+    if state.hasChanged(path) then
+      enabled = state.update(path)
       changed = true
       if not enabled then
         -- turn of encoder's LED
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx 00 00 00 f7", { x = item.controller }))
+        table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
       end
     else
-      enabled = stateUtils.get(path)
+      enabled = state.get(path)
     end
 
     if enabled then
       path = "encoder" .. i .. ".value"
-      if changed or stateUtils.hasChanged(path) then
-        local value = stateUtils.update(path)
+      if changed or state.hasChanged(path) then
+        local value = state.update(path)
         table.insert(events, remote.make_midi(item.midi, { x = value }))
       end
       path = "encoder" .. i .. ".colour"
-      if changed or stateUtils.hasChanged(path) then
-        local colour = stateUtils.update(path)
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colour .. " f7", { x = item.controller }))
+      if changed or state.hasChanged(path) then
+        local colour = state.update(path)
+        table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
     end
   end
@@ -1094,7 +1220,7 @@ end
 end)
 __bundle_register("src.setState.buttons", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the buttons of the host (Reason)
@@ -1106,12 +1232,12 @@ return function(changedItems)
       if changedItemIndex == items[button].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value > 0 and true or false
-          stateUtils.set(button .. ".enabled", true)
-          stateUtils.set(button .. ".value", hostValue)
+          state.set(button .. ".enabled", true)
+          state.set(button .. ".value", hostValue)
           local colourValue = changedItem.value > 0 and 95 or 1
-          stateUtils.set(button .. ".colour", getColour(items[button].colour, colourValue))
+          state.set(button .. ".colour", getColour(items[button].colour, colourValue))
         else
-          stateUtils.set(button .. ".enabled", false)
+          state.set(button .. ".enabled", false)
         end
       end
     end
@@ -1245,8 +1371,8 @@ end)
 __bundle_register("src.setState.faders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
-local constants = require("src.config.constants")
-local stateUtils = require("src.lib.state.utils")
+local const = require("src.config.constants")
+local state = require("src.lib.state._")
 
 -- handles changes of the faders of the host (Reason)
 return function(changedItems)
@@ -1258,26 +1384,26 @@ return function(changedItems)
         if changedItem.is_enabled then
           local hostValue = changedItem.value
           local controlSurfaceValue = faderStates[fader].controlSurface
-          local state
+          local status
           if controlSurfaceValue == nil then
             -- it goes here when the codec is loaded
             -- because we do not know where the fader is at on the control surface
-            state = constants.fader.unknown
-          elseif hostValue >= controlSurfaceValue - constants.pickupTolerance and hostValue <= controlSurfaceValue + constants.pickupTolerance then
+            status = const.fader.unknown
+          elseif hostValue >= controlSurfaceValue - const.pickupTolerance and hostValue <= controlSurfaceValue + const.pickupTolerance then
             --local xy = changedItem.IN_SYNC.value
-            state = constants.fader.inSync
+            status = const.fader.inSync
           elseif hostValue > controlSurfaceValue then
             --local xy = changedItem.TOO_LOW.value
-            state = constants.fader.tooLow
+            status = const.fader.tooLow
           elseif hostValue < controlSurfaceValue then
             --local xy = changedItem.TOO_HIGH.value
-            state = constants.fader.tooHigh
+            status = const.fader.tooHigh
           end
           faderStates[fader].host = hostValue
-          stateUtils.set(fader, state)
+          state.set(fader, status)
         else
           faderStates[fader] = {}
-          stateUtils.set(fader, constants.fader.unassigned)
+          state.set(fader, const.fader.unassigned)
         end
       end
     end
@@ -1300,7 +1426,7 @@ return {
 end)
 __bundle_register("src.setState.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the encoders of the host (Reason)
@@ -1312,11 +1438,11 @@ return function(changedItems)
       if changedItemIndex == items[encoder].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value
-          stateUtils.set(encoder .. ".enabled", true)
-          stateUtils.set(encoder .. ".value", hostValue)
-          stateUtils.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
+          state.set(encoder .. ".enabled", true)
+          state.set(encoder .. ".value", hostValue)
+          state.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
         else
-          stateUtils.set(encoder .. ".enabled", false)
+          state.set(encoder .. ".enabled", false)
         end
       end
     end
@@ -1326,7 +1452,7 @@ end
 end)
 __bundle_register("src.processMidi.buttons", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the buttons of the remote surface (Launch Control)
@@ -1337,10 +1463,10 @@ return function(event)
     local button = "button" .. i
     local item = items[button]
     local match = remote.match_midi(item.midi, event)
-    if match and stateUtils.get(button .. ".enabled") then
-      local turnedOn = stateUtils.flip(button .. ".value")
+    if match and state.get(button .. ".enabled") then
+      local turnedOn = state.flip(button .. ".value")
       local colourValue = turnedOn and 95 or 1
-      stateUtils.set(button .. ".colour", getColour(item.colour, colourValue))
+      state.set(button .. ".colour", getColour(item.colour, colourValue))
 
       -- update host (Reason)
       local hostValue = turnedOn and 127 or 0
@@ -1355,8 +1481,8 @@ end)
 __bundle_register("src.processMidi.faders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
-local constants = require("src.config.constants")
-local stateUtils = require("src.lib.state.utils")
+local const = require("src.config.constants")
+local state = require("src.lib.state._")
 
 -- handles changes of the faders of the remote surface (Launch Control)
 return function(event)
@@ -1368,29 +1494,29 @@ return function(event)
     if ret then
       local remoteSurfaceValue = ret.x
       local hostValue = faderStates[fader].host
-      local state = stateUtils.get(fader)
-      if state == constants.fader.unknown then
+      local status = state.get(fader)
+      if status == const.fader.unknown then
         -- it is goes here when the codec has just been loaded and
         -- we receive a CC from a fader for the first time
-        if remoteSurfaceValue >= hostValue - constants.pickupTolerance and remoteSurfaceValue <= hostValue + constants.pickupTolerance then
-          stateUtils.set(fader, constants.fader.inSync)
+        if remoteSurfaceValue >= hostValue - const.pickupTolerance and remoteSurfaceValue <= hostValue + const.pickupTolerance then
+          state.set(fader, const.fader.inSync)
         elseif remoteSurfaceValue < hostValue then
-          stateUtils.set(fader, constants.fader.tooLow)
+          state.set(fader, const.fader.tooLow)
         elseif remoteSurfaceValue > hostValue then
-          stateUtils.set(fader, constants.fader.tooHigh)
+          state.set(fader, const.fader.tooHigh)
         end
-      elseif state == constants.fader.tooLow then
+      elseif status == const.fader.tooLow then
         if remoteSurfaceValue >= hostValue then
-          stateUtils.set(fader, constants.fader.inSync)
+          state.set(fader, const.fader.inSync)
         end
-      elseif state == constants.fader.tooHigh then
+      elseif status == const.fader.tooHigh then
         if remoteSurfaceValue <= hostValue then
-          stateUtils.set(fader, constants.fader.inSync)
+          state.set(fader, const.fader.inSync)
         end
       end
       faderStates[fader].remoteSurface = remoteSurfaceValue
 
-      if stateUtils.getNext(fader) == constants.fader.inSync then
+      if state.getNext(fader) == const.fader.inSync then
         faderStates[fader].host = remoteSurfaceValue
 
         -- CODEC => REASON
@@ -1410,7 +1536,7 @@ end
 end)
 __bundle_register("src.processMidi.encoders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local items = require("src.config.items")
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the encoders of the remote surface (Launch Control)
@@ -1421,10 +1547,10 @@ return function(event)
     local encoder = "encoder" .. i
     local item = items[encoder]
     local match = remote.match_midi(item.midi, event)
-    if match and stateUtils.get(encoder .. ".enabled") then
+    if match and state.get(encoder .. ".enabled") then
       local remoteSurfaceValue = match.x
-      stateUtils.set(encoder .. ".value", remoteSurfaceValue)
-      stateUtils.set(encoder .. ".colour", getColour(item.colour, remoteSurfaceValue))
+      state.set(encoder .. ".value", remoteSurfaceValue)
+      state.set(encoder .. ".colour", getColour(item.colour, remoteSurfaceValue))
 
       -- update host (Reason)
       remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = remoteSurfaceValue })

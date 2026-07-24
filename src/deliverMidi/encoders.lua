@@ -1,5 +1,6 @@
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local items = require("src.config.items")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -9,27 +10,27 @@ return function()
     local item = items["encoder" .. i]
 
     path = "encoder" .. i .. ".enabled"
-    if stateUtils.hasChanged(path) then
-      enabled = stateUtils.update(path)
+    if state.hasChanged(path) then
+      enabled = state.update(path)
       changed = true
       if not enabled then
         -- turn of encoder's LED
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx 00 00 00 f7", { x = item.controller }))
+        table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
       end
     else
-      enabled = stateUtils.get(path)
+      enabled = state.get(path)
     end
 
     if enabled then
       path = "encoder" .. i .. ".value"
-      if changed or stateUtils.hasChanged(path) then
-        local value = stateUtils.update(path)
+      if changed or state.hasChanged(path) then
+        local value = state.update(path)
         table.insert(events, remote.make_midi(item.midi, { x = value }))
       end
       path = "encoder" .. i .. ".colour"
-      if changed or stateUtils.hasChanged(path) then
-        local colour = stateUtils.update(path)
-        table.insert(events, remote.make_midi("f0 00 20 29 02 15 01 53 xx " .. colour .. " f7", { x = item.controller }))
+      if changed or state.hasChanged(path) then
+        local colour = state.update(path)
+        table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
     end
   end

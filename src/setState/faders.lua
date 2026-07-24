@@ -1,7 +1,7 @@
 local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
-local constants = require("src.config.constants")
-local stateUtils = require("src.lib.state.utils")
+local const = require("src.config.constants")
+local state = require("src.lib.state._")
 
 -- handles changes of the faders of the host (Reason)
 return function(changedItems)
@@ -13,26 +13,26 @@ return function(changedItems)
         if changedItem.is_enabled then
           local hostValue = changedItem.value
           local controlSurfaceValue = faderStates[fader].controlSurface
-          local state
+          local status
           if controlSurfaceValue == nil then
             -- it goes here when the codec is loaded
             -- because we do not know where the fader is at on the control surface
-            state = constants.fader.unknown
-          elseif hostValue >= controlSurfaceValue - constants.pickupTolerance and hostValue <= controlSurfaceValue + constants.pickupTolerance then
+            status = const.fader.unknown
+          elseif hostValue >= controlSurfaceValue - const.pickupTolerance and hostValue <= controlSurfaceValue + const.pickupTolerance then
             --local xy = changedItem.IN_SYNC.value
-            state = constants.fader.inSync
+            status = const.fader.inSync
           elseif hostValue > controlSurfaceValue then
             --local xy = changedItem.TOO_LOW.value
-            state = constants.fader.tooLow
+            status = const.fader.tooLow
           elseif hostValue < controlSurfaceValue then
             --local xy = changedItem.TOO_HIGH.value
-            state = constants.fader.tooHigh
+            status = const.fader.tooHigh
           end
           faderStates[fader].host = hostValue
-          stateUtils.set(fader, state)
+          state.set(fader, status)
         else
           faderStates[fader] = {}
-          stateUtils.set(fader, constants.fader.unassigned)
+          state.set(fader, const.fader.unassigned)
         end
       end
     end

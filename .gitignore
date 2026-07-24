@@ -1,3 +1,12 @@
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+**/.DS_Store
 .env
 .env.host
-**/.DS_Store
+.pnp.*
+.yarn/*
+dist/REASON_REMOTE_CODECS_NOVATION
+dist/REASON_REMOTE_MAPS_NOVATION

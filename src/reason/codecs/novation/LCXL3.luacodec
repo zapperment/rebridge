@@ -1,0 +1,16 @@
+version={0,0,1}
+
+function remote_supported_control_surfaces()
+  local surfaces = {
+    { manufacturer = "Novation", 
+      model = "Launch Control XL3",
+      source = "LCXL3.lua",
+      picture = "LCXL3.png",
+      in_ports = { { description = "Input (DAW)" } },
+      out_ports = { { description = "Output (DAW)" } },
+      setup_info_text = "Launch Control XL 3 is a MIDI control surface designed to provide hands-on control of DAWs, software synths, effects, and external hardware through USB and MIDI I/O, eight faders, 24 endless encoders, 16 programmable buttons, dedicated transport controls, and an OLED display.",
+      has_keyboard= false
+    }
+  }
+  return surfaces
+end

@@ -1,5 +1,5 @@
 local items = require("src.config.items")
-local stateUtils = require("src.lib.state.utils")
+local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the encoders of the host (Reason)
@@ -11,11 +11,11 @@ return function(changedItems)
       if changedItemIndex == items[encoder].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value
-          stateUtils.set(encoder .. ".enabled", true)
-          stateUtils.set(encoder .. ".value", hostValue)
-          stateUtils.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
+          state.set(encoder .. ".enabled", true)
+          state.set(encoder .. ".value", hostValue)
+          state.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
         else
-          stateUtils.set(encoder .. ".enabled", false)
+          state.set(encoder .. ".enabled", false)
         end
       end
     end

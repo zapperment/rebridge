@@ -1,4 +1,4 @@
-local constants = require("src.config.constants")
+local const = require("src.config.constants")
 local getValueFromPath = require("src.lib.table.getValueFromPath")
 
 local StateManager = {}
@@ -6,36 +6,36 @@ local StateManager = {}
 function StateManager:new()
     local instance = {
         fader1 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader2 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader3 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader4 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader5 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader6 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader7 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         fader8 = {
-            current = constants.fader.unassigned,
-            next = constants.fader.unassigned
+            current = const.fader.unassigned,
+            next = const.fader.unassigned
         },
         encoder1 = {
             value = {
