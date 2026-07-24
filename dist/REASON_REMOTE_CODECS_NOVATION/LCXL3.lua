@@ -48,6 +48,7 @@ local processFaders = require("src.processMidi.faders")
 local processButtons = require("src.processMidi.buttons")
 local setEncoders = require("src.setState.encoders")
 local setFaders = require("src.setState.faders")
+local setInfo = require("src.setState.info")
 local setButtons = require("src.setState.buttons")
 local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
@@ -55,6 +56,7 @@ local deliverButtons = require("src.deliverMidi.buttons")
 local deliverDisplay = require("src.deliverMidi.display")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local debug = require("src.lib.debug._")
+local autoInputs = require("src.config.autoInputs")
 
 function remote_init()
   local itemsToDefine = {}
@@ -69,7 +71,8 @@ function remote_init()
     item.index = #itemsToDefine
   end
   remote.define_items(itemsToDefine)
-  debug.log("LCXL3 remote coded initialised successfully!")
+  remote.define_auto_inputs(autoInputs)
+  debug.log("LCXL3 remote codec initialised successfully!")
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
@@ -79,6 +82,7 @@ end
 
 -- Host (Reason) -> remote codec
 function remote_set_state(changedItems)
+  setInfo(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
   setButtons(changedItems)
@@ -113,9 +117,20 @@ function remote_prepare_for_use()
     -- turn on DAW mode
     makeSysexEvent("02 7f"),
     remote.make_midi("b6 1e 02"),
+
+    -- set encoder modes to absolute
     remote.make_midi("b6 45 00"),
     remote.make_midi("b6 48 00"),
     remote.make_midi("b6 49 00"),
+
+    -- set the colours of navigation buttons to dim white
+    makeSysexEvent("01 53 6a 1f 1f 1f"),
+    makeSysexEvent("01 53 6b 1f 1f 1f"),
+    makeSysexEvent("01 53 67 1f 1f 1f"),
+    makeSysexEvent("01 53 66 1f 1f 1f"),
+
+    -- set temporary display timeout to 1 sec
+    remote.make_midi("b6 71 00"),
   }
 end
 
@@ -127,8 +142,19 @@ function remote_release_from_use()
 end
 
 end)
+__bundle_register("src.config.autoInputs", function(require, _LOADED, __bundle_register, __bundle_modules)
+return {
+  { name = "pageUpButton",     pattern = "B0 6a ?<???x>", port = 1 },
+  { name = "pageDownButton",   pattern = "B0 6b ?<???x>", port = 1 },
+  { name = "trackLeftButton",  pattern = "B0 66 ?<???x>", port = 1 },
+  { name = "trackRightButton", pattern = "B0 67 ?<???x>", port = 1 },
+  { name = "trackLeftButton",  pattern = "B0 66 ?<???x>", port = 1 }
+}
+
+end)
 __bundle_register("src.lib.debug._", function(require, _LOADED, __bundle_register, __bundle_modules)
 local concatenateKeys = require("src.lib.debug.concatenateKeys")
+local midiEventToString = require("src.lib.debug.midiEventToString")
 local logWithLogMessages = require("src.lib.debug.log")
 local dumpWithLogMessages = require("src.lib.debug.dump")
 
@@ -146,6 +172,7 @@ end
 
 return {
   concatenateKeys = concatenateKeys,
+  midiEventToString = midiEventToString,
   log = log,
   dump = dump
 }
@@ -198,7 +225,7 @@ end)
 __bundle_register("src.config.constants", function(require, _LOADED, __bundle_register, __bundle_modules)
 return {
   pickupTolerance = 10,
-  maxLogMessages = 100,
+  maxLogMessages = 500,
   sysexHeader = "f0 00 20 29 02 15",
   debugSysexHeader = "f0 00 20 29 02 0a 02",
   fader = {
@@ -221,6 +248,21 @@ return function(logMessages, message)
   if #logMessages > const.maxLogMessages then
     table.remove(logMessages, 1)
   end
+end
+
+end)
+__bundle_register("src.lib.debug.midiEventToString", function(require, _LOADED, __bundle_register, __bundle_modules)
+return function(event)
+  local bytes = {}
+  local n = event.size or #event
+  for i = 1, n do
+    table.insert(bytes, string.format("%02X", event[i]))
+  end
+  local str = table.concat(bytes, " ")
+  if event.port then
+    str = str .. string.format(" (port=%d)", event.port)
+  end
+  return str
 end
 
 end)
@@ -948,6 +990,26 @@ function StateManager:new()
         display = {
             current = " ",
             next = " "
+        },
+        documentName = {
+            current = " ",
+            next = " "
+        },
+        targetTrackName = {
+            current = " ",
+            next = " "
+        },
+        deviceType = {
+            current = " ",
+            next = " "
+        },
+        deviceName = {
+            current = " ",
+            next = " "
+        },
+        patchName = {
+            current = " ",
+            next = " "
         }
     }
     setmetatable(instance, self)
@@ -957,7 +1019,7 @@ end
 
 function StateManager:hasChanged(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return false
     end
     return item.next ~= item.current
@@ -965,7 +1027,7 @@ end
 
 function StateManager:update(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     item.current = item.next
@@ -973,9 +1035,21 @@ function StateManager:update(path)
 end
 
 function StateManager:updateAll()
+    for i = 1, 24 do
+        self:update("encoder" .. i)
+    end
     for i = 1, 8 do
         self:update("fader" .. i)
     end
+    for i = 1, 16 do
+        self:update("button" .. i)
+    end
+    self:update("documentName")
+    self:update("targetTrackName")
+    self:update("display")
+    self:update("deviceType")
+    self:update("deviceName")
+    self:update("patchName")
 end
 
 function StateManager:get(path)
@@ -988,7 +1062,7 @@ end
 
 function StateManager:set(path, next)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     item.next = next
@@ -996,7 +1070,7 @@ end
 
 function StateManager:inc(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     local next = item.current + 1
@@ -1008,7 +1082,7 @@ end
 
 function StateManager:dec(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     local next = item.current - 1
@@ -1020,7 +1094,7 @@ end
 
 function StateManager:add(path, delta, min, max)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     local next = item.current + delta
@@ -1035,7 +1109,7 @@ end
 
 function StateManager:flip(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     if item.current then
@@ -1156,6 +1230,17 @@ return {
   button14 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 32 7f", controller = 50, colour = "coco" },
   button15 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 33 7f", controller = 51, colour = "plum" },
   button16 = { input = "value", output = "value", min = 0, max = 127, midi = "b0 34 7f", controller = 52, colour = "flam" },
+  documentName = { output = "text" },
+  targetTrackName = { output = "text" },
+  trackRightButton = { input = "button", output = "value", min = 0, max = 127 },
+  trackLeftButton = { input = "button", output = "value", min = 0, max = 127 },
+  pageUpButton = { input = "button", output = "value", min = 0, max = 127 },
+  pageDownButton = { input = "button", output = "value", min = 0, max = 127 },
+  playButton = { input = "button", output = "value", min = 0, max = 127 },
+  recordButton = { input = "button", output = "value", min = 0, max = 127 },
+  deviceType = { output = "text" },
+  deviceName = { output = "text" },
+  patchName = { output = "text" },
 }
 
 end)
@@ -1181,6 +1266,8 @@ __bundle_register("src.deliverMidi.encoders", function(require, _LOADED, __bundl
 local state = require("src.lib.state._")
 local items = require("src.config.items")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local makeParamNameDisplayEvent = require("src.lib.midi.makeParamNameDisplayEvent")
+local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -1193,6 +1280,7 @@ return function()
     if state.hasChanged(path) then
       enabled = state.update(path)
       changed = true
+      --debug.log("DM: " .. path .. " is now " .. (enabled and "true" or "false"))
       if not enabled then
         -- turn of encoder's LED
         table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
@@ -1205,7 +1293,12 @@ return function()
       path = "encoder" .. i .. ".value"
       if changed or state.hasChanged(path) then
         local value = state.update(path)
+        --debug.log("DM: " .. path .. " is now " .. tostring(value))
         table.insert(events, remote.make_midi(item.midi, { x = value }))
+        local paramNameDisplayEvent = makeParamNameDisplayEvent(remote.get_item_name(item.index), item.controller)
+        debug.log("item.controller: " .. item.controller)
+        debug.log(debug.midiEventToString(paramNameDisplayEvent))
+        table.insert(events, paramNameDisplayEvent)
       end
       path = "encoder" .. i .. ".colour"
       if changed or state.hasChanged(path) then
@@ -1215,6 +1308,15 @@ return function()
     end
   end
   return events
+end
+
+end)
+__bundle_register("src.lib.midi.makeParamNameDisplayEvent", function(require, _LOADED, __bundle_register, __bundle_modules)
+local textToHex = require("src.lib.hex.textToHex")
+local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+
+return function(text, target)
+  return makeSysexEvent("06 xx 00 " .. textToHex(text), { x = target })
 end
 
 end)
@@ -1368,6 +1470,42 @@ return {
 }
 
 end)
+__bundle_register("src.setState.info", function(require, _LOADED, __bundle_register, __bundle_modules)
+local state = require("src.lib.state._")
+local items = require("src.config.items")
+local debug = require("src.lib.debug._")
+
+return function(changedItems)
+  for _, changedItemIndex in ipairs(changedItems) do
+    if changedItemIndex == items.targetTrackName.index then
+      local targetTrackName = remote.get_item_text_value(changedItemIndex)
+      --debug.log("SSt: target track name is " .. targetTrackName)
+      state.set("deviceType", targetTrackName)
+      --state.set("display", targetTrackName)
+    elseif changedItemIndex == items.documentName.index then
+      local documentName = remote.get_item_text_value(changedItemIndex)
+      debug.log("SSt: document name is now " .. documentName)
+      state.set("documentName", documentName)
+      --state.set("display", documentName)
+    elseif changedItemIndex == items.deviceType.index then
+      local deviceType = remote.get_item_text_value(changedItemIndex)
+      --debug.log("SSt: device type is " .. deviceType)
+      state.set("deviceType", deviceType)
+    elseif changedItemIndex == items.deviceName.index then
+      local deviceName = remote.get_item_text_value(changedItemIndex)
+      --debug.log("SSt: device name is " .. deviceName)
+      state.set("deviceName", deviceName)
+      --state.set("display", deviceName)
+    elseif changedItemIndex == items.patchName.index then
+      local patchName = remote.get_item_text_value(changedItemIndex)
+      --debug.log("SSt: patch name is " .. patchName)
+      state.set("patchName", patchName)
+      state.set("display", patchName)
+    end
+  end
+end
+
+end)
 __bundle_register("src.setState.faders", function(require, _LOADED, __bundle_register, __bundle_modules)
 local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
@@ -1428,9 +1566,20 @@ __bundle_register("src.setState.encoders", function(require, _LOADED, __bundle_r
 local items = require("src.config.items")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
+--local debug = require("src.lib.debug._")
 
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
+  -- if #changedItems > 0 then
+  --   for i = 1, 24 do
+  --     local encoder = "encoder" .. i
+  --     local itemState = remote.get_item_state(items[encoder].index)
+  --     debug.log(tostring(i) .. "--------------------------------------------------")
+  --     debug.log(encoder .. ".is_enabled:       " .. (itemState.is_enabled and "true" or "false"))
+  --     debug.log(encoder .. ".remote_item_name: " .. itemState.remote_item_name)
+  --     debug.log(encoder .. ".text_value:       " .. itemState.text_value)
+  --   end
+  -- end
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, 24 do
@@ -1438,10 +1587,15 @@ return function(changedItems)
       if changedItemIndex == items[encoder].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value
+          --debug.log("SSt: host says " .. encoder .. ".enabled is true")
+          --debug.log("SSt: host says " .. encoder .. ".value is " .. tostring(hostValue))
           state.set(encoder .. ".enabled", true)
           state.set(encoder .. ".value", hostValue)
           state.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
         else
+          local hostValue = changedItem.value
+          --debug.log("SSt: host says " .. encoder .. ".enabled is false")
+          --debug.log("SSt: host says " .. encoder .. ".value is " .. tostring(hostValue))
           state.set(encoder .. ".enabled", false)
         end
       end

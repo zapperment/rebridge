@@ -4,6 +4,7 @@ local processFaders = require("src.processMidi.faders")
 local processButtons = require("src.processMidi.buttons")
 local setEncoders = require("src.setState.encoders")
 local setFaders = require("src.setState.faders")
+local setInfo = require("src.setState.info")
 local setButtons = require("src.setState.buttons")
 local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
@@ -11,6 +12,7 @@ local deliverButtons = require("src.deliverMidi.buttons")
 local deliverDisplay = require("src.deliverMidi.display")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local debug = require("src.lib.debug._")
+local autoInputs = require("src.config.autoInputs")
 
 function remote_init()
   local itemsToDefine = {}
@@ -25,7 +27,8 @@ function remote_init()
     item.index = #itemsToDefine
   end
   remote.define_items(itemsToDefine)
-  debug.log("LCXL3 remote coded initialised successfully!")
+  remote.define_auto_inputs(autoInputs)
+  debug.log("LCXL3 remote codec initialised successfully!")
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
@@ -35,6 +38,7 @@ end
 
 -- Host (Reason) -> remote codec
 function remote_set_state(changedItems)
+  setInfo(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
   setButtons(changedItems)
@@ -69,9 +73,20 @@ function remote_prepare_for_use()
     -- turn on DAW mode
     makeSysexEvent("02 7f"),
     remote.make_midi("b6 1e 02"),
+
+    -- set encoder modes to absolute
     remote.make_midi("b6 45 00"),
     remote.make_midi("b6 48 00"),
     remote.make_midi("b6 49 00"),
+
+    -- set the colours of navigation buttons to dim white
+    makeSysexEvent("01 53 6a 1f 1f 1f"),
+    makeSysexEvent("01 53 6b 1f 1f 1f"),
+    makeSysexEvent("01 53 67 1f 1f 1f"),
+    makeSysexEvent("01 53 66 1f 1f 1f"),
+
+    -- set temporary display timeout to 1 sec
+    remote.make_midi("b6 71 00"),
   }
 end
 

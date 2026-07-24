@@ -4,6 +4,17 @@ Control Surface Manufacturer	Novation
 Control Surface Model	Launch Control XL3
 Map Version	3.0.1
 
+Scope	Propellerheads	Reason Document
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+Map	documentName		Document Name
+Map	targetTrackName		Target Track Name
+Map	trackRightButton		Target Previous Track
+Map	trackLeftButton		Target Next Track
+Map	pageUpButton		Select Prev Patch for Target Device
+Map	pageDownButton		Select Next Patch for Target Device
+Map	playButton		Play
+Map	recordButton		Record
+
 Scope	Propellerheads	Combinator
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
 Map	encoder1		Rotary 1
@@ -54,3 +65,6 @@ Map	button13		Button 13
 Map	button14		Button 14
 Map	button15		Button 15
 Map	button16		Button 16
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+Map	deviceType		"combinator"

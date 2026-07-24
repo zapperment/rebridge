@@ -600,6 +600,26 @@ function StateManager:new()
         display = {
             current = " ",
             next = " "
+        },
+        documentName = {
+            current = " ",
+            next = " "
+        },
+        targetTrackName = {
+            current = " ",
+            next = " "
+        },
+        deviceType = {
+            current = " ",
+            next = " "
+        },
+        deviceName = {
+            current = " ",
+            next = " "
+        },
+        patchName = {
+            current = " ",
+            next = " "
         }
     }
     setmetatable(instance, self)
@@ -609,7 +629,7 @@ end
 
 function StateManager:hasChanged(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return false
     end
     return item.next ~= item.current
@@ -617,7 +637,7 @@ end
 
 function StateManager:update(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     item.current = item.next
@@ -625,9 +645,21 @@ function StateManager:update(path)
 end
 
 function StateManager:updateAll()
+    for i = 1, 24 do
+        self:update("encoder" .. i)
+    end
     for i = 1, 8 do
         self:update("fader" .. i)
     end
+    for i = 1, 16 do
+        self:update("button" .. i)
+    end
+    self:update("documentName")
+    self:update("targetTrackName")
+    self:update("display")
+    self:update("deviceType")
+    self:update("deviceName")
+    self:update("patchName")
 end
 
 function StateManager:get(path)
@@ -640,7 +672,7 @@ end
 
 function StateManager:set(path, next)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     item.next = next
@@ -648,7 +680,7 @@ end
 
 function StateManager:inc(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     local next = item.current + 1
@@ -660,7 +692,7 @@ end
 
 function StateManager:dec(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     local next = item.current - 1
@@ -672,7 +704,7 @@ end
 
 function StateManager:add(path, delta, min, max)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     local next = item.current + delta
@@ -687,7 +719,7 @@ end
 
 function StateManager:flip(path)
     local item = getValueFromPath(self, path)
-    if not item then
+    if item == nil then
         return
     end
     if item.current then

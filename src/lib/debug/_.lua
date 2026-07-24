@@ -1,4 +1,5 @@
 local concatenateKeys = require("src.lib.debug.concatenateKeys")
+local midiEventToString = require("src.lib.debug.midiEventToString")
 local logWithLogMessages = require("src.lib.debug.log")
 local dumpWithLogMessages = require("src.lib.debug.dump")
 
@@ -16,6 +17,7 @@ end
 
 return {
   concatenateKeys = concatenateKeys,
+  midiEventToString = midiEventToString,
   log = log,
   dump = dump
 }
