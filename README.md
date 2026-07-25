@@ -40,11 +40,11 @@ You don't necessarily need to install Lua, but it helps if you are working with 
 
 The Lua version Reason 14 uses is 5.1, so it makes sense not to use a more recent one.
 
-The dev container config for this project includes Lua already (see below).
+The dev container config for this project includes Lua already ([see below](#dev-container)).
 
 ### Updating the Codec in Reason
 
-After making changes, to build to codec and copy the files over to Reason, run `yarn setup` (or `yarn setup:dev`, see below).
+After making changes, to build the codec and copy the files over to Reason, run `yarn setup` (or `yarn setup:dev`, [see below](#debugging-logging)).
 
 You do not have to restart Reason every time! It is sufficient to tick the Controller's “active” checkbox off and on again in the MIDI settings.
 
