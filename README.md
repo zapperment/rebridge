@@ -10,7 +10,7 @@ Installation requires Node.js, at least version 24, to be installed.
 
 Currently, the installer only works on Macs.
 
-The Reason remote files and the Max for Live files will also work on Windows machines, but you'll have to copy them to the appropriate locatioins yourself.
+The Reason remote files and the Max for Live files will also work on Windows machines, but you'll have to copy them to the appropriate locations yourself.
 
 ### Installation
 
