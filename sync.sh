@@ -120,3 +120,5 @@ while IFS='=' read -r name _; do
     fi
   done <<< "$all_names"
 done < <(grep -E '^FILES_[A-Za-z0-9_]*=' "$env_file")
+
+log "Sync: success"

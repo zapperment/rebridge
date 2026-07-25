@@ -3,14 +3,15 @@
   "description": "MIDI controller setup for Launch Control XL3 + Ableton Live + Reason",
   "scripts": {
     "log": "node src/logReceiver/index.js",
-    "build": "./build.sh --verbose",
-    "build:dev": "./build.sh --verbose --dev",
+    "build": "./build.sh",
+    "build:dev": "./build.sh --dev",
     "sync": "./sync.sh",
-    "update": "yarn build && yarn sync",
-    "update:dev": "yarn build:dev && yarn sync"
+    "setup": "yarn build && yarn sync",
+    "setup:dev": "yarn build:dev && yarn sync"
   },
   "packageManager": "yarn@4.14.1",
   "dependencies": {
-    "easymidi": "^3.2.0"
+    "easymidi": "^3.2.0",
+    "luabundler": "^1.2.3"
   }
 }

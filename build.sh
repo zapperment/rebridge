@@ -59,4 +59,4 @@ else
   cp "${maps_src_dir}/LCXL3.remotemap" "${maps_dist_dir}/"
 fi
 
-log_verbose "Build: success"
+log "Build: success"
