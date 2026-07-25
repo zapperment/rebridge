@@ -597,6 +597,16 @@ function StateManager:new()
                 next = false
             }
         },
+        transport = {
+            playing = {
+                current = false,
+                next = false
+            },
+            recording = {
+                current = false,
+                next = false
+            }
+        },
         display = {
             current = " ",
             next = " "

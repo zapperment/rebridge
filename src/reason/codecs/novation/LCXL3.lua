@@ -2,13 +2,16 @@ local items = require("src.config.items")
 local processEncoders = require("src.processMidi.encoders")
 local processFaders = require("src.processMidi.faders")
 local processButtons = require("src.processMidi.buttons")
+local processTransport = require("src.processMidi.transport")
 local setEncoders = require("src.setState.encoders")
 local setFaders = require("src.setState.faders")
 local setInfo = require("src.setState.info")
 local setButtons = require("src.setState.buttons")
+local setTransport = require("src.setState.transport")
 local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
 local deliverButtons = require("src.deliverMidi.buttons")
+local deliverTransport = require("src.deliverMidi.transport")
 local deliverDisplay = require("src.deliverMidi.display")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local debug = require("src.lib.debug._")
@@ -33,7 +36,7 @@ end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
 function remote_process_midi(event)
-  return processEncoders(event) or processFaders(event) or processButtons(event)
+  return processEncoders(event) or processFaders(event) or processButtons(event) or processTransport(event)
 end
 
 -- Host (Reason) -> remote codec
@@ -42,6 +45,7 @@ function remote_set_state(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
   setButtons(changedItems)
+  setTransport(changedItems)
 end
 
 -- Remote codec -> remote surface (Launch Control)
@@ -59,6 +63,9 @@ function remote_deliver_midi(_, port)
     table.insert(events, event)
   end
   for _, event in ipairs(deliverButtons()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverTransport()) do
     table.insert(events, event)
   end
   for _, event in ipairs(deliverDisplay()) do
@@ -84,6 +91,10 @@ function remote_prepare_for_use()
     makeSysexEvent("01 53 6b 1f 1f 1f"),
     makeSysexEvent("01 53 67 1f 1f 1f"),
     makeSysexEvent("01 53 66 1f 1f 1f"),
+
+    -- turn off the play and record button LEDs
+    makeSysexEvent("01 53 74 00 00 00"),
+    makeSysexEvent("01 53 76 00 00 00"),
 
     -- set temporary display timeout to 1 sec
     remote.make_midi("b6 71 00"),

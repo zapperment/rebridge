@@ -13,6 +13,7 @@ Map	trackLeftButton		Target Next Track
 Map	pageUpButton		Select Prev Patch for Target Device
 Map	pageDownButton		Select Next Patch for Target Device
 Map	playButton		Play
+Map	stopButton		Stop
 Map	recordButton		Record
 
 Scope	Propellerheads	Combinator
