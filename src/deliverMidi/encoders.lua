@@ -2,6 +2,7 @@ local state = require("src.lib.state._")
 local items = require("src.config.items")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local makeParamNameDisplayEvent = require("src.lib.midi.makeParamNameDisplayEvent")
+local makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfigEvent")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -14,9 +15,16 @@ return function()
     if state.hasChanged(path) then
       enabled = state.update(path)
       changed = true
-      if not enabled then
+      if enabled then
+        -- let the encoder bring up its display again
+        table.insert(events, makeParamDisplayConfigEvent(item.controller, true))
+      else
         -- turn of encoder's LED
         table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
+        -- the parameter name stays on the encoder's display until it is
+        -- overwritten, so stop the encoder bringing that display up while it is
+        -- disabled; otherwise moving it shows the previous name and a raw value
+        table.insert(events, makeParamDisplayConfigEvent(item.controller, false))
       end
     else
       enabled = state.get(path)

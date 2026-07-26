@@ -15,6 +15,7 @@ local deliverButtons = require("src.deliverMidi.buttons")
 local deliverTransport = require("src.deliverMidi.transport")
 local deliverDisplay = require("src.deliverMidi.display")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfigEvent")
 local debug = require("src.lib.debug._")
 local autoInputs = require("src.config.autoInputs")
 
@@ -80,7 +81,7 @@ function remote_deliver_midi(_, port)
 end
 
 function remote_prepare_for_use()
-  return {
+  local events = {
     -- turn on DAW mode
     makeSysexEvent("02 7f"),
     remote.make_midi("b6 1e 02"),
@@ -103,6 +104,18 @@ function remote_prepare_for_use()
     -- set temporary display timeout to 1 sec
     remote.make_midi("b6 71 00"),
   }
+
+  -- Stop the encoders and faders bringing up their displays until the host has
+  -- assigned a parameter to them, as a control with nothing mapped to it would
+  -- otherwise show the raw MIDI controller and value it is sending.
+  for i = 1, 24 do
+    table.insert(events, makeParamDisplayConfigEvent(items["encoder" .. i].controller, false))
+  end
+  for i = 1, 8 do
+    table.insert(events, makeParamDisplayConfigEvent(items["fader" .. i].controller, false))
+  end
+
+  return events
 end
 
 function remote_release_from_use()
