@@ -3,7 +3,7 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-**/.DS_Store
+.DS_Store
 .env
 .env.host
 .pnp.*

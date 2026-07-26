@@ -656,17 +656,23 @@ end
 
 function StateManager:updateAll()
     for i = 1, 24 do
-        self:update("encoder" .. i)
+        local encoder = "encoder" .. i
+        self:update(encoder .. ".value")
+        self:update(encoder .. ".colour")
+        self:update(encoder .. ".enabled")
     end
     for i = 1, 8 do
         self:update("fader" .. i)
     end
     for i = 1, 16 do
-        self:update("button" .. i)
+        local button = "button" .. i
+        self:update(button .. ".value")
+        self:update(button .. ".colour")
+        self:update(button .. ".enabled")
     end
+    self:update("display")
     self:update("documentName")
     self:update("targetTrackName")
-    self:update("display")
     self:update("deviceType")
     self:update("deviceName")
     self:update("patchName")

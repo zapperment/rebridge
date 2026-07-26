@@ -36,15 +36,17 @@ The [manuals](/manuals) directory contains PDFs of the developer guides from Nov
 
 Reason remote codecs are [Lua](https://www.lua.org) scripts. 
 
-You don't necessarily need to install Lua, but it helps if you are working with an AI tool like Claude Code — Claude can then try out code snippets to make sure the code it is generating actually works. The model “Sonnet 5” is surprisingly good at this, and it is comparatively inexpensive.
+You need to install Lua to be able to run the tests. It is not required for building and deploying the codec. 
 
-The Lua version Reason 14 uses is 5.1, so it makes sense not to use a more recent one.
+Having Lua installed also helps if you are working with an AI tool like Claude Code — Claude can then try out code snippets to make sure the code it is generating actually works. The model “Sonnet 5” is surprisingly good at this, and it is comparatively inexpensive to use.
 
-The dev container config for this project includes Lua already ([see below](#dev-container)).
+The Lua version Reason 14 uses is 5.1, so it makes sense **not** to use a more recent one.
+
+The dev container config for this project includes Lua already (see section [Dev container](#dev-container)).
 
 ### Updating the Codec in Reason
 
-After making changes, to build the codec and copy the files over to Reason, run `yarn setup` (or `yarn setup:dev`, [see below](#debugging-logging)).
+After making changes, to build the codec and copy the files over to Reason, run `yarn setup` (or `yarn setup:dev`, see section [Debugging / logging](#debugging-logging)).
 
 You do not have to restart Reason every time! It is sufficient to tick the Controller's “active” checkbox off and on again in the MIDI settings.
 
@@ -105,6 +107,16 @@ Concatenating strings:
 
 ```
 debug.log("value: " .. my_value)
+```
+
+### Running tests
+
+This project uses [LuaUnit](https://luaunit.readthedocs.io/) for unit testing.
+
+You need to have Lua installed (see section [Lua](#lua)) to run the tests:
+
+```
+yarn test
 ```
 
 ### Dev container

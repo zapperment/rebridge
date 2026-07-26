@@ -7,7 +7,8 @@
     "build:dev": "./build.sh --dev",
     "sync": "./sync.sh",
     "setup": "yarn build && yarn sync",
-    "setup:dev": "yarn build:dev && yarn sync"
+    "setup:dev": "yarn build:dev && yarn sync",
+    "test": "lua ./test/_.test.lua -v"
   },
   "packageManager": "yarn@4.14.1",
   "dependencies": {
