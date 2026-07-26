@@ -14,7 +14,7 @@ local pickupPrefixes = {
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
-  for i = 1, 8 do
+  for i = 1, const.counts.faders do
     local fader = "fader" .. i
     if state.hasChanged(fader) then
       local wasAssigned = state.get(fader) ~= const.fader.unassigned

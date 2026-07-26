@@ -10,8 +10,8 @@ Map	documentName		Document Name
 Map	targetTrackName		Target Track Name
 Map	trackRightButton		Target Previous Track
 Map	trackLeftButton		Target Next Track
-Map	pageUpButton		Select Prev Patch for Target Device
-Map	pageDownButton		Select Next Patch for Target Device
+Map	patchUpButton		Select Prev Patch for Target Device
+Map	patchDownButton		Select Next Patch for Target Device
 Map	playButton		Play
 Map	stopButton		Stop
 Map	recordButton		Record
@@ -71,51 +71,77 @@ Map	patchName		Patch Name
 Map	deviceType		"combinator"
 
 Scope	Propellerheads	SubTractor Analog Synthesizer
-//	Control Surface Item	Key	Remotable Item	Scale	Mode
-Map	encoder1		Osc1 Wave
-Map	encoder2		Osc1 Octave
-Map	encoder3		Osc2 Wave
-Map	encoder4		Osc2 Octave
-Map	encoder5		Osc Mix
-Map	encoder6		FM Amount
-Map	encoder7		Noise Level
-Map	encoder8		Noise Color
-Map	encoder9		Filter Freq
-Map	encoder10		Filter Res
-Map	encoder11		Filter Env Amount
-Map	encoder12		Filter Type
-Map	encoder13		Filter Kbd Track
-Map	encoder14		Filter2 Freq
-Map	encoder15		Filter2 Res
-Map	encoder16		Master Level
-Map	encoder17		LFO1 Rate
-Map	encoder18		LFO1 Amount
-Map	encoder19		LFO1 Wave
-Map	encoder20		LFO1 Dest
-Map	encoder21		LFO2 Rate
-Map	encoder22		LFO2 Amount
-Map	encoder23		Mod Env Gain
-Map	encoder24		Portamento
-Map	fader1		Amp Env Attack
-Map	fader2		Amp Env Decay
-Map	fader3		Amp Env Sustain
-Map	fader4		Amp Env Release
-Map	fader5		Filter Env Attack
-Map	fader6		Filter Env Decay
-Map	fader7		Filter Env Sustain
-Map	fader8		Filter Env Release
-Map	button1		Osc2 On/Off
-Map	button2		Osc1 Kbd Track
-Map	button3		Osc2 Kbd Track
-Map	button4		Ring Mod
-Map	button5		Noise On/Off
-Map	button6		Filter2 On/Off
-Map	button7		Filter Link Freq On/Off
-Map	button8		Filter Env Invert
-Map	button9		Mod Env Invert
-Map	button10		LFO Sync Enable
-Map	button11		Key Mode
-Map	button12		Low Bandwidth On/Off
+Define Group	Pages	Page 1	Page 2
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+Map	pageUpButton		Pages=Page 1
+Map	pageDownButton		Pages=Page 2
+Map	encoder1		Osc1 Wave			Page 1
+Map	encoder2		Osc1 Octave			Page 1
+Map	encoder3		Osc2 Wave			Page 1
+Map	encoder4		Osc2 Octave			Page 1
+Map	encoder5		Osc Mix			Page 1
+Map	encoder6		FM Amount			Page 1
+Map	encoder7		Noise Level			Page 1
+Map	encoder8		Noise Color			Page 1
+Map	encoder9		Filter Freq			Page 1
+Map	encoder10		Filter Res			Page 1
+Map	encoder11		Filter Env Amount			Page 1
+Map	encoder12		Noise Decay			Page 1
+Map	encoder13		Filter Kbd Track			Page 1
+Map	encoder14		Filter2 Freq			Page 1
+Map	encoder15		Filter2 Res			Page 1
+Map	encoder16		Master Level			Page 1
+Map	encoder17		LFO1 Rate			Page 1
+Map	encoder18		LFO1 Amount			Page 1
+Map	encoder19		LFO2 Delay			Page 1
+Map	encoder20		Polyphony			Page 1
+Map	encoder21		LFO2 Rate			Page 1
+Map	encoder22		LFO2 Amount			Page 1
+Map	encoder23		Mod Env Gain			Page 1
+Map	encoder24		Portamento			Page 1
+Map	fader1		Amp Env Attack			Page 1
+Map	fader2		Amp Env Decay			Page 1
+Map	fader3		Amp Env Sustain			Page 1
+Map	fader4		Amp Env Release			Page 1
+Map	fader5		Filter Env Attack			Page 1
+Map	fader6		Filter Env Decay			Page 1
+Map	fader7		Filter Env Sustain			Page 1
+Map	fader8		Filter Env Release			Page 1
+Map	button1		Osc2 On/Off			Page 1
+Map	button2		Osc1 Kbd Track			Page 1
+Map	button3		Osc2 Kbd Track			Page 1
+Map	button4		Ring Mod			Page 1
+Map	button5		Noise On/Off			Page 1
+Map	button6		Filter2 On/Off			Page 1
+Map	button7		Filter Link Freq On/Off			Page 1
+Map	button8		Filter Env Invert			Page 1
+Map	button9		Mod Env Invert			Page 1
+Map	button10		LFO Sync Enable			Page 1
+Map	button11		Key Mode			Page 1
+Map	button12		Low Bandwidth On/Off			Page 1
+Map	button13		Filter Type			Page 1
+Map	button14		LFO1 Wave			Page 1
+Map	button15		LFO1 Dest			Page 1
+Map	encoder1		Osc1 Semitone			Page 2
+Map	encoder2		Osc1 Fine Tune			Page 2
+Map	encoder3		Osc1 Phase Diff			Page 2
+Map	encoder4		Osc2 Semitone			Page 2
+Map	encoder5		Osc2 Fine Tune			Page 2
+Map	encoder6		Osc2 Phase Diff			Page 2
+Map	encoder7		Amp Vel Amount			Page 2
+Map	encoder8		Pitch Bend Range			Page 2
+Map	encoder9		Filter Freq Mod Wheel Amount			Page 2
+Map	encoder10		FM Vel Amount			Page 2
+Map	encoder11		Mod Env Vel Amount			Page 2
+Map	encoder12		Filter Env Vel Amount			Page 2
+Map	fader1		Mod Env Attack			Page 2
+Map	fader2		Mod Env Decay			Page 2
+Map	fader3		Mod Env Sustain			Page 2
+Map	fader4		Mod Env Release			Page 2
+Map	button1		Osc1 Phase Mode			Page 2
+Map	button2		Osc2 Phase Mode			Page 2
+Map	button3		Mod Env Dest			Page 2
+Map	button4		LFO2 Dest			Page 2
 Map	deviceName		Device Name
 Map	patchName		Patch Name
 Map	deviceType		"subtractor"

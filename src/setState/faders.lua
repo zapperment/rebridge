@@ -7,25 +7,22 @@ local state = require("src.lib.state._")
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
-    for i = 1, 8 do
+    for i = 1, const.counts.faders do
       local fader = "fader" .. i
       if changedItemIndex == items[fader].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value
-          local controlSurfaceValue = faderStates[fader].controlSurface
+          local controlSurfaceValue = faderStates[fader].remoteSurface
           local status
           if controlSurfaceValue == nil then
             -- it goes here when the codec is loaded
             -- because we do not know where the fader is at on the control surface
             status = const.fader.unknown
           elseif hostValue >= controlSurfaceValue - const.pickupTolerance and hostValue <= controlSurfaceValue + const.pickupTolerance then
-            --local xy = changedItem.IN_SYNC.value
             status = const.fader.inSync
           elseif hostValue > controlSurfaceValue then
-            --local xy = changedItem.TOO_LOW.value
             status = const.fader.tooLow
           elseif hostValue < controlSurfaceValue then
-            --local xy = changedItem.TOO_HIGH.value
             status = const.fader.tooHigh
           end
           faderStates[fader].host = hostValue

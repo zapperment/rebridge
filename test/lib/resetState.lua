@@ -1,19 +1,28 @@
 local state = require("src.lib.state._")
 local buttonStates = require("src.lib.state.buttons")
+local faderStates = require("src.lib.state.faders")
+local paramValues = require("src.lib.state.paramValues")
+local shiftState = require("src.lib.state.shift")
 local const = require("src.config.constants")
 
 return function()
   buttonStates.pressed = nil
-  for i = 1, 8 do
-    state.set("fader" .. i, const.fader.unassigned)
+  buttonStates.held = {}
+  shiftState.held = false
+  for param in pairs(paramValues) do
+    paramValues[param] = nil
   end
-  for i = 1, 24 do
+  for i = 1, const.counts.faders do
+    state.set("fader" .. i, const.fader.unassigned)
+    faderStates["fader" .. i] = {}
+  end
+  for i = 1, const.counts.encoders do
     state.set("encoder" .. i .. ".value", 0)
     state.set("encoder" .. i .. ".colour", "00 00 00")
     state.set("encoder" .. i .. ".enabled", false)
   end
-  for i = 1, 16 do
-    state.set("button" .. i .. ".value", 0)
+  for i = 1, const.counts.buttons do
+    state.set("button" .. i .. ".value", false)
     state.set("button" .. i .. ".colour", "00 00 00")
     state.set("button" .. i .. ".enabled", false)
   end

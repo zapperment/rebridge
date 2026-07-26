@@ -3,6 +3,7 @@ local processEncoders = require("src.processMidi.encoders")
 local processFaders = require("src.processMidi.faders")
 local processButtons = require("src.processMidi.buttons")
 local processTransport = require("src.processMidi.transport")
+local processNavigation = require("src.processMidi.navigation")
 local setEncoders = require("src.setState.encoders")
 local setFaders = require("src.setState.faders")
 local setInfo = require("src.setState.info")
@@ -38,7 +39,8 @@ end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
 function remote_process_midi(event)
-  return processEncoders(event) or processFaders(event) or processButtons(event) or processTransport(event)
+  return processEncoders(event) or processFaders(event) or processButtons(event) or processTransport(event) or
+      processNavigation(event)
 end
 
 -- Host (Reason) -> remote codec

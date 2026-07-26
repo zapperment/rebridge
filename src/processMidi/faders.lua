@@ -7,7 +7,7 @@ local state = require("src.lib.state._")
 return function(event)
   local processed = false
 
-  for i = 1, 8 do
+  for i = 1, const.counts.faders do
     local fader = "fader" .. i
     local ret = remote.match_midi(items[fader].midi, event)
     if ret then

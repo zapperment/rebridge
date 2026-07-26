@@ -1,4 +1,5 @@
 local items = require("src.config.items")
+local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 
@@ -6,7 +7,7 @@ local getColour = require("src.lib.colour.getColour")
 return function(event)
   local processed = false
 
-  for i = 1, 24 do
+  for i = 1, const.counts.encoders do
     local encoder = "encoder" .. i
     local item = items[encoder]
     local match = remote.match_midi(item.midi, event)

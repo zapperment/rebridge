@@ -1,4 +1,10 @@
 return {
+  -- the number of encoders, faders and buttons on the remote surface
+  counts = {
+    encoders = 24,
+    faders = 8,
+    buttons = 16,
+  },
   pickupTolerance = 10,
   maxLogMessages = 500,
   sysexHeader = "f0 00 20 29 02 15",

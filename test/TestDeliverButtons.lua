@@ -42,7 +42,7 @@ end
 -- simulates a press of the button on the remote surface (Launch Control)
 local function pressButton(button)
     remote.mock("match_midi"):impl(function(midi)
-        return midi == items[button].midi and {} or nil
+        return midi == items[button].midi and { x = 127 } or nil
     end)
     processButtons({ time_stamp = 0 })
 end
@@ -69,6 +69,10 @@ function TestDeliverButtons:setUp()
     remote.clearMocks()
     setParamName("Mute")
     setTextValue("1")
+    -- pressing a cycle button reads the current value from the item state
+    remote.mock("get_item_state"):impl(function()
+        return { value = 0 }
+    end)
     remote_init()
 end
 
@@ -122,6 +126,30 @@ function TestDeliverButtons:testStillShowsOnOffForOtherParamsOnADeviceWithSpecia
     local events = deliverButtons()
     local errorMessage = "expected a SubTractor param without its own labels to still show 'On'"
     lu.assertEquals(trailingEvents(events, 4), overlaySysex("Ring Mod", "On"), errorMessage)
+end
+
+function TestDeliverButtons:testShowsTheLabelOfACycleParamValue()
+    state.set("deviceType", "subtractor")
+    state.update("deviceType")
+    setParamName("LFO2 Dest")
+    setTextValue("2")
+    enableButton("button4")
+    pressButton("button4")
+    local events = deliverButtons()
+    local errorMessage = "expected LFO2 Dest's value 2 to be shown with its label from the SubTractor UI"
+    lu.assertEquals(trailingEvents(events, 4), overlaySysex("LFO2 Dest", "F.Freq 2"), errorMessage)
+end
+
+function TestDeliverButtons:testShowsThePlainValueForACycleParamWithoutLabels()
+    state.set("deviceType", "subtractor")
+    state.update("deviceType")
+    setParamName("Osc1 Phase Mode")
+    setTextValue("1")
+    enableButton("button1")
+    pressButton("button1")
+    local events = deliverButtons()
+    local errorMessage = "expected a cycling parameter without labels to show the plain value, not 'On'"
+    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Osc1 Phase Mode", "1"), errorMessage)
 end
 
 function TestDeliverButtons:testStillShowsOnOffForTheSameParamNameOnAnotherDevice()

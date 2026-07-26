@@ -1,9 +1,11 @@
 local state = require("src.lib.state._")
 local buttonStates = require("src.lib.state.buttons")
 local items = require("src.config.items")
+local const = require("src.config.constants")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local makeOverlayDisplayEvents = require("src.lib.midi.makeOverlayDisplayEvents")
-local valueLabels = require("src.config.valueLabels")
+local getLabel = require("src.lib.valueLabels.getLabel")
+local cycleParams = require("src.config.cycleParams")
 local debug = require("src.lib.debug._")
 
 -- the host (Reason) reports an on/off button as "0" or "1", which reads poorly
@@ -18,15 +20,24 @@ local defaultValueLabels = {
 -- with no label is shown as the host provides it
 local function getValueLabel(paramName, textValue)
   debug.log("device type: " .. state.get("deviceType"))
-  local deviceLabels = valueLabels[state.get("deviceType")]
-  local labels = deviceLabels and deviceLabels[paramName] or defaultValueLabels
-  return labels[textValue] or textValue
+  local deviceType = state.get("deviceType")
+  local label = getLabel(deviceType, paramName, textValue)
+  if label then
+    return label
+  end
+  local deviceCycleParams = cycleParams[deviceType]
+  if deviceCycleParams and deviceCycleParams[paramName] then
+    -- a cycling parameter's values are not on/off, so without labels of its
+    -- own it shows the plain value rather than the On/Off defaults
+    return textValue
+  end
+  return defaultValueLabels[textValue] or textValue
 end
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
-  for i = 1, 16 do
+  for i = 1, const.counts.buttons do
     local path, enabled
     local enabledChanged = false
     local item = items["button" .. i]
