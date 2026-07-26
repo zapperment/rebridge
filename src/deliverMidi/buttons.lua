@@ -1,6 +1,27 @@
 local state = require("src.lib.state._")
+local buttonStates = require("src.lib.state.buttons")
 local items = require("src.config.items")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local makeOverlayDisplayEvents = require("src.lib.midi.makeOverlayDisplayEvents")
+local valueLabels = require("src.config.valueLabels")
+local debug = require("src.lib.debug._")
+
+-- the host (Reason) reports an on/off button as "0" or "1", which reads poorly
+-- on the display
+local defaultValueLabels = {
+  ["0"] = "Off",
+  ["1"] = "On",
+}
+
+-- turns the value the host reports into what the display should show, honouring
+-- the labels a device defines for buttons that are not simply on/off; a value
+-- with no label is shown as the host provides it
+local function getValueLabel(paramName, textValue)
+  debug.log("device type: " .. state.get("deviceType"))
+  local deviceLabels = valueLabels[state.get("deviceType")]
+  local labels = deviceLabels and deviceLabels[paramName] or defaultValueLabels
+  return labels[textValue] or textValue
+end
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -36,5 +57,23 @@ return function()
       end
     end
   end
+
+  -- The hardware only offers per-control displays for faders and encoders, so a
+  -- button's parameter name goes on the shared overlay display. It is shown for
+  -- presses on the remote surface only, matching how the hardware brings up the
+  -- fader and encoder displays on movement but not on changes made in the host.
+  local pressed = buttonStates.pressed
+  buttonStates.pressed = nil
+  if pressed then
+    local paramName = remote.get_item_name(pressed.index)
+    debug.log("param name: " .. paramName)
+    for _, event in ipairs(makeOverlayDisplayEvents(
+      paramName,
+      getValueLabel(paramName, remote.get_item_text_value(pressed.index))
+    )) do
+      table.insert(events, event)
+    end
+  end
+
   return events
 end

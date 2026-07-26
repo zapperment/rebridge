@@ -1,5 +1,6 @@
 local lu = require("test.lib._").luaUnit
 
+require("test.TestDeliverButtons")
 require("test.TestDeliverFaders")
 require("test.TestMockFunction")
 require("test.TestRemoteInit")

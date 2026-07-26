@@ -10,6 +10,7 @@ local setButtons = require("src.setState.buttons")
 local setTransport = require("src.setState.transport")
 local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
+local deliverInfo = require("src.deliverMidi.info")
 local deliverButtons = require("src.deliverMidi.buttons")
 local deliverTransport = require("src.deliverMidi.transport")
 local deliverDisplay = require("src.deliverMidi.display")
@@ -66,6 +67,9 @@ function remote_deliver_midi(_, port)
     table.insert(events, event)
   end
   for _, event in ipairs(deliverTransport()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverInfo()) do
     table.insert(events, event)
   end
   for _, event in ipairs(deliverDisplay()) do

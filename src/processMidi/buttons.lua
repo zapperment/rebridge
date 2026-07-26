@@ -1,5 +1,6 @@
 local items = require("src.config.items")
 local state = require("src.lib.state._")
+local buttonStates = require("src.lib.state.buttons")
 local getColour = require("src.lib.colour.getColour")
 
 -- handles changes of the buttons of the remote surface (Launch Control)
@@ -14,6 +15,7 @@ return function(event)
       local turnedOn = state.flip(button .. ".value")
       local colourValue = turnedOn and 95 or 1
       state.set(button .. ".colour", getColour(item.colour, colourValue))
+      buttonStates.pressed = item
 
       -- update host (Reason)
       local hostValue = turnedOn and 127 or 0

@@ -1,7 +1,9 @@
 local state = require("src.lib.state._")
+local buttonStates = require("src.lib.state.buttons")
 local const = require("src.config.constants")
 
 return function()
+  buttonStates.pressed = nil
   for i = 1, 8 do
     state.set("fader" .. i, const.fader.unassigned)
   end
