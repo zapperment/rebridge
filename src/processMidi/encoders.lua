@@ -2,6 +2,7 @@ local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
+local getColourName = require("src.lib.colour.getColourName")
 
 -- handles changes of the encoders of the remote surface (Launch Control)
 return function(event)
@@ -14,7 +15,8 @@ return function(event)
     if match and state.get(encoder .. ".enabled") then
       local remoteSurfaceValue = match.x
       state.set(encoder .. ".value", remoteSurfaceValue)
-      state.set(encoder .. ".colour", getColour(item.colour, remoteSurfaceValue))
+      local colourName = getColourName(state.getNext("deviceType"), remote.get_item_name(item.index), item.colour)
+      state.set(encoder .. ".colour", getColour(colourName, remoteSurfaceValue))
 
       -- update host (Reason)
       remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = remoteSurfaceValue })

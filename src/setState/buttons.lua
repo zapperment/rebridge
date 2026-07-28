@@ -6,6 +6,7 @@ local paramValues = require("src.lib.state.paramValues")
 local cycleParams = require("src.config.cycleParams")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local getColour = require("src.lib.colour.getColour")
+local getColourName = require("src.lib.colour.getColourName")
 
 -- parameters whose settings drive the display of other parameters (see
 -- config/conditionalValueLabels), collected across all device types
@@ -28,18 +29,20 @@ return function(changedItems)
           if watchedParams[changedItem.remote_item_name] then
             paramValues[changedItem.remote_item_name] = changedItem.value > 0
           end
-          local deviceCycleParams = cycleParams[state.getNext("deviceType")]
+          local deviceType = state.getNext("deviceType")
+          local colourName = getColourName(deviceType, changedItem.remote_item_name, items[button].colour)
+          local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[changedItem.remote_item_name] then
             -- a cycle button stays dim whatever the parameter's value; it is
             -- only bright while held down, which processMidi takes care of
             if not buttonStates.held[button] then
-              state.set(button .. ".colour", getColour(items[button].colour, 1))
+              state.set(button .. ".colour", getColour(colourName, 1))
             end
           else
             local hostValue = changedItem.value > 0 and true or false
             state.set(button .. ".value", hostValue)
             local colourValue = changedItem.value > 0 and 95 or 1
-            state.set(button .. ".colour", getColour(items[button].colour, colourValue))
+            state.set(button .. ".colour", getColour(colourName, colourValue))
           end
         else
           state.set(button .. ".enabled", false)

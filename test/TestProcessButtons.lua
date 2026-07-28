@@ -81,7 +81,7 @@ end
 function TestProcessButtons:testIsBrightWhileHeldDown()
     sendButton("button13", 127)
     local errorMessage = "expected the cycle button to have the bright colour while held down"
-    lu.assertEquals(state.getNext("button13.colour"), getColour(items.button13.colour, 95), errorMessage)
+    lu.assertEquals(state.getNext("button13.colour"), getColour("tiff", 95), errorMessage)
     lu.assertEquals(buttonStates.held.button13, true, "expected the button to be recorded as held")
 end
 
@@ -89,7 +89,7 @@ function TestProcessButtons:testIsDimAfterRelease()
     sendButton("button13", 127)
     sendButton("button13", 0)
     local errorMessage = "expected the cycle button to have the dim colour after it is released"
-    lu.assertEquals(state.getNext("button13.colour"), getColour(items.button13.colour, 1), errorMessage)
+    lu.assertEquals(state.getNext("button13.colour"), getColour("tiff", 1), errorMessage)
     lu.assertEquals(buttonStates.held.button13, nil, "expected the button to no longer be recorded as held")
 end
 
@@ -138,7 +138,7 @@ function TestProcessButtons:testHostChangesKeepCycleButtonsDim()
     end)
     setButtons({ items.button13.index })
     local errorMessage = "expected a cycle button to stay dim when the host reports a non-zero value"
-    lu.assertEquals(state.getNext("button13.colour"), getColour(items.button13.colour, 1), errorMessage)
+    lu.assertEquals(state.getNext("button13.colour"), getColour("tiff", 1), errorMessage)
 end
 
 function TestProcessButtons:testHostChangesDoNotDimACycleButtonWhileItIsHeld()
@@ -149,7 +149,7 @@ function TestProcessButtons:testHostChangesDoNotDimACycleButtonWhileItIsHeld()
     setButtons({ items.button13.index })
     local errorMessage = "expected the cycle button to stay bright while held down, even when the host " ..
         "reports the new value"
-    lu.assertEquals(state.getNext("button13.colour"), getColour(items.button13.colour, 95), errorMessage)
+    lu.assertEquals(state.getNext("button13.colour"), getColour("tiff", 95), errorMessage)
 end
 
 function TestProcessButtons:testHostChangesStillLightToggleButtons()
@@ -158,5 +158,5 @@ function TestProcessButtons:testHostChangesStillLightToggleButtons()
     end)
     setButtons({ items.button13.index })
     local errorMessage = "expected a toggle button to have the bright colour when the host reports it on"
-    lu.assertEquals(state.getNext("button13.colour"), getColour(items.button13.colour, 95), errorMessage)
+    lu.assertEquals(state.getNext("button13.colour"), getColour("tang", 95), errorMessage)
 end

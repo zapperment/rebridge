@@ -4,12 +4,13 @@ local state = require("src.lib.state._")
 local buttonStates = require("src.lib.state.buttons")
 local cycleParams = require("src.config.cycleParams")
 local getColour = require("src.lib.colour.getColour")
+local getColourName = require("src.lib.colour.getColourName")
 
 -- the number of values of the mapped parameter if the button cycles through
 -- them like the momentary buttons on the device's own UI, nil for toggles
-local function getCycleCount(item)
+local function getCycleCount(paramName)
   local deviceCycleParams = cycleParams[state.getNext("deviceType")]
-  return deviceCycleParams and deviceCycleParams[remote.get_item_name(item.index)]
+  return deviceCycleParams and deviceCycleParams[paramName]
 end
 
 -- the host reports the parameter's value scaled to the item's 0-127 range;
@@ -32,13 +33,15 @@ return function(event)
     local match = remote.match_midi(item.midi, event)
     if match and state.get(button .. ".enabled") then
       local pressed = match.x > 0
-      local cycleCount = getCycleCount(item)
+      local paramName = remote.get_item_name(item.index)
+      local colourName = getColourName(state.getNext("deviceType"), paramName, item.colour)
+      local cycleCount = getCycleCount(paramName)
       if cycleCount then
         -- a cycle button is momentary: bright while held, and each press
         -- advances the parameter to its next value, wrapping around at the end
         if pressed then
           buttonStates.held[button] = true
-          state.set(button .. ".colour", getColour(item.colour, 95))
+          state.set(button .. ".colour", getColour(colourName, 95))
           buttonStates.pressed = item
 
           local currentValue = toParamValue(remote.get_item_state(item.index).value, cycleCount)
@@ -52,13 +55,13 @@ return function(event)
           })
         else
           buttonStates.held[button] = nil
-          state.set(button .. ".colour", getColour(item.colour, 1))
+          state.set(button .. ".colour", getColour(colourName, 1))
         end
         processed = true
       elseif pressed then
         local turnedOn = state.flip(button .. ".value")
         local colourValue = turnedOn and 95 or 1
-        state.set(button .. ".colour", getColour(item.colour, colourValue))
+        state.set(button .. ".colour", getColour(colourName, colourValue))
         buttonStates.pressed = item
 
         -- update host (Reason)

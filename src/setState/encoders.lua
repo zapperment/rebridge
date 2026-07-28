@@ -2,6 +2,7 @@ local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
+local getColourName = require("src.lib.colour.getColourName")
 
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
@@ -14,7 +15,9 @@ return function(changedItems)
           local hostValue = changedItem.value
           state.set(encoder .. ".enabled", true)
           state.set(encoder .. ".value", hostValue)
-          state.set(encoder .. ".colour", getColour(items[encoder].colour, hostValue))
+          local colourName = getColourName(state.getNext("deviceType"), changedItem.remote_item_name,
+            items[encoder].colour)
+          state.set(encoder .. ".colour", getColour(colourName, hostValue))
         else
           state.set(encoder .. ".enabled", false)
         end

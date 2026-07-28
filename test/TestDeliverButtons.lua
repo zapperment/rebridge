@@ -213,6 +213,9 @@ function TestDeliverButtons:testShowsOnlyTheLastPressedButtonWhenSeveralArePress
     enableButton("button2")
     pressButton("button1")
     pressButton("button2")
+    -- processing the presses reads the param names too, so only count the
+    -- reads the overlay display itself makes
+    remote.mock("get_item_name"):clear()
     deliverButtons()
     local nameCalls = remote.mock("get_item_name").calls
     local errorMessage = "expected the overlay display to be shown once for the last pressed button, " ..
