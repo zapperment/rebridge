@@ -57,6 +57,17 @@ return {
   -- press to them while Shift is held (see processMidi/navigation)
   patchUpButton = { input = "button", output = "value", min = 0, max = 127 },
   patchDownButton = { input = "button", output = "value", min = 0, max = 127 },
+  -- one selector per parameter page, mapped to the page's group variation in
+  -- the remote map (e.g. "Pages=Page 1"); the codec presses them to step
+  -- between pages, and the host reports back which one is active
+  pageSelect1 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect2 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect3 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect4 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect5 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect6 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect7 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect8 = { input = "button", output = "value", min = 0, max = 127 },
   playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 74 xx", controller = 116 },
   recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 76 xx", controller = 118 },
   stopButton = { input = "button", output = "value", min = 0, max = 127 },

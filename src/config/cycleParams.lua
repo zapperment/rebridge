@@ -15,5 +15,6 @@ return {
     ["LFO1 Dest"] = 6,
     ["LFO2 Dest"] = 4,
     ["Mod Env Dest"] = 6,
+    ["Ext Mod Select"] = 3,
   },
 }

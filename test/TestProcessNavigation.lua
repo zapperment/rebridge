@@ -1,6 +1,7 @@
 local test = require("test.lib._")
 local lu = test.luaUnit
 local items = require("src.config.items")
+local pages = require("src.lib.state.pages")
 local processNavigation = require("src.processMidi.navigation")
 
 require("src.reason.codecs.novation.LCXL3")
@@ -41,20 +42,73 @@ local function assertHandledItem(expectedItemName)
     lu.assertEquals(calls[1][1].value, 1, "expected the input to be handled with value 1")
 end
 
+-- gives the target device pageCount pages with the given page active, as the
+-- host would have reported it through the page selectors
+local function setPages(pageCount, active)
+    for i = 1, pageCount do
+        pages.enabled[i] = true
+        pages.selected[i] = i == active
+    end
+    pages.count = pageCount
+    pages.active = active
+end
+
 function TestProcessNavigation:setUp()
     test.resetState()
     remote.clearMocks()
     remote_init()
 end
 
-function TestProcessNavigation:testPageUpSelectsTheParameterPageWithoutShift()
-    receive(items.pageUpButton.midi, 127)
-    assertHandledItem("pageUpButton")
+function TestProcessNavigation:testPageDownStepsToTheNextPageWithoutShift()
+    setPages(4, 2)
+    receive(items.pageDownButton.midi, 127)
+    assertHandledItem("pageSelect3")
+    lu.assertEquals(pages.active, 3, "expected the active page to be recorded as 3")
 end
 
-function TestProcessNavigation:testPageDownSelectsTheParameterPageWithoutShift()
+function TestProcessNavigation:testPageUpStepsToThePreviousPageWithoutShift()
+    setPages(4, 2)
+    receive(items.pageUpButton.midi, 127)
+    assertHandledItem("pageSelect1")
+    lu.assertEquals(pages.active, 1, "expected the active page to be recorded as 1")
+end
+
+function TestProcessNavigation:testDoesNotStepBeyondTheLastPage()
+    setPages(4, 4)
     receive(items.pageDownButton.midi, 127)
-    assertHandledItem("pageDownButton")
+    local calls = remote.mock("handle_input").calls
+    local errorMessage = "expected page down on the last page to do nothing, but handle_input was called " ..
+        #calls .. " times"
+    lu.assertEquals(#calls, 0, errorMessage)
+    lu.assertEquals(pages.active, 4, "expected the active page to stay 4")
+end
+
+function TestProcessNavigation:testDoesNotStepBeforeTheFirstPage()
+    setPages(4, 1)
+    receive(items.pageUpButton.midi, 127)
+    local calls = remote.mock("handle_input").calls
+    local errorMessage = "expected page up on the first page to do nothing, but handle_input was called " ..
+        #calls .. " times"
+    lu.assertEquals(#calls, 0, errorMessage)
+end
+
+function TestProcessNavigation:testDoesNothingOnADeviceWithoutPages()
+    receive(items.pageDownButton.midi, 127)
+    local calls = remote.mock("handle_input").calls
+    local errorMessage = "expected the page buttons to do nothing on a device without a page group, " ..
+        "but handle_input was called " .. #calls .. " times"
+    lu.assertEquals(#calls, 0, errorMessage)
+end
+
+function TestProcessNavigation:testStepsThroughAllPagesOneByOne()
+    setPages(3, 1)
+    receive(items.pageDownButton.midi, 127)
+    receive(items.pageDownButton.midi, 127)
+    local calls = remote.mock("handle_input").calls
+    lu.assertEquals(#calls, 2, "expected two page steps to be handled")
+    local errorMessage = "expected the second page down to step from page 2 to page 3, even before the host " ..
+        "confirmed the first step"
+    lu.assertEquals(calls[2][1].item, items.pageSelect3.index, errorMessage)
 end
 
 function TestProcessNavigation:testBrowsesToThePreviousPatchWithShiftAndPageUp()
@@ -69,14 +123,16 @@ function TestProcessNavigation:testBrowsesToTheNextPatchWithShiftAndPageDown()
     assertHandledItem("patchDownButton")
 end
 
-function TestProcessNavigation:testSelectsThePageAgainAfterShiftWasReleased()
+function TestProcessNavigation:testStepsThePageAgainAfterShiftWasReleased()
+    setPages(4, 1)
     holdShift()
     releaseShift()
     receive(items.pageDownButton.midi, 127)
-    assertHandledItem("pageDownButton")
+    assertHandledItem("pageSelect2")
 end
 
 function TestProcessNavigation:testDoesNothingWhenPageButtonIsReleased()
+    setPages(4, 2)
     receive(items.pageUpButton.midi, 0)
     local calls = remote.mock("handle_input").calls
     local errorMessage = "expected releasing the page up button not to handle any input, " ..

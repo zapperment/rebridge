@@ -7,12 +7,14 @@ local processNavigation = require("src.processMidi.navigation")
 local setEncoders = require("src.setState.encoders")
 local setFaders = require("src.setState.faders")
 local setInfo = require("src.setState.info")
+local setPages = require("src.setState.pages")
 local setButtons = require("src.setState.buttons")
 local setTransport = require("src.setState.transport")
 local deliverEncoders = require("src.deliverMidi.encoders")
 local deliverFaders = require("src.deliverMidi.faders")
 local deliverInfo = require("src.deliverMidi.info")
 local deliverButtons = require("src.deliverMidi.buttons")
+local deliverPages = require("src.deliverMidi.pages")
 local deliverTransport = require("src.deliverMidi.transport")
 local deliverDisplay = require("src.deliverMidi.display")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
@@ -46,6 +48,7 @@ end
 -- Host (Reason) -> remote codec
 function remote_set_state(changedItems)
   setInfo(changedItems)
+  setPages(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
   setButtons(changedItems)
@@ -67,6 +70,9 @@ function remote_deliver_midi(_, port)
     table.insert(events, event)
   end
   for _, event in ipairs(deliverButtons()) do
+    table.insert(events, event)
+  end
+  for _, event in ipairs(deliverPages()) do
     table.insert(events, event)
   end
   for _, event in ipairs(deliverTransport()) do

@@ -4,6 +4,7 @@ return {
     encoders = 24,
     faders = 8,
     buttons = 16,
+    pageSelects = 8,
   },
   pickupTolerance = 10,
   maxLogMessages = 500,

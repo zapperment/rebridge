@@ -3,9 +3,11 @@ local buttonStates = require("src.lib.state.buttons")
 local faderStates = require("src.lib.state.faders")
 local paramValues = require("src.lib.state.paramValues")
 local shiftState = require("src.lib.state.shift")
+local pages = require("src.lib.state.pages")
 local const = require("src.config.constants")
 
 return function()
+  pages.reset()
   buttonStates.pressed = nil
   buttonStates.held = {}
   shiftState.held = false
