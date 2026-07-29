@@ -21,47 +21,56 @@ end
 
 return {
   subtractor = byParam({
-    fhyd = { -- oscillator 1
+    red = { -- oscillator 1
       "Osc1 Wave", "Osc1 Octave", "Osc1 Semitone", "Osc1 Fine Tune",
       "Osc1 Phase Diff", "Osc1 Phase Mode", "Osc1 Kbd Track",
     },
-    tang = { -- oscillator mix
+    cyan = { -- oscillator mix
       "FM Amount", "Osc Mix", "Ring Mod",
     },
-    duri = { -- oscillator 2
+    yellow = { -- oscillator 2
       "Osc2 Wave", "Osc2 Octave", "Osc2 Semitone", "Osc2 Fine Tune",
       "Osc2 Phase Diff", "Osc2 Phase Mode", "Osc2 Kbd Track", "Osc2 On/Off",
     },
-    poml = { -- noise
+    green = { -- noise
       "Noise On/Off", "Noise Level", "Noise Decay", "Noise Color",
     },
-    tiff = { -- filter 1
+    orange = { -- filter 1
       "Filter Freq", "Filter Res", "Filter Env Amount", "Filter Kbd Track",
       "Filter Env Invert", "Filter Type",
     },
-    coco = { -- filter 2
+    blue = { -- filter 2
       "Filter2 On/Off", "Filter Link Freq On/Off", "Filter2 Freq", "Filter2 Res",
     },
-    plum = { -- LFO 1
+    violet = { -- LFO 1
       "LFO1 Rate", "LFO1 Amount", "LFO Sync Enable", "LFO1 Wave", "LFO1 Dest",
     },
-    flam = { -- LFO 2
-      "LFO2 Rate", "LFO2 Amount", "LFO2 Delay", "LFO2 Dest",
+    magenta = { -- LFO 2
+      "LFO2 Rate", "LFO2 Amount", "LFO2 Delay", "LFO2 Dest", "LFO2 Kbd Track"
     },
-    ceru = { -- performance and external modulation
-      "Key Mode", "Portamento", "Low Bandwidth On/Off", "Polyphony",
+    amber = { -- performance and external modulation
+      "Portamento",
+      "Polyphony",
+      "Key Mode", "Low Bandwidth On/Off",
+      "Pitch Bend Range",
+    },
+    pink = {
       "Ext Mod Select", "Filter Freq Ext Mod", "LFO1 Ext Mod", "Amp Ext Mod",
       "FM Ext Mod",
     },
-    suns = { -- pitch bend and mod wheel amounts
-      "Pitch Bend Range", "Filter Freq Mod Wheel Amount",
+    sky = { -- pitch bend and mod wheel amounts
+      "Filter Freq Mod Wheel Amount",
       "Filter Res Mod Wheel Amount", "LFO1 Mod Wheel Amount",
       "Phase Diff Mod Wheel Amount", "FM Mod Wheel Amount",
     },
-    aqua = { -- velocity amounts
-      "Amp Vel Amount", "FM Vel Amount", "Mod Env Vel Amount",
+    mint = { -- velocity amounts & mod env
+      "Amp Vel Amount", "FM Vel Amount",
       "Phase Vel Amount", "Filter2 Freq Vel Amount", "Filter Env Vel Amount",
       "Filter Decay Vel Amount", "Mix Vel Amount", "Amp Attack Vel Amount",
+      "Mod Env Vel Amount",
+      "Mod Env Gain",
+      "Mod Env Invert",
+      "Mod Env Dest",
     },
   }),
 }

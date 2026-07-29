@@ -6,7 +6,7 @@ return {
   subtractor = {
     "Osc & Noise",
     "Filter & Amp",
-    "LFO",
-    "Perf & Mod",
+    "LFO & Mod Env",
+    "Perf & Velocity",
   },
 }

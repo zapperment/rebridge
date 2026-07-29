@@ -26,6 +26,8 @@ return {
   subtractor = {
     ["Osc1 Wave"] = oscWaveLabels(),
     ["Osc2 Wave"] = oscWaveLabels(),
+    ["Osc1 Phase Mode"] = { ["0"] = "X", ["1"] = "--", ["2"] = "O" },
+    ["Osc2 Phase Mode"] = { ["0"] = "X", ["1"] = "--", ["2"] = "O" },
     ["Key Mode"] = { ["0"] = "Legato", ["1"] = "Retrig" },
     ["Filter Type"] = {
       ["0"] = "Notch",
@@ -64,5 +66,6 @@ return {
       ["4"] = "Phase",
       ["5"] = "Freq 2",
     },
+    ["Ext Mod Select"] = { ["0"] = "A. Touch", ["1"] = "Expr", ["2"] = "Breath" }
   },
 }

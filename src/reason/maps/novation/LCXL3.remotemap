@@ -77,91 +77,117 @@ Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
 Map	pageSelect3		Pages=Page 3
 Map	pageSelect4		Pages=Page 4
-//	--- Page 1 ---
-Map	encoder1		Osc1 Wave			Page 1
-Map	encoder2		Osc1 Octave			Page 1
-Map	encoder3		Osc1 Semitone			Page 1
-Map	encoder4		Osc1 Fine Tune			Page 1
-Map	encoder5		Osc1 Phase Diff			Page 1
-Map	encoder6		FM Amount			Page 1
-Map	encoder7		Osc Mix			Page 1
-Map	encoder9		Osc2 Wave			Page 1
-Map	encoder10		Osc2 Octave			Page 1
-Map	encoder11		Osc2 Semitone			Page 1
-Map	encoder12		Osc2 Fine Tune			Page 1
-Map	encoder13		Osc2 Phase Diff			Page 1
-Map	encoder17		Noise Level			Page 1
-Map	encoder18		Noise Decay			Page 1
-Map	encoder19		Noise Color			Page 1
-Map	button1		Osc2 On/Off			Page 1
-Map	button2		Osc1 Kbd Track			Page 1
-Map	button3		Osc2 Kbd Track			Page 1
-Map	button4		Osc1 Phase Mode			Page 1
-Map	button5		Osc2 Phase Mode			Page 1
-Map	button6		Ring Mod			Page 1
-Map	button7		Noise On/Off			Page 1
-//	--- Page 2 ---
+
+//	--- Page 1: Osc & Noise ---
+
+Map	encoder1		Osc1 Phase Diff			Page 1
+Map	encoder2		Osc1 Wave			Page 1
+Map	encoder3		Osc1 Octave			Page 1
+Map	encoder4		Osc1 Semitone			Page 1
+Map	encoder5		Osc1 Fine Tune			Page 1
+
+Map	encoder9		Osc2 Phase Diff			Page 1
+Map	encoder10		Osc2 Wave			Page 1
+Map	encoder11		Osc2 Octave			Page 1
+Map	encoder12		Osc2 Semitone			Page 1
+Map	encoder13		Osc2 Fine Tune			Page 1
+
+Map	encoder8		FM Amount			Page 1
+Map	encoder16		Osc Mix			Page 1
+
+Map	encoder21		Noise Decay			Page 1
+Map	encoder22		Noise Color			Page 1
+Map	encoder23		Noise Level			Page 1
+
+Map	button2		Osc1 Phase Mode			Page 1
+Map	button3		Osc1 Kbd Track			Page 1
+
+Map	button8		Ring Mod			Page 1
+Map	button9		Osc2 On/Off			Page 1
+Map	button10		Osc2 Phase Mode			Page 1
+Map	button11		Osc2 Kbd Track			Page 1
+Map	button13		Noise On/Off			Page 1
+
+//	--- Page 2: Filter & Amp ---
+
 Map	encoder1		Filter Freq			Page 2
 Map	encoder2		Filter Res			Page 2
-Map	encoder3		Filter Env Amount			Page 2
-Map	encoder4		Filter Kbd Track			Page 2
-Map	encoder9		Filter2 Freq			Page 2
-Map	encoder10		Filter2 Res			Page 2
+Map	encoder3		Filter Kbd Track			Page 2
+
+Map	encoder5		Filter2 Freq			Page 2
+Map	encoder6		Filter2 Res			Page 2
+
+Map	encoder8		Master Level			Page 2
+
+Map	encoder20		Filter Env Amount			Page 2
+
 Map	fader1		Filter Env Attack			Page 2
 Map	fader2		Filter Env Decay			Page 2
 Map	fader3		Filter Env Sustain			Page 2
 Map	fader4		Filter Env Release			Page 2
+
 Map	fader5		Amp Env Attack			Page 2
 Map	fader6		Amp Env Decay			Page 2
 Map	fader7		Amp Env Sustain			Page 2
 Map	fader8		Amp Env Release			Page 2
-Map	button1		Filter2 On/Off			Page 2
-Map	button2		Filter Link Freq On/Off			Page 2
-Map	button3		Filter Env Invert			Page 2
-Map	button4		Filter Type			Page 2
-Map	encoder24		Master Level			Page 2
-//	--- Page 3 ---
+
+Map	button3		Filter Type			Page 2
+Map	button4		Filter Env Invert			Page 2
+Map	button5		Filter Link Freq On/Off			Page 2
+Map	button6		Filter2 On/Off			Page 2
+
+//	--- Page 3: LFO & Mod Env ---
+
 Map	encoder1		LFO1 Rate			Page 3
 Map	encoder2		LFO1 Amount			Page 3
-Map	encoder9		LFO2 Rate			Page 3
-Map	encoder10		LFO2 Amount			Page 3
-Map	encoder11		LFO2 Delay			Page 3
+Map	encoder4		LFO2 Rate			Page 3
+Map	encoder5		LFO2 Amount			Page 3
+Map	encoder12		LFO2 Kbd Track 			Page 3
+Map	encoder13		LFO2 Delay			Page 3
 Map	button1		LFO Sync Enable			Page 3
 Map	button2		LFO1 Wave			Page 3
 Map	button3		LFO1 Dest			Page 3
+
 Map	button4		LFO2 Dest			Page 3
-Map	fader1		Mod Env Attack			Page 3
-Map	fader2		Mod Env Decay			Page 3
-Map	fader3		Mod Env Sustain			Page 3
-Map	fader4		Mod Env Release			Page 3
-//	--- Page 4 ---
+
+Map	fader5		Mod Env Attack			Page 3
+Map	fader6		Mod Env Decay			Page 3
+Map	fader7		Mod Env Sustain			Page 3
+Map	fader8		Mod Env Release			Page 3
+Map	encoder24		Mod Env Gain			Page 3
+Map	button7		Mod Env Invert			Page 3
+Map	button8		Mod Env Dest			Page 3
+
+//	--- Page 4: Perf & Velocity ---
+
 Map	encoder1		Portamento			Page 4
-Map	encoder2		Pitch Bend Range			Page 4
-Map	encoder3		Polyphony			Page 4
-Map	encoder4		Mod Env Gain			Page 4
-Map	encoder5		Filter Freq Ext Mod			Page 4
-Map	encoder6		LFO1 Ext Mod			Page 4
-Map	encoder7		Amp Ext Mod			Page 4
-Map	encoder8		FM Ext Mod			Page 4
-Map	encoder9		Filter Freq Mod Wheel Amount			Page 4
-Map	encoder10		Filter Res Mod Wheel Amount			Page 4
-Map	encoder11		FM Mod Wheel Amount			Page 4
-Map	encoder12		Phase Diff Mod Wheel Amount			Page 4
-Map	encoder13		LFO1 Mod Wheel Amount			Page 4
-Map	encoder14		Mix Vel Amount			Page 4
-Map	encoder15		Amp Attack Vel Amount			Page 4
-Map	encoder17		Amp Vel Amount			Page 4
-Map	encoder18		FM Vel Amount			Page 4
-Map	encoder19		Mod Env Vel Amount			Page 4
-Map	encoder20		Phase Vel Amount			Page 4
-Map	encoder21		Filter2 Freq Vel Amount			Page 4
-Map	encoder22		Filter Env Vel Amount			Page 4
-Map	encoder23		Filter Decay Vel Amount			Page 4
+Map	encoder9		Polyphony			Page 4
+Map	encoder17		Pitch Bend Range			Page 4
 Map	button1		Key Mode			Page 4
-Map	button2		Mod Env Invert			Page 4
-Map	button3		Mod Env Dest			Page 4
+Map	button9		Low Bandwidth On/Off			Page 4
+
+Map	encoder2		Filter Freq Mod Wheel Amount			Page 4
+Map	encoder10		Filter Res Mod Wheel Amount			Page 4
+Map	encoder11		LFO1 Mod Wheel Amount			Page 4
+Map	encoder18		Phase Diff Mod Wheel Amount			Page 4
+Map	encoder19		FM Mod Wheel Amount			Page 4
+
+Map	encoder12		Filter Freq Ext Mod			Page 4
+Map	encoder13		LFO1 Ext Mod			Page 4
+Map	encoder20		Amp Ext Mod			Page 4
+Map	encoder21		FM Ext Mod			Page 4
 Map	button4		Ext Mod Select			Page 4
-Map	button5		Low Bandwidth On/Off			Page 4
+
+Map	encoder6		Amp Vel Amount			Page 4
+Map	encoder7		FM Vel Amount			Page 4
+Map	encoder8		Mod Env Vel Amount			Page 4
+Map	encoder14		Phase Vel Amount			Page 4
+Map	encoder15		Filter2 Freq Vel Amount			Page 4
+Map	encoder16		Filter Env Vel Amount			Page 4
+Map	encoder22		Filter Decay Vel Amount			Page 4
+Map	encoder23		Mix Vel Amount			Page 4
+Map	encoder24		Amp Attack Vel Amount			Page 4
+
 Map	deviceName		Device Name
 Map	patchName		Patch Name
 Map	deviceType		"subtractor"
