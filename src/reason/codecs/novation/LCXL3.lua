@@ -63,6 +63,9 @@ function remote_deliver_midi(_, port)
 
   local events = {}
 
+  for _, event in ipairs(deliverInfo()) do
+    table.insert(events, event)
+  end
   for _, event in ipairs(deliverEncoders()) do
     table.insert(events, event)
   end
@@ -76,9 +79,6 @@ function remote_deliver_midi(_, port)
     table.insert(events, event)
   end
   for _, event in ipairs(deliverTransport()) do
-    table.insert(events, event)
-  end
-  for _, event in ipairs(deliverInfo()) do
     table.insert(events, event)
   end
   for _, event in ipairs(deliverDisplay()) do
