@@ -19,7 +19,6 @@ local defaultValueLabels = {
 -- the labels a device defines for buttons that are not simply on/off; a value
 -- with no label is shown as the host provides it
 local function getValueLabel(paramName, textValue)
-  debug.log("device type: " .. state.get("deviceType"))
   local deviceType = state.get("deviceType")
   local label = getLabel(deviceType, paramName, textValue)
   if label then
@@ -77,7 +76,6 @@ return function()
   buttonStates.pressed = nil
   if pressed then
     local paramName = remote.get_item_name(pressed.index)
-    debug.log("param name: " .. paramName)
     for _, event in ipairs(makeOverlayDisplayEvents(
       paramName,
       getValueLabel(paramName, remote.get_item_text_value(pressed.index))

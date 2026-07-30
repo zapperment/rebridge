@@ -8,10 +8,16 @@ local shiftMidi = "b6 3f xx"
 
 -- selects the parameter page by pressing its pageSelect item, which the
 -- target device's remote map binds to the page's group variation; does
--- nothing when the device has no pages or the step leaves the page range
+-- nothing when the device has no pages
 local function selectPage(target, timeStamp)
-  if pages.count == 0 or target < 1 or target > pages.count then
+  if pages.count == 0 then
     return
+  end
+  if target < 1 then
+    target = pages.count
+  end
+  if target > pages.count then
+    target = 1
   end
   remote.handle_input({ time_stamp = timeStamp, item = items["pageSelect" .. target].index, value = 1 })
   -- the host reports the switch back via the selectors, but recording it now
@@ -23,8 +29,8 @@ end
 -- their own they step through the parameter pages of the target device, with
 -- Shift held down they browse its patches (patchUp/DownButton).
 local pageButtons = {
-  { midi = items.pageUpButton.midi, step = -1, shifted = "patchUpButton" },
-  { midi = items.pageDownButton.midi, step = 1, shifted = "patchDownButton" },
+  { midi = items.pageUpButton.midi,   step = -1, shifted = "patchUpButton" },
+  { midi = items.pageDownButton.midi, step = 1,  shifted = "patchDownButton" },
 }
 
 -- handles the Shift and page buttons of the remote surface (Launch Control)

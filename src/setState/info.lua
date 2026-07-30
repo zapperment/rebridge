@@ -12,7 +12,6 @@ return function(changedItems)
       state.set("documentName", documentName)
     elseif changedItemIndex == items.deviceType.index then
       local deviceType = remote.get_item_text_value(changedItemIndex)
-      debug.log("device type: " .. deviceType)
       state.set("deviceType", deviceType)
     elseif changedItemIndex == items.deviceName.index then
       local deviceName = remote.get_item_text_value(changedItemIndex)
