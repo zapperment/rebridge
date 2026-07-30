@@ -37,23 +37,23 @@ end
 
 function TestParamColours:testGivesAnEncoderTheColourOfItsParamGroup()
     setDeviceType("subtractor")
-    -- encoder1's own colour is fhyd, but Filter Freq belongs to the filter 1
+    -- encoder1's own colour is red, but Filter Freq belongs to the filter 1
     -- group, so the two must not be confused here
     local colour = reportItem("encoder1", "Filter Freq", 100)
     local errorMessage = "expected an encoder mapped to Filter Freq to take the filter 1 group's colour"
-    lu.assertEquals(colour, getColour("tiff", 100), errorMessage)
+    lu.assertEquals(colour, getColour("orange", 100), errorMessage)
 end
 
 function TestParamColours:testGivesAButtonTheColourOfItsParamGroup()
     setDeviceType("subtractor")
     local colour = reportItem("button1", "Noise On/Off", 127)
     local errorMessage = "expected a button mapped to Noise On/Off to take the noise group's colour"
-    lu.assertEquals(colour, getColour("poml", 95), errorMessage)
+    lu.assertEquals(colour, getColour("green", 95), errorMessage)
 end
 
 function TestParamColours:testGivesTheWholeGroupTheSameColour()
     setDeviceType("subtractor")
-    local expected = getColour("duri", 100)
+    local expected = getColour("yellow", 100)
     for _, paramName in ipairs({ "Osc2 Wave", "Osc2 Octave", "Osc2 Semitone", "Osc2 Fine Tune" }) do
         local colour = reportItem("encoder5", paramName, 100)
         local errorMessage = "expected " .. paramName .. " to take the oscillator 2 group's colour"
@@ -77,12 +77,12 @@ end
 
 function TestParamColours:testResolvesTheColourNameForAKnownParam()
     local errorMessage = "expected LFO1 Rate to resolve to the LFO 1 group's colour"
-    lu.assertEquals(getColourName("subtractor", "LFO1 Rate", "fhyd"), "plum", errorMessage)
+    lu.assertEquals(getColourName("subtractor", "LFO1 Rate", "red"), "violet", errorMessage)
 end
 
 function TestParamColours:testFallsBackToTheGivenColourName()
-    lu.assertEquals(getColourName("subtractor", "Master Level", "fore"), "fore",
+    lu.assertEquals(getColourName("subtractor", "Master Level", "white"), "white",
         "expected an unlisted parameter to fall back to the control's colour")
-    lu.assertEquals(getColourName("combinator", "Rotary 1", "fore"), "fore",
+    lu.assertEquals(getColourName("combinator", "Rotary 1", "white"), "white",
         "expected a device type without param colours to fall back to the control's colour")
 end

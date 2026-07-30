@@ -73,23 +73,18 @@ function TestProcessNavigation:testPageUpStepsToThePreviousPageWithoutShift()
     lu.assertEquals(pages.active, 1, "expected the active page to be recorded as 1")
 end
 
-function TestProcessNavigation:testDoesNotStepBeyondTheLastPage()
+function TestProcessNavigation:testWrapsToTheFirstPageWhenSteppingPastTheLastPage()
     setPages(4, 4)
     receive(items.pageDownButton.midi, 127)
-    local calls = remote.mock("handle_input").calls
-    local errorMessage = "expected page down on the last page to do nothing, but handle_input was called " ..
-        #calls .. " times"
-    lu.assertEquals(#calls, 0, errorMessage)
-    lu.assertEquals(pages.active, 4, "expected the active page to stay 4")
+    assertHandledItem("pageSelect1")
+    lu.assertEquals(pages.active, 1, "expected page down on the last page to wrap around to page 1")
 end
 
-function TestProcessNavigation:testDoesNotStepBeforeTheFirstPage()
+function TestProcessNavigation:testWrapsToTheLastPageWhenSteppingBeforeTheFirstPage()
     setPages(4, 1)
     receive(items.pageUpButton.midi, 127)
-    local calls = remote.mock("handle_input").calls
-    local errorMessage = "expected page up on the first page to do nothing, but handle_input was called " ..
-        #calls .. " times"
-    lu.assertEquals(#calls, 0, errorMessage)
+    assertHandledItem("pageSelect4")
+    lu.assertEquals(pages.active, 4, "expected page up on the first page to wrap around to the last page")
 end
 
 function TestProcessNavigation:testDoesNothingOnADeviceWithoutPages()

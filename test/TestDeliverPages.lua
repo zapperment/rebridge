@@ -52,11 +52,11 @@ function TestDeliverPages:testShowsThePageNumberAndNameOnASwitch()
     pages.setActive(3)
     local events = deliverPages()
     local errorMessage = "expected the number and name of the newly selected page to be shown"
-    lu.assertEquals(events, overlaySysex("Page 3", "LFO"), errorMessage)
+    lu.assertEquals(events, overlaySysex("Page 3", "LFO & Mod Env"), errorMessage)
 end
 
 function TestDeliverPages:testShowsTheNameOfEveryPage()
-    local expectedNames = { "Osc & Noise", "Filter & Amp", "LFO", "Perf & Mod" }
+    local expectedNames = { "Osc & Noise", "Filter & Amp", "LFO & Mod Env", "Perf & Velocity" }
     for page, expectedName in ipairs(expectedNames) do
         pages.active = page == 1 and 2 or 1 -- make sure the page really changes
         pages.setActive(page)

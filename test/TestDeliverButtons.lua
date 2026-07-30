@@ -140,16 +140,19 @@ function TestDeliverButtons:testShowsTheLabelOfACycleParamValue()
     lu.assertEquals(trailingEvents(events, 4), overlaySysex("LFO2 Dest", "F.Freq 2"), errorMessage)
 end
 
-function TestDeliverButtons:testShowsThePlainValueForACycleParamWithoutLabels()
+function TestDeliverButtons:testShowsThePlainValueForAnUnlabelledCycleParamValue()
+    -- every value a SubTractor cycle parameter can actually take has a label
+    -- configured; this pins down the fallback for a value that has none,
+    -- rather than the On/Off defaults
     state.set("deviceType", "subtractor")
     state.update("deviceType")
     setParamName("Osc1 Phase Mode")
-    setTextValue("1")
+    setTextValue("9")
     enableButton("button1")
     pressButton("button1")
     local events = deliverButtons()
-    local errorMessage = "expected a cycling parameter without labels to show the plain value, not 'On'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Osc1 Phase Mode", "1"), errorMessage)
+    local errorMessage = "expected a cycling parameter's unlabelled value to be shown plainly, not 'On'"
+    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Osc1 Phase Mode", "9"), errorMessage)
 end
 
 function TestDeliverButtons:testStillShowsOnOffForTheSameParamNameOnAnotherDevice()
