@@ -18,12 +18,13 @@ local defaultValueLabels = {
 -- turns the value the host reports into what the display should show, honouring
 -- the labels a device defines for buttons that are not simply on/off; a value
 -- with no label is shown as the host provides it
-local function getValueLabel(paramName, textValue)
+local function getValueLabel(paramName, itemState)
   local deviceType = state.get("deviceType")
-  local label = getLabel(deviceType, paramName, textValue)
+  local label = getLabel(deviceType, paramName, itemState)
   if label then
     return label
   end
+  local textValue = itemState.text_value
   local deviceCycleParams = cycleParams[deviceType]
   if deviceCycleParams and deviceCycleParams[paramName] then
     -- a cycling parameter's values are not on/off, so without labels of its
@@ -78,7 +79,7 @@ return function()
     local paramName = remote.get_item_name(pressed.index)
     for _, event in ipairs(makeOverlayDisplayEvents(
       paramName,
-      getValueLabel(paramName, remote.get_item_text_value(pressed.index))
+      getValueLabel(paramName, remote.get_item_state(pressed.index))
     )) do
       table.insert(events, event)
     end

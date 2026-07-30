@@ -68,4 +68,13 @@ return {
     },
     ["Ext Mod Select"] = { ["0"] = "A. Touch", ["1"] = "Expr", ["2"] = "Breath" }
   },
+  algoritm = {
+    Mode1 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    }
+  }
 }

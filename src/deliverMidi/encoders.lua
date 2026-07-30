@@ -8,6 +8,8 @@ local makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfig
 local arrangements = require("src.lib.midi.displayArrangements")
 local getLabel = require("src.lib.valueLabels.getLabel")
 local getConditionalLabel = require("src.lib.valueLabels.getConditionalLabel")
+local getInterpolatedValue = require("src.lib.valueLabels.getInterpolatedValue")
+local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -45,10 +47,11 @@ return function()
         local paramName = remote.get_item_name(item.index)
         table.insert(events, makeParamNameDisplayEvent(paramName, item.controller))
         local deviceType = state.get("deviceType")
-        local textValue = remote.get_item_text_value(item.index)
+        local itemState = remote.get_item_state(item.index)
         local displayValue = getConditionalLabel(deviceType, paramName, value)
-            or getLabel(deviceType, paramName, textValue)
-            or textValue
+            or getLabel(deviceType, paramName, itemState)
+            or getInterpolatedValue(deviceType, paramName, itemState.value)
+            or itemState.text_value
         table.insert(events, makeParamValueDisplayEvent(displayValue, item.controller))
       end
       path = "encoder" .. i .. ".colour"

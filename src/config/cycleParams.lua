@@ -17,4 +17,15 @@ return {
     ["Mod Env Dest"] = 6,
     ["Ext Mod Select"] = 3,
   },
+  algoritm = {
+    ["Mode1"] = 5,
+    ["Mode2"] = 5,
+    ["Mode3"] = 5,
+    ["Mode4"] = 5,
+    ["Mode5"] = 5,
+    ["Mode6"] = 5,
+    ["Mode7"] = 5,
+    ["Mode8"] = 5,
+    ["Mode9"] = 5,
+  }
 }
