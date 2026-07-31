@@ -17,12 +17,14 @@ return {
     },
   },
   algoritm = {
-    ["Freq 1"] = {
-      dependsOn = "Mode1",
-      variations = {
-        ["32"] = "Freq 1 Op/Osc",
-        ["127"] = "Freq 1 Op/Osc",
-      }
-    }
+    ["Freq 1"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 2"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 3"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 4"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 5"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 6"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 7"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 8"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 9"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
   }
 }

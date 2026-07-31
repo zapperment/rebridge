@@ -6,7 +6,9 @@ local allow = {
 }
 
 local deny = {
-  "lib.valueLabels"
+  --"lib.valueLabels"
+  "getConditionalLabel",
+  "getLabel"
 }
 
 local previousMessage = nil

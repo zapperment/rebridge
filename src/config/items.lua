@@ -69,6 +69,8 @@ return {
   pageSelect7 = { input = "button", output = "value", min = 0, max = 127 },
   pageSelect8 = { input = "button", output = "value", min = 0, max = 127 },
   pageSelect9 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect10 = { input = "button", output = "value", min = 0, max = 127 },
+  pageSelect11 = { input = "button", output = "value", min = 0, max = 127 },
   playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 74 xx", controller = 116 },
   recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 76 xx", controller = 118 },
   stopButton = { input = "button", output = "value", min = 0, max = 127 },

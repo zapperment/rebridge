@@ -9,7 +9,7 @@ return {
     "LFO & Mod Env",
     "Perf & Velocity",
   },
-  operator = {
+  algoritm = {
     "Operator 1",
     "Operator 2",
     "Operator 3",
@@ -19,5 +19,7 @@ return {
     "Operator 7",
     "Operator 8",
     "Operator 9",
+    "Effects",
+    "Performance",
   }
 }

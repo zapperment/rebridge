@@ -1,6 +1,7 @@
 local items = require("src.config.items")
 local shiftState = require("src.lib.state.shift")
 local pages = require("src.lib.state.pages")
+local debug = require("src.lib.debug._")
 
 -- Shift is a feature control and reports on channel 7 rather than channel 1,
 -- see "Launch Control XL 3 feature controls" in the programmer's reference
@@ -10,6 +11,7 @@ local shiftMidi = "b6 3f xx"
 -- target device's remote map binds to the page's group variation; does
 -- nothing when the device has no pages
 local function selectPage(target, timeStamp)
+  debug.log("[processMidi.navigation] pages.count=" .. pages.count)
   if pages.count == 0 then
     return
   end

@@ -4,7 +4,7 @@ return {
     encoders = 24,
     faders = 8,
     buttons = 16,
-    pageSelects = 9,
+    pageSelects = 11,
   },
   pickupTolerance = 10,
   maxLogMessages = 500,
@@ -16,5 +16,10 @@ return {
     inSync = 2,
     tooHigh = 3,
     unassigned = 4
+  },
+  interpolation = {
+    linear = 0,
+    bipolar = 1,
+    reciprocal = 2
   }
 }

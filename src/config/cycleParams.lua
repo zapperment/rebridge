@@ -27,5 +27,9 @@ return {
     ["Mode7"] = 5,
     ["Mode8"] = 5,
     ["Mode9"] = 5,
+    ["Unison Count"] = 3,
+    ["Dist Type"] = 6,
+    ["Mod Effect Type"] = 3,
+    ["Resonator Select"] = 21,
   }
 }

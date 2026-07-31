@@ -69,12 +69,72 @@ return {
     ["Ext Mod Select"] = { ["0"] = "A. Touch", ["1"] = "Expr", ["2"] = "Breath" }
   },
   algoritm = {
+    ["Unison Count"] = { ["0"] = "2", ["64"] = "3", ["127"] = "4" },
+    ["Dist Type"] = { ["0"] = "Dist", ["25"] = "Scream", ["51"] = "Tube", ["76"] = "Sine", ["102"] = "S/H", ["127"] = "Ring" },
+    ["Mod Effect Type"] = { ["0"] = "Chorus", ["64"] = "Flanger", ["127"] = "Phaser" },
+    ["Resonator Select"] = {},
     Mode1 = {
       ["0"] = "Off",
       ["32"] = "FM Operator",
       ["64"] = "Filter",
       ["96"] = "Shaper",
       ["127"] = "Osc & Noise",
-    }
+    },
+    Mode2 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode3 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode4 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode5 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode6 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode7 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode8 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
+    Mode9 = {
+      ["0"] = "Off",
+      ["32"] = "FM Operator",
+      ["64"] = "Filter",
+      ["96"] = "Shaper",
+      ["127"] = "Osc & Noise",
+    },
   }
 }

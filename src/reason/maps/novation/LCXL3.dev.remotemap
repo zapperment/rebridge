@@ -195,7 +195,8 @@ Map	patchName		Patch Name
 Map	deviceType		"subtractor"
 
 Scope	Propellerhead Software	se.propellerheads.Algoritm
-Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9
+// https://github.com/mjuksel/remote-mappings/blob/main/Instruments/Algoritm%20Remote%20Info.txt
+Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
 
@@ -208,79 +209,232 @@ Map	pageSelect6		Pages=Page 6
 Map	pageSelect7		Pages=Page 7
 Map	pageSelect8		Pages=Page 8
 Map	pageSelect9		Pages=Page 9
+Map	pageSelect10		Pages=Page 10
+Map	pageSelect11		Pages=Page 11
 
 Map	fader1		Attack 1			Page 1
 Map	fader2		Decay 1			Page 1
 Map	fader3		Sustain 1			Page 1
 Map	fader4		Release 1			Page 1
 Map	encoder1		Freq 1			Page 1
+Map	encoder2		Reso 1			Page 1
+Map	encoder5		ShaperMix 1			Page 1
+Map	encoder7		Wave Mod 1			Page 1
+Map	encoder12		Symmetry 1			Page 1
+Map	encoder13		Drive 1			Page 1
+Map	encoder14		Filter Env 1			Page 1
+Map	encoder15		Vel 1			Page 1
+Map	encoder16		Level 1			Page 1
+Map	encoder17		Tune 1			Page 1
 Map	encoder24		Pan 1			Page 1
 Map	button1		Mode1			Page 1
-Map	button16		Out 1			Page 1
+Map	button8		Out 1			Page 1
 
 Map	fader1		Attack 2			Page 2
 Map	fader2		Decay 2			Page 2
 Map	fader3		Sustain 2			Page 2
 Map	fader4		Release 2			Page 2
 Map	encoder1		Freq 2			Page 2
+Map	encoder2		Reso 2			Page 2
+Map	encoder5		ShaperMix 2			Page 2
+Map	encoder7		Wave Mod 2			Page 2
+Map	encoder12		Symmetry 2			Page 2
+Map	encoder13		Drive 2			Page 2
+Map	encoder14		Filter Env 2			Page 2
+Map	encoder15		Vel 2			Page 2
+Map	encoder16		Level 2			Page 2
+Map	encoder17		Tune 2			Page 2
 Map	encoder24		Pan 2			Page 2
-Map	button16		Out 2			Page 2
+Map	button1		Mode2			Page 2
+Map	button8		Out 2			Page 2
 
 Map	fader1		Attack 3			Page 3
 Map	fader2		Decay 3			Page 3
 Map	fader3		Sustain 3			Page 3
 Map	fader4		Release 3			Page 3
 Map	encoder1		Freq 3			Page 3
+Map	encoder2		Reso 3			Page 3
+Map	encoder5		ShaperMix 3			Page 3
+Map	encoder7		Wave Mod 3			Page 3
+Map	encoder12		Symmetry 3			Page 3
+Map	encoder13		Drive 3			Page 3
+Map	encoder14		Filter Env 3			Page 3
+Map	encoder15		Vel 3			Page 3
+Map	encoder16		Level 3			Page 3
+Map	encoder17		Tune 3			Page 3
 Map	encoder24		Pan 3			Page 3
-Map	button16		Out 3			Page 3
+Map	button1		Mode3			Page 3
+Map	button8		Out 3			Page 3
 
 Map	fader1		Attack 4			Page 4
 Map	fader2		Decay 4			Page 4
 Map	fader3		Sustain 4			Page 4
 Map	fader4		Release 4			Page 4
 Map	encoder1		Freq 4			Page 4
+Map	encoder2		Reso 4			Page 4
+Map	encoder5		ShaperMix 4			Page 4
+Map	encoder7		Wave Mod 4			Page 4
+Map	encoder12		Symmetry 4			Page 4
+Map	encoder13		Drive 4			Page 4
+Map	encoder14		Filter Env 4			Page 4
+Map	encoder15		Vel 4			Page 4
+Map	encoder16		Level 4			Page 4
+Map	encoder17		Tune 4			Page 4
 Map	encoder24		Pan 4			Page 4
-Map	button16		Out 4			Page 4
+Map	button1		Mode4			Page 4
+Map	button8		Out 4			Page 4
 
 Map	fader1		Attack 5			Page 5
 Map	fader2		Decay 5			Page 5
 Map	fader3		Sustain 5			Page 5
 Map	fader4		Release 5			Page 5
 Map	encoder1		Freq 5			Page 5
+Map	encoder2		Reso 5			Page 5
+Map	encoder5		ShaperMix 5			Page 5
+Map	encoder7		Wave Mod 5			Page 5
+Map	encoder12		Symmetry 5			Page 5
+Map	encoder13		Drive 5			Page 5
+Map	encoder14		Filter Env 5			Page 5
+Map	encoder15		Vel 5			Page 5
+Map	encoder16		Level 5			Page 5
+Map	encoder17		Tune 5			Page 5
 Map	encoder24		Pan 5			Page 5
-Map	button16		Out 5			Page 5
+Map	button1		Mode5			Page 5
+Map	button8		Out 5			Page 5
 
 Map	fader1		Attack 6			Page 6
 Map	fader2		Decay 6			Page 6
 Map	fader3		Sustain 6			Page 6
 Map	fader4		Release 6			Page 6
 Map	encoder1		Freq 6			Page 6
+Map	encoder2		Reso 6			Page 6
+Map	encoder5		ShaperMix 6			Page 6
+Map	encoder7		Wave Mod 6			Page 6
+Map	encoder12		Symmetry 6			Page 6
+Map	encoder13		Drive 6			Page 6
+Map	encoder14		Filter Env 6			Page 6
+Map	encoder15		Vel 6			Page 6
+Map	encoder16		Level 6			Page 6
+Map	encoder17		Tune 6			Page 6
 Map	encoder24		Pan 6			Page 6
-Map	button16		Out 6			Page 6
+Map	button1		Mode6			Page 6
+Map	button8		Out 6			Page 6
 
 Map	fader1		Attack 7			Page 7
 Map	fader2		Decay 7			Page 7
 Map	fader3		Sustain 7			Page 7
 Map	fader4		Release 7			Page 7
 Map	encoder1		Freq 7			Page 7
+Map	encoder2		Reso 7			Page 7
+Map	encoder5		ShaperMix 7			Page 7
+Map	encoder7		Wave Mod 7			Page 7
+Map	encoder12		Symmetry 7			Page 7
+Map	encoder13		Drive 7			Page 7
+Map	encoder14		Filter Env 7			Page 7
+Map	encoder15		Vel 7			Page 7
+Map	encoder16		Level 7			Page 7
+Map	encoder17		Tune 7			Page 7
 Map	encoder24		Pan 7			Page 7
-Map	button16		Out 7			Page 7
+Map	button1		Mode7			Page 7
+Map	button8		Out 7			Page 7
 
 Map	fader1		Attack 8			Page 8
 Map	fader2		Decay 8			Page 8
 Map	fader3		Sustain 8			Page 8
 Map	fader4		Release 8			Page 8
 Map	encoder1		Freq 8			Page 8
+Map	encoder2		Reso 8			Page 8
+Map	encoder5		ShaperMix 8			Page 8
+Map	encoder7		Wave Mod 8			Page 8
+Map	encoder12		Symmetry 8			Page 8
+Map	encoder13		Drive 8			Page 8
+Map	encoder14		Filter Env 8			Page 8
+Map	encoder15		Vel 8			Page 8
+Map	encoder16		Level 8			Page 8
+Map	encoder17		Tune 8			Page 8
 Map	encoder24		Pan 8			Page 8
-Map	button16		Out 8			Page 8
+Map	button1		Mode8			Page 8
+Map	button8		Out 8			Page 8
 
 Map	fader1		Attack 9			Page 9
 Map	fader2		Decay 9			Page 9
 Map	fader3		Sustain 9			Page 9
 Map	fader4		Release 9			Page 9
 Map	encoder1		Freq 9			Page 9
+Map	encoder2		Reso 9			Page 9
+Map	encoder5		ShaperMix 9			Page 9
+Map	encoder7		Wave Mod 9			Page 9
+Map	encoder12		Symmetry 9			Page 9
+Map	encoder13		Drive 9			Page 9
+Map	encoder14		Filter Env 9			Page 9
+Map	encoder15		Vel 9			Page 9
+Map	encoder16		Level 9			Page 9
+Map	encoder17		Tune 9			Page 9
 Map	encoder24		Pan 9			Page 9
-Map	button16		Out 9			Page 9
+Map	button1		Mode9			Page 9
+Map	button8		Out 9			Page 9
+
+Map	encoder1		Reverb Decay			Page 10
+Map	encoder9		Reverb Size			Page 10
+Map	encoder17		Reverb Damp			Page 10
+// Map	encoderXXX		Reverb Early Reflections			Page 10
+Map	fader1		Reverb Amount			Page 10
+Map	button9		Reverb On			Page 10
+
+Map	encoder2		Delay Time			Page 10
+Map	encoder10		Delay Synced Time			Page 10
+Map	encoder18		Delay Feedback			Page 10
+Map	encoder19		Delay Pan			Page 10
+Map	fader2		Delay Amount			Page 10
+Map	button1		Delay Sync			Page 10
+Map	button2		Delay PingPong			Page 10
+Map	button10		Delay On			Page 10
+
+Map	encoder3		Dist Drive			Page 10
+Map	encoder11		Dist Tone			Page 10
+Map	fader3		Dist Amount			Page 10
+Map	button3		Dist Type			Page 10
+Map	button11		Dist On			Page 10
+
+Map	encoder4		Comp Attack			Page 10
+Map	encoder12		Comp Release			Page 10
+Map	encoder20		Comp Threshold			Page 10
+Map	fader4		Comp Ratio			Page 10
+Map	button12		Comp On			Page 10
+
+Map	encoder5		Mod Effect Depth			Page 10
+Map	encoder13		Mod Effect Rate			Page 10
+// Map	encoderXXX		Mod Effect Spread			Page 10
+Map	encoder21		Mod Effect Feedback			Page 10
+Map	fader5		Mod Effect Amount			Page 10
+Map	button5		Mod Effect Type			Page 10
+Map	button13		Phaser On			Page 10
+
+Map	encoder22		EQ Freq			Page 10
+Map	encoder23		EQ Q			Page 10
+Map	fader6		EQ Lo Gain			Page 10
+Map	fader7		EQ Gain			Page 10
+Map	fader8		EQ Hi Gain			Page 10
+Map	button14		EQ On			Page 10
+
+Map	encoder6		Resonator Pitch			Page 10
+Map	encoder7		Resonator Decay			Page 10
+Map	encoder14		Resonator Width			Page 10
+Map	encoder15		Resonator Mix			Page 10
+Map	button7		Resonator Select			Page 10
+Map	button15		Resonator On			Page 10
+
+Map	encoder8		Unison Timing			Page 10
+Map	encoder16		Unison Detune			Page 10
+Map	encoder24		Unison Spread			Page 10
+// Map	encoderXXX		Unison Blend			Page 10
+Map	button8		Unison Count			Page 10
+Map	button16		Unison On			Page 10
+
+Map	encoder8		Master			Page 11
+Map	fader6		FM Amount Offset			Page 11
+Map	fader7		Decay/Release Offset			Page 11
+Map	fader8		Feedback			Page 11
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name
