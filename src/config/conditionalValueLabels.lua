@@ -16,4 +16,13 @@ return {
       },
     },
   },
+  algoritm = {
+    ["Freq 1"] = {
+      dependsOn = "Mode1",
+      variations = {
+        ["32"] = "Freq 1 Op/Osc",
+        ["127"] = "Freq 1 Op/Osc",
+      }
+    }
+  }
 }

@@ -3,6 +3,7 @@ local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 local getColourName = require("src.lib.colour.getColourName")
+local conditionalValueLabels = require("src.config.conditionalValueLabels")
 
 -- handles changes of the encoders of the remote surface (Launch Control)
 return function(event)

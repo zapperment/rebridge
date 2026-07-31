@@ -7,6 +7,7 @@ local cycleParams = require("src.config.cycleParams")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local getColour = require("src.lib.colour.getColour")
 local getColourName = require("src.lib.colour.getColourName")
+local debug = require("src.lib.debug._")
 
 -- parameters whose settings drive the display of other parameters (see
 -- config/conditionalValueLabels), collected across all device types
@@ -27,7 +28,11 @@ return function(changedItems)
         if changedItem.is_enabled then
           state.set(button .. ".enabled", true)
           if watchedParams[changedItem.remote_item_name] then
-            paramValues[changedItem.remote_item_name] = changedItem.value > 0
+            local hostValue = changedItem.value
+            paramValues[changedItem.remote_item_name] = hostValue
+            debug.log("[setState.buttons] storing value " .. hostValue ..
+              " for watched param " ..
+              changedItem.remote_item_name)
           end
           local deviceType = state.getNext("deviceType")
           local colourName = getColourName(deviceType, changedItem.remote_item_name, items[button].colour)

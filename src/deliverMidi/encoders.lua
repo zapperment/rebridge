@@ -48,10 +48,13 @@ return function()
         table.insert(events, makeParamNameDisplayEvent(paramName, item.controller))
         local deviceType = state.get("deviceType")
         local itemState = remote.get_item_state(item.index)
-        local displayValue = getConditionalLabel(deviceType, paramName, value)
-            or getLabel(deviceType, paramName, itemState)
-            or getInterpolatedValue(deviceType, paramName, itemState.value)
-            or itemState.text_value
+        local displayValue, newParamName = getConditionalLabel(deviceType, paramName, value)
+        if not displayValue then
+          displayValue =
+              getLabel(deviceType, newParamName or paramName, itemState)
+              or getInterpolatedValue(deviceType, newParamName or paramName, itemState.value)
+              or itemState.text_value
+        end
         table.insert(events, makeParamValueDisplayEvent(displayValue, item.controller))
       end
       path = "encoder" .. i .. ".colour"

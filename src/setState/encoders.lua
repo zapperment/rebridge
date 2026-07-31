@@ -3,6 +3,18 @@ local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 local getColourName = require("src.lib.colour.getColourName")
+local conditionalValueLabels = require("src.config.conditionalValueLabels")
+local paramValues = require("src.lib.state.paramValues")
+local debug = require("src.lib.debug._")
+
+-- parameters whose settings drive the display of other parameters (see
+-- config/conditionalValueLabels), collected across all device types
+local watchedParams = {}
+for _, deviceConditionals in pairs(conditionalValueLabels) do
+  for _, conditional in pairs(deviceConditionals) do
+    watchedParams[conditional.dependsOn] = true
+  end
+end
 
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
@@ -13,6 +25,11 @@ return function(changedItems)
       if changedItemIndex == items[encoder].index then
         if changedItem.is_enabled then
           local hostValue = changedItem.value
+          if watchedParams[changedItem.remote_item_name] then
+            paramValues[changedItem.remote_item_name] = hostValue
+            debug.log("[setState.encoders] storing value " .. hostValue ..
+              " for watched param " .. changedItem.remote_item_name)
+          end
           state.set(encoder .. ".enabled", true)
           state.set(encoder .. ".value", hostValue)
           local colourName = getColourName(state.getNext("deviceType"), changedItem.remote_item_name,

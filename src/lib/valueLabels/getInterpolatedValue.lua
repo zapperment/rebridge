@@ -1,8 +1,14 @@
 local interpolatedValues = require("src.config.interpolatedValues")
 local debug = require("src.lib.debug._")
 
-local function round(x)
-  return math.floor(x + 0.5)
+local function round(value, decimals)
+  local mult = 10 ^ (decimals or 0)
+  local v = value * mult
+  if v >= 0 then
+    return math.floor(v + 0.5) / mult
+  else
+    return math.ceil(v - 0.5) / mult
+  end
 end
 
 local function scale(x, min, max)
@@ -29,11 +35,12 @@ return function(deviceType, paramName, value)
   local min = ivForParameter.min
   local max = ivForParameter.max
   local biolar = ivForParameter.bipolar
+  local decimals = ivForParameter.decimals
   local scaled
   if biolar then
-    scaled = round(scaleBipolar(value, min, max))
+    scaled = round(scaleBipolar(value, min, max), decimals)
   else
-    scaled = round(scale(value, min, max))
+    scaled = round(scale(value, min, max), decimals)
   end
   return scaled
 end
