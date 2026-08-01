@@ -2,9 +2,7 @@ local state = require("src.lib.state._")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
-local getLabel = require("src.lib.valueLabels.getLabel")
-local getConditionalLabel = require("src.lib.valueLabels.getConditionalLabel")
-local getInterpolatedValue = require("src.lib.valueLabels.getInterpolatedValue")
+local disp = require("src.lib.display._")
 local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
@@ -49,11 +47,11 @@ return function()
         table.insert(events, midi.makeParamNameDisplayEvent(paramName, item.controller))
         local deviceType = state.get("deviceType")
         local itemState = remote.get_item_state(item.index)
-        local displayValue, newParamName = getConditionalLabel(deviceType, paramName, value)
+        local displayValue, newParamName = disp.getConditionalLabel(deviceType, paramName, value)
         if not displayValue then
           displayValue =
-              getLabel(deviceType, newParamName or paramName, itemState)
-              or getInterpolatedValue(deviceType, newParamName or paramName, itemState.value)
+              disp.getLabel(deviceType, newParamName or paramName, itemState)
+              or disp.getInterpolatedValue(deviceType, newParamName or paramName, itemState.value)
               or itemState.text_value
         end
         table.insert(events, midi.makeParamValueDisplayEvent(displayValue, item.controller))

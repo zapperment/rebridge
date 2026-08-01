@@ -3,7 +3,7 @@ local buttonStates = require("src.lib.state.buttons")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
-local getLabel = require("src.lib.valueLabels.getLabel")
+local disp = require("src.lib.display._")
 local cycleParams = require("src.config.cycleParams")
 local debug = require("src.lib.debug._")
 
@@ -19,7 +19,7 @@ local defaultValueLabels = {
 -- with no label is shown as the host provides it
 local function getValueLabel(paramName, itemState)
   local deviceType = state.get("deviceType")
-  local label = getLabel(deviceType, paramName, itemState)
+  local label = disp.getLabel(deviceType, paramName, itemState)
   if label then
     return label
   end

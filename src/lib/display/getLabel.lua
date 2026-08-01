@@ -9,20 +9,20 @@ return function(deviceType, paramName, itemState)
   local value = tostring(itemState.value)
   local deviceLabels = valueLabels[deviceType]
   if deviceLabels == nil then
-    debug.log("[lib.valueLabels.getLabel] textValue=" ..
+    debug.log("[lib.display.getLabel] textValue=" ..
       textValue .. ", value=" .. value .. ", deviceType=" .. deviceType .. " - no labels for device!")
     return nil
   end
   local labels = deviceLabels[paramName]
   if labels == nil then
-    debug.log("[lib.valueLabels.getLabel] textValue=" ..
+    debug.log("[lib.display.getLabel] textValue=" ..
       textValue ..
       ", value=" .. value .. ", deviceType=" .. deviceType .. ", paramName=" .. paramName .. " - no labels for param!")
     return
   end
   local labelFromTextValue = labels[textValue]
   local labelFromValue = labels[value]
-  debug.log("[lib.valueLabels.getLabel] textValue=" ..
+  debug.log("[lib.display.getLabel] textValue=" ..
     textValue ..
     ", value=" ..
     value ..
