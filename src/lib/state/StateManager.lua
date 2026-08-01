@@ -1,5 +1,5 @@
 local const = require("src.config.constants")
-local getValueFromPath = require("src.lib.table.getValueFromPath")
+local tbl = require("src.lib.table._")
 
 local StateManager = {}
 
@@ -46,7 +46,7 @@ function StateManager:new()
 end
 
 function StateManager:hasChanged(path)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return false
     end
@@ -54,7 +54,7 @@ function StateManager:hasChanged(path)
 end
 
 function StateManager:update(path)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
@@ -87,15 +87,15 @@ function StateManager:updateAll()
 end
 
 function StateManager:get(path)
-    return getValueFromPath(self, path).current
+    return tbl.getValueFromPath(self, path).current
 end
 
 function StateManager:getNext(path)
-    return getValueFromPath(self, path).next
+    return tbl.getValueFromPath(self, path).next
 end
 
 function StateManager:set(path, next)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
@@ -103,7 +103,7 @@ function StateManager:set(path, next)
 end
 
 function StateManager:inc(path)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
@@ -115,7 +115,7 @@ function StateManager:inc(path)
 end
 
 function StateManager:dec(path)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
@@ -127,7 +127,7 @@ function StateManager:dec(path)
 end
 
 function StateManager:add(path, delta, min, max)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
@@ -142,7 +142,7 @@ function StateManager:add(path, delta, min, max)
 end
 
 function StateManager:flip(path)
-    local item = getValueFromPath(self, path)
+    local item = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
