@@ -1,6 +1,6 @@
 local items = require("src.config.items")
 local state = require("src.lib.state._")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- handles changes of the transport state (play/record) of the host (Reason)
 return function(changedItems)
@@ -17,6 +17,6 @@ return function(changedItems)
     end
   end
   if hasChanged then
-    debug.log("[setState.transport] RSN => CODEC")
+    deb.log("[remote.setState.transport] RSN => CODEC")
   end
 end

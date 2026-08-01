@@ -5,7 +5,7 @@ local items = require("src.config.items")
 local buttonStates = require("src.lib.state.buttons")
 local getColour = require("src.lib.colour.getColour")
 local processButtons = require("src.processMidi.buttons")
-local setButtons = require("src.setState.buttons")
+local setButtons = require("src.remote.setState.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
 

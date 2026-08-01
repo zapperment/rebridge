@@ -75,7 +75,7 @@ return function(event)
     end
   end
   if processed then
-    deb.log("[processMidi.buttons] LCXL3 => CODEC")
+    deb.log("[remote.processMidi.buttons] LCXL3 => CODEC")
   end
   return processed
 end

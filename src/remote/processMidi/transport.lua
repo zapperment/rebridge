@@ -1,6 +1,6 @@
 local items = require("src.config.items")
 local state = require("src.lib.state._")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- handles presses of the play and record buttons of the remote surface (Launch Control)
 return function(event)
@@ -26,7 +26,7 @@ return function(event)
   end
 
   if processed then
-    debug.log("[processMidi.transport] LCXL3 => CODEC")
+    deb.log("[remote.remote.processMidi.transport] LCXL3 => CODEC")
   end
 
   return processed

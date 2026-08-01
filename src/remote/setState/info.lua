@@ -1,6 +1,6 @@
 local state = require("src.lib.state._")
 local items = require("src.config.items")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 return function(changedItems)
   local hasChanged
@@ -28,6 +28,6 @@ return function(changedItems)
     end
   end
   if hasChanged then
-    debug.log("[setState.info] RSN => CODEC")
+    deb.log("[remote.setState.info] RSN => CODEC")
   end
 end

@@ -2,7 +2,7 @@ local state = require("src.lib.state._")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- the LED display character set has no arrow glyphs (only ASCII 20h-7Eh),
 -- so "^" and "v" indicate which way to move the fader to pick up the host value
@@ -27,18 +27,18 @@ return function()
       -- moving it shows the previous name and a raw value
       if isAssigned ~= wasAssigned then
         table.insert(events, midi.makeParamDisplayConfigEvent(item.controller, isAssigned))
-        debug.log("[deliverMidi.faders] delivering param display config event")
+        deb.log("[remote.deliverMidi.faders] delivering param display config event")
       end
 
       if isAssigned then
         local prefix = pickupPrefixes[status] or ""
         table.insert(events, midi.makeParamNameDisplayEvent(prefix .. remote.get_item_name(item.index), item.controller))
-        debug.log("[deliverMidi.faders] delivering param name display event")
+        deb.log("[remote.deliverMidi.faders] delivering param name display event")
       end
     end
   end
   if #events > 0 then
-    debug.log("[deliverMidi.faders] CODEC => LCXL3")
+    deb.log("[remote.deliverMidi.faders] CODEC => LCXL3")
   end
   return events
 end

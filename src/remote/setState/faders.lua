@@ -2,7 +2,7 @@ local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- handles changes of the faders of the host (Reason)
 return function(changedItems)
@@ -38,6 +38,6 @@ return function(changedItems)
     end
   end
   if hasChanged then
-    debug.log("[setState.faders] RSN => CODEC")
+    deb.log("[remote.setState.faders] RSN => CODEC")
   end
 end

@@ -5,7 +5,7 @@ local const = require("src.config.constants")
 local items = require("src.config.items")
 local hex = require("src.lib.hex._")
 local deliverEncoders = require("src.deliverMidi.encoders")
-local setButtons = require("src.setState.buttons")
+local setButtons = require("src.remote.setState.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
 

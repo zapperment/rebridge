@@ -2,7 +2,7 @@ local test = require("test.lib._")
 local lu = test.luaUnit
 local items = require("src.config.items")
 local pages = require("src.lib.state.pages")
-local setPages = require("src.setState.pages")
+local setPages = require("src.remote.setState.pages")
 
 require("src.reason.codecs.novation.LCXL3")
 

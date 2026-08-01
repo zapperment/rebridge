@@ -3,7 +3,7 @@ local items = require("src.config.items")
 local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
 local disp = require("src.lib.display._")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -64,7 +64,7 @@ return function()
     end
   end
   if #events > 0 then
-    debug.log("[deliverMidi.encoders] CODEC => LCXL3")
+    deb.log("[remote.deliverMidi.encoders] CODEC => LCXL3")
   end
   return events
 end

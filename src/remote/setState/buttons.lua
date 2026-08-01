@@ -57,6 +57,6 @@ return function(changedItems)
     end
   end
   if hasChanged then
-    deb.log("[setState.buttons] RSN => CODEC")
+    deb.log("[remote.setState.buttons] RSN => CODEC")
   end
 end

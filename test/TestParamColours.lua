@@ -3,8 +3,8 @@ local lu = test.luaUnit
 local state = require("src.lib.state._")
 local items = require("src.config.items")
 local col = require("src.lib.colour._")
-local setEncoders = require("src.setState.encoders")
-local setButtons = require("src.setState.buttons")
+local setEncoders = require("src.remote.setState.encoders")
+local setButtons = require("src.remote.setState.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
 

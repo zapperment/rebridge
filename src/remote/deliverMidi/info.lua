@@ -2,7 +2,7 @@ local state = require("src.lib.state._")
 local hex = require("src.lib.hex._")
 local midi = require("src.lib.midi._")
 local deviceTypeLabels = require("src.config.deviceTypeLabels")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -53,7 +53,7 @@ return function()
     table.insert(events, midi.makeSysexEvent("04 35 7f"))
   end
   if #events > 0 then
-    debug.log("[deliverMidi.info] CODEC => LCXL3")
+    deb.log("[remote.deliverMidi.info] CODEC => LCXL3")
   end
   return events
 end

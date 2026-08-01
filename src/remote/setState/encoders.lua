@@ -28,7 +28,7 @@ return function(changedItems)
           local hostValue = changedItem.value
           if watchedParams[changedItem.remote_item_name] then
             paramValues[changedItem.remote_item_name] = hostValue
-            deb.log("[setState.encoders] storing value " .. hostValue ..
+            deb.log("[remote.setState.encoders] storing value " .. hostValue ..
               " for watched param " .. changedItem.remote_item_name)
           end
           state.set(encoder .. ".enabled", true)
@@ -43,6 +43,6 @@ return function(changedItems)
     end
   end
   if hasChanged then
-    deb.log("[setState.encoders] RSN => CODEC")
+    deb.log("[remote.setState.encoders] RSN => CODEC")
   end
 end

@@ -32,7 +32,7 @@ module.exports = (portName) => {
       }
     }
     if (logger) {
-      const dotIndex = logger.indexOf(".");
+      const dotIndex = logger.lastIndexOf(".");
       const loggerGroup = logger.substring(1, dotIndex > 0 ? dotIndex : logger.length - 1);
       let colourCode = colour.registry[loggerGroup];
       if (!colourCode) {

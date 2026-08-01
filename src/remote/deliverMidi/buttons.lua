@@ -5,7 +5,7 @@ local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
 local disp = require("src.lib.display._")
 local cycleParams = require("src.config.cycleParams")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- the host (Reason) reports an on/off button as "0" or "1", which reads poorly
 -- on the display
@@ -85,7 +85,7 @@ return function()
   end
 
   if #events > 0 then
-    debug.log("[deliverMidi.buttons] CODEC => LCXL3")
+    deb.log("[remote.deliverMidi.buttons] CODEC => LCXL3")
   end
 
   return events

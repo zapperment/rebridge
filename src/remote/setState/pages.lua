@@ -1,7 +1,7 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local pages = require("src.lib.state.pages")
-local debug = require("src.lib.debug._")
+local deb = require("src.lib.debug._")
 
 -- Handles changes of the page selectors reported by the host (Reason). A
 -- selector is enabled while the target device's remote map binds it to a page
@@ -37,6 +37,6 @@ return function(changedItems)
     pages.setActive(active or 1)
   end
   if hasChanged then
-    debug.log("[setState.pages] RSN => CODEC")
+    deb.log("[remote.setState.pages] RSN => CODEC")
   end
 end
