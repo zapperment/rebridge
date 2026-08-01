@@ -42,6 +42,10 @@ return function()
     if enabled then
       path = "encoder" .. i .. ".value"
       if changed or state.hasChanged(path) then
+        -- debug.log(
+        --   "[deliverMidi.encoders] enabled.changed=" .. (changed and "true" or "false") ..
+        --   ", value.changed=" .. (state.hasChanged(path) and "true" or "false")
+        -- )
         local value = state.update(path)
         table.insert(events, remote.make_midi(item.midi, { x = value }))
         local paramName = remote.get_item_name(item.index)
@@ -63,6 +67,9 @@ return function()
         table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
     end
+  end
+  if #events > 0 then
+    debug.log("[deliverMidi.encoders] CODEC => LCXL3")
   end
   return events
 end

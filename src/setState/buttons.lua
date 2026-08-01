@@ -20,19 +20,21 @@ end
 
 -- handles changes of the buttons of the host (Reason)
 return function(changedItems)
+  local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.buttons do
       local button = "button" .. i
       if changedItemIndex == items[button].index then
+        hasChanged = true
         if changedItem.is_enabled then
           state.set(button .. ".enabled", true)
           if watchedParams[changedItem.remote_item_name] then
             local hostValue = changedItem.value
             paramValues[changedItem.remote_item_name] = hostValue
-            debug.log("[setState.buttons] storing value " .. hostValue ..
-              " for watched param " ..
-              changedItem.remote_item_name)
+            -- debug.log("[setState.buttons] storing value " .. hostValue ..
+            --   " for watched param " ..
+            --   changedItem.remote_item_name)
           end
           local deviceType = state.getNext("deviceType")
           local colourName = getColourName(deviceType, changedItem.remote_item_name, items[button].colour)
@@ -54,5 +56,8 @@ return function(changedItems)
         end
       end
     end
+  end
+  if hasChanged then
+    debug.log("[setState.buttons] RSN => CODEC")
   end
 end

@@ -2,6 +2,7 @@ local state = require("src.lib.state._")
 local textLinesToHex = require("src.lib.hex.textLinesToHex")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local deviceTypeLabels = require("src.config.deviceTypeLabels")
+local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -38,7 +39,7 @@ return function()
 
     local target = "35" -- stationary display
     local lines = (deviceTypeLabels[deviceType] or "") ..
-    "\n" .. deviceName .. "\n" .. (patchName == deviceName and "" or patchName)
+        "\n" .. deviceName .. "\n" .. (patchName == deviceName and "" or patchName)
     local hexLines = textLinesToHex(lines)
 
     for field, hex in ipairs(hexLines) do
@@ -50,6 +51,9 @@ return function()
 
     -- Trigger display
     table.insert(events, makeSysexEvent("04 35 7f"))
+  end
+  if #events > 0 then
+    debug.log("[deliverMidi.info] CODEC => LCXL3")
   end
   return events
 end

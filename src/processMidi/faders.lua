@@ -2,6 +2,7 @@ local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
+local debug = require("src.lib.debug._")
 
 -- handles changes of the faders of the remote surface (Launch Control)
 return function(event)
@@ -48,6 +49,8 @@ return function(event)
       end
     end
   end
-
+  if processed then
+    debug.log("[processMidi.faders] LCXL3 => CODEC")
+  end
   return processed
 end

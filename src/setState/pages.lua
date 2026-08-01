@@ -10,19 +10,19 @@ local debug = require("src.lib.debug._")
 -- is active, wherever the change came from: the page buttons, another surface
 -- or the host switching devices.
 return function(changedItems)
-  local changed = false
+  local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
     for i = 1, const.counts.pageSelects do
       if changedItemIndex == items["pageSelect" .. i].index then
+        hasChanged = true
         local changedItem = remote.get_item_state(changedItemIndex)
         pages.enabled[i] = changedItem.is_enabled
         pages.selected[i] = changedItem.is_enabled and changedItem.value > 0
-        changed = true
       end
     end
   end
 
-  if changed then
+  if hasChanged then
     local count = 0
     local active
     for i = 1, const.counts.pageSelects do
@@ -35,5 +35,8 @@ return function(changedItems)
     end
     pages.count = count
     pages.setActive(active or 1)
+  end
+  if hasChanged then
+    debug.log("[setState.pages] RSN => CODEC")
   end
 end

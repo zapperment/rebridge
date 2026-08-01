@@ -1,4 +1,4 @@
-local makeLogEvent = require("src.lib.midi.makeLogEvent")
+local makeLogEvent = require("src.lib.debug.makeLogEvent")
 
 return function(logMessages)
   local events = {}

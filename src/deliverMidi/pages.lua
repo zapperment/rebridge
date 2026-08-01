@@ -14,6 +14,6 @@ return function()
   local names = pageNames[state.getNext("deviceType")]
   local name = names and names[pages.active]
   debug.log("[deliverMidi.pages] deviceType=" ..
-  state.getNext("deviceType") .. ", name=" .. (name or "nil") .. ", pages.active=" .. pages.active)
+    state.getNext("deviceType") .. ", name=" .. (name or "nil") .. ", pages.active=" .. pages.active)
   return makeOverlayDisplayEvents("Page " .. pages.active, name or " ")
 end

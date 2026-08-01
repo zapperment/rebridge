@@ -1,6 +1,7 @@
 local state = require("src.lib.state._")
 local textLinesToHex = require("src.lib.hex.textLinesToHex")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -22,6 +23,10 @@ return function()
 
     -- Trigger display
     table.insert(events, makeSysexEvent("04 35 7f"))
+  end
+
+  if #events > 0 then
+    debug.log("[deliverMidi.display] CODEC => LCXL3")
   end
   return events
 end

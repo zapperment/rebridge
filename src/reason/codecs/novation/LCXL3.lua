@@ -41,8 +41,11 @@ end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
 function remote_process_midi(event)
-  return processEncoders(event) or processFaders(event) or processButtons(event) or processTransport(event) or
-      processNavigation(event)
+  return processEncoders(event)
+      or processFaders(event)
+      or processButtons(event)
+      or processTransport(event)
+      or processNavigation(event)
 end
 
 -- Host (Reason) -> remote codec
@@ -66,6 +69,9 @@ function remote_deliver_midi(_, port)
   for _, event in ipairs(deliverInfo()) do
     table.insert(events, event)
   end
+  for _, event in ipairs(deliverPages()) do
+    table.insert(events, event)
+  end
   for _, event in ipairs(deliverEncoders()) do
     table.insert(events, event)
   end
@@ -73,9 +79,6 @@ function remote_deliver_midi(_, port)
     table.insert(events, event)
   end
   for _, event in ipairs(deliverButtons()) do
-    table.insert(events, event)
-  end
-  for _, event in ipairs(deliverPages()) do
     table.insert(events, event)
   end
   for _, event in ipairs(deliverTransport()) do

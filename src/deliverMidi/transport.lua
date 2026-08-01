@@ -1,6 +1,7 @@
 local state = require("src.lib.state._")
 local items = require("src.config.items")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
+local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the play and record button LEDs
 return function()
@@ -17,6 +18,8 @@ return function()
     local colour = recording and "7f 00 00" or "00 00 00"
     table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = items.recordButton.controller }))
   end
-
+  if #events > 0 then
+    debug.log("[deliverMidi.transport] CODEC => LCXL3")
+  end
   return events
 end

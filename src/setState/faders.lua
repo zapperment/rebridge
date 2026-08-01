@@ -2,14 +2,17 @@ local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
+local debug = require("src.lib.debug._")
 
 -- handles changes of the faders of the host (Reason)
 return function(changedItems)
+  local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.faders do
       local fader = "fader" .. i
       if changedItemIndex == items[fader].index then
+        hasChanged = true
         if changedItem.is_enabled then
           local hostValue = changedItem.value
           local controlSurfaceValue = faderStates[fader].remoteSurface
@@ -33,5 +36,8 @@ return function(changedItems)
         end
       end
     end
+  end
+  if hasChanged then
+    debug.log("[setState.faders] RSN => CODEC")
   end
 end

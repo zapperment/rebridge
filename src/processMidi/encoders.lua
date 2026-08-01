@@ -3,7 +3,7 @@ local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local getColour = require("src.lib.colour.getColour")
 local getColourName = require("src.lib.colour.getColourName")
-local conditionalValueLabels = require("src.config.conditionalValueLabels")
+local debug = require("src.lib.debug._")
 
 -- handles changes of the encoders of the remote surface (Launch Control)
 return function(event)
@@ -23,6 +23,9 @@ return function(event)
       remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = remoteSurfaceValue })
       processed = true
     end
+  end
+  if processed then
+    debug.log("[processMidi.encoders] LCXL3 => CODEC")
   end
   return processed
 end

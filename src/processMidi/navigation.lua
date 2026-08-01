@@ -37,25 +37,28 @@ local pageButtons = {
 
 -- handles the Shift and page buttons of the remote surface (Launch Control)
 return function(event)
+  local processed = false
   local match = remote.match_midi(shiftMidi, event)
   if match then
     shiftState.held = match.x > 0
-    return true
-  end
-
-  for _, button in ipairs(pageButtons) do
-    match = remote.match_midi(button.midi, event)
-    if match then
-      if match.x > 0 then
-        if shiftState.held then
-          remote.handle_input({ time_stamp = event.time_stamp, item = items[button.shifted].index, value = 1 })
-        else
-          selectPage(pages.active + button.step, event.time_stamp)
+    processed = true
+  else
+    for _, button in ipairs(pageButtons) do
+      match = remote.match_midi(button.midi, event)
+      if match then
+        if match.x > 0 then
+          if shiftState.held then
+            remote.handle_input({ time_stamp = event.time_stamp, item = items[button.shifted].index, value = 1 })
+          else
+            selectPage(pages.active + button.step, event.time_stamp)
+          end
         end
+        processed = true
       end
-      return true
     end
   end
-
-  return false
+  if processed then
+    debug.log("[processMidi.navigation] LCXL3 => CODEC")
+  end
+  return processed
 end

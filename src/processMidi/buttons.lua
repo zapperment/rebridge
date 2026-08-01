@@ -5,6 +5,7 @@ local buttonStates = require("src.lib.state.buttons")
 local cycleParams = require("src.config.cycleParams")
 local getColour = require("src.lib.colour.getColour")
 local getColourName = require("src.lib.colour.getColourName")
+local debug = require("src.lib.debug._")
 
 -- the number of values of the mapped parameter if the button cycles through
 -- them like the momentary buttons on the device's own UI, nil for toggles
@@ -73,6 +74,9 @@ return function(event)
         processed = true
       end
     end
+  end
+  if processed then
+    debug.log("[processMidi.buttons] LCXL3 => CODEC")
   end
   return processed
 end

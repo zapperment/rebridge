@@ -18,11 +18,13 @@ end
 
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
+  local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.encoders do
       local encoder = "encoder" .. i
       if changedItemIndex == items[encoder].index then
+        hasChanged = true
         if changedItem.is_enabled then
           local hostValue = changedItem.value
           if watchedParams[changedItem.remote_item_name] then
@@ -40,5 +42,8 @@ return function(changedItems)
         end
       end
     end
+  end
+  if hasChanged then
+    debug.log("[setState.encoders] RSN => CODEC")
   end
 end
