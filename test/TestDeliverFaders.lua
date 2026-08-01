@@ -3,7 +3,7 @@ local lu = test.luaUnit
 local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local items = require("src.config.items")
-local textToHex = require("src.lib.hex.textToHex")
+local hex = require("src.lib.hex._")
 local deliverFaders = require("src.deliverMidi.faders")
 
 require("src.reason.codecs.novation.LCXL3")
@@ -15,7 +15,7 @@ local function sysex(payload)
 end
 
 local function paramNameSysex(text)
-    return sysex("06 xx 00 " .. textToHex(text))
+    return sysex("06 xx 00 " .. hex.textToHex(text))
 end
 
 -- arrangement 4 with the automatic display allowed (bits 5 and 6 set) or

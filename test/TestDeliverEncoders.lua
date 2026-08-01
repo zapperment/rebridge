@@ -3,7 +3,7 @@ local lu = test.luaUnit
 local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local items = require("src.config.items")
-local textToHex = require("src.lib.hex.textToHex")
+local hex = require("src.lib.hex._")
 local deliverEncoders = require("src.deliverMidi.encoders")
 local setButtons = require("src.setState.buttons")
 
@@ -105,7 +105,7 @@ function TestDeliverEncoders:testShowsParamNameWhenEnabledEncoderChanges()
     state.set("encoder24.value", 64)
     local events = deliverEncoders()
     local errorMessage = "expected the param name to be sent when an enabled encoder changes"
-    lu.assertEquals(contains(events, sysex("06 xx 00 " .. textToHex("Portamento"))), true, errorMessage)
+    lu.assertEquals(contains(events, sysex("06 xx 00 " .. hex.textToHex("Portamento"))), true, errorMessage)
 end
 
 function TestDeliverEncoders:testShowsTheHostTextValueWhenEnabledEncoderChanges()
@@ -118,7 +118,7 @@ function TestDeliverEncoders:testShowsTheHostTextValueWhenEnabledEncoderChanges(
     state.set("encoder2.enabled", true)
     local events = deliverEncoders()
     local errorMessage = "expected the host's text value to be sent to the display's value field"
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("-50"))), true, errorMessage)
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("-50"))), true, errorMessage)
 end
 
 function TestDeliverEncoders:testShowsTheNamedWaveformForOscWaveLowValues()
@@ -134,7 +134,7 @@ function TestDeliverEncoders:testShowsTheNamedWaveformForOscWaveLowValues()
     state.set("encoder1.value", 64)
     local events = deliverEncoders()
     local errorMessage = "expected Osc1 Wave's value 2 to be shown as 'Triangle'"
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("Triangle"))), true, errorMessage)
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("Triangle"))), true, errorMessage)
 end
 
 function TestDeliverEncoders:testShowsTheCountedValueForOscWaveHighValues()
@@ -150,7 +150,7 @@ function TestDeliverEncoders:testShowsTheCountedValueForOscWaveHighValues()
     state.set("encoder3.value", 127)
     local events = deliverEncoders()
     local errorMessage = "expected Osc2 Wave's value 31 (the last of 32 values) to be shown as '32'"
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("32"))), true, errorMessage)
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("32"))), true, errorMessage)
 end
 
 -- simulates the host reporting the LFO Sync Enable toggle (button10) on or off
@@ -183,16 +183,16 @@ function TestDeliverEncoders:testShowsNoteLengthDivisionsForLfoRateWhileSyncIsEn
     local events = deliverLfoRate(64)
     local errorMessage = "expected LFO1 Rate at 64 to be shown as the note-length division '2/4' " ..
         "while LFO sync is enabled"
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("2/4"))), true, errorMessage)
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("2/4"))), true, errorMessage)
 end
 
 function TestDeliverEncoders:testShowsTheOutermostDivisionsAtTheEndsOfTheRange()
     setLfoSync(true)
     local events = deliverLfoRate(1)
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("16/4"))), true,
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("16/4"))), true,
         "expected the bottom of the range to be shown as '16/4'")
     events = deliverLfoRate(127)
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("1/32"))), true,
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("1/32"))), true,
         "expected the top of the range to be shown as '1/32'")
 end
 
@@ -200,7 +200,7 @@ function TestDeliverEncoders:testShowsThePlainRateWhileSyncIsDisabled()
     setLfoSync(false)
     local events = deliverLfoRate(64)
     local errorMessage = "expected LFO1 Rate to be shown as the plain value while LFO sync is disabled"
-    lu.assertEquals(contains(events, sysex("06 xx 01 " .. textToHex("64"))), true, errorMessage)
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("64"))), true, errorMessage)
 end
 
 function TestDeliverEncoders:testSuppressesTheDisplayOfEveryEncoderWhenPreparingForUse()

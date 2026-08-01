@@ -1,5 +1,5 @@
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
-local textToHex = require("src.lib.hex.textToHex")
+local hex = require("src.lib.hex._")
 
 local target = "36" -- overlay/temporary display
 
@@ -10,8 +10,8 @@ return function(name, value)
   return {
     -- Configure display: arrangement 1 (parameter name and text parameter value)
     makeSysexEvent("04 " .. target .. " 61"),
-    makeSysexEvent("06 " .. target .. " 00 " .. textToHex(name)),
-    makeSysexEvent("06 " .. target .. " 01 " .. textToHex(value)),
+    makeSysexEvent("06 " .. target .. " 00 " .. hex.textToHex(name)),
+    makeSysexEvent("06 " .. target .. " 01 " .. hex.textToHex(value)),
     -- Trigger display
     makeSysexEvent("04 " .. target .. " 7f"),
   }

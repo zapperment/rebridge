@@ -1,5 +1,5 @@
 local state = require("src.lib.state._")
-local textLinesToHex = require("src.lib.hex.textLinesToHex")
+local hex = require("src.lib.hex._")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local debug = require("src.lib.debug._")
 
@@ -12,12 +12,12 @@ return function()
     table.insert(events, makeSysexEvent("04 35 62"))
 
     local target = "35" -- stationary display
-    local lines = textLinesToHex(text)
+    local lines = hex.textLinesToHex(text)
 
-    for field, hex in ipairs(lines) do
+    for field, hx in ipairs(lines) do
       local fieldByte = string.format("%02x", field - 1) -- 00h, 01h, 02h...
       table.insert(events, makeSysexEvent(
-        "06 " .. target .. " " .. fieldByte .. " " .. hex
+        "06 " .. target .. " " .. fieldByte .. " " .. hx
       ))
     end
 

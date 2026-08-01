@@ -3,7 +3,7 @@ local lu = test.luaUnit
 local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local items = require("src.config.items")
-local textToHex = require("src.lib.hex.textToHex")
+local hex = require("src.lib.hex._")
 local processButtons = require("src.processMidi.buttons")
 local deliverButtons = require("src.deliverMidi.buttons")
 
@@ -19,8 +19,8 @@ end
 local function overlaySysex(name, value)
     return {
         sysex("04 36 61"),
-        sysex("06 36 00 " .. textToHex(name)),
-        sysex("06 36 01 " .. textToHex(value)),
+        sysex("06 36 00 " .. hex.textToHex(name)),
+        sysex("06 36 01 " .. hex.textToHex(value)),
         sysex("04 36 7f"),
     }
 end

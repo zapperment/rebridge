@@ -1,5 +1,5 @@
 local state = require("src.lib.state._")
-local textLinesToHex = require("src.lib.hex.textLinesToHex")
+local hex = require("src.lib.hex._")
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
 local deviceTypeLabels = require("src.config.deviceTypeLabels")
 local debug = require("src.lib.debug._")
@@ -40,12 +40,12 @@ return function()
     local target = "35" -- stationary display
     local lines = (deviceTypeLabels[deviceType] or "") ..
         "\n" .. deviceName .. "\n" .. (patchName == deviceName and "" or patchName)
-    local hexLines = textLinesToHex(lines)
+    local hexLines = hex.textLinesToHex(lines)
 
-    for field, hex in ipairs(hexLines) do
+    for field, hx in ipairs(hexLines) do
       local fieldByte = string.format("%02x", field - 1) -- 00h, 01h, 02h...
       table.insert(events, makeSysexEvent(
-        "06 " .. target .. " " .. fieldByte .. " " .. hex
+        "06 " .. target .. " " .. fieldByte .. " " .. hx
       ))
     end
 
