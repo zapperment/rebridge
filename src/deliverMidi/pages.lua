@@ -1,7 +1,7 @@
 local state = require("src.lib.state._")
 local pages = require("src.lib.state.pages")
 local pageNames = require("src.config.pageNames")
-local makeOverlayDisplayEvents = require("src.lib.midi.makeOverlayDisplayEvents")
+local midi = require("src.lib.midi._")
 local debug = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control);
@@ -15,5 +15,5 @@ return function()
   local name = names and names[pages.active]
   debug.log("[deliverMidi.pages] deviceType=" ..
     state.getNext("deviceType") .. ", name=" .. (name or "nil") .. ", pages.active=" .. pages.active)
-  return makeOverlayDisplayEvents("Page " .. pages.active, name or " ")
+  return midi.makeOverlayDisplayEvents("Page " .. pages.active, name or " ")
 end

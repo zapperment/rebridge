@@ -1,11 +1,7 @@
 local state = require("src.lib.state._")
 local items = require("src.config.items")
 local const = require("src.config.constants")
-local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
-local makeParamNameDisplayEvent = require("src.lib.midi.makeParamNameDisplayEvent")
-local makeParamValueDisplayEvent = require("src.lib.midi.makeParamValueDisplayEvent")
-local makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfigEvent")
-local arrangements = require("src.lib.midi.displayArrangements")
+local midi = require("src.lib.midi._")
 local getLabel = require("src.lib.valueLabels.getLabel")
 local getConditionalLabel = require("src.lib.valueLabels.getConditionalLabel")
 local getInterpolatedValue = require("src.lib.valueLabels.getInterpolatedValue")
@@ -26,14 +22,15 @@ return function()
         -- let the encoder bring up its display again; the codec provides the
         -- value text, so that the display shows the value in the parameter's
         -- own range (e.g. -50..50 for Osc Fine Tune) instead of the raw 0-127
-        table.insert(events, makeParamDisplayConfigEvent(item.controller, true, arrangements.nameAndTextValue))
+        table.insert(events,
+          midi.makeParamDisplayConfigEvent(item.controller, true, midi.displayArrangements.nameAndTextValue))
       else
         -- turn of encoder's LED
-        table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
+        table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
         -- the parameter name stays on the encoder's display until it is
         -- overwritten, so stop the encoder bringing that display up while it is
         -- disabled; otherwise moving it shows the previous name and a raw value
-        table.insert(events, makeParamDisplayConfigEvent(item.controller, false))
+        table.insert(events, midi.makeParamDisplayConfigEvent(item.controller, false))
       end
     else
       enabled = state.get(path)
@@ -49,7 +46,7 @@ return function()
         local value = state.update(path)
         table.insert(events, remote.make_midi(item.midi, { x = value }))
         local paramName = remote.get_item_name(item.index)
-        table.insert(events, makeParamNameDisplayEvent(paramName, item.controller))
+        table.insert(events, midi.makeParamNameDisplayEvent(paramName, item.controller))
         local deviceType = state.get("deviceType")
         local itemState = remote.get_item_state(item.index)
         local displayValue, newParamName = getConditionalLabel(deviceType, paramName, value)
@@ -59,12 +56,12 @@ return function()
               or getInterpolatedValue(deviceType, newParamName or paramName, itemState.value)
               or itemState.text_value
         end
-        table.insert(events, makeParamValueDisplayEvent(displayValue, item.controller))
+        table.insert(events, midi.makeParamValueDisplayEvent(displayValue, item.controller))
       end
       path = "encoder" .. i .. ".colour"
       if changed or state.hasChanged(path) then
         local colour = state.update(path)
-        table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
+        table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
     end
   end

@@ -17,8 +17,7 @@ local deliverButtons = require("src.deliverMidi.buttons")
 local deliverPages = require("src.deliverMidi.pages")
 local deliverTransport = require("src.deliverMidi.transport")
 local deliverDisplay = require("src.deliverMidi.display")
-local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
-local makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfigEvent")
+local midi = require("src.lib.midi._")
 local debug = require("src.lib.debug._")
 local autoInputs = require("src.config.autoInputs")
 
@@ -94,7 +93,7 @@ end
 function remote_prepare_for_use()
   local events = {
     -- turn on DAW mode
-    makeSysexEvent("02 7f"),
+    midi.makeSysexEvent("02 7f"),
     remote.make_midi("b6 1e 02"),
 
     -- set encoder modes to absolute
@@ -103,14 +102,14 @@ function remote_prepare_for_use()
     remote.make_midi("b6 49 00"),
 
     -- set the colours of navigation buttons to dim white
-    makeSysexEvent("01 53 6a 1f 1f 1f"),
-    makeSysexEvent("01 53 6b 1f 1f 1f"),
-    makeSysexEvent("01 53 67 1f 1f 1f"),
-    makeSysexEvent("01 53 66 1f 1f 1f"),
+    midi.makeSysexEvent("01 53 6a 1f 1f 1f"),
+    midi.makeSysexEvent("01 53 6b 1f 1f 1f"),
+    midi.makeSysexEvent("01 53 67 1f 1f 1f"),
+    midi.makeSysexEvent("01 53 66 1f 1f 1f"),
 
     -- turn off the play and record button LEDs
-    makeSysexEvent("01 53 74 00 00 00"),
-    makeSysexEvent("01 53 76 00 00 00"),
+    midi.makeSysexEvent("01 53 74 00 00 00"),
+    midi.makeSysexEvent("01 53 76 00 00 00"),
 
     -- set temporary display timeout to 1 sec
     remote.make_midi("b6 71 00"),
@@ -120,10 +119,10 @@ function remote_prepare_for_use()
   -- assigned a parameter to them, as a control with nothing mapped to it would
   -- otherwise show the raw MIDI controller and value it is sending.
   for i = 1, 24 do
-    table.insert(events, makeParamDisplayConfigEvent(items["encoder" .. i].controller, false))
+    table.insert(events, midi.makeParamDisplayConfigEvent(items["encoder" .. i].controller, false))
   end
   for i = 1, 8 do
-    table.insert(events, makeParamDisplayConfigEvent(items["fader" .. i].controller, false))
+    table.insert(events, midi.makeParamDisplayConfigEvent(items["fader" .. i].controller, false))
   end
 
   return events
@@ -132,6 +131,6 @@ end
 function remote_release_from_use()
   return {
     -- turn off DAW mode
-    makeSysexEvent("02 00"),
+    midi.makeSysexEvent("02 00"),
   }
 end

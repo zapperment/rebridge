@@ -1,5 +1,5 @@
 local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
-local arrangements = require("src.lib.midi.displayArrangements")
+local displayArrangements = require("src.lib.midi.displayArrangements")
 
 -- Bits 0-4 of the config byte hold the display arrangement (see
 -- displayArrangements); it has to stay non-zero, as a config of zero merely
@@ -13,7 +13,7 @@ local arrangements = require("src.lib.midi.displayArrangements")
 local automatic = 0x60
 
 return function(target, automaticDisplay, arrangement)
-  local config = arrangement or arrangements.nameAndNumericValue
+  local config = arrangement or displayArrangements.nameAndNumericValue
   if automaticDisplay then
     config = config + automatic
   end

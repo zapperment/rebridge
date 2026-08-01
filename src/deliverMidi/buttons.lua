@@ -2,8 +2,7 @@ local state = require("src.lib.state._")
 local buttonStates = require("src.lib.state.buttons")
 local items = require("src.config.items")
 local const = require("src.config.constants")
-local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
-local makeOverlayDisplayEvents = require("src.lib.midi.makeOverlayDisplayEvents")
+local midi = require("src.lib.midi._")
 local getLabel = require("src.lib.valueLabels.getLabel")
 local cycleParams = require("src.config.cycleParams")
 local debug = require("src.lib.debug._")
@@ -49,7 +48,7 @@ return function()
       enabledChanged = true
       if not enabled then
         -- turn of button's LED
-        table.insert(events, makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
+        table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
       end
     else
       enabled = state.get(path)
@@ -64,7 +63,7 @@ return function()
       path = "button" .. i .. ".colour"
       if enabledChanged or state.hasChanged(path) then
         local colour = state.update(path)
-        table.insert(events, makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
+        table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
     end
   end
@@ -77,7 +76,7 @@ return function()
   buttonStates.pressed = nil
   if pressed then
     local paramName = remote.get_item_name(pressed.index)
-    for _, event in ipairs(makeOverlayDisplayEvents(
+    for _, event in ipairs(midi.makeOverlayDisplayEvents(
       paramName,
       getValueLabel(paramName, remote.get_item_state(pressed.index))
     )) do

@@ -1,8 +1,7 @@
 local state = require("src.lib.state._")
 local items = require("src.config.items")
 local const = require("src.config.constants")
-local makeParamNameDisplayEvent = require("src.lib.midi.makeParamNameDisplayEvent")
-local makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfigEvent")
+local midi = require("src.lib.midi._")
 local debug = require("src.lib.debug._")
 
 -- the LED display character set has no arrow glyphs (only ASCII 20h-7Eh),
@@ -27,13 +26,13 @@ return function()
       -- so an unassigned fader must not bring that display up at all; otherwise
       -- moving it shows the previous name and a raw value
       if isAssigned ~= wasAssigned then
-        table.insert(events, makeParamDisplayConfigEvent(item.controller, isAssigned))
+        table.insert(events, midi.makeParamDisplayConfigEvent(item.controller, isAssigned))
         debug.log("[deliverMidi.faders] delivering param display config event")
       end
 
       if isAssigned then
         local prefix = pickupPrefixes[status] or ""
-        table.insert(events, makeParamNameDisplayEvent(prefix .. remote.get_item_name(item.index), item.controller))
+        table.insert(events, midi.makeParamNameDisplayEvent(prefix .. remote.get_item_name(item.index), item.controller))
         debug.log("[deliverMidi.faders] delivering param name display event")
       end
     end
