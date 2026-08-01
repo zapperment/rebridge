@@ -5,9 +5,8 @@ local buttonStates = require("src.lib.state.buttons")
 local paramValues = require("src.lib.state.paramValues")
 local cycleParams = require("src.config.cycleParams")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local getColour = require("src.lib.colour.getColour")
-local getColourName = require("src.lib.colour.getColourName")
-local debug = require("src.lib.debug._")
+local col = require("src.lib.colour._")
+local deb = require("src.lib.debug._")
 
 -- parameters whose settings drive the display of other parameters (see
 -- config/conditionalValueLabels), collected across all device types
@@ -37,19 +36,19 @@ return function(changedItems)
             --   changedItem.remote_item_name)
           end
           local deviceType = state.getNext("deviceType")
-          local colourName = getColourName(deviceType, changedItem.remote_item_name, items[button].colour)
+          local colourName = col.getColourName(deviceType, changedItem.remote_item_name, items[button].colour)
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[changedItem.remote_item_name] then
             -- a cycle button stays dim whatever the parameter's value; it is
             -- only bright while held down, which processMidi takes care of
             if not buttonStates.held[button] then
-              state.set(button .. ".colour", getColour(colourName, 1))
+              state.set(button .. ".colour", col.getColour(colourName, 1))
             end
           else
             local hostValue = changedItem.value > 0 and true or false
             state.set(button .. ".value", hostValue)
             local colourValue = changedItem.value > 0 and 95 or 1
-            state.set(button .. ".colour", getColour(colourName, colourValue))
+            state.set(button .. ".colour", col.getColour(colourName, colourValue))
           end
         else
           state.set(button .. ".enabled", false)
@@ -58,6 +57,6 @@ return function(changedItems)
     end
   end
   if hasChanged then
-    debug.log("[setState.buttons] RSN => CODEC")
+    deb.log("[setState.buttons] RSN => CODEC")
   end
 end

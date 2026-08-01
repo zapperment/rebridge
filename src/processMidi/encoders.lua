@@ -1,9 +1,8 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local getColour = require("src.lib.colour.getColour")
-local getColourName = require("src.lib.colour.getColourName")
-local debug = require("src.lib.debug._")
+local col = require("src.lib.colour._")
+local deb = require("src.lib.debug._")
 
 -- handles changes of the encoders of the remote surface (Launch Control)
 return function(event)
@@ -16,8 +15,8 @@ return function(event)
     if match and state.get(encoder .. ".enabled") then
       local remoteSurfaceValue = match.x
       state.set(encoder .. ".value", remoteSurfaceValue)
-      local colourName = getColourName(state.getNext("deviceType"), remote.get_item_name(item.index), item.colour)
-      state.set(encoder .. ".colour", getColour(colourName, remoteSurfaceValue))
+      local colourName = col.getColourName(state.getNext("deviceType"), remote.get_item_name(item.index), item.colour)
+      state.set(encoder .. ".colour", col.getColour(colourName, remoteSurfaceValue))
 
       -- update host (Reason)
       remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = remoteSurfaceValue })
@@ -25,7 +24,7 @@ return function(event)
     end
   end
   if processed then
-    debug.log("[processMidi.encoders] LCXL3 => CODEC")
+    deb.log("[processMidi.encoders] LCXL3 => CODEC")
   end
   return processed
 end

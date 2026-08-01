@@ -36,7 +36,7 @@ function remote_init()
   end
   remote.define_items(itemsToDefine)
   remote.define_auto_inputs(autoInputs)
-  debug.log("LCXL3 remote codec initialised successfully!")
+  debug.log("[reason.codecs.novation.LCXL3] remote codec initialised successfully!")
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)

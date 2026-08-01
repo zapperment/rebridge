@@ -3,9 +3,8 @@ local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local buttonStates = require("src.lib.state.buttons")
 local cycleParams = require("src.config.cycleParams")
-local getColour = require("src.lib.colour.getColour")
-local getColourName = require("src.lib.colour.getColourName")
-local debug = require("src.lib.debug._")
+local col = require("src.lib.colour._")
+local deb = require("src.lib.debug._")
 
 -- the number of values of the mapped parameter if the button cycles through
 -- them like the momentary buttons on the device's own UI, nil for toggles
@@ -35,14 +34,14 @@ return function(event)
     if match and state.get(button .. ".enabled") then
       local pressed = match.x > 0
       local paramName = remote.get_item_name(item.index)
-      local colourName = getColourName(state.getNext("deviceType"), paramName, item.colour)
+      local colourName = col.getColourName(state.getNext("deviceType"), paramName, item.colour)
       local cycleCount = getCycleCount(paramName)
       if cycleCount then
         -- a cycle button is momentary: bright while held, and each press
         -- advances the parameter to its next value, wrapping around at the end
         if pressed then
           buttonStates.held[button] = true
-          state.set(button .. ".colour", getColour(colourName, 95))
+          state.set(button .. ".colour", col.getColour(colourName, 95))
           buttonStates.pressed = item
 
           local currentValue = toParamValue(remote.get_item_state(item.index).value, cycleCount)
@@ -56,13 +55,13 @@ return function(event)
           })
         else
           buttonStates.held[button] = nil
-          state.set(button .. ".colour", getColour(colourName, 1))
+          state.set(button .. ".colour", col.getColour(colourName, 1))
         end
         processed = true
       elseif pressed then
         local turnedOn = state.flip(button .. ".value")
         local colourValue = turnedOn and 95 or 1
-        state.set(button .. ".colour", getColour(colourName, colourValue))
+        state.set(button .. ".colour", col.getColour(colourName, colourValue))
         buttonStates.pressed = item
 
         -- update host (Reason)
@@ -76,7 +75,7 @@ return function(event)
     end
   end
   if processed then
-    debug.log("[processMidi.buttons] LCXL3 => CODEC")
+    deb.log("[processMidi.buttons] LCXL3 => CODEC")
   end
   return processed
 end
