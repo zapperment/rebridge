@@ -4,11 +4,6 @@ local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
 local deb = require("src.lib.debug._")
 
-local pickupPrefixes = {
-  [const.fader.tooLow] = "^ ",
-  [const.fader.tooHigh] = "v ",
-}
-
 -- called regularly by the codec to update the control surface (Launch Control)
 return function()
   local events = {}
@@ -32,8 +27,17 @@ return function()
         table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
       end
       if hostTextValueChanged or statusChanged then
-        local prefix = pickupPrefixes[status] or ""
-        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. hostTextValue, controller))
+        local prefix = ""
+        local suffix = ""
+        if status == const.fader.tooHigh then
+          prefix = "v "
+          suffix = " v"
+        end
+        if status == const.fader.tooLow then
+          prefix = "^ "
+          suffix = " ^"
+        end
+        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. hostTextValue .. suffix, controller))
       end
     end
   end
