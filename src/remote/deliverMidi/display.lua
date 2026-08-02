@@ -25,8 +25,5 @@ return function()
     table.insert(events, midi.makeSysexEvent("04 35 7f"))
   end
 
-  if #events > 0 then
-    deb.log("[remote.deliverMidi.display] CODEC => LCXL3")
-  end
   return events
 end

@@ -1,10 +1,9 @@
-local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
--- handles changes of the faders of the remote surface (Launch Control)
+-- handles changes of the faders of the control surface (Launch Control)
 return function(event)
   local processed = false
 
@@ -12,45 +11,40 @@ return function(event)
     local fader = "fader" .. i
     local ret = remote.match_midi(items[fader].midi, event)
     if ret then
-      local remoteSurfaceValue = ret.x
-      local hostValue = faderStates[fader].host
-      local status = state.get(fader)
+      local controlSurfaceValue = ret.x
+      state.set(fader .. ".controlSurfaceValue", controlSurfaceValue)
+      local hostValue = state.get(fader .. ".hostValue")
+      local status = state.getNext(fader .. ".status")
       if status == const.fader.unknown then
         -- it is goes here when the codec has just been loaded and
         -- we receive a CC from a fader for the first time
-        if remoteSurfaceValue >= hostValue - const.pickupTolerance and remoteSurfaceValue <= hostValue + const.pickupTolerance then
-          state.set(fader, const.fader.inSync)
-        elseif remoteSurfaceValue < hostValue then
-          state.set(fader, const.fader.tooLow)
-        elseif remoteSurfaceValue > hostValue then
-          state.set(fader, const.fader.tooHigh)
+        if controlSurfaceValue >= hostValue - const.pickupTolerance and controlSurfaceValue <= hostValue + const.pickupTolerance then
+          status = const.fader.inSync
+        elseif controlSurfaceValue < hostValue then
+          status = const.fader.tooLow
+        elseif controlSurfaceValue > hostValue then
+          status = const.fader.tooHigh
         end
       elseif status == const.fader.tooLow then
-        if remoteSurfaceValue >= hostValue then
-          state.set(fader, const.fader.inSync)
+        if controlSurfaceValue >= hostValue then
+          status = const.fader.inSync
         end
       elseif status == const.fader.tooHigh then
-        if remoteSurfaceValue <= hostValue then
-          state.set(fader, const.fader.inSync)
+        if controlSurfaceValue <= hostValue then
+          status = const.fader.inSync
         end
       end
-      faderStates[fader].remoteSurface = remoteSurfaceValue
-
-      if state.getNext(fader) == const.fader.inSync then
-        faderStates[fader].host = remoteSurfaceValue
-
-        -- CODEC => REASON
+      state.set(fader .. ".status", status)
+      state.set(fader .. ".controlSurfaceValue", controlSurfaceValue)
+      if status == const.fader.inSync then
         remote.handle_input({
           item = items[fader].index,
-          value = remoteSurfaceValue,
+          value = controlSurfaceValue,
           time_stamp = event.time_stamp
         })
         processed = true
       end
     end
-  end
-  if processed then
-    deb.log("[remote.processMidi.faders] LCXL3 => CODEC")
   end
   return processed
 end

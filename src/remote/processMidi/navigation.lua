@@ -11,7 +11,6 @@ local shiftMidi = "b6 3f xx"
 -- target device's remote map binds to the page's group variation; does
 -- nothing when the device has no pages
 local function selectPage(target, timeStamp)
-  deb.log("[remote.processMidi.navigation] pages.count=" .. pages.count)
   if pages.count == 0 then
     return
   end
@@ -56,9 +55,6 @@ return function(event)
         processed = true
       end
     end
-  end
-  if processed then
-    deb.log("[remote.processMidi.navigation] LCXL3 => CODEC")
   end
   return processed
 end

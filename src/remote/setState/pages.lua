@@ -36,7 +36,4 @@ return function(changedItems)
     pages.count = count
     pages.setActive(active or 1)
   end
-  if hasChanged then
-    deb.log("[remote.setState.pages] RSN => CODEC")
-  end
 end

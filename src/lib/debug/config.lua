@@ -9,11 +9,6 @@ return {
   },
 
   deny = {
-    "lib."
-    --"lib.valueLabels"
-    --"getConditionalLabel",
-    --"getLabel",
-    --"deliverMidi"
   },
 
 }

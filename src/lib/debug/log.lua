@@ -23,8 +23,7 @@ return function(logMessages, message)
   --if previousMessage and str.areStringsSimilar(message, previousMessage) then
   if message == previousMessage then
     table.insert(logMessages, config.repeatSignal)
-    return
-  elseif previousMessage and str.areStringsSimilar(message, previousMessage) then
+  elseif previousMessage and str.areStringsSimilar(message, previousMessage) and #logMessages > 0 then
     logMessages[#logMessages] = message
   else
     table.insert(logMessages, message)

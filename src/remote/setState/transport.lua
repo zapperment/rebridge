@@ -16,7 +16,4 @@ return function(changedItems)
       state.set("transport.recording", changedItem.is_enabled and changedItem.value > 0)
     end
   end
-  if hasChanged then
-    deb.log("[remote.setState.transport] RSN => CODEC")
-  end
 end

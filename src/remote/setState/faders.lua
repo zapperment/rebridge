@@ -1,4 +1,3 @@
-local faderStates = require("src.lib.state.faders")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
@@ -8,15 +7,18 @@ local deb = require("src.lib.debug._")
 return function(changedItems)
   local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
-    local changedItem = remote.get_item_state(changedItemIndex)
+    local item = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.faders do
       local fader = "fader" .. i
       if changedItemIndex == items[fader].index then
         hasChanged = true
-        if changedItem.is_enabled then
-          local hostValue = changedItem.value
-          local controlSurfaceValue = faderStates[fader].remoteSurface
-          local status
+        local hostTextValue = item.text_value;
+        local hostValue = item.value;
+        local param = item.remote_item_name;
+        local enabled = item.is_enabled;
+        local controlSurfaceValue = state.getNext(fader .. ".controlSurfaceValue")
+        local status
+        if enabled then
           if controlSurfaceValue == nil then
             -- it goes here when the codec is loaded
             -- because we do not know where the fader is at on the control surface
@@ -28,16 +30,15 @@ return function(changedItems)
           elseif hostValue < controlSurfaceValue then
             status = const.fader.tooHigh
           end
-          faderStates[fader].host = hostValue
-          state.set(fader, status)
         else
-          faderStates[fader] = {}
-          state.set(fader, const.fader.unassigned)
+          status = const.fader.unassigned
         end
+        state.set(fader .. ".param", param)
+        state.set(fader .. ".hostValue", hostValue)
+        state.set(fader .. ".hostTextValue", hostTextValue)
+        state.set(fader .. ".enabled", enabled)
+        state.set(fader .. ".status", status)
       end
     end
-  end
-  if hasChanged then
-    deb.log("[remote.setState.faders] RSN => CODEC")
   end
 end

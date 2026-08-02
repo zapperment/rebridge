@@ -27,7 +27,4 @@ return function(changedItems)
       state.set("patchName", patchName)
     end
   end
-  if hasChanged then
-    deb.log("[remote.setState.info] RSN => CODEC")
-  end
 end

@@ -31,7 +31,14 @@ function StateManager:new()
         }
     end
     for i = 1, const.counts.faders do
-        instance["fader" .. i] = entry(const.fader.unassigned)
+        instance["fader" .. i] = {
+            controlSurfaceValue = entry(nil),
+            hostValue = entry(0),
+            hostTextValue = entry(""),
+            param = entry(""),
+            enabled = entry(false),
+            status = entry(const.fader.unassigned)
+        }
     end
     for i = 1, const.counts.buttons do
         instance["button" .. i] = {

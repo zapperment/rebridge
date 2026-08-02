@@ -13,7 +13,5 @@ return function()
   end
   local names = pageNames[state.getNext("deviceType")]
   local name = names and names[pages.active]
-  deb.log("[remote.deliverMidi.pages] deviceType=" ..
-    state.getNext("deviceType") .. ", name=" .. (name or "nil") .. ", pages.active=" .. pages.active)
   return midi.makeOverlayDisplayEvents("Page " .. pages.active, name or " ")
 end

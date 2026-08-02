@@ -23,8 +23,5 @@ return function(event)
       processed = true
     end
   end
-  if processed then
-    deb.log("[remote.processMidi.encoders] LCXL3 => CODEC")
-  end
   return processed
 end

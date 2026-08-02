@@ -84,9 +84,5 @@ return function()
     end
   end
 
-  if #events > 0 then
-    deb.log("[remote.deliverMidi.buttons] CODEC => LCXL3")
-  end
-
   return events
 end

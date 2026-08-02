@@ -4,41 +4,38 @@ local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
 local deb = require("src.lib.debug._")
 
--- the LED display character set has no arrow glyphs (only ASCII 20h-7Eh),
--- so "^" and "v" indicate which way to move the fader to pick up the host value
 local pickupPrefixes = {
   [const.fader.tooLow] = "^ ",
   [const.fader.tooHigh] = "v ",
 }
 
--- called regularly by the codec to update the remote surface (Launch Control)
+-- called regularly by the codec to update the control surface (Launch Control)
 return function()
   local events = {}
   for i = 1, const.counts.faders do
     local fader = "fader" .. i
-    if state.hasChanged(fader) then
-      local wasAssigned = state.get(fader) ~= const.fader.unassigned
-      local status = state.update(fader)
-      local isAssigned = status ~= const.fader.unassigned
-      local item = items[fader]
-
-      -- the parameter name stays on the fader's display until it is overwritten,
-      -- so an unassigned fader must not bring that display up at all; otherwise
-      -- moving it shows the previous name and a raw value
-      if isAssigned ~= wasAssigned then
-        table.insert(events, midi.makeParamDisplayConfigEvent(item.controller, isAssigned))
-        deb.log("[remote.deliverMidi.faders] delivering param display config event")
+    local hostTextValueChanged = state.hasChanged(fader .. ".hostTextValue")
+    local paramChanged = state.hasChanged(fader .. ".param")
+    local hostTextValue = state.update(fader .. ".hostTextValue")
+    local param = state.update(fader .. ".param")
+    state.update(fader .. ".hostValue")
+    local enabled = state.update(fader .. ".enabled")
+    local statusChanged = state.hasChanged(fader .. ".status")
+    local status = state.update(fader .. ".status")
+    local controller = items[fader].controller
+    if hostTextValueChanged or paramChanged then
+      table.insert(events,
+        midi.makeParamDisplayConfigEvent(controller, enabled, midi.displayArrangements.nameAndTextValue))
+    end
+    if enabled then
+      if paramChanged then
+        table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
       end
-
-      if isAssigned then
+      if hostTextValueChanged or statusChanged then
         local prefix = pickupPrefixes[status] or ""
-        table.insert(events, midi.makeParamNameDisplayEvent(prefix .. remote.get_item_name(item.index), item.controller))
-        deb.log("[remote.deliverMidi.faders] delivering param name display event")
+        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. hostTextValue, controller))
       end
     end
-  end
-  if #events > 0 then
-    deb.log("[remote.deliverMidi.faders] CODEC => LCXL3")
   end
   return events
 end
