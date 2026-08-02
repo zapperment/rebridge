@@ -4,6 +4,7 @@ local state = require("src.lib.state._")
 local col = require("src.lib.colour._")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local paramValues = require("src.lib.state.paramValues")
+local disp = require("src.lib.display._")
 local deb = require("src.lib.debug._")
 
 -- parameters whose settings drive the display of other parameters (see
@@ -17,25 +18,27 @@ end
 
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
-  local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
-    local changedItem = remote.get_item_state(changedItemIndex)
+    local item = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.encoders do
-      local encoder = "encoder" .. i
-      if changedItemIndex == items[encoder].index then
-        hasChanged = true
-        if changedItem.is_enabled then
-          local hostValue = changedItem.value
-          if watchedParams[changedItem.remote_item_name] then
-            paramValues[changedItem.remote_item_name] = hostValue
+      local control = "encoder" .. i
+      if changedItemIndex == items[control].index then
+        local hostValue = item.value;
+        local param = item.remote_item_name;
+        local enabled = item.is_enabled;
+        if enabled then
+          if watchedParams[param] then
+            paramValues[param] = hostValue
           end
-          state.set(encoder .. ".enabled", true)
-          state.set(encoder .. ".value", hostValue)
-          local colourName = col.getColourName(state.getNext("deviceType"), changedItem.remote_item_name,
-            items[encoder].colour)
-          state.set(encoder .. ".colour", col.getColour(colourName, hostValue))
+          state.set(control .. ".enabled", true)
+          state.set(control .. ".param", param)
+          state.set(control .. ".hostValue", hostValue)
+          state.set(control .. ".hostTextValue", disp.getTextValue(item))
+          local colourName = col.getColourName(state.getNext("deviceType"), item.remote_item_name,
+            items[control].colour)
+          state.set(control .. ".colour", col.getColour(colourName, hostValue))
         else
-          state.set(encoder .. ".enabled", false)
+          state.set(control .. ".enabled", false)
         end
       end
     end

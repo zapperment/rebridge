@@ -8,13 +8,15 @@ return function(event)
   local processed = false
 
   for i = 1, const.counts.faders do
-    local fader = "fader" .. i
-    local ret = remote.match_midi(items[fader].midi, event)
-    if ret then
-      local controlSurfaceValue = ret.x
-      state.set(fader .. ".controlSurfaceValue", controlSurfaceValue)
-      local hostValue = state.get(fader .. ".hostValue")
-      local status = state.getNext(fader .. ".status")
+    local control = "fader" .. i
+    local item = items[control]
+    local match = remote.match_midi(item.midi, event)
+    if match and state.get(control .. ".enabled") then
+      local controlSurfaceValue = match.x
+      state.set(control .. ".controlSurfaceValue", controlSurfaceValue)
+
+      local hostValue = state.get(control .. ".hostValue")
+      local status = state.getNext(control .. ".status")
       if status == const.fader.unknown then
         -- it is goes here when the codec has just been loaded and
         -- we receive a CC from a fader for the first time
@@ -34,11 +36,10 @@ return function(event)
           status = const.fader.inSync
         end
       end
-      state.set(fader .. ".status", status)
-      state.set(fader .. ".controlSurfaceValue", controlSurfaceValue)
+      state.set(control .. ".status", status)
       if status == const.fader.inSync then
         remote.handle_input({
-          item = items[fader].index,
+          item = items[control].index,
           value = controlSurfaceValue,
           time_stamp = event.time_stamp
         })

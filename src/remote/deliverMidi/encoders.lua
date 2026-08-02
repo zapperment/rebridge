@@ -9,54 +9,35 @@ local deb = require("src.lib.debug._")
 return function()
   local events = {}
   for i = 1, const.counts.encoders do
-    local path, enabled, changed
-    local item = items["encoder" .. i]
-
-    path = "encoder" .. i .. ".enabled"
-    if state.hasChanged(path) then
-      enabled = state.update(path)
-      changed = true
-      if enabled then
-        -- let the encoder bring up its display again; the codec provides the
-        -- value text, so that the display shows the value in the parameter's
-        -- own range (e.g. -50..50 for Osc Fine Tune) instead of the raw 0-127
-        table.insert(events,
-          midi.makeParamDisplayConfigEvent(item.controller, true, midi.displayArrangements.nameAndTextValue))
-      else
-        -- turn of encoder's LED
-        table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
-        -- the parameter name stays on the encoder's display until it is
-        -- overwritten, so stop the encoder bringing that display up while it is
-        -- disabled; otherwise moving it shows the previous name and a raw value
-        table.insert(events, midi.makeParamDisplayConfigEvent(item.controller, false))
-      end
-    else
-      enabled = state.get(path)
+    local control = "encoder" .. i
+    local hostTextValueChanged = state.hasChanged(control .. ".hostTextValue")
+    local hostTextValue = state.update(control .. ".hostTextValue")
+    local paramChanged = state.hasChanged(control .. ".param")
+    local param = state.update(control .. ".param")
+    local hostValue = state.update(control .. ".hostValue")
+    local enabled = state.update(control .. ".enabled")
+    local colourChanged = state.hasChanged(control .. ".colour")
+    local colour = state.update(control .. ".colour")
+    local item = items[control]
+    local controller = item.controller
+    if hostTextValueChanged or paramChanged then
+      table.insert(events,
+        midi.makeParamDisplayConfigEvent(controller, enabled, midi.displayArrangements.nameAndTextValue))
     end
-
     if enabled then
-      path = "encoder" .. i .. ".value"
-      if changed or state.hasChanged(path) then
-        local value = state.update(path)
-        table.insert(events, remote.make_midi(item.midi, { x = value }))
-        local paramName = remote.get_item_name(item.index)
-        table.insert(events, midi.makeParamNameDisplayEvent(paramName, item.controller))
-        local deviceType = state.get("deviceType")
-        local itemState = remote.get_item_state(item.index)
-        local displayValue, newParamName = disp.getConditionalLabel(deviceType, paramName, value)
-        if not displayValue then
-          displayValue =
-              disp.getLabel(deviceType, newParamName or paramName, itemState)
-              or disp.getInterpolatedValue(deviceType, newParamName or paramName, itemState.value)
-              or itemState.text_value
-        end
-        table.insert(events, midi.makeParamValueDisplayEvent(displayValue, item.controller))
+      if paramChanged then
+        table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
       end
-      path = "encoder" .. i .. ".colour"
-      if changed or state.hasChanged(path) then
-        local colour = state.update(path)
+      if hostTextValueChanged then
+        table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
+        table.insert(events, midi.makeParamValueDisplayEvent(hostTextValue, item.controller))
+      end
+      if colourChanged then
         table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
       end
+    else
+      -- turn off encoder's LED
+      table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
     end
   end
   return events

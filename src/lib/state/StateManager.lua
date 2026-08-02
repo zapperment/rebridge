@@ -25,8 +25,11 @@ function StateManager:new()
     }
     for i = 1, const.counts.encoders do
         instance["encoder" .. i] = {
-            value = entry(0),
+            controlSurfaceValue = entry(0),
+            hostValue = entry(0),
+            hostTextValue = entry(""),
             colour = entry("00 00 00"),
+            param = entry(""),
             enabled = entry(false)
         }
     end

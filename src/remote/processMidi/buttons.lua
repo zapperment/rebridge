@@ -28,10 +28,10 @@ return function(event)
   local processed = false
 
   for i = 1, const.counts.buttons do
-    local button = "button" .. i
-    local item = items[button]
+    local control = "button" .. i
+    local item = items[control]
     local match = remote.match_midi(item.midi, event)
-    if match and state.get(button .. ".enabled") then
+    if match and state.get(control .. ".enabled") then
       local pressed = match.x > 0
       local paramName = remote.get_item_name(item.index)
       local colourName = col.getColourName(state.getNext("deviceType"), paramName, item.colour)
@@ -40,8 +40,8 @@ return function(event)
         -- a cycle button is momentary: bright while held, and each press
         -- advances the parameter to its next value, wrapping around at the end
         if pressed then
-          buttonStates.held[button] = true
-          state.set(button .. ".colour", col.getColour(colourName, 95))
+          buttonStates.held[control] = true
+          state.set(control .. ".colour", col.getColour(colourName, 95))
           buttonStates.pressed = item
 
           local currentValue = toParamValue(remote.get_item_state(item.index).value, cycleCount)
@@ -54,14 +54,14 @@ return function(event)
             value = toScaledValue(nextValue, cycleCount)
           })
         else
-          buttonStates.held[button] = nil
-          state.set(button .. ".colour", col.getColour(colourName, 1))
+          buttonStates.held[control] = nil
+          state.set(control .. ".colour", col.getColour(colourName, 1))
         end
         processed = true
       elseif pressed then
-        local turnedOn = state.flip(button .. ".value")
+        local turnedOn = state.flip(control .. ".value")
         local colourValue = turnedOn and 95 or 1
-        state.set(button .. ".colour", col.getColour(colourName, colourValue))
+        state.set(control .. ".colour", col.getColour(colourName, colourValue))
         buttonStates.pressed = item
 
         -- update host (Reason)
