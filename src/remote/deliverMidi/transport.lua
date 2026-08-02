@@ -18,8 +18,5 @@ return function()
     local colour = recording and "7f 00 00" or "00 00 00"
     table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = items.recordButton.controller }))
   end
-  if #events > 0 then
-    deb.log("[remote.deliverMidi.transport] CODEC => LCXL3")
-  end
   return events
 end

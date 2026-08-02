@@ -31,9 +31,6 @@ return function(changedItems)
           if watchedParams[changedItem.remote_item_name] then
             local hostValue = changedItem.value
             paramValues[changedItem.remote_item_name] = hostValue
-            -- debug.log("[setState.buttons] storing value " .. hostValue ..
-            --   " for watched param " ..
-            --   changedItem.remote_item_name)
           end
           local deviceType = state.getNext("deviceType")
           local colourName = col.getColourName(deviceType, changedItem.remote_item_name, items[button].colour)
@@ -55,8 +52,5 @@ return function(changedItems)
         end
       end
     end
-  end
-  if hasChanged then
-    deb.log("[remote.setState.buttons] RSN => CODEC")
   end
 end

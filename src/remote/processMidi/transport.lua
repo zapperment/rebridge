@@ -25,9 +25,5 @@ return function(event)
     end
   end
 
-  if processed then
-    deb.log("[remote.remote.processMidi.transport] LCXL3 => CODEC")
-  end
-
   return processed
 end

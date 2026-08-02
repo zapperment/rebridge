@@ -1,3 +1,4 @@
+local str = require("src.lib.string._")
 local config = require("src.lib.debug.config")
 
 local previousMessage = nil
@@ -19,12 +20,15 @@ return function(logMessages, message)
     return
   end
   --reduce log noise by eliminating duplicates
+  --if previousMessage and str.areStringsSimilar(message, previousMessage) then
   if message == previousMessage then
     table.insert(logMessages, config.repeatSignal)
-    return
+  elseif previousMessage and str.areStringsSimilar(message, previousMessage) and #logMessages > 0 then
+    logMessages[#logMessages] = message
+  else
+    table.insert(logMessages, message)
   end
   previousMessage = message
-  table.insert(logMessages, message)
   -- if the codec is not running in debug mode, the logs are never dumped
   -- we need to limit the number of log messages to prevent memory leaks
   if #logMessages > config.maxLogMessages then
