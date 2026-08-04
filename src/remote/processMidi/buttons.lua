@@ -1,7 +1,5 @@
-local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local buttonStates = require("src.lib.state.buttons")
 local cycleParams = require("src.config.cycleParams")
 local col = require("src.lib.colour._")
 local util = require("src.remote.processMidi.util._")
@@ -48,47 +46,21 @@ return function(event)
             -- callback START --
             local pressed = controlSurfaceValue > 0
             local paramName = remote.get_item_name(item.index)
-            local colourName = col.getColourName(state.getNext("deviceType"), paramName, item.colour)
+            local colourName = col.getColourName(
+              state.getNext("deviceType"),
+              paramName,
+              item.colour
+            )
             local cycleCount = getCycleCount(paramName)
             if cycleCount then
               -- a cycle button is momentary: bright while held, and each press
               -- advances the parameter to its next value, wrapping around at the end
               if pressed then
-                buttonStates.held[control] = true
                 state.set(control .. ".colour", col.getColour(colourName, 95))
-                buttonStates.pressed = item
-                local hostValue = remote.get_item_state(item.index).value
+                local hostValue = state.get(control .. ".hostValue")
                 local currentValue = toParamValue(hostValue, cycleCount)
                 local nextValue = (currentValue + 1) % cycleCount
                 local nextValueScaled = toScaledValue(nextValue, cycleCount)
-                if paramName == "Resonator Select" then
-                  -- this is always 127 (button pressed)
-                  -- deb.log(
-                  --   "[remote:processMidi:buttons] " .. control ..
-                  --   ".controlSurfaceValue=" .. controlSurfaceValue
-                  -- )
-                  -- this is always 21
-                  -- deb.log(
-                  --   "[remote:processMidi:buttons] " ..
-                  --   "cycleCount=" .. cycleCount
-                  -- )
-                  deb.log(
-                    "[remote:processMidi:buttons] resonatorSelect " ..
-                    "hostValue=" .. hostValue
-                  )
-                  deb.log(
-                    "[remote:processMidi:buttons] resonatorSelect " ..
-                    "currentValue=" .. currentValue
-                  )
-                  deb.log(
-                    "[remote:processMidi:buttons] resonatorSelect " ..
-                    "nextValue=" .. nextValue
-                  )
-                  deb.log(
-                    "[remote:processMidi:buttons] resonatorSelect " ..
-                    "nextValueScaled=" .. nextValueScaled
-                  )
-                end
 
                 -- update host (Reason)
                 remote.handle_input({
@@ -97,14 +69,12 @@ return function(event)
                   value = nextValueScaled
                 })
               else
-                buttonStates.held[control] = nil
                 state.set(control .. ".colour", col.getColour(colourName, 1))
               end
             elseif pressed then
-              local turnedOn = state.flip(control .. ".value")
+              local turnedOn = state.flip(control .. ".hostValue")
               local colourValue = turnedOn and 95 or 1
               state.set(control .. ".colour", col.getColour(colourName, colourValue))
-              buttonStates.pressed = item
 
               -- update host (Reason)
               local hostValue = turnedOn and 127 or 0

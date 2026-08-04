@@ -6,14 +6,14 @@ local deb = require("src.lib.debug._")
 -- handles changes of the faders of the host (Reason)
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
-    local item = remote.get_item_state(changedItemIndex)
+    local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.faders do
       local control = "fader" .. i
       if changedItemIndex == items[control].index then
-        local hostTextValue = item.text_value;
-        local hostValue = item.value;
-        local param = item.remote_item_name;
-        local enabled = item.is_enabled;
+        local hostTextValue = changedItem.text_value;
+        local hostValue = changedItem.value;
+        local param = changedItem.remote_item_name;
+        local enabled = changedItem.is_enabled;
         local controlSurfaceValue = state.getNext(control .. ".controlSurfaceValue")
         local status
         if enabled then
@@ -36,32 +36,6 @@ return function(changedItems)
         state.set(control .. ".hostValue", hostValue)
         state.set(control .. ".hostTextValue", hostTextValue)
         state.set(control .. ".status", status)
-        if control == "fader1" then
-          deb.log(
-            "[remote:setState:faders] next " .. control .. ".controlSurfaceValue=" ..
-            state.getNext(control .. ".controlSurfaceValue")
-          )
-          deb.log(
-            "[remote:setState:faders] next " .. control .. ".enabled=" ..
-            (state.getNext(control .. ".enabled") and "true" or "false")
-          )
-          deb.log(
-            "[remote:setState:faders] next " .. control .. ".param=" ..
-            state.getNext(control .. ".param")
-          )
-          deb.log(
-            "[remote:setState:faders] next " .. control .. ".hostValue=" ..
-            state.getNext(control .. ".hostValue")
-          )
-          deb.log(
-            "[remote:setState:faders] next " .. control .. ".hostTextValue=" ..
-            state.getNext(control .. ".hostTextValue")
-          )
-          deb.log(
-            "[remote:setState:faders] next " .. control .. ".status=" ..
-            state.getNext(control .. ".status")
-          )
-        end
       end
     end
   end

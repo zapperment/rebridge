@@ -1,93 +1,48 @@
 local state = require("src.lib.state._")
-local buttonStates = require("src.lib.state.buttons")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
-local disp = require("src.lib.display._")
-local cycleParams = require("src.config.cycleParams")
-local deb = require("src.lib.debug._")
-
--- the host (Reason) reports an on/off button as "0" or "1", which reads poorly
--- on the display
-local defaultValueLabels = {
-  ["0"] = "Off",
-  ["1"] = "On",
-}
-
--- turns the value the host reports into what the display should show, honouring
--- the labels a device defines for buttons that are not simply on/off; a value
--- with no label is shown as the host provides it
-local function getValueLabel(paramName, itemState)
-  local logMe = paramName == "Resonator Select"
-  local deviceType = state.get("deviceType")
-  if logMe then
-    deb.log("[remote.deliverMidi.buttons] resonatorSelect deviceType=" .. deviceType)
-  end
-  local label = disp.getLabel(deviceType, paramName, itemState)
-  if label then
-    if logMe then
-      deb.log("[remote.deliverMidi.buttons] resonatorSelect label=" .. label)
-    end
-    return label
-  end
-  local textValue = itemState.text_value
-  local deviceCycleParams = cycleParams[deviceType]
-  if deviceCycleParams and deviceCycleParams[paramName] then
-    -- a cycling parameter's values are not on/off, so without labels of its
-    -- own it shows the plain value rather than the On/Off defaults
-    return textValue
-  end
-  return defaultValueLabels[textValue] or textValue
-end
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
   for i = 1, const.counts.buttons do
-    local path, enabled
-    local enabledChanged = false
-    local item = items["button" .. i]
+    local control = "button" .. i
 
-    path = "button" .. i .. ".enabled"
-    if state.hasChanged(path) then
-      state.update(path)
-      enabled = state.get(path)
-      enabledChanged = true
-      if not enabled then
-        -- turn of button's LED
-        table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
+    local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
+    local enabled, enabledChanged = state.update(control .. ".enabled")
+    local param, paramChanged = state.update(control .. ".param")
+    local hostValue = state.update(control .. ".hostValue")
+    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local colour, colourChanged = state.update(control .. ".colour")
+
+    local item = items["button" .. i]
+    local controller = item.controller
+
+    if enabledChanged or hostTextValueChanged or paramChanged then
+      local displayConfigEvent = midi.makeParamDisplayConfigEvent(
+        controller, enabled,
+        midi.displayArrangements.nameAndTextValue
+      )
+      table.insert(events, displayConfigEvent)
+    end
+    if enabled then
+      if paramChanged then
+        table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
+      end
+      if hostTextValueChanged then
+        table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
+        table.insert(events, midi.makeParamValueDisplayEvent(hostTextValue, item.controller))
+      end
+      if colourChanged then
+        table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = controller }))
+      end
+      if controlSurfaceValueChanged then
+        table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
       end
     else
-      enabled = state.get(path)
-    end
-
-    if enabled then
-      path = "button" .. i .. ".value"
-      if enabledChanged or state.hasChanged(path) then
-        state.update(path)
-        -- no MIDI command sent out for button change
-      end
-      path = "button" .. i .. ".colour"
-      if enabledChanged or state.hasChanged(path) then
-        local colour = state.update(path)
-        table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
-      end
-    end
-  end
-
-  -- The hardware only offers per-control displays for faders and encoders, so a
-  -- button's parameter name goes on the shared overlay display. It is shown for
-  -- presses on the remote surface only, matching how the hardware brings up the
-  -- fader and encoder displays on movement but not on changes made in the host.
-  local pressed = buttonStates.pressed
-  buttonStates.pressed = nil
-  if pressed then
-    local paramName = remote.get_item_name(pressed.index)
-    for _, event in ipairs(midi.makeOverlayDisplayEvents(
-      paramName,
-      getValueLabel(paramName, remote.get_item_state(pressed.index))
-    )) do
-      table.insert(events, event)
+      -- turn off button's LED
+      table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = controller }))
     end
   end
 

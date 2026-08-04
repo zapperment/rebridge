@@ -19,17 +19,6 @@ return function()
 
     local controller = items[control].controller
 
-    if control == "fader1" and (hostTextValueChanged or paramChanged or statusChanged) then
-      deb.log("[remote:deliverMidi:faders] " .. control .. ".enabled=" .. (enabled and "true" or "false") ..
-        " (" .. (enabledChanged and "" or "not ") .. "changed)")
-      deb.log("[remote:deliverMidi:faders] " .. control .. ".param=" .. param ..
-        " (" .. (paramChanged and "" or "not ") .. "changed)")
-      deb.log("[remote:deliverMidi:faders] " .. control .. ".hostTextValue=" .. hostTextValue ..
-        " (" .. (hostTextValueChanged and "" or "not ") .. "changed)")
-      deb.log("[remote:deliverMidi:faders] " .. control .. ".status=" .. status ..
-        " (" .. (statusChanged and "" or "not ") .. "changed)")
-    end
-
     if enabledChanged or hostTextValueChanged or paramChanged or statusChanged then
       table.insert(events,
         midi.makeParamDisplayConfigEvent(controller, enabled, midi.displayArrangements.nameAndTextValue))
@@ -50,10 +39,6 @@ return function()
           suffix = " ^"
         end
         table.insert(events, midi.makeParamValueDisplayEvent(prefix .. hostTextValue .. suffix, controller))
-        if control == "fader1" and (hostTextValueChanged or paramChanged or statusChanged) then
-          deb.log("[remote:deliverMidi:faders] delivered param value display for " ..
-            control .. ": " .. prefix .. hostTextValue .. suffix)
-        end
       end
       if controlSurfaceValueChanged then
         table.insert(events, midi.makeParamDisplayTriggerEvent(controller))

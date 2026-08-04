@@ -20,26 +20,12 @@ return function()
     local item = items[control]
     local controller = item.controller
 
-    if control == "encoder4" and (enabledChanged or paramChanged or hostTextValueChanged or colourChanged) then
-      deb.log("[remote:deliverMidi:encoders] " .. control .. ".enabled=" .. (enabled and "true" or "false") ..
-        " (" .. (enabledChanged and "" or "not ") .. "changed)")
-      deb.log("[remote:deliverMidi:encoders] " .. control .. ".param=" .. param ..
-        " (" .. (paramChanged and "" or "not ") .. "changed)")
-      deb.log("[remote:deliverMidi:encoders] " .. control .. ".hostTextValue=" .. hostTextValue ..
-        " (" .. (hostTextValueChanged and "" or "not ") .. "changed)")
-      deb.log("[remote:deliverMidi:encoders] " .. control .. ".colour=" .. colour ..
-        " (" .. (colourChanged and "" or "not ") .. "changed)")
-    end
-
     if enabledChanged or hostTextValueChanged or paramChanged then
-      local displayConfigEvent = midi.makeParamDisplayConfigEvent(controller, enabled,
-        midi.displayArrangements.nameAndTextValue)
+      local displayConfigEvent = midi.makeParamDisplayConfigEvent(
+        controller, enabled,
+        midi.displayArrangements.nameAndTextValue
+      )
       table.insert(events, displayConfigEvent)
-      if control == "encoder4" then
-        deb.log(
-          "[remote:deliverMidi:encoders] set display mode for " .. control ..
-          ": " .. deb.midiEventToString(displayConfigEvent))
-      end
     end
     if enabled then
       if paramChanged then
@@ -48,10 +34,6 @@ return function()
       if hostTextValueChanged then
         table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
         table.insert(events, midi.makeParamValueDisplayEvent(hostTextValue, item.controller))
-      end
-      if control == "encoder4" and (hostTextValueChanged or paramChanged) then
-        deb.log("[remote:deliverMidi:encoders] delivered param value display for " ..
-          control .. ": " .. param .. "=" .. hostTextValue)
       end
       if colourChanged then
         table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))

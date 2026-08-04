@@ -33,12 +33,6 @@ return function(event)
               end
             end
             state.set(control .. ".status", status)
-            if control == "fader1" then
-              deb.log(
-                "[remote:processMidi:faders] next " .. control .. ".status=" ..
-                state.getNext(control .. ".status")
-              )
-            end
 
             -- update host (Reason) only if fader is in sync
             if status == const.fader.inSync then

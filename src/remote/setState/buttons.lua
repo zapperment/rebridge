@@ -1,13 +1,19 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local buttonStates = require("src.lib.state.buttons")
 local paramValues = require("src.lib.state.paramValues")
 local cycleParams = require("src.config.cycleParams")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local col = require("src.lib.colour._")
+local disp = require("src.lib.display._")
 local deb = require("src.lib.debug._")
 
+-- the host (Reason) reports an on/off button as "0" or "1", which reads poorly
+-- on the display
+local defaultValueLabels = {
+  ["0"] = "Off",
+  ["1"] = "On",
+}
 -- parameters whose settings drive the display of other parameters (see
 -- config/conditionalValueLabels), collected across all device types
 local watchedParams = {}
@@ -17,40 +23,61 @@ for _, deviceConditionals in pairs(conditionalValueLabels) do
   end
 end
 
+-- turns the value the host reports into what the display should show, honouring
+-- the labels a device defines for buttons that are not simply on/off; a value
+-- with no label is shown as the host provides it
+local function getValueLabel(paramName, itemState)
+  local deviceType = state.get("deviceType")
+  local label = disp.getLabel(deviceType, paramName, itemState)
+  if label then
+    return label
+  end
+  local textValue = itemState.text_value
+  local deviceCycleParams = cycleParams[deviceType]
+  if deviceCycleParams and deviceCycleParams[paramName] then
+    -- a cycling parameter's values are not on/off, so without labels of its
+    -- own it shows the plain value rather than the On/Off defaults
+    return textValue
+  end
+  return defaultValueLabels[textValue] or textValue
+end
+
 -- handles changes of the buttons of the host (Reason)
 return function(changedItems)
-  local hasChanged
   for _, changedItemIndex in ipairs(changedItems) do
     local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.buttons do
-      local button = "button" .. i
-      if changedItemIndex == items[button].index then
+      local control = "button" .. i
+      if changedItemIndex == items[control].index then
         if changedItem.is_enabled then
-          state.set(button .. ".enabled", true)
-          local paramName = changedItem.remote_item_name
+          state.set(control .. ".enabled", true)
+          local param = changedItem.remote_item_name
+          state.set(control .. ".param", param)
           local hostValue = changedItem.value
-          if watchedParams[paramName] then
-            paramValues[paramName] = hostValue
+          if watchedParams[param] then
+            paramValues[param] = hostValue
           end
-          if paramName == "Resonator Select" then
-            deb.log("[remote:setState:buttons] resonatorSelect hostValue=" .. hostValue)
+          if param == "Mode1" then
+            deb.log("[remote:setState:buttons] mode1 hostValue=" .. hostValue)
           end
           local deviceType = state.getNext("deviceType")
-          local colourName = col.getColourName(deviceType, paramName, items[button].colour)
+          local colourName = col.getColourName(deviceType, param, items[control].colour)
           local deviceCycleParams = cycleParams[deviceType]
-          if deviceCycleParams and deviceCycleParams[paramName] then
+          if deviceCycleParams and deviceCycleParams[param] then
             -- a cycle button stays dim whatever the parameter's value; it is
             -- only bright while held down, which processMidi takes care of
-            if not buttonStates.held[button] then
-              state.set(button .. ".colour", col.getColour(colourName, 1))
-            end
+            -- if not buttonStates.held[control] then
+            --   state.set(control .. ".colour", col.getColour(colourName, 1))
+            -- end
+            state.set(control .. ".hostValue", hostValue)
           else
-            state.set(button .. ".value", hostValue > 0 and true or false)
+            state.set(control .. ".hostValue", hostValue > 0 and true or false)
             local colourValue = changedItem.value > 0 and 95 or 1
-            state.set(button .. ".colour", col.getColour(colourName, colourValue))
+            state.set(control .. ".colour", col.getColour(colourName, colourValue))
           end
+          state.set(control .. ".hostTextValue", getValueLabel(param, changedItem))
         else
-          state.set(button .. ".enabled", false)
+          state.set(control .. ".enabled", false)
         end
       end
     end

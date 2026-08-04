@@ -26,18 +26,18 @@ function StateManager:new()
     }
     for i = 1, const.counts.encoders do
         instance["encoder" .. i] = {
+            enabled = entry(false),
             controlSurfaceValue = entry(0),
+            param = entry(""),
             hostValue = entry(0),
             hostTextValue = entry(""),
             colour = entry("00 00 00"),
-            param = entry(""),
-            enabled = entry(false)
         }
     end
     for i = 1, const.counts.faders do
         instance["fader" .. i] = {
-            controlSurfaceValue = entry(0),
             enabled = entry(false),
+            controlSurfaceValue = entry(0),
             param = entry(""),
             hostValue = entry(0),
             hostTextValue = entry(""),
@@ -46,9 +46,12 @@ function StateManager:new()
     end
     for i = 1, const.counts.buttons do
         instance["button" .. i] = {
-            value = entry(false),
+            enabled = entry(false),
+            controlSurfaceValue = entry(false),
+            param = entry(""),
+            hostValue = entry(false),
+            hostTextValue = entry(""),
             colour = entry("00 00 00"),
-            enabled = entry(false)
         }
     end
     setmetatable(instance, self)
@@ -75,21 +78,36 @@ function StateManager:update(path)
 end
 
 function StateManager:updateAll()
+    local control = nil
     for i = 1, const.counts.encoders do
-        local encoder = "encoder" .. i
-        self:update(encoder .. ".value")
-        self:update(encoder .. ".colour")
-        self:update(encoder .. ".enabled")
+        control = "encoder" .. i
+        self:update(control .. ".enabled")
+        self:update(control .. ".controlSurfaceValue")
+        self:update(control .. ".param")
+        self:update(control .. ".hostValue")
+        self:update(control .. ".hostTextValue")
+        self:update(control .. ".colour")
     end
     for i = 1, const.counts.faders do
-        self:update("fader" .. i)
+        control = "fader" .. i
+        self:update(control .. ".enabled")
+        self:update(control .. ".controlSurfaceValue")
+        self:update(control .. ".param")
+        self:update(control .. ".hostValue")
+        self:update(control .. ".hostTextValue")
+        self:update(control .. ".status")
     end
     for i = 1, const.counts.buttons do
-        local button = "button" .. i
-        self:update(button .. ".value")
-        self:update(button .. ".colour")
-        self:update(button .. ".enabled")
+        control = "button" .. i
+        self:update(control .. ".enabled")
+        self:update(control .. ".controlSurfaceValue")
+        self:update(control .. ".param")
+        self:update(control .. ".hostValue")
+        self:update(control .. ".hostTextValue")
+        self:update(control .. ".colour")
     end
+    self:update("transport.playing")
+    self:update("transport.recording")
     self:update("display")
     self:update("documentName")
     self:update("targetTrackName")
@@ -105,7 +123,6 @@ end
 function StateManager:getNext(path)
     local stateItem = tbl.getValueFromPath(self, path)
     if stateItem == nil then
-        deb.log("[lib:state:stateManager] state item " .. path .. " is nil!")
         return 0
     end
     return stateItem.next

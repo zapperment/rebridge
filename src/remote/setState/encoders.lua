@@ -19,13 +19,13 @@ end
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
   for _, changedItemIndex in ipairs(changedItems) do
-    local item = remote.get_item_state(changedItemIndex)
+    local changedItem = remote.get_item_state(changedItemIndex)
     for i = 1, const.counts.encoders do
       local control = "encoder" .. i
       if changedItemIndex == items[control].index then
-        local hostValue = item.value;
-        local param = item.remote_item_name;
-        local enabled = item.is_enabled;
+        local hostValue = changedItem.value;
+        local param = changedItem.remote_item_name;
+        local enabled = changedItem.is_enabled;
         if enabled then
           if watchedParams[param] then
             paramValues[param] = hostValue
@@ -33,35 +33,13 @@ return function(changedItems)
           state.set(control .. ".enabled", true)
           state.set(control .. ".param", param)
           state.set(control .. ".hostValue", hostValue)
-          state.set(control .. ".hostTextValue", disp.getTextValue(item))
-          local colourName = col.getColourName(state.getNext("deviceType"), item.remote_item_name,
+          state.set(control .. ".hostTextValue", disp.getTextValue(changedItem))
+          local colourName = col.getColourName(state.getNext("deviceType"), changedItem.remote_item_name,
             items[control].colour)
           state.set(control .. ".colour", col.getColour(colourName, hostValue))
         else
           state.set(control .. ".enabled", false)
           state.set(control .. ".colour", col.getColour("black", hostValue))
-        end
-        if control == "encoder4" then
-          deb.log(
-            "[remote:setState:encoders] " ..
-            "next " .. control .. ".enabled=" .. (state.getNext(control .. ".enabled") and "true" or "false")
-          )
-          deb.log(
-            "[remote:setState:encoders] " ..
-            "next " .. control .. ".param=" .. (state.getNext(control .. ".param"))
-          )
-          deb.log(
-            "[remote:setState:encoders] " ..
-            "next " .. control .. ".hostValue=" .. (state.getNext(control .. ".hostValue"))
-          )
-          deb.log(
-            "[remote:setState:encoders] " ..
-            "next " .. control .. ".hostTextValue=" .. (state.getNext(control .. ".hostTextValue"))
-          )
-          deb.log(
-            "[remote:setState:encoders] " ..
-            "next " .. control .. ".colour=" .. (state.getNext(control .. ".colour"))
-          )
         end
       end
     end
