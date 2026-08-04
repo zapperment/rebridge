@@ -1,5 +1,6 @@
 local const = require("src.config.constants")
 local tbl = require("src.lib.table._")
+local deb = require("src.lib.debug._")
 
 local StateManager = {}
 
@@ -35,11 +36,11 @@ function StateManager:new()
     end
     for i = 1, const.counts.faders do
         instance["fader" .. i] = {
-            controlSurfaceValue = entry(nil),
+            controlSurfaceValue = entry(0),
+            enabled = entry(false),
+            param = entry(""),
             hostValue = entry(0),
             hostTextValue = entry(""),
-            param = entry(""),
-            enabled = entry(false),
             status = entry(const.fader.unassigned)
         }
     end
@@ -101,7 +102,12 @@ function StateManager:get(path)
 end
 
 function StateManager:getNext(path)
-    return tbl.getValueFromPath(self, path).next
+    local stateItem = tbl.getValueFromPath(self, path)
+    if stateItem == nil then
+        deb.log("[lib:state:stateManager] state item " .. path .. " is nil!")
+        return 0
+    end
+    return stateItem.next
 end
 
 function StateManager:set(path, next)

@@ -36,6 +36,32 @@ return function(changedItems)
         state.set(control .. ".hostValue", hostValue)
         state.set(control .. ".hostTextValue", hostTextValue)
         state.set(control .. ".status", status)
+        if control == "fader1" then
+          deb.log(
+            "[remote:setState:faders] next " .. control .. ".controlSurfaceValue=" ..
+            state.getNext(control .. ".controlSurfaceValue")
+          )
+          deb.log(
+            "[remote:setState:faders] next " .. control .. ".enabled=" ..
+            (state.getNext(control .. ".enabled") and "true" or "false")
+          )
+          deb.log(
+            "[remote:setState:faders] next " .. control .. ".param=" ..
+            state.getNext(control .. ".param")
+          )
+          deb.log(
+            "[remote:setState:faders] next " .. control .. ".hostValue=" ..
+            state.getNext(control .. ".hostValue")
+          )
+          deb.log(
+            "[remote:setState:faders] next " .. control .. ".hostTextValue=" ..
+            state.getNext(control .. ".hostTextValue")
+          )
+          deb.log(
+            "[remote:setState:faders] next " .. control .. ".status=" ..
+            state.getNext(control .. ".status")
+          )
+        end
       end
     end
   end
