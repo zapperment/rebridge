@@ -9,6 +9,8 @@ return {
   },
 
   deny = {
+    "fader1",
+    "encoder4"
   },
 
 }

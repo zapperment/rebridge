@@ -17,6 +17,14 @@ return function(event)
               item.colour
             )
             state.set(control .. ".colour", col.getColour(colourName, controlSurfaceValue))
+            if control == "encoder4" then
+              deb.log(
+                "[remote:processMidi:encoders] " ..
+                "next " .. control .. ".colour=" ..
+                col.getColour(colourName, controlSurfaceValue) ..
+                " (" .. colourName .. " " .. controlSurfaceValue .. ")"
+              )
+            end
 
             -- update host (Reason)
             remote.handle_input({

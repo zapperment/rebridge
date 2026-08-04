@@ -16,5 +16,6 @@ return {
     mint    = "00ff70",
     pink    = "ff0050",
     white   = "505050",
+    black   = "000000",
   }
 }

@@ -39,6 +39,29 @@ return function(changedItems)
           state.set(control .. ".colour", col.getColour(colourName, hostValue))
         else
           state.set(control .. ".enabled", false)
+          state.set(control .. ".colour", col.getColour("black", hostValue))
+        end
+        if control == "encoder4" then
+          deb.log(
+            "[remote:setState:encoders] " ..
+            "next " .. control .. ".enabled=" .. (state.getNext(control .. ".enabled") and "true" or "false")
+          )
+          deb.log(
+            "[remote:setState:encoders] " ..
+            "next " .. control .. ".param=" .. (state.getNext(control .. ".param"))
+          )
+          deb.log(
+            "[remote:setState:encoders] " ..
+            "next " .. control .. ".hostValue=" .. (state.getNext(control .. ".hostValue"))
+          )
+          deb.log(
+            "[remote:setState:encoders] " ..
+            "next " .. control .. ".hostTextValue=" .. (state.getNext(control .. ".hostTextValue"))
+          )
+          deb.log(
+            "[remote:setState:encoders] " ..
+            "next " .. control .. ".colour=" .. (state.getNext(control .. ".colour"))
+          )
         end
       end
     end

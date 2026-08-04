@@ -8,7 +8,7 @@ return function(control, event, callback)
   if match then
     local controlSurfaceValue = match.x
     state.set(control .. ".controlSurfaceValue", controlSurfaceValue)
-    if control == "fader1" then
+    if control == "encoder1" then
       deb.log(
         "[remote:processMidi:util:process] next " .. control .. ".controlSurfaceValue=" ..
         state.getNext(control .. ".controlSurfaceValue")
