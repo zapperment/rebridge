@@ -10,22 +10,12 @@ return function()
   for i = 1, const.counts.faders do
     local control = "fader" .. i
 
-    local controlSurfaceValueChanged = state.hasChanged(control .. ".controlSurfaceValue")
-    state.update(control .. ".controlSurfaceValue")
-
-    local enabledChanged = state.hasChanged(control .. ".enabled")
-    local enabled = state.update(control .. ".enabled")
-
-    local paramChanged = state.hasChanged(control .. ".param")
-    local param = state.update(control .. ".param")
-
+    local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
+    local enabled, enabledChanged = state.update(control .. ".enabled")
+    local param, paramChanged = state.update(control .. ".param")
     state.update(control .. ".hostValue")
-
-    local hostTextValueChanged = state.hasChanged(control .. ".hostTextValue")
-    local hostTextValue = state.update(control .. ".hostTextValue")
-
-    local statusChanged = state.hasChanged(control .. ".status")
-    local status = state.update(control .. ".status")
+    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local status, statusChanged = state.update(control .. ".status")
 
     local controller = items[control].controller
 

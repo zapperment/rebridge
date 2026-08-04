@@ -10,23 +10,12 @@ return function()
   for i = 1, const.counts.encoders do
     local control = "encoder" .. i
 
-    local controlSurfaceValueChanged = state.hasChanged(control .. ".controlSurfaceValue")
-    state.update(control .. ".controlSurfaceValue")
-
-    local enabledChanged = state.hasChanged(control .. ".enabled")
-    local enabled = state.update(control .. ".enabled")
-
-    local paramChanged = state.hasChanged(control .. ".param")
-    local param = state.update(control .. ".param")
-
+    local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
+    local enabled, enabledChanged = state.update(control .. ".enabled")
+    local param, paramChanged = state.update(control .. ".param")
     local hostValue = state.update(control .. ".hostValue")
-
-    local hostTextValueChanged = state.hasChanged(control .. ".hostTextValue")
-    local hostTextValue = state.update(control .. ".hostTextValue")
-
-    local colourChanged = state.hasChanged(control .. ".colour")
-    local colour = state.update(control .. ".colour")
-
+    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local colour, colourChanged = state.update(control .. ".colour")
 
     local item = items[control]
     local controller = item.controller

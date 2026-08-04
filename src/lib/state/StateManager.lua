@@ -69,8 +69,9 @@ function StateManager:update(path)
     if item == nil then
         return
     end
+    local hasChanged = item.next ~= item.current
     item.current = item.next
-    return item.current
+    return item.current, hasChanged
 end
 
 function StateManager:updateAll()
