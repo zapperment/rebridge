@@ -32,7 +32,6 @@ return function(event)
               item = item.index,
               value = controlSurfaceValue
             })
-            return true
           end
         ) then
       return true

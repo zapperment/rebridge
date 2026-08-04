@@ -4,6 +4,7 @@ local state = require("src.lib.state._")
 local buttonStates = require("src.lib.state.buttons")
 local cycleParams = require("src.config.cycleParams")
 local col = require("src.lib.colour._")
+local util = require("src.remote.processMidi.util._")
 local deb = require("src.lib.debug._")
 
 -- the number of values of the mapped parameter if the button cycles through
@@ -25,54 +26,51 @@ end
 
 -- handles changes of the buttons of the remote surface (Launch Control)
 return function(event)
-  local processed = false
-
   for i = 1, const.counts.buttons do
-    local control = "button" .. i
-    local item = items[control]
-    local match = remote.match_midi(item.midi, event)
-    if match and state.get(control .. ".enabled") then
-      local pressed = match.x > 0
-      local paramName = remote.get_item_name(item.index)
-      local colourName = col.getColourName(state.getNext("deviceType"), paramName, item.colour)
-      local cycleCount = getCycleCount(paramName)
-      if cycleCount then
-        -- a cycle button is momentary: bright while held, and each press
-        -- advances the parameter to its next value, wrapping around at the end
-        if pressed then
-          buttonStates.held[control] = true
-          state.set(control .. ".colour", col.getColour(colourName, 95))
-          buttonStates.pressed = item
+    if util.process(
+          "button" .. i,
+          event,
+          function(control, controlSurfaceValue, item)
+            -- callback START --
+            local pressed = controlSurfaceValue > 0
+            local paramName = remote.get_item_name(item.index)
+            local colourName = col.getColourName(state.getNext("deviceType"), paramName, item.colour)
+            local cycleCount = getCycleCount(paramName)
+            if cycleCount then
+              -- a cycle button is momentary: bright while held, and each press
+              -- advances the parameter to its next value, wrapping around at the end
+              if pressed then
+                buttonStates.held[control] = true
+                state.set(control .. ".colour", col.getColour(colourName, 95))
+                buttonStates.pressed = item
 
-          local currentValue = toParamValue(remote.get_item_state(item.index).value, cycleCount)
-          local nextValue = (currentValue + 1) % cycleCount
+                local currentValue = toParamValue(remote.get_item_state(item.index).value, cycleCount)
+                local nextValue = (currentValue + 1) % cycleCount
 
-          -- update host (Reason)
-          remote.handle_input({
-            time_stamp = event.time_stamp,
-            item = item.index,
-            value = toScaledValue(nextValue, cycleCount)
-          })
-        else
-          buttonStates.held[control] = nil
-          state.set(control .. ".colour", col.getColour(colourName, 1))
-        end
-        processed = true
-      elseif pressed then
-        local turnedOn = state.flip(control .. ".value")
-        local colourValue = turnedOn and 95 or 1
-        state.set(control .. ".colour", col.getColour(colourName, colourValue))
-        buttonStates.pressed = item
+                -- update host (Reason)
+                remote.handle_input({
+                  time_stamp = event.time_stamp,
+                  item = item.index,
+                  value = toScaledValue(nextValue, cycleCount)
+                })
+              else
+                buttonStates.held[control] = nil
+                state.set(control .. ".colour", col.getColour(colourName, 1))
+              end
+            elseif pressed then
+              local turnedOn = state.flip(control .. ".value")
+              local colourValue = turnedOn and 95 or 1
+              state.set(control .. ".colour", col.getColour(colourName, colourValue))
+              buttonStates.pressed = item
 
-        -- update host (Reason)
-        local hostValue = turnedOn and 127 or 0
-        remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = hostValue })
-        processed = true
-      else
-        -- releasing a toggle button does nothing, but the event is consumed
-        processed = true
-      end
+              -- update host (Reason)
+              local hostValue = turnedOn and 127 or 0
+              remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = hostValue })
+            end
+            -- callback END --
+          end
+        ) then
+      return true
     end
   end
-  return processed
 end

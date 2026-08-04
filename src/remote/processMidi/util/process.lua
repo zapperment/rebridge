@@ -15,8 +15,9 @@ return function(control, event, callback)
       )
     end
     if state.get(control .. ".enabled") then
-      return callback(control, controlSurfaceValue, item)
+      callback(control, controlSurfaceValue, item)
     end
+    return true
   end
   return false
 end

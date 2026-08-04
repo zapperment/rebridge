@@ -47,9 +47,6 @@ return function(event)
                 value = controlSurfaceValue,
                 time_stamp = event.time_stamp
               })
-              return true
-            else
-              return false
             end
           end
         ) then
