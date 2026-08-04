@@ -25,25 +25,27 @@ return function(changedItems)
     for i = 1, const.counts.buttons do
       local button = "button" .. i
       if changedItemIndex == items[button].index then
-        hasChanged = true
         if changedItem.is_enabled then
           state.set(button .. ".enabled", true)
-          if watchedParams[changedItem.remote_item_name] then
-            local hostValue = changedItem.value
-            paramValues[changedItem.remote_item_name] = hostValue
+          local paramName = changedItem.remote_item_name
+          local hostValue = changedItem.value
+          if watchedParams[paramName] then
+            paramValues[paramName] = hostValue
+          end
+          if paramName == "Resonator Select" then
+            deb.log("[remote:setState:buttons] resonatorSelect hostValue=" .. hostValue)
           end
           local deviceType = state.getNext("deviceType")
-          local colourName = col.getColourName(deviceType, changedItem.remote_item_name, items[button].colour)
+          local colourName = col.getColourName(deviceType, paramName, items[button].colour)
           local deviceCycleParams = cycleParams[deviceType]
-          if deviceCycleParams and deviceCycleParams[changedItem.remote_item_name] then
+          if deviceCycleParams and deviceCycleParams[paramName] then
             -- a cycle button stays dim whatever the parameter's value; it is
             -- only bright while held down, which processMidi takes care of
             if not buttonStates.held[button] then
               state.set(button .. ".colour", col.getColour(colourName, 1))
             end
           else
-            local hostValue = changedItem.value > 0 and true or false
-            state.set(button .. ".value", hostValue)
+            state.set(button .. ".value", hostValue > 0 and true or false)
             local colourValue = changedItem.value > 0 and 95 or 1
             state.set(button .. ".colour", col.getColour(colourName, colourValue))
           end

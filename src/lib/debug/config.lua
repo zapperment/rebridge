@@ -10,7 +10,8 @@ return {
 
   deny = {
     "fader1",
-    "encoder4"
+    "encoder4",
+    "resonatorSelect"
   },
 
 }

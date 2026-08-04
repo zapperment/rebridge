@@ -73,4 +73,30 @@ return {
       "Mod Env Dest",
     },
   }),
+  algoritm = byParam({
+    red = {
+      "Reverb Decay", "Reverb Size", "Reverb Damp", "Reverb Early Reflections", "Reverb On"
+    },
+    cyan = {
+      "Delay Time", "Delay Synced Time", "Delay Feedback", "Delay Pan", "Delay Sync", "Delay PingPong", "Delay On"
+    },
+    yellow = {
+      "Dist Drive", "Dist Tone", "Dist Type", "Dist On"
+    },
+    green = {
+      "Comp Attack", "Comp Release", "Comp Threshold", "Comp On"
+    },
+    orange = {
+      "Mod Effect Depth", "Mod Effect Rate", "Mod Effect Spread", "Mod Effect Feedback", "Mod Effect Type", "Phase On"
+    },
+    blue = {
+      "EQ Freq", "EQ Q", "EQ On"
+    },
+    violet = {
+      "Resonator Pitch", "Resonator Decay", "Resonator Width", "Resonator Mix", "Resonator Select", "Resonator On"
+    },
+    sky = {
+      "Unison Timing", "Unison Detune", "Unison Spread", "Unison Blend", "Unison Count", "Unison On"
+    }
+  })
 }

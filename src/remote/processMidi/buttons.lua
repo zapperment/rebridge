@@ -20,8 +20,22 @@ local function toParamValue(scaledValue, count)
   return math.floor(scaledValue * (count - 1) / 127 + 0.5)
 end
 
+local corrections = {
+  [6] = 7,
+  [121] = 120
+}
+
 local function toScaledValue(paramValue, count)
-  return math.floor(paramValue * 127 / (count - 1) + 0.5)
+  local scaled = math.floor(paramValue * 127 / (count - 1) + 0.5)
+  local correction = corrections[scaled]
+  if correction then
+    deb.log(
+      "[remote:processMidi:buttons] " ..
+      "button correction: changed " .. scaled .. " to " .. correction
+    )
+    return correction
+  end
+  return scaled
 end
 
 -- handles changes of the buttons of the remote surface (Launch Control)
@@ -43,15 +57,44 @@ return function(event)
                 buttonStates.held[control] = true
                 state.set(control .. ".colour", col.getColour(colourName, 95))
                 buttonStates.pressed = item
-
-                local currentValue = toParamValue(remote.get_item_state(item.index).value, cycleCount)
+                local hostValue = remote.get_item_state(item.index).value
+                local currentValue = toParamValue(hostValue, cycleCount)
                 local nextValue = (currentValue + 1) % cycleCount
+                local nextValueScaled = toScaledValue(nextValue, cycleCount)
+                if paramName == "Resonator Select" then
+                  -- this is always 127 (button pressed)
+                  -- deb.log(
+                  --   "[remote:processMidi:buttons] " .. control ..
+                  --   ".controlSurfaceValue=" .. controlSurfaceValue
+                  -- )
+                  -- this is always 21
+                  -- deb.log(
+                  --   "[remote:processMidi:buttons] " ..
+                  --   "cycleCount=" .. cycleCount
+                  -- )
+                  deb.log(
+                    "[remote:processMidi:buttons] resonatorSelect " ..
+                    "hostValue=" .. hostValue
+                  )
+                  deb.log(
+                    "[remote:processMidi:buttons] resonatorSelect " ..
+                    "currentValue=" .. currentValue
+                  )
+                  deb.log(
+                    "[remote:processMidi:buttons] resonatorSelect " ..
+                    "nextValue=" .. nextValue
+                  )
+                  deb.log(
+                    "[remote:processMidi:buttons] resonatorSelect " ..
+                    "nextValueScaled=" .. nextValueScaled
+                  )
+                end
 
                 -- update host (Reason)
                 remote.handle_input({
                   time_stamp = event.time_stamp,
                   item = item.index,
-                  value = toScaledValue(nextValue, cycleCount)
+                  value = nextValueScaled
                 })
               else
                 buttonStates.held[control] = nil

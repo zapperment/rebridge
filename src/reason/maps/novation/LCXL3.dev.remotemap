@@ -374,6 +374,8 @@ Map	encoder24		Pan 9			Page 9
 Map	button1		Mode9			Page 9
 Map	button8		Out 9			Page 9
 
+// page 10: Effects
+
 Map	encoder1		Reverb Decay			Page 10
 Map	encoder9		Reverb Size			Page 10
 Map	encoder17		Reverb Damp			Page 10

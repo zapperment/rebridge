@@ -18,9 +18,16 @@ local defaultValueLabels = {
 -- the labels a device defines for buttons that are not simply on/off; a value
 -- with no label is shown as the host provides it
 local function getValueLabel(paramName, itemState)
+  local logMe = paramName == "Resonator Select"
   local deviceType = state.get("deviceType")
+  if logMe then
+    deb.log("[remote.deliverMidi.buttons] resonatorSelect deviceType=" .. deviceType)
+  end
   local label = disp.getLabel(deviceType, paramName, itemState)
   if label then
+    if logMe then
+      deb.log("[remote.deliverMidi.buttons] resonatorSelect label=" .. label)
+    end
     return label
   end
   local textValue = itemState.text_value
