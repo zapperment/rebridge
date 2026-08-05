@@ -49,9 +49,9 @@ function StateManager:new()
             enabled = entry(false),
             controlSurfaceValue = entry(false),
             param = entry(""),
-            hostValue = entry(false),
+            hostValue = entry(nil),
             hostTextValue = entry(""),
-            colour = entry("00 00 00"),
+            type = entry(const.button.toggle)
         }
     end
     setmetatable(instance, self)
@@ -104,7 +104,7 @@ function StateManager:updateAll()
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
-        self:update(control .. ".colour")
+        self:update(control .. ".type")
     end
     self:update("transport.playing")
     self:update("transport.recording")

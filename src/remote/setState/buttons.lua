@@ -4,7 +4,6 @@ local state = require("src.lib.state._")
 local paramValues = require("src.lib.state.paramValues")
 local cycleParams = require("src.config.cycleParams")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local col = require("src.lib.colour._")
 local disp = require("src.lib.display._")
 local deb = require("src.lib.debug._")
 
@@ -64,7 +63,6 @@ return function(changedItems)
             deb.log("[remote:setState:buttons] mode1 hostValue=" .. hostValue)
           end
           local deviceType = state.getNext("deviceType")
-          local colourName = col.getColourName(deviceType, param, items[control].colour)
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[param] then
             -- a cycle button stays dim whatever the parameter's value; it is
@@ -72,11 +70,11 @@ return function(changedItems)
             -- if not buttonStates.held[control] then
             --   state.set(control .. ".colour", col.getColour(colourName, 1))
             -- end
+            state.set(control .. ".type", const.button.cycle)
             state.set(control .. ".hostValue", hostValue)
           else
+            state.set(control .. ".type", const.button.toggle)
             state.set(control .. ".hostValue", hostValue > 0 and true or false)
-            local colourValue = changedItem.value > 0 and 95 or 1
-            state.set(control .. ".colour", col.getColour(colourName, colourValue))
           end
           state.set(control .. ".hostTextValue", getValueLabel(param, changedItem))
         else

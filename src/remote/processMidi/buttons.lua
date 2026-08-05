@@ -1,7 +1,6 @@
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local cycleParams = require("src.config.cycleParams")
-local col = require("src.lib.colour._")
 local util = require("src.remote.processMidi.util._")
 local deb = require("src.lib.debug._")
 
@@ -46,17 +45,11 @@ return function(event)
             -- callback START --
             local pressed = controlSurfaceValue > 0
             local paramName = remote.get_item_name(item.index)
-            local colourName = col.getColourName(
-              state.getNext("deviceType"),
-              paramName,
-              item.colour
-            )
             local cycleCount = getCycleCount(paramName)
             if cycleCount then
               -- a cycle button is momentary: bright while held, and each press
               -- advances the parameter to its next value, wrapping around at the end
               if pressed then
-                state.set(control .. ".colour", col.getColour(colourName, 95))
                 local hostValue = state.get(control .. ".hostValue")
                 local currentValue = toParamValue(hostValue, cycleCount)
                 local nextValue = (currentValue + 1) % cycleCount
@@ -68,13 +61,9 @@ return function(event)
                   item = item.index,
                   value = nextValueScaled
                 })
-              else
-                state.set(control .. ".colour", col.getColour(colourName, 1))
               end
             elseif pressed then
               local turnedOn = state.flip(control .. ".hostValue")
-              local colourValue = turnedOn and 95 or 1
-              state.set(control .. ".colour", col.getColour(colourName, colourValue))
 
               -- update host (Reason)
               local hostValue = turnedOn and 127 or 0

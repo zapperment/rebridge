@@ -15,6 +15,10 @@ return {
     tooHigh = 3,
     unassigned = 4
   },
+  button = {
+    toggle = 0,
+    cycle = 1
+  },
   interpolation = {
     linear = 0,
     bipolar = 1,

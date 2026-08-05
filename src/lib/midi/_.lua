@@ -1,5 +1,6 @@
 return {
   displayArrangements = require("src.lib.midi.displayArrangements"),
+  makeColourEvent = require("src.lib.midi.makeColourEvent"),
   makeOverlayDisplayEvents = require("src.lib.midi.makeOverlayDisplayEvents"),
   makeParamDisplayConfigEvent = require("src.lib.midi.makeParamDisplayConfigEvent"),
   makeParamDisplayTriggerEvent = require("src.lib.midi.makeParamDisplayTriggerEvent"),
