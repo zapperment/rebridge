@@ -33,8 +33,8 @@ return function(deviceType, paramName, defaultColour)
         "[lib.colour.getColourName] " ..
         "custom colour per parameter: " .. colour
       )
-      return colour
     end
+    return colour
   end
   local conditional = conditionalValueLabels[deviceType]
   if not conditional then
@@ -89,7 +89,7 @@ return function(deviceType, paramName, defaultColour)
       "dependsOnValue=" .. dependsOnValue
     )
   end
-  colour = conditional.colours[dependsOnValue]
+  colour = conditional.colours[tostring(dependsOnValue)]
   if not colour then
     if logMe then
       deb.log(

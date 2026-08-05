@@ -1,6 +1,4 @@
 local const = require("src.config.constants")
-local state = require("src.lib.state._")
-local col = require("src.lib.colour._")
 local util = require("src.remote.processMidi.util._")
 local deb = require("src.lib.debug._")
 
@@ -11,13 +9,6 @@ return function(event)
           "encoder" .. i,
           event,
           function(control, controlSurfaceValue, item)
-            local colourName = col.getColourName(
-              state.getNext("deviceType"),
-              remote.get_item_name(item.index),
-              item.colour
-            )
-            state.set(control .. ".colour", col.getColour(colourName, controlSurfaceValue))
-
             -- update host (Reason)
             remote.handle_input({
               time_stamp = event.time_stamp,

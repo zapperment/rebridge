@@ -2,6 +2,7 @@ local state = require("src.lib.state._")
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local midi = require("src.lib.midi._")
+local col = require("src.lib.colour._")
 local deb = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
@@ -10,12 +11,12 @@ return function()
   for i = 1, const.counts.encoders do
     local control = "encoder" .. i
 
+    local deviceType, deviceTypeChanged = state.update("deviceType")
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
-    local hostValue = state.update(control .. ".hostValue")
+    local hostValue, hostValueChanged = state.update(control .. ".hostValue")
     local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
-    local colour, colourChanged = state.update(control .. ".colour")
 
     local item = items[control]
     local controller = item.controller
@@ -35,15 +36,20 @@ return function()
         table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
         table.insert(events, midi.makeParamValueDisplayEvent(hostTextValue, item.controller))
       end
-      if colourChanged then
-        table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = item.controller }))
+      if deviceTypeChanged or paramChanged or hostValueChanged then
+        local colourName = col.getColourName(
+          deviceType,
+          param,
+          item.colour
+        )
+        table.insert(events, midi.makeColourEvent(colourName, hostValue, controller))
       end
       if controlSurfaceValueChanged then
         table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
       end
     else
       -- turn off encoder's LED
-      table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = item.controller }))
+      table.insert(events, midi.makeColourEvent("black", 0, controller))
     end
   end
   return events

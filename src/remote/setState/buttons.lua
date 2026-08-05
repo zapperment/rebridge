@@ -65,11 +65,6 @@ return function(changedItems)
           local deviceType = state.getNext("deviceType")
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[param] then
-            -- a cycle button stays dim whatever the parameter's value; it is
-            -- only bright while held down, which processMidi takes care of
-            -- if not buttonStates.held[control] then
-            --   state.set(control .. ".colour", col.getColour(colourName, 1))
-            -- end
             state.set(control .. ".type", const.button.cycle)
             state.set(control .. ".hostValue", hostValue)
           else

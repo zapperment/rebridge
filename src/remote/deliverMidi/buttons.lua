@@ -74,7 +74,7 @@ return function()
       end
     else
       -- turn off button's LED if it is disabled
-      table.insert(events, midi.makeSysexEvent("01 53 xx 00 00 00", { x = controller }))
+      table.insert(events, midi.makeColourEvent("black", 0, controller))
     end
   end
 

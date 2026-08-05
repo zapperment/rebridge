@@ -1,7 +1,6 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local col = require("src.lib.colour._")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local paramValues = require("src.lib.state.paramValues")
 local disp = require("src.lib.display._")
@@ -34,12 +33,8 @@ return function(changedItems)
           state.set(control .. ".param", param)
           state.set(control .. ".hostValue", hostValue)
           state.set(control .. ".hostTextValue", disp.getTextValue(changedItem))
-          local colourName = col.getColourName(state.getNext("deviceType"), changedItem.remote_item_name,
-            items[control].colour)
-          state.set(control .. ".colour", col.getColour(colourName, hostValue))
         else
           state.set(control .. ".enabled", false)
-          state.set(control .. ".colour", col.getColour("black", hostValue))
         end
       end
     end
