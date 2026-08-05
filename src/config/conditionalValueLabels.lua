@@ -17,7 +17,11 @@ return {
     },
   },
   algoritm = {
-    ["Freq 1"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
+    ["Freq 1"] = {
+      dependsOn = "Mode1",
+      variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc" },
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "black", ["127"] = "red" }
+    },
     ["Freq 2"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
     ["Freq 3"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
     ["Freq 4"] = { dependsOn = "Mode1", variations = { ["32"] = "Freq 1 Op/Osc", ["127"] = "Freq 1 Op/Osc", } },
