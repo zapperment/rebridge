@@ -4,7 +4,7 @@ local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local hex = require("src.lib.hex._")
 local pages = require("src.lib.state.pages")
-local deliverPages = require("src.deliverMidi.pages")
+local deliverPages = require("src.remote.deliverMidi.pages")
 
 require("src.reason.codecs.novation.LCXL3")
 

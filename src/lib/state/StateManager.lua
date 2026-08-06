@@ -145,7 +145,8 @@ function StateManager:set(path, next)
     local parentParam = parentHasParam and parent.param.next
     local hostValue = isHostValue and next or parentHostValue
     local param = isParam and next or parentParam
-    if (isHostValue and parentHasParam and parentParam ~= "") or (isParam and param ~= "" and parentHasHostValue) then
+    if (isHostValue and type(parentParam) == "string" and parentParam ~= "")
+        or (isParam and type(param) == "string" and param ~= "" and parentHasHostValue) then
         self.hostValues[param] = hostValue
         deb.log(
             "[lib.state.StateManager] storing host value: **" ..

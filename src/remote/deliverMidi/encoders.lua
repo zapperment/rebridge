@@ -47,7 +47,7 @@ return function()
       if controlSurfaceValueChanged then
         table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
       end
-    else
+    elseif enabledChanged then
       -- turn off encoder's LED
       table.insert(events, midi.makeColourEvent("black", 0, controller))
     end

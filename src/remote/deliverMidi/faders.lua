@@ -19,7 +19,7 @@ return function()
 
     local controller = items[control].controller
 
-    if enabledChanged or hostTextValueChanged or paramChanged or statusChanged then
+    if enabledChanged or hostTextValueChanged or paramChanged then
       table.insert(events,
         midi.makeParamDisplayConfigEvent(controller, enabled, midi.displayArrangements.nameAndTextValue))
     end

@@ -4,8 +4,10 @@ local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local items = require("src.config.items")
 local hex = require("src.lib.hex._")
-local processButtons = require("src.processMidi.buttons")
-local deliverButtons = require("src.deliverMidi.buttons")
+local col = require("src.lib.colour._")
+local processButtons = require("src.remote.processMidi.buttons")
+local deliverButtons = require("src.remote.deliverMidi.buttons")
+local setButtons = require("src.remote.setState.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
 
@@ -15,64 +17,78 @@ local function sysex(payload)
     return const.sysexHeader .. " " .. payload .. " f7"
 end
 
--- the events that show the given name and value on the overlay display
-local function overlaySysex(name, value)
-    return {
-        sysex("04 36 61"),
-        sysex("06 36 00 " .. hex.textToHex(name)),
-        sysex("06 36 01 " .. hex.textToHex(value)),
-        sysex("04 36 7f"),
-    }
+local function nameSysex(text)
+    return sysex("06 xx 00 " .. hex.textToHex(text))
 end
 
--- the overlay events are appended after the LED colour events
-local function trailingEvents(events, count)
-    local trailing = {}
-    for i = #events - count + 1, #events do
-        table.insert(trailing, events[i])
+local function valueSysex(text)
+    return sysex("06 xx 01 " .. hex.textToHex(text))
+end
+
+local function colourEvent(colourName, intensity)
+    return sysex("01 53 xx " .. col.getColour(colourName, intensity))
+end
+
+local displayOn = sysex("04 xx 61")
+local displayOff = sysex("04 xx 01")
+
+local function contains(events, event)
+    for _, candidate in ipairs(events) do
+        if candidate == event then
+            return true
+        end
     end
-    return trailing
+    return false
+end
+
+local function countColourEvents(events)
+    local count = 0
+    for _, event in ipairs(events) do
+        if event:find("01 53 xx", 1, true) then
+            count = count + 1
+        end
+    end
+    return count
+end
+
+-- the events carry the button in the options, as the "xx" placeholder is only
+-- substituted by the host; this collects the targets an event was sent for
+local function targetsOf(event)
+    local targets = {}
+    for _, call in ipairs(remote.mock("make_midi").calls) do
+        if call[1] == event then
+            table.insert(targets, call[2].x)
+        end
+    end
+    return targets
+end
+
+-- simulates the host reporting the button as mapped to the given parameter
+local function reportButton(button, paramName, hostValue, textValue)
+    remote.mock("get_item_state"):impl(function()
+        return { is_enabled = true, value = hostValue, remote_item_name = paramName, text_value = textValue }
+    end)
+    setButtons({ items[button].index })
 end
 
 local function enableButton(button)
-    state.set(button .. ".enabled", true)
+    reportButton(button, "Mute", 127, "1")
     deliverButtons()
+    remote.clearMocks()
 end
 
--- simulates a press of the button on the remote surface (Launch Control)
-local function pressButton(button)
+-- simulates the button on the remote surface (Launch Control) being pressed
+-- (127) or released (0)
+local function sendButton(button, value)
     remote.mock("match_midi"):impl(function(midi)
-        return midi == items[button].midi and { x = 127 } or nil
+        return midi == items[button].midi and { x = value } or nil
     end)
     processButtons({ time_stamp = 0 })
-end
-
--- how often the overlay display was filled in, as each one reads the param name
-local function overlayCount()
-    return #remote.mock("get_item_name").calls
-end
-
-local function setTextValue(textValue)
-    remote.mock("get_item_text_value"):impl(function()
-        return textValue
-    end)
-end
-
-local function setParamName(paramName)
-    remote.mock("get_item_name"):impl(function()
-        return paramName
-    end)
 end
 
 function TestDeliverButtons:setUp()
     test.resetState()
     remote.clearMocks()
-    setParamName("Mute")
-    setTextValue("1")
-    -- pressing a cycle button reads the current value from the item state
-    remote.mock("get_item_state"):impl(function()
-        return { value = 0 }
-    end)
     remote_init()
 end
 
@@ -82,176 +98,110 @@ function TestDeliverButtons:testNoEventsWhenNothingHasChanged()
     lu.assertEquals(#events, 0, errorMessage)
 end
 
-function TestDeliverButtons:testShowsParamNameAndValueWhenButtonIsPressed()
+function TestDeliverButtons:testShowsDisplayConfigNameAndValueWhenButtonBecomesEnabled()
+    reportButton("button1", "Mute", 127, "1")
+    local events = deliverButtons()
+    local errorMessage = "expected the display to be configured when a button becomes enabled"
+    lu.assertEquals(contains(events, displayOn), true, errorMessage)
+    errorMessage = "expected the param name to be shown when a button becomes enabled"
+    lu.assertEquals(contains(events, nameSysex("Mute")), true, errorMessage)
+    errorMessage = "expected the resolved value label to be shown when a button becomes enabled"
+    lu.assertEquals(contains(events, valueSysex("On")), true, errorMessage)
+end
+
+function TestDeliverButtons:testSuppressesDisplayAndTurnsOffLedWhenButtonBecomesDisabled()
     enableButton("button1")
-    pressButton("button1")
+    state.set("button1.enabled", false)
     local events = deliverButtons()
-    local errorMessage = "expected the param name and value to be shown on the overlay display"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Mute", "On"), errorMessage)
+    local errorMessage = "expected the button's display to be suppressed when it becomes disabled"
+    lu.assertEquals(contains(events, displayOff), true, errorMessage)
+    errorMessage = "expected the button's LED to be turned off when it becomes disabled"
+    lu.assertEquals(contains(events, sysex("01 53 xx 00 00 00")), true, errorMessage)
 end
 
-function TestDeliverButtons:testShowsTheValue0AsOff()
-    setTextValue("0")
+function TestDeliverButtons:testDoesNotResendWhenNothingChangesOnTheNextDelivery()
     enableButton("button1")
-    pressButton("button1")
     local events = deliverButtons()
-    local errorMessage = "expected the text value '0' to be shown as 'Off'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Mute", "Off"), errorMessage)
+    local errorMessage = "expected no events on the next delivery when nothing has changed, but got " .. #events
+    lu.assertEquals(#events, 0, errorMessage)
 end
 
-function TestDeliverButtons:testShowsTheDeviceSpecificLabelsForKeyModeOnSubTractor()
-    state.set("deviceType", "subtractor")
-    state.update("deviceType")
-    setParamName("Key Mode")
-    setTextValue("0")
-    enableButton("button11")
-    pressButton("button11")
-    local events = deliverButtons()
-    local errorMessage = "expected SubTractor's 'Key Mode' to show the value 0 as 'Legato'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Key Mode", "Legato"), errorMessage)
-
-    setTextValue("1")
-    pressButton("button11")
-    events = deliverButtons()
-    errorMessage = "expected SubTractor's 'Key Mode' to show the value 1 as 'Retrig'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Key Mode", "Retrig"), errorMessage)
-end
-
-function TestDeliverButtons:testStillShowsOnOffForOtherParamsOnADeviceWithSpecialCases()
-    state.set("deviceType", "subtractor")
-    state.update("deviceType")
-    setParamName("Ring Mod")
-    enableButton("button4")
-    pressButton("button4")
-    local events = deliverButtons()
-    local errorMessage = "expected a SubTractor param without its own labels to still show 'On'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Ring Mod", "On"), errorMessage)
-end
-
-function TestDeliverButtons:testShowsTheLabelOfACycleParamValue()
-    state.set("deviceType", "subtractor")
-    state.update("deviceType")
-    setParamName("LFO2 Dest")
-    setTextValue("2")
-    enableButton("button4")
-    pressButton("button4")
-    local events = deliverButtons()
-    local errorMessage = "expected LFO2 Dest's value 2 to be shown with its label from the SubTractor UI"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("LFO2 Dest", "F.Freq 2"), errorMessage)
-end
-
-function TestDeliverButtons:testShowsThePlainValueForAnUnlabelledCycleParamValue()
-    -- every value a SubTractor cycle parameter can actually take has a label
-    -- configured; this pins down the fallback for a value that has none,
-    -- rather than the On/Off defaults
-    state.set("deviceType", "subtractor")
-    state.update("deviceType")
-    setParamName("Osc1 Phase Mode")
-    setTextValue("9")
-    enableButton("button1")
-    pressButton("button1")
-    local events = deliverButtons()
-    local errorMessage = "expected a cycling parameter's unlabelled value to be shown plainly, not 'On'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Osc1 Phase Mode", "9"), errorMessage)
-end
-
-function TestDeliverButtons:testStillShowsOnOffForTheSameParamNameOnAnotherDevice()
-    state.set("deviceType", "combinator")
-    state.update("deviceType")
-    setParamName("Key Mode")
-    enableButton("button11")
-    pressButton("button11")
-    local events = deliverButtons()
-    local errorMessage = "expected 'Key Mode' on a device without its own labels to still show 'On'"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Key Mode", "On"), errorMessage)
-end
-
-function TestDeliverButtons:testShowsAnyOtherValueAsTheHostReportsIt()
-    setTextValue("Sine")
-    enableButton("button1")
-    pressButton("button1")
-    local events = deliverButtons()
-    local errorMessage = "expected a text value other than '0' or '1' to be shown unchanged"
-    lu.assertEquals(trailingEvents(events, 4), overlaySysex("Mute", "Sine"), errorMessage)
-end
-
-function TestDeliverButtons:testUsesTheNameAndValueOfThePressedButton()
-    enableButton("button5")
-    pressButton("button5")
-    deliverButtons()
-    local nameCalls = remote.mock("get_item_name").calls
-    local errorMessage = "expected the param name to be read for button5 (item index " ..
-        items.button5.index .. "), but it was read for item index " .. tostring(nameCalls[#nameCalls][1])
-    lu.assertEquals(nameCalls[#nameCalls][1], items.button5.index, errorMessage)
-end
-
-function TestDeliverButtons:testDoesNotShowParamNameWhenHostChangesTheValue()
-    enableButton("button1")
-    -- the host (Reason) reporting a new value, e.g. the user clicked the
-    -- device's button in the rack on screen
-    state.set("button1.value", true)
-    deliverButtons()
-    local errorMessage = "expected no overlay display when the host changes the value, " ..
-        "but the overlay was shown " .. overlayCount() .. " times"
-    lu.assertEquals(overlayCount(), 0, errorMessage)
-end
-
-function TestDeliverButtons:testDoesNotShowParamNameWhenButtonOnlyBecomesEnabled()
-    state.set("button1.enabled", true)
-    deliverButtons()
-    local errorMessage = "expected no overlay display when a button is merely enabled by the host, " ..
-        "but the overlay was shown " .. overlayCount() .. " times"
-    lu.assertEquals(overlayCount(), 0, errorMessage)
-end
-
-function TestDeliverButtons:testDoesNotShowParamNameWhenDisabledButtonIsPressed()
-    pressButton("button1")
+function TestDeliverButtons:testDoesNotShowAnythingWhenADisabledButtonIsPressed()
+    sendButton("button1", 127)
     local events = deliverButtons()
     local errorMessage = "expected no events when a disabled button is pressed, but got " .. #events .. " events"
     lu.assertEquals(#events, 0, errorMessage)
 end
 
-function TestDeliverButtons:testShowsOnlyTheLastPressedButtonWhenSeveralArePressed()
-    enableButton("button1")
-    enableButton("button2")
-    pressButton("button1")
-    pressButton("button2")
-    -- processing the presses reads the param names too, so only count the
-    -- reads the overlay display itself makes
-    remote.mock("get_item_name"):clear()
+function TestDeliverButtons:testToggleButtonIsBrightWhenOn()
+    reportButton("button1", "Mute", 127, "1")
+    local events = deliverButtons()
+    local errorMessage = "expected a toggle button that is on to have the bright colour"
+    lu.assertEquals(contains(events, colourEvent(items.button1.colour, 95)), true, errorMessage)
+end
+
+function TestDeliverButtons:testToggleButtonIsDimWhenOff()
+    reportButton("button1", "Mute", 0, "0")
+    local events = deliverButtons()
+    local errorMessage = "expected a toggle button that is off to have the dim colour"
+    lu.assertEquals(contains(events, colourEvent(items.button1.colour, 1)), true, errorMessage)
+end
+
+function TestDeliverButtons:testCycleButtonIsBrightWhileHeldDownAndDimAfterRelease()
+    state.set("deviceType", "subtractor")
+    state.update("deviceType")
+    reportButton("button13", "Filter Type", 32, "1")
     deliverButtons()
-    local nameCalls = remote.mock("get_item_name").calls
-    local errorMessage = "expected the overlay display to be shown once for the last pressed button, " ..
-        "but it was shown " .. #nameCalls .. " times"
-    lu.assertEquals(#nameCalls, 1, errorMessage)
-    errorMessage = "expected the overlay display to show button2, but it shows item index " ..
-        tostring(nameCalls[1][1])
-    lu.assertEquals(nameCalls[1][1], items.button2.index, errorMessage)
+    remote.clearMocks()
+
+    sendButton("button13", 127)
+    local events = deliverButtons()
+    local errorMessage = "expected the cycle button to be bright while held down"
+    lu.assertEquals(contains(events, colourEvent("orange", 95)), true, errorMessage)
+    remote.clearMocks()
+
+    sendButton("button13", 0)
+    events = deliverButtons()
+    errorMessage = "expected the cycle button to be dim after it is released"
+    lu.assertEquals(contains(events, colourEvent("orange", 1)), true, errorMessage)
 end
 
-function TestDeliverButtons:testDoesNotShowParamNameAgainOnTheNextDelivery()
-    enableButton("button1")
-    pressButton("button1")
+function TestDeliverButtons:testHostReportDoesNotOverrideACycleButtonsColourWhileItIsHeld()
+    state.set("deviceType", "subtractor")
+    state.update("deviceType")
+    reportButton("button13", "Filter Type", 32, "1")
     deliverButtons()
+    remote.clearMocks()
+
+    -- the button is pressed and the host confirms the parameter's new value in
+    -- the same tick
+    sendButton("button13", 127)
+    reportButton("button13", "Filter Type", 64, "2")
     local events = deliverButtons()
-    local errorMessage = "expected the overlay display not to be repeated on the next delivery, but got " ..
-        #events .. " events"
-    lu.assertEquals(#events, 0, errorMessage)
+    local errorMessage = "expected only one colour event when the press and the host report coincide, but got " ..
+        countColourEvents(events)
+    lu.assertEquals(countColourEvents(events), 1, errorMessage)
+    errorMessage = "expected the cycle button to stay bright, driven by the press rather than the host report"
+    lu.assertEquals(contains(events, colourEvent("orange", 95)), true, errorMessage)
 end
 
-function TestDeliverButtons:testStillSendsColourWhenButtonIsPressed()
-    enableButton("button1")
-    pressButton("button1")
+function TestDeliverButtons:testTriggersTheDisplayOfThePressedButton()
+    enableButton("button5")
+    sendButton("button5", 127)
     local events = deliverButtons()
-    local errorMessage = "expected the button's LED colour to still be sent along with the overlay display events"
-    lu.assertEquals(#events, 5, errorMessage)
-    lu.assertStrContains(events[1], "01 53 xx", false, errorMessage)
+    local errorMessage = "expected the display trigger event to target button5's controller (" ..
+        items.button5.controller .. ")"
+    lu.assertEquals(targetsOf(sysex("04 xx 7f")), { items.button5.controller }, errorMessage)
+    lu.assertEquals(contains(events, sysex("04 xx 7f")), true, errorMessage)
 end
 
-function TestDeliverButtons:testTurnsOffLedWhenButtonIsDisabled()
-    enableButton("button1")
-    state.set("button1.enabled", false)
+function TestDeliverButtons:testDoesNotTriggerTheDisplayOnRelease()
+    enableButton("button5")
+    sendButton("button5", 127)
+    deliverButtons()
+    remote.clearMocks()
+    sendButton("button5", 0)
     local events = deliverButtons()
-    local errorMessage = "expected the button's LED to be turned off when the button is disabled"
-    lu.assertEquals(events[1], sysex("01 53 xx 00 00 00"), errorMessage)
+    local errorMessage = "expected releasing a button not to trigger the display"
+    lu.assertEquals(contains(events, sysex("04 xx 7f")), false, errorMessage)
 end

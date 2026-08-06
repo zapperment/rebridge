@@ -4,7 +4,8 @@ local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local items = require("src.config.items")
 local hex = require("src.lib.hex._")
-local deliverFaders = require("src.deliverMidi.faders")
+local deliverFaders = require("src.remote.deliverMidi.faders")
+local setFaders = require("src.remote.setState.faders")
 
 require("src.reason.codecs.novation.LCXL3")
 
@@ -18,10 +19,20 @@ local function paramNameSysex(text)
     return sysex("06 xx 00 " .. hex.textToHex(text))
 end
 
--- arrangement 4 with the automatic display allowed (bits 5 and 6 set) or
--- suppressed, which is what the fader's display config byte encodes
-local displayOn = sysex("04 xx 64")
-local displayOff = sysex("04 xx 04")
+local function valueSysex(text)
+    return sysex("06 xx 01 " .. hex.textToHex(text))
+end
+
+-- arrangement 1 (name and text value) with the automatic display allowed
+-- (bits 5 and 6 set) or suppressed, which is what the fader's own display
+-- config byte encodes
+local displayOn = sysex("04 xx 61")
+local displayOff = sysex("04 xx 01")
+
+-- remote_prepare_for_use suppresses every control before it knows which
+-- arrangement each one uses, so it falls back to the default arrangement
+-- (name and numeric value) rather than the fader-specific one above
+local prepareDisplayOff = sysex("04 xx 04")
 
 -- the events carry the fader in the options, as the "xx" placeholder is only
 -- substituted by the host; this collects the targets an event was sent for
@@ -44,10 +55,20 @@ local function contains(events, event)
     return false
 end
 
--- brings the fader into the assigned state, as the host does when it maps a
--- parameter to it
+-- simulates the host reporting the fader as mapped to "Volume"
+local function reportFader(fader)
+    remote.mock("get_item_state"):impl(function()
+        return { is_enabled = true, value = 64, remote_item_name = "Volume", text_value = "64" }
+    end)
+    setFaders({ items[fader].index })
+end
+
+-- brings the fader into the assigned, in-sync state, as the host does when it
+-- maps a parameter to it and the control surface's fader is already at the
+-- right position
 local function assignFader(fader)
-    state.set(fader, const.fader.inSync)
+    reportFader(fader)
+    state.set(fader .. ".status", const.fader.inSync)
     deliverFaders()
     remote.clearMocks()
 end
@@ -55,9 +76,6 @@ end
 function TestDeliverFaders:setUp()
     test.resetState()
     remote.clearMocks()
-    remote.mock("get_item_name"):impl(function()
-        return "Volume"
-    end)
     remote_init()
 end
 
@@ -68,44 +86,46 @@ function TestDeliverFaders:testNoEventsWhenNoFaderStateHasChanged()
 end
 
 function TestDeliverFaders:testAllowsTheDisplayAndShowsParamNameWhenFaderBecomesAssigned()
-    state.set("fader1", const.fader.inSync)
+    reportFader("fader1")
+    state.set("fader1.status", const.fader.inSync)
     local events = deliverFaders()
-    local errorMessage = "expected the fader's display to be allowed and the param name to be sent"
-    lu.assertEquals(events, { displayOn, paramNameSysex("Volume") }, errorMessage)
+    local errorMessage = "expected the fader's display to be allowed, the param name sent, and its value shown"
+    lu.assertEquals(events, { displayOn, paramNameSysex("Volume"), valueSysex("64") }, errorMessage)
 end
 
-function TestDeliverFaders:testShowsParamNameWhenFaderIsInSync()
+function TestDeliverFaders:testShowsTheValueWithoutAPrefixWhenFaderIsInSync()
     assignFader("fader1")
-    state.set("fader1", const.fader.tooLow)
+    state.set("fader1.status", const.fader.tooLow)
     deliverFaders()
-    state.set("fader1", const.fader.inSync)
+    state.set("fader1.status", const.fader.inSync)
     local events = deliverFaders()
     lu.assertEquals(#events, 1, "expected one event for the changed fader, but got " .. #events)
-    local errorMessage = "expected the param name to be displayed without a prefix when the fader is in sync"
-    lu.assertEquals(events[1], paramNameSysex("Volume"), errorMessage)
+    local errorMessage = "expected the value to be displayed without a prefix when the fader is in sync"
+    lu.assertEquals(events[1], valueSysex("64"), errorMessage)
 end
 
-function TestDeliverFaders:testPrefixesParamNameWithArrowUpWhenFaderIsTooLow()
+function TestDeliverFaders:testPrefixesTheValueWithAnArrowUpWhenFaderIsTooLow()
     assignFader("fader1")
-    state.set("fader1", const.fader.tooLow)
+    state.set("fader1.status", const.fader.tooLow)
     local events = deliverFaders()
     lu.assertEquals(#events, 1, "expected one event for the changed fader, but got " .. #events)
-    local errorMessage = "expected the param name to be prefixed with an arrow up symbol when the fader is too low"
-    lu.assertEquals(events[1], paramNameSysex("^ Volume"), errorMessage)
+    local errorMessage = "expected the value to be prefixed with an arrow up symbol when the fader is too low"
+    lu.assertEquals(events[1], valueSysex("^ 64 ^"), errorMessage)
 end
 
-function TestDeliverFaders:testPrefixesParamNameWithArrowDownWhenFaderIsTooHigh()
+function TestDeliverFaders:testPrefixesTheValueWithAnArrowDownWhenFaderIsTooHigh()
     assignFader("fader1")
-    state.set("fader1", const.fader.tooHigh)
+    state.set("fader1.status", const.fader.tooHigh)
     local events = deliverFaders()
     lu.assertEquals(#events, 1, "expected one event for the changed fader, but got " .. #events)
-    local errorMessage = "expected the param name to be prefixed with an arrow down symbol when the fader is too high"
-    lu.assertEquals(events[1], paramNameSysex("v Volume"), errorMessage)
+    local errorMessage = "expected the value to be prefixed with an arrow down symbol when the fader is too high"
+    lu.assertEquals(events[1], valueSysex("v 64 v"), errorMessage)
 end
 
 function TestDeliverFaders:testSuppressesTheDisplayWhenFaderBecomesUnassigned()
     assignFader("fader1")
-    state.set("fader1", const.fader.unassigned)
+    state.set("fader1.enabled", false)
+    state.set("fader1.status", const.fader.unassigned)
     local events = deliverFaders()
     local errorMessage = "expected the fader's display to be suppressed when it becomes unassigned, " ..
         "so that moving it shows neither param name nor value"
@@ -117,7 +137,7 @@ end
 
 function TestDeliverFaders:testDoesNotResendTheDisplayConfigWhileThePickupStatusChanges()
     assignFader("fader1")
-    state.set("fader1", const.fader.tooHigh)
+    state.set("fader1.status", const.fader.tooHigh)
     local events = deliverFaders()
     local errorMessage = "expected no display config event while the fader is only changing pickup status"
     lu.assertEquals(contains(events, displayOn), false, errorMessage)
@@ -125,7 +145,8 @@ function TestDeliverFaders:testDoesNotResendTheDisplayConfigWhileThePickupStatus
 end
 
 function TestDeliverFaders:testTargetsTheDisplayOfTheChangedFader()
-    state.set("fader3", const.fader.inSync)
+    reportFader("fader3")
+    state.set("fader3.status", const.fader.inSync)
     deliverFaders()
     local errorMessage = "expected the param name display event to target controller " ..
         items.fader3.controller
@@ -134,9 +155,9 @@ end
 
 function TestDeliverFaders:testDoesNotResendParamNameWhenStatusIsUnchanged()
     assignFader("fader1")
-    state.set("fader1", const.fader.tooLow)
+    state.set("fader1.status", const.fader.tooLow)
     deliverFaders()
-    state.set("fader1", const.fader.tooLow)
+    state.set("fader1.status", const.fader.tooLow)
     local events = deliverFaders()
     local errorMessage = "expected no events when the fader status has not changed, but got " .. #events
     lu.assertEquals(#events, 0, errorMessage)
@@ -150,7 +171,7 @@ function TestDeliverFaders:testSuppressesTheDisplayOfEveryFaderWhenPreparingForU
         table.insert(expected, items["fader" .. i].controller)
     end
     local faderTargets = {}
-    for _, target in ipairs(targetsOf(displayOff)) do
+    for _, target in ipairs(targetsOf(prepareDisplayOff)) do
         if target <= items.fader8.controller then
             table.insert(faderTargets, target)
         end

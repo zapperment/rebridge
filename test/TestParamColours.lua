@@ -5,6 +5,8 @@ local items = require("src.config.items")
 local col = require("src.lib.colour._")
 local setEncoders = require("src.remote.setState.encoders")
 local setButtons = require("src.remote.setState.buttons")
+local deliverEncoders = require("src.remote.deliverMidi.encoders")
+local deliverButtons = require("src.remote.deliverMidi.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
 
@@ -15,17 +17,31 @@ local function setDeviceType(deviceType)
     state.update("deviceType")
 end
 
--- simulates the host reporting a parameter mapped to the given control
+-- the colour bytes of the first LED colour event among the given delivered
+-- MIDI events, as sent in a "01 53 xx <colour>" sysex message
+local function colourOf(events)
+    for _, event in ipairs(events) do
+        local colour = event:match("01 53 xx (%x%x %x%x %x%x)")
+        if colour then
+            return colour
+        end
+    end
+    return nil
+end
+
+-- simulates the host reporting a parameter mapped to the given control, and
+-- returns the LED colour the codec then delivers for it
 local function reportItem(itemName, paramName, value)
     remote.mock("get_item_state"):impl(function()
-        return { is_enabled = true, value = value, remote_item_name = paramName }
+        return { is_enabled = true, value = value, remote_item_name = paramName, text_value = tostring(value) }
     end)
     if itemName:find("encoder") then
         setEncoders({ items[itemName].index })
+        return colourOf(deliverEncoders())
     else
         setButtons({ items[itemName].index })
+        return colourOf(deliverButtons())
     end
-    return state.getNext(itemName .. ".colour")
 end
 
 function TestParamColours:setUp()

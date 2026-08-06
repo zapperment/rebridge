@@ -2,7 +2,7 @@ local test = require("test.lib._")
 local lu = test.luaUnit
 local items = require("src.config.items")
 local pages = require("src.lib.state.pages")
-local processNavigation = require("src.processMidi.navigation")
+local processNavigation = require("src.remote.processMidi.navigation")
 
 require("src.reason.codecs.novation.LCXL3")
 

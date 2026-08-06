@@ -2,10 +2,7 @@ local test = require("test.lib._")
 local lu = test.luaUnit
 local state = require("src.lib.state._")
 local items = require("src.config.items")
-local buttonStates = require("src.lib.state.buttons")
-local getColour = require("src.lib.colour.getColour")
-local processButtons = require("src.processMidi.buttons")
-local setButtons = require("src.remote.setState.buttons")
+local processButtons = require("src.remote.processMidi.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
 
@@ -22,11 +19,11 @@ local function setParamName(paramName)
     end)
 end
 
--- the value the host reports for the item, scaled to the item's 0-127 range
+-- the value the host currently reports for the item, scaled to the item's
+-- 0-127 range, as the host would have reported it before the button is pressed
 local function setHostValue(scaledValue)
-    remote.mock("get_item_state"):impl(function()
-        return { value = scaledValue }
-    end)
+    state.set("button13.hostValue", scaledValue)
+    state.update("button13.hostValue")
 end
 
 local function enableButton(button)
@@ -78,19 +75,17 @@ function TestProcessButtons:testWrapsAroundToTheFirstValue()
     lu.assertEquals(handledValues(), { 0 }, errorMessage)
 end
 
-function TestProcessButtons:testIsBrightWhileHeldDown()
+function TestProcessButtons:testRecordsTheControlSurfaceValueWhilePressed()
     sendButton("button13", 127)
-    local errorMessage = "expected the cycle button to have the bright colour while held down"
-    lu.assertEquals(state.getNext("button13.colour"), getColour("orange", 95), errorMessage)
-    lu.assertEquals(buttonStates.held.button13, true, "expected the button to be recorded as held")
+    local errorMessage = "expected the control surface value to be recorded as 127 while the button is held down"
+    lu.assertEquals(state.getNext("button13.controlSurfaceValue"), 127, errorMessage)
 end
 
-function TestProcessButtons:testIsDimAfterRelease()
+function TestProcessButtons:testRecordsTheControlSurfaceValueAfterRelease()
     sendButton("button13", 127)
     sendButton("button13", 0)
-    local errorMessage = "expected the cycle button to have the dim colour after it is released"
-    lu.assertEquals(state.getNext("button13.colour"), getColour("orange", 1), errorMessage)
-    lu.assertEquals(buttonStates.held.button13, nil, "expected the button to no longer be recorded as held")
+    local errorMessage = "expected the control surface value to be recorded as 0 after release"
+    lu.assertEquals(state.getNext("button13.controlSurfaceValue"), 0, errorMessage)
 end
 
 function TestProcessButtons:testReleaseDoesNotChangeTheHostValue()
@@ -104,59 +99,36 @@ end
 
 function TestProcessButtons:testTwoValueParamsStillToggle()
     setParamName("Ring Mod")
+    -- a toggle's hostValue is a boolean, not the scaled number used above for
+    -- Filter Type's cycling; Lua treats 0 as truthy, so a leftover number here
+    -- would corrupt the flip below
+    setHostValue(nil)
     sendButton("button13", 127)
     local errorMessage = "expected a two-value parameter to toggle on (127), but the handled values are " ..
         table.concat(handledValues(), ", ")
     lu.assertEquals(handledValues(), { 127 }, errorMessage)
-    lu.assertEquals(state.getNext("button13.value"), true, "expected the toggle value to flip on")
+    lu.assertEquals(state.getNext("button13.hostValue"), true, "expected the toggle value to flip on")
 end
 
 function TestProcessButtons:testTogglesIgnoreTheRelease()
     setParamName("Ring Mod")
+    setHostValue(nil)
     sendButton("button13", 127)
     sendButton("button13", 0)
     local numberOfCalls = #remote.mock("handle_input").calls
     local errorMessage = "expected the toggle's release to be ignored, but handle_input was called " ..
         numberOfCalls .. " times"
     lu.assertEquals(numberOfCalls, 1, errorMessage)
-    lu.assertEquals(state.getNext("button13.value"), true, "expected the toggle value to still be on")
+    lu.assertEquals(state.getNext("button13.hostValue"), true, "expected the toggle value to still be on")
 end
 
 function TestProcessButtons:testCycleParamsAreScopedToTheirDeviceType()
     -- the Combinator defines no cycle parameters, so even a parameter named
     -- like one behaves as a toggle there
     setDeviceType("combinator")
+    setHostValue(nil)
     sendButton("button13", 127)
     local errorMessage = "expected the parameter to toggle on a device type without cycle parameters, " ..
         "but the handled values are " .. table.concat(handledValues(), ", ")
     lu.assertEquals(handledValues(), { 127 }, errorMessage)
-end
-
-function TestProcessButtons:testHostChangesKeepCycleButtonsDim()
-    remote.mock("get_item_state"):impl(function()
-        return { is_enabled = true, value = 64, remote_item_name = "Filter Type" }
-    end)
-    setButtons({ items.button13.index })
-    local errorMessage = "expected a cycle button to stay dim when the host reports a non-zero value"
-    lu.assertEquals(state.getNext("button13.colour"), getColour("orange", 1), errorMessage)
-end
-
-function TestProcessButtons:testHostChangesDoNotDimACycleButtonWhileItIsHeld()
-    sendButton("button13", 127)
-    remote.mock("get_item_state"):impl(function()
-        return { is_enabled = true, value = 64, remote_item_name = "Filter Type" }
-    end)
-    setButtons({ items.button13.index })
-    local errorMessage = "expected the cycle button to stay bright while held down, even when the host " ..
-        "reports the new value"
-    lu.assertEquals(state.getNext("button13.colour"), getColour("orange", 95), errorMessage)
-end
-
-function TestProcessButtons:testHostChangesStillLightToggleButtons()
-    remote.mock("get_item_state"):impl(function()
-        return { is_enabled = true, value = 127, remote_item_name = "Ring Mod" }
-    end)
-    setButtons({ items.button13.index })
-    local errorMessage = "expected a toggle button to have the bright colour when the host reports it on"
-    lu.assertEquals(state.getNext("button13.colour"), getColour("cyan", 95), errorMessage)
 end

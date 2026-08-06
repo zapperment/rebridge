@@ -4,7 +4,8 @@ local state = require("src.lib.state._")
 local const = require("src.config.constants")
 local items = require("src.config.items")
 local hex = require("src.lib.hex._")
-local deliverEncoders = require("src.deliverMidi.encoders")
+local deliverEncoders = require("src.remote.deliverMidi.encoders")
+local setEncoders = require("src.remote.setState.encoders")
 local setButtons = require("src.remote.setState.buttons")
 
 require("src.reason.codecs.novation.LCXL3")
@@ -18,7 +19,12 @@ end
 -- the encoder's display config byte: allowed (bits 5 and 6 set) with
 -- arrangement 1, as the codec provides the value text itself, or suppressed
 local displayOn = sysex("04 xx 61")
-local displayOff = sysex("04 xx 04")
+local displayOff = sysex("04 xx 01")
+
+-- remote_prepare_for_use suppresses every control before it knows which
+-- arrangement each one uses, so it falls back to the default arrangement
+-- (name and numeric value) rather than the encoder-specific one above
+local prepareDisplayOff = sysex("04 xx 04")
 
 -- the config events carry the encoder in the options, as the "xx" placeholder is
 -- only substituted by the host; this collects the targets a config was sent for
@@ -41,8 +47,16 @@ local function contains(events, event)
     return false
 end
 
+-- simulates the host reporting the encoder as mapped to the given parameter
+local function reportEncoder(encoder, paramName, hostValue, textValue)
+    remote.mock("get_item_state"):impl(function()
+        return { is_enabled = true, value = hostValue, remote_item_name = paramName, text_value = textValue }
+    end)
+    setEncoders({ items[encoder].index })
+end
+
 local function enableEncoder(encoder)
-    state.set(encoder .. ".enabled", true)
+    reportEncoder(encoder, "Portamento", 64, "64")
     deliverEncoders()
     remote.clearMocks()
 end
@@ -50,12 +64,6 @@ end
 function TestDeliverEncoders:setUp()
     test.resetState()
     remote.clearMocks()
-    remote.mock("get_item_name"):impl(function()
-        return "Portamento"
-    end)
-    remote.mock("get_item_text_value"):impl(function()
-        return "64"
-    end)
     remote_init()
 end
 
@@ -84,7 +92,7 @@ function TestDeliverEncoders:testSendsNoParamNameForADisabledEncoder()
     deliverEncoders()
     remote.clearMocks()
     -- the host reporting a value for an encoder that is no longer mapped
-    state.set("encoder24.value", 64)
+    state.set("encoder24.hostValue", 64)
     local events = deliverEncoders()
     local errorMessage = "expected no events for a disabled encoder, but got " .. #events
     lu.assertEquals(#events, 0, errorMessage)
@@ -100,22 +108,17 @@ function TestDeliverEncoders:testAllowsTheDisplayAgainWhenEncoderBecomesEnabled(
     lu.assertEquals(displayConfigTargets(displayOn), { items.encoder24.controller }, errorMessage)
 end
 
-function TestDeliverEncoders:testShowsParamNameWhenEnabledEncoderChanges()
-    enableEncoder("encoder24")
-    state.set("encoder24.value", 64)
+function TestDeliverEncoders:testShowsParamNameWhenEncoderBecomesEnabled()
+    reportEncoder("encoder24", "Portamento", 64, "64")
     local events = deliverEncoders()
-    local errorMessage = "expected the param name to be sent when an enabled encoder changes"
+    local errorMessage = "expected the param name to be sent when an encoder becomes enabled"
     lu.assertEquals(contains(events, sysex("06 xx 00 " .. hex.textToHex("Portamento"))), true, errorMessage)
 end
 
-function TestDeliverEncoders:testShowsTheHostTextValueWhenEnabledEncoderChanges()
+function TestDeliverEncoders:testShowsTheHostTextValueWhenEncoderBecomesEnabled()
     -- the host reports the value in the parameter's own range, e.g. an
     -- Osc Fine Tune turned all the way down is -50, not 0
-    remote.mock("get_item_text_value"):impl(function()
-        return "-50"
-    end)
-    -- the encoder is at 0, its lowest position, when it becomes enabled
-    state.set("encoder2.enabled", true)
+    reportEncoder("encoder2", "Fine Tune", 0, "-50")
     local events = deliverEncoders()
     local errorMessage = "expected the host's text value to be sent to the display's value field"
     lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("-50"))), true, errorMessage)
@@ -124,14 +127,7 @@ end
 function TestDeliverEncoders:testShowsTheNamedWaveformForOscWaveLowValues()
     state.set("deviceType", "subtractor")
     state.update("deviceType")
-    remote.mock("get_item_name"):impl(function()
-        return "Osc1 Wave"
-    end)
-    remote.mock("get_item_text_value"):impl(function()
-        return "2"
-    end)
-    enableEncoder("encoder1")
-    state.set("encoder1.value", 64)
+    reportEncoder("encoder1", "Osc1 Wave", 8, "2")
     local events = deliverEncoders()
     local errorMessage = "expected Osc1 Wave's value 2 to be shown as 'Triangle'"
     lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("Triangle"))), true, errorMessage)
@@ -140,14 +136,7 @@ end
 function TestDeliverEncoders:testShowsTheCountedValueForOscWaveHighValues()
     state.set("deviceType", "subtractor")
     state.update("deviceType")
-    remote.mock("get_item_name"):impl(function()
-        return "Osc2 Wave"
-    end)
-    remote.mock("get_item_text_value"):impl(function()
-        return "31"
-    end)
-    enableEncoder("encoder3")
-    state.set("encoder3.value", 127)
+    reportEncoder("encoder3", "Osc2 Wave", 127, "31")
     local events = deliverEncoders()
     local errorMessage = "expected Osc2 Wave's value 31 (the last of 32 values) to be shown as '32'"
     lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex("32"))), true, errorMessage)
@@ -167,14 +156,7 @@ end
 local function deliverLfoRate(value)
     state.set("deviceType", "subtractor")
     state.update("deviceType")
-    remote.mock("get_item_name"):impl(function()
-        return "LFO1 Rate"
-    end)
-    remote.mock("get_item_text_value"):impl(function()
-        return tostring(value)
-    end)
-    enableEncoder("encoder17")
-    state.set("encoder17.value", value)
+    reportEncoder("encoder17", "LFO1 Rate", value, tostring(value))
     return deliverEncoders()
 end
 
@@ -212,7 +194,7 @@ function TestDeliverEncoders:testSuppressesTheDisplayOfEveryEncoderWhenPreparing
     end
     -- the faders are suppressed at the same time, so keep only the encoders here
     local encoderTargets = {}
-    for _, target in ipairs(displayConfigTargets(displayOff)) do
+    for _, target in ipairs(displayConfigTargets(prepareDisplayOff)) do
         if target >= items.encoder1.controller then
             table.insert(encoderTargets, target)
         end
