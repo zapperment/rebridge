@@ -1,4 +1,3 @@
-local str = require("src.lib.string._")
 local config = require("src.lib.debug.config")
 
 local previousMessage = nil
@@ -20,11 +19,8 @@ return function(logMessages, message)
     return
   end
   --reduce log noise by eliminating duplicates
-  --if previousMessage and str.areStringsSimilar(message, previousMessage) then
   if message == previousMessage then
     table.insert(logMessages, config.repeatSignal)
-    -- elseif previousMessage and str.areStringsSimilar(message, previousMessage) and #logMessages > 0 then
-    --   logMessages[#logMessages] = message
   else
     table.insert(logMessages, message)
   end

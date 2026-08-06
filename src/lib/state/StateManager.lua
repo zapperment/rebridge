@@ -1,5 +1,6 @@
 local const = require("src.config.constants")
 local tbl = require("src.lib.table._")
+local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
 
 local StateManager = {}
@@ -7,7 +8,8 @@ local StateManager = {}
 local function entry(value)
     return {
         current = value,
-        next = value
+        next = value,
+        forceUpdate = false
     }
 end
 
@@ -22,24 +24,24 @@ function StateManager:new()
         targetTrackName = entry(" "),
         deviceType = entry(" "),
         deviceName = entry(" "),
-        patchName = entry(" ")
+        patchName = entry(" "),
+        hostValues = {}
     }
     for i = 1, const.counts.encoders do
         instance["encoder" .. i] = {
             enabled = entry(false),
             controlSurfaceValue = entry(0),
-            param = entry(""),
-            hostValue = entry(0),
+            param = entry(nil),
+            hostValue = entry(nil),
             hostTextValue = entry(""),
-            colour = entry("00 00 00"),
         }
     end
     for i = 1, const.counts.faders do
         instance["fader" .. i] = {
             enabled = entry(false),
             controlSurfaceValue = entry(0),
-            param = entry(""),
-            hostValue = entry(0),
+            param = entry(nil),
+            hostValue = entry(nil),
             hostTextValue = entry(""),
             status = entry(const.fader.unassigned)
         }
@@ -48,7 +50,7 @@ function StateManager:new()
         instance["button" .. i] = {
             enabled = entry(false),
             controlSurfaceValue = entry(false),
-            param = entry(""),
+            param = entry(nil),
             hostValue = entry(nil),
             hostTextValue = entry(""),
             type = entry(const.button.toggle)
@@ -64,7 +66,7 @@ function StateManager:hasChanged(path)
     if item == nil then
         return false
     end
-    return item.next ~= item.current
+    return item.forceUpdate or item.next ~= item.current
 end
 
 function StateManager:update(path)
@@ -72,8 +74,9 @@ function StateManager:update(path)
     if item == nil then
         return
     end
-    local hasChanged = item.next ~= item.current
+    local hasChanged = item.forceUpdate or item.next ~= item.current
     item.current = item.next
+    item.forceUpdate = false
     return item.current, hasChanged
 end
 
@@ -86,7 +89,6 @@ function StateManager:updateAll()
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
-        self:update(control .. ".colour")
     end
     for i = 1, const.counts.faders do
         control = "fader" .. i
@@ -123,15 +125,32 @@ end
 function StateManager:getNext(path)
     local stateItem = tbl.getValueFromPath(self, path)
     if stateItem == nil then
-        return 0
+        return nil
     end
     return stateItem.next
 end
 
 function StateManager:set(path, next)
-    local item = tbl.getValueFromPath(self, path)
+    -- TODO: set forceUpdate flag on dependent items
+    local item, parent = tbl.getValueFromPath(self, path)
     if item == nil then
         return
+    end
+    local isHostValue = str.endsWith(path, ".hostValue")
+    local isParam = str.endsWith(path, ".param")
+    local hasParent = parent ~= nil
+    local parentHasHostValue = hasParent and parent.hostValue ~= nil and parent.hostValue.next ~= nil
+    local parentHasParam = hasParent and parent.param ~= nil and parent.param.next ~= nil
+    local parentHostValue = parentHasHostValue and parent.hostValue.next
+    local parentParam = parentHasParam and parent.param.next
+    local hostValue = isHostValue and next or parentHostValue
+    local param = isParam and next or parentParam
+    if (isHostValue and parentHasParam and parentParam ~= "") or (isParam and param ~= "" and parentHasHostValue) then
+        self.hostValues[param] = hostValue
+        deb.log(
+            "[lib.state.StateManager] storing host value: **" ..
+            param .. "=" .. tostring(hostValue) .. "**"
+        )
     end
     item.next = next
 end

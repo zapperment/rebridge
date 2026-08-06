@@ -12,5 +12,6 @@ require("test.TestSetStatePages")
 require("test.TestRemoteInit")
 require("test.TestStateManagement")
 require("test.TestStringUtils")
+require("test.TestTableUtils")
 
 os.exit(lu.LuaUnit.run())
