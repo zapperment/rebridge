@@ -21,6 +21,7 @@ local midi = require("src.lib.midi._")
 local debug = require("src.lib.debug._")
 local autoInputs = require("src.config.autoInputs")
 
+---@diagnostic disable-next-line: lowercase-global
 function remote_init()
   local itemsToDefine = {}
   for name, item in pairs(items) do
@@ -39,6 +40,7 @@ function remote_init()
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
+---@diagnostic disable-next-line: lowercase-global
 function remote_process_midi(event)
   return processEncoders(event)
       or processFaders(event)
@@ -48,6 +50,7 @@ function remote_process_midi(event)
 end
 
 -- Host (Reason) -> remote codec
+---@diagnostic disable-next-line: lowercase-global
 function remote_set_state(changedItems)
   setInfo(changedItems)
   setPages(changedItems)
@@ -58,6 +61,7 @@ function remote_set_state(changedItems)
 end
 
 -- Remote codec -> remote surface (Launch Control)
+---@diagnostic disable-next-line: lowercase-global
 function remote_deliver_midi(_, port)
   if port == 2 then
     return debug.dump()
@@ -90,6 +94,7 @@ function remote_deliver_midi(_, port)
   return events
 end
 
+---@diagnostic disable-next-line: lowercase-global
 function remote_prepare_for_use()
   local events = {
     -- turn on DAW mode
@@ -128,6 +133,7 @@ function remote_prepare_for_use()
   return events
 end
 
+---@diagnostic disable-next-line: lowercase-global
 function remote_release_from_use()
   return {
     -- turn off DAW mode

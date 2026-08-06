@@ -139,10 +139,12 @@ function StateManager:set(path, next)
     local isHostValue = str.endsWith(path, ".hostValue")
     local isParam = str.endsWith(path, ".param")
     local hasParent = parent ~= nil
+    ---@diagnostic disable: need-check-nil, undefined-field
     local parentHasHostValue = hasParent and parent.hostValue ~= nil and parent.hostValue.next ~= nil
     local parentHasParam = hasParent and parent.param ~= nil and parent.param.next ~= nil
     local parentHostValue = parentHasHostValue and parent.hostValue.next
     local parentParam = parentHasParam and parent.param.next
+    ---@diagnostic enable: need-check-nil, undefined-field
     local hostValue = isHostValue and next or parentHostValue
     local param = isParam and next or parentParam
     if (isHostValue and type(parentParam) == "string" and parentParam ~= "")
