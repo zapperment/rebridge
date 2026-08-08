@@ -188,6 +188,36 @@ function TestStringUtils:testAreStringsSimilar10()
     lu.assertEquals(result, true, errorMessage)
 end
 
+function TestStringUtils:testStartsWith01()
+    local result = string.startsWith("foobar", "foo")
+    local errorMessage = "A string starting with the given prefix should return true"
+    lu.assertEquals(result, true, errorMessage)
+end
+
+function TestStringUtils:testStartsWith02()
+    local result = string.startsWith("foobar", "bar")
+    local errorMessage = "A string not starting with the given prefix should return false"
+    lu.assertEquals(result, false, errorMessage)
+end
+
+function TestStringUtils:testStartsWith03()
+    local result = string.startsWith("foo", "foo")
+    local errorMessage = "A string identical to the prefix should return true"
+    lu.assertEquals(result, true, errorMessage)
+end
+
+function TestStringUtils:testStartsWith04()
+    local result = string.startsWith("foo", "")
+    local errorMessage = "Every string should start with an empty prefix"
+    lu.assertEquals(result, true, errorMessage)
+end
+
+function TestStringUtils:testStartsWith05()
+    local result = string.startsWith("fo", "foo")
+    local errorMessage = "A string shorter than the prefix should return false"
+    lu.assertEquals(result, false, errorMessage)
+end
+
 function TestStringUtils:testAreStringsSimilar11()
     local result = string.areStringsSimilar("abab", "baba")
     local errorMessage = "Strings without common prefix or suffix should not be similar"

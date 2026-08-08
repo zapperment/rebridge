@@ -1,20 +1,18 @@
 local paramColours = require("src.config.paramColours")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local paramValues = require("src.lib.state.paramValues")
+local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
 
 -- The name of the colour the LED of a control should have: the one its device
 -- type gives the parameter it is mapped to (see config/paramColours), falling
 -- back to the control's own default colour.
-return function(deviceType, paramName, defaultColour)
-  local logMe = paramName == "Freq 1"
+return function(deviceType, param, defaultColour)
+  local logMe = str.startsWith(param, "Mode ")
   if logMe then
     deb.log(
       "[lib.colour.getColourName] " ..
-      "deviceType=" .. deviceType
-    )
-    deb.log(
-      "[lib.colour.getColourName] " ..
+      "deviceType=" .. deviceType .. "; " ..
       "defaultColour=" .. defaultColour
     )
   end
@@ -26,8 +24,8 @@ return function(deviceType, paramName, defaultColour)
     )
   end
   local colour = nil
-  if deviceColours and deviceColours[paramName] then
-    colour = deviceColours[paramName]
+  if deviceColours and deviceColours[param] then
+    colour = deviceColours[param]
     if logMe then
       deb.log(
         "[lib.colour.getColourName] " ..
@@ -46,7 +44,7 @@ return function(deviceType, paramName, defaultColour)
     end
     return defaultColour
   end
-  conditional = conditional[paramName]
+  conditional = conditional[param]
   if not conditional then
     if logMe then
       deb.log(

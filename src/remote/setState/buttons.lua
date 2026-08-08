@@ -54,14 +54,14 @@ return function(changedItems)
           state.set(control .. ".param", param)
           local hostValue = changedItem.value
           if watchedParams[param] then
-            if param == "Mode1" then
-              deb.log("[remote.setState.encoders] setting Mode1 watched param to " .. hostValue)
-            end
+            -- if param == "Mode1" then
+            --   deb.log("[remote.setState.buttons] setting Mode1 watched param to " .. hostValue)
+            -- end
             paramValues[param] = hostValue
           end
-          if param == "Mode1" then
-            deb.log("[remote:setState:buttons] mode1 hostValue=" .. hostValue)
-          end
+          -- if param == "Mode1" then
+          --   deb.log("[remote:setState:buttons] mode1 hostValue=" .. hostValue)
+          -- end
           local deviceType = state.getNext("deviceType")
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[param] then

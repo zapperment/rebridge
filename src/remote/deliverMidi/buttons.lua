@@ -46,7 +46,6 @@ return function()
       --   table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = controller }))
       -- end
 
-      local colourName = col.getColourName(deviceType, param, item.colour)
       local buttonLightHandled = false
 
       -- control surface value changed means user started holding the button
@@ -60,6 +59,7 @@ return function()
         -- button down: light up button LED
         if type == const.button.cycle then
           local intensity = controlSurfaceValue > 0 and 95 or 1
+          local colourName = col.getColourName(deviceType, param, item.colour)
           table.insert(events, midi.makeColourEvent(colourName, intensity, controller))
           buttonLightHandled = true
         end
@@ -70,6 +70,7 @@ return function()
         if type == const.button.toggle and hostValue then
           intensity = 95
         end
+        local colourName = col.getColourName(deviceType, param, item.colour)
         table.insert(events, midi.makeColourEvent(colourName, intensity, controller))
       end
     elseif enabledChanged then
