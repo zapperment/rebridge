@@ -1,8 +1,8 @@
 local paramColours = require("src.config.paramColours")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local paramValues = require("src.lib.state.paramValues")
 local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
+local state = require("src.lib.state._")
 
 -- The name of the colour the LED of a control should have: the one its device
 -- type gives the parameter it is mapped to (see config/paramColours), falling
@@ -71,7 +71,7 @@ return function(deviceType, param, defaultColour)
       "dependsOn=" .. dependsOn
     )
   end
-  local dependsOnValue = paramValues[dependsOn]
+  local dependsOnValue = state.getHostValue(dependsOn)
   if not dependsOnValue then
     if logMe then
       deb.log(

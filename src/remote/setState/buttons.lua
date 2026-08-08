@@ -1,7 +1,6 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local paramValues = require("src.lib.state.paramValues")
 local cycleParams = require("src.config.cycleParams")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
 local disp = require("src.lib.display._")
@@ -13,14 +12,6 @@ local defaultValueLabels = {
   ["0"] = "Off",
   ["1"] = "On",
 }
--- parameters whose settings drive the display of other parameters (see
--- config/conditionalValueLabels), collected across all device types
-local watchedParams = {}
-for _, deviceConditionals in pairs(conditionalValueLabels) do
-  for _, conditional in pairs(deviceConditionals) do
-    watchedParams[conditional.dependsOn] = true
-  end
-end
 
 -- turns the value the host reports into what the display should show, honouring
 -- the labels a device defines for buttons that are not simply on/off; a value
@@ -53,15 +44,6 @@ return function(changedItems)
           local param = changedItem.remote_item_name
           state.set(control .. ".param", param)
           local hostValue = changedItem.value
-          if watchedParams[param] then
-            -- if param == "Mode1" then
-            --   deb.log("[remote.setState.buttons] setting Mode1 watched param to " .. hostValue)
-            -- end
-            paramValues[param] = hostValue
-          end
-          -- if param == "Mode1" then
-          --   deb.log("[remote:setState:buttons] mode1 hostValue=" .. hostValue)
-          -- end
           local deviceType = state.getNext("deviceType")
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[param] then

@@ -1,5 +1,5 @@
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local paramValues = require("src.lib.state.paramValues")
+local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 -- The label for a parameter whose display depends on the setting of another
@@ -16,9 +16,12 @@ return function(deviceType, paramName, value)
   if not conditionalOfParameter then
     return nil, nil
   end
-  local dependsOnValue = paramValues[conditionalOfParameter.dependsOn]
+  local dependsOnValue = state.getHostValue(conditionalOfParameter.dependsOn)
   if dependsOnValue == nil then
     return nil, nil
+  end
+  if type(dependsOnValue) == "boolean" then
+    dependsOnValue = dependsOnValue and 1 or 0
   end
   local label, paramNameVariant
   if conditionalOfParameter.labels and dependsOnValue > 0 then

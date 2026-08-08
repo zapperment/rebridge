@@ -2,18 +2,8 @@ local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local paramValues = require("src.lib.state.paramValues")
 local disp = require("src.lib.display._")
 local deb = require("src.lib.debug._")
-
--- parameters whose settings drive the display of other parameters (see
--- config/conditionalValueLabels), collected across all device types
-local watchedParams = {}
-for _, deviceConditionals in pairs(conditionalValueLabels) do
-  for _, conditional in pairs(deviceConditionals) do
-    watchedParams[conditional.dependsOn] = true
-  end
-end
 
 -- handles changes of the encoders of the host (Reason)
 return function(changedItems)
@@ -26,9 +16,6 @@ return function(changedItems)
         local param = changedItem.remote_item_name;
         local enabled = changedItem.is_enabled;
         if enabled then
-          if watchedParams[param] then
-            paramValues[param] = hostValue
-          end
           state.set(control .. ".enabled", true)
           state.set(control .. ".param", param)
           state.set(control .. ".hostValue", hostValue)

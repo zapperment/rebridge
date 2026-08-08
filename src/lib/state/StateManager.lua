@@ -131,6 +131,10 @@ function StateManager:getNext(path)
     return stateItem.next
 end
 
+function StateManager:getHostValue(param)
+    return self.hostValues[param]
+end
+
 function StateManager:updateHostValues(path, next, parent)
     local logMe = false
     local isHostValue = str.endsWith(path, ".hostValue")

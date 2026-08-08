@@ -18,6 +18,9 @@ return {
   getNext = function(path)
     return stateManager:getNext(path)
   end,
+  getHostValue = function(param)
+    return stateManager:getHostValue(param)
+  end,
   set = function(path, next)
     stateManager:set(path, next)
   end,
