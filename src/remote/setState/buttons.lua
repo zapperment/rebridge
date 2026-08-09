@@ -16,7 +16,7 @@ return function(changedItems)
           state.set(control .. ".param", param)
           local hostValue = changedItem.value
           local hostTextValue = changedItem.text_value
-          local deviceType = state.getNext("deviceType")
+          local deviceType = state.get("deviceType")
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[param] then
             state.set(control .. ".type", const.button.cycle)

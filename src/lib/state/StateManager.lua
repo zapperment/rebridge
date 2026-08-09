@@ -120,10 +120,6 @@ function StateManager:updateAll()
 end
 
 function StateManager:get(path)
-    return tbl.getValueFromPath(self, path).current
-end
-
-function StateManager:getNext(path)
     local stateItem = tbl.getValueFromPath(self, path)
     if stateItem == nil then
         return nil
@@ -161,7 +157,7 @@ end
 
 function StateManager:updateDependencies(param, hostValue)
     local logMe = false
-    local deviceType = self:getNext("deviceType")
+    local deviceType = self:get("deviceType")
     if logMe then
         deb.log(
             "[lib:state:StateManager] " ..

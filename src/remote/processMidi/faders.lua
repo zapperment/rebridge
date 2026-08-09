@@ -12,7 +12,7 @@ return function(event)
           event,
           function(control, controlSurfaceValue)
             local hostValue = state.get(control .. ".hostValue")
-            local status = state.getNext(control .. ".status")
+            local status = state.get(control .. ".status")
             if status == const.fader.unknown then
               -- it is goes here when the codec has just been loaded and
               -- we receive a CC from a fader for the first time

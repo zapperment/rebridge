@@ -78,14 +78,14 @@ end
 function TestProcessButtons:testRecordsTheControlSurfaceValueWhilePressed()
     sendButton("button13", 127)
     local errorMessage = "expected the control surface value to be recorded as 127 while the button is held down"
-    lu.assertEquals(state.getNext("button13.controlSurfaceValue"), 127, errorMessage)
+    lu.assertEquals(state.get("button13.controlSurfaceValue"), 127, errorMessage)
 end
 
 function TestProcessButtons:testRecordsTheControlSurfaceValueAfterRelease()
     sendButton("button13", 127)
     sendButton("button13", 0)
     local errorMessage = "expected the control surface value to be recorded as 0 after release"
-    lu.assertEquals(state.getNext("button13.controlSurfaceValue"), 0, errorMessage)
+    lu.assertEquals(state.get("button13.controlSurfaceValue"), 0, errorMessage)
 end
 
 function TestProcessButtons:testReleaseDoesNotChangeTheHostValue()
@@ -107,7 +107,7 @@ function TestProcessButtons:testTwoValueParamsStillToggle()
     local errorMessage = "expected a two-value parameter to toggle on (127), but the handled values are " ..
         table.concat(handledValues(), ", ")
     lu.assertEquals(handledValues(), { 127 }, errorMessage)
-    lu.assertEquals(state.getNext("button13.hostValue"), true, "expected the toggle value to flip on")
+    lu.assertEquals(state.get("button13.hostValue"), true, "expected the toggle value to flip on")
 end
 
 function TestProcessButtons:testTogglesIgnoreTheRelease()
@@ -119,7 +119,7 @@ function TestProcessButtons:testTogglesIgnoreTheRelease()
     local errorMessage = "expected the toggle's release to be ignored, but handle_input was called " ..
         numberOfCalls .. " times"
     lu.assertEquals(numberOfCalls, 1, errorMessage)
-    lu.assertEquals(state.getNext("button13.hostValue"), true, "expected the toggle value to still be on")
+    lu.assertEquals(state.get("button13.hostValue"), true, "expected the toggle value to still be on")
 end
 
 function TestProcessButtons:testCycleParamsAreScopedToTheirDeviceType()

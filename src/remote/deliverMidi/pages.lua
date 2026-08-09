@@ -11,7 +11,7 @@ return function()
   if not pages.consumeDisplay() then
     return {}
   end
-  local names = pageNames[state.getNext("deviceType")]
+  local names = pageNames[state.get("deviceType")]
   local name = names and names[pages.active]
   return midi.makeOverlayDisplayEvents("Page " .. pages.active, name or " ")
 end

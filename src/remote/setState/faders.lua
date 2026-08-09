@@ -14,7 +14,7 @@ return function(changedItems)
         local hostValue = changedItem.value;
         local param = changedItem.remote_item_name;
         local enabled = changedItem.is_enabled;
-        local controlSurfaceValue = state.getNext(control .. ".controlSurfaceValue")
+        local controlSurfaceValue = state.get(control .. ".controlSurfaceValue")
         local status
         if enabled then
           if controlSurfaceValue == nil then
