@@ -1,8 +1,6 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
-local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local disp = require("src.lib.display._")
 local deb = require("src.lib.debug._")
 
 -- handles changes of the encoders of the host (Reason)
@@ -13,13 +11,14 @@ return function(changedItems)
       local control = "encoder" .. i
       if changedItemIndex == items[control].index then
         local hostValue = changedItem.value;
+        local hostTextValue = changedItem.text_value;
         local param = changedItem.remote_item_name;
         local enabled = changedItem.is_enabled;
         if enabled then
           state.set(control .. ".enabled", true)
           state.set(control .. ".param", param)
           state.set(control .. ".hostValue", hostValue)
-          state.set(control .. ".hostTextValue", disp.getTextValue(changedItem))
+          state.set(control .. ".hostTextValue", hostTextValue)
         else
           state.set(control .. ".enabled", false)
         end

@@ -1,8 +1,9 @@
-local state = require("src.lib.state._")
-local items = require("src.config.items")
-local const = require("src.config.constants")
-local midi = require("src.lib.midi._")
 local col = require("src.lib.colour._")
+local const = require("src.config.constants")
+local disp = require("src.lib.display._")
+local items = require("src.config.items")
+local midi = require("src.lib.midi._")
+local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
@@ -16,7 +17,7 @@ return function()
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
     local hostValue, hostValueChanged = state.update(control .. ".hostValue")
-    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local _, hostTextValueChanged = state.update(control .. ".hostTextValue")
 
     local item = items[control]
     local controller = item.controller
@@ -32,9 +33,10 @@ return function()
       if paramChanged then
         table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
       end
-      if hostTextValueChanged then
+      if hostValueChanged or hostTextValueChanged then
+        local displayValue = disp.getDisplayValue(control)
+        table.insert(events, midi.makeParamValueDisplayEvent(displayValue, controller))
         table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
-        table.insert(events, midi.makeParamValueDisplayEvent(hostTextValue, item.controller))
       end
       if deviceTypeChanged or paramChanged or hostValueChanged then
         local colourName = col.getColourName(

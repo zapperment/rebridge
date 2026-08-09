@@ -2,35 +2,6 @@ local items = require("src.config.items")
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
 local cycleParams = require("src.config.cycleParams")
-local conditionalValueLabels = require("src.config.conditionalValueLabels")
-local disp = require("src.lib.display._")
-local deb = require("src.lib.debug._")
-
--- the host (Reason) reports an on/off button as "0" or "1", which reads poorly
--- on the display
-local defaultValueLabels = {
-  ["0"] = "Off",
-  ["1"] = "On",
-}
-
--- turns the value the host reports into what the display should show, honouring
--- the labels a device defines for buttons that are not simply on/off; a value
--- with no label is shown as the host provides it
-local function getValueLabel(paramName, itemState)
-  local deviceType = state.get("deviceType")
-  local label = disp.getLabel(deviceType, paramName, itemState)
-  if label then
-    return label
-  end
-  local textValue = itemState.text_value
-  local deviceCycleParams = cycleParams[deviceType]
-  if deviceCycleParams and deviceCycleParams[paramName] then
-    -- a cycling parameter's values are not on/off, so without labels of its
-    -- own it shows the plain value rather than the On/Off defaults
-    return textValue
-  end
-  return defaultValueLabels[textValue] or textValue
-end
 
 -- handles changes of the buttons of the host (Reason)
 return function(changedItems)
@@ -44,6 +15,7 @@ return function(changedItems)
           local param = changedItem.remote_item_name
           state.set(control .. ".param", param)
           local hostValue = changedItem.value
+          local hostTextValue = changedItem.text_value
           local deviceType = state.getNext("deviceType")
           local deviceCycleParams = cycleParams[deviceType]
           if deviceCycleParams and deviceCycleParams[param] then
@@ -53,7 +25,7 @@ return function(changedItems)
             state.set(control .. ".type", const.button.toggle)
             state.set(control .. ".hostValue", hostValue > 0 and true or false)
           end
-          state.set(control .. ".hostTextValue", getValueLabel(param, changedItem))
+          state.set(control .. ".hostTextValue", hostTextValue)
         else
           state.set(control .. ".enabled", false)
         end

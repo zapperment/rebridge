@@ -1,5 +1,5 @@
 local const = require("src.config.constants")
-local conditionalValueLabels = require("src.config.conditionalValueLabels")
+local conditionals = require("src.config.conditionals")
 local tbl = require("src.lib.table._")
 local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
@@ -160,7 +160,7 @@ function StateManager:updateHostValues(path, next, parent)
 end
 
 function StateManager:updateDependencies(param, hostValue)
-    local logMe = str.startsWith(param, "Mode")
+    local logMe = false
     local deviceType = self:getNext("deviceType")
     if logMe then
         deb.log(
@@ -168,8 +168,8 @@ function StateManager:updateDependencies(param, hostValue)
             "deviceType=" .. deviceType
         )
     end
-    local conditionals = conditionalValueLabels[deviceType]
-    if not conditionals then
+    local conditionalsForDevice = conditionals[deviceType]
+    if not conditionalsForDevice then
         if logMe then
             deb.log(
                 "[lib:state:StateManager] " ..
@@ -178,7 +178,7 @@ function StateManager:updateDependencies(param, hostValue)
         end
         return
     end
-    for dependentParam, conditionalConfig in pairs(conditionals) do
+    for dependentParam, conditionalConfig in pairs(conditionalsForDevice) do
         local dependsOn = conditionalConfig.dependsOn
         if dependsOn == param then
             if logMe then

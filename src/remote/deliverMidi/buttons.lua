@@ -1,8 +1,9 @@
-local state = require("src.lib.state._")
-local items = require("src.config.items")
-local const = require("src.config.constants")
-local midi = require("src.lib.midi._")
 local col = require("src.lib.colour._")
+local const = require("src.config.constants")
+local disp = require("src.lib.display._")
+local items = require("src.config.items")
+local midi = require("src.lib.midi._")
+local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 -- called regularly by the codec to update the remote surface (Launch Control)
@@ -16,11 +17,10 @@ return function()
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
     local hostValue, hostValueChanged = state.update(control .. ".hostValue")
-    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local _, hostTextValueChanged = state.update(control .. ".hostTextValue")
     local type = state.update(control .. ".type")
-    --local colour, colourChanged = state.update(control .. ".colour")
 
-    local item = items["button" .. i]
+    local item = items[control]
     local controller = item.controller
 
     if enabledChanged or hostTextValueChanged or paramChanged then
@@ -38,13 +38,11 @@ return function()
 
       -- if the value has changed, display it in the LCD briefly and report the
       -- new value back to the control surface via MIDI CC
-      if hostTextValueChanged then
-        table.insert(events, midi.makeParamValueDisplayEvent(hostTextValue, item.controller))
+      if hostValueChanged or hostTextValueChanged then
+        local displayValue = disp.getButtonDisplayValue(control)
+        table.insert(events, midi.makeParamValueDisplayEvent(displayValue, controller))
         table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
       end
-      -- if colourChanged then
-      --   table.insert(events, midi.makeSysexEvent("01 53 xx " .. colour, { x = controller }))
-      -- end
 
       local buttonLightHandled = false
 

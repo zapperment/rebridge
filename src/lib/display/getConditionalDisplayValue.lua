@@ -1,4 +1,4 @@
-local conditionalValueLabels = require("src.config.conditionalValueLabels")
+local conditionals = require("src.config.conditionals")
 local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
@@ -7,12 +7,12 @@ local deb = require("src.lib.debug._")
 -- LFO sync is enabled. Returns nil when nothing is configured for the
 -- parameter or the parameter it depends on is off, leaving the caller to fall
 -- back to the ordinary labels.
-return function(deviceType, paramName, value)
-  local conditionalParametersOfDevice = conditionalValueLabels[deviceType]
+return function(deviceType, param, hostValue)
+  local conditionalParametersOfDevice = conditionals[deviceType]
   if not conditionalParametersOfDevice then
     return nil, nil
   end
-  local conditionalOfParameter = conditionalParametersOfDevice[paramName]
+  local conditionalOfParameter = conditionalParametersOfDevice[param]
   if not conditionalOfParameter then
     return nil, nil
   end
@@ -25,7 +25,7 @@ return function(deviceType, paramName, value)
   end
   local label, paramNameVariant
   if conditionalOfParameter.labels and dependsOnValue > 0 then
-    local bucket = math.floor(value * #conditionalOfParameter.labels / 128) + 1
+    local bucket = math.floor(hostValue * #conditionalOfParameter.labels / 128) + 1
     label = conditionalOfParameter.labels[bucket]
   end
   if conditionalOfParameter.variations then
