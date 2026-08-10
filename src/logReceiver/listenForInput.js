@@ -1,5 +1,6 @@
 const easymidi = require("easymidi");
 const convertMarkdownToAnsi = require("./convertMarkdownToAnsi");
+const convertEmojis = require("./convertEmojis")
 
 const debugSysexHeader = "F0 00 20 29 02 0A 02";
 const repeatSignal = ".";
@@ -46,6 +47,7 @@ module.exports = (portName) => {
     }
 
     message = convertMarkdownToAnsi(message);
+    message = convertEmojis(message);
 
     if (addLinebreak) {
       message = `\n${message}`;

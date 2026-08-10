@@ -10,22 +10,22 @@ local defaultDisplayValues = {
 }
 
 return function(control)
-  local logMe = control == "button1"
+  local logMe = false -- control == "button1"
   local hostTextValue = state.get(control .. ".hostTextValue")
   local hostValue = state.get(control .. ".hostValue")
   local param = state.get(control .. ".param")
   local type = state.get(control .. ".type")
   local deviceType = state.get("deviceType")
-  -- if logMe then
-  --   deb.log(
-  --     "[lib:display:getButtonDisplayValue] " ..
-  --     "deviceType=" .. deviceType .. "; " ..
-  --     "type=" .. type .. "; " ..
-  --     "param=" .. param .. "; " ..
-  --     "hostTextValue=" .. hostTextValue .. "; " ..
-  --     "hostValue=" .. tostring(hostValue)
-  --   )
-  -- end
+  if logMe then
+    deb.log(
+      "[lib:display:getButtonDisplayValue] " ..
+      "deviceType=" .. deviceType .. "; " ..
+      "type=" .. type .. "; " ..
+      "param=" .. param .. "; " ..
+      "hostTextValue=" .. hostTextValue .. "; " ..
+      "hostValue=" .. tostring(hostValue)
+    )
+  end
   local customDisplayValue = getCustomDisplayValue(deviceType, param, hostValue, hostTextValue)
   if customDisplayValue then
     if logMe then

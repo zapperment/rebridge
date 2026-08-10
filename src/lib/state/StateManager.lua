@@ -132,7 +132,7 @@ function StateManager:getHostValue(param)
 end
 
 function StateManager:updateHostValues(path, next, parent)
-    local logMe = false
+    local logMe = false -- str.startsWith(path, "button1.") or str.startsWith(path, "encoder1.")
     local isHostValue = str.endsWith(path, ".hostValue")
     local isParam = str.endsWith(path, ".param")
     if (not isHostValue and not isParam) or not parent then
@@ -141,22 +141,53 @@ function StateManager:updateHostValues(path, next, parent)
     ---@diagnostic disable: need-check-nil, undefined-field
     local parentHasHostValue = parent.hostValue and parent.hostValue.next ~= nil
     local parentHasParam = parent.param and parent.param.next and parent.param.next ~= ""
-    local parentHostValue = parentHasHostValue and parent.hostValue.next
-    local parentParam = parentHasParam and parent.param.next
+    local parentHostValue = parentHasHostValue and parent.hostValue.next or nil
+    local parentParam = parentHasParam and parent.param.next or nil
     ---@diagnostic enable: need-check-nil, undefined-field
-    local hostValue = isHostValue and next or parentHostValue
+    if logMe and isParam then
+        deb.log(
+            "[lib:state:StateManager:updateHostValues] " ..
+            "received param **" .. str.serialise(next) .. "** " ..
+            "(" .. type(next) .. ")"
+        )
+    end
+    if logMe and isHostValue then
+        deb.log(
+            "[lib:state:StateManager:updateHostValues] " ..
+            "received host value **" .. str.serialise(next) .. "** " ..
+            "(" .. type(next) .. ")"
+        )
+    end
+    if logMe then
+        deb.log(
+            "[lib:state:StateManager:updateHostValues] " ..
+            "parentHasHostValue=" .. str.serialise(parentHasHostValue) .. "; " ..
+            "parentHostValue=" .. str.serialise(parentHostValue) .. "; " ..
+            "parentHasParam=" .. str.serialise(parentHasParam) .. "; " ..
+            "parentParam=" .. str.serialise(parentParam)
+        )
+    end
+    local hostValue
+    -- cannot use Lua "pseudo ternary" here (hostValue = isHostValue and next or parentParam)
+    -- because this will produce nil if next is boolean false (switched off toggle)
+    if isHostValue then
+        hostValue = next
+    else
+        hostValue = parentHostValue
+    end
     local param = isParam and next or parentParam
     if (isHostValue and parentHasParam) or (isParam and parentHasHostValue) then
         self.hostValues[param] = hostValue
         if logMe then
-            deb.log("[lib:state:StateManager] storing host value " .. param .. "=" .. tostring(hostValue))
+            deb.log("[lib:state:StateManager:updateHostValues] (/) storing host value: " ..
+                param .. "=" .. str.serialise(hostValue))
         end
-        self:updateDependencies(param, hostValue)
+        self:updateDependencies(param)
     end
 end
 
-function StateManager:updateDependencies(param, hostValue)
-    local logMe = false
+function StateManager:updateDependencies(param)
+    local logMe = false -- param == "LFO Sync Enable"
     local deviceType = self:get("deviceType")
     if logMe then
         deb.log(
@@ -214,14 +245,14 @@ function StateManager:updateDependencies(param, hostValue)
 end
 
 function StateManager:set(path, next)
-    -- TODO: set forceUpdate flag on dependent items
     local item, parent = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
     self:updateHostValues(path, next, parent)
-    self:updateDependencies(path, parent)
+    self:updateDependencies(path)
     item.next = next
+    return next
 end
 
 function StateManager:inc(path)
@@ -234,7 +265,9 @@ function StateManager:inc(path)
         next = 127
     end
     self:updateHostValues(path, next, parent)
+    self:updateDependencies(path)
     item.next = next
+    return next
 end
 
 function StateManager:dec(path)
@@ -247,7 +280,9 @@ function StateManager:dec(path)
         next = 0
     end
     self:updateHostValues(path, next, parent)
+    self:updateDependencies(path)
     item.next = next
+    return next
 end
 
 function StateManager:add(path, delta, min, max)
@@ -263,11 +298,24 @@ function StateManager:add(path, delta, min, max)
         next = max
     end
     self:updateHostValues(path, next, parent)
+    self:updateDependencies(path)
     item.next = next
+    return next
 end
 
 function StateManager:flip(path)
+    local logMe = false -- str.startsWith(path, "button1.")
     local item, parent = tbl.getValueFromPath(self, path)
+    if logMe then
+        deb.log(
+            "[lib:state:StateManager:flip] " ..
+            "item=" .. str.serialise(item)
+        )
+        deb.log(
+            "[lib:state:StateManager:flip] " ..
+            "parent=" .. str.serialise(parent)
+        )
+    end
     if item == nil then
         return
     end
@@ -276,7 +324,8 @@ function StateManager:flip(path)
     else
         item.next = true
     end
-    self:updateHostValues(path, next, parent)
+    self:updateHostValues(path, item.next, parent)
+    self:updateDependencies(path)
     return item.next
 end
 

@@ -5,7 +5,7 @@ local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 return function(control)
-  local logMe = control == "encoder1"
+  local logMe = false -- control == "encoder1"
   local hostTextValue = state.get(control .. ".hostTextValue")
   local hostValue = state.get(control .. ".hostValue")
   local param = state.get(control .. ".param")

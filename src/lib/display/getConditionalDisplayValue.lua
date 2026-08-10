@@ -8,6 +8,7 @@ local deb = require("src.lib.debug._")
 -- parameter or the parameter it depends on is off, leaving the caller to fall
 -- back to the ordinary labels.
 return function(deviceType, param, hostValue)
+  local logMe = false -- param == "LFO1 Rate"
   local conditionalParametersOfDevice = conditionals[deviceType]
   if not conditionalParametersOfDevice then
     return nil, nil
@@ -20,8 +21,26 @@ return function(deviceType, param, hostValue)
   if dependsOnValue == nil then
     return nil, nil
   end
+  if logMe then
+    deb.log(
+      "[lib:display:getConditionalDisplayValue] " ..
+      "dependsOn=" .. conditionalOfParameter.dependsOn
+    )
+  end
+  if logMe then
+    deb.log(
+      "[lib:display:getConditionalDisplayValue] " ..
+      "dependsOnValue=" .. tostring(dependsOnValue)
+    )
+  end
   if type(dependsOnValue) == "boolean" then
     dependsOnValue = dependsOnValue and 1 or 0
+  end
+  if logMe then
+    deb.log(
+      "[lib:display:getConditionalDisplayValue] " ..
+      "dependsOnValue=" .. tostring(dependsOnValue)
+    )
   end
   local label, paramNameVariant
   if conditionalOfParameter.labels and dependsOnValue > 0 then

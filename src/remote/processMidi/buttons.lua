@@ -1,5 +1,6 @@
 local const = require("src.config.constants")
 local state = require("src.lib.state._")
+local str = require("src.lib.string._")
 local cycleParams = require("src.config.cycleParams")
 local util = require("src.remote.processMidi.util._")
 local deb = require("src.lib.debug._")
@@ -64,6 +65,11 @@ return function(event)
               end
             elseif pressed then
               local turnedOn = state.flip(control .. ".hostValue")
+              deb.log(
+                "[remote:processMidi] " ..
+                "turnedOn=" .. str.serialise(turnedOn) .. " " ..
+                "(" .. type(turnedOn) .. ")"
+              )
 
               -- update host (Reason)
               local hostValue = turnedOn and 127 or 0

@@ -1,7 +1,8 @@
-local state = require("src.lib.state._")
-local items = require("src.config.items")
 local const = require("src.config.constants")
+local disp = require("src.lib.display._")
+local items = require("src.config.items")
 local midi = require("src.lib.midi._")
+local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 -- called regularly by the codec to update the control surface (Launch Control)
@@ -38,7 +39,8 @@ return function()
           prefix = "^ "
           suffix = " ^"
         end
-        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. hostTextValue .. suffix, controller))
+        local displayValue = disp.getDisplayValue(control)
+        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. displayValue .. suffix, controller))
       end
       if controlSurfaceValueChanged then
         table.insert(events, midi.makeParamDisplayTriggerEvent(controller))

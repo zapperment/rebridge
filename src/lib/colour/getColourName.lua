@@ -8,7 +8,7 @@ local state = require("src.lib.state._")
 -- type gives the parameter it is mapped to (see config/paramColours), falling
 -- back to the control's own default colour.
 return function(deviceType, param, defaultColour)
-  local logMe = str.startsWith(param, "Mode ")
+  local logMe = false -- str.startsWith(param, "Mode ")
   if logMe then
     deb.log(
       "[lib.colour.getColourName] " ..
