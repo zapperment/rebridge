@@ -1,25 +1,26 @@
+local autoInputs = require("src.config.autoInputs")
+local const = require("src.config.constants")
+local debug = require("src.lib.debug._")
+local deliverButtons = require("src.remote.deliverMidi.buttons")
+local deliverDisplay = require("src.remote.deliverMidi.display")
+local deliverEncoders = require("src.remote.deliverMidi.encoders")
+local deliverFaders = require("src.remote.deliverMidi.faders")
+local deliverInfo = require("src.remote.deliverMidi.info")
+local deliverPages = require("src.remote.deliverMidi.pages")
+local deliverTransport = require("src.remote.deliverMidi.transport")
 local items = require("src.config.items")
+local midi = require("src.lib.midi._")
+local processButtons = require("src.remote.processMidi.buttons")
 local processEncoders = require("src.remote.processMidi.encoders")
 local processFaders = require("src.remote.processMidi.faders")
-local processButtons = require("src.remote.processMidi.buttons")
-local processTransport = require("src.remote.processMidi.transport")
 local processNavigation = require("src.remote.processMidi.navigation")
+local processTransport = require("src.remote.processMidi.transport")
+local setButtons = require("src.remote.setState.buttons")
 local setEncoders = require("src.remote.setState.encoders")
 local setFaders = require("src.remote.setState.faders")
 local setInfo = require("src.remote.setState.info")
 local setPages = require("src.remote.setState.pages")
-local setButtons = require("src.remote.setState.buttons")
 local setTransport = require("src.remote.setState.transport")
-local deliverEncoders = require("src.remote.deliverMidi.encoders")
-local deliverFaders = require("src.remote.deliverMidi.faders")
-local deliverInfo = require("src.remote.deliverMidi.info")
-local deliverButtons = require("src.remote.deliverMidi.buttons")
-local deliverPages = require("src.remote.deliverMidi.pages")
-local deliverTransport = require("src.remote.deliverMidi.transport")
-local deliverDisplay = require("src.remote.deliverMidi.display")
-local midi = require("src.lib.midi._")
-local debug = require("src.lib.debug._")
-local autoInputs = require("src.config.autoInputs")
 
 ---@diagnostic disable-next-line: lowercase-global
 function remote_init()
@@ -36,7 +37,11 @@ function remote_init()
   end
   remote.define_items(itemsToDefine)
   remote.define_auto_inputs(autoInputs)
-  debug.log("[reason.codecs.novation.LCXL3] remote codec initialised successfully!")
+  debug.log(
+    "[reason.codecs.novation.LCXL3] " ..
+    "remote codec version " .. const.softwareVersion .. " " ..
+    "initialised successfully!"
+  )
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
