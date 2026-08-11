@@ -1,5 +1,5 @@
 local items = require("src.config.items")
-local shiftState = require("src.lib.state.shift")
+local state = require("src.lib.state._")
 local pages = require("src.lib.state.pages")
 local deb = require("src.lib.debug._")
 
@@ -39,14 +39,14 @@ return function(event)
   local processed = false
   local match = remote.match_midi(shiftMidi, event)
   if match then
-    shiftState.held = match.x > 0
+    state.setShifted(match.x > 0)
     processed = true
   else
     for _, button in ipairs(pageButtons) do
       match = remote.match_midi(button.midi, event)
       if match then
         if match.x > 0 then
-          if shiftState.held then
+          if state.isShifted() then
             remote.handle_input({ time_stamp = event.time_stamp, item = items[button.shifted].index, value = 1 })
           else
             selectPage(pages.active + button.step, event.time_stamp)

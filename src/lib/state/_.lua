@@ -32,5 +32,17 @@ return {
   end,
   dec = function(path)
     stateManager:dec(path)
-  end
+  end,
+  shift = function()
+    stateManager:shift()
+  end,
+  unshift = function()
+    stateManager:unshift()
+  end,
+  setShifted = function(shifted)
+    stateManager:setShifted(shifted)
+  end,
+  isShifted = function()
+    return stateManager:isShifted()
+  end,
 }

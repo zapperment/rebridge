@@ -26,7 +26,8 @@ function StateManager:new()
         deviceType = entry(" "),
         deviceName = entry(" "),
         patchName = entry(" "),
-        hostValues = {}
+        hostValues = {},
+        shifted = false,
     }
     for i = 1, const.counts.encoders do
         instance["encoder" .. i] = {
@@ -327,6 +328,25 @@ function StateManager:flip(path)
     self:updateHostValues(path, item.next, parent)
     self:updateDependencies(path)
     return item.next
+end
+
+function StateManager:shift()
+    self.shifted = true
+end
+
+function StateManager:unshift()
+    self.shifted = false
+end
+
+function StateManager:setShifted(shifted)
+    if type(shifted) ~= "boolean" then
+        return
+    end
+    self.shifted = shifted
+end
+
+function StateManager:isShifted()
+    return self.shifted;
 end
 
 return StateManager
