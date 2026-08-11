@@ -1,6 +1,8 @@
 local StateManager = require("src.lib.state.StateManager")
+local PageManager = require("src.lib.state.PageManager")
 
 local stateManager = StateManager:new()
+local pageManager = PageManager:new({ state = stateManager })
 
 return {
   hasChanged = function(path)
@@ -44,5 +46,26 @@ return {
   end,
   isShifted = function()
     return stateManager:isShifted()
+  end,
+  setActivePage = function(page)
+    pageManager:setActive(page)
+  end,
+  consumePageDisplay = function()
+    return pageManager:consumeDisplay()
+  end,
+  resetPages = function()
+    pageManager:reset()
+  end,
+  selectPage = function(step)
+    return pageManager:select(step)
+  end,
+  setPageState = function(pageNumber, itemState)
+    pageManager:setState(pageNumber, itemState)
+  end,
+  updatePages = function()
+    pageManager:update()
+  end,
+  getPageLabelAndName = function()
+    return pageManager:getLabelAndName()
   end,
 }

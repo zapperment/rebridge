@@ -1,6 +1,6 @@
 local items = require("src.config.items")
 local const = require("src.config.constants")
-local pages = require("src.lib.state.pages")
+local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 -- Handles changes of the page selectors reported by the host (Reason). A
@@ -16,24 +16,12 @@ return function(changedItems)
       if changedItemIndex == items["pageSelect" .. i].index then
         hasChanged = true
         local changedItem = remote.get_item_state(changedItemIndex)
-        pages.enabled[i] = changedItem.is_enabled
-        pages.selected[i] = changedItem.is_enabled and changedItem.value > 0
+        state.setPageState(i, changedItem)
       end
     end
   end
 
   if hasChanged then
-    local count = 0
-    local active
-    for i = 1, const.counts.pageSelects do
-      if pages.enabled[i] then
-        count = count + 1
-        if active == nil and pages.selected[i] then
-          active = i
-        end
-      end
-    end
-    pages.count = count
-    pages.setActive(active or 1)
+    state.updatePages()
   end
 end

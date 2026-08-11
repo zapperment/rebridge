@@ -1,6 +1,4 @@
 local state = require("src.lib.state._")
-local pages = require("src.lib.state.pages")
-local pageNames = require("src.config.pageNames")
 local midi = require("src.lib.midi._")
 local deb = require("src.lib.debug._")
 
@@ -8,10 +6,9 @@ local deb = require("src.lib.debug._")
 -- shows the number and name of the page just switched to on the overlay
 -- display, which reverts to the stationary display after the timeout
 return function()
-  if not pages.consumeDisplay() then
+  if not state.consumePageDisplay() then
     return {}
   end
-  local names = pageNames[state.get("deviceType")]
-  local name = names and names[pages.active]
-  return midi.makeOverlayDisplayEvents("Page " .. pages.active, name or " ")
+  local label, name = state.getPageLabelAndName()
+  return midi.makeOverlayDisplayEvents(label, name)
 end
