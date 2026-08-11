@@ -10,7 +10,7 @@ local function entry(value)
     return {
         current = value,
         next = value,
-        forceUpdate = false
+        forceUpdate = false,
     }
 end
 
@@ -36,6 +36,7 @@ function StateManager:new()
             param = entry(nil),
             hostValue = entry(nil),
             hostTextValue = entry(""),
+            forceDisplay = false
         }
     end
     for i = 1, const.counts.faders do
@@ -45,7 +46,9 @@ function StateManager:new()
             param = entry(nil),
             hostValue = entry(nil),
             hostTextValue = entry(""),
-            status = entry(const.fader.unassigned)
+            status = entry(const.fader.unassigned),
+            forceDisplay = false
+
         }
     end
     for i = 1, const.counts.buttons do
@@ -55,7 +58,8 @@ function StateManager:new()
             param = entry(nil),
             hostValue = entry(nil),
             hostTextValue = entry(""),
-            type = entry(const.button.toggle)
+            type = entry(const.button.toggle),
+            forceDisplay = false
         }
     end
     setmetatable(instance, self)
@@ -79,6 +83,7 @@ function StateManager:update(path)
     local hasChanged = item.forceUpdate or item.next ~= item.current
     item.current = item.next
     item.forceUpdate = false
+    item.forceDisplay = false
     return item.current, hasChanged
 end
 
@@ -347,6 +352,38 @@ end
 
 function StateManager:isShifted()
     return self.shifted;
+end
+
+function StateManager:forceDisplay(control)
+    local logMe = true
+    local item = self[control] -- ohoho - BAMM! - ohoho
+    if item == nil then
+        if logMe then
+            deb.log(
+                "[lib.state.StateManager:forceDisplay] " ..
+                "no item for " .. control .. ", not forcing display!"
+            )
+        end
+        return
+    end
+    item.forceDisplay = true
+end
+
+function StateManager:isDisplayForced(control)
+    local logMe = true
+    local item = self[control]
+    if item == nil then
+        if logMe then
+            deb.log(
+                "[lib.state.StateManager:isDisplayForced] " ..
+                "no item for " .. control .. ", display not forced!"
+            )
+        end
+        return false
+    end
+    local forceDisplay = item.forceDisplay
+    item.forceDisplay = false
+    return forceDisplay
 end
 
 return StateManager

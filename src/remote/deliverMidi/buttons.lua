@@ -11,7 +11,7 @@ return function()
   local events = {}
   for i = 1, const.counts.buttons do
     local control = "button" .. i
-
+    local isDisplayForced = state.isDisplayForced(control)
     local deviceType = state.update("deviceType")
     local controlSurfaceValue, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
@@ -48,12 +48,12 @@ return function()
 
       -- control surface value changed means user started holding the button
       -- down
-      if controlSurfaceValueChanged then
-        if controlSurfaceValue > 0 then
-          -- trigger LCD update
-          table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
-        end
+      if (controlSurfaceValueChanged and controlSurfaceValue > 0) or isDisplayForced then
+        -- trigger LCD update
+        table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
+      end
 
+      if controlSurfaceValueChanged then
         -- button down: light up button LED
         if type == const.button.cycle then
           local intensity = controlSurfaceValue > 0 and 95 or 1

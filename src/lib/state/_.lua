@@ -47,6 +47,12 @@ return {
   isShifted = function()
     return stateManager:isShifted()
   end,
+  forceDisplay = function(control)
+    stateManager:forceDisplay(control)
+  end,
+  isDisplayForced = function(control)
+    return stateManager:isDisplayForced(control)
+  end,
   setActivePage = function(page)
     pageManager:setActive(page)
   end,
