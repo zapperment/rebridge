@@ -11,10 +11,11 @@ return function(event)
           "fader" .. i,
           event,
           function(control, controlSurfaceValue)
+            local displayIsForced = state.isDisplayForced(control)
             local hostValue = state.get(control .. ".hostValue")
             local status = state.get(control .. ".status")
-            if status == const.fader.unknown then
-              -- it is goes here when the codec has just been loaded and
+            if status == const.fader.unknown or displayIsForced then
+              -- it goes here when the codec has just been loaded and
               -- we receive a CC from a fader for the first time
               if controlSurfaceValue >= hostValue - const.pickupTolerance and controlSurfaceValue <= hostValue + const.pickupTolerance then
                 status = const.fader.inSync
@@ -35,14 +36,15 @@ return function(event)
             state.set(control .. ".status", status)
 
             -- update host (Reason) only if fader is in sync
-            if status == const.fader.inSync then
+            if status == const.fader.inSync and not displayIsForced then
               remote.handle_input({
                 item = items[control].index,
                 value = controlSurfaceValue,
                 time_stamp = event.time_stamp
               })
             end
-          end
+          end,
+          true -- execute callback even when control is moved with shift pressed
         ) then
       return true
     end
