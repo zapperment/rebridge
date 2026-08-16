@@ -1,5 +1,5 @@
 local const = require("src.config.constants")
-local conditionals = require("src.config.conditionals")
+local cond = require("src.config.conditionals")
 local tbl = require("src.lib.table._")
 local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
@@ -36,7 +36,7 @@ function StateManager:new()
             param = entry(nil),
             hostValue = entry(nil),
             hostTextValue = entry(""),
-            forceDisplay = false
+            useAlternative = false
         }
     end
     for i = 1, const.counts.faders do
@@ -47,8 +47,8 @@ function StateManager:new()
             hostValue = entry(nil),
             hostTextValue = entry(""),
             status = entry(const.fader.unassigned),
-            forceDisplay = false
-
+            forceDisplay = false,
+            useAlternative = false
         }
     end
     for i = 1, const.counts.buttons do
@@ -96,6 +96,7 @@ function StateManager:updateAll()
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
+        self[control].useAlternative = false
     end
     for i = 1, const.counts.faders do
         control = "fader" .. i
@@ -105,6 +106,8 @@ function StateManager:updateAll()
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
         self:update(control .. ".status")
+        self[control].forceDisplay = false
+        self[control].useAlternative = false
     end
     for i = 1, const.counts.buttons do
         control = "button" .. i
@@ -114,6 +117,7 @@ function StateManager:updateAll()
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
         self:update(control .. ".type")
+        self[control].forceDisplay = false
     end
     self:update("transport.playing")
     self:update("transport.recording")
@@ -201,7 +205,7 @@ function StateManager:updateDependencies(param)
             "deviceType=" .. deviceType
         )
     end
-    local conditionalsForDevice = conditionals[deviceType]
+    local conditionalsForDevice = cond[deviceType]
     if not conditionalsForDevice then
         if logMe then
             deb.log(
@@ -384,6 +388,46 @@ function StateManager:isDisplayForced(control)
     local forceDisplay = item.forceDisplay
     item.forceDisplay = false
     return forceDisplay
+end
+
+function StateManager:canForceDisplay(control)
+    return self[control].forceDisplay ~= nil
+end
+
+function StateManager:useAlternative(control)
+    local logMe = true
+    local item = self[control]
+    if item == nil then
+        if logMe then
+            deb.log(
+                "[lib.state.StateManager:useAlternative] " ..
+                "no item for " .. control .. ", not using alternative!"
+            )
+        end
+        return
+    end
+    item.useAlternative = true
+end
+
+function StateManager:isUsingAlternative(control)
+    local logMe = true
+    local item = self[control]
+    if item == nil then
+        if logMe then
+            deb.log(
+                "[lib.state.StateManager:isUsingAlternative] " ..
+                "no item for " .. control .. ", not using alternative!"
+            )
+        end
+        return false
+    end
+    local isUsingAlternative = item.useAlternative
+    item.useAlternative = false
+    return isUsingAlternative
+end
+
+function StateManager:canUseAlternative(control)
+    return self[control].useAlternative ~= nil
 end
 
 return StateManager

@@ -8,7 +8,7 @@ return function(event)
     if util.process(
           "encoder" .. i,
           event,
-          function(control, controlSurfaceValue, item)
+          function(_, controlSurfaceValue, item)
             -- update host (Reason)
             remote.handle_input({
               time_stamp = event.time_stamp,

@@ -9,13 +9,13 @@ local deb = require("src.lib.debug._")
 -- one. From that the codec learns how many pages the device has and which one
 -- is active, wherever the change came from: the page buttons, another surface
 -- or the host switching devices.
-return function(changedItems)
+return function(hostItems)
   local hasChanged
-  for _, changedItemIndex in ipairs(changedItems) do
+  for _, hostItemIndex in ipairs(hostItems) do
     for i = 1, const.counts.pageSelects do
-      if changedItemIndex == items["pageSelect" .. i].index then
+      if hostItemIndex == items["pageSelect" .. i].index then
         hasChanged = true
-        local changedItem = remote.get_item_state(changedItemIndex)
+        local changedItem = remote.get_item_state(hostItemIndex)
         state.setPageState(i, changedItem)
       end
     end

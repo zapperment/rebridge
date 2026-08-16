@@ -53,6 +53,18 @@ return {
   isDisplayForced = function(control)
     return stateManager:isDisplayForced(control)
   end,
+  canForceDisplay = function(control)
+    return stateManager:canForceDisplay(control)
+  end,
+  useAlternative = function(control)
+    stateManager:useAlternative(control)
+  end,
+  isUsingAlternative = function(control)
+    return stateManager:isUsingAlternative(control)
+  end,
+  canUseAlternative = function(control)
+    return stateManager:canUseAlternative(control)
+  end,
   setActivePage = function(page)
     pageManager:setActive(page)
   end,

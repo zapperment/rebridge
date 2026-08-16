@@ -1,4 +1,4 @@
-local conditionals = require("src.config.conditionals")
+local cond = require("src.config.conditionals")
 local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
@@ -9,7 +9,7 @@ local deb = require("src.lib.debug._")
 -- back to the ordinary labels.
 return function(deviceType, param, hostValue)
   local logMe = false -- param == "LFO1 Rate"
-  local conditionalParametersOfDevice = conditionals[deviceType]
+  local conditionalParametersOfDevice = cond[deviceType]
   if not conditionalParametersOfDevice then
     return nil, nil
   end

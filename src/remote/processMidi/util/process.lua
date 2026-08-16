@@ -20,25 +20,34 @@ return function(control, event, callback, callbackWithForcedDisplay)
   local logMe = true
   local item = items[control]
   local match = remote.match_midi(item.midi, event)
-  if match then
-    if state.isShifted() then
-      if logMe then
-        deb.log(
-          "[remote:processMidi:process] " ..
-          "forcing display for " .. str.serialise(control)
-        )
-      end
-      state.forceDisplay(control)
-      if not callbackWithForcedDisplay then
-        return false
-      end
-    end
-    local controlSurfaceValue = match.x
-    state.set(control .. ".controlSurfaceValue", controlSurfaceValue)
-    if state.get(control .. ".enabled") then
-      callback(control, controlSurfaceValue, item)
-    end
-    return true
+  if not match then
+    return false
   end
-  return false
+  if state.isShifted() and state.canForceDisplay(control) then
+    if logMe then
+      deb.log(
+        "[remote:processMidi:process] " ..
+        "forcing display for " .. str.serialise(control)
+      )
+    end
+    state.forceDisplay(control)
+    if not callbackWithForcedDisplay then
+      return false
+    end
+  end
+  if state.canUseAlternative(control) and state.isUsingAlternative(control) then
+    if logMe then
+      deb.log(
+        "[remote:processMidi:process] " ..
+        "using alternative" .. str.serialise(control .. "alt")
+      )
+    end
+    item = items[control .. "alt"]
+  end
+  local controlSurfaceValue = match.x
+  state.set(control .. ".controlSurfaceValue", controlSurfaceValue)
+  if state.get(control .. ".enabled") then
+    callback(control, controlSurfaceValue, item)
+  end
+  return true
 end

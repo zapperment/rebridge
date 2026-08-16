@@ -384,7 +384,7 @@ Map	fader1		Reverb Amount			Page 10
 Map	button9		Reverb On			Page 10
 
 Map	encoder2		Delay Time			Page 10
-Map	encoder10		Delay Synced Time			Page 10
+Map	encoder2alt		Delay Synced Time			Page 10
 Map	encoder18		Delay Feedback			Page 10
 Map	encoder19		Delay Pan			Page 10
 Map	fader2		Delay Amount			Page 10

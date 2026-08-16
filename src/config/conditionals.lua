@@ -494,5 +494,9 @@ return {
       dependsOn = "Mode9",
       colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
     },
+    ["Delay Time"] = {
+      dependsOn = "Delay Sync",
+      alternativeControl = true
+    },
   },
 }

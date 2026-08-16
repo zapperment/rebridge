@@ -10,7 +10,7 @@ return function(event)
     if util.process(
           "fader" .. i,
           event,
-          function(control, controlSurfaceValue)
+          function(control, controlSurfaceValue, item)
             local displayIsForced = state.isDisplayForced(control)
             local hostValue = state.get(control .. ".hostValue")
             local status = state.get(control .. ".status")
@@ -38,7 +38,7 @@ return function(event)
             -- update host (Reason) only if fader is in sync
             if status == const.fader.inSync and not displayIsForced then
               remote.handle_input({
-                item = items[control].index,
+                item = item.index,
                 value = controlSurfaceValue,
                 time_stamp = event.time_stamp
               })

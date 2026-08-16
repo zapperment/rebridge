@@ -1,5 +1,5 @@
 local paramColours = require("src.config.paramColours")
-local conditionals = require("src.config.conditionals")
+local cond = require("src.config.conditionals")
 local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
 local state = require("src.lib.state._")
@@ -34,7 +34,7 @@ return function(deviceType, param, defaultColour)
     end
     return colour
   end
-  local conditional = conditionals[deviceType]
+  local conditional = cond[deviceType]
   if not conditional then
     if logMe then
       deb.log(
