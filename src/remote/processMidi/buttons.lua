@@ -38,47 +38,48 @@ end
 
 -- handles changes of the buttons of the remote surface (Launch Control)
 return function(event)
+  local processed = false
   for i = 1, const.counts.buttons do
-    if util.process(
-          "button" .. i,
-          event,
-          function(control, controlSurfaceValue, item)
-            -- callback START --
-            local pressed = controlSurfaceValue > 0
-            local paramName = remote.get_item_name(item.index)
-            local cycleCount = getCycleCount(paramName)
-            if cycleCount then
-              -- a cycle button is momentary: bright while held, and each press
-              -- advances the parameter to its next value, wrapping around at the end
-              if pressed then
-                local hostValue = state.get(control .. ".hostValue")
-                local currentValue = toParamValue(hostValue, cycleCount)
-                local nextValue = (currentValue + 1) % cycleCount
-                local nextValueScaled = toScaledValue(nextValue, cycleCount)
+    local control = "button" .. i
+    processed = util.process(
+      control,
+      event,
+      function(controlSurfaceValue, item)
+        -- callback START --
+        local pressed = controlSurfaceValue > 0
+        local paramName = remote.get_item_name(item.index)
+        local cycleCount = getCycleCount(paramName)
+        if cycleCount then
+          -- a cycle button is momentary: bright while held, and each press
+          -- advances the parameter to its next value, wrapping around at the end
+          if pressed then
+            local hostValue = state.get(control .. ".hostValue")
+            local currentValue = toParamValue(hostValue, cycleCount)
+            local nextValue = (currentValue + 1) % cycleCount
+            local nextValueScaled = toScaledValue(nextValue, cycleCount)
 
-                -- update host (Reason)
-                remote.handle_input({
-                  time_stamp = event.time_stamp,
-                  item = item.index,
-                  value = nextValueScaled
-                })
-              end
-            elseif pressed then
-              local turnedOn = state.flip(control .. ".hostValue")
-              deb.log(
-                "[remote:processMidi] " ..
-                "turnedOn=" .. str.serialise(turnedOn) .. " " ..
-                "(" .. type(turnedOn) .. ")"
-              )
-
-              -- update host (Reason)
-              local hostValue = turnedOn and 127 or 0
-              remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = hostValue })
-            end
-            -- callback END --
+            -- update host (Reason)
+            remote.handle_input({
+              time_stamp = event.time_stamp,
+              item = item.index,
+              value = nextValueScaled
+            })
           end
-        ) then
-      return true
-    end
+        elseif pressed then
+          local turnedOn = state.flip(control .. ".hostValue")
+          deb.log(
+            "[remote:processMidi] " ..
+            "turnedOn=" .. str.serialise(turnedOn) .. " " ..
+            "(" .. type(turnedOn) .. ")"
+          )
+
+          -- update host (Reason)
+          local hostValue = turnedOn and 127 or 0
+          remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = hostValue })
+        end
+        -- callback END --
+      end
+    ) or processed
   end
+  return processed
 end

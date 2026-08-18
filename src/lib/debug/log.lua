@@ -25,6 +25,9 @@ return function(logMessages, message)
     table.insert(logMessages, message)
   end
   previousMessage = message
+  if _ENV == "test" then
+    print(message)
+  end
   -- if the codec is not running in debug mode, the logs are never dumped
   -- we need to limit the number of log messages to prevent memory leaks
   if #logMessages > config.maxLogMessages then

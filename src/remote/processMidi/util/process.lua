@@ -17,7 +17,7 @@ return function(control, event, callback, callbackWithForcedDisplay)
   if callbackWithForcedDisplay == nil then
     callbackWithForcedDisplay = false
   end
-  local logMe = true
+  local logMe = control == "encoder2" or control == "encoder2alt"
   local item = items[control]
   local match = remote.match_midi(item.midi, event)
   if not match then
@@ -35,19 +35,23 @@ return function(control, event, callback, callbackWithForcedDisplay)
       return false
     end
   end
-  if state.canUseAlternative(control) and state.isUsingAlternative(control) then
-    if logMe then
-      deb.log(
-        "[remote:processMidi:process] " ..
-        "using alternative" .. str.serialise(control .. "alt")
-      )
-    end
-    item = items[control .. "alt"]
-  end
   local controlSurfaceValue = match.x
   state.set(control .. ".controlSurfaceValue", controlSurfaceValue)
   if state.get(control .. ".enabled") then
-    callback(control, controlSurfaceValue, item)
+    if logMe then
+      deb.log(
+        "[remote:processMidi:process] " ..
+        "processing " .. str.serialise(control)
+      )
+    end
+    callback(controlSurfaceValue, item)
+  else
+    if logMe then
+      deb.log(
+        "[remote:processMidi:process] " ..
+        "not processing disabled " .. str.serialise(control)
+      )
+    end
   end
   return true
 end

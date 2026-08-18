@@ -496,7 +496,11 @@ return {
     },
     ["Delay Time"] = {
       dependsOn = "Delay Sync",
-      alternativeControl = true
+      useOtherParamWhenValue = 127
+    },
+    ["Delay Synced Time"] = {
+      dependsOn = "Delay Sync",
+      useOtherParamWhenValue = 0
     },
   },
 }

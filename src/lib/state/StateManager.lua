@@ -35,8 +35,14 @@ function StateManager:new()
             controlSurfaceValue = entry(0),
             param = entry(nil),
             hostValue = entry(nil),
-            hostTextValue = entry(""),
-            useAlternative = false
+            hostTextValue = entry("")
+        }
+        instance["encoder" .. i .. "alt"] = {
+            enabled = entry(false),
+            controlSurfaceValue = entry(0),
+            param = entry(nil),
+            hostValue = entry(nil),
+            hostTextValue = entry("")
         }
     end
     for i = 1, const.counts.faders do
@@ -47,8 +53,16 @@ function StateManager:new()
             hostValue = entry(nil),
             hostTextValue = entry(""),
             status = entry(const.fader.unassigned),
-            forceDisplay = false,
-            useAlternative = false
+            forceDisplay = false
+        }
+        instance["fader" .. i .. "alt"] = {
+            enabled = entry(false),
+            controlSurfaceValue = entry(0),
+            param = entry(nil),
+            hostValue = entry(nil),
+            hostTextValue = entry(""),
+            status = entry(const.fader.unassigned),
+            forceDisplay = false
         }
     end
     for i = 1, const.counts.buttons do
@@ -88,7 +102,7 @@ function StateManager:update(path)
 end
 
 function StateManager:updateAll()
-    local control = nil
+    local control
     for i = 1, const.counts.encoders do
         control = "encoder" .. i
         self:update(control .. ".enabled")
@@ -96,7 +110,12 @@ function StateManager:updateAll()
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
-        self[control].useAlternative = false
+        control = "encoder" .. i .. "alt"
+        self:update(control .. ".enabled")
+        self:update(control .. ".controlSurfaceValue")
+        self:update(control .. ".param")
+        self:update(control .. ".hostValue")
+        self:update(control .. ".hostTextValue")
     end
     for i = 1, const.counts.faders do
         control = "fader" .. i
@@ -106,8 +125,15 @@ function StateManager:updateAll()
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
         self:update(control .. ".status")
-        self[control].forceDisplay = false
-        self[control].useAlternative = false
+        self:setForceDisplay(control, false)
+        control = "fader" .. i .. "alt"
+        self:update(control .. ".enabled")
+        self:update(control .. ".controlSurfaceValue")
+        self:update(control .. ".param")
+        self:update(control .. ".hostValue")
+        self:update(control .. ".hostTextValue")
+        self:update(control .. ".status")
+        self:setForceDisplay(control, false)
     end
     for i = 1, const.counts.buttons do
         control = "button" .. i
@@ -117,7 +143,7 @@ function StateManager:updateAll()
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
         self:update(control .. ".type")
-        self[control].forceDisplay = false
+        self:setForceDisplay(control, false)
     end
     self:update("transport.playing")
     self:update("transport.recording")
@@ -141,8 +167,12 @@ function StateManager:getHostValue(param)
     return self.hostValues[param]
 end
 
+function StateManager:resetHostValues()
+    self.hostValues = {}
+end
+
 function StateManager:updateHostValues(path, next, parent)
-    local logMe = false -- str.startsWith(path, "button1.") or str.startsWith(path, "encoder1.")
+    local logMe = str.startsWith(path, "button1.")
     local isHostValue = str.endsWith(path, ".hostValue")
     local isParam = str.endsWith(path, ".param")
     if (not isHostValue and not isParam) or not parent then
@@ -359,18 +389,22 @@ function StateManager:isShifted()
 end
 
 function StateManager:forceDisplay(control)
+    self:setForceDisplay(control, true)
+end
+
+function StateManager:setForceDisplay(control, forceDisplay)
     local logMe = true
     local item = self[control] -- ohoho - BAMM! - ohoho
     if item == nil then
         if logMe then
             deb.log(
-                "[lib.state.StateManager:forceDisplay] " ..
-                "no item for " .. control .. ", not forcing display!"
+                "[lib.state.StateManager:setForceDisplay] " ..
+                "no item for " .. control .. ", not setting forceDisplay!"
             )
         end
         return
     end
-    item.forceDisplay = true
+    item.forceDisplay = forceDisplay
 end
 
 function StateManager:isDisplayForced(control)
@@ -392,42 +426,6 @@ end
 
 function StateManager:canForceDisplay(control)
     return self[control].forceDisplay ~= nil
-end
-
-function StateManager:useAlternative(control)
-    local logMe = true
-    local item = self[control]
-    if item == nil then
-        if logMe then
-            deb.log(
-                "[lib.state.StateManager:useAlternative] " ..
-                "no item for " .. control .. ", not using alternative!"
-            )
-        end
-        return
-    end
-    item.useAlternative = true
-end
-
-function StateManager:isUsingAlternative(control)
-    local logMe = true
-    local item = self[control]
-    if item == nil then
-        if logMe then
-            deb.log(
-                "[lib.state.StateManager:isUsingAlternative] " ..
-                "no item for " .. control .. ", not using alternative!"
-            )
-        end
-        return false
-    end
-    local isUsingAlternative = item.useAlternative
-    item.useAlternative = false
-    return isUsingAlternative
-end
-
-function StateManager:canUseAlternative(control)
-    return self[control].useAlternative ~= nil
 end
 
 return StateManager

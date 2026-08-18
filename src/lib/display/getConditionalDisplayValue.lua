@@ -1,5 +1,8 @@
 local cond = require("src.config.conditionals")
+local tbl = require("src.lib.table._")
+local const = require("src.config.constants")
 local state = require("src.lib.state._")
+local str = require("src.lib.string._")
 local deb = require("src.lib.debug._")
 
 -- The label for a parameter whose display depends on the setting of another
@@ -8,47 +11,55 @@ local deb = require("src.lib.debug._")
 -- parameter or the parameter it depends on is off, leaving the caller to fall
 -- back to the ordinary labels.
 return function(deviceType, param, hostValue)
-  local logMe = false -- param == "LFO1 Rate"
-  local conditionalParametersOfDevice = cond[deviceType]
-  if not conditionalParametersOfDevice then
+  local logMe = param == "Delay Time" or param == "Delay Synced Time"
+  if logMe then
+    deb.log(
+      "[lib:display:getConditionalDisplayValue] " ..
+      "**param=" .. str.serialise(param) .. "**"
+    )
+  end
+  local conditional = tbl.getValueFromPath(
+    deviceType .. "." .. param
+  )
+  if not conditional then
     return nil, nil
   end
-  local conditionalOfParameter = conditionalParametersOfDevice[param]
-  if not conditionalOfParameter then
+  if conditional.useOtherParamWhenValue then
+    if logMe then
+      deb.log(
+        "[lib:display:getConditionalDisplayValue] " ..
+        "conditional has a property “getConditionalDisplayValue” — " ..
+        "this is handled elsewhere, returning nil"
+      )
+    end
     return nil, nil
   end
-  local dependsOnValue = state.getHostValue(conditionalOfParameter.dependsOn)
+  local dependsOnValue = state.getHostValue(conditional.dependsOn)
   if dependsOnValue == nil then
     return nil, nil
   end
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..
-      "dependsOn=" .. conditionalOfParameter.dependsOn
-    )
-  end
-  if logMe then
-    deb.log(
-      "[lib:display:getConditionalDisplayValue] " ..
-      "dependsOnValue=" .. tostring(dependsOnValue)
+      "dependsOn=" .. conditional.dependsOn
     )
   end
   if type(dependsOnValue) == "boolean" then
-    dependsOnValue = dependsOnValue and 1 or 0
+    dependsOnValue = dependsOnValue and 127 or 0
   end
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..
-      "dependsOnValue=" .. tostring(dependsOnValue)
+      "dependsOnValue=" .. str.serialise(dependsOnValue)
     )
   end
   local label, paramNameVariant
-  if conditionalOfParameter.labels and dependsOnValue > 0 then
-    local bucket = math.floor(hostValue * #conditionalOfParameter.labels / 128) + 1
-    label = conditionalOfParameter.labels[bucket]
+  if conditional.labels and dependsOnValue > 0 then
+    local bucket = math.floor(hostValue * #conditional.labels / 128) + 1
+    label = conditional.labels[bucket]
   end
-  if conditionalOfParameter.variations then
-    paramNameVariant = conditionalOfParameter.variations[tostring(dependsOnValue)]
+  if conditional.variations then
+    paramNameVariant = conditional.variations[tostring(dependsOnValue)]
   end
   return label, paramNameVariant
 end

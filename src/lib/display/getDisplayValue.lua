@@ -1,26 +1,27 @@
 local getConditionalDisplayValue = require("src.lib.display.getConditionalDisplayValue")
+local const = require("src.config.constants")
 local getCustomDisplayValue = require("src.lib.display.getCustomDisplayValue")
 local getInterpolatedDisplayValue = require("src.lib.display.getInterpolatedDisplayValue")
 local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
 return function(control)
-  local logMe = false -- control == "encoder1"
+  local logMe = control == "encoder2" or control == "encoder2alt"
   local hostTextValue = state.get(control .. ".hostTextValue")
   local hostValue = state.get(control .. ".hostValue")
   local param = state.get(control .. ".param")
   local deviceType = state.get("deviceType")
-  local displayValue, newParam = getConditionalDisplayValue(deviceType, param, hostValue)
-  if logMe and displayValue then
+  local shouldDisplayValue, newParam = getConditionalDisplayValue(deviceType, param, hostValue)
+  if logMe and shouldDisplayValue then
     deb.log(
       "[lib:display:getDisplayValue] " ..
       control .. " param " .. param ..
-      " - got display value! returning **" .. displayValue .. "**"
+      " - got display value! returning **" .. shouldDisplayValue .. "**"
     )
   end
-  if not displayValue then
+  if not shouldDisplayValue then
     local customDisplayValue = getCustomDisplayValue(deviceType, newParam or param, hostValue, hostTextValue)
-    if logMe and displayValue then
+    if logMe and shouldDisplayValue then
       deb.log(
         "[lib:display:getDisplayValue] " ..
         control .. " param " .. param ..
@@ -42,10 +43,10 @@ return function(control)
         " - no custom or interpolated display value! returning **" .. hostTextValue .. "**"
       )
     end
-    displayValue =
+    shouldDisplayValue =
         customDisplayValue
         or interpolatedDisplayValue
         or hostTextValue
   end
-  return displayValue
+  return shouldDisplayValue
 end

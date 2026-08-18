@@ -50,20 +50,14 @@ return {
   forceDisplay = function(control)
     stateManager:forceDisplay(control)
   end,
+  setForceDisplay = function(control, forceDisplay)
+    stateManager:setForceDisplay(control, forceDisplay)
+  end,
   isDisplayForced = function(control)
     return stateManager:isDisplayForced(control)
   end,
   canForceDisplay = function(control)
     return stateManager:canForceDisplay(control)
-  end,
-  useAlternative = function(control)
-    stateManager:useAlternative(control)
-  end,
-  isUsingAlternative = function(control)
-    return stateManager:isUsingAlternative(control)
-  end,
-  canUseAlternative = function(control)
-    return stateManager:canUseAlternative(control)
   end,
   setActivePage = function(page)
     pageManager:setActive(page)
@@ -73,6 +67,9 @@ return {
   end,
   resetPages = function()
     pageManager:reset()
+  end,
+  resetHostValues = function()
+    stateManager:resetHostValues()
   end,
   selectPage = function(step)
     return pageManager:select(step)

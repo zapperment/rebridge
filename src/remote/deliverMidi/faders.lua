@@ -5,45 +5,52 @@ local midi = require("src.lib.midi._")
 local state = require("src.lib.state._")
 local deb = require("src.lib.debug._")
 
+local controls = {}
+for i = 1, const.counts.faders do
+  table.insert(controls, "fader" .. i)
+  table.insert(controls, "fader" .. i .. "alt")
+end
+
 -- called regularly by the codec to update the control surface (Launch Control)
 return function()
   local events = {}
-  for i = 1, const.counts.faders do
-    local control = "fader" .. i
-
+  for _, control in ipairs(controls) do
+    local deviceType = state.update("deviceType")
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
     state.update(control .. ".hostValue")
-    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local _, hostTextValueChanged = state.update(control .. ".hostTextValue")
     local status, statusChanged = state.update(control .. ".status")
 
     local controller = items[control].controller
 
-    if enabledChanged or hostTextValueChanged or paramChanged then
-      table.insert(events,
-        midi.makeParamDisplayConfigEvent(controller, enabled, midi.displayArrangements.nameAndTextValue))
-    end
-    if enabled then
-      if paramChanged then
-        table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
+    if disp.shouldDisplay(deviceType, param) then
+      if enabledChanged or hostTextValueChanged or paramChanged then
+        table.insert(events,
+          midi.makeParamDisplayConfigEvent(controller, enabled, midi.displayArrangements.nameAndTextValue))
       end
-      if hostTextValueChanged or statusChanged then
-        local prefix = ""
-        local suffix = ""
-        if status == const.fader.tooHigh then
-          prefix = "v "
-          suffix = " v"
+      if enabled then
+        if paramChanged then
+          table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
         end
-        if status == const.fader.tooLow then
-          prefix = "^ "
-          suffix = " ^"
+        if hostTextValueChanged or statusChanged then
+          local prefix = ""
+          local suffix = ""
+          if status == const.fader.tooHigh then
+            prefix = "v "
+            suffix = " v"
+          end
+          if status == const.fader.tooLow then
+            prefix = "^ "
+            suffix = " ^"
+          end
+          local displayValue = disp.getDisplayValue(control)
+          table.insert(events, midi.makeParamValueDisplayEvent(prefix .. displayValue .. suffix, controller))
         end
-        local displayValue = disp.getDisplayValue(control)
-        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. displayValue .. suffix, controller))
-      end
-      if controlSurfaceValueChanged then
-        table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
+        if controlSurfaceValueChanged then
+          table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
+        end
       end
     end
   end
