@@ -17,7 +17,7 @@ return function(control, event, callback, callbackWithForcedDisplay)
   if callbackWithForcedDisplay == nil then
     callbackWithForcedDisplay = false
   end
-  local logMe = control == "encoder2" or control == "encoder2alt"
+  local logMe = false --control == "encoder2" or control == "encoder2alt"
   local item = items[control]
   local match = remote.match_midi(item.midi, event)
   if not match then

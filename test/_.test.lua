@@ -3,7 +3,7 @@ local lu = require "test.lib._".luaUnit
 _ENV = "test"
 
 require "test.TestDeliverButtons"
--- require "test.TestDeliverEncoders"
+require "test.TestDeliverEncoders"
 -- require "test.TestDeliverFaders"
 -- require "test.TestDeliverPages"
 require "test.TestMockFunction"

@@ -1,4 +1,5 @@
 local tbl = require "src.lib.table._"
+local cond = require "src.config.conditionals"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
@@ -9,7 +10,7 @@ local deb = require "src.lib.debug._"
 -- parameter or the parameter it depends on is off, leaving the caller to fall
 -- back to the ordinary labels.
 return function(deviceType, param, hostValue)
-  local logMe = param == "Delay Time" or param == "Delay Synced Time"
+  local logMe = false -- param == "Delay Time" or param == "Delay Synced Time"
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..
@@ -17,7 +18,7 @@ return function(deviceType, param, hostValue)
     )
   end
   local conditional = tbl.getValueFromPath(
-    deviceType .. "." .. param
+    cond, deviceType .. "." .. param
   )
   if not conditional then
     return nil, nil

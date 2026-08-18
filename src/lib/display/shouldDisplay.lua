@@ -5,7 +5,7 @@ local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 
 return function(deviceType, param)
-  local logMe = param == "Delay Time" or param == "Delay Synced Time"
+  local logMe = false -- param == "Delay Time" or param == "Delay Synced Time"
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..
@@ -13,6 +13,9 @@ return function(deviceType, param)
     )
   end
   local shouldDisplay = true
+  if not param then
+    return shouldDisplay
+  end
   local conditional = tbl.getValueFromPath(
     cond,
     deviceType .. "." .. param

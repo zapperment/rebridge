@@ -172,7 +172,7 @@ function StateManager:resetHostValues()
 end
 
 function StateManager:updateHostValues(path, next, parent)
-    local logMe = str.startsWith(path, "button1.")
+    local logMe = false -- str.startsWith(path, "button1.")
     local isHostValue = str.endsWith(path, ".hostValue")
     local isParam = str.endsWith(path, ".param")
     if (not isHostValue and not isParam) or not parent then
@@ -393,7 +393,7 @@ function StateManager:forceDisplay(control)
 end
 
 function StateManager:setForceDisplay(control, forceDisplay)
-    local logMe = true
+    local logMe = false
     local item = self[control] -- ohoho - BAMM! - ohoho
     if item == nil then
         if logMe then
@@ -408,7 +408,7 @@ function StateManager:setForceDisplay(control, forceDisplay)
 end
 
 function StateManager:isDisplayForced(control)
-    local logMe = true
+    local logMe = false
     local item = self[control]
     if item == nil then
         if logMe then

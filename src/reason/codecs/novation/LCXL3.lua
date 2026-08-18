@@ -1,6 +1,5 @@
 local autoInputs = require "src.config.autoInputs"
 local const = require "src.config.constants"
-local debug = require "src.lib.debug._"
 local deliverButtons = require "src.remote.deliverMidi.buttons"
 local deliverDisplay = require "src.remote.deliverMidi.display"
 local deliverEncoders = require "src.remote.deliverMidi.encoders"
@@ -21,6 +20,7 @@ local setFaders = require "src.remote.setState.faders"
 local setInfo = require "src.remote.setState.info"
 local setPages = require "src.remote.setState.pages"
 local setTransport = require "src.remote.setState.transport"
+local deb = require "src.lib.debug._"
 
 ---@diagnostic disable-next-line: lowercase-global
 function remote_init()
@@ -37,11 +37,11 @@ function remote_init()
   end
   remote.define_items(itemsToDefine)
   remote.define_auto_inputs(autoInputs)
-  debug.log(
-    "[reason.codecs.novation.LCXL3] " ..
-    "remote codec version " .. const.softwareVersion .. " " ..
-    "initialised successfully!"
-  )
+  -- deb.log(
+  --   "[reason.codecs.novation.LCXL3] " ..
+  --   "remote codec version " .. const.softwareVersion .. " " ..
+  --   "initialised successfully!"
+  -- )
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
@@ -69,7 +69,7 @@ end
 ---@diagnostic disable-next-line: lowercase-global
 function remote_deliver_midi(_, port)
   if port == 2 then
-    return debug.dump()
+    return deb.dump()
   end
 
   local events = {}

@@ -4,7 +4,7 @@ local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 
 return function(hostItemIndex, control, enabledCallback, disabledCallback)
-  local logMe = control == "encoder2" or control == "encoder2alt"
+  local logMe = false --control == "encoder2" or control == "encoder2alt"
   if hostItemIndex ~= items[control].index then
     return
   end
