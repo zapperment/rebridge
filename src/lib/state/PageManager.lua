@@ -1,5 +1,5 @@
-local const = require("src.config.constants")
-local pageNames = require("src.config.pageNames")
+local const = require "src.config.constants"
+local pageNames = require "src.config.pageNames"
 local PageManager = {}
 
 -- Tracks the parameter pages of the target device, fed by the pageSelect
@@ -86,7 +86,7 @@ function PageManager:update()
 end
 
 function PageManager:getLabelAndName()
-  local names = pageNames[self.state:get("deviceType")]
+  local names = pageNames[self.state:get "deviceType"]
   local name = names and names[self.active] or " "
   local label = "Page " .. self.active
   return label, name

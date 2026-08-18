@@ -1,5 +1,5 @@
-local StateManager = require("src.lib.state.StateManager")
-local PageManager = require("src.lib.state.PageManager")
+local StateManager = require "src.lib.state.StateManager"
+local PageManager = require "src.lib.state.PageManager"
 
 local stateManager = StateManager:new()
 local pageManager = PageManager:new({ state = stateManager })

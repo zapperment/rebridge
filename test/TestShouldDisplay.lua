@@ -1,15 +1,15 @@
-local test = require("test.lib._")
+local test = require "test.lib._"
 local lu = test.luaUnit
-local disp = require("src.lib.display._")
-local state = require("src.lib.state._")
+local disp = require "src.lib.display._"
+local state = require "src.lib.state._"
 
 TestShouldDisplay = {}
 
 local function setDelaySync(delaySync)
   state.set("button1.param", "Delay Sync")
   state.set("button1.hostValue", delaySync)
-  state.update("button1.param")
-  state.update("button1.hostValue")
+  state.update "button1.param"
+  state.update "button1.hostValue"
 end
 
 local function turnDelaySyncOn()

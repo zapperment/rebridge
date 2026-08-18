@@ -1,6 +1,6 @@
-local const = require("src.config.constants")
-local util = require("src.remote.processMidi.util._")
-local deb = require("src.lib.debug._")
+local const = require "src.config.constants"
+local util = require "src.remote.processMidi.util._"
+local deb = require "src.lib.debug._"
 
 local controls = {}
 for i = 1, const.counts.encoders do

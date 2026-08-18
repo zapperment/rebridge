@@ -1,9 +1,7 @@
-local cond = require("src.config.conditionals")
-local tbl = require("src.lib.table._")
-local const = require("src.config.constants")
-local state = require("src.lib.state._")
-local str = require("src.lib.string._")
-local deb = require("src.lib.debug._")
+local tbl = require "src.lib.table._"
+local state = require "src.lib.state._"
+local str = require "src.lib.string._"
+local deb = require "src.lib.debug._"
 
 -- The label for a parameter whose display depends on the setting of another
 -- parameter, e.g. SubTractor's LFO1 Rate showing note-length divisions while

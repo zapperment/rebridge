@@ -1,7 +1,7 @@
-local calc = require("src.lib.calc._")
-local const = require("src.config.constants")
-local interpolatedValues = require("src.config.interpolatedValues")
-local deb = require("src.lib.debug._")
+local calc = require "src.lib.calc._"
+local const = require "src.config.constants"
+local interpolatedValues = require "src.config.interpolatedValues"
+local deb = require "src.lib.debug._"
 
 return function(deviceType, param, hostValue)
   local ivForDevice = interpolatedValues[deviceType]

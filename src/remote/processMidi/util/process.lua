@@ -1,7 +1,7 @@
-local items = require("src.config.items")
-local state = require("src.lib.state._")
-local deb = require("src.lib.debug._")
-local str = require("src.lib.string._")
+local items = require "src.config.items"
+local state = require "src.lib.state._"
+local deb = require "src.lib.debug._"
+local str = require "src.lib.string._"
 
 -- @param callbackWithForcedDisplay - set to true is the callback should
 --                                    be executed even though the display

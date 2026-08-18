@@ -1,7 +1,7 @@
-local const = require("src.config.constants")
-local state = require("src.lib.state._")
-local util = require("src.remote.setState.util._")
-local deb = require("src.lib.debug._")
+local const = require "src.config.constants"
+local state = require "src.lib.state._"
+local util = require "src.remote.setState.util._"
+local deb = require "src.lib.debug._"
 
 local controls = {}
 for i = 1, const.counts.faders do

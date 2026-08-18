@@ -1,5 +1,5 @@
-local lu = require("test.lib._").luaUnit
-local tbl = require("src.lib.table._")
+local lu = require "test.lib._".luaUnit
+local tbl = require "src.lib.table._"
 
 TestTableUtils = {}
 

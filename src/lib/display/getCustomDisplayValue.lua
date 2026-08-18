@@ -1,5 +1,5 @@
-local customDisplayValues = require("src.config.customDisplayValues")
-local deb = require("src.lib.debug._")
+local customDisplayValues = require "src.config.customDisplayValues"
+local deb = require "src.lib.debug._"
 
 -- looks up the device-specific display value configured (see
 -- config/customDisplayValues) for a parameter's value; returns nil if none is defined,

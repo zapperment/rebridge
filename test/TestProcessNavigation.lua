@@ -1,10 +1,10 @@
-local test = require("test.lib._")
+local test = require "test.lib._"
 local lu = test.luaUnit
-local items = require("src.config.items")
-local pages = require("src.lib.state.pages")
-local processNavigation = require("src.remote.processMidi.navigation")
+local items = require "src.config.items"
+local pages = require "src.lib.state.pages"
+local processNavigation = require "src.remote.processMidi.navigation"
 
-require("src.reason.codecs.novation.LCXL3")
+require "src.reason.codecs.novation.LCXL3"
 
 TestProcessNavigation = {}
 
@@ -15,7 +15,7 @@ local shiftMidi = "b6 3f xx"
 -- simulates the remote surface sending a CC, with the mocked remote.match_midi
 -- matching on the pattern string alone
 local function receive(pattern, value)
-    remote.mock("match_midi"):impl(function(midi)
+    remote.mock "match_midi":impl(function(midi)
         if midi == pattern then
             return { x = value }
         end
@@ -33,7 +33,7 @@ local function releaseShift()
 end
 
 local function assertHandledItem(expectedItemName)
-    local calls = remote.mock("handle_input").calls
+    local calls = remote.mock "handle_input".calls
     local errorMessage = "expected the input to be handled once, but it was handled " .. #calls .. " times"
     lu.assertEquals(#calls, 1, errorMessage)
     errorMessage = "expected the input to be handled for the " .. expectedItemName .. " item (index " ..
@@ -62,34 +62,34 @@ end
 function TestProcessNavigation:testPageDownStepsToTheNextPageWithoutShift()
     setPages(4, 2)
     receive(items.pageDownButton.midi, 127)
-    assertHandledItem("pageSelect3")
+    assertHandledItem "pageSelect3"
     lu.assertEquals(pages.active, 3, "expected the active page to be recorded as 3")
 end
 
 function TestProcessNavigation:testPageUpStepsToThePreviousPageWithoutShift()
     setPages(4, 2)
     receive(items.pageUpButton.midi, 127)
-    assertHandledItem("pageSelect1")
+    assertHandledItem "pageSelect1"
     lu.assertEquals(pages.active, 1, "expected the active page to be recorded as 1")
 end
 
 function TestProcessNavigation:testWrapsToTheFirstPageWhenSteppingPastTheLastPage()
     setPages(4, 4)
     receive(items.pageDownButton.midi, 127)
-    assertHandledItem("pageSelect1")
+    assertHandledItem "pageSelect1"
     lu.assertEquals(pages.active, 1, "expected page down on the last page to wrap around to page 1")
 end
 
 function TestProcessNavigation:testWrapsToTheLastPageWhenSteppingBeforeTheFirstPage()
     setPages(4, 1)
     receive(items.pageUpButton.midi, 127)
-    assertHandledItem("pageSelect4")
+    assertHandledItem "pageSelect4"
     lu.assertEquals(pages.active, 4, "expected page up on the first page to wrap around to the last page")
 end
 
 function TestProcessNavigation:testDoesNothingOnADeviceWithoutPages()
     receive(items.pageDownButton.midi, 127)
-    local calls = remote.mock("handle_input").calls
+    local calls = remote.mock "handle_input".calls
     local errorMessage = "expected the page buttons to do nothing on a device without a page group, " ..
         "but handle_input was called " .. #calls .. " times"
     lu.assertEquals(#calls, 0, errorMessage)
@@ -99,7 +99,7 @@ function TestProcessNavigation:testStepsThroughAllPagesOneByOne()
     setPages(3, 1)
     receive(items.pageDownButton.midi, 127)
     receive(items.pageDownButton.midi, 127)
-    local calls = remote.mock("handle_input").calls
+    local calls = remote.mock "handle_input".calls
     lu.assertEquals(#calls, 2, "expected two page steps to be handled")
     local errorMessage = "expected the second page down to step from page 2 to page 3, even before the host " ..
         "confirmed the first step"
@@ -109,13 +109,13 @@ end
 function TestProcessNavigation:testBrowsesToThePreviousPatchWithShiftAndPageUp()
     holdShift()
     receive(items.pageUpButton.midi, 127)
-    assertHandledItem("patchUpButton")
+    assertHandledItem "patchUpButton"
 end
 
 function TestProcessNavigation:testBrowsesToTheNextPatchWithShiftAndPageDown()
     holdShift()
     receive(items.pageDownButton.midi, 127)
-    assertHandledItem("patchDownButton")
+    assertHandledItem "patchDownButton"
 end
 
 function TestProcessNavigation:testStepsThePageAgainAfterShiftWasReleased()
@@ -123,13 +123,13 @@ function TestProcessNavigation:testStepsThePageAgainAfterShiftWasReleased()
     holdShift()
     releaseShift()
     receive(items.pageDownButton.midi, 127)
-    assertHandledItem("pageSelect2")
+    assertHandledItem "pageSelect2"
 end
 
 function TestProcessNavigation:testDoesNothingWhenPageButtonIsReleased()
     setPages(4, 2)
     receive(items.pageUpButton.midi, 0)
-    local calls = remote.mock("handle_input").calls
+    local calls = remote.mock "handle_input".calls
     local errorMessage = "expected releasing the page up button not to handle any input, " ..
         "but handle_input was called " .. #calls .. " times"
     lu.assertEquals(#calls, 0, errorMessage)

@@ -1,7 +1,7 @@
-local concatenateKeys = require("src.lib.debug.concatenateKeys")
-local dumpWithLogMessages = require("src.lib.debug.dump")
-local logWithLogMessages = require("src.lib.debug.log")
-local midiEventToString = require("src.lib.debug.midiEventToString")
+local concatenateKeys = require "src.lib.debug.concatenateKeys"
+local dumpWithLogMessages = require "src.lib.debug.dump"
+local logWithLogMessages = require "src.lib.debug.log"
+local midiEventToString = require "src.lib.debug.midiEventToString"
 
 local logMessages = {}
 

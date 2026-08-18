@@ -1,4 +1,4 @@
-local decToHex = require("src.lib.hex.decToHex")
+local decToHex = require "src.lib.hex.decToHex"
 
 return function(text)
   local hex = ""

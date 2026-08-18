@@ -1,9 +1,9 @@
-local const = require("src.config.constants")
-local disp = require("src.lib.display._")
-local items = require("src.config.items")
-local midi = require("src.lib.midi._")
-local state = require("src.lib.state._")
-local deb = require("src.lib.debug._")
+local const = require "src.config.constants"
+local disp = require "src.lib.display._"
+local items = require "src.config.items"
+local midi = require "src.lib.midi._"
+local state = require "src.lib.state._"
+local deb = require "src.lib.debug._"
 
 local controls = {}
 for i = 1, const.counts.faders do
@@ -15,7 +15,7 @@ end
 return function()
   local events = {}
   for _, control in ipairs(controls) do
-    local deviceType = state.update("deviceType")
+    local deviceType = state.update "deviceType"
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")

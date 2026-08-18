@@ -1,15 +1,15 @@
-local test = require("test.lib._")
+local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require("src.lib.state._")
-local const = require("src.config.constants")
-local items = require("src.config.items")
-local hex = require("src.lib.hex._")
-local col = require("src.lib.colour._")
-local processButtons = require("src.remote.processMidi.buttons")
-local deliverButtons = require("src.remote.deliverMidi.buttons")
-local setButtons = require("src.remote.setState.buttons")
+local state = require "src.lib.state._"
+local const = require "src.config.constants"
+local items = require "src.config.items"
+local hex = require "src.lib.hex._"
+local col = require "src.lib.colour._"
+local processButtons = require "src.remote.processMidi.buttons"
+local deliverButtons = require "src.remote.deliverMidi.buttons"
+local setButtons = require "src.remote.setState.buttons"
 
-require("src.reason.codecs.novation.LCXL3")
+require "src.reason.codecs.novation.LCXL3"
 
 TestDeliverButtons = {}
 
@@ -29,8 +29,8 @@ local function colourEvent(colourName, intensity)
     return sysex("01 53 xx " .. col.getColour(colourName, intensity))
 end
 
-local displayOn = sysex("04 xx 61")
-local displayOff = sysex("04 xx 01")
+local displayOn = sysex "04 xx 61"
+local displayOff = sysex "04 xx 01"
 
 local function contains(events, event)
     for _, candidate in ipairs(events) do
@@ -55,7 +55,7 @@ end
 -- substituted by the host; this collects the targets an event was sent for
 local function targetsOf(event)
     local targets = {}
-    for _, call in ipairs(remote.mock("make_midi").calls) do
+    for _, call in ipairs(remote.mock "make_midi".calls) do
         if call[1] == event then
             table.insert(targets, call[2].x)
         end
@@ -65,7 +65,7 @@ end
 
 -- simulates the host reporting the button as mapped to the given parameter
 local function reportButton(button, paramName, hostValue, textValue)
-    remote.mock("get_item_state"):impl(function()
+    remote.mock "get_item_state":impl(function()
         return { is_enabled = true, value = hostValue, remote_item_name = paramName, text_value = textValue }
     end)
     setButtons({ items[button].index })
@@ -80,7 +80,7 @@ end
 -- simulates the button on the remote surface (Launch Control) being pressed
 -- (127) or released (0)
 local function sendButton(button, value)
-    remote.mock("match_midi"):impl(function(midi)
+    remote.mock "match_midi":impl(function(midi)
         return midi == items[button].midi and { x = value } or nil
     end)
     processButtons({ time_stamp = 0 })
@@ -104,23 +104,23 @@ function TestDeliverButtons:testShowsDisplayConfigNameAndValueWhenButtonBecomesE
     local errorMessage = "expected the display to be configured when a button becomes enabled"
     lu.assertEquals(contains(events, displayOn), true, errorMessage)
     errorMessage = "expected the param name to be shown when a button becomes enabled"
-    lu.assertEquals(contains(events, nameSysex("Mute")), true, errorMessage)
+    lu.assertEquals(contains(events, nameSysex "Mute"), true, errorMessage)
     errorMessage = "expected the resolved value label to be shown when a button becomes enabled"
-    lu.assertEquals(contains(events, valueSysex("On")), true, errorMessage)
+    lu.assertEquals(contains(events, valueSysex "On"), true, errorMessage)
 end
 
 function TestDeliverButtons:testSuppressesDisplayAndTurnsOffLedWhenButtonBecomesDisabled()
-    enableButton("button1")
+    enableButton "button1"
     state.set("button1.enabled", false)
     local events = deliverButtons()
     local errorMessage = "expected the button's display to be suppressed when it becomes disabled"
     lu.assertEquals(contains(events, displayOff), true, errorMessage)
     errorMessage = "expected the button's LED to be turned off when it becomes disabled"
-    lu.assertEquals(contains(events, sysex("01 53 xx 00 00 00")), true, errorMessage)
+    lu.assertEquals(contains(events, sysex "01 53 xx 00 00 00"), true, errorMessage)
 end
 
 function TestDeliverButtons:testDoesNotResendWhenNothingChangesOnTheNextDelivery()
-    enableButton("button1")
+    enableButton "button1"
     local events = deliverButtons()
     local errorMessage = "expected no events on the next delivery when nothing has changed, but got " .. #events
     lu.assertEquals(#events, 0, errorMessage)
@@ -149,7 +149,7 @@ end
 
 function TestDeliverButtons:testCycleButtonIsBrightWhileHeldDownAndDimAfterRelease()
     state.set("deviceType", "subtractor")
-    state.update("deviceType")
+    state.update "deviceType"
     reportButton("button13", "Filter Type", 32, "1")
     deliverButtons()
     remote.clearMocks()
@@ -168,7 +168,7 @@ end
 
 function TestDeliverButtons:testHostReportDoesNotOverrideACycleButtonsColourWhileItIsHeld()
     state.set("deviceType", "subtractor")
-    state.update("deviceType")
+    state.update "deviceType"
     reportButton("button13", "Filter Type", 32, "1")
     deliverButtons()
     remote.clearMocks()
@@ -186,22 +186,22 @@ function TestDeliverButtons:testHostReportDoesNotOverrideACycleButtonsColourWhil
 end
 
 function TestDeliverButtons:testTriggersTheDisplayOfThePressedButton()
-    enableButton("button5")
+    enableButton "button5"
     sendButton("button5", 127)
     local events = deliverButtons()
     local errorMessage = "expected the display trigger event to target button5's controller (" ..
         items.button5.controller .. ")"
-    lu.assertEquals(targetsOf(sysex("04 xx 7f")), { items.button5.controller }, errorMessage)
-    lu.assertEquals(contains(events, sysex("04 xx 7f")), true, errorMessage)
+    lu.assertEquals(targetsOf(sysex "04 xx 7f"), { items.button5.controller }, errorMessage)
+    lu.assertEquals(contains(events, sysex "04 xx 7f"), true, errorMessage)
 end
 
 function TestDeliverButtons:testDoesNotTriggerTheDisplayOnRelease()
-    enableButton("button5")
+    enableButton "button5"
     sendButton("button5", 127)
     deliverButtons()
     remote.clearMocks()
     sendButton("button5", 0)
     local events = deliverButtons()
     local errorMessage = "expected releasing a button not to trigger the display"
-    lu.assertEquals(contains(events, sysex("04 xx 7f")), false, errorMessage)
+    lu.assertEquals(contains(events, sysex "04 xx 7f"), false, errorMessage)
 end

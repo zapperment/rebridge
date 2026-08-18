@@ -1,5 +1,5 @@
-local state = require("src.lib.state._")
-local const = require("src.config.constants")
+local state = require "src.lib.state._"
+local const = require "src.config.constants"
 
 return function()
   state.resetPages()

@@ -1,27 +1,27 @@
-local test = require("test.lib._")
+local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require("src.lib.state._")
-local items = require("src.config.items")
-local col = require("src.lib.colour._")
-local setEncoders = require("src.remote.setState.encoders")
-local setButtons = require("src.remote.setState.buttons")
-local deliverEncoders = require("src.remote.deliverMidi.encoders")
-local deliverButtons = require("src.remote.deliverMidi.buttons")
+local state = require "src.lib.state._"
+local items = require "src.config.items"
+local col = require "src.lib.colour._"
+local setEncoders = require "src.remote.setState.encoders"
+local setButtons = require "src.remote.setState.buttons"
+local deliverEncoders = require "src.remote.deliverMidi.encoders"
+local deliverButtons = require "src.remote.deliverMidi.buttons"
 
-require("src.reason.codecs.novation.LCXL3")
+require "src.reason.codecs.novation.LCXL3"
 
 TestParamColours = {}
 
 local function setDeviceType(deviceType)
     state.set("deviceType", deviceType)
-    state.update("deviceType")
+    state.update "deviceType"
 end
 
 -- the colour bytes of the first LED colour event among the given delivered
 -- MIDI events, as sent in a "01 53 xx <colour>" sysex message
 local function colourOf(events)
     for _, event in ipairs(events) do
-        local colour = event:match("01 53 xx (%x%x %x%x %x%x)")
+        local colour = event:match "01 53 xx (%x%x %x%x %x%x)"
         if colour then
             return colour
         end
@@ -32,10 +32,10 @@ end
 -- simulates the host reporting a parameter mapped to the given control, and
 -- returns the LED colour the codec then delivers for it
 local function reportItem(itemName, paramName, value)
-    remote.mock("get_item_state"):impl(function()
+    remote.mock "get_item_state":impl(function()
         return { is_enabled = true, value = value, remote_item_name = paramName, text_value = tostring(value) }
     end)
-    if itemName:find("encoder") then
+    if itemName:find "encoder" then
         setEncoders({ items[itemName].index })
         return colourOf(deliverEncoders())
     else
@@ -51,7 +51,7 @@ function TestParamColours:setUp()
 end
 
 function TestParamColours:testGivesAnEncoderTheColourOfItsParamGroup()
-    setDeviceType("subtractor")
+    setDeviceType "subtractor"
     -- encoder1's own colour is red, but Filter Freq belongs to the filter 1
     -- group, so the two must not be confused here
     local colour = reportItem("encoder1", "Filter Freq", 100)
@@ -60,14 +60,14 @@ function TestParamColours:testGivesAnEncoderTheColourOfItsParamGroup()
 end
 
 function TestParamColours:testGivesAButtonTheColourOfItsParamGroup()
-    setDeviceType("subtractor")
+    setDeviceType "subtractor"
     local colour = reportItem("button1", "Noise On/Off", 127)
     local errorMessage = "expected a button mapped to Noise On/Off to take the noise group's colour"
     lu.assertEquals(colour, col.getColour("green", 95), errorMessage)
 end
 
 function TestParamColours:testGivesTheWholeGroupTheSameColour()
-    setDeviceType("subtractor")
+    setDeviceType "subtractor"
     local expected = col.getColour("yellow", 100)
     for _, paramName in ipairs({ "Osc2 Wave", "Osc2 Octave", "Osc2 Semitone", "Osc2 Fine Tune" }) do
         local colour = reportItem("encoder5", paramName, 100)
@@ -77,14 +77,14 @@ function TestParamColours:testGivesTheWholeGroupTheSameColour()
 end
 
 function TestParamColours:testKeepsTheControlsOwnColourOnADeviceWithoutParamColours()
-    setDeviceType("combinator")
+    setDeviceType "combinator"
     local colour = reportItem("encoder1", "Rotary 1", 100)
     local errorMessage = "expected a Combinator's controls to keep their own colours"
     lu.assertEquals(colour, col.getColour(items.encoder1.colour, 100), errorMessage)
 end
 
 function TestParamColours:testKeepsTheControlsOwnColourForAnUnlistedParam()
-    setDeviceType("subtractor")
+    setDeviceType "subtractor"
     local colour = reportItem("encoder1", "Master Level", 100)
     local errorMessage = "expected a parameter without a colour of its own to keep the control's colour"
     lu.assertEquals(colour, col.getColour(items.encoder1.colour, 100), errorMessage)

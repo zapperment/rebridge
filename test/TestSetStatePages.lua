@@ -1,10 +1,10 @@
-local test = require("test.lib._")
+local test = require "test.lib._"
 local lu = test.luaUnit
-local items = require("src.config.items")
-local pages = require("src.lib.state.pages")
-local setPages = require("src.remote.setState.pages")
+local items = require "src.config.items"
+local pages = require "src.lib.state.pages"
+local setPages = require "src.remote.setState.pages"
 
-require("src.reason.codecs.novation.LCXL3")
+require "src.reason.codecs.novation.LCXL3"
 
 TestSetStatePages = {}
 
@@ -19,7 +19,7 @@ local function reportSelectors(selectorValues)
         states[index] = value and { is_enabled = true, value = value } or { is_enabled = false, value = 0 }
         table.insert(changedItems, index)
     end
-    remote.mock("get_item_state"):impl(function(index)
+    remote.mock "get_item_state":impl(function(index)
         return states[index]
     end)
     setPages(changedItems)
@@ -56,7 +56,7 @@ end
 
 function TestSetStatePages:testIgnoresUnrelatedItems()
     reportSelectors({ 0, 127, 0, 0, false, false, false, false })
-    remote.mock("get_item_state"):impl(function()
+    remote.mock "get_item_state":impl(function()
         return { is_enabled = true, value = 64 }
     end)
     setPages({ items.encoder1.index })

@@ -1,14 +1,14 @@
-local const = require("src.config.constants")
-local state = require("src.lib.state._")
-local str = require("src.lib.string._")
-local cycleParams = require("src.config.cycleParams")
-local util = require("src.remote.processMidi.util._")
-local deb = require("src.lib.debug._")
+local const = require "src.config.constants"
+local state = require "src.lib.state._"
+local str = require "src.lib.string._"
+local cycleParams = require "src.config.cycleParams"
+local util = require "src.remote.processMidi.util._"
+local deb = require "src.lib.debug._"
 
 -- the number of values of the mapped parameter if the button cycles through
 -- them like the momentary buttons on the device's own UI, nil for toggles
 local function getCycleCount(paramName)
-  local deviceCycleParams = cycleParams[state.get("deviceType")]
+  local deviceCycleParams = cycleParams[state.get "deviceType"]
   return deviceCycleParams and deviceCycleParams[paramName]
 end
 

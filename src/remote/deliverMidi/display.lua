@@ -1,15 +1,15 @@
-local state = require("src.lib.state._")
-local hex = require("src.lib.hex._")
-local midi = require("src.lib.midi._")
-local deb = require("src.lib.debug._")
+local state = require "src.lib.state._"
+local hex = require "src.lib.hex._"
+local midi = require "src.lib.midi._"
+local deb = require "src.lib.debug._"
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
-  if state.hasChanged("display") then
-    local text = state.update("display")
+  if state.hasChanged "display" then
+    local text = state.update "display"
     -- Configure display: arrangement 2 (3 lines)
-    table.insert(events, midi.makeSysexEvent("04 35 62"))
+    table.insert(events, midi.makeSysexEvent "04 35 62")
 
     local target = "35" -- stationary display
     local lines = hex.textLinesToHex(text)
@@ -22,7 +22,7 @@ return function()
     end
 
     -- Trigger display
-    table.insert(events, midi.makeSysexEvent("04 35 7f"))
+    table.insert(events, midi.makeSysexEvent "04 35 7f")
   end
 
   return events

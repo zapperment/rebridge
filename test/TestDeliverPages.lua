@@ -1,12 +1,12 @@
-local test = require("test.lib._")
+local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require("src.lib.state._")
-local const = require("src.config.constants")
-local hex = require("src.lib.hex._")
-local pages = require("src.lib.state.pages")
-local deliverPages = require("src.remote.deliverMidi.pages")
+local state = require "src.lib.state._"
+local const = require "src.config.constants"
+local hex = require "src.lib.hex._"
+local pages = require "src.lib.state.pages"
+local deliverPages = require "src.remote.deliverMidi.pages"
 
-require("src.reason.codecs.novation.LCXL3")
+require "src.reason.codecs.novation.LCXL3"
 
 TestDeliverPages = {}
 
@@ -17,10 +17,10 @@ end
 -- the events that show the given two lines on the overlay display
 local function overlaySysex(firstLine, secondLine)
     return {
-        sysex("04 36 61"),
+        sysex "04 36 61",
         sysex("06 36 00 " .. hex.textToHex(firstLine)),
         sysex("06 36 01 " .. hex.textToHex(secondLine)),
-        sysex("04 36 7f"),
+        sysex "04 36 7f",
     }
 end
 
@@ -37,7 +37,7 @@ function TestDeliverPages:setUp()
     test.resetState()
     remote.clearMocks()
     state.set("deviceType", "subtractor")
-    state.update("deviceType")
+    state.update "deviceType"
     remote_init()
     givePages(4)
 end
@@ -96,7 +96,7 @@ end
 function TestDeliverPages:testShowsOnlyTheNumberForAPageWithoutAName()
     -- a device whose pages have no names configured
     state.set("deviceType", "malstrom")
-    state.update("deviceType")
+    state.update "deviceType"
     pages.setActive(2)
     local events = deliverPages()
     local errorMessage = "expected a page without a configured name to be shown with its number alone"

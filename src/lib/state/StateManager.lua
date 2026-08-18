@@ -1,8 +1,8 @@
-local const = require("src.config.constants")
-local cond = require("src.config.conditionals")
-local tbl = require("src.lib.table._")
-local str = require("src.lib.string._")
-local deb = require("src.lib.debug._")
+local const = require "src.config.constants"
+local cond = require "src.config.conditionals"
+local tbl = require "src.lib.table._"
+local str = require "src.lib.string._"
+local deb = require "src.lib.debug._"
 
 local StateManager = {}
 
@@ -20,12 +20,12 @@ function StateManager:new()
             playing = entry(false),
             recording = entry(false)
         },
-        display = entry(" "),
-        documentName = entry(" "),
-        targetTrackName = entry(" "),
-        deviceType = entry(" "),
-        deviceName = entry(" "),
-        patchName = entry(" "),
+        display = entry " ",
+        documentName = entry " ",
+        targetTrackName = entry " ",
+        deviceType = entry " ",
+        deviceName = entry " ",
+        patchName = entry " ",
         hostValues = {},
         shifted = false,
     }
@@ -145,14 +145,14 @@ function StateManager:updateAll()
         self:update(control .. ".type")
         self:setForceDisplay(control, false)
     end
-    self:update("transport.playing")
-    self:update("transport.recording")
-    self:update("display")
-    self:update("documentName")
-    self:update("targetTrackName")
-    self:update("deviceType")
-    self:update("deviceName")
-    self:update("patchName")
+    self:update "transport.playing"
+    self:update "transport.recording"
+    self:update "display"
+    self:update "documentName"
+    self:update "targetTrackName"
+    self:update "deviceType"
+    self:update "deviceName"
+    self:update "patchName"
 end
 
 function StateManager:get(path)
@@ -228,7 +228,7 @@ end
 
 function StateManager:updateDependencies(param)
     local logMe = false -- param == "LFO Sync Enable"
-    local deviceType = self:get("deviceType")
+    local deviceType = self:get "deviceType"
     if logMe then
         deb.log(
             "[lib:state:StateManager] " ..

@@ -1,10 +1,10 @@
-local col = require("src.lib.colour._")
-local const = require("src.config.constants")
-local disp = require("src.lib.display._")
-local items = require("src.config.items")
-local midi = require("src.lib.midi._")
-local state = require("src.lib.state._")
-local deb = require("src.lib.debug._")
+local col = require "src.lib.colour._"
+local const = require "src.config.constants"
+local disp = require "src.lib.display._"
+local items = require "src.config.items"
+local midi = require "src.lib.midi._"
+local state = require "src.lib.state._"
+local deb = require "src.lib.debug._"
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
@@ -12,7 +12,7 @@ return function()
   for i = 1, const.counts.buttons do
     local control = "button" .. i
     local isDisplayForced = state.isDisplayForced(control)
-    local deviceType = state.update("deviceType")
+    local deviceType = state.update "deviceType"
     local controlSurfaceValue, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")

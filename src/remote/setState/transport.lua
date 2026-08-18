@@ -1,6 +1,6 @@
-local items = require("src.config.items")
-local state = require("src.lib.state._")
-local deb = require("src.lib.debug._")
+local items = require "src.config.items"
+local state = require "src.lib.state._"
+local deb = require "src.lib.debug._"
 
 -- handles changes of the transport state (play/record) of the host (Reason)
 return function(hostItems)

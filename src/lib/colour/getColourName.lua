@@ -1,14 +1,13 @@
-local paramColours = require("src.config.paramColours")
-local cond = require("src.config.conditionals")
-local str = require("src.lib.string._")
-local deb = require("src.lib.debug._")
-local state = require("src.lib.state._")
+local paramColours = require "src.config.paramColours"
+local cond = require "src.config.conditionals"
+local deb = require "src.lib.debug._"
+local state = require "src.lib.state._"
 
 -- The name of the colour the LED of a control should have: the one its device
 -- type gives the parameter it is mapped to (see config/paramColours), falling
 -- back to the control's own default colour.
 return function(deviceType, param, defaultColour)
-  local logMe = false -- str.startsWith(param, "Mode ")
+  local logMe = false
   if logMe then
     deb.log(
       "[lib.colour.getColourName] " ..

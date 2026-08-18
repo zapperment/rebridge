@@ -1,4 +1,5 @@
-local str = require("src.lib.string._")
+local str = require "src.lib.string._"
+
 local MockFunction = {}
 
 function MockFunction:new()
@@ -25,7 +26,7 @@ end
 -- stored for later examination; if a fake has been set up
 -- for the provided argument, returns the fake data
 function MockFunction:call(...)
-    local args = {...}
+    local args = { ... }
     table.insert(self.calls, args)
     local key = str.serialise(args)
     if self.fakes[key] then

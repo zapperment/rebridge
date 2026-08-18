@@ -1,5 +1,5 @@
-local makeSysexEvent = require("src.lib.midi.makeSysexEvent")
-local hex = require("src.lib.hex._")
+local makeSysexEvent = require "src.lib.midi.makeSysexEvent"
+local hex = require "src.lib.hex._"
 
 local target = "36" -- overlay/temporary display
 

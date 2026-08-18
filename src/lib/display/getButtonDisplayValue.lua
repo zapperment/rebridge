@@ -1,8 +1,7 @@
-local const = require("src.config.constants")
-local getCustomDisplayValue = require("src.lib.display.getCustomDisplayValue")
-local state = require("src.lib.state._")
-local str = require("src.lib.string._")
-local deb = require("src.lib.debug._")
+local const = require "src.config.constants"
+local getCustomDisplayValue = require "src.lib.display.getCustomDisplayValue"
+local state = require "src.lib.state._"
+local deb = require "src.lib.debug._"
 
 local defaultDisplayValues = {
   ["0"] = "Off",
@@ -10,12 +9,12 @@ local defaultDisplayValues = {
 }
 
 return function(control)
-  local logMe = false -- control == "button1"
+  local logMe = false
   local hostTextValue = state.get(control .. ".hostTextValue")
   local hostValue = state.get(control .. ".hostValue")
   local param = state.get(control .. ".param")
   local type = state.get(control .. ".type")
-  local deviceType = state.get("deviceType")
+  local deviceType = state.get "deviceType"
   if logMe then
     deb.log(
       "[lib:display:getButtonDisplayValue] " ..

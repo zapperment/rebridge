@@ -1,64 +1,64 @@
-local lu = require("test.lib._").luaUnit
-local string = require("src.lib.string._")
+local lu = require "test.lib._".luaUnit
+local str = require "src.lib.string._"
 
 TestStringUtils = {}
 
 function TestStringUtils:testSerialise01()
-    local result = string.serialise("foo")
+    local result = str.serialise "foo"
     local errorMessage = "Serialisation of string failed"
     lu.assertEquals(result, "\"foo\"", errorMessage)
 end
 
 function TestStringUtils:testSerialise02()
-    local result = string.serialise(666)
+    local result = str.serialise(666)
     local errorMessage = "Serialisation of number failed"
     lu.assertEquals(result, "666", errorMessage)
 end
 
 function TestStringUtils:testSerialise03()
-    local result = string.serialise(false)
+    local result = str.serialise(false)
     local errorMessage = "Serialisation of boolean false failed"
     lu.assertEquals(result, "false", errorMessage)
 end
 
 function TestStringUtils:testSerialise04()
-    local result = string.serialise(true)
+    local result = str.serialise(true)
     local errorMessage = "Serialisation of boolean true failed"
     lu.assertEquals(result, "true", errorMessage)
 end
 
 function TestStringUtils:testSerialise05()
-    local result = string.serialise()
+    local result = str.serialise()
     local errorMessage = "Serialisation without argument failed"
     lu.assertEquals(result, "nil", errorMessage)
 end
 
 function TestStringUtils:testSerialise06()
-    local result = string.serialise(nil)
+    local result = str.serialise(nil)
     local errorMessage = "Serialisation of nil failed"
     lu.assertEquals(result, "nil", errorMessage)
 end
 
 function TestStringUtils:testSerialise07()
-    local result = string.serialise({})
+    local result = str.serialise({})
     local errorMessage = "Serialisation of empty table failed"
     lu.assertEquals(result, "{}", errorMessage)
 end
 
 function TestStringUtils:testSerialise08()
-    local result = string.serialise({ 1, 2, 3 })
+    local result = str.serialise({ 1, 2, 3 })
     local errorMessage = "Serialisation of list of numbers failed"
     lu.assertEquals(result, "{[1]=1,[2]=2,[3]=3}", errorMessage)
 end
 
 function TestStringUtils:testSerialise09()
-    local result = string.serialise({ "foo", "bar", "baz" })
+    local result = str.serialise({ "foo", "bar", "baz" })
     local errorMessage = "Serialisation of list of strings failed"
     lu.assertEquals(result, "{[1]=\"foo\",[2]=\"bar\",[3]=\"baz\"}", errorMessage)
 end
 
 function TestStringUtils:testSerialise10()
-    local result = string.serialise({
+    local result = str.serialise({
         foo = 1,
         bar = 2,
         baz = 3
@@ -68,7 +68,7 @@ function TestStringUtils:testSerialise10()
 end
 
 function TestStringUtils:testSerialise11()
-    local result = string.serialise({
+    local result = str.serialise({
         foo = {
             bar = "baz"
         }
@@ -90,7 +90,7 @@ function TestStringUtils:testSerialise12()
     end
 
     function Foo:bar(...)
-        return string.serialise(...)
+        return str.serialise(...)
     end
 
     local foo = Foo:new()
@@ -104,31 +104,31 @@ function TestStringUtils:testSerialise12()
 end
 
 function TestStringUtils:testAreStringsSimilar01()
-    local result = string.areStringsSimilar("", "")
+    local result = str.areStringsSimilar("", "")
     local errorMessage = "Two empty strings should be similar"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar02()
-    local result = string.areStringsSimilar("foo", "foo")
+    local result = str.areStringsSimilar("foo", "foo")
     local errorMessage = "Identical strings of odd length should be similar"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar03()
-    local result = string.areStringsSimilar("food", "food")
+    local result = str.areStringsSimilar("food", "food")
     local errorMessage = "Identical strings of even length should be similar"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar04()
-    local result = string.areStringsSimilar("hans", "wurst")
+    local result = str.areStringsSimilar("hans", "wurst")
     local errorMessage = "Completely different strings should not be similar"
     lu.assertEquals(result, false, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar05()
-    local result = string.areStringsSimilar(
+    local result = str.areStringsSimilar(
         "control surface fader1 send value 89 (89) for param Schubidu",
         "control surface fader1 send value 90 (90) for param Schubidu"
     )
@@ -137,7 +137,7 @@ function TestStringUtils:testAreStringsSimilar05()
 end
 
 function TestStringUtils:testAreStringsSimilar06()
-    local result = string.areStringsSimilar(
+    local result = str.areStringsSimilar(
         "control surface fader1 send value 89 (89) for param Schubidu",
         "control surface encoder3 send value 89 (89) for param Schubidu"
     )
@@ -146,7 +146,7 @@ function TestStringUtils:testAreStringsSimilar06()
 end
 
 function TestStringUtils:testAreStringsSimilar06b()
-    local result = string.areStringsSimilar(
+    local result = str.areStringsSimilar(
         "control surface fader1 send value 89 (89) for param Schubidu",
         "control surface button2 pressed"
     )
@@ -155,7 +155,7 @@ function TestStringUtils:testAreStringsSimilar06b()
 end
 
 function TestStringUtils:testAreStringsSimilar07()
-    local result = string.areStringsSimilar("hello world", "")
+    local result = str.areStringsSimilar("hello world", "")
     local errorMessage = "An empty string should not be similar to a non-empty one"
     lu.assertEquals(result, false, errorMessage)
 end
@@ -165,61 +165,61 @@ end
 -- part of its own that differs, so only the 50% of "foobar" counts, halved to
 -- exactly the threshold.
 function TestStringUtils:testAreStringsSimilar08()
-    local result = string.areStringsSimilar("foobar", "foo")
+    local result = str.areStringsSimilar("foobar", "foo")
     local errorMessage = "A pure prefix is judged only by the longer string's difference"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar08b()
-    local result = string.areStringsSimilar("foobarbaz", "foo")
+    local result = str.areStringsSimilar("foobarbaz", "foo")
     local errorMessage = "A string three times as long should not be similar"
     lu.assertEquals(result, false, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar09()
-    local result = string.areStringsSimilar("abcdefghijklmnopqrst", "abcdefghijXklmnopqrst")
+    local result = str.areStringsSimilar("abcdefghijklmnopqrst", "abcdefghijXklmnopqrst")
     local errorMessage = "A single inserted character in a long string should stay similar"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar10()
-    local result = string.areStringsSimilar("aa", "a")
+    local result = str.areStringsSimilar("aa", "a")
     local errorMessage = "Overlapping prefix and suffix should not be counted twice"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testStartsWith01()
-    local result = string.startsWith("foobar", "foo")
+    local result = str.startsWith("foobar", "foo")
     local errorMessage = "A string starting with the given prefix should return true"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testStartsWith02()
-    local result = string.startsWith("foobar", "bar")
+    local result = str.startsWith("foobar", "bar")
     local errorMessage = "A string not starting with the given prefix should return false"
     lu.assertEquals(result, false, errorMessage)
 end
 
 function TestStringUtils:testStartsWith03()
-    local result = string.startsWith("foo", "foo")
+    local result = str.startsWith("foo", "foo")
     local errorMessage = "A string identical to the prefix should return true"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testStartsWith04()
-    local result = string.startsWith("foo", "")
+    local result = str.startsWith("foo", "")
     local errorMessage = "Every string should start with an empty prefix"
     lu.assertEquals(result, true, errorMessage)
 end
 
 function TestStringUtils:testStartsWith05()
-    local result = string.startsWith("fo", "foo")
+    local result = str.startsWith("fo", "foo")
     local errorMessage = "A string shorter than the prefix should return false"
     lu.assertEquals(result, false, errorMessage)
 end
 
 function TestStringUtils:testAreStringsSimilar11()
-    local result = string.areStringsSimilar("abab", "baba")
+    local result = str.areStringsSimilar("abab", "baba")
     local errorMessage = "Strings without common prefix or suffix should not be similar"
     lu.assertEquals(result, false, errorMessage)
 end

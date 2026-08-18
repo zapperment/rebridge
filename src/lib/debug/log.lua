@@ -1,4 +1,4 @@
-local config = require("src.lib.debug.config")
+local config = require "src.lib.debug.config"
 
 local previousMessage = nil
 

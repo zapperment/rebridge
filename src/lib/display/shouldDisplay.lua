@@ -1,8 +1,8 @@
-local tbl = require("src.lib.table._")
-local cond = require("src.config.conditionals")
-local state = require("src.lib.state._")
-local str = require("src.lib.string._")
-local deb = require("src.lib.debug._")
+local tbl = require "src.lib.table._"
+local cond = require "src.config.conditionals"
+local state = require "src.lib.state._"
+local str = require "src.lib.string._"
+local deb = require "src.lib.debug._"
 
 return function(deviceType, param)
   local logMe = param == "Delay Time" or param == "Delay Synced Time"

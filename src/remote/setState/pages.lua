@@ -1,7 +1,7 @@
-local items = require("src.config.items")
-local const = require("src.config.constants")
-local state = require("src.lib.state._")
-local deb = require("src.lib.debug._")
+local items = require "src.config.items"
+local const = require "src.config.constants"
+local state = require "src.lib.state._"
+local deb = require "src.lib.debug._"
 
 -- Handles changes of the page selectors reported by the host (Reason). A
 -- selector is enabled while the target device's remote map binds it to a page

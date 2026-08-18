@@ -1,6 +1,6 @@
-local state = require("src.lib.state._")
-local items = require("src.config.items")
-local deb = require("src.lib.debug._")
+local state = require "src.lib.state._"
+local items = require "src.config.items"
+local deb = require "src.lib.debug._"
 
 return function(hostItems)
   for _, hostItemIndex in ipairs(hostItems) do

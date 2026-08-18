@@ -1,6 +1,6 @@
 return function(str)
   local lines = {}
-  for line in (str .. "\n"):gmatch("(.-)\n") do
+  for line in (str .. "\n"):gmatch "(.-)\n" do
     table.insert(lines, line)
   end
 

@@ -1,41 +1,41 @@
-local state = require("src.lib.state._")
-local hex = require("src.lib.hex._")
-local midi = require("src.lib.midi._")
-local deviceTypeLabels = require("src.config.deviceTypeLabels")
-local deb = require("src.lib.debug._")
+local state = require "src.lib.state._"
+local hex = require "src.lib.hex._"
+local midi = require "src.lib.midi._"
+local deviceTypeLabels = require "src.config.deviceTypeLabels"
+local deb = require "src.lib.debug._"
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
   local deviceName, deviceType, patchName
   local updateDisplay = false
-  if state.hasChanged("targetTrackName") then
-    state.update("targetTrackName");
+  if state.hasChanged "targetTrackName" then
+    state.update "targetTrackName";
   end
-  if state.hasChanged("documentName") then
-    state.update("documentName");
+  if state.hasChanged "documentName" then
+    state.update "documentName";
   end
-  if state.hasChanged("deviceType") then
-    deviceType = state.update("deviceType");
+  if state.hasChanged "deviceType" then
+    deviceType = state.update "deviceType";
     updateDisplay = true
   else
-    deviceType = state.get("deviceType")
+    deviceType = state.get "deviceType"
   end
-  if state.hasChanged("deviceName") then
-    deviceName = state.update("deviceName");
+  if state.hasChanged "deviceName" then
+    deviceName = state.update "deviceName";
     updateDisplay = true
   else
-    deviceName = state.get("deviceName")
+    deviceName = state.get "deviceName"
   end
-  if state.hasChanged("patchName") then
-    patchName = state.update("patchName");
+  if state.hasChanged "patchName" then
+    patchName = state.update "patchName";
     updateDisplay = true
   else
-    patchName = state.get("patchName")
+    patchName = state.get "patchName"
   end
   if updateDisplay then
     -- Configure display: arrangement 2 (3 lines)
-    table.insert(events, midi.makeSysexEvent("04 35 62"))
+    table.insert(events, midi.makeSysexEvent "04 35 62")
 
     local target = "35" -- stationary display
     local lines = (deviceTypeLabels[deviceType] or "") ..
@@ -50,7 +50,7 @@ return function()
     end
 
     -- Trigger display
-    table.insert(events, midi.makeSysexEvent("04 35 7f"))
+    table.insert(events, midi.makeSysexEvent "04 35 7f")
   end
   return events
 end

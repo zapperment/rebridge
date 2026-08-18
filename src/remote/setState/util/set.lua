@@ -1,7 +1,7 @@
-local items = require("src.config.items")
-local state = require("src.lib.state._")
-local str = require("src.lib.string._")
-local deb = require("src.lib.debug._")
+local items = require "src.config.items"
+local state = require "src.lib.state._"
+local str = require "src.lib.string._"
+local deb = require "src.lib.debug._"
 
 return function(hostItemIndex, control, enabledCallback, disabledCallback)
   local logMe = control == "encoder2" or control == "encoder2alt"

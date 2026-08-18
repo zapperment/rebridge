@@ -1,6 +1,6 @@
-local const = require("src.config.constants")
-local state = require("src.lib.state._")
-local util = require("src.remote.setState.util._")
+local const = require "src.config.constants"
+local state = require "src.lib.state._"
+local util = require "src.remote.setState.util._"
 
 -- handles changes of the buttons of the host (Reason)
 return function(hostItems)

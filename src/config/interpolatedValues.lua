@@ -1,4 +1,4 @@
-local const = require("src.config.constants")
+local const = require "src.config.constants"
 
 local bipolar = const.interpolation.bipolar
 local reciprocal = const.interpolation.reciprocal
