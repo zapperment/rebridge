@@ -42,7 +42,9 @@ function StateManager:new()
     for _, control in ipairs(ctrl.faders) do
         instance[control] = {
             enabled = entry(false),
-            controlSurfaceValue = entry(0),
+            -- nil, not 0: until the hardware fader has been moved once, we do
+            -- not know where it is, and guessing 0 breaks the pickup logic
+            controlSurfaceValue = entry(nil),
             param = entry(nil),
             hostValue = entry(nil),
             hostTextValue = entry(""),

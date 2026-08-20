@@ -33,7 +33,7 @@ return function()
   for i = 1, const.counts.faders do
     control = "fader" .. i
     state.set(control .. ".enabled", false)
-    state.set(control .. ".controlSurfaceValue", 0)
+    state.set(control .. ".controlSurfaceValue", nil)
     state.set(control .. ".param", nil)
     state.set(control .. ".hostValue", nil)
     state.set(control .. ".hostTextValue", "")
@@ -41,7 +41,7 @@ return function()
     state.setForceDisplay(control .. ".forceDisplay", false)
     control = "fader" .. i .. "alt"
     state.set(control .. ".enabled", false)
-    state.set(control .. ".controlSurfaceValue", 0)
+    state.set(control .. ".controlSurfaceValue", nil)
     state.set(control .. ".param", nil)
     state.set(control .. ".hostValue", nil)
     state.set(control .. ".hostTextValue", "")
