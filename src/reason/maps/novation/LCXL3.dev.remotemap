@@ -379,12 +379,12 @@ Map	button8		Out 9			Page 9
 Map	encoder1		Reverb Decay			Page 10
 Map	encoder9		Reverb Size			Page 10
 Map	encoder17		Reverb Damp			Page 10
-// Map	encoderXXX		Reverb Early Reflections			Page 10
+Map	encoder2		Reverb Early Reflections			Page 10
 Map	fader1		Reverb Amount			Page 10
 Map	button9		Reverb On			Page 10
 
-Map	encoder2		Delay Time			Page 10
-Map	encoder2alt		Delay Synced Time			Page 10
+Map	encoder10		Delay Time			Page 10
+Map	encoder10alt		Delay Synced Time			Page 10
 Map	encoder18		Delay Feedback			Page 10
 Map	encoder19		Delay Pan			Page 10
 Map	fader2		Delay Amount			Page 10
@@ -433,6 +433,9 @@ Map	encoder24		Unison Spread			Page 10
 Map	button8		Unison Count			Page 10
 Map	button16		Unison On			Page 10
 
+// Page 11: Performance
+
+Map	encoder1		Effect Select			Page 11
 Map	encoder8		Master			Page 11
 Map	fader6		FM Amount Offset			Page 11
 Map	fader7		Decay/Release Offset			Page 11
