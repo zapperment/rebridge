@@ -3,6 +3,25 @@ local cond = require "src.config.conditionals"
 local deb = require "src.lib.debug._"
 local state = require "src.lib.state._"
 
+-- The colour a conditional (or one of its overrides) gives for the current
+-- value of the parameter it depends on. Returns nil when that parameter has no
+-- value stored yet or the colours table says nothing about the current one.
+local function getColourForDependency(conditional)
+  if not conditional.colours then
+    return nil
+  end
+  local dependsOnValue = state.getHostValue(conditional.dependsOn)
+  if dependsOnValue == nil then
+    return nil
+  end
+  -- two-valued parameters are stored as booleans
+  -- (see src/remote/setState/buttons.lua)
+  if type(dependsOnValue) == "boolean" then
+    dependsOnValue = dependsOnValue and 127 or 0
+  end
+  return conditional.colours[tostring(dependsOnValue)]
+end
+
 -- The name of the colour the LED of a control should have: the one its device
 -- type gives the parameter it is mapped to (see config/paramColours), falling
 -- back to the control's own default colour.
@@ -63,30 +82,28 @@ return function(deviceType, param, defaultColour)
     end
     return defaultColour
   end
-  local dependsOn = conditional.dependsOn
   if logMe then
     deb.log(
       "[lib.colour.getColourName] " ..
-      "dependsOn=" .. dependsOn
+      "dependsOn=" .. conditional.dependsOn
     )
   end
-  local dependsOnValue = state.getHostValue(dependsOn)
-  if not dependsOnValue then
-    if logMe then
-      deb.log(
-        "[lib.colour.getColourName] " ..
-        "no value stored for depends on param, using default colour "
-      )
+  -- a parameter can depend on more than one other parameter: an override takes
+  -- a second parameter into account and wins over the parameter's own colours
+  -- as soon as it has something to say about that parameter's current value
+  for _, override in ipairs(conditional.overrides or {}) do
+    local overrideColour = getColourForDependency(override)
+    if overrideColour then
+      if logMe then
+        deb.log(
+          "[lib.colour.getColourName] " ..
+          "overridden by " .. override.dependsOn .. ": " .. overrideColour
+        )
+      end
+      return overrideColour
     end
-    return defaultColour
   end
-  if logMe then
-    deb.log(
-      "[lib.colour.getColourName] " ..
-      "dependsOnValue=" .. dependsOnValue
-    )
-  end
-  colour = conditional.colours[tostring(dependsOnValue)]
+  colour = getColourForDependency(conditional)
   if not colour then
     if logMe then
       deb.log(

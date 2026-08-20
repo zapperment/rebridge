@@ -6,6 +6,14 @@
 --
 -- SubTractor's LFO1 Rate turns into a note-length division while LFO1 sync is
 -- enabled, from 16/4 at the bottom of the range to 1/32 at the top.
+--
+-- A parameter can depend on more than one other parameter: next to the one
+-- named by dependsOn, it can list overrides, each naming a further parameter
+-- with colours of its own. The first override that has a colour for the current
+-- value of its parameter wins over the colour dependsOn would give. The
+-- Algorithm's Pan parameters work that way: their LED takes the colour of the
+-- module's Mode, but stays unlit while the module's Out is off, because there is
+-- no panning to be done then.
 return {
   subtractor = {
     ["LFO1 Rate"] = {
@@ -388,39 +396,66 @@ return {
     },
     ["Pan 1"] = {
       dependsOn = "Mode1",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 1", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 2"] = {
       dependsOn = "Mode2",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 2", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 3"] = {
       dependsOn = "Mode3",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 3", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 4"] = {
       dependsOn = "Mode4",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 4", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 5"] = {
       dependsOn = "Mode5",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 5", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 6"] = {
       dependsOn = "Mode6",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 6", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 7"] = {
       dependsOn = "Mode7",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 7", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 8"] = {
       dependsOn = "Mode8",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 8", colours = { ["0"] = "black" } },
+      }
     },
     ["Pan 9"] = {
       dependsOn = "Mode9",
-      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" }
+      colours = { ["0"] = "black", ["32"] = "blue", ["64"] = "orange", ["96"] = "white", ["127"] = "red" },
+      overrides = {
+        { dependsOn = "Out 9", colours = { ["0"] = "black" } },
+      }
     },
     ["Mode1"] = {
       dependsOn = "Mode1",

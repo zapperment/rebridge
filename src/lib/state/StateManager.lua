@@ -195,6 +195,21 @@ function StateManager:updateHostValues(path, next, parent)
     end
 end
 
+-- Whether a conditional makes its parameter depend on the given parameter: on
+-- the one named by dependsOn, and on the one named by each of its overrides,
+-- as a parameter can depend on more than one other parameter.
+local function dependsOnParam(conditionalConfig, param)
+    if conditionalConfig.dependsOn == param then
+        return true
+    end
+    for _, override in ipairs(conditionalConfig.overrides or {}) do
+        if override.dependsOn == param then
+            return true
+        end
+    end
+    return false
+end
+
 function StateManager:updateDependencies(param)
     local logMe = param == "LFO Sync Enable"
     local deviceType = self:get "deviceType"
@@ -215,8 +230,7 @@ function StateManager:updateDependencies(param)
         return
     end
     for dependentParam, conditionalConfig in pairs(conditionalsForDevice) do
-        local dependsOn = conditionalConfig.dependsOn
-        if dependsOn == param then
+        if dependsOnParam(conditionalConfig, param) then
             if logMe then
                 deb.log(
                     "[lib:state:StateManager] " ..
