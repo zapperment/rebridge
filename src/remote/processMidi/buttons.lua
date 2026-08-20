@@ -38,6 +38,7 @@ end
 
 -- handles changes of the buttons of the remote surface (Launch Control)
 return function(event)
+  local logMe = false
   local processed = false
   for i = 1, const.counts.buttons do
     local control = "button" .. i
@@ -67,11 +68,13 @@ return function(event)
           end
         elseif pressed then
           local turnedOn = state.flip(control .. ".hostValue")
-          deb.log(
-            "[remote:processMidi] " ..
-            "turnedOn=" .. str.serialise(turnedOn) .. " " ..
-            "(" .. type(turnedOn) .. ")"
-          )
+          if logMe then
+            deb.log(
+              "[remote:processMidi:buttons] " ..
+              "turnedOn=" .. str.serialise(turnedOn) .. " " ..
+              "(" .. type(turnedOn) .. ")"
+            )
+          end
 
           -- update host (Reason)
           local hostValue = turnedOn and 127 or 0

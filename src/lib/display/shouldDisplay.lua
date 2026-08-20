@@ -5,7 +5,7 @@ local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 
 return function(deviceType, param)
-  local logMe = false -- param == "Delay Time" or param == "Delay Synced Time"
+  local logMe = false --param == "Delay Time" or param == "Delay Synced Time"
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..
@@ -20,7 +20,7 @@ return function(deviceType, param)
     cond,
     deviceType .. "." .. param
   )
-  if not conditional or not conditional.useOtherParamWhenValue then
+  if not conditional or conditional.useOtherParamWhenValue == nil then
     if logMe then
       if not conditional then
         deb.log(
@@ -32,7 +32,7 @@ return function(deviceType, param)
         deb.log(
           "[lib:display:shouldDisplay] " ..
           "conditional found for param " .. str.serialise(param) .. " " ..
-          "but no “useOtherParamWhenValue” " ..
+          "but no useOtherParamWhenValue " ..
           "returning true (should display)"
         )
       end
