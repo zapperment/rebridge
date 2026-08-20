@@ -138,6 +138,7 @@ Remotable	Min	Max	Input type	Output type
 [X] Release 7	0	4194304	Value	ValueOutput
 [X] Release 8	0	4194304	Value	ValueOutput
 [X] Release 9	0	4194304	Value	ValueOutput
+
 [X] Comp Attack	0	4194304	Value	ValueOutput
 [X] Comp On	0	1	Toggle	ValueOutput
 [X] Comp Ratio	0	4194304	Value	ValueOutput
@@ -161,14 +162,13 @@ Remotable	Min	Max	Input type	Output type
 [X] EQ Hi Gain	0	4194304	Value	ValueOutput
 [X] EQ Lo Gain	0	4194304	Value	ValueOutput
 [X] EQ Q	0	4194304	Value	ValueOutput
-[ ] Effect Order	0	5039	Value	ValueOutput
 [X] EQ On	0	1	Toggle	ValueOutput
 [X] Phaser On	0	1	Toggle	ValueOutput
 [X] Mod Effect Amount	0	4194304	Value	ValueOutput
 [X] Mod Effect Depth	0	4194304	Value	ValueOutput
 [X] Mod Effect Feedback	0	4194304	Value	ValueOutput
 [X] Mod Effect Rate	0	4194304	Value	ValueOutput
-[ ] Mod Effect Spread	0	4194304	Value	ValueOutput
+[ ] Mod Effect Spread	0	4194304	Value	ValueOutput // no controls left, had to leave this out
 [X] Resonator Mix	0	4194304	Value	ValueOutput
 [X] Resonator On	0	1	Toggle	ValueOutput
 [X] Resonator Pitch	0	24	Value	ValueOutput
@@ -178,7 +178,7 @@ Remotable	Min	Max	Input type	Output type
 [X] Reverb Amount	0	4194304	Value	ValueOutput
 [X] Reverb Damp	0	4194304	Value	ValueOutput
 [X] Reverb Decay	0	4194304	Value	ValueOutput
-[ ] Reverb Early Reflections	0	4194304	Value	ValueOutput
+[ ] Reverb Early Reflections	0	4194304	Value	ValueOutput // no controls left, had to leave this out
 [X] Reverb On	0	1	Toggle	ValueOutput
 [X] Reverb Size	0	4194304	Value	ValueOutput
 [X] Unison On	0	1	Toggle	ValueOutput
@@ -186,7 +186,11 @@ Remotable	Min	Max	Input type	Output type
 [X] Unison Timing	0	4194304	Value	ValueOutput
 [X] Unison Detune	0	4194304	Value	ValueOutput
 [X] Unison Spread	0	4194304	Value	ValueOutput
-[ ] Unison Blend	0	4194304	Value	ValueOutput
+[ ] Unison Blend	0	4194304	Value	ValueOutput // no controls left, had to leave this out
+
+[ ] Effect Select	0	6	Value	ValueOutput
+[-] Effect Order	0	5039	Value	ValueOutput // does not make sense to map to a control!
+
 [ ] LFO 1 Rate	0	4194304	Value	ValueOutput
 [ ] LFO 1 Sync Rate	0	17	Value	ValueOutput
 [ ] LFO 2 Rate	0	4194304	Value	ValueOutput
@@ -199,6 +203,7 @@ Remotable	Min	Max	Input type	Output type
 [ ] Curve 2 Length	0	15	Value	ValueOutput
 [ ] Curve 2 Rate	0	4194304	Value	ValueOutput
 [ ] Curve 2 Sync Rate	0	17	Value	ValueOutput
+ 
 [X] FM Amount Offset	0	4194304	Value	ValueOutput
 [X] Feedback	0	4194304	Value	ValueOutput
 [ ] Key Mode	0	2	Value	ValueOutput
@@ -208,6 +213,7 @@ Remotable	Min	Max	Input type	Output type
 [ ] Portamento	0	4194304	Value	ValueOutput
 [ ] Portamento Mode	0	2	Value	ValueOutput
 [X] Decay/Release Offset	0	4194304	Value	ValueOutput
+
 [X] Mode1	0	4	Value	ValueOutput
 [X] Mode2	0	4	Value	ValueOutput
 [X] Mode3	0	4	Value	ValueOutput
@@ -226,8 +232,14 @@ Remotable	Min	Max	Input type	Output type
 [X] Out 7	0	1	Toggle	ValueOutput
 [X] Out 8	0	1	Toggle	ValueOutput
 [X] Out 9	0	1	Toggle	ValueOutput
-[ ] Pitch Bend	-8192	8191	Value	ValueOutput
-[ ] Mod Wheel	0	127	Value	ValueOutput
+
+[-] Pitch Bend	-8192	8191	Value	ValueOutput
+[-] Mod Wheel	0	127	Value	ValueOutput
+[ ] Breath Control	0	127	Value	ValueOutput
+[ ] Aftertouch	0	127	Value	ValueOutput
+[ ] Expression	0	127	Value	ValueOutput
+[ ] Sustain Pedal	0	127	Value	ValueOutput
+
 [ ] LFO 1 Delay	0	4194304	Value	ValueOutput
 [ ] LFO 1 Key Sync	0	1	Toggle	ValueOutput
 [ ] LFO 1 Global	0	1	Toggle	ValueOutput
@@ -244,11 +256,6 @@ Remotable	Min	Max	Input type	Output type
 [ ] LFO 3 Tempo Sync	0	1	Toggle	ValueOutput
 [ ] LFO 3 Wave	0	9	Value	ValueOutput
 [ ] LFO Select	0	4	Value	ValueOutput
-[ ] Breath Control	0	127	Value	ValueOutput
-[ ] Aftertouch	0	127	Value	ValueOutput
-[ ] Expression	0	127	Value	ValueOutput
-[ ] Sustain Pedal	0	127	Value	ValueOutput
-[ ] Effect Select	0	6	Value	ValueOutput
 [X] Mod Effect Type	0	2	Value	ValueOutput
 [ ] Osc Sync	0	1	Toggle	ValueOutput
 [ ] Rate Key Scale	0	4194304	Value	ValueOutput
