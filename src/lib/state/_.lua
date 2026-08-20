@@ -62,6 +62,12 @@ return {
   setActivePage = function(page)
     pageManager:setActive(page)
   end,
+  getActivePage = function()
+    return pageManager:getActive()
+  end,
+  getPageCount = function()
+    return pageManager:getCount()
+  end,
   consumePageDisplay = function()
     return pageManager:consumeDisplay()
   end,

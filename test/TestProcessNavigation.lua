@@ -1,7 +1,8 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local items = require "src.config.items"
-local pages = require "src.lib.state.pages"
+local const = require "src.config.constants"
+local state = require "src.lib.state._"
 local processNavigation = require "src.remote.processMidi.navigation"
 
 require "src.reason.codecs.novation.LCXL3"
@@ -45,12 +46,13 @@ end
 -- gives the target device pageCount pages with the given page active, as the
 -- host would have reported it through the page selectors
 local function setPages(pageCount, active)
-    for i = 1, pageCount do
-        pages.enabled[i] = true
-        pages.selected[i] = i == active
+    for i = 1, const.counts.pageSelects do
+        state.setPageState(i, {
+            is_enabled = i <= pageCount,
+            value = i == active and 127 or 0
+        })
     end
-    pages.count = pageCount
-    pages.active = active
+    state.updatePages()
 end
 
 function TestProcessNavigation:setUp()
@@ -63,28 +65,28 @@ function TestProcessNavigation:testPageDownStepsToTheNextPageWithoutShift()
     setPages(4, 2)
     receive(items.pageDownButton.midi, 127)
     assertHandledItem "pageSelect3"
-    lu.assertEquals(pages.active, 3, "expected the active page to be recorded as 3")
+    lu.assertEquals(state.getActivePage(), 3, "expected the active page to be recorded as 3")
 end
 
 function TestProcessNavigation:testPageUpStepsToThePreviousPageWithoutShift()
     setPages(4, 2)
     receive(items.pageUpButton.midi, 127)
     assertHandledItem "pageSelect1"
-    lu.assertEquals(pages.active, 1, "expected the active page to be recorded as 1")
+    lu.assertEquals(state.getActivePage(), 1, "expected the active page to be recorded as 1")
 end
 
 function TestProcessNavigation:testWrapsToTheFirstPageWhenSteppingPastTheLastPage()
     setPages(4, 4)
     receive(items.pageDownButton.midi, 127)
     assertHandledItem "pageSelect1"
-    lu.assertEquals(pages.active, 1, "expected page down on the last page to wrap around to page 1")
+    lu.assertEquals(state.getActivePage(), 1, "expected page down on the last page to wrap around to page 1")
 end
 
 function TestProcessNavigation:testWrapsToTheLastPageWhenSteppingBeforeTheFirstPage()
     setPages(4, 1)
     receive(items.pageUpButton.midi, 127)
     assertHandledItem "pageSelect4"
-    lu.assertEquals(pages.active, 4, "expected page up on the first page to wrap around to the last page")
+    lu.assertEquals(state.getActivePage(), 4, "expected page up on the first page to wrap around to the last page")
 end
 
 function TestProcessNavigation:testDoesNothingOnADeviceWithoutPages()

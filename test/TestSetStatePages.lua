@@ -1,7 +1,7 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local items = require "src.config.items"
-local pages = require "src.lib.state.pages"
+local state = require "src.lib.state._"
 local setPages = require "src.remote.setState.pages"
 
 require "src.reason.codecs.novation.LCXL3"
@@ -33,25 +33,25 @@ end
 
 function TestSetStatePages:testLearnsThePageCountFromTheEnabledSelectors()
     reportSelectors({ 0, 0, 0, 127, false, false, false, false })
-    lu.assertEquals(pages.count, 4, "expected a device with four bound selectors to have four pages")
+    lu.assertEquals(state.getPageCount(), 4, "expected a device with four bound selectors to have four pages")
 end
 
 function TestSetStatePages:testLearnsTheActivePageFromTheSelectedSelector()
     reportSelectors({ 0, 0, 0, 127, false, false, false, false })
-    lu.assertEquals(pages.active, 4, "expected the selector with a value to mark the active page")
+    lu.assertEquals(state.getActivePage(), 4, "expected the selector with a value to mark the active page")
 end
 
 function TestSetStatePages:testFollowsAPageSwitchReportedByTheHost()
     reportSelectors({ 127, 0, 0, 0, false, false, false, false })
     reportSelectors({ 0, 0, 127, 0, false, false, false, false })
-    lu.assertEquals(pages.active, 3, "expected the active page to follow the host's report")
+    lu.assertEquals(state.getActivePage(), 3, "expected the active page to follow the host's report")
 end
 
 function TestSetStatePages:testHasNoPagesOnADeviceWithoutSelectors()
     reportSelectors({ 127, 0, 0, 0, false, false, false, false })
     reportSelectors({ false, false, false, false, false, false, false, false })
-    lu.assertEquals(pages.count, 0, "expected a device without bound selectors to have no pages")
-    lu.assertEquals(pages.active, 1, "expected the active page to fall back to 1")
+    lu.assertEquals(state.getPageCount(), 0, "expected a device without bound selectors to have no pages")
+    lu.assertEquals(state.getActivePage(), 1, "expected the active page to fall back to 1")
 end
 
 function TestSetStatePages:testIgnoresUnrelatedItems()
@@ -60,6 +60,6 @@ function TestSetStatePages:testIgnoresUnrelatedItems()
         return { is_enabled = true, value = 64 }
     end)
     setPages({ items.encoder1.index })
-    lu.assertEquals(pages.active, 2, "expected changes of unrelated items to leave the pages untouched")
-    lu.assertEquals(pages.count, 4, "expected changes of unrelated items to leave the page count untouched")
+    lu.assertEquals(state.getActivePage(), 2, "expected changes of unrelated items to leave the pages untouched")
+    lu.assertEquals(state.getPageCount(), 4, "expected changes of unrelated items to leave the page count untouched")
 end

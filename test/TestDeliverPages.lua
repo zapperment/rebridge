@@ -3,7 +3,6 @@ local lu = test.luaUnit
 local state = require "src.lib.state._"
 local const = require "src.config.constants"
 local hex = require "src.lib.hex._"
-local pages = require "src.lib.state.pages"
 local deliverPages = require "src.remote.deliverMidi.pages"
 
 require "src.reason.codecs.novation.LCXL3"
@@ -24,13 +23,17 @@ local function overlaySysex(firstLine, secondLine)
     }
 end
 
--- gives the target device pageCount pages, as the host would have reported
--- them through the page selectors
+-- gives the target device pageCount pages with the first one selected, as the
+-- host would have reported them through the page selectors; a count of 0
+-- stands for a device without a page group
 local function givePages(pageCount)
-    for i = 1, pageCount do
-        pages.enabled[i] = true
+    for i = 1, const.counts.pageSelects do
+        state.setPageState(i, {
+            is_enabled = i <= pageCount,
+            value = i == 1 and 127 or 0
+        })
     end
-    pages.count = pageCount
+    state.updatePages()
 end
 
 function TestDeliverPages:setUp()
@@ -49,7 +52,7 @@ function TestDeliverPages:testNoEventsWhenThePageHasNotChanged()
 end
 
 function TestDeliverPages:testShowsThePageNumberAndNameOnASwitch()
-    pages.setActive(3)
+    state.setActivePage(3)
     local events = deliverPages()
     local errorMessage = "expected the number and name of the newly selected page to be shown"
     lu.assertEquals(events, overlaySysex("Page 3", "LFO & Mod Env"), errorMessage)
@@ -58,8 +61,8 @@ end
 function TestDeliverPages:testShowsTheNameOfEveryPage()
     local expectedNames = { "Osc & Noise", "Filter & Amp", "LFO & Mod Env", "Perf & Velocity" }
     for page, expectedName in ipairs(expectedNames) do
-        pages.active = page == 1 and 2 or 1 -- make sure the page really changes
-        pages.setActive(page)
+        state.setActivePage(page == 1 and 2 or 1) -- make sure the page really changes
+        state.setActivePage(page)
         local events = deliverPages()
         local errorMessage = "expected page " .. page .. " to be shown as '" .. expectedName .. "'"
         lu.assertEquals(events, overlaySysex("Page " .. page, expectedName), errorMessage)
@@ -67,7 +70,7 @@ function TestDeliverPages:testShowsTheNameOfEveryPage()
 end
 
 function TestDeliverPages:testShowsThePageOnlyOnce()
-    pages.setActive(2)
+    state.setActivePage(2)
     deliverPages()
     local events = deliverPages()
     local errorMessage = "expected the page display not to be repeated on the next delivery, but got " ..
@@ -76,7 +79,7 @@ function TestDeliverPages:testShowsThePageOnlyOnce()
 end
 
 function TestDeliverPages:testDoesNotShowThePageWhenItStaysTheSame()
-    pages.setActive(1)
+    state.setActivePage(1)
     local events = deliverPages()
     local errorMessage = "expected no events when the page is set to the one already active, but got " ..
         #events .. " events"
@@ -86,8 +89,9 @@ end
 function TestDeliverPages:testDoesNotShowAPageOnADeviceWithoutPages()
     -- switching away from a device with pages to one without, e.g. a
     -- Combinator, falls back to page 1 without the device having any pages
-    pages.count = 0
-    pages.setActive(1)
+    state.setActivePage(3)
+    deliverPages()
+    givePages(0)
     local events = deliverPages()
     local errorMessage = "expected no page display on a device without pages, but got " .. #events .. " events"
     lu.assertEquals(#events, 0, errorMessage)
@@ -97,7 +101,7 @@ function TestDeliverPages:testShowsOnlyTheNumberForAPageWithoutAName()
     -- a device whose pages have no names configured
     state.set("deviceType", "malstrom")
     state.update "deviceType"
-    pages.setActive(2)
+    state.setActivePage(2)
     local events = deliverPages()
     local errorMessage = "expected a page without a configured name to be shown with its number alone"
     lu.assertEquals(events, overlaySysex("Page 2", " "), errorMessage)

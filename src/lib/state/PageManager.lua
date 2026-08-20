@@ -34,6 +34,14 @@ function PageManager:setActive(page)
   end
 end
 
+function PageManager:getActive()
+  return self.active
+end
+
+function PageManager:getCount()
+  return self.count
+end
+
 function PageManager:consumeDisplay()
   local pending = self.displayPending
   self.displayPending = false

@@ -183,7 +183,9 @@ function StateManager:updateHostValues(path, next, parent)
         hostValue = parentHostValue
     end
     local param = isParam and next or parentParam
-    if (isHostValue and parentHasParam) or (isParam and parentHasHostValue) then
+    -- the host reports no param name for an item it has unmapped, leaving the
+    -- control with a host value but nothing to store it under
+    if param and ((isHostValue and parentHasParam) or (isParam and parentHasHostValue)) then
         self.hostValues[param] = hostValue
         if logMe then
             deb.log("[lib:state:StateManager:updateHostValues] (/) storing host value: " ..

@@ -8,31 +8,24 @@ function TestStateManagement:setUp()
     test.resetState()
 end
 
+-- "get" reports the next state, the one "update" is going to apply; whether
+-- that state has yet to be applied shows in "hasChanged"
 function TestStateManagement:testChangingTheStateWithSetAndUpdating()
-    local current, next, hasChanged, updated, errorMessage
+    local next, hasChanged, updated, errorMessage
     state.set("encoder1.controlSurfaceValue", 127)
-    current = state.get "encoder1.controlSurfaceValue"
-    next = state.getNext "encoder1.controlSurfaceValue"
+    next = state.get "encoder1.controlSurfaceValue"
     hasChanged = state.hasChanged "encoder1.controlSurfaceValue"
-    errorMessage = "after setting the state to 127, the current state should still be 0, but it is " ..
-        tostring(current)
-    lu.assertEquals(current, 0, errorMessage)
     errorMessage = "after setting the state to 127, the next state should now be 127, but it is " .. tostring(next)
     lu.assertEquals(next, 127, errorMessage)
     errorMessage = "after setting the state, 'hasChanged' should be true, but it is " .. tostring(hasChanged)
     lu.assertEquals(hasChanged, true, errorMessage)
     updated = state.update "encoder1.controlSurfaceValue"
-    current = state.get "encoder1.controlSurfaceValue"
-    next = state.getNext "encoder1.controlSurfaceValue"
+    next = state.get "encoder1.controlSurfaceValue"
     hasChanged = state.hasChanged "encoder1.controlSurfaceValue"
     errorMessage =
         "after setting the state to 127, calling 'update' should return the new current state 127, but it returned " ..
         tostring(updated)
     lu.assertEquals(updated, 127, errorMessage)
-    errorMessage =
-        "after setting the state to 127 and calling 'update', the current state should now be 127, but it is " ..
-        tostring(current)
-    lu.assertEquals(current, 127, errorMessage)
     errorMessage =
         "after setting the state to 127 and calling 'update', the next state should still be 127, but it is " ..
         tostring(next)
@@ -46,7 +39,7 @@ function TestStateManagement:testChangingTheStateWithInc()
     lu.assertEquals(state.get "encoder1.controlSurfaceValue", 0, "nope")
     local next
     state.inc "encoder1.controlSurfaceValue"
-    next = state.getNext "encoder1.controlSurfaceValue"
+    next = state.get "encoder1.controlSurfaceValue"
     local errorMessage = "after changing the state with 'inc', expected the next value to be 1, but it is " ..
         tostring(next)
     lu.assertEquals(next, 1, errorMessage)
@@ -61,7 +54,7 @@ function TestStateManagement:testMaximumValueForDecIs127()
     state.inc "encoder1.controlSurfaceValue"
     state.update "encoder1.controlSurfaceValue"
     state.inc "encoder1.controlSurfaceValue"
-    next = state.getNext "encoder1.controlSurfaceValue"
+    next = state.get "encoder1.controlSurfaceValue"
     local errorMessage = "after increasing the state several times, beyond the maximum value of 127, " ..
         "expected the next value to be 127, but it is " .. tostring(next)
     lu.assertEquals(next, 127, errorMessage)
@@ -72,7 +65,7 @@ function TestStateManagement:testChangingTheStateWithDec()
     state.set("encoder1.controlSurfaceValue", 127)
     state.update "encoder1.controlSurfaceValue"
     state.dec "encoder1.controlSurfaceValue"
-    next = state.getNext "encoder1.controlSurfaceValue"
+    next = state.get "encoder1.controlSurfaceValue"
     local errorMessage = "after changing the state with 'dec', expected the next value to be 126, but it is " ..
         tostring(next)
     lu.assertEquals(next, 126, errorMessage)
@@ -85,7 +78,7 @@ function TestStateManagement:testMinimumValueForDecIs0()
     state.dec "encoder1.controlSurfaceValue"
     state.update "encoder1.controlSurfaceValue"
     state.dec "encoder1.controlSurfaceValue"
-    next = state.getNext "encoder1.controlSurfaceValue"
+    next = state.get "encoder1.controlSurfaceValue"
     local errorMessage = "after decreasing the state several times, beyond the minimum value of 0, " ..
         "expected the next value to be 0, but it is " .. tostring(next)
     lu.assertEquals(next, 0, errorMessage)

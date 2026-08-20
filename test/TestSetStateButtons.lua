@@ -3,6 +3,7 @@ local lu = test.luaUnit
 local state = require "src.lib.state._"
 local const = require "src.config.constants"
 local items = require "src.config.items"
+local disp = require "src.lib.display._"
 local setButtons = require "src.remote.setState.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
@@ -20,6 +21,12 @@ local function reportButton(button, paramName, hostValue, textValue)
         return { is_enabled = true, value = hostValue, remote_item_name = paramName, text_value = textValue }
     end)
     setButtons({ items[button].index })
+end
+
+-- the state keeps the host's text value as reported; the label that goes to
+-- the display is looked up from it when the value is delivered
+local function displayValueOf(button)
+    return disp.getButtonDisplayValue(button)
 end
 
 function TestSetStateButtons:setUp()
@@ -60,36 +67,36 @@ end
 
 function TestSetStateButtons:testShowsTheValue0AsOff()
     reportButton("button1", "Mute", 0, "0")
-    lu.assertEquals(state.get "button1.hostTextValue", "Off", "expected the text value '0' to be shown as 'Off'")
+    lu.assertEquals(displayValueOf "button1", "Off", "expected the text value '0' to be shown as 'Off'")
 end
 
 function TestSetStateButtons:testShowsTheValue1AsOn()
     reportButton("button1", "Mute", 127, "1")
-    lu.assertEquals(state.get "button1.hostTextValue", "On", "expected the text value '1' to be shown as 'On'")
+    lu.assertEquals(displayValueOf "button1", "On", "expected the text value '1' to be shown as 'On'")
 end
 
 function TestSetStateButtons:testShowsTheDeviceSpecificLabelsForKeyModeOnSubTractor()
     setDeviceType "subtractor"
     reportButton("button11", "Key Mode", 0, "0")
-    lu.assertEquals(state.get "button11.hostTextValue", "Legato",
+    lu.assertEquals(displayValueOf "button11", "Legato",
         "expected SubTractor's 'Key Mode' to show the value 0 as 'Legato'")
 
     reportButton("button11", "Key Mode", 127, "1")
-    lu.assertEquals(state.get "button11.hostTextValue", "Retrig",
+    lu.assertEquals(displayValueOf "button11", "Retrig",
         "expected SubTractor's 'Key Mode' to show the value 1 as 'Retrig'")
 end
 
 function TestSetStateButtons:testStillShowsOnOffForOtherParamsOnADeviceWithSpecialCases()
     setDeviceType "subtractor"
     reportButton("button4", "Ring Mod", 127, "1")
-    lu.assertEquals(state.get "button4.hostTextValue", "On",
+    lu.assertEquals(displayValueOf "button4", "On",
         "expected a SubTractor param without its own labels to still show 'On'")
 end
 
 function TestSetStateButtons:testShowsTheLabelOfACycleParamValue()
     setDeviceType "subtractor"
     reportButton("button4", "LFO2 Dest", 64, "2")
-    lu.assertEquals(state.get "button4.hostTextValue", "F.Freq 2",
+    lu.assertEquals(displayValueOf "button4", "F.Freq 2",
         "expected LFO2 Dest's value 2 to be shown with its label from the SubTractor UI")
 end
 
@@ -99,19 +106,19 @@ function TestSetStateButtons:testShowsThePlainValueForAnUnlabelledCycleParamValu
     -- rather than the On/Off defaults
     setDeviceType "subtractor"
     reportButton("button1", "Osc1 Phase Mode", 100, "9")
-    lu.assertEquals(state.get "button1.hostTextValue", "9",
+    lu.assertEquals(displayValueOf "button1", "9",
         "expected a cycling parameter's unlabelled value to be shown plainly, not 'On'")
 end
 
 function TestSetStateButtons:testStillShowsOnOffForTheSameParamNameOnAnotherDevice()
     setDeviceType "combinator"
     reportButton("button11", "Key Mode", 127, "1")
-    lu.assertEquals(state.get "button11.hostTextValue", "On",
+    lu.assertEquals(displayValueOf "button11", "On",
         "expected 'Key Mode' on a device without its own labels to still show 'On'")
 end
 
 function TestSetStateButtons:testShowsAnyOtherValueAsTheHostReportsIt()
     reportButton("button1", "Mute", 64, "Sine")
-    lu.assertEquals(state.get "button1.hostTextValue", "Sine",
+    lu.assertEquals(displayValueOf "button1", "Sine",
         "expected a text value other than '0' or '1' to be shown unchanged")
 end
