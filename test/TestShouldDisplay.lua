@@ -12,12 +12,15 @@ local function setDelaySync(delaySync)
   state.update "button1.hostValue"
 end
 
+-- "Delay Sync" is a toggle param, so its host value is stored as a boolean
+-- (see src/remote/setState/buttons.lua), which is what the conditionals
+-- config compares against
 local function turnDelaySyncOn()
-  setDelaySync(127)
+  setDelaySync(true)
 end
 
 local function turnDelaySyncOff()
-  setDelaySync(0)
+  setDelaySync(false)
 end
 function TestShouldDisplay:setUp()
   test.resetState()

@@ -1,20 +1,15 @@
 local const = require "src.config.constants"
+local ctrl = require "src.config.controls"
 local disp = require "src.lib.display._"
 local items = require "src.config.items"
 local midi = require "src.lib.midi._"
 local state = require "src.lib.state._"
 local deb = require "src.lib.debug._"
 
-local controls = {}
-for i = 1, const.counts.faders do
-  table.insert(controls, "fader" .. i)
-  table.insert(controls, "fader" .. i .. "alt")
-end
-
 -- called regularly by the codec to update the control surface (Launch Control)
 return function()
   local events = {}
-  for _, control in ipairs(controls) do
+  for _, control in ipairs(ctrl.faders) do
     local deviceType = state.update "deviceType"
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")

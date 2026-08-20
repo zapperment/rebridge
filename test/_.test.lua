@@ -2,6 +2,7 @@ local lu = require "test.lib._".luaUnit
 
 _ENV = "test"
 
+require "test.TestControls"
 require "test.TestDeliverButtons"
 require "test.TestDeliverEncoders"
 require "test.TestDeliverFaders"

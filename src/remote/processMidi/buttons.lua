@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local ctrl = require "src.config.controls"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
 local cycleParams = require "src.config.cycleParams"
@@ -40,8 +40,7 @@ end
 return function(event)
   local logMe = false
   local processed = false
-  for i = 1, const.counts.buttons do
-    local control = "button" .. i
+  for _, control in ipairs(ctrl.buttons) do
     processed = util.process(
       control,
       event,

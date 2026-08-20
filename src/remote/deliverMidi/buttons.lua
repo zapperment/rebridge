@@ -1,4 +1,5 @@
 local col = require "src.lib.colour._"
+local ctrl = require "src.config.controls"
 local const = require "src.config.constants"
 local disp = require "src.lib.display._"
 local items = require "src.config.items"
@@ -9,8 +10,7 @@ local deb = require "src.lib.debug._"
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
-  for i = 1, const.counts.buttons do
-    local control = "button" .. i
+  for _, control in ipairs(ctrl.buttons) do
     local isDisplayForced = state.isDisplayForced(control)
     local deviceType = state.update "deviceType"
     local controlSurfaceValue, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")

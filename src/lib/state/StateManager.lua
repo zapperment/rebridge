@@ -1,4 +1,5 @@
 local const = require "src.config.constants"
+local ctrl = require "src.config.controls"
 local cond = require "src.config.conditionals"
 local tbl = require "src.lib.table._"
 local str = require "src.lib.string._"
@@ -29,15 +30,8 @@ function StateManager:new()
         hostValues = {},
         shifted = false,
     }
-    for i = 1, const.counts.encoders do
-        instance["encoder" .. i] = {
-            enabled = entry(false),
-            controlSurfaceValue = entry(0),
-            param = entry(nil),
-            hostValue = entry(nil),
-            hostTextValue = entry("")
-        }
-        instance["encoder" .. i .. "alt"] = {
+    for _, control in ipairs(ctrl.encoders) do
+        instance[control] = {
             enabled = entry(false),
             controlSurfaceValue = entry(0),
             param = entry(nil),
@@ -45,17 +39,8 @@ function StateManager:new()
             hostTextValue = entry("")
         }
     end
-    for i = 1, const.counts.faders do
-        instance["fader" .. i] = {
-            enabled = entry(false),
-            controlSurfaceValue = entry(0),
-            param = entry(nil),
-            hostValue = entry(nil),
-            hostTextValue = entry(""),
-            status = entry(const.fader.unassigned),
-            forceDisplay = false
-        }
-        instance["fader" .. i .. "alt"] = {
+    for _, control in ipairs(ctrl.faders) do
+        instance[control] = {
             enabled = entry(false),
             controlSurfaceValue = entry(0),
             param = entry(nil),
@@ -65,8 +50,8 @@ function StateManager:new()
             forceDisplay = false
         }
     end
-    for i = 1, const.counts.buttons do
-        instance["button" .. i] = {
+    for _, control in ipairs(ctrl.buttons) do
+        instance[control] = {
             enabled = entry(false),
             controlSurfaceValue = entry(false),
             param = entry(nil),
@@ -102,31 +87,14 @@ function StateManager:update(path)
 end
 
 function StateManager:updateAll()
-    local control
-    for i = 1, const.counts.encoders do
-        control = "encoder" .. i
-        self:update(control .. ".enabled")
-        self:update(control .. ".controlSurfaceValue")
-        self:update(control .. ".param")
-        self:update(control .. ".hostValue")
-        self:update(control .. ".hostTextValue")
-        control = "encoder" .. i .. "alt"
+    for _, control in ipairs(ctrl.encoders) do
         self:update(control .. ".enabled")
         self:update(control .. ".controlSurfaceValue")
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
         self:update(control .. ".hostTextValue")
     end
-    for i = 1, const.counts.faders do
-        control = "fader" .. i
-        self:update(control .. ".enabled")
-        self:update(control .. ".controlSurfaceValue")
-        self:update(control .. ".param")
-        self:update(control .. ".hostValue")
-        self:update(control .. ".hostTextValue")
-        self:update(control .. ".status")
-        self:setForceDisplay(control, false)
-        control = "fader" .. i .. "alt"
+    for _, control in ipairs(ctrl.faders) do
         self:update(control .. ".enabled")
         self:update(control .. ".controlSurfaceValue")
         self:update(control .. ".param")
@@ -135,8 +103,7 @@ function StateManager:updateAll()
         self:update(control .. ".status")
         self:setForceDisplay(control, false)
     end
-    for i = 1, const.counts.buttons do
-        control = "button" .. i
+    for _, control in ipairs(ctrl.buttons) do
         self:update(control .. ".enabled")
         self:update(control .. ".controlSurfaceValue")
         self:update(control .. ".param")
@@ -227,7 +194,7 @@ function StateManager:updateHostValues(path, next, parent)
 end
 
 function StateManager:updateDependencies(param)
-    local logMe = false -- param == "LFO Sync Enable"
+    local logMe = param == "LFO Sync Enable"
     local deviceType = self:get "deviceType"
     if logMe then
         deb.log(
@@ -254,21 +221,7 @@ function StateManager:updateDependencies(param)
                     "dependentParam=" .. dependentParam
                 )
             end
-            for i = 1, const.counts.encoders do
-                local control = "encoder" .. i
-                local controlParam = self[control].param.next
-                if controlParam == dependentParam then
-                    self[control].hostValue.forceUpdate = true
-                    if logMe then
-                        deb.log(
-                            "[lib:state:StateManager] " ..
-                            "forcing update of **" .. control .. "**"
-                        )
-                    end
-                end
-            end
-            for i = 1, const.counts.buttons do
-                local control = "button" .. i
+            for _, control in ipairs(ctrl.all) do
                 local controlParam = self[control].param.next
                 if controlParam == dependentParam then
                     self[control].hostValue.forceUpdate = true

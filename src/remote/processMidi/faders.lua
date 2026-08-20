@@ -1,19 +1,13 @@
-local items = require "src.config.items"
+local ctrl = require "src.config.controls"
 local const = require "src.config.constants"
 local state = require "src.lib.state._"
 local util = require "src.remote.processMidi.util._"
 local deb = require "src.lib.debug._"
 
-local controls = {}
-for i = 1, const.counts.faders do
-  table.insert(controls, "fader" .. i)
-  table.insert(controls, "fader" .. i .. "alt")
-end
-
 -- handles changes of the faders of the control surface (Launch Control)
 return function(event)
   local processed = false
-  for _, control in ipairs(controls) do
+  for _, control in ipairs(ctrl.faders) do
     processed = util.process(
       control,
       event,

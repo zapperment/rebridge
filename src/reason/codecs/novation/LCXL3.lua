@@ -37,11 +37,13 @@ function remote_init()
   end
   remote.define_items(itemsToDefine)
   remote.define_auto_inputs(autoInputs)
-  -- deb.log(
-  --   "[reason.codecs.novation.LCXL3] " ..
-  --   "remote codec version " .. const.softwareVersion .. " " ..
-  --   "initialised successfully!"
-  -- )
+  if _ENV ~= "test" then
+    deb.log(
+      "[reason.codecs.novation.LCXL3] " ..
+      "remote codec version " .. const.softwareVersion .. " " ..
+      "initialised successfully!"
+    )
+  end
 end
 
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)

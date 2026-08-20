@@ -1,3 +1,4 @@
+local ctrl = require "src.config.controls"
 local const = require "src.config.constants"
 local state = require "src.lib.state._"
 local util = require "src.remote.setState.util._"
@@ -5,8 +6,7 @@ local util = require "src.remote.setState.util._"
 -- handles changes of the buttons of the host (Reason)
 return function(hostItems)
   for _, hostItemIndex in ipairs(hostItems) do
-    for i = 1, const.counts.buttons do
-      local control = "button" .. i
+    for _, control in ipairs(ctrl.buttons) do
       util.set(
         hostItemIndex,
         control,
