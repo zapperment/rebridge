@@ -81,14 +81,20 @@ function StateManager:reset()
     for _, control in ipairs(ctrl.encoders) do
         self[control].hostValue.current = nil
         self[control].hostTextValue.current = ""
+        self[control].hostValue.next = nil
+        self[control].hostTextValue.next = ""
     end
     for _, control in ipairs(ctrl.faders) do
         self[control].hostValue.current = nil
         self[control].hostTextValue.current = ""
+        self[control].hostValue.next = nil
+        self[control].hostTextValue.next = ""
     end
     for _, control in ipairs(ctrl.buttons) do
         self[control].hostValue.current = nil
         self[control].hostTextValue.current = ""
+        self[control].hostValue.next = nil
+        self[control].hostTextValue.next = ""
     end
 end
 

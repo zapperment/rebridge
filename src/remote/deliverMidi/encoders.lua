@@ -11,14 +11,15 @@ local deb = require "src.lib.debug._"
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
+  local handledControllers = {}
   for _, control in ipairs(ctrl.encoders) do
-    local logMe = false --control == "encoder9" or control == "encoder9alt"
+    local logMe = control == "encoder23" or control == "encoder23alt"
     local deviceType, deviceTypeChanged = state.update "deviceType"
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
     local hostValue, hostValueChanged = state.update(control .. ".hostValue")
-    local _, hostTextValueChanged = state.update(control .. ".hostTextValue")
+    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
 
 
     local item = items[control]
@@ -28,8 +29,11 @@ return function()
     if logMe and hostValueChanged then
       deb.log(
         "[remote:deliverMidi:encoders] " ..
-        control .. " " ..
-        "hostValue=" .. hostValue
+        control .. ", " ..
+        "controller=" .. controller .. ", " ..
+        "hostValue=" .. hostValue .. ", " ..
+        "hostTextValue=" .. hostTextValue .. ", " ..
+        "param=" .. param
       )
       if shouldDisplay then
         deb.log(
@@ -66,12 +70,25 @@ return function()
             param,
             item.colour
           )
+          if logMe then
+            deb.log(
+              "[remote:deliverMidi:encoders] " ..
+              "(/) colour: " .. colourName
+            )
+          end
           table.insert(events, midi.makeColourEvent(colourName, hostValue, controller))
+          handledControllers[controller] = true
         end
         if controlSurfaceValueChanged then
           table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
         end
-      elseif enabledChanged then
+      elseif enabledChanged and not handledControllers[controller] then
+        if logMe then
+          deb.log(
+            "[remote:deliverMidi:encoders] " ..
+            "(ox) turning off LED"
+          )
+        end
         -- turn off encoder's LED
         table.insert(events, midi.makeColourEvent("black", 0, controller))
       end
