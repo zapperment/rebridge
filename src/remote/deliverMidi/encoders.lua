@@ -13,7 +13,7 @@ return function()
   local events = {}
   local handledControllers = {}
   for _, control in ipairs(ctrl.encoders) do
-    local logMe = control == "encoder23" or control == "encoder23alt"
+    local logMe = false --control == "encoder23" or control == "encoder23alt"
     local deviceType, deviceTypeChanged = state.update "deviceType"
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
