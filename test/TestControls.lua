@@ -6,19 +6,19 @@ TestControls = {}
 function TestControls:testAllLength()
     lu.assertEquals(
         #controls.all,
-        #controls.encoders + #controls.faders + #controls.buttons,
+        #controls.encoders + #controls.faders + #controls.buttons + #controls.rackUIs,
         "all should contain every encoder, fader and button"
     )
 end
 
 function TestControls:testAllOrder()
     local expected = {}
-    for _, group in ipairs { controls.encoders, controls.faders, controls.buttons } do
+    for _, group in ipairs { controls.encoders, controls.faders, controls.buttons, controls.rackUIs } do
         for _, name in ipairs(group) do
             table.insert(expected, name)
         end
     end
-    lu.assertEquals(controls.all, expected, "all should list encoders, then faders, then buttons")
+    lu.assertEquals(controls.all, expected, "all should list encoders, then faders, then buttons, then rack UIs")
 end
 
 function TestControls:testAllContainsSamples()
@@ -31,6 +31,7 @@ function TestControls:testAllContainsSamples()
     lu.assertEquals(seen["fader1"], true, "all should contain the first fader")
     lu.assertEquals(seen["fader1alt"], true, "all should contain the first alt fader")
     lu.assertEquals(seen["button1"], true, "all should contain the first button")
+    lu.assertEquals(seen["rackUI1"], true, "all should contain the first rack UI")
 end
 
 function TestControls:testAllIsACopy()

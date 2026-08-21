@@ -196,7 +196,7 @@ Map	deviceType		"subtractor"
 
 Scope	Propellerhead Software	se.propellerheads.Algoritm
 // https://github.com/mjuksel/remote-mappings/blob/main/Instruments/Algoritm%20Remote%20Info.txt
-Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11
+Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11	Page 12
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
 
@@ -211,6 +211,7 @@ Map	pageSelect8		Pages=Page 8
 Map	pageSelect9		Pages=Page 9
 Map	pageSelect10		Pages=Page 10
 Map	pageSelect11		Pages=Page 11
+Map	pageSelect12		Pages=Page 12
 
 Map	fader1		Attack 1			Page 1
 Map	fader2		Decay 1			Page 1
@@ -404,42 +405,60 @@ Map	encoder20		Comp Threshold			Page 10
 Map	fader4		Comp Ratio			Page 10
 Map	button12		Comp On			Page 10
 
-Map	encoder5		Mod Effect Depth			Page 10
-Map	encoder13		Mod Effect Rate			Page 10
-// Map	encoderXXX		Mod Effect Spread			Page 10
-Map	encoder21		Mod Effect Feedback			Page 10
+Map	encoder13		Mod Effect Depth			Page 10
+Map	encoder14		Mod Effect Rate			Page 10
+Map	encoder21		Mod Effect Spread			Page 10
+Map	encoder22		Mod Effect Feedback			Page 10
 Map	fader5		Mod Effect Amount			Page 10
 Map	button5		Mod Effect Type			Page 10
 Map	button13		Phaser On			Page 10
 
-Map	encoder22		EQ Freq			Page 10
-Map	encoder23		EQ Q			Page 10
+Map	encoder23		EQ Freq			Page 10
+Map	encoder24		EQ Q			Page 10
 Map	fader6		EQ Lo Gain			Page 10
 Map	fader7		EQ Gain			Page 10
 Map	fader8		EQ Hi Gain			Page 10
 Map	button14		EQ On			Page 10
 
-Map	encoder6		Resonator Pitch			Page 10
-Map	encoder7		Resonator Decay			Page 10
-Map	encoder14		Resonator Width			Page 10
-Map	encoder15		Resonator Mix			Page 10
+Map	encoder7		Resonator Pitch			Page 10
+Map	encoder8		Resonator Decay			Page 10
+Map	encoder15		Resonator Width			Page 10
+Map	encoder16		Resonator Mix			Page 10
 Map	button7		Resonator Select			Page 10
 Map	button15		Resonator On			Page 10
 
-Map	encoder8		Unison Timing			Page 10
-Map	encoder16		Unison Detune			Page 10
-Map	encoder24		Unison Spread			Page 10
-// Map	encoderXXX		Unison Blend			Page 10
-Map	button8		Unison Count			Page 10
-Map	button16		Unison On			Page 10
 
-// Page 11: Performance
+Map	rackUI1		Effect Select			Page 10
 
-Map	encoder1		Effect Select			Page 11
-Map	encoder8		Master			Page 11
-Map	fader6		FM Amount Offset			Page 11
-Map	fader7		Decay/Release Offset			Page 11
-Map	fader8		Feedback			Page 11
+// Page 11: XXX
+
+Map	encoder1		pp1			Page 11
+Map	encoder2		pp2			Page 11
+
+// Page 12: Performance
+
+Map	encoder1		Pitch Bend Range			Page 12
+Map	encoder2		Portamento			Page 12
+Map	encoder3		Octave			Page 12
+
+Map	fader8		Master			Page 12
+
+Map	encoder12		Unison Timing			Page 12
+Map	encoder13		Unison Detune			Page 12
+Map	encoder20		Unison Spread			Page 12
+Map	encoder21		Unison Blend			Page 12
+
+Map	button1		Key Mode			Page 12
+Map	button2		Portamento Mode			Page 12
+Map	button4		Unison On			Page 12
+Map	button5		Unison Count			Page 12
+Map	button8		Osc Sync			Page 12
+
+Map	encoder8		Feedback			Page 12
+Map	encoder16		FM Key Scale			Page 12
+Map	encoder22		FM Amount Offset			Page 12
+Map	encoder23		Decay/Release Offset			Page 12
+Map	encoder24		Rate Key Scale			Page 12
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name

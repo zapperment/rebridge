@@ -1,6 +1,7 @@
 local const = require "src.config.constants"
 local ctrl = require "src.config.controls"
 local cond = require "src.config.conditionals"
+local rui = require "src.config.rackUI"
 local tbl = require "src.lib.table._"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
@@ -63,6 +64,14 @@ function StateManager:new()
             forceDisplay = false
         }
     end
+    for _, control in ipairs(ctrl.rackUIs) do
+        instance[control] = {
+            enabled = entry(false),
+            param = entry(nil),
+            hostValue = entry(nil),
+            hostTextValue = entry(""),
+        }
+    end
     setmetatable(instance, self)
     self.__index = self
     return instance
@@ -77,9 +86,22 @@ function StateManager:hasChanged(path)
 end
 
 function StateManager:update(path)
+    local logMe = false
     local item = tbl.getValueFromPath(self, path)
     if item == nil then
+        if logMe then
+            deb.log(
+                "[lib:state:StateManager:update] " ..
+                "item is nil, I wonder why?"
+            )
+        end
         return
+    end
+    if logMe then
+        deb.log(
+            "[lib:state:StateManager:update] " ..
+            "item=" .. str.serialise(item)
+        )
     end
     local hasChanged = item.forceUpdate or item.next ~= item.current
     item.current = item.next
@@ -113,6 +135,9 @@ function StateManager:updateAll()
         self:update(control .. ".hostTextValue")
         self:update(control .. ".type")
         self:setForceDisplay(control, false)
+    end
+    for _, control in ipairs(ctrl.rackUIs) do
+        self:update(control)
     end
     self:update "transport.playing"
     self:update "transport.recording"
@@ -194,6 +219,7 @@ function StateManager:updateHostValues(path, next, parent)
                 param .. "=" .. str.serialise(hostValue))
         end
         self:updateDependencies(param)
+        self:updateRackUI(param)
     end
 end
 
@@ -255,13 +281,63 @@ function StateManager:updateDependencies(param)
     end
 end
 
+function StateManager:updateRackUI(param)
+    local logMe = true
+    if param == "" then
+        return
+    end
+    local deviceType = self:get "deviceType"
+    if logMe then
+        if param == "Effect Select" then
+            deb.log(
+                "[lib:state:StateManager] " ..
+                "*param: " .. param .. "*"
+            )
+        else
+            deb.log(
+                "[lib:state:StateManager] " ..
+                "(/) **param: " .. param .. "**"
+            )
+        end
+    end
+    for _, control in ipairs(ctrl.rackUIs) do
+        local controlParam = self[control].param.next
+        if controlParam == "" then
+            return
+        end
+        if logMe then
+            deb.log(
+                "[lib:state:StateManager] " ..
+                control .. ".param: " .. str.serialise(controlParam)
+            )
+        end
+        if controlParam ~= nil then
+            local rackUIValue = tbl.getValueFromPath(
+                rui, deviceType .. "." .. controlParam .. "." .. param
+            )
+            if rackUIValue ~= nil then
+                deb.log(
+                    "[lib:state:StateManager] " ..
+                    "setting " .. control .. " to value " .. str.serialise(rackUIValue)
+                )
+                self:set(control .. ".hostValue", rackUIValue)
+                if logMe then
+                    deb.log(
+                        "[lib:state:StateManager] " ..
+                        "has changed? " .. str.serialise(self:hasChanged(control .. ".hostValue"))
+                    )
+                end
+            end
+        end
+    end
+end
+
 function StateManager:set(path, next)
     local item, parent = tbl.getValueFromPath(self, path)
     if item == nil then
         return
     end
     self:updateHostValues(path, next, parent)
-    self:updateDependencies(path)
     item.next = next
     return next
 end
@@ -276,7 +352,6 @@ function StateManager:inc(path)
         next = 127
     end
     self:updateHostValues(path, next, parent)
-    self:updateDependencies(path)
     item.next = next
     return next
 end
@@ -291,7 +366,6 @@ function StateManager:dec(path)
         next = 0
     end
     self:updateHostValues(path, next, parent)
-    self:updateDependencies(path)
     item.next = next
     return next
 end
@@ -309,7 +383,6 @@ function StateManager:add(path, delta, min, max)
         next = max
     end
     self:updateHostValues(path, next, parent)
-    self:updateDependencies(path)
     item.next = next
     return next
 end
@@ -336,7 +409,6 @@ function StateManager:flip(path)
         item.next = true
     end
     self:updateHostValues(path, item.next, parent)
-    self:updateDependencies(path)
     return item.next
 end
 

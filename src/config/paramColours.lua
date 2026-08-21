@@ -75,10 +75,12 @@ return {
   }),
   algoritm = byParam({
     sky = {
-      "Reverb Decay", "Reverb Size", "Reverb Damp", "Reverb Early Reflections", "Reverb On"
+      "Reverb Decay", "Reverb Size", "Reverb Damp", "Reverb Early Reflections", "Reverb On",
+      "Feedback", "Osc Sync"
     },
     yellow = {
-      "Delay Time", "Delay Synced Time", "Delay Feedback", "Delay Pan", "Delay Sync", "Delay PingPong", "Delay On"
+      "Delay Time", "Delay Synced Time", "Delay Feedback", "Delay Pan", "Delay Sync", "Delay PingPong", "Delay On",
+      "Portamento", "Portamento Mode"
     },
     cyan = {
       "Dist Drive", "Dist Tone", "Dist Type", "Dist On"
@@ -87,16 +89,22 @@ return {
       "Comp Attack", "Comp Release", "Comp Threshold", "Comp On"
     },
     violet = {
-      "Mod Effect Depth", "Mod Effect Rate", "Mod Effect Spread", "Mod Effect Feedback", "Mod Effect Type", "Phaser On"
+      "Mod Effect Depth", "Mod Effect Rate", "Mod Effect Spread", "Mod Effect Feedback", "Mod Effect Type", "Phaser On",
+      "Octave"
     },
     green = {
-      "Resonator Pitch", "Resonator Decay", "Resonator Width", "Resonator Mix", "Resonator Select", "Resonator On"
+      "Resonator Pitch", "Resonator Decay", "Resonator Width", "Resonator Mix", "Resonator Select", "Resonator On",
+      "FM Key Scale", "Rate Key Scale"
     },
     blue = {
-      "EQ Freq", "EQ Q", "EQ On"
+      "EQ Freq", "EQ Q", "EQ On",
+      "Pitch Bend Range", "Key Mode",
     },
     red = {
       "Unison Timing", "Unison Detune", "Unison Spread", "Unison Blend", "Unison Count", "Unison On"
+    },
+    mint = {
+      "FM Amount Offset", "Decay/Release Offset"
     },
   })
 }

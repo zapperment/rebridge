@@ -17,8 +17,13 @@ for i = 1, const.counts.buttons do
   table.insert(buttons, "button" .. i)
 end
 
+local rackUIs = {}
+for i = 1, const.counts.rackUIs do
+  table.insert(rackUIs, "rackUI" .. i)
+end
+
 local all = {}
-for _, group in ipairs { encoders, faders, buttons } do
+for _, group in ipairs { encoders, faders, buttons, rackUIs } do
   for _, name in ipairs(group) do
     table.insert(all, name)
   end
@@ -28,5 +33,6 @@ return {
   encoders = encoders,
   faders = faders,
   buttons = buttons,
+  rackUIs = rackUIs,
   all = all
 }

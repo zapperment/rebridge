@@ -1,3 +1,5 @@
+local str = require "src.lib.string._"
+
 -- Resolves a dot separated path in a table and returns the value stored there
 -- along with the table that directly contains it.
 --
@@ -5,6 +7,9 @@
 -- never returned as a parent of itself. A missing value in an existing parent
 -- still reports that parent, a missing intermediate reports neither.
 return function(tbl, path)
+  if str.endsWith(path, ".") then
+    return nil, nil
+  end
   local tokens = {}
   for token in string.gmatch(path, "([^%.]+)") do
     tokens[#tokens + 1] = token

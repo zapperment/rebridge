@@ -11,12 +11,20 @@ local deb = require "src.lib.debug._"
 return function()
   local events = {}
   for _, control in ipairs(ctrl.encoders) do
+    local logMe = false --control == "encoder1"
     local deviceType, deviceTypeChanged = state.update "deviceType"
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
     local hostValue, hostValueChanged = state.update(control .. ".hostValue")
     local _, hostTextValueChanged = state.update(control .. ".hostTextValue")
+
+    if logMe and hostValueChanged then
+      deb.log(
+        "[remote:deliverMidi:encoders] " ..
+        "hostValue=" .. hostValue
+      )
+    end
 
     local item = items[control]
     local controller = item.controller

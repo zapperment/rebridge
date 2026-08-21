@@ -31,5 +31,7 @@ return {
     ["Dist Type"] = 6,
     ["Mod Effect Type"] = 3,
     ["Resonator Select"] = 21,
+    ["Key Mode"] = 3,
+    ["Portamento Mode"] = 3,
   }
 }

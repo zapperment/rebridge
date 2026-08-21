@@ -56,3 +56,9 @@ function TestTableUtils:testGetValueFromPath09()
     lu.assertEquals(value, nil, "A path reaching past a leaf should not yield a value")
     lu.assertEquals(parent, nil, "A path reaching past a leaf should not report a parent")
 end
+
+function TestTableUtils:testGetValueFromPath10()
+    local value, parent = tbl.getValueFromPath({ a = { b = { c = "C" } } }, "a.b.c.")
+    lu.assertEquals(value, nil, "A path with an empty string as last token should not yield a value")
+    lu.assertEquals(parent, nil, "A path with an empty string as last token should not report a parent")
+end

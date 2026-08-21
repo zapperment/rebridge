@@ -14,9 +14,11 @@ local processEncoders = require "src.remote.processMidi.encoders"
 local processFaders = require "src.remote.processMidi.faders"
 local processNavigation = require "src.remote.processMidi.navigation"
 local processTransport = require "src.remote.processMidi.transport"
+local processRackUI = require "src.remote.processMidi.rackUI"
 local setButtons = require "src.remote.setState.buttons"
 local setEncoders = require "src.remote.setState.encoders"
 local setFaders = require "src.remote.setState.faders"
+local setRackUI = require "src.remote.setState.rackUI"
 local setInfo = require "src.remote.setState.info"
 local setPages = require "src.remote.setState.pages"
 local setTransport = require "src.remote.setState.transport"
@@ -49,7 +51,8 @@ end
 -- Remote surface (Launch Control) -> remote codec -> host (Reason)
 ---@diagnostic disable-next-line: lowercase-global
 function remote_process_midi(event)
-  return processEncoders(event)
+  return processRackUI(event)
+      or processEncoders(event)
       or processFaders(event)
       or processButtons(event)
       or processTransport(event)
@@ -59,6 +62,7 @@ end
 -- Host (Reason) -> remote codec
 ---@diagnostic disable-next-line: lowercase-global
 function remote_set_state(changedItems)
+  setRackUI(changedItems)
   setInfo(changedItems)
   setPages(changedItems)
   setEncoders(changedItems)

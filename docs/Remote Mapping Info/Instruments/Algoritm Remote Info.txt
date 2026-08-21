@@ -2,280 +2,326 @@ Scope
 Manufacturer	Model
 Propellerhead Software	se.propellerheads.Algoritm
 
-Remotable	Min	Max	Input type	Output type
-[X] Level 1	0	4194304	Value	ValueOutput
-[X] Level 2	0	4194304	Value	ValueOutput
-[X] Level 3	0	4194304	Value	ValueOutput
-[X] Level 4	0	4194304	Value	ValueOutput
-[X] Level 5	0	4194304	Value	ValueOutput
-[X] Level 6	0	4194304	Value	ValueOutput
-[X] Level 7	0	4194304	Value	ValueOutput
-[X] Level 8	0	4194304	Value	ValueOutput
-[X] Level 9	0	4194304	Value	ValueOutput
-[X] Vel 1	0	4194304	Value	ValueOutput
-[X] Vel 2	0	4194304	Value	ValueOutput
-[X] Vel 3	0	4194304	Value	ValueOutput
-[X] Vel 4	0	4194304	Value	ValueOutput
-[X] Vel 5	0	4194304	Value	ValueOutput
-[X] Vel 6	0	4194304	Value	ValueOutput
-[X] Vel 7	0	4194304	Value	ValueOutput
-[X] Vel 8	0	4194304	Value	ValueOutput
-[X] Vel 9	0	4194304	Value	ValueOutput
-[X] Freq 1	0	6400	Value	ValueOutput
-[X] Freq 2	0	6400	Value	ValueOutput
-[X] Freq 3	0	6400	Value	ValueOutput
-[X] Freq 4	0	6400	Value	ValueOutput
-[X] Freq 5	0	6400	Value	ValueOutput
-[X] Freq 6	0	6400	Value	ValueOutput
-[X] Freq 7	0	6400	Value	ValueOutput
-[X] Freq 8	0	6400	Value	ValueOutput
-[X] Freq 9	0	6400	Value	ValueOutput
-[X] Tune 1	0	100	Value	ValueOutput
-[X] Tune 2	0	100	Value	ValueOutput
-[X] Tune 3	0	100	Value	ValueOutput
-[X] Tune 4	0	100	Value	ValueOutput
-[X] Tune 5	0	100	Value	ValueOutput
-[X] Tune 6	0	100	Value	ValueOutput
-[X] Tune 7	0	100	Value	ValueOutput
-[X] Tune 8	0	100	Value	ValueOutput
-[X] Tune 9	0	100	Value	ValueOutput
-[X] Pan 1	0	4194304	Value	ValueOutput
-[X] Pan 2	0	4194304	Value	ValueOutput
-[X] Pan 3	0	4194304	Value	ValueOutput
-[X] Pan 4	0	4194304	Value	ValueOutput
-[X] Pan 5	0	4194304	Value	ValueOutput
-[X] Pan 6	0	4194304	Value	ValueOutput
-[X] Pan 7	0	4194304	Value	ValueOutput
-[X] Pan 8	0	4194304	Value	ValueOutput
-[X] Pan 9	0	4194304	Value	ValueOutput
-[X] Filter Env 1	0	4194304	Value	ValueOutput
-[X] Filter Env 2	0	4194304	Value	ValueOutput
-[X] Filter Env 3	0	4194304	Value	ValueOutput
-[X] Filter Env 4	0	4194304	Value	ValueOutput
-[X] Filter Env 5	0	4194304	Value	ValueOutput
-[X] Filter Env 6	0	4194304	Value	ValueOutput
-[X] Filter Env 7	0	4194304	Value	ValueOutput
-[X] Filter Env 8	0	4194304	Value	ValueOutput
-[X] Filter Env 9	0	4194304	Value	ValueOutput
-[X] Reso 1	0	4194304	Value	ValueOutput
-[X] Reso 2	0	4194304	Value	ValueOutput
-[X] Reso 3	0	4194304	Value	ValueOutput
-[X] Reso 4	0	4194304	Value	ValueOutput
-[X] Reso 5	0	4194304	Value	ValueOutput
-[X] Reso 6	0	4194304	Value	ValueOutput
-[X] Reso 7	0	4194304	Value	ValueOutput
-[X] Reso 8	0	4194304	Value	ValueOutput
-[X] Reso 9	0	4194304	Value	ValueOutput
-[X] Drive 1	0	4194304	Value	ValueOutput
-[X] Drive 2	0	4194304	Value	ValueOutput
-[X] Drive 3	0	4194304	Value	ValueOutput
-[X] Drive 4	0	4194304	Value	ValueOutput
-[X] Drive 5	0	4194304	Value	ValueOutput
-[X] Drive 6	0	4194304	Value	ValueOutput
-[X] Drive 7	0	4194304	Value	ValueOutput
-[X] Drive 8	0	4194304	Value	ValueOutput
-[X] Drive 9	0	4194304	Value	ValueOutput
-[X] ShaperMix 1	0	4194304	Value	ValueOutput
-[X] ShaperMix 2	0	4194304	Value	ValueOutput
-[X] ShaperMix 3	0	4194304	Value	ValueOutput
-[X] ShaperMix 4	0	4194304	Value	ValueOutput
-[X] ShaperMix 5	0	4194304	Value	ValueOutput
-[X] ShaperMix 6	0	4194304	Value	ValueOutput
-[X] ShaperMix 7	0	4194304	Value	ValueOutput
-[X] ShaperMix 8	0	4194304	Value	ValueOutput
-[X] ShaperMix 9	0	4194304	Value	ValueOutput
-[X] Symmetry 1	0	4194304	Value	ValueOutput
-[X] Symmetry 2	0	4194304	Value	ValueOutput
-[X] Symmetry 3	0	4194304	Value	ValueOutput
-[X] Symmetry 4	0	4194304	Value	ValueOutput
-[X] Symmetry 5	0	4194304	Value	ValueOutput
-[X] Symmetry 6	0	4194304	Value	ValueOutput
-[X] Symmetry 7	0	4194304	Value	ValueOutput
-[X] Symmetry 8	0	4194304	Value	ValueOutput
-[X] Symmetry 9	0	4194304	Value	ValueOutput
-[X] Wave Mod 1	0	4194304	Value	ValueOutput
-[X] Wave Mod 2	0	4194304	Value	ValueOutput
-[X] Wave Mod 3	0	4194304	Value	ValueOutput
-[X] Wave Mod 4	0	4194304	Value	ValueOutput
-[X] Wave Mod 5	0	4194304	Value	ValueOutput
-[X] Wave Mod 6	0	4194304	Value	ValueOutput
-[X] Wave Mod 7	0	4194304	Value	ValueOutput
-[X] Wave Mod 8	0	4194304	Value	ValueOutput
-[X] Wave Mod 9	0	4194304	Value	ValueOutput
-[X] Attack 1	0	4194304	Value	ValueOutput
-[X] Attack 2	0	4194304	Value	ValueOutput
-[X] Attack 3	0	4194304	Value	ValueOutput
-[X] Attack 4	0	4194304	Value	ValueOutput
-[X] Attack 5	0	4194304	Value	ValueOutput
-[X] Attack 6	0	4194304	Value	ValueOutput
-[X] Attack 7	0	4194304	Value	ValueOutput
-[X] Attack 8	0	4194304	Value	ValueOutput
-[X] Attack 9	0	4194304	Value	ValueOutput
-[X] Decay 1	0	4194304	Value	ValueOutput
-[X] Decay 2	0	4194304	Value	ValueOutput
-[X] Decay 3	0	4194304	Value	ValueOutput
-[X] Decay 4	0	4194304	Value	ValueOutput
-[X] Decay 5	0	4194304	Value	ValueOutput
-[X] Decay 6	0	4194304	Value	ValueOutput
-[X] Decay 7	0	4194304	Value	ValueOutput
-[X] Decay 8	0	4194304	Value	ValueOutput
-[X] Decay 9	0	4194304	Value	ValueOutput
-[X] Sustain 1	0	4194304	Value	ValueOutput
-[X] Sustain 2	0	4194304	Value	ValueOutput
-[X] Sustain 3	0	4194304	Value	ValueOutput
-[X] Sustain 4	0	4194304	Value	ValueOutput
-[X] Sustain 5	0	4194304	Value	ValueOutput
-[X] Sustain 6	0	4194304	Value	ValueOutput
-[X] Sustain 7	0	4194304	Value	ValueOutput
-[X] Sustain 8	0	4194304	Value	ValueOutput
-[X] Sustain 9	0	4194304	Value	ValueOutput
-[X] Release 1	0	4194304	Value	ValueOutput
-[X] Release 2	0	4194304	Value	ValueOutput
-[X] Release 3	0	4194304	Value	ValueOutput
-[X] Release 4	0	4194304	Value	ValueOutput
-[X] Release 5	0	4194304	Value	ValueOutput
-[X] Release 6	0	4194304	Value	ValueOutput
-[X] Release 7	0	4194304	Value	ValueOutput
-[X] Release 8	0	4194304	Value	ValueOutput
-[X] Release 9	0	4194304	Value	ValueOutput
+Status	Remotable	Min	Max	Input type	Output type
+[X]	Level 1	0	4194304	Value	ValueOutput
+[X]	Level 2	0	4194304	Value	ValueOutput
+[X]	Level 3	0	4194304	Value	ValueOutput
+[X]	Level 4	0	4194304	Value	ValueOutput
+[X]	Level 5	0	4194304	Value	ValueOutput
+[X]	Level 6	0	4194304	Value	ValueOutput
+[X]	Level 7	0	4194304	Value	ValueOutput
+[X]	Level 8	0	4194304	Value	ValueOutput
+[X]	Level 9	0	4194304	Value	ValueOutput
 
-[X] Comp Attack	0	4194304	Value	ValueOutput
-[X] Comp On	0	1	Toggle	ValueOutput
-[X] Comp Ratio	0	4194304	Value	ValueOutput
-[X] Comp Release	0	4194304	Value	ValueOutput
-[X] Comp Threshold	0	4194304	Value	ValueOutput
-[X] Delay Amount	0	4194304	Value	ValueOutput
-[X] Delay Feedback	0	4194304	Value	ValueOutput
-[X] Delay On	0	1	Toggle	ValueOutput
-[X] Delay Pan	0	4194304	Value	ValueOutput
-[X] Delay PingPong	0	1	Toggle	ValueOutput
-[X] Delay Sync	0	1	Toggle	ValueOutput
-[X] Delay Synced Time	0	10	Value	ValueOutput
-[X] Delay Time	0	4194304	Value	ValueOutput
-[X] Dist Amount	0	4194304	Value	ValueOutput
-[X] Dist Drive	0	4194304	Value	ValueOutput
-[X] Dist On	0	1	Toggle	ValueOutput
-[X] Dist Tone	0	4194304	Value	ValueOutput
-[X] Dist Type	0	5	Value	ValueOutput
-[X] EQ Freq	0	4194304	Value	ValueOutput
-[X] EQ Gain	0	4194304	Value	ValueOutput
-[X] EQ Hi Gain	0	4194304	Value	ValueOutput
-[X] EQ Lo Gain	0	4194304	Value	ValueOutput
-[X] EQ Q	0	4194304	Value	ValueOutput
-[X] EQ On	0	1	Toggle	ValueOutput
-[X] Phaser On	0	1	Toggle	ValueOutput
-[X] Mod Effect Amount	0	4194304	Value	ValueOutput
-[X] Mod Effect Depth	0	4194304	Value	ValueOutput
-[X] Mod Effect Feedback	0	4194304	Value	ValueOutput
-[X] Mod Effect Rate	0	4194304	Value	ValueOutput
-[ ] Mod Effect Spread	0	4194304	Value	ValueOutput // no controls left, had to leave this out
-[X] Resonator Mix	0	4194304	Value	ValueOutput
-[X] Resonator On	0	1	Toggle	ValueOutput
-[X] Resonator Pitch	0	24	Value	ValueOutput
-[X] Resonator Decay	0	4194304	Value	ValueOutput
-[X] Resonator Select	0	20	Value	ValueOutput
-[X] Resonator Width	0	4194304	Value	ValueOutput
-[X] Reverb Amount	0	4194304	Value	ValueOutput
-[X] Reverb Damp	0	4194304	Value	ValueOutput
-[X] Reverb Decay	0	4194304	Value	ValueOutput
-[ ] Reverb Early Reflections	0	4194304	Value	ValueOutput // no controls left, had to leave this out
-[X] Reverb On	0	1	Toggle	ValueOutput
-[X] Reverb Size	0	4194304	Value	ValueOutput
-[X] Unison On	0	1	Toggle	ValueOutput
-[X] Unison Count	0	2	Value	ValueOutput
-[X] Unison Timing	0	4194304	Value	ValueOutput
-[X] Unison Detune	0	4194304	Value	ValueOutput
-[X] Unison Spread	0	4194304	Value	ValueOutput
-[ ] Unison Blend	0	4194304	Value	ValueOutput // no controls left, had to leave this out
+[X]	Vel 1	0	4194304	Value	ValueOutput
+[X]	Vel 2	0	4194304	Value	ValueOutput
+[X]	Vel 3	0	4194304	Value	ValueOutput
+[X]	Vel 4	0	4194304	Value	ValueOutput
+[X]	Vel 5	0	4194304	Value	ValueOutput
+[X]	Vel 6	0	4194304	Value	ValueOutput
+[X]	Vel 7	0	4194304	Value	ValueOutput
+[X]	Vel 8	0	4194304	Value	ValueOutput
+[X]	Vel 9	0	4194304	Value	ValueOutput
 
-[ ] Effect Select	0	6	Value	ValueOutput
-[-] Effect Order	0	5039	Value	ValueOutput // does not make sense to map to a control!
+[X]	Freq 1	0	6400	Value	ValueOutput
+[X]	Freq 2	0	6400	Value	ValueOutput
+[X]	Freq 3	0	6400	Value	ValueOutput
+[X]	Freq 4	0	6400	Value	ValueOutput
+[X]	Freq 5	0	6400	Value	ValueOutput
+[X]	Freq 6	0	6400	Value	ValueOutput
+[X]	Freq 7	0	6400	Value	ValueOutput
+[X]	Freq 8	0	6400	Value	ValueOutput
+[X]	Freq 9	0	6400	Value	ValueOutput
 
-[ ] LFO 1 Rate	0	4194304	Value	ValueOutput
-[ ] LFO 1 Sync Rate	0	17	Value	ValueOutput
-[ ] LFO 2 Rate	0	4194304	Value	ValueOutput
-[ ] LFO 2 Sync Rate	0	17	Value	ValueOutput
-[ ] LFO 3 Rate	0	4194304	Value	ValueOutput
-[ ] LFO 3 Sync Rate	0	17	Value	ValueOutput
-[ ] Curve 1 Length	0	15	Value	ValueOutput
-[ ] Curve 1 Rate	0	4194304	Value	ValueOutput
-[ ] Curve 1 Sync Rate	0	17	Value	ValueOutput
-[ ] Curve 2 Length	0	15	Value	ValueOutput
-[ ] Curve 2 Rate	0	4194304	Value	ValueOutput
-[ ] Curve 2 Sync Rate	0	17	Value	ValueOutput
- 
-[X] FM Amount Offset	0	4194304	Value	ValueOutput
-[X] Feedback	0	4194304	Value	ValueOutput
-[ ] Key Mode	0	2	Value	ValueOutput
-[X] Master	0	4194304	Value	ValueOutput
-[ ] Octave	0	4	Value	ValueOutput
-[ ] Pitch Bend Range	0	24	Value	ValueOutput
-[ ] Portamento	0	4194304	Value	ValueOutput
-[ ] Portamento Mode	0	2	Value	ValueOutput
-[X] Decay/Release Offset	0	4194304	Value	ValueOutput
+[X]	Tune 1	0	100	Value	ValueOutput
+[X]	Tune 2	0	100	Value	ValueOutput
+[X]	Tune 3	0	100	Value	ValueOutput
+[X]	Tune 4	0	100	Value	ValueOutput
+[X]	Tune 5	0	100	Value	ValueOutput
+[X]	Tune 6	0	100	Value	ValueOutput
+[X]	Tune 7	0	100	Value	ValueOutput
+[X]	Tune 8	0	100	Value	ValueOutput
+[X]	Tune 9	0	100	Value	ValueOutput
 
-[X] Mode1	0	4	Value	ValueOutput
-[X] Mode2	0	4	Value	ValueOutput
-[X] Mode3	0	4	Value	ValueOutput
-[X] Mode4	0	4	Value	ValueOutput
-[X] Mode5	0	4	Value	ValueOutput
-[X] Mode6	0	4	Value	ValueOutput
-[X] Mode7	0	4	Value	ValueOutput
-[X] Mode8	0	4	Value	ValueOutput
-[X] Mode9	0	4	Value	ValueOutput
-[X] Out 1	0	1	Toggle	ValueOutput
-[X] Out 2	0	1	Toggle	ValueOutput
-[X] Out 3	0	1	Toggle	ValueOutput
-[X] Out 4	0	1	Toggle	ValueOutput
-[X] Out 5	0	1	Toggle	ValueOutput
-[X] Out 6	0	1	Toggle	ValueOutput
-[X] Out 7	0	1	Toggle	ValueOutput
-[X] Out 8	0	1	Toggle	ValueOutput
-[X] Out 9	0	1	Toggle	ValueOutput
+[X]	Pan 1	0	4194304	Value	ValueOutput
+[X]	Pan 2	0	4194304	Value	ValueOutput
+[X]	Pan 3	0	4194304	Value	ValueOutput
+[X]	Pan 4	0	4194304	Value	ValueOutput
+[X]	Pan 5	0	4194304	Value	ValueOutput
+[X]	Pan 6	0	4194304	Value	ValueOutput
+[X]	Pan 7	0	4194304	Value	ValueOutput
+[X]	Pan 8	0	4194304	Value	ValueOutput
+[X]	Pan 9	0	4194304	Value	ValueOutput
 
-[-] Pitch Bend	-8192	8191	Value	ValueOutput
-[-] Mod Wheel	0	127	Value	ValueOutput
-[ ] Breath Control	0	127	Value	ValueOutput
-[ ] Aftertouch	0	127	Value	ValueOutput
-[ ] Expression	0	127	Value	ValueOutput
-[ ] Sustain Pedal	0	127	Value	ValueOutput
+[X]	Filter Env 1	0	4194304	Value	ValueOutput
+[X]	Filter Env 2	0	4194304	Value	ValueOutput
+[X]	Filter Env 3	0	4194304	Value	ValueOutput
+[X]	Filter Env 4	0	4194304	Value	ValueOutput
+[X]	Filter Env 5	0	4194304	Value	ValueOutput
+[X]	Filter Env 6	0	4194304	Value	ValueOutput
+[X]	Filter Env 7	0	4194304	Value	ValueOutput
+[X]	Filter Env 8	0	4194304	Value	ValueOutput
+[X]	Filter Env 9	0	4194304	Value	ValueOutput
 
-[ ] LFO 1 Delay	0	4194304	Value	ValueOutput
-[ ] LFO 1 Key Sync	0	1	Toggle	ValueOutput
-[ ] LFO 1 Global	0	1	Toggle	ValueOutput
-[ ] LFO 1 Tempo Sync	0	1	Toggle	ValueOutput
-[ ] LFO 1 Wave	0	9	Value	ValueOutput
-[ ] LFO 2 Delay	0	4194304	Value	ValueOutput
-[ ] LFO 2 Key Sync	0	1	Toggle	ValueOutput
-[ ] LFO 2 Global	0	1	Toggle	ValueOutput
-[ ] LFO 2 Tempo Sync	0	1	Toggle	ValueOutput
-[ ] LFO 2 Wave	0	9	Value	ValueOutput
-[ ] LFO 3 Delay	0	4194304	Value	ValueOutput
-[ ] LFO 3 Key Sync	0	1	Toggle	ValueOutput
-[ ] LFO 3 Global	0	1	Toggle	ValueOutput
-[ ] LFO 3 Tempo Sync	0	1	Toggle	ValueOutput
-[ ] LFO 3 Wave	0	9	Value	ValueOutput
-[ ] LFO Select	0	4	Value	ValueOutput
-[X] Mod Effect Type	0	2	Value	ValueOutput
-[ ] Osc Sync	0	1	Toggle	ValueOutput
-[ ] Rate Key Scale	0	4194304	Value	ValueOutput
-[ ] FM Key Scale	0	4194304	Value	ValueOutput
-[ ] Curve 1 Tempo Sync	0	1	Toggle	ValueOutput
-[ ] Curve 2 Tempo Sync	0	1	Toggle	ValueOutput
-[ ] Curve 1 Key Sync	0	1	Toggle	ValueOutput
-[ ] Curve 1 Global	0	1	Toggle	ValueOutput
-[ ] Curve 2 Key Sync	0	1	Toggle	ValueOutput
-[ ] Curve 2 Global	0	1	Toggle	ValueOutput
-[ ] Curve 1 Stepped	0	1	Toggle	ValueOutput
-[ ] Curve 1 OneShot	0	1	Toggle	ValueOutput
-[ ] Curve 1 Bipolar	0	1	Toggle	ValueOutput
-[ ] Curve 2 Stepped	0	1	Toggle	ValueOutput
-[ ] Curve 2 OneShot	0	1	Toggle	ValueOutput
-[ ] Curve 2 Bipolar	0	1	Toggle	ValueOutput
-[ ] pp2	0	4194304	Value	ValueOutput
-[ ] pp1	0	4194304	Value	ValueOutput
-[X] Device Name	0	0	-	TextOutput
-[X] Patch Name	0	0	-	TextOutput
-[ ] Select Patch Delta	0	0	Delta	TextOutput
-[ ] Select Previous Patch	0	0	Trig	TextOutput
-[ ] Select Next Patch	0	0	Trig	TextOutput
+[X]	Reso 1	0	4194304	Value	ValueOutput
+[X]	Reso 2	0	4194304	Value	ValueOutput
+[X]	Reso 3	0	4194304	Value	ValueOutput
+[X]	Reso 4	0	4194304	Value	ValueOutput
+[X]	Reso 5	0	4194304	Value	ValueOutput
+[X]	Reso 6	0	4194304	Value	ValueOutput
+[X]	Reso 7	0	4194304	Value	ValueOutput
+[X]	Reso 8	0	4194304	Value	ValueOutput
+[X]	Reso 9	0	4194304	Value	ValueOutput
+
+[X]	Drive 1	0	4194304	Value	ValueOutput
+[X]	Drive 2	0	4194304	Value	ValueOutput
+[X]	Drive 3	0	4194304	Value	ValueOutput
+[X]	Drive 4	0	4194304	Value	ValueOutput
+[X]	Drive 5	0	4194304	Value	ValueOutput
+[X]	Drive 6	0	4194304	Value	ValueOutput
+[X]	Drive 7	0	4194304	Value	ValueOutput
+[X]	Drive 8	0	4194304	Value	ValueOutput
+[X]	Drive 9	0	4194304	Value	ValueOutput
+
+[X]	ShaperMix 1	0	4194304	Value	ValueOutput
+[X]	ShaperMix 2	0	4194304	Value	ValueOutput
+[X]	ShaperMix 3	0	4194304	Value	ValueOutput
+[X]	ShaperMix 4	0	4194304	Value	ValueOutput
+[X]	ShaperMix 5	0	4194304	Value	ValueOutput
+[X]	ShaperMix 6	0	4194304	Value	ValueOutput
+[X]	ShaperMix 7	0	4194304	Value	ValueOutput
+[X]	ShaperMix 8	0	4194304	Value	ValueOutput
+[X]	ShaperMix 9	0	4194304	Value	ValueOutput
+
+[X]	Symmetry 1	0	4194304	Value	ValueOutput
+[X]	Symmetry 2	0	4194304	Value	ValueOutput
+[X]	Symmetry 3	0	4194304	Value	ValueOutput
+[X]	Symmetry 4	0	4194304	Value	ValueOutput
+[X]	Symmetry 5	0	4194304	Value	ValueOutput
+[X]	Symmetry 6	0	4194304	Value	ValueOutput
+[X]	Symmetry 7	0	4194304	Value	ValueOutput
+[X]	Symmetry 8	0	4194304	Value	ValueOutput
+[X]	Symmetry 9	0	4194304	Value	ValueOutput
+
+[X]	Wave Mod 1	0	4194304	Value	ValueOutput
+[X]	Wave Mod 2	0	4194304	Value	ValueOutput
+[X]	Wave Mod 3	0	4194304	Value	ValueOutput
+[X]	Wave Mod 4	0	4194304	Value	ValueOutput
+[X]	Wave Mod 5	0	4194304	Value	ValueOutput
+[X]	Wave Mod 6	0	4194304	Value	ValueOutput
+[X]	Wave Mod 7	0	4194304	Value	ValueOutput
+[X]	Wave Mod 8	0	4194304	Value	ValueOutput
+[X]	Wave Mod 9	0	4194304	Value	ValueOutput
+
+[X]	Attack 1	0	4194304	Value	ValueOutput
+[X]	Attack 2	0	4194304	Value	ValueOutput
+[X]	Attack 3	0	4194304	Value	ValueOutput
+[X]	Attack 4	0	4194304	Value	ValueOutput
+[X]	Attack 5	0	4194304	Value	ValueOutput
+[X]	Attack 6	0	4194304	Value	ValueOutput
+[X]	Attack 7	0	4194304	Value	ValueOutput
+[X]	Attack 8	0	4194304	Value	ValueOutput
+[X]	Attack 9	0	4194304	Value	ValueOutput
+
+[X]	Decay 1	0	4194304	Value	ValueOutput
+[X]	Decay 2	0	4194304	Value	ValueOutput
+[X]	Decay 3	0	4194304	Value	ValueOutput
+[X]	Decay 4	0	4194304	Value	ValueOutput
+[X]	Decay 5	0	4194304	Value	ValueOutput
+[X]	Decay 6	0	4194304	Value	ValueOutput
+[X]	Decay 7	0	4194304	Value	ValueOutput
+[X]	Decay 8	0	4194304	Value	ValueOutput
+[X]	Decay 9	0	4194304	Value	ValueOutput
+
+[X]	Sustain 1	0	4194304	Value	ValueOutput
+[X]	Sustain 2	0	4194304	Value	ValueOutput
+[X]	Sustain 3	0	4194304	Value	ValueOutput
+[X]	Sustain 4	0	4194304	Value	ValueOutput
+[X]	Sustain 5	0	4194304	Value	ValueOutput
+[X]	Sustain 6	0	4194304	Value	ValueOutput
+[X]	Sustain 7	0	4194304	Value	ValueOutput
+[X]	Sustain 8	0	4194304	Value	ValueOutput
+[X]	Sustain 9	0	4194304	Value	ValueOutput
+
+[X]	Release 1	0	4194304	Value	ValueOutput
+[X]	Release 2	0	4194304	Value	ValueOutput
+[X]	Release 3	0	4194304	Value	ValueOutput
+[X]	Release 4	0	4194304	Value	ValueOutput
+[X]	Release 5	0	4194304	Value	ValueOutput
+[X]	Release 6	0	4194304	Value	ValueOutput
+[X]	Release 7	0	4194304	Value	ValueOutput
+[X]	Release 8	0	4194304	Value	ValueOutput
+[X]	Release 9	0	4194304	Value	ValueOutput
+
+[X]	Mode1	0	4	Value	ValueOutput
+[X]	Mode2	0	4	Value	ValueOutput
+[X]	Mode3	0	4	Value	ValueOutput
+[X]	Mode4	0	4	Value	ValueOutput
+[X]	Mode5	0	4	Value	ValueOutput
+[X]	Mode6	0	4	Value	ValueOutput
+[X]	Mode7	0	4	Value	ValueOutput
+[X]	Mode8	0	4	Value	ValueOutput
+[X]	Mode9	0	4	Value	ValueOutput
+
+[X]	Out 1	0	1	Toggle	ValueOutput
+[X]	Out 2	0	1	Toggle	ValueOutput
+[X]	Out 3	0	1	Toggle	ValueOutput
+[X]	Out 4	0	1	Toggle	ValueOutput
+[X]	Out 5	0	1	Toggle	ValueOutput
+[X]	Out 6	0	1	Toggle	ValueOutput
+[X]	Out 7	0	1	Toggle	ValueOutput
+[X]	Out 8	0	1	Toggle	ValueOutput
+[X]	Out 9	0	1	Toggle	ValueOutput
+
+[X]	Comp Attack	0	4194304	Value	ValueOutput
+[X]	Comp On	0	1	Toggle	ValueOutput
+[X]	Comp Ratio	0	4194304	Value	ValueOutput
+[X]	Comp Release	0	4194304	Value	ValueOutput
+[X]	Comp Threshold	0	4194304	Value	ValueOutput
+
+[X]	Delay Amount	0	4194304	Value	ValueOutput
+[X]	Delay Feedback	0	4194304	Value	ValueOutput
+[X]	Delay On	0	1	Toggle	ValueOutput
+[X]	Delay Pan	0	4194304	Value	ValueOutput
+[X]	Delay PingPong	0	1	Toggle	ValueOutput
+[X]	Delay Sync	0	1	Toggle	ValueOutput
+[X]	Delay Synced Time	0	10	Value	ValueOutput
+[X]	Delay Time	0	4194304	Value	ValueOutput
+
+[X]	Dist Amount	0	4194304	Value	ValueOutput
+[X]	Dist Drive	0	4194304	Value	ValueOutput
+[X]	Dist On	0	1	Toggle	ValueOutput
+[X]	Dist Tone	0	4194304	Value	ValueOutput
+[X]	Dist Type	0	5	Value	ValueOutput
+
+[X]	EQ Freq	0	4194304	Value	ValueOutput
+[X]	EQ Gain	0	4194304	Value	ValueOutput
+[X]	EQ Hi Gain	0	4194304	Value	ValueOutput
+[X]	EQ Lo Gain	0	4194304	Value	ValueOutput
+[X]	EQ Q	0	4194304	Value	ValueOutput
+[X]	EQ On	0	1	Toggle	ValueOutput
+
+[X]	Phaser On	0	1	Toggle	ValueOutput
+[X]	Mod Effect Amount	0	4194304	Value	ValueOutput
+[X]	Mod Effect Depth	0	4194304	Value	ValueOutput
+[X]	Mod Effect Feedback	0	4194304	Value	ValueOutput
+[X]	Mod Effect Rate	0	4194304	Value	ValueOutput
+[X]	Mod Effect Spread	0	4194304	Value	ValueOutput 
+[X]	Mod Effect Type	0	2	Value	ValueOutput
+
+[X]	Resonator Mix	0	4194304	Value	ValueOutput
+[X]	Resonator On	0	1	Toggle	ValueOutput
+[X]	Resonator Pitch	0	24	Value	ValueOutput
+[X]	Resonator Decay	0	4194304	Value	ValueOutput
+[X]	Resonator Select	0	20	Value	ValueOutput
+[X]	Resonator Width	0	4194304	Value	ValueOutput
+
+[X]	Reverb Amount	0	4194304	Value	ValueOutput
+[X]	Reverb Damp	0	4194304	Value	ValueOutput
+[X]	Reverb Decay	0	4194304	Value	ValueOutput
+[X]	Reverb Early Reflections	0	4194304	Value	ValueOutput 
+[X]	Reverb On	0	1	Toggle	ValueOutput
+[X]	Reverb Size	0	4194304	Value	ValueOutput
+
+[X]	Effect Select	0	6	Value	ValueOutput
+[-]	Effect Order	0	5039	Value	ValueOutput // does not make sense to map to a control!
+
+[X]	Device Name	0	0	-	TextOutput
+[X]	Patch Name	0	0	-	TextOutput
+[-]	Select Patch Delta	0	0	Delta	TextOutput
+[X]	Select Previous Patch	0	0	Trig	TextOutput
+[X]	Select Next Patch	0	0	Trig	TextOutput
+
+PERFORMANCE
+
+(E) [X]	Pitch Bend Range	0	24	Value	ValueOutput
+(E) [X]	Portamento	0	4194304	Value	ValueOutput
+(E) [X]	Octave	0	4	Value	ValueOutput
+
+(E) [X]	Master	0	4194304	Value	ValueOutput
+
+(E) [X]	Unison Timing	0	4194304	Value	ValueOutput
+(E) [X]	Unison Detune	0	4194304	Value	ValueOutput
+(E) [X]	Unison Spread	0	4194304	Value	ValueOutput
+(E) [X]	Unison Blend	0	4194304	Value	ValueOutput 
+
+(E) [X]	FM Key Scale	0	4194304	Value	ValueOutput
+(E) [X]	Rate Key Scale	0	4194304	Value	ValueOutput
+
+(E) [X]	FM Amount Offset	0	4194304	Value	ValueOutput
+(E) [X]	Feedback	0	4194304	Value	ValueOutput
+(E) [X]	Decay/Release Offset	0	4194304	Value	ValueOutput
+
+(B) [X]	Unison On	0	1	Toggle	ValueOutput
+(B) [X]	Unison Count	0	2	Value	ValueOutput
+
+(B) [X]	Key Mode	0	2	Value	ValueOutput
+(B) [X]	Portamento Mode	0	2	Value	ValueOutput
+
+(B) [X]	Osc Sync	0	1	Toggle	ValueOutput
+
+LFOS
+
+(E) [ ]	LFO 1 Wave	0	9	Value	ValueOutput
+(E) [ ]	LFO 1 Rate	0	4194304	Value	ValueOutput
+ (E) [ ]	LFO 1 Sync Rate	0	17	Value	ValueOutput
+(E) [ ]	LFO 1 Delay	0	4194304	Value	ValueOutput
+
+(B) [ ]	LFO 1 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [ ]	LFO 1 Key Sync	0	1	Toggle	ValueOutput
+(B) [ ]	LFO 1 Global	0	1	Toggle	ValueOutput
+
+(E) [ ]	LFO 2 Wave	0	9	Value	ValueOutput
+(E) [ ]	LFO 2 Rate	0	4194304	Value	ValueOutput
+ (E) [ ]	LFO 2 Sync Rate	0	17	Value	ValueOutput
+(E) [ ]	LFO 2 Delay	0	4194304	Value	ValueOutput
+
+(B) [ ]	LFO 2 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [ ]	LFO 2 Key Sync	0	1	Toggle	ValueOutput
+(B) [ ]	LFO 2 Global	0	1	Toggle	ValueOutput
+
+(E) [ ]	LFO 3 Wave	0	9	Value	ValueOutput
+(E) [ ]	LFO 3 Rate	0	4194304	Value	ValueOutput
+ (E) [ ]	LFO 3 Sync Rate	0	17	Value	ValueOutput
+(E) [ ]	LFO 3 Delay	0	4194304	Value	ValueOutput
+
+(B) [ ]	LFO 3 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [ ]	LFO 3 Key Sync	0	1	Toggle	ValueOutput
+(B) [ ]	LFO 3 Global	0	1	Toggle	ValueOutput
+
+(U) [ ]	LFO Select	0	4	Value	ValueOutput
+
+CURVES 
+
+(E) [ ]	Curve 1 Length	0	15	Value	ValueOutput
+(E) [ ]	Curve 1 Rate	0	4194304	Value	ValueOutput
+ (E) [ ]	Curve 1 Sync Rate	0	17	Value	ValueOutput
+
+(B) [ ]	Curve 1 Stepped	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 1 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 1 OneShot	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 1 Key Sync	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 1 Bipolar	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 1 Global	0	1	Toggle	ValueOutput
+
+(E) [ ]	Curve 2 Length	0	15	Value	ValueOutput
+(E) [ ]	Curve 2 Rate	0	4194304	Value	ValueOutput
+ (E) [ ]	Curve 2 Sync Rate	0	17	Value	ValueOutput
+
+(B) [ ]	Curve 2 Stepped	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 2 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 2 OneShot	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 2 Key Sync	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 2 Bipolar	0	1	Toggle	ValueOutput
+(B) [ ]	Curve 2 Global	0	1	Toggle	ValueOutput
+
+
+[-]	pp2	0	4194304	Value	ValueOutput // no idea what this is for
+[-]	pp1	0	4194304	Value	ValueOutput // no idea what this is for
+
+[-]	Pitch Bend	-8192	8191	Value	ValueOutput
+[-]	Mod Wheel	0	127	Value	ValueOutput
+[-]	Breath Control	0	127	Value	ValueOutput
+[-]	Aftertouch	0	127	Value	ValueOutput
+[-]	Expression	0	127	Value	ValueOutput
+[-]	Sustain Pedal	0	127	Value	ValueOutput
