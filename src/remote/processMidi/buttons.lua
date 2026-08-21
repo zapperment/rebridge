@@ -38,9 +38,9 @@ end
 
 -- handles changes of the buttons of the remote surface (Launch Control)
 return function(event)
-  local logMe = false
   local processed = false
   for _, control in ipairs(ctrl.buttons) do
+    local logMe = false --control == "button1"
     processed = util.process(
       control,
       event,

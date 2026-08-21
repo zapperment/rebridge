@@ -77,6 +77,21 @@ function StateManager:new()
     return instance
 end
 
+function StateManager:reset()
+    for _, control in ipairs(ctrl.encoders) do
+        self[control].hostValue.current = nil
+        self[control].hostTextValue.current = ""
+    end
+    for _, control in ipairs(ctrl.faders) do
+        self[control].hostValue.current = nil
+        self[control].hostTextValue.current = ""
+    end
+    for _, control in ipairs(ctrl.buttons) do
+        self[control].hostValue.current = nil
+        self[control].hostTextValue.current = ""
+    end
+end
+
 function StateManager:hasChanged(path)
     local item = tbl.getValueFromPath(self, path)
     if item == nil then
@@ -282,13 +297,13 @@ function StateManager:updateDependencies(param)
 end
 
 function StateManager:updateRackUI(param)
-    local logMe = false
+    local logMe = false --str.startsWith(param, "LFO")
     if param == "" then
         return
     end
     local deviceType = self:get "deviceType"
     if logMe then
-        if param == "Effect Select" then
+        if param == "LFO Select" then
             deb.log(
                 "[lib:state:StateManager] " ..
                 "*param: " .. param .. "*"
@@ -302,16 +317,13 @@ function StateManager:updateRackUI(param)
     end
     for _, control in ipairs(ctrl.rackUIs) do
         local controlParam = self[control].param.next
-        if controlParam == "" then
-            return
-        end
-        if logMe then
-            deb.log(
-                "[lib:state:StateManager] " ..
-                control .. ".param: " .. str.serialise(controlParam)
-            )
-        end
-        if controlParam ~= nil then
+        if controlParam ~= "" and controlParam ~= nil then
+            if logMe then
+                deb.log(
+                    "[lib:state:StateManager] " ..
+                    control .. ".param: " .. str.serialise(controlParam)
+                )
+            end
             local rackUIValue = tbl.getValueFromPath(
                 rui, deviceType .. "." .. controlParam .. "." .. param
             )
@@ -327,6 +339,16 @@ function StateManager:updateRackUI(param)
                     deb.log(
                         "[lib:state:StateManager] " ..
                         "has changed? " .. str.serialise(self:hasChanged(control .. ".hostValue"))
+                    )
+                end
+            else
+                if logMe then
+                    deb.log(
+                        "[lib:state:StateManager] " ..
+                        "(ox) " ..
+                        deviceType .. "." ..
+                        controlParam .. "." ..
+                        param .. " is nil!"
                     )
                 end
             end

@@ -262,34 +262,34 @@ PERFORMANCE
 
 LFOS
 
-(E) [ ]	LFO 1 Wave	0	9	Value	ValueOutput
-(E) [ ]	LFO 1 Rate	0	4194304	Value	ValueOutput
- (E) [ ]	LFO 1 Sync Rate	0	17	Value	ValueOutput
-(E) [ ]	LFO 1 Delay	0	4194304	Value	ValueOutput
+(E) [X]	LFO 1 Wave	0	9	Value	ValueOutput
+(E) [X]	LFO 1 Rate	0	4194304	Value	ValueOutput
+ (E) [X]	LFO 1 Sync Rate	0	17	Value	ValueOutput
+(E) [X]	LFO 1 Delay	0	4194304	Value	ValueOutput
 
-(B) [ ]	LFO 1 Tempo Sync	0	1	Toggle	ValueOutput
-(B) [ ]	LFO 1 Key Sync	0	1	Toggle	ValueOutput
-(B) [ ]	LFO 1 Global	0	1	Toggle	ValueOutput
+(B) [X]	LFO 1 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [X]	LFO 1 Key Sync	0	1	Toggle	ValueOutput
+(B) [X]	LFO 1 Global	0	1	Toggle	ValueOutput
 
-(E) [ ]	LFO 2 Wave	0	9	Value	ValueOutput
-(E) [ ]	LFO 2 Rate	0	4194304	Value	ValueOutput
- (E) [ ]	LFO 2 Sync Rate	0	17	Value	ValueOutput
-(E) [ ]	LFO 2 Delay	0	4194304	Value	ValueOutput
+(E) [X]	LFO 2 Wave	0	9	Value	ValueOutput
+(E) [X]	LFO 2 Rate	0	4194304	Value	ValueOutput
+ (E) [X]	LFO 2 Sync Rate	0	17	Value	ValueOutput
+(E) [X]	LFO 2 Delay	0	4194304	Value	ValueOutput
 
-(B) [ ]	LFO 2 Tempo Sync	0	1	Toggle	ValueOutput
-(B) [ ]	LFO 2 Key Sync	0	1	Toggle	ValueOutput
-(B) [ ]	LFO 2 Global	0	1	Toggle	ValueOutput
+(B) [X]	LFO 2 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [X]	LFO 2 Key Sync	0	1	Toggle	ValueOutput
+(B) [X]	LFO 2 Global	0	1	Toggle	ValueOutput
 
-(E) [ ]	LFO 3 Wave	0	9	Value	ValueOutput
-(E) [ ]	LFO 3 Rate	0	4194304	Value	ValueOutput
- (E) [ ]	LFO 3 Sync Rate	0	17	Value	ValueOutput
-(E) [ ]	LFO 3 Delay	0	4194304	Value	ValueOutput
+(E) [X]	LFO 3 Wave	0	9	Value	ValueOutput
+(E) [X]	LFO 3 Rate	0	4194304	Value	ValueOutput
+ (E) [X]	LFO 3 Sync Rate	0	17	Value	ValueOutput
+(E) [X]	LFO 3 Delay	0	4194304	Value	ValueOutput
 
-(B) [ ]	LFO 3 Tempo Sync	0	1	Toggle	ValueOutput
-(B) [ ]	LFO 3 Key Sync	0	1	Toggle	ValueOutput
-(B) [ ]	LFO 3 Global	0	1	Toggle	ValueOutput
+(B) [X]	LFO 3 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [X]	LFO 3 Key Sync	0	1	Toggle	ValueOutput
+(B) [X]	LFO 3 Global	0	1	Toggle	ValueOutput
 
-(U) [ ]	LFO Select	0	4	Value	ValueOutput
+(U) [X]	LFO Select	0	4	Value	ValueOutput
 
 CURVES 
 

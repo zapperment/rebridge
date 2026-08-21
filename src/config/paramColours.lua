@@ -86,11 +86,13 @@ return {
       "Dist Drive", "Dist Tone", "Dist Type", "Dist On"
     },
     orange = {
-      "Comp Attack", "Comp Release", "Comp Threshold", "Comp On"
+      "Comp Attack", "Comp Release", "Comp Threshold", "Comp On",
+      "LFO 1 Wave", "LFO 1 Rate", "LFO 1 Sync Rate", "LFO 1 Delay", "LFO 1 Tempo Sync", "LFO 1 Key Sync", "LFO 1 Global",
     },
     violet = {
       "Mod Effect Depth", "Mod Effect Rate", "Mod Effect Spread", "Mod Effect Feedback", "Mod Effect Type", "Phaser On",
-      "Octave"
+      "Octave",
+      "LFO 2 Wave", "LFO 2 Rate", "LFO 2 Sync Rate", "LFO 2 Delay", "LFO 2 Tempo Sync", "LFO 2 Key Sync", "LFO 2 Global",
     },
     green = {
       "Resonator Pitch", "Resonator Decay", "Resonator Width", "Resonator Mix", "Resonator Select", "Resonator On",
@@ -104,7 +106,8 @@ return {
       "Unison Timing", "Unison Detune", "Unison Spread", "Unison Blend", "Unison Count", "Unison On"
     },
     mint = {
-      "FM Amount Offset", "Decay/Release Offset"
+      "FM Amount Offset", "Decay/Release Offset",
+      "LFO 3 Wave", "LFO 3 Rate", "LFO 3 Sync Rate", "LFO 3 Delay", "LFO 3 Tempo Sync", "LFO 3 Key Sync", "LFO 3 Global",
     },
   })
 }

@@ -14,68 +14,74 @@ return {
     ["Effect Select"] = byParam({
       -- REV
       [0] = {
-        "Reverb Amount",
-        "Reverb Damp",
-        "Reverb Decay",
-        "Reverb Early Reflections",
-        "Reverb Size",
+        "Reverb Amount", "Reverb Damp", "Reverb Decay",
+        "Reverb Early Reflections", "Reverb Size",
       },
       -- DLY
       [21] = {
         --[1] = {
-        "Delay Amount",
-        "Delay Feedback",
-        "Delay Pan",
-        "Delay PingPong",
-        "Delay Sync",
-        "Delay Synced Time",
-        "Delay Time",
+        "Delay Amount", "Delay Feedback", "Delay Pan", "Delay PingPong",
+        "Delay Sync", "Delay Synced Time", "Delay Time",
       },
       -- DIST
       [42] = {
         --[2] = {
-        "Dist Amount",
-        "Dist Drive",
-        "Dist Tone",
-        "Dist Type",
+        "Dist Amount", "Dist Drive",
+        "Dist Tone", "Dist Type",
       },
       -- COMP
       [64] = {
         --[3] = {
-        "Comp Attack",
-        "Comp Ratio",
-        "Comp Release",
-        "Comp Threshold",
+        "Comp Attack", "Comp Ratio",
+        "Comp Release", "Comp Threshold",
       },
       -- PHSR
       [85] = {
         --[4] = {
-        "Mod Effect Amount",
-        "Mod Effect Depth",
-        "Mod Effect Feedback",
-        "Mod Effect Rate",
-        "Mod Effect Spread",
-        "Mod Effect Type",
+        "Mod Effect Amount", "Mod Effect Depth", "Mod Effect Feedback",
+        "Mod Effect Rate", "Mod Effect Spread", "Mod Effect Type",
       },
       -- EQ
       [106] = {
         --[5] = {
-        "EQ Freq",
-        "EQ Gain",
-        "EQ Hi Gain",
-        "EQ Lo Gain",
-        "EQ Q",
+        "EQ Freq", "EQ Gain", "EQ Hi Gain",
+        "EQ Lo Gain", "EQ Q",
       },
       -- RESO
       [127] = {
         --[6] = {
-        "Resonator Mix",
-        "Resonator On",
-        "Resonator Pitch",
-        "Resonator Decay",
-        "Resonator Select",
-        "Resonator Width",
+        "Resonator Mix", "Resonator On", "Resonator Pitch",
+        "Resonator Decay", "Resonator Select", "Resonator Width",
+      },
+    }),
+    ["LFO Select"] = byParam({
+      -- LFO1
+      [0] = {
+        "LFO 1 Wave", "LFO 1 Rate", "LFO 1 Sync Rate", "LFO 1 Delay",
+        "LFO 1 Tempo Sync", "LFO 1 Key Sync", "LFO 1 Global",
+      },
+      -- LFO2
+      [32] = {
+        "LFO 2 Wave", "LFO 2 Rate", "LFO 2 Sync Rate", "LFO 2 Delay",
+        "LFO 2 Tempo Sync", "LFO 2 Key Sync", "LFO 2 Global",
+      },
+      -- LFO3
+      [64] = {
+        "LFO 3 Wave", "LFO 3 Rate", "LFO 3 Sync Rate", "LFO 3 Delay",
+        "LFO 3 Tempo Sync", "LFO 3 Key Sync", "LFO 3 Global",
+      },
+      -- CURVE1
+      [96] = {
+        "Curve 1 Length", "Curve 1 Rate", "Curve 1 Sync Rate",
+        "Curve 1 Stepped", "Curve 1 Tempo Sync", "Curve 1 OneShot",
+        "Curve 1 Key Sync", "Curve 1 Bipolar", "Curve 1 Global",
+      },
+      -- CURVE2
+      [127] = {
+        "Curve 2 Length", "Curve 2 Rate", "Curve 2 Sync Rate",
+        "Curve 2 Stepped", "Curve 2 Tempo Sync", "Curve 2 OneShot",
+        "Curve 2 Key Sync", "Curve 2 Bipolar", "Curve 2 Global",
       },
     })
-  }
+  },
 }

@@ -4,7 +4,7 @@ local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 
 return function(hostItemIndex, control, enabledCallback, disabledCallback)
-  local logMe = false --control == "rackUI1"
+  local logMe = false --control == "button1"
   if hostItemIndex ~= items[control].index then
     return
   end

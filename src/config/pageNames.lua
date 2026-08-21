@@ -20,7 +20,7 @@ return {
     "Operator 8",
     "Operator 9",
     "Effects",
-    "XXX",
+    "LFOs",
     "Performance",
   }
 }

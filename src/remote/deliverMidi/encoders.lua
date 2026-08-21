@@ -1,6 +1,7 @@
 local col = require "src.lib.colour._"
 local const = require "src.config.constants"
 local ctrl = require "src.config.controls"
+local str = require "src.lib.string._"
 local disp = require "src.lib.display._"
 local items = require "src.config.items"
 local midi = require "src.lib.midi._"
@@ -11,7 +12,7 @@ local deb = require "src.lib.debug._"
 return function()
   local events = {}
   for _, control in ipairs(ctrl.encoders) do
-    local logMe = false --control == "encoder1"
+    local logMe = false --control == "encoder9" or control == "encoder9alt"
     local deviceType, deviceTypeChanged = state.update "deviceType"
     local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
     local enabled, enabledChanged = state.update(control .. ".enabled")
@@ -19,17 +20,30 @@ return function()
     local hostValue, hostValueChanged = state.update(control .. ".hostValue")
     local _, hostTextValueChanged = state.update(control .. ".hostTextValue")
 
-    if logMe and hostValueChanged then
-      deb.log(
-        "[remote:deliverMidi:encoders] " ..
-        "hostValue=" .. hostValue
-      )
-    end
 
     local item = items[control]
     local controller = item.controller
+    local shouldDisplay = disp.shouldDisplay(deviceType, param)
 
-    if disp.shouldDisplay(deviceType, param) then
+    if logMe and hostValueChanged then
+      deb.log(
+        "[remote:deliverMidi:encoders] " ..
+        control .. " " ..
+        "hostValue=" .. hostValue
+      )
+      if shouldDisplay then
+        deb.log(
+          "[remote:deliverMidi:encoders] " ..
+          "(/) should display!"
+        )
+      else
+        deb.log(
+          "[remote:deliverMidi:encoders] " ..
+          "(-1) should not display..."
+        )
+      end
+    end
+    if shouldDisplay then
       if enabledChanged or hostTextValueChanged or paramChanged then
         local displayConfigEvent = midi.makeParamDisplayConfigEvent(
           controller, enabled,

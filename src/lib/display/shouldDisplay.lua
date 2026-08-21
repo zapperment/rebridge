@@ -5,7 +5,7 @@ local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 
 return function(deviceType, param)
-  local logMe = false --param == "Delay Time" or param == "Delay Synced Time"
+  local logMe = false --param == "LFO 1 Rate" or param == "LFO 1 Synced Rate"
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..

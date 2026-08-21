@@ -537,5 +537,45 @@ return {
       dependsOn = "Delay Sync",
       useOtherParamWhenValue = false
     },
+    ["LFO 1 Rate"] = {
+      dependsOn = "LFO 1 Tempo Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO 1 Sync Rate"] = {
+      dependsOn = "LFO 1 Tempo Sync",
+      useOtherParamWhenValue = false
+    },
+    ["LFO 2 Rate"] = {
+      dependsOn = "LFO 2 Tempo Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO 2 Sync Rate"] = {
+      dependsOn = "LFO 2 Tempo Sync",
+      useOtherParamWhenValue = false
+    },
+    ["LFO 3 Rate"] = {
+      dependsOn = "LFO 3 Tempo Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO 3 Sync Rate"] = {
+      dependsOn = "LFO 3 Tempo Sync",
+      useOtherParamWhenValue = false
+    },
+    ["Curve 1 Rate"] = {
+      dependsOn = "Curve 1 Tempo Sync",
+      useOtherParamWhenValue = true
+    },
+    ["Curve 1 Sync Rate"] = {
+      dependsOn = "Curve 1 Tempo Sync",
+      useOtherParamWhenValue = false
+    },
+    ["Curve 2 Rate"] = {
+      dependsOn = "Curve 2 Tempo Sync",
+      useOtherParamWhenValue = true
+    },
+    ["Curve 2 Sync Rate"] = {
+      dependsOn = "Curve 2 Tempo Sync",
+      useOtherParamWhenValue = false
+    },
   },
 }

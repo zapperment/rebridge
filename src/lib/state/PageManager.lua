@@ -91,6 +91,7 @@ function PageManager:update()
   end
   self.count = count
   self:setActive(active or 1)
+  self.state:reset()
 end
 
 function PageManager:getLabelAndName()
