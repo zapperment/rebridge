@@ -174,5 +174,17 @@ return {
     ["LFO 1 Global"] = { ["false"] = "Off", ["true"] = "On" },
     ["LFO 2 Global"] = { ["false"] = "Off", ["true"] = "On" },
     ["LFO 3 Global"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 1 Stepped"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 1 Tempo Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 1 OneShot"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 1 Key Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 1 Bipolar"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 1 Global"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 2 Stepped"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 2 Tempo Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 2 OneShot"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 2 Key Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 2 Bipolar"] = { ["false"] = "Off", ["true"] = "On" },
+    ["Curve 2 Global"] = { ["false"] = "Off", ["true"] = "On" },
   }
 }

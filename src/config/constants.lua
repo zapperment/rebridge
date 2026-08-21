@@ -5,7 +5,7 @@ return {
     encoders = 24,
     faders = 8,
     buttons = 16,
-    pageSelects = 12,
+    pageSelects = 13,
     rackUIs = 2,
   },
   pickupTolerance = 10,

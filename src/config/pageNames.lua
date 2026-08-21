@@ -21,6 +21,7 @@ return {
     "Operator 9",
     "Effects",
     "LFOs",
+    "Curves",
     "Performance",
   }
 }

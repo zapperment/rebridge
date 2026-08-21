@@ -293,28 +293,27 @@ LFOS
 
 CURVES 
 
-(E) [ ]	Curve 1 Length	0	15	Value	ValueOutput
-(E) [ ]	Curve 1 Rate	0	4194304	Value	ValueOutput
- (E) [ ]	Curve 1 Sync Rate	0	17	Value	ValueOutput
+(E) [X]	Curve 1 Length	0	15	Value	ValueOutput
+(E) [X]	Curve 1 Rate	0	4194304	Value	ValueOutput
+ (E) [X]	Curve 1 Sync Rate	0	17	Value	ValueOutput
 
-(B) [ ]	Curve 1 Stepped	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 1 Tempo Sync	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 1 OneShot	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 1 Key Sync	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 1 Bipolar	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 1 Global	0	1	Toggle	ValueOutput
+(B) [X]	Curve 1 Stepped	0	1	Toggle	ValueOutput
+(B) [X]	Curve 1 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [X]	Curve 1 OneShot	0	1	Toggle	ValueOutput
+(B) [X]	Curve 1 Key Sync	0	1	Toggle	ValueOutput
+(B) [X]	Curve 1 Bipolar	0	1	Toggle	ValueOutput
+(B) [X]	Curve 1 Global	0	1	Toggle	ValueOutput
 
-(E) [ ]	Curve 2 Length	0	15	Value	ValueOutput
-(E) [ ]	Curve 2 Rate	0	4194304	Value	ValueOutput
- (E) [ ]	Curve 2 Sync Rate	0	17	Value	ValueOutput
+(E) [X]	Curve 2 Length	0	15	Value	ValueOutput
+(E) [X]	Curve 2 Rate	0	4194304	Value	ValueOutput
+ (E) [X]	Curve 2 Sync Rate	0	17	Value	ValueOutput
 
-(B) [ ]	Curve 2 Stepped	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 2 Tempo Sync	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 2 OneShot	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 2 Key Sync	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 2 Bipolar	0	1	Toggle	ValueOutput
-(B) [ ]	Curve 2 Global	0	1	Toggle	ValueOutput
-
+(B) [X]	Curve 2 Stepped	0	1	Toggle	ValueOutput
+(B) [X]	Curve 2 Tempo Sync	0	1	Toggle	ValueOutput
+(B) [X]	Curve 2 OneShot	0	1	Toggle	ValueOutput
+(B) [X]	Curve 2 Key Sync	0	1	Toggle	ValueOutput
+(B) [X]	Curve 2 Bipolar	0	1	Toggle	ValueOutput
+(B) [X]	Curve 2 Global	0	1	Toggle	ValueOutput
 
 [-]	pp2	0	4194304	Value	ValueOutput // no idea what this is for
 [-]	pp1	0	4194304	Value	ValueOutput // no idea what this is for

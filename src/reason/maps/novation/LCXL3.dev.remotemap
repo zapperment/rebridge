@@ -196,7 +196,7 @@ Map	deviceType		"subtractor"
 
 Scope	Propellerhead Software	se.propellerheads.Algoritm
 // https://github.com/mjuksel/remote-mappings/blob/main/Instruments/Algoritm%20Remote%20Info.txt
-Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11	Page 12
+Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11	Page 12	Page 13
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
 
@@ -212,6 +212,7 @@ Map	pageSelect9		Pages=Page 9
 Map	pageSelect10		Pages=Page 10
 Map	pageSelect11		Pages=Page 11
 Map	pageSelect12		Pages=Page 12
+Map	pageSelect13		Pages=Page 13
 
 Map	fader1		Attack 1			Page 1
 Map	fader2		Decay 1			Page 1
@@ -456,32 +457,57 @@ Map	button7		LFO 3 Tempo Sync			Page 11
 Map	button15		LFO 3 Key Sync			Page 11
 Map	button16		LFO 3 Global			Page 11
 
+// LFO Select actually selects LFOS and curves, that why we are not assigning a page here!
 Map	rackUI2		LFO Select
 
-// Page 12: Performance
+// Page 12: Curves
 
-Map	encoder1		Pitch Bend Range			Page 12
-Map	encoder2		Portamento			Page 12
-Map	encoder3		Octave			Page 12
+Map	encoder10		Curve 1 Length			Page 12
+Map	encoder18		Curve 1 Rate			Page 12
+Map	encoder18alt		Curve 1 Sync Rate			Page 12
 
-Map	fader8		Master			Page 12
+Map	button1		Curve 1 Stepped			Page 12
+Map	button2		Curve 1 Tempo Sync			Page 12
+Map	button3		Curve 1 Global			Page 12
+Map	button9		Curve 1 OneShot			Page 12
+Map	button10		Curve 1 Key Sync			Page 12
+Map	button11		Curve 1 Bipolar			Page 12
 
-Map	encoder12		Unison Timing			Page 12
-Map	encoder13		Unison Detune			Page 12
-Map	encoder20		Unison Spread			Page 12
-Map	encoder21		Unison Blend			Page 12
+Map	encoder14		Curve 2 Length			Page 12
+Map	encoder22		Curve 2 Rate			Page 12
+Map	encoder22alt		Curve 2 Sync Rate			Page 12
 
-Map	button1		Key Mode			Page 12
-Map	button2		Portamento Mode			Page 12
-Map	button4		Unison On			Page 12
-Map	button5		Unison Count			Page 12
-Map	button8		Osc Sync			Page 12
+Map	button5		Curve 2 Stepped			Page 12
+Map	button6		Curve 2 Tempo Sync			Page 12
+Map	button7		Curve 2 Global			Page 12
+Map	button13		Curve 2 OneShot			Page 12
+Map	button14		Curve 2 Key Sync			Page 12
+Map	button15		Curve 2 Bipolar			Page 12
 
-Map	encoder8		Feedback			Page 12
-Map	encoder16		FM Key Scale			Page 12
-Map	encoder22		FM Amount Offset			Page 12
-Map	encoder23		Decay/Release Offset			Page 12
-Map	encoder24		Rate Key Scale			Page 12
+// Page 13: Performance
+
+Map	encoder1		Pitch Bend Range			Page 13
+Map	encoder2		Portamento			Page 13
+Map	encoder3		Octave			Page 13
+
+Map	fader8		Master			Page 13
+
+Map	encoder12		Unison Timing			Page 13
+Map	encoder13		Unison Detune			Page 13
+Map	encoder20		Unison Spread			Page 13
+Map	encoder21		Unison Blend			Page 13
+
+Map	button1		Key Mode			Page 13
+Map	button2		Portamento Mode			Page 13
+Map	button4		Unison On			Page 13
+Map	button5		Unison Count			Page 13
+Map	button8		Osc Sync			Page 13
+
+Map	encoder8		Feedback			Page 13
+Map	encoder16		FM Key Scale			Page 13
+Map	encoder22		FM Amount Offset			Page 13
+Map	encoder23		Decay/Release Offset			Page 13
+Map	encoder24		Rate Key Scale			Page 13
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name

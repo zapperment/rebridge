@@ -76,7 +76,9 @@ return {
   algoritm = byParam({
     sky = {
       "Reverb Decay", "Reverb Size", "Reverb Damp", "Reverb Early Reflections", "Reverb On",
-      "Feedback", "Osc Sync"
+      "Feedback", "Osc Sync",
+      "Curve 2 Length", "Curve 2 Rate", "Curve 2 Sync Rate", "Curve 2 Stepped", "Curve 2 Tempo Sync", "Curve 2 OneShot",
+      "Curve 2 Key Sync", "Curve 2 Bipolar", "Curve 2 Global",
     },
     yellow = {
       "Delay Time", "Delay Synced Time", "Delay Feedback", "Delay Pan", "Delay Sync", "Delay PingPong", "Delay On",
@@ -103,7 +105,9 @@ return {
       "Pitch Bend Range", "Key Mode",
     },
     red = {
-      "Unison Timing", "Unison Detune", "Unison Spread", "Unison Blend", "Unison Count", "Unison On"
+      "Unison Timing", "Unison Detune", "Unison Spread", "Unison Blend", "Unison Count", "Unison On",
+      "Curve 1 Length", "Curve 1 Rate", "Curve 1 Sync Rate", "Curve 1 Stepped", "Curve 1 Tempo Sync", "Curve 1 OneShot",
+      "Curve 1 Key Sync", "Curve 1 Bipolar", "Curve 1 Global",
     },
     mint = {
       "FM Amount Offset", "Decay/Release Offset",
