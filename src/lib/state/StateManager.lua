@@ -239,7 +239,7 @@ local function dependsOnParam(conditionalConfig, param)
 end
 
 function StateManager:updateDependencies(param)
-    local logMe = param == "LFO Sync Enable"
+    local logMe = false --param == "LFO Sync Enable"
     local deviceType = self:get "deviceType"
     if logMe then
         deb.log(
@@ -282,7 +282,7 @@ function StateManager:updateDependencies(param)
 end
 
 function StateManager:updateRackUI(param)
-    local logMe = true
+    local logMe = false
     if param == "" then
         return
     end
@@ -316,10 +316,12 @@ function StateManager:updateRackUI(param)
                 rui, deviceType .. "." .. controlParam .. "." .. param
             )
             if rackUIValue ~= nil then
-                deb.log(
-                    "[lib:state:StateManager] " ..
-                    "setting " .. control .. " to value " .. str.serialise(rackUIValue)
-                )
+                if logMe then
+                    deb.log(
+                        "[lib:state:StateManager] " ..
+                        "setting " .. control .. " to value " .. str.serialise(rackUIValue)
+                    )
+                end
                 self:set(control .. ".hostValue", rackUIValue)
                 if logMe then
                     deb.log(

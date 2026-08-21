@@ -6,7 +6,7 @@ local deb = require "src.lib.debug._"
 
 return function(event)
   for _, control in ipairs(ctrl.rackUIs) do
-    local logMe = control == "rackUI1"
+    local logMe = false --control == "rackUI1"
     local enabled, enabledChanged = state.update(control .. ".enabled")
     local param, paramChanged = state.update(control .. ".param")
     local hostValue, hostValueChanged = state.update(control .. ".hostValue")
@@ -23,7 +23,7 @@ return function(event)
       )
     end
     state.update(control .. ".hostTextValue")
-    if enabled and hostValueChanged then
+    if enabled and not enabledChanged and hostValueChanged then
       local item = items[control]
       if logMe then
         deb.log(
