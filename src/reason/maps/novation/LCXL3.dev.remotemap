@@ -432,26 +432,26 @@ Map	rackUI1		Effect Select			Page 10
 
 // Page 11: LFOs
 
-Map	encoder1		LFO 1 Wave			Page 11
-Map	encoder9		LFO 1 Rate			Page 11
-Map	encoder9alt		LFO 1 Sync Rate			Page 11
-Map	encoder17		LFO 1 Delay			Page 11
+Map	encoder10		LFO 1 Wave			Page 11
+Map	encoder17		LFO 1 Rate			Page 11
+Map	encoder17alt		LFO 1 Sync Rate			Page 11
+Map	encoder18		LFO 1 Delay			Page 11
 Map	button1		LFO 1 Tempo Sync			Page 11
 Map	button9		LFO 1 Key Sync			Page 11
 Map	button10		LFO 1 Global			Page 11
 
-Map	encoder4		LFO 2 Wave			Page 11
-Map	encoder12		LFO 2 Rate			Page 11
-Map	encoder12alt		LFO 2 Sync Rate			Page 11
-Map	encoder20		LFO 2 Delay			Page 11
+Map	encoder13		LFO 2 Wave			Page 11
+Map	encoder20		LFO 2 Rate			Page 11
+Map	encoder20alt		LFO 2 Sync Rate			Page 11
+Map	encoder21		LFO 2 Delay			Page 11
 Map	button4		LFO 2 Tempo Sync			Page 11
 Map	button12		LFO 2 Key Sync			Page 11
 Map	button13		LFO 2 Global			Page 11
 
-Map	encoder7		LFO 3 Wave			Page 11
-Map	encoder15		LFO 3 Rate			Page 11
-Map	encoder15alt		LFO 3 Sync Rate			Page 11
-Map	encoder23		LFO 3 Delay			Page 11
+Map	encoder16		LFO 3 Wave			Page 11
+Map	encoder23		LFO 3 Rate			Page 11
+Map	encoder23alt		LFO 3 Sync Rate			Page 11
+Map	encoder24		LFO 3 Delay			Page 11
 Map	button7		LFO 3 Tempo Sync			Page 11
 Map	button15		LFO 3 Key Sync			Page 11
 Map	button16		LFO 3 Global			Page 11

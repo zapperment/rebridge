@@ -9,7 +9,7 @@ local defaultDisplayValues = {
 }
 
 return function(control)
-  local logMe = false
+  local logMe = control == "button1"
   local hostTextValue = state.get(control .. ".hostTextValue")
   local hostValue = state.get(control .. ".hostValue")
   local param = state.get(control .. ".param")

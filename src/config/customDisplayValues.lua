@@ -164,6 +164,15 @@ return {
       ["64"] = "0",
       ["96"] = "1",
       ["127"] = "2",
-    }
+    },
+    ["LFO 1 Tempo Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 2 Tempo Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 3 Tempo Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 1 Key Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 2 Key Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 3 Key Sync"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 1 Global"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 2 Global"] = { ["false"] = "Off", ["true"] = "On" },
+    ["LFO 3 Global"] = { ["false"] = "Off", ["true"] = "On" },
   }
 }
