@@ -1,69 +1,54 @@
-local tbl = require "src.lib.table._"
-local cond = require "src.config.conditionals"
+local condi = require "src.lib.conditional._"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 
+-- Whether a control mapped to a parameter should show that parameter's value,
+-- or stay blank because another parameter takes its place: while Ripley's Delay
+-- Tempo Sync is on, its Delay Time is replaced by its Synced Time, so Delay Time
+-- should not display.
+--
+-- A parameter is replaced as soon as one of its conditionals says so, so it only
+-- displays while every conditional it has is happy with the current value of the
+-- parameter it depends on. Ripley's Delay Time, for instance, displays only while
+-- both Delay Tempo Sync and Dual Delay are off: the first turns it into Synced
+-- Time, the second into Delay Time L and Delay Time R.
+--
+-- Conditionals that say nothing about which parameter to use — the ones that only
+-- give labels or colours — never hide anything.
 return function(deviceType, param)
-  local logMe = false --param == "LFO 1 Rate" or param == "LFO 1 Synced Rate"
-  if logMe then
-    deb.log(
-      "[lib:display:getConditionalDisplayValue] " ..
-      "**param=" .. str.serialise(param) .. "**"
-    )
-  end
-  local shouldDisplay = true
+  local logMe = false --param == "Delay Time" or param == "Synced Time"
   if not param then
-    return shouldDisplay
+    return true
   end
-  local conditional = tbl.getValueFromPath(
-    cond,
-    deviceType .. "." .. param
-  )
-  if not conditional or conditional.useOtherParamWhenValue == nil then
-    if logMe then
-      if not conditional then
+  for _, conditional in ipairs(condi.getConditionals(deviceType, param)) do
+    local useOtherParam = conditional.useOtherParamWhenValue
+    -- the host value is a boolean and may well be false, so it cannot be
+    -- fetched with an and/or expression
+    local dependsOnValue = nil
+    if useOtherParam ~= nil then
+      dependsOnValue = state.getHostValue(conditional.dependsOn)
+    end
+    if dependsOnValue ~= nil and dependsOnValue == useOtherParam then
+      if logMe then
         deb.log(
           "[lib:display:shouldDisplay] " ..
-          "no conditional found for param " .. str.serialise(param) .. "; " ..
-          "returning true (should display)"
-        )
-      else
-        deb.log(
-          "[lib:display:shouldDisplay] " ..
-          "conditional found for param " .. str.serialise(param) .. " " ..
-          "but no useOtherParamWhenValue " ..
-          "returning true (should display)"
+          "param " .. str.serialise(param) .. " " ..
+          "is replaced by another parameter while " ..
+          str.serialise(conditional.dependsOn) .. " " ..
+          "is " .. str.serialise(useOtherParam) .. "; " ..
+          "returning false (should not display)"
         )
       end
+      return false
     end
-    return shouldDisplay
   end
-  local dependsOnValue = state.getHostValue(conditional.dependsOn)
-  if dependsOnValue == nil then
-    if logMe then
-      deb.log(
-        "[lib:display:shouldDisplay] " ..
-        "param " .. str.serialise(param) .. " " ..
-        "depends on " .. str.serialise(conditional.dependsOn) .. ", " ..
-        "but there is no value stored for that; " ..
-        "returning true (should display)"
-      )
-    end
-    return shouldDisplay
-  end
-  shouldDisplay = conditional.useOtherParamWhenValue ~= dependsOnValue
   if logMe then
     deb.log(
       "[lib:display:shouldDisplay] " ..
-      "param " .. str.serialise(param) .. " " ..
-      "depends on " .. str.serialise(conditional.dependsOn) .. " " ..
-      "(currently " .. str.serialise(dependsOnValue) .. "); " ..
-      "should not display when depends on value is " ..
-      str.serialise(conditional.useOtherParamWhenValue) .. "; " ..
-      "returning " .. str.serialise(shouldDisplay) .. " " ..
-      "(should " .. (shouldDisplay and "" or "not ") .. "display)"
+      "no conditional replaces param " .. str.serialise(param) .. "; " ..
+      "returning true (should display)"
     )
   end
-  return shouldDisplay
+  return true
 end

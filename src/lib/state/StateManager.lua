@@ -2,6 +2,7 @@ local const = require "src.config.constants"
 local ctrl = require "src.config.controls"
 local cond = require "src.config.conditionals"
 local rui = require "src.config.rackUI"
+local condi = require "src.lib.conditional._"
 local tbl = require "src.lib.table._"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
@@ -247,13 +248,17 @@ end
 -- Whether a conditional makes its parameter depend on the given parameter: on
 -- the one named by dependsOn, and on the one named by each of its overrides,
 -- as a parameter can depend on more than one other parameter.
-local function dependsOnParam(conditionalConfig, param)
-    if conditionalConfig.dependsOn == param then
-        return true
-    end
-    for _, override in ipairs(conditionalConfig.overrides or {}) do
-        if override.dependsOn == param then
+-- whether any of the conditionals of a parameter depends on the given parameter,
+-- either directly or through one of its overrides
+local function dependsOnParam(conditionals, param)
+    for _, conditional in ipairs(conditionals) do
+        if conditional.dependsOn == param then
             return true
+        end
+        for _, override in ipairs(conditional.overrides or {}) do
+            if override.dependsOn == param then
+                return true
+            end
         end
     end
     return false
@@ -278,8 +283,8 @@ function StateManager:updateDependencies(param)
         end
         return
     end
-    for dependentParam, conditionalConfig in pairs(conditionalsForDevice) do
-        if dependsOnParam(conditionalConfig, param) then
+    for dependentParam in pairs(conditionalsForDevice) do
+        if dependsOnParam(condi.getConditionals(deviceType, dependentParam), param) then
             if logMe then
                 deb.log(
                     "[lib:state:StateManager] " ..

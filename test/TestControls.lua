@@ -35,8 +35,11 @@ function TestControls:testAllContainsSamples()
 end
 
 function TestControls:testAllIsACopy()
+    local before = table.concat(controls.encoders, ",")
     table.insert(controls.all, "bogus")
-    lu.assertEquals(controls.encoders[#controls.encoders], "encoder24alt",
-        "mutating all should not affect the encoders table")
+    local after = table.concat(controls.encoders, ",")
+    -- put the shared table back before asserting, so that a failing assertion
+    -- cannot leave "bogus" behind for every other test that walks controls.all
     table.remove(controls.all)
+    lu.assertEquals(after, before, "mutating all should not affect the encoders table")
 end

@@ -1,5 +1,5 @@
 local paramColours = require "src.config.paramColours"
-local cond = require "src.config.conditionals"
+local condi = require "src.lib.conditional._"
 local deb = require "src.lib.debug._"
 local state = require "src.lib.state._"
 
@@ -52,73 +52,46 @@ return function(deviceType, param, defaultColour)
     end
     return colour
   end
-  local conditional = cond[deviceType]
-  if not conditional then
+  -- a parameter can have more than one conditional, in which case the first one
+  -- that has a colour for the current value of the parameter it depends on wins
+  for _, conditional in ipairs(condi.getConditionals(deviceType, param)) do
     if logMe then
       deb.log(
         "[lib.colour.getColourName] " ..
-        "no conditionials configured for this device, using default colour "
+        "dependsOn=" .. conditional.dependsOn
       )
     end
-    return defaultColour
-  end
-  conditional = conditional[param]
-  if not conditional then
-    if logMe then
-      deb.log(
-        "[lib.colour.getColourName] " ..
-        "no conditionials configured for this parameter, using default colour "
-      )
+    -- a conditional can take a second parameter into account: an override wins
+    -- over the conditional's own colours as soon as it has something to say
+    -- about that parameter's current value
+    for _, override in ipairs(conditional.overrides or {}) do
+      local overrideColour = getColourForDependency(override)
+      if overrideColour then
+        if logMe then
+          deb.log(
+            "[lib.colour.getColourName] " ..
+            "overridden by " .. override.dependsOn .. ": " .. overrideColour
+          )
+        end
+        return overrideColour
+      end
     end
-    return defaultColour
-  end
-  local colours = conditional.colours
-  if not colours then
-    if logMe then
-      deb.log(
-        "[lib.colour.getColourName] " ..
-        "no conditionial colours configured for this parameter, using default colour "
-      )
-    end
-    return defaultColour
-  end
-  if logMe then
-    deb.log(
-      "[lib.colour.getColourName] " ..
-      "dependsOn=" .. conditional.dependsOn
-    )
-  end
-  -- a parameter can depend on more than one other parameter: an override takes
-  -- a second parameter into account and wins over the parameter's own colours
-  -- as soon as it has something to say about that parameter's current value
-  for _, override in ipairs(conditional.overrides or {}) do
-    local overrideColour = getColourForDependency(override)
-    if overrideColour then
+    colour = getColourForDependency(conditional)
+    if colour then
       if logMe then
         deb.log(
           "[lib.colour.getColourName] " ..
-          "overridden by " .. override.dependsOn .. ": " .. overrideColour
+          "colour=" .. colour
         )
       end
-      return overrideColour
+      return colour
     end
-  end
-  colour = getColourForDependency(conditional)
-  if not colour then
-    if logMe then
-      deb.log(
-        "[lib.colour.getColourName] " ..
-        "no colour defined for depends on value, using default colour "
-      )
-    end
-    return defaultColour
   end
   if logMe then
     deb.log(
       "[lib.colour.getColourName] " ..
-      "colour=" .. colour
+      "no conditional colour for this parameter, using default colour "
     )
   end
-
-  return colour
+  return defaultColour
 end

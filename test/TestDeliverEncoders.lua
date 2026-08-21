@@ -185,6 +185,42 @@ function TestDeliverEncoders:testShowsThePlainRateWhileSyncIsDisabled()
     lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex "64")), true, errorMessage)
 end
 
+-- simulates the host reporting one of Ripley's delay switches on or off
+local function setRipleySwitch(button, param, on)
+    local previousImpl = remote.mock "get_item_state".implementation
+    remote.mock "get_item_state":impl(function()
+        return { is_enabled = true, value = on and 127 or 0, remote_item_name = param }
+    end)
+    setButtons({ items[button].index })
+    remote.mock "get_item_state".implementation = previousImpl
+end
+
+local function setDualDelay(on)
+    setRipleySwitch("button12", "Dual Delay", on)
+end
+
+-- Ripley's Delay Time has a list of conditionals, so which of the parameters it
+-- depends on changed does not matter: whenever one of them does, the encoder has
+-- to be delivered again, or it would keep showing whatever it showed before
+function TestDeliverEncoders:testShowsTheDelayTimeAgainWhenDualDelayIsTurnedOff()
+    state.set("deviceType", "ripley")
+    state.update "deviceType"
+    setDualDelay(false)
+    reportEncoder("encoder1", "Delay Time", 64, "250 ms")
+    deliverEncoders()
+    -- the single delay time gives way to the separate times per channel
+    setDualDelay(true)
+    local events = deliverEncoders()
+    local errorMessage = "expected nothing to be shown for Delay Time while Dual Delay is turned on"
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex "250 ms")), false, errorMessage)
+    remote.clearMocks()
+    setDualDelay(false)
+    events = deliverEncoders()
+    errorMessage = "expected Delay Time to be shown again when Dual Delay is turned off, " ..
+        "even though the encoder's own value did not change"
+    lu.assertEquals(contains(events, sysex("06 xx 01 " .. hex.textToHex "250 ms")), true, errorMessage)
+end
+
 function TestDeliverEncoders:testSuppressesTheDisplayOfEveryEncoderWhenPreparingForUse()
     remote.clearMocks()
     remote_prepare_for_use()

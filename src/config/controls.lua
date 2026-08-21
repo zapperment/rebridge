@@ -4,6 +4,8 @@ local encoders = {}
 for i = 1, const.counts.encoders do
   table.insert(encoders, "encoder" .. i)
   table.insert(encoders, "encoder" .. i .. "alt")
+  table.insert(encoders, "encoder" .. i .. "alt2")
+  table.insert(encoders, "encoder" .. i .. "alt3")
 end
 
 local faders = {}
