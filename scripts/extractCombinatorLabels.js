@@ -29,6 +29,9 @@ const defaultOutFile = path.join(repoRoot, "src", "config", "combinatorLabels.lu
 // a patch that labels enough of its slots to cover both kinds of control, the
 // rotary numbers that run into two digits, and the boundary between the two
 const examplePatch = path.join(__dirname, "fixtures", "combi-patch-example.cmb");
+// a patch saved in the layout Reason used before the Combinator grew to 32
+// rotaries and 32 buttons
+const legacyExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example2.cmb");
 
 // --- the patch file format -------------------------------------------------
 //
@@ -43,9 +46,16 @@ const CHUNK_HEADER_SIZE = 8;
 // label slot for each of them, the rotaries first
 const LABEL_SLOTS = 64;
 const ROTARY_SLOTS = 32;
+// patches saved before the Combinator grew to 32 of each store their labels
+// differently, in two arrays of four (see readLegacyLabels)
+const LEGACY_SLOTS = 4;
 // no Combinator label is anywhere near this long; a length beyond it means the
 // bytes are being read as something they are not
 const MAX_LABEL_LENGTH = 256;
+// the legacy layout is found by scanning rather than by a count that identifies
+// it, so its labels are held to a tighter bound to keep a run of unrelated bytes
+// from being read as one
+const MAX_LEGACY_LABEL_LENGTH = 64;
 
 function readString(buf, offset) {
   const length = buf.readUInt32BE(offset);
@@ -102,9 +112,12 @@ function readDeviceName(buf, desc) {
 // slots the patch author renamed, and the label itself. Two more labels follow
 // the table, for the pitch bend and modulation wheels.
 //
+// This is how patches are saved since the Combinator grew to 32 rotaries and 32
+// buttons; see readLegacyLabels for the layout before that.
+//
 // Returns null if the bytes at the offset are not such a table, as the marker it
 // is found by is not unique within the Combinator's BODY.
-function readLabelTable(buf, offset) {
+function readSlotTable(buf, offset) {
   try {
     // the five byte marker, then the number of slots
     let position = offset + 5;
@@ -136,10 +149,87 @@ function readLabelTable(buf, offset) {
   }
 }
 
+// Reads the front panel labels of a patch saved before the Combinator grew to 32
+// rotaries and 32 buttons, which keeps them in two arrays of four rather than in
+// a table of numbered slots: four rotary labels, then four button labels, each
+// array behind a count of its own.
+//
+// Nothing in those bytes identifies them as labels, so they are found by the
+// block of current values that sits immediately in front of them — a marker
+// followed by three arrays of four bytes, the rotary positions, the button
+// states and the rotary ranges. Anchoring on that rather than on the labels
+// themselves means a patch that labels nothing is still recognised, instead of
+// being reported as a patch the format of which could not be read.
+//
+// Returns null if the bytes at the offset are not that block.
+function readLegacyLabels(buf, offset) {
+  try {
+    let position = offset + 5;
+    for (let array = 0; array < 3; array += 1) {
+      if (buf.readUInt32BE(position) !== LEGACY_SLOTS) {
+        return null;
+      }
+      position += 4 + LEGACY_SLOTS;
+    }
+    // the labels follow in a block of their own, behind a marker of the same
+    // kind as the one the values are behind
+    if (buf.readUInt32BE(position) !== 0xbc010000 || buf.readUInt8(position + 4) !== 0x00) {
+      return null;
+    }
+    position += 5;
+    const labels = new Map();
+    for (const firstSlot of [0, ROTARY_SLOTS]) {
+      if (buf.readUInt32BE(position) !== LEGACY_SLOTS) {
+        return null;
+      }
+      position += 4;
+      for (let slot = 1; slot <= LEGACY_SLOTS; slot += 1) {
+        if (buf.readUInt32BE(position) > MAX_LEGACY_LABEL_LENGTH) {
+          return null;
+        }
+        const [label, next] = readString(buf, position);
+        // a label with a control character in it is a run of unrelated bytes
+        // that happens to have been read this far
+        if (/[\x00-\x1f\x7f]/.test(label)) {
+          return null;
+        }
+        labels.set(firstSlot + slot, label);
+        position = next;
+      }
+    }
+    return labels;
+  } catch {
+    return null;
+  }
+}
+
 // The remote parameter a label slot belongs to, as Reason names it — which is
-// also the name the control surface shows while there is no label for it.
+// also the name the control surface shows while there is no label for it. The
+// four rotaries and four buttons of a legacy patch are named the same way as the
+// first four of each on a Combinator today.
 function paramName(slot) {
   return slot <= ROTARY_SLOTS ? `Rotary ${slot}` : `Button ${slot - ROTARY_SLOTS}`;
+}
+
+// Scans the Combinator's BODY for its labels, in either of the two layouts a
+// patch can have been saved in. The current layout is tried first: it is
+// identified by a slot count and a run of slot numbers, so it can be told apart
+// from unrelated bytes far more surely than the legacy one can.
+function findLabels(buf, from, to) {
+  const layouts = [
+    { marker: [0xbc, 0x02, 0x00, 0x00, 0x00], read: readSlotTable },
+    { marker: [0xbc, 0x01, 0x00, 0x00, 0x00], read: readLegacyLabels },
+  ];
+  for (const { marker, read } of layouts) {
+    const bytes = Buffer.from(marker);
+    for (let at = buf.indexOf(bytes, from); at >= 0 && at < to; at = buf.indexOf(bytes, at + 1)) {
+      const labels = read(buf, at);
+      if (labels) {
+        return labels;
+      }
+    }
+  }
+  return null;
 }
 
 // The labels of a single patch file, keyed by remote parameter name. Slots the
@@ -159,17 +249,9 @@ function readPatch(file) {
   if (!body) {
     throw new Error("no BODY chunk: the file does not hold a Combinator");
   }
-  const end = body.content + body.length;
-  const marker = Buffer.from([0xbc, 0x02, 0x00, 0x00, 0x00]);
-  let labels = null;
-  for (let at = buf.indexOf(marker, body.content); at >= 0 && at < end; at = buf.indexOf(marker, at + 1)) {
-    labels = readLabelTable(buf, at);
-    if (labels) {
-      break;
-    }
-  }
+  const labels = findLabels(buf, body.content, body.content + body.length);
   if (!labels) {
-    throw new Error("no label table found in the Combinator's BODY chunk");
+    throw new Error("no labels found in the Combinator's BODY chunk");
   }
   const params = {};
   let count = 0;
@@ -393,10 +475,66 @@ function parseArgs(argv) {
   return options;
 }
 
-// Checks the parsing against the example patch in the repository, so that a
-// change to it can be caught without a Reason installation to hand.
+// Checks the parsing against the example patches in the repository, so that a
+// change to it can be caught without a Reason installation to hand. There is one
+// patch for each of the two layouts a Combinator can have been saved in.
 function selfTest() {
-  const expected = {
+  const cases = [
+    {
+      file: examplePatch,
+      deviceName: "Bent Beat [UCLUB]",
+      labels: slotTableLabels(),
+    },
+    {
+      file: legacyExamplePatch,
+      deviceName: "[DRUMS] Floor Filler",
+      labels: {
+        "Rotary 1": "HP FILTER",
+        "Rotary 2": "PATTERN 1-4",
+        "Button 1": "KICK",
+        "Button 2": "CLAP",
+        "Button 3": "HH",
+        "Button 4": "RUMBLE",
+      },
+    },
+  ];
+  for (const expected of cases) {
+    const name = path.relative(repoRoot, expected.file);
+    let patch;
+    try {
+      patch = readPatch(expected.file);
+    } catch (error) {
+      console.error(`Self test: failed, cannot read ${name}`);
+      console.error(`  ${error.message}`);
+      return 1;
+    }
+    if (!sameLabels(patch.params, expected.labels)) {
+      console.error(`Self test: failed on ${name}`);
+      console.error(`  expected: ${JSON.stringify(expected.labels, null, 2)}`);
+      console.error(`  actual:   ${JSON.stringify(patch.params, null, 2)}`);
+      return 1;
+    }
+    if (patch.deviceName !== expected.deviceName) {
+      console.error(`Self test: failed on ${name}, device name is "${patch.deviceName}"`);
+      return 1;
+    }
+  }
+  const patch = readPatch(examplePatch);
+  const lua = renderLua(new Map([[patchNameOf(examplePatch), { params: patch.params }]]));
+  // the last of the rotaries and the first of the buttons, so that the order the
+  // slots are rendered in is checked across the boundary between the two
+  if (!lua.includes('["Rotary 15"] = "DUMMY 13",\n  ["Button 1"] = "Ch. 1 On",')) {
+    console.error("Self test: failed, the rendered Lua does not hold the labels in order");
+    return 1;
+  }
+  console.log(`Self test: success (${cases.length} patches)`);
+  return 0;
+}
+
+// the labels of the patch saved in the current layout, kept apart from the cases
+// above only because there are enough of them to bury the rest
+function slotTableLabels() {
+  return {
     "Rotary 1": "Ch. 1 Vol.",
     "Rotary 2": "Ch. 2 Vol.",
     "Rotary 3": "Ch. 3 Vol.",
@@ -422,33 +560,6 @@ function selfTest() {
     "Button 8": "Ch. 8 On",
     "Button 9": "Rev. to Comp.",
   };
-  let patch;
-  try {
-    patch = readPatch(examplePatch);
-  } catch (error) {
-    console.error(`Self test: failed, cannot read ${path.relative(repoRoot, examplePatch)}`);
-    console.error(`  ${error.message}`);
-    return 1;
-  }
-  if (!sameLabels(patch.params, expected)) {
-    console.error("Self test: failed");
-    console.error(`  expected: ${JSON.stringify(expected, null, 2)}`);
-    console.error(`  actual:   ${JSON.stringify(patch.params, null, 2)}`);
-    return 1;
-  }
-  if (patch.deviceName !== "Bent Beat [UCLUB]") {
-    console.error(`Self test: failed, device name is "${patch.deviceName}"`);
-    return 1;
-  }
-  const lua = renderLua(new Map([[patchNameOf(examplePatch), { params: patch.params }]]));
-  // the last of the rotaries and the first of the buttons, so that the order the
-  // slots are rendered in is checked across the boundary between the two
-  if (!lua.includes('["Rotary 15"] = "DUMMY 13",\n  ["Button 1"] = "Ch. 1 On",')) {
-    console.error("Self test: failed, the rendered Lua does not hold the labels in order");
-    return 1;
-  }
-  console.log("Self test: success");
-  return 0;
 }
 
 function main(argv) {

@@ -139,7 +139,7 @@ You need to have Lua installed (see section [Lua](#lua)) to run the tests:
 yarn test
 ```
 
-This also checks that the Combinator label extraction still reads the patch format correctly, against the example patch in `scripts/fixtures`.
+This also checks that the Combinator label extraction still reads the patch formats correctly, against the example patches in `scripts/fixtures` — one saved in the layout Reason uses today, one in the layout it used before the Combinator grew from 4 rotaries and 4 buttons to 32 of each.
 
 ### Dev container
 
