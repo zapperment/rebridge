@@ -41,7 +41,8 @@ return function()
     if enabled then
       -- display the parameter name briefly in the LCD if it has changed
       if paramChanged then
-        table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
+        local displayName = disp.getDisplayName(deviceType, param)
+        table.insert(events, midi.makeParamNameDisplayEvent(displayName, controller))
       end
 
       -- if the value has changed, display it in the LCD briefly and report the

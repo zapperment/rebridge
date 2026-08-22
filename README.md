@@ -109,6 +109,26 @@ Concatenating strings:
 debug.log("value: " .. my_value)
 ```
 
+### Combinator labels
+
+Reason tells a remote codec nothing about a Combinator's controls beyond `Rotary 1` … `Rotary 32` and `Button 1` … `Button 16`, so the labels the patch author wrote on the Combinator's front panel — `RELEASE`, `REVERB` and so on — never reach the Launch Control's displays.
+
+Those labels are, however, stored in the patch files, and a script can read them out beforehand:
+
+```
+yarn extract:combi
+```
+
+This searches every directory below the `PATH_REASON_COMBI_*` paths of your `.env` (see `.env.example`) for `.cmb` files, reads the labels out of each one and writes them to `src/config/combinatorLabels.lua`, which is bundled into the codec by `yarn build`. Directories can also be passed on the command line:
+
+```
+yarn extract:combi ~/Documents/Reason/ReasonPatches
+```
+
+The codec looks the labels up by the patch name Reason reports, falling back on the name the Combinator carries in the rack, and shows them in place of the parameter names (see `src/lib/display/getDisplayName.lua`). A patch that has not been extracted, or a control the patch has not labelled, keeps the name Reason reports for it.
+
+Run the script again whenever you add or relabel a Combinator patch, then `yarn setup` to build and install the codec.
+
 ### Running tests
 
 This project uses [LuaUnit](https://luaunit.readthedocs.io/) for unit testing.
@@ -118,6 +138,8 @@ You need to have Lua installed (see section [Lua](#lua)) to run the tests:
 ```
 yarn test
 ```
+
+This also checks that the Combinator label extraction still reads the patch format correctly, against the example patch in `scripts/fixtures`.
 
 ### Dev container
 
