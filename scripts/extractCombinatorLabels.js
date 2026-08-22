@@ -32,6 +32,31 @@ const examplePatch = path.join(__dirname, "fixtures", "combi-patch-example.cmb")
 // a patch saved in the layout Reason used before the Combinator grew to 32
 // rotaries and 32 buttons
 const legacyExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example2.cmb");
+// a patch whose panel has been rearranged, so that the slot a label sits in is
+// not the number Remote gives the parameter — the case that is silently wrong
+// if the panel layout is ignored
+const rearrangedExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example3.cmb");
+// a patch whose panel layout carries the older of the two versions the block is
+// found with
+const olderLayoutExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example4.cmb");
+// a patch whose panel carries captions beside the Combinator's own Run and
+// Bypass switches, which are neither rotaries nor buttons
+const captionedExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example5.cmb");
+// two patches that name none of their controls, one keeping five arrays of
+// values in front of its labels and one keeping three: nothing to extract from
+// either, but they have to be read rather than reported as unreadable
+const unlabelledExamplePatches = [
+  path.join(__dirname, "fixtures", "combi-patch-example6.cmb"),
+  path.join(__dirname, "fixtures", "combi-patch-example7.cmb"),
+];
+// a patch that names its controls "Rotary 1" ... "Button 4", which is what
+// Reason calls them anyway: nothing is left once those are dropped, but the
+// eight of them are counted, as that is what tells this apart from a patch whose
+// labels are empty
+const defaultNamesExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example8.cmb");
+// a patch that keeps no labels for the pitch bend and modulation wheels after
+// its table, so the panel layout starts where those would have been
+const noWheelLabelsExamplePatch = path.join(__dirname, "fixtures", "combi-patch-example9.cmb");
 
 // --- the patch file format -------------------------------------------------
 //
@@ -56,6 +81,52 @@ const MAX_LABEL_LENGTH = 256;
 // it, so its labels are held to a tighter bound to keep a run of unrelated bytes
 // from being read as one
 const MAX_LEGACY_LABEL_LENGTH = 64;
+
+// Blocks within a device's BODY open with this byte, a version, and three zero
+// bytes.
+const MARKER_BYTE = 0xbc;
+const MARKER_SIZE = 5;
+
+function isBlockMarker(buf, offset) {
+  return offset >= 0 &&
+    offset + MARKER_SIZE <= buf.length &&
+    buf.readUInt8(offset) === MARKER_BYTE &&
+    buf.readUInt8(offset + 2) === 0 &&
+    buf.readUInt8(offset + 3) === 0 &&
+    buf.readUInt8(offset + 4) === 0;
+}
+
+// How many four-byte arrays of current values sit in front of a legacy patch's
+// labels. Three in the oldest patches — rotary positions, button states and
+// ranges — and more in later ones, which keep more per control.
+const MIN_LEGACY_VALUE_ARRAYS = 3;
+const MAX_LEGACY_VALUE_ARRAYS = 16;
+
+// The panel layout that follows the label table: one record per thing on the
+// Combinator's front panel, in the order Reason numbers them over Remote. The
+// kind of a record decides both what it is and how long it is.
+const PANEL_BUTTON = 0;
+const PANEL_ROTARY = 1;
+const PANEL_WHEEL = 2;
+// the captions beside the Combinator's own Run and Bypass switches, which carry
+// their text in the record rather than in a label slot
+const PANEL_CAPTION = 3;
+const PANEL_SWITCH_CAPTION = 4;
+// a rotary carries one field more than a button or a wheel, and a caption
+// carries the text printed on the panel, so its length depends on that text
+const PANEL_RECORD_SIZE = 33;
+const PANEL_ROTARY_RECORD_SIZE = 37;
+// the wheels take the two slots after the table's 64
+const MAX_PANEL_SLOT = 66;
+// a Combinator panel holds nothing like this many controls; a count beyond it
+// means the bytes are being read as something they are not
+const MAX_PANEL_RECORDS = 256;
+
+// A few bytes as hex, to say in a warning what was found where something else
+// was expected.
+function hex(buf, offset, length) {
+  return buf.subarray(offset, offset + length).toString("hex").replace(/../g, "$& ").trim();
+}
 
 function readString(buf, offset) {
   const length = buf.readUInt32BE(offset);
@@ -140,13 +211,100 @@ function readSlotTable(buf, offset) {
       labels.set(number, label);
       position = next;
     }
-    // the wheels are not part of the table, and are read only to confirm that
-    // the table ended where it was expected to
-    readString(buf, readString(buf, position)[1]);
-    return labels;
+    // The wheels are not part of the table. Their labels follow it in some
+    // versions and are left out in others, where the next block starts straight
+    // away — which is what tells the two apart.
+    if (!isBlockMarker(buf, position)) {
+      position = readString(buf, readString(buf, position)[1])[1];
+    }
+    return { labels, end: position };
   } catch {
     return null;
   }
+}
+
+// Reads the panel layout that follows the label table: which of the label slots
+// are actually on the Combinator's front panel, and in what order.
+//
+// This is what says which slot Reason means by "Rotary 1". The slot a label sits
+// in is a lasting identity, given to a control when it is added to the panel and
+// kept afterwards, while Remote numbers the rotaries and the buttons by the
+// order they appear in this layout. Rearranging a panel therefore leaves the
+// labels where they are and renumbers the remote parameters around them, which
+// is why the two only agree on patches whose controls have never been moved.
+//
+// Slots missing from the layout belong to controls that have since been deleted.
+// Their labels are still in the table, but there is no parameter left for them.
+//
+// The block carries a version that has moved on as the Combinator has, so the
+// version itself is not checked: patches hold 2 or 3 depending on the Reason
+// that saved them, with the same records inside either way. What says whether
+// the block has been understood is the records, which have to be of known kinds
+// and to name slots that exist.
+//
+// Throws with the reason rather than returning nothing, so that a patch this
+// cannot read says what stopped it. Anything unaccounted for here shows up in
+// the warnings of a run over a whole patch library, which is the only way of
+// finding out what a format this size still has in it.
+function readLayout(buf, offset, limit) {
+  const isMarker = buf.readUInt8(offset) === MARKER_BYTE &&
+    buf.readUInt8(offset + 2) === 0 &&
+    buf.readUInt8(offset + 3) === 0 &&
+    buf.readUInt8(offset + 4) === 0;
+  if (!isMarker) {
+    throw new Error(
+      `no panel layout after the label table (found ${hex(buf, offset, 5)})`
+    );
+  }
+  const count = buf.readUInt32BE(offset + 5);
+  if (count > MAX_PANEL_RECORDS) {
+    throw new Error(`the panel layout claims ${count} records`);
+  }
+  let position = offset + 9;
+  const rotaries = [];
+  const buttons = [];
+  for (let record = 0; record < count; record += 1) {
+    if (position + PANEL_RECORD_SIZE > limit) {
+      throw new Error(`the panel layout runs past the end of the body at record ${record}`);
+    }
+    const kind = buf.readUInt32BE(position);
+    let slot = null;
+    let size;
+    if (kind === PANEL_ROTARY) {
+      slot = buf.readUInt32BE(position + 16);
+      size = PANEL_ROTARY_RECORD_SIZE;
+    } else if (kind === PANEL_BUTTON || kind === PANEL_WHEEL) {
+      slot = buf.readUInt32BE(position + 12);
+      size = PANEL_RECORD_SIZE;
+    } else if (kind === PANEL_CAPTION || kind === PANEL_SWITCH_CAPTION) {
+      // text printed on the panel rather than a control the codec can reach:
+      // the captions beside the Combinator's own Run and Bypass switches, which
+      // Remote addresses as parameters of their own rather than as buttons.
+      // Read only so that the records after them can be found.
+      const length = buf.readUInt32BE(position + 12);
+      if (length > MAX_LABEL_LENGTH) {
+        throw new Error(`the panel layout has a caption of ${length} characters at record ${record}`);
+      }
+      size = PANEL_RECORD_SIZE + length;
+    } else {
+      throw new Error(`the panel layout has a record of an unknown kind (${kind}) at record ${record}`);
+    }
+    if (slot !== null) {
+      if (slot < 1 || slot > MAX_PANEL_SLOT) {
+        throw new Error(`the panel layout names slot ${slot} at record ${record}`);
+      }
+      if (kind === PANEL_ROTARY) {
+        rotaries.push(slot);
+      } else if (kind === PANEL_BUTTON) {
+        buttons.push(slot);
+      }
+    }
+    position += size;
+  }
+  if (position > limit) {
+    throw new Error("the panel layout ends past the end of the body");
+  }
+  return { rotaries, buttons };
 }
 
 // Reads the front panel labels of a patch saved before the Combinator grew to 32
@@ -155,30 +313,37 @@ function readSlotTable(buf, offset) {
 // array behind a count of its own.
 //
 // Nothing in those bytes identifies them as labels, so they are found by the
-// block of current values that sits immediately in front of them — a marker
-// followed by three arrays of four bytes, the rotary positions, the button
-// states and the rotary ranges. Anchoring on that rather than on the labels
-// themselves means a patch that labels nothing is still recognised, instead of
-// being reported as a patch the format of which could not be read.
+// block of current values that sits immediately in front of them: a marker
+// followed by arrays of four bytes each — the rotary positions, the button
+// states, the ranges and so on. How many of those arrays there are depends on
+// the version the block carries, and later versions keep more per control, so
+// they are counted rather than assumed.
+//
+// Anchoring on the values rather than on the labels themselves means a patch
+// that labels nothing is still recognised, instead of being reported as a patch
+// the format of which could not be read.
 //
 // Returns null if the bytes at the offset are not that block.
 function readLegacyLabels(buf, offset) {
   try {
     let position = offset + 5;
-    for (let array = 0; array < 3; array += 1) {
-      if (buf.readUInt32BE(position) !== LEGACY_SLOTS) {
-        return null;
-      }
+    let arrays = 0;
+    while (arrays < MAX_LEGACY_VALUE_ARRAYS && buf.readUInt32BE(position) === LEGACY_SLOTS) {
       position += 4 + LEGACY_SLOTS;
+      arrays += 1;
     }
-    // the labels follow in a block of their own, behind a marker of the same
-    // kind as the one the values are behind
-    if (buf.readUInt32BE(position) !== 0xbc010000 || buf.readUInt8(position + 4) !== 0x00) {
+    if (arrays < MIN_LEGACY_VALUE_ARRAYS) {
+      return null;
+    }
+    // the labels follow in a block of their own, behind a marker of its own
+    if (!isBlockMarker(buf, position)) {
       return null;
     }
     position += 5;
     const labels = new Map();
-    for (const firstSlot of [0, ROTARY_SLOTS]) {
+    // the panel of a Combinator this old cannot be rearranged, so the labels are
+    // already in the order Remote numbers the parameters in
+    for (const kind of ["Rotary", "Button"]) {
       if (buf.readUInt32BE(position) !== LEGACY_SLOTS) {
         return null;
       }
@@ -193,7 +358,7 @@ function readLegacyLabels(buf, offset) {
         if (/[\x00-\x1f\x7f]/.test(label)) {
           return null;
         }
-        labels.set(firstSlot + slot, label);
+        labels.set(`${kind} ${slot}`, label);
         position = next;
       }
     }
@@ -203,30 +368,52 @@ function readLegacyLabels(buf, offset) {
   }
 }
 
-// The remote parameter a label slot belongs to, as Reason names it — which is
-// also the name the control surface shows while there is no label for it. The
-// four rotaries and four buttons of a legacy patch are named the same way as the
-// first four of each on a Combinator today.
-function paramName(slot) {
-  return slot <= ROTARY_SLOTS ? `Rotary ${slot}` : `Button ${slot - ROTARY_SLOTS}`;
+// Every block marker within the Combinator's BODY, so that a table can be looked
+// for at each of them: a marker says nothing about what follows it, so the only
+// way to tell a table from a run of unrelated bytes is to try to read one and
+// see whether it holds together. The version a marker carries is not matched on,
+// as the same block is found under more than one of them.
+function* markerOffsets(buf, from, to) {
+  for (let at = buf.indexOf(MARKER_BYTE, from); at >= 0 && at < to; at = buf.indexOf(MARKER_BYTE, at + 1)) {
+    if (isBlockMarker(buf, at)) {
+      yield at;
+    }
+  }
 }
 
-// Scans the Combinator's BODY for its labels, in either of the two layouts a
-// patch can have been saved in. The current layout is tried first: it is
-// identified by a slot count and a run of slot numbers, so it can be told apart
-// from unrelated bytes far more surely than the legacy one can.
+// The labels of the Combinator, keyed by the remote parameter that carries them.
+//
+// A patch saved in the current layout keeps its labels in a table of 64 slots
+// and the panel that decides what those slots are called over Remote in a
+// separate block after it; one saved before the Combinator grew past four
+// rotaries and four buttons has a fixed panel, so its labels are already in
+// remote order.
 function findLabels(buf, from, to) {
-  const layouts = [
-    { marker: [0xbc, 0x02, 0x00, 0x00, 0x00], read: readSlotTable },
-    { marker: [0xbc, 0x01, 0x00, 0x00, 0x00], read: readLegacyLabels },
-  ];
-  for (const { marker, read } of layouts) {
-    const bytes = Buffer.from(marker);
-    for (let at = buf.indexOf(bytes, from); at >= 0 && at < to; at = buf.indexOf(bytes, at + 1)) {
-      const labels = read(buf, at);
-      if (labels) {
-        return labels;
+  for (const at of markerOffsets(buf, from, to)) {
+    const table = readSlotTable(buf, at);
+    if (!table) {
+      continue;
+    }
+    // the slot table is identified by its slot count and its run of slot
+    // numbers, so once one has been read the patch is understood and a layout
+    // that cannot be read is a real failure rather than a false start
+    const panel = readLayout(buf, table.end, to);
+    const labels = new Map();
+    const take = (slots, kind) => slots.forEach((slot, index) => {
+      // Remote stops at 32 of each, so a panel with more controls than that has
+      // some the control surface can never reach
+      if (index < ROTARY_SLOTS) {
+        labels.set(`${kind} ${index + 1}`, table.labels.get(slot) || "");
       }
+    });
+    take(panel.rotaries, "Rotary");
+    take(panel.buttons, "Button");
+    return labels;
+  }
+  for (const at of markerOffsets(buf, from, to)) {
+    const legacy = readLegacyLabels(buf, at);
+    if (legacy) {
+      return legacy;
     }
   }
   return null;
@@ -255,14 +442,23 @@ function readPatch(file) {
   }
   const params = {};
   let count = 0;
-  for (const [slot, label] of labels) {
+  let defaulted = 0;
+  for (const [param, label] of labels) {
     const trimmed = label.trim();
-    if (trimmed && trimmed !== paramName(slot)) {
-      params[paramName(slot)] = trimmed;
+    if (!trimmed) {
+      continue;
+    }
+    // a patch that keeps a control's default name has written "Rotary 1" on the
+    // panel, which is what Reason reports for it anyway: worth telling apart
+    // from one that names nothing, but not worth storing either way
+    if (trimmed === param) {
+      defaulted += 1;
+    } else {
+      params[param] = trimmed;
       count += 1;
     }
   }
-  return { deviceName, params, count };
+  return { deviceName, params, count, defaulted };
 }
 
 // --- collecting patches ----------------------------------------------------
@@ -312,6 +508,7 @@ function collect(dirs, options) {
   const aliases = new Map();
   let patchCount = 0;
   let labelledCount = 0;
+  let defaultedCount = 0;
 
   for (const dir of dirs) {
     for (const file of findPatches(dir)) {
@@ -324,7 +521,20 @@ function collect(dirs, options) {
         continue;
       }
       if (patch.count === 0) {
-        options.log(`no labels: ${file}`);
+        // Read without trouble, but there is nothing the control surface could
+        // show that Reason does not report by itself: either the patch names
+        // none of its controls, or it has left them at the names Reason gives
+        // them. Worth telling apart, as the second means the labels were read
+        // and found to say nothing rather than not found at all.
+        if (patch.defaulted > 0) {
+          defaultedCount += 1;
+          options.log(
+            `only the default names (${patch.defaulted} control(s) still called ` +
+            `"Rotary 1", "Button 1" and so on): ${file}`
+          );
+        } else {
+          options.log(`no labels (none named in the patch): ${file}`);
+        }
         continue;
       }
       labelledCount += 1;
@@ -355,7 +565,7 @@ function collect(dirs, options) {
       aliases.delete(deviceName);
     }
   }
-  return { patches, aliases, patchCount, labelledCount };
+  return { patches, aliases, patchCount, labelledCount, defaultedCount };
 }
 
 // --- writing the Lua file --------------------------------------------------
@@ -497,6 +707,92 @@ function selfTest() {
         "Button 4": "RUMBLE",
       },
     },
+    {
+      // the panel of this one has been rearranged: "Square Sync" sits in the
+      // first label slot but Reason calls it Rotary 8, and "Sweep Echo" sits in
+      // the second but is Rotary 1. Reading the slots in order would put every
+      // label on the wrong control while looking perfectly plausible.
+      file: rearrangedExamplePatch,
+      deviceName: "80's House Funky PolyPluck",
+      labels: {
+        "Rotary 1": "Sweep Echo",
+        "Rotary 2": "Vintage Saws",
+        "Rotary 3": "Detuned Squares",
+        "Rotary 4": "Formant OSC",
+        "Rotary 5": "Filter Frequency",
+        "Rotary 6": "AMP Attack",
+        "Rotary 7": "AMP Release",
+        "Rotary 8": "Square Sync",
+        "Rotary 9": "Formant Sweep",
+        "Rotary 10": "Filter Mod ENV",
+        "Button 1": "Saw Detune",
+      },
+    },
+    {
+      file: olderLayoutExamplePatch,
+      deviceName: "Analog Bliss Pad [Run]",
+      labels: {
+        "Rotary 1": "Bell Pad",
+        "Rotary 2": "Analog Saw",
+        "Rotary 3": "Sub Osc.",
+        "Rotary 4": "Release",
+        "Button 1": "Wave Mod.",
+        "Button 2": "Xciter",
+        "Button 3": "Xtra Fat",
+        "Button 4": "Hp Filter",
+        "Button 5": "Sequencer On/Off",
+      },
+    },
+    {
+      // "Volume" sits in slot 4 but is Rotary 7, so this one covers the panel
+      // ordering as well as the captions
+      file: captionedExamplePatch,
+      deviceName: "Adventure Time Arp",
+      labels: {
+        "Rotary 1": "Decay",
+        "Rotary 2": "HF Damp",
+        "Rotary 3": "Dry/Wet",
+        "Rotary 4": "Attack",
+        "Rotary 5": "Decay",
+        "Rotary 6": "Release",
+        "Rotary 7": "Volume",
+        "Rotary 8": "Delay",
+        "Rotary 9": "Width",
+        "Rotary 10": "Dry/Wet",
+        "Rotary 11": "Feedback",
+        "Rotary 12": "Color Drive",
+        "Rotary 13": "Dry/Wet",
+        "Rotary 14": "Low Cut",
+        "Rotary 15": "High Cut",
+        "Button 1": "Reverb",
+        "Button 2": "Chorus",
+        "Button 3": "Delay",
+        "Button 4": "EQ",
+        "Button 5": "Reverse Glitch",
+        "Button 6": "Low Stutter",
+        "Button 7": "Arp On",
+        "Button 8": "Arp 1",
+        "Button 9": "Arp 2",
+        "Button 10": "Arp 3",
+        "Button 11": "Activate Loop",
+      },
+    },
+    {
+      file: noWheelLabelsExamplePatch,
+      deviceName: "Bright Funky Saw Stabs",
+      labels: {
+        "Rotary 1": "Saw Synth",
+        "Rotary 2": "Saw Arp Layer",
+        "Rotary 3": "Reverb Decay",
+        "Rotary 4": "Master Volume",
+        "Button 1": "Synth Unison",
+        "Button 2": "Pitch ENV",
+        "Button 3": "Bright Verb",
+        "Button 4": "Reverb",
+      },
+    },
+    { file: defaultNamesExamplePatch, deviceName: "Crack Stab", labels: {}, defaulted: 8 },
+    ...unlabelledExamplePatches.map((file) => ({ file, labels: {}, defaulted: 0 })),
   ];
   for (const expected of cases) {
     const name = path.relative(repoRoot, expected.file);
@@ -508,13 +804,20 @@ function selfTest() {
       console.error(`  ${error.message}`);
       return 1;
     }
+    if (expected.defaulted !== undefined && patch.defaulted !== expected.defaulted) {
+      console.error(
+        `Self test: failed on ${name}, ${patch.defaulted} control(s) still carry ` +
+        `their default name rather than ${expected.defaulted}`
+      );
+      return 1;
+    }
     if (!sameLabels(patch.params, expected.labels)) {
       console.error(`Self test: failed on ${name}`);
       console.error(`  expected: ${JSON.stringify(expected.labels, null, 2)}`);
       console.error(`  actual:   ${JSON.stringify(patch.params, null, 2)}`);
       return 1;
     }
-    if (patch.deviceName !== expected.deviceName) {
+    if (expected.deviceName && patch.deviceName !== expected.deviceName) {
       console.error(`Self test: failed on ${name}, device name is "${patch.deviceName}"`);
       return 1;
     }
@@ -523,7 +826,7 @@ function selfTest() {
   const lua = renderLua(new Map([[patchNameOf(examplePatch), { params: patch.params }]]));
   // the last of the rotaries and the first of the buttons, so that the order the
   // slots are rendered in is checked across the boundary between the two
-  if (!lua.includes('["Rotary 15"] = "DUMMY 13",\n  ["Button 1"] = "Ch. 1 On",')) {
+  if (!lua.includes('["Rotary 14"] = "Clean",\n  ["Button 1"] = "Ch. 1 On",')) {
     console.error("Self test: failed, the rendered Lua does not hold the labels in order");
     return 1;
   }
@@ -549,7 +852,8 @@ function slotTableLabels() {
     "Rotary 12": "Reverb",
     "Rotary 13": "Compressor",
     "Rotary 14": "Clean",
-    "Rotary 15": "DUMMY 13",
+    // there is no Rotary 15: the table still holds a label for a control that
+    // has been deleted from the panel, and the layout is what leaves it out
     "Button 1": "Ch. 1 On",
     "Button 2": "Ch. 2 On",
     "Button 3": "Ch. 3 On",
@@ -588,13 +892,19 @@ function main(argv) {
     }
     options.log(`Searching: ${dir}`);
   }
-  const { patches, aliases, patchCount, labelledCount } = collect(dirs, options);
+  const { patches, aliases, patchCount, labelledCount, defaultedCount } = collect(dirs, options);
   fs.writeFileSync(options.out, renderLua(patches, aliases), "utf8");
   console.log(
     `Extract: ${labelledCount} of ${patchCount} patch(es) have labels, ` +
     `written to ${path.relative(repoRoot, options.out)} ` +
     `(${patches.size} patch name(s), ${aliases.size} device name(s))`
   );
+  if (defaultedCount > 0) {
+    console.log(
+      `Extract: ${defaultedCount} patch(es) left their controls at the names ` +
+      `Reason gives them, so there was nothing to store for those`
+    );
+  }
   if (warningCount > 0) {
     console.log(`Extract: success, with ${warningCount} warning(s)`);
   } else {
