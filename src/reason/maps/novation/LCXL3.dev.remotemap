@@ -524,16 +524,6 @@ Map	pageSelect3		Pages=Page 3
 Map	pageSelect4		Pages=Page 4
 
 Map	button1		Enabled			Page 1
-Map	button2		Delay On			Page 1
-Map	button3		Time Multiplier			Page 1
-Map	button4		Freeze			Page 1
-Map	button5		Wobbler On			Page 1
-Map	button6		Ping Pong			Page 1
-Map	button8		Space On			Page 1
-Map	button16		Space Parallel			Page 1
-Map	button10		Delay Tempo Sync			Page 1
-Map	button11		Keep Pitch			Page 1
-Map	button12		Dual Delay			Page 1
 
 Map	encoder1		Delay Time			Page 1
 Map	encoder1alt		Synced Time			Page 1
@@ -543,14 +533,30 @@ Map	encoder1alt3		Synced Time L			Page 1
 Map	encoder2		Delay Time R			Page 1
 Map	encoder2alt		Synced Time R			Page 1
 
+Map	encoder9		Feedback			Page 1
 Map	encoder3		Time Offset L-R			Page 1
+
+Map	button2		Delay On			Page 1
+
+Map	button3		Time Multiplier			Page 1
+Map	button4		Freeze			Page 1
+Map	button10		Delay Tempo Sync			Page 1
+Map	button11		Keep Pitch			Page 1
+Map	button12		Dual Delay			Page 1
+
+Map	encoder21		Wobbler Amount			Page 1
+Map	button5		Wobbler On			Page 1
+
+Map	encoder22		Ping Pong Pan			Page 1
+Map	button6		Ping Pong			Page 1
+
+Map	button7		Space On			Page 1
+Map	button15		Space Parallel			Page 1
+
 Map	encoder7		Space Amount			Page 1
 Map	encoder15		Space Decay			Page 1
 Map	encoder16		Space Size			Page 1
 Map	encoder23		Space Width			Page 1
-Map	encoder9		Feedback			Page 1
-Map	encoder21		Wobbler Amount			Page 1
-Map	encoder22		Ping Pong Pan			Page 1
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name

@@ -113,5 +113,35 @@ return {
       "FM Amount Offset", "Decay/Release Offset",
       "LFO 3 Wave", "LFO 3 Rate", "LFO 3 Sync Rate", "LFO 3 Delay", "LFO 3 Tempo Sync", "LFO 3 Key Sync", "LFO 3 Global",
     },
+  }),
+  ripley = byParam({
+    red = {
+      -- main section
+      "Enabled",
+      "Delay Tempo Sync", "Keep Pitch", "Dual Delay",
+    },
+    green = {
+      -- delay section
+      "Delay Time", "Synced Time", "Delay Time L", "Synced Time L",
+      "Delay Time R", "Synced Time R", "Time Offset L-R", "Delay On",
+      "Feedback", "Time Multiplier"
+    },
+    yellow = {
+      -- delay section (special because performance-relevant)
+      "Freeze",
+    },
+    blue = {
+      -- wobbler section
+      "Wobbler Amount", "Wobbler On",
+    },
+    orange = {
+      -- ping poing section
+      "Ping Pong Pan", "Ping Pong",
+    },
+    violet = {
+      -- space section
+      "Space On", "Space Parallel", "Space Amount",
+      "Space Decay", "Space Size", "Space Width",
+    }
   })
 }

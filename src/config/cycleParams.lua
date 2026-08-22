@@ -33,5 +33,9 @@ return {
     ["Resonator Select"] = 21,
     ["Key Mode"] = 3,
     ["Portamento Mode"] = 3,
+  },
+  ripley = {
+    ["Enabled"] = 3,
+    ["Time Multiplier"] = 3
   }
 }
