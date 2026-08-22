@@ -1,97 +1,60 @@
 local col = require "src.lib.colour._"
-local const = require "src.config.constants"
 local ctrl = require "src.config.controls"
-local str = require "src.lib.string._"
 local disp = require "src.lib.display._"
-local items = require "src.config.items"
 local midi = require "src.lib.midi._"
 local state = require "src.lib.state._"
+local str = require "src.lib.string._"
+local util = require "src.remote.deliverMidi.util._"
 local deb = require "src.lib.debug._"
 
 -- called regularly by the codec to update the remote surface (Launch Control)
 return function()
   local events = {}
-  local handledControllers = {}
-  for _, control in ipairs(ctrl.encoders) do
-    local logMe = false --control == "encoder23" or control == "encoder23alt"
-    local deviceType, deviceTypeChanged = state.update "deviceType"
-    local _, controlSurfaceValueChanged = state.update(control .. ".controlSurfaceValue")
-    local enabled, enabledChanged = state.update(control .. ".enabled")
-    local param, paramChanged = state.update(control .. ".param")
-    local hostValue, hostValueChanged = state.update(control .. ".hostValue")
-    local hostTextValue, hostTextValueChanged = state.update(control .. ".hostTextValue")
-
-
-    local item = items[control]
-    local controller = item.controller
-    local shouldDisplay = disp.shouldDisplay(deviceType, param)
-
-    if logMe and hostValueChanged then
+  local deviceType, deviceTypeChanged = state.update "deviceType"
+  for _, group in ipairs(util.readItemGroups(ctrl.encoders, deviceType)) do
+    local controller = group.controller
+    local item = group.displayedItem
+    local displayingChanged = group.displayingChanged
+    local logMe = false --controller == 14
+    if logMe and displayingChanged then
       deb.log(
         "[remote:deliverMidi:encoders] " ..
-        control .. ", " ..
-        "controller=" .. controller .. ", " ..
-        "hostValue=" .. hostValue .. ", " ..
-        "hostTextValue=" .. hostTextValue .. ", " ..
-        "param=" .. param
+        "controller=" .. controller .. " " ..
+        "now shows " .. (item and str.serialise(item.control) or "nothing")
       )
-      if shouldDisplay then
-        deb.log(
-          "[remote:deliverMidi:encoders] " ..
-          "(/) should display!"
-        )
-      else
-        deb.log(
-          "[remote:deliverMidi:encoders] " ..
-          "(-1) should not display..."
-        )
-      end
     end
-    if shouldDisplay then
-      if enabledChanged or hostTextValueChanged or paramChanged then
-        local displayConfigEvent = midi.makeParamDisplayConfigEvent(
-          controller, enabled,
-          midi.displayArrangements.nameAndTextValue
-        )
-        table.insert(events, displayConfigEvent)
+    if item then
+      if displayingChanged or item.hostTextValueChanged or item.paramChanged then
+        table.insert(events, midi.makeParamDisplayConfigEvent(
+          controller, true, midi.displayArrangements.nameAndTextValue
+        ))
       end
-      if enabled then
-        if paramChanged then
-          table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
-        end
-        if hostValueChanged or hostTextValueChanged then
-          local displayValue = disp.getDisplayValue(control)
+      -- an item that takes over from another one has to send everything again,
+      -- as its own values have not necessarily changed while it was not on show
+      if (item.paramChanged or displayingChanged) and item.param then
+        table.insert(events, midi.makeParamNameDisplayEvent(item.param, controller))
+      end
+      if item.hostValue ~= nil then
+        if item.hostValueChanged or item.hostTextValueChanged or displayingChanged then
+          local displayValue = disp.getDisplayValue(item.control)
           table.insert(events, midi.makeParamValueDisplayEvent(displayValue, controller))
-          table.insert(events, remote.make_midi(item.midi, { x = hostValue }))
+          table.insert(events, remote.make_midi(item.midi, { x = item.hostValue }))
         end
-        if deviceTypeChanged or paramChanged or hostValueChanged then
-          local colourName = col.getColourName(
-            deviceType,
-            param,
-            item.colour
-          )
-          if logMe then
-            deb.log(
-              "[remote:deliverMidi:encoders] " ..
-              "(/) colour: " .. colourName
-            )
-          end
-          table.insert(events, midi.makeColourEvent(colourName, hostValue, controller))
-          handledControllers[controller] = true
+        if deviceTypeChanged or item.paramChanged or item.hostValueChanged or displayingChanged then
+          local colourName = col.getColourName(deviceType, item.param, item.colour)
+          table.insert(events, midi.makeColourEvent(colourName, item.hostValue, controller))
         end
-        if controlSurfaceValueChanged then
-          table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
-        end
-      elseif enabledChanged and not handledControllers[controller] then
-        if logMe then
-          deb.log(
-            "[remote:deliverMidi:encoders] " ..
-            "(ox) turning off LED"
-          )
-        end
-        -- turn off encoder's LED
-        table.insert(events, midi.makeColourEvent("black", 0, controller))
       end
+      if item.controlSurfaceValueChanged then
+        table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
+      end
+    elseif displayingChanged then
+      -- nothing is mapped to the encoder any more, so it neither lights up nor
+      -- brings up a display of its own when it is turned
+      table.insert(events, midi.makeParamDisplayConfigEvent(
+        controller, false, midi.displayArrangements.nameAndTextValue
+      ))
+      table.insert(events, midi.makeColourEvent("black", 0, controller))
     end
   end
   return events

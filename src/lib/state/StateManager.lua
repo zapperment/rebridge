@@ -35,6 +35,12 @@ function StateManager:new()
     for _, control in ipairs(ctrl.encoders) do
         instance[control] = {
             enabled = entry(false),
+            -- whether this is the item that has the encoder's display and LED:
+            -- several items share one encoder, and which of them is in force
+            -- depends on the parameters the others are conditional on, so the
+            -- delivery keeps track of it here
+            -- (see remote/deliverMidi/util/readItemGroups)
+            displaying = entry(false),
             controlSurfaceValue = entry(0),
             param = entry(nil),
             hostValue = entry(nil),
@@ -44,6 +50,9 @@ function StateManager:new()
     for _, control in ipairs(ctrl.faders) do
         instance[control] = {
             enabled = entry(false),
+            -- as for the encoders: which of the items sharing the fader is the
+            -- one on show (see remote/deliverMidi/util/readItemGroups)
+            displaying = entry(false),
             -- nil, not 0: until the hardware fader has been moved once, we do
             -- not know where it is, and guessing 0 breaks the pickup logic
             controlSurfaceValue = entry(nil),
@@ -135,6 +144,7 @@ end
 function StateManager:updateAll()
     for _, control in ipairs(ctrl.encoders) do
         self:update(control .. ".enabled")
+        self:update(control .. ".displaying")
         self:update(control .. ".controlSurfaceValue")
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
@@ -142,6 +152,7 @@ function StateManager:updateAll()
     end
     for _, control in ipairs(ctrl.faders) do
         self:update(control .. ".enabled")
+        self:update(control .. ".displaying")
         self:update(control .. ".controlSurfaceValue")
         self:update(control .. ".param")
         self:update(control .. ".hostValue")
