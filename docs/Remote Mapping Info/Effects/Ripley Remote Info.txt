@@ -48,13 +48,13 @@ Type	Done	Remotable	Min	Max	Input type	Output type
 
 -- FILTER --
 
-(E)	[ ]	Band Freq Shift	0	4194304	Value	ValueOutput
-(E)	[ ]	Band Offset L-R	0	4194304	Value	ValueOutput
-(E)	[ ]	Lo Cut Freq	0	4194304	Value	ValueOutput
-(E)	[ ]	Hi Cut Freq	0	4194304	Value	ValueOutput
+(E)	[X]	Band Freq Shift	0	4194304	Value	ValueOutput
+(E)	[X]	Band Offset L-R	0	4194304	Value	ValueOutput
+(E)	[X]	Lo Cut Freq	0	4194304	Value	ValueOutput
+(E)	[X]	Hi Cut Freq	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Filter On	0	1	Toggle	ValueOutput
-(B)	[ ]	Filter Type	0	1	Toggle	ValueOutput
+(B)	[X]	Filter On	0	1	Toggle	ValueOutput
+(B)	[X]	Filter Type	0	1	Toggle	ValueOutput
 
 -- LIMITER / WIDTH --
 
@@ -64,32 +64,32 @@ Type	Done	Remotable	Min	Max	Input type	Output type
 
 -- NOISE --
 
-(E)	[ ]	Noise Amount	0	4194304	Value	ValueOutput
-(E)	[ ]	Noise Character	0	4194304	Value	ValueOutput
-(E)	[ ]	Noise High End	0	4194304	Value	ValueOutput
+(E)	[X]	Noise Amount	0	4194304	Value	ValueOutput
+(E)	[X]	Noise Character	0	4194304	Value	ValueOutput
+(E)	[X]	Noise High End	0	4194304	Value	ValueOutput
+(E)	[X]	Noise Type	0	4	Value	ValueOutput
 
-(B)	[ ]	Noise On	0	1	Toggle	ValueOutput
-(B)	[ ]	Noise Type	0	4	Value	ValueOutput
-(B)	[ ]	Noise Stereo	0	1	Toggle	ValueOutput
-(B)	[ ]	Noise Position	0	4	Value	ValueOutput
+(B)	[X]	Noise On	0	1	Toggle	ValueOutput
+(B)	[X]	Noise Stereo	0	1	Toggle	ValueOutput
+(B)	[X]	Noise Position	0	4	Value	ValueOutput
 
 -- DIST --
 
-(E)	[ ]	Dist Dry-Wet	0	4194304	Value	ValueOutput
-(E)	[ ]	Dist Tone	0	4194304	Value	ValueOutput
-(E)	[ ]	Dist Drive	0	4194304	Value	ValueOutput
+(E)	[X]	Dist Dry-Wet	0	4194304	Value	ValueOutput
+(E)	[X]	Dist Tone	0	4194304	Value	ValueOutput
+(E)	[X]	Dist Drive	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Dist On	0	1	Toggle	ValueOutput
-(B)	[ ]	Dist Position	0	3	Value	ValueOutput
+(B)	[X]	Dist On	0	1	Toggle	ValueOutput
+(B)	[X]	Dist Position	0	3	Value	ValueOutput
 
 -- DIGITAL
 
-(E)	[ ]	Digital Dry-Wet	0	4194304	Value	ValueOutput
-(E)	[ ]	Rate Crush	0	48	Value	ValueOutput
-(E)	[ ]	Bit Crush	0	4194304	Value	ValueOutput
+(E)	[X]	Digital Dry-Wet	0	4194304	Value	ValueOutput
+(E)	[X]	Rate Crush	0	48	Value	ValueOutput
+(E)	[X]	Bit Crush	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Digital On	0	1	Toggle	ValueOutput
-(B)	[ ]	Digital Position	0	3	Value	ValueOutput
+(B)	[X]	Digital On	0	1	Toggle	ValueOutput
+(B)	[X]	Digital Position	0	3	Value	ValueOutput
 
 -- OUTPUT --
 

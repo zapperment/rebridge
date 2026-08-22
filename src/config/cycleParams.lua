@@ -38,5 +38,10 @@ return {
     ["Enabled"] = 3,
     ["Time Multiplier"] = 3,
     ["Filter Type"] = 2,
+    ["Noise Position"] = 5,
+    ["Dist Position"] = 5,
+    ["Digital Position"] = 5,
+    ["EQ Position"] = 5,
+    ["Ducker Position"] = 3,
   }
 }

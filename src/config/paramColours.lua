@@ -119,12 +119,17 @@ return {
       -- main section
       "Enabled",
       "Delay Tempo Sync", "Keep Pitch", "Dual Delay",
+      -- output section
+      "Dry-Wet", "Output Gain",
     },
     green = {
       -- delay section
       "Delay Time", "Synced Time", "Delay Time L", "Synced Time L",
       "Delay Time R", "Synced Time R", "Time Offset L-R", "Delay On",
-      "Feedback", "Time Multiplier", "Delay Width", "Feedback Limiter"
+      "Feedback", "Time Multiplier", "Delay Width", "Feedback Limiter",
+      -- eq section
+      "EQ Low Gain", "EQ Mid Gain", "EQ Mid Q", "EQ Mid Frequency",
+      "EQ High Gain", "EQ On", "EQ Position",
     },
     yellow = {
       -- delay section (special because performance-relevant)
@@ -133,6 +138,8 @@ return {
     blue = {
       -- wobbler section
       "Wobbler Amount", "Wobbler On",
+      -- ducker section
+      "Ducker Amount", "Ducker On", "Ducker Position",
     },
     orange = {
       -- ping poing section
@@ -146,6 +153,21 @@ return {
     pink = {
       -- filter section
       "Filter On", "Filter Type",
+    },
+    cyan = {
+      -- noise section
+      "Noise Amount", "Noise Character", "Noise High End", "Noise Type",
+      "Noise On", "Noise Stereo", "Noise Position",
+    },
+    magenta = {
+      -- dist section
+      "Dist Dry-Wet", "Dist Tone", "Dist Drive",
+      "Dist On", "Dist Position",
+    },
+    amber = {
+      -- digital section
+      "Digital Dry-Wet", "Rate Crush", "Bit Crush",
+      "Digital On", "Digital Position",
     }
   })
 }

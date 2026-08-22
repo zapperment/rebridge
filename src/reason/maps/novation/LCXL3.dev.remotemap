@@ -571,6 +571,45 @@ Map	encoder23		Space Width			Page 1
 
 // Page 2: Extra Processing
 
+Map	encoder1		Noise Amount			Page 2
+Map	encoder9		Noise Character			Page 2
+Map	encoder10		Noise High End			Page 2
+Map	encoder17		Noise Type			Page 2
+
+Map	button1		Noise On			Page 2
+Map	button9		Noise Position			Page 2
+Map	button10		Noise Stereo			Page 2
+
+Map	encoder3		Dist Dry-Wet			Page 2
+Map	encoder11		Dist Tone			Page 2
+Map	encoder12		Dist Drive			Page 2
+
+Map	button3		Dist On			Page 2
+Map	button11		Dist Position			Page 2
+
+Map	encoder5		Digital Dry-Wet			Page 2
+Map	encoder13		Rate Crush			Page 2
+Map	encoder14		Bit Crush			Page 2
+
+Map	encoder8		Dry-Wet			Page 2
+Map	encoder16		Output Gain			Page 2
+
+Map	encoder24		Ducker Amount			Page 2
+Map	button8		Ducker On			Page 2
+Map	button16		Ducker Position			Page 2
+
+Map	button5		Digital On			Page 2
+Map	button13		Digital Position			Page 2
+
+Map	encoder20		EQ Mid Frequency			Page 2
+Map	encoder21		EQ Mid Q			Page 2
+
+Map	fader4		EQ Low Gain			Page 2
+Map	fader5		EQ Mid Gain			Page 2
+Map	fader6		EQ High Gain			Page 2
+
+Map	button4		EQ On			Page 2
+Map	button12		EQ Position			Page 2
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name
