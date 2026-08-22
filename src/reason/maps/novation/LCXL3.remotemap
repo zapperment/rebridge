@@ -512,3 +512,186 @@ Map	encoder24		Rate Key Scale			Page 13
 Map	deviceName		Device Name
 Map	patchName		Patch Name
 Map	deviceType		"algoritm"
+
+Scope	Propellerhead Software	se.propellerheads.Ripley
+Define Group	Pages	Page 1	Page 2	Page 3	Page 4
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	pageSelect1		Pages=Page 1
+Map	pageSelect2		Pages=Page 2
+Map	pageSelect3		Pages=Page 3
+Map	pageSelect4		Pages=Page 4
+
+// Page 1: Delay & Space
+
+Map	button1		Enabled			Page 1
+
+Map	encoder1		Delay Time			Page 1
+Map	encoder1alt		Synced Time			Page 1
+Map	encoder1alt2		Delay Time L			Page 1
+Map	encoder1alt3		Synced Time L			Page 1
+
+Map	encoder2		Delay Time R			Page 1
+Map	encoder2alt		Synced Time R			Page 1
+
+Map	encoder9		Feedback			Page 1
+Map	encoder3		Time Offset L-R			Page 1
+
+Map	button2		Delay On			Page 1
+
+Map	button3		Time Multiplier			Page 1
+Map	button4		Freeze			Page 1
+Map	button9		Delay Tempo Sync			Page 1
+Map	button10		Keep Pitch			Page 1
+Map	button11		Dual Delay			Page 1
+
+Map	encoder5		Wobbler Amount			Page 1
+Map	button5		Wobbler On			Page 1
+
+Map	encoder6		Ping Pong Pan			Page 1
+Map	button6		Ping Pong			Page 1
+
+Map	button8		Space On			Page 1
+Map	button16		Space Parallel			Page 1
+
+Map	button12		Filter On			Page 1
+Map	button13		Filter Type			Page 1
+Map	button14		Feedback Limiter			Page 1
+
+Map	encoder12		Band Freq Shift			Page 1
+Map	encoder13		Hi Cut Freq			Page 1
+Map	encoder20		Band Offset L-R			Page 1
+Map	encoder21		Lo Cut Freq			Page 1
+Map	encoder7		Space Amount			Page 1
+Map	encoder15		Space Decay			Page 1
+Map	encoder16		Space Size			Page 1
+Map	encoder22		Delay Width			Page 1
+Map	encoder23		Space Width			Page 1
+
+// Page 2: Extra Processing
+
+Map	encoder1		Noise Amount			Page 2
+Map	encoder9		Noise Character			Page 2
+Map	encoder10		Noise High End			Page 2
+Map	encoder17		Noise Type			Page 2
+
+Map	button1		Noise On			Page 2
+Map	button9		Noise Position			Page 2
+Map	button10		Noise Stereo			Page 2
+
+Map	encoder3		Dist Dry-Wet			Page 2
+Map	encoder11		Dist Tone			Page 2
+Map	encoder12		Dist Drive			Page 2
+
+Map	button3		Dist On			Page 2
+Map	button11		Dist Position			Page 2
+
+Map	encoder5		Digital Dry-Wet			Page 2
+Map	encoder13		Rate Crush			Page 2
+Map	encoder14		Bit Crush			Page 2
+
+Map	encoder8		Dry-Wet			Page 2
+Map	encoder16		Output Gain			Page 2
+
+Map	encoder24		Ducker Amount			Page 2
+Map	button8		Ducker On			Page 2
+Map	button16		Ducker Position			Page 2
+
+Map	button5		Digital On			Page 2
+Map	button13		Digital Position			Page 2
+
+Map	encoder20		EQ Mid Frequency			Page 2
+Map	encoder21		EQ Mid Q			Page 2
+
+Map	fader4		EQ Low Gain			Page 2
+Map	fader5		EQ Mid Gain			Page 2
+Map	fader6		EQ High Gain			Page 2
+
+Map	button4		EQ On			Page 2
+Map	button12		EQ Position			Page 2
+
+// Page 3: LFOs
+
+Map	encoder1		LFO1 Wave			Page 3
+Map	encoder9		LFO1 Rate			Page 3
+Map	encoder9alt		LFO1 Synced Rate			Page 3
+Map	encoder17		LFO1 Phase			Page 3
+
+Map	button1		LFO1 Sync			Page 3
+
+Map	encoder2		LFO1 Mod1 Amt			Page 3
+Map	encoder3		LFO1 Mod1 Amt2			Page 3
+Map	encoder4		LFO1 Mod1 Scale Amt			Page 3
+
+Map	encoder10		LFO1 Mod2 Amt			Page 3
+Map	encoder11		LFO1 Mod2 Amt2			Page 3
+Map	encoder12		LFO1 Mod2 Scale Amt			Page 3
+
+Map	encoder18		LFO1 Mod3 Amt			Page 3
+Map	encoder19		LFO1 Mod3 Amt2			Page 3
+Map	encoder20		LFO1 Mod3 Scale Amt			Page 3
+
+Map	encoder5		LFO2 Wave			Page 3
+Map	encoder13		LFO2 Rate			Page 3
+Map	encoder13alt		LFO2 Synced Rate			Page 3
+Map	encoder21		LFO2 Phase			Page 3
+
+Map	button5		LFO2 Sync			Page 3
+
+Map	encoder6		LFO2 Mod1 Amt			Page 3
+Map	encoder7		LFO2 Mod1 Amt2			Page 3
+Map	encoder8		LFO2 Mod1 Scale Amt			Page 3
+
+Map	encoder14		LFO2 Mod2 Amt			Page 3
+Map	encoder15		LFO2 Mod2 Amt2			Page 3
+Map	encoder16		LFO2 Mod2 Scale Amt			Page 3
+
+Map	encoder22		LFO2 Mod3 Amt			Page 3
+Map	encoder23		LFO2 Mod3 Amt2			Page 3
+Map	encoder24		LFO2 Mod3 Scale Amt			Page 3
+
+// Page 4: Follow & Macro
+
+Map	encoder1		Follow Sensitivity			Page 4
+Map	encoder9		Follow Rise			Page 4
+Map	encoder17		Follow Fall			Page 4
+
+Map	button1		Follow Source Select			Page 4
+
+Map	encoder2		Follow Mod1 Amt			Page 4
+Map	encoder3		Follow Mod1 Amt2			Page 4
+Map	encoder4		Follow Mod1 Scale Amt			Page 4
+
+Map	encoder10		Follow Mod2 Amt			Page 4
+Map	encoder11		Follow Mod2 Amt2			Page 4
+Map	encoder12		Follow Mod2 Scale Amt			Page 4
+
+Map	encoder18		Follow Mod3 Amt			Page 4
+Map	encoder19		Follow Mod3 Amt2			Page 4
+Map	encoder20		Follow Mod3 Scale Amt			Page 4
+
+Map	encoder5		Macro Knob			Page 4
+
+Map	button5		Macro Button			Page 4
+Map	button6		Matrix Mod1 Source			Page 4
+Map	button7		Matrix Mod2 Source			Page 4
+Map	button8		Matrix Mod3 Source			Page 4
+
+Map	encoder6		Matrix Mod1 Amt			Page 4
+Map	encoder7		Matrix Mod1 Amt2			Page 4
+Map	encoder8		Matrix Mod1 Scale Amt			Page 4
+
+Map	encoder14		Matrix Mod2 Amt			Page 4
+Map	encoder15		Matrix Mod2 Amt2			Page 4
+Map	encoder16		Matrix Mod2 Scale Amt			Page 4
+
+Map	encoder22		Matrix Mod3 Amt			Page 4
+Map	encoder23		Matrix Mod3 Amt2			Page 4
+Map	encoder24		Matrix Mod3 Scale Amt			Page 4
+
+Map	rackUI1		Mod Source Tab
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+Map	deviceType		"ripley"

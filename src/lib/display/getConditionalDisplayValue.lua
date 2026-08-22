@@ -39,7 +39,7 @@ end
 -- back to the ordinary labels. A parameter can have more than one conditional,
 -- in which case the first one that has something to say wins.
 return function(deviceType, param, hostValue)
-  local logMe = false -- param == "Delay Time" or param == "Delay Synced Time"
+  local logMe = false --param == "Matrix Mod1 Source"
   if logMe then
     deb.log(
       "[lib:display:getConditionalDisplayValue] " ..

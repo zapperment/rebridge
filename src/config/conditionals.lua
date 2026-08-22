@@ -664,5 +664,21 @@ return {
       dependsOn = "Filter Type",
       colours = { ["0"] = "black", ["127"] = "pink" },
     },
+    ["LFO1 Rate"] = {
+      dependsOn = "LFO1 Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO1 Synced Rate"] = {
+      dependsOn = "LFO1 Sync",
+      useOtherParamWhenValue = false
+    },
+    ["LFO2 Rate"] = {
+      dependsOn = "LFO2 Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO2 Synced Rate"] = {
+      dependsOn = "LFO2 Sync",
+      useOtherParamWhenValue = false
+    },
   }
 }

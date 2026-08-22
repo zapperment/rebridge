@@ -43,5 +43,9 @@ return {
     ["Digital Position"] = 5,
     ["EQ Position"] = 5,
     ["Ducker Position"] = 3,
+    ["Follow Source Select"] = 5,
+    ["Matrix Mod1 Source"] = 10,
+    ["Matrix Mod2 Source"] = 10,
+    ["Matrix Mod3 Source"] = 10,
   }
 }

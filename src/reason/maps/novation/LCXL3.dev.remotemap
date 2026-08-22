@@ -611,6 +611,87 @@ Map	fader6		EQ High Gain			Page 2
 Map	button4		EQ On			Page 2
 Map	button12		EQ Position			Page 2
 
+// Page 3: LFOs
+
+Map	encoder1		LFO1 Wave			Page 3
+Map	encoder9		LFO1 Rate			Page 3
+Map	encoder9alt		LFO1 Synced Rate			Page 3
+Map	encoder17		LFO1 Phase			Page 3
+
+Map	button1		LFO1 Sync			Page 3
+
+Map	encoder2		LFO1 Mod1 Amt			Page 3
+Map	encoder3		LFO1 Mod1 Amt2			Page 3
+Map	encoder4		LFO1 Mod1 Scale Amt			Page 3
+
+Map	encoder10		LFO1 Mod2 Amt			Page 3
+Map	encoder11		LFO1 Mod2 Amt2			Page 3
+Map	encoder12		LFO1 Mod2 Scale Amt			Page 3
+
+Map	encoder18		LFO1 Mod3 Amt			Page 3
+Map	encoder19		LFO1 Mod3 Amt2			Page 3
+Map	encoder20		LFO1 Mod3 Scale Amt			Page 3
+
+Map	encoder5		LFO2 Wave			Page 3
+Map	encoder13		LFO2 Rate			Page 3
+Map	encoder13alt		LFO2 Synced Rate			Page 3
+Map	encoder21		LFO2 Phase			Page 3
+
+Map	button5		LFO2 Sync			Page 3
+
+Map	encoder6		LFO2 Mod1 Amt			Page 3
+Map	encoder7		LFO2 Mod1 Amt2			Page 3
+Map	encoder8		LFO2 Mod1 Scale Amt			Page 3
+
+Map	encoder14		LFO2 Mod2 Amt			Page 3
+Map	encoder15		LFO2 Mod2 Amt2			Page 3
+Map	encoder16		LFO2 Mod2 Scale Amt			Page 3
+
+Map	encoder22		LFO2 Mod3 Amt			Page 3
+Map	encoder23		LFO2 Mod3 Amt2			Page 3
+Map	encoder24		LFO2 Mod3 Scale Amt			Page 3
+
+// Page 4: Follow & Macro
+
+Map	encoder1		Follow Sensitivity			Page 4
+Map	encoder9		Follow Rise			Page 4
+Map	encoder17		Follow Fall			Page 4
+
+Map	button1		Follow Source Select			Page 4
+
+Map	encoder2		Follow Mod1 Amt			Page 4
+Map	encoder3		Follow Mod1 Amt2			Page 4
+Map	encoder4		Follow Mod1 Scale Amt			Page 4
+
+Map	encoder10		Follow Mod2 Amt			Page 4
+Map	encoder11		Follow Mod2 Amt2			Page 4
+Map	encoder12		Follow Mod2 Scale Amt			Page 4
+
+Map	encoder18		Follow Mod3 Amt			Page 4
+Map	encoder19		Follow Mod3 Amt2			Page 4
+Map	encoder20		Follow Mod3 Scale Amt			Page 4
+
+Map	encoder5		Macro Knob			Page 4
+
+Map	button5		Macro Button			Page 4
+Map	button6		Matrix Mod1 Source			Page 4
+Map	button7		Matrix Mod2 Source			Page 4
+Map	button8		Matrix Mod3 Source			Page 4
+
+Map	encoder6		Matrix Mod1 Amt			Page 4
+Map	encoder7		Matrix Mod1 Amt2			Page 4
+Map	encoder8		Matrix Mod1 Scale Amt			Page 4
+
+Map	encoder14		Matrix Mod2 Amt			Page 4
+Map	encoder15		Matrix Mod2 Amt2			Page 4
+Map	encoder16		Matrix Mod2 Scale Amt			Page 4
+
+Map	encoder22		Matrix Mod3 Amt			Page 4
+Map	encoder23		Matrix Mod3 Amt2			Page 4
+Map	encoder24		Matrix Mod3 Scale Amt			Page 4
+
+Map	rackUI1		Mod Source Tab
+
 Map	deviceName		Device Name
 Map	patchName		Patch Name
 Map	deviceType		"ripley"

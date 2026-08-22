@@ -26,6 +26,8 @@ return {
   },
   ripley = {
     "Delay & Space",
-    "Extra Processing"
+    "Extra Processing",
+    "LFOs",
+    "Follower & Matrix"
   }
 }

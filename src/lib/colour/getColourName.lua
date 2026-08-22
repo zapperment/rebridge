@@ -26,7 +26,7 @@ end
 -- type gives the parameter it is mapped to (see config/paramColours), falling
 -- back to the control's own default colour.
 return function(deviceType, param, defaultColour)
-  local logMe = param == "Lo Cut Freq"
+  local logMe = false --param == "Lo Cut Freq"
   if logMe then
     deb.log(
       "[lib.colour.getColourName] " ..
