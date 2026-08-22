@@ -15,13 +15,22 @@
 //   --out <file>   where to write the Lua file
 //                  (default: src/config/combinatorLabels.lua)
 //   --quiet        only report warnings and errors
+//   --replace      write a fresh file rather than adding to the one that is
+//                  already there
 //   --self-test    parse the example patch in the repository and check the
 //                  labels come out as expected, without writing anything
+//
+// A run adds to the file rather than replacing it, so that separate runs over
+// separate directories build one file between them. A patch that is extracted
+// again replaces the entry it had before; entries whose patches were not in the
+// directories searched are left alone. Use --replace to start over, which is the
+// only way to drop the entries of patches that have since been deleted.
 //
 // With no directory given, the directories are taken from PATH_REASON_COMBI_*
 // in .env (see .env.example).
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 
 const repoRoot = path.resolve(__dirname, "..");
@@ -574,10 +583,122 @@ function luaString(value) {
   const escaped = value
     .replace(/\\/g, "\\\\")
     .replace(/"/g, '\\"')
-    // control characters would end the string or break the file
+    // control characters would end the string or break the file. The numeric
+    // ones are padded to three digits so that a control character followed by a
+    // digit cannot be read back as a different character
     .replace(/[\n\r\t]/g, (character) => ({ "\n": "\\n", "\r": "\\r", "\t": "\\t" })[character])
-    .replace(/[\x00-\x1f\x7f]/g, (character) => `\\${character.charCodeAt(0)}`);
+    .replace(/[\x00-\x1f\x7f]/g, (character) => `\\${String(character.charCodeAt(0)).padStart(3, "0")}`);
   return `"${escaped}"`;
+}
+
+const NAMED_ESCAPES = { n: "\n", r: "\r", t: "\t" };
+
+// Undoes luaString, so that a file written by an earlier run can be read back
+// and added to.
+function luaUnstring(quoted) {
+  return quoted.slice(1, -1).replace(/\\(\d{3}|.)/g, (all, what) => {
+    if (/^\d{3}$/.test(what)) {
+      return String.fromCharCode(Number(what));
+    }
+    return NAMED_ESCAPES[what] !== undefined ? NAMED_ESCAPES[what] : what;
+  });
+}
+
+// The shapes renderLua writes, so that it can be read back line by line. Only
+// this script writes the file, so there is no call for a Lua parser: what there
+// is call for is refusing anything that does not look exactly like what was
+// written, rather than quietly dropping the patches it could not make sense of.
+const LUA_STRING = '"(?:[^"\\\\]|\\\\.)*"';
+const LUA_ENTRY = new RegExp(`^labels\\[(${LUA_STRING})\\] = \\{$`);
+const LUA_PARAM = new RegExp(`^ {2}\\[(${LUA_STRING})\\] = (${LUA_STRING}),$`);
+const LUA_ALIAS = new RegExp(`^labels\\[(${LUA_STRING})\\] = labels\\[(${LUA_STRING})\\]$`);
+const LUA_IGNORED = /^(|--.*|local labels = \{\}|return labels)$/;
+
+// Reads back a labels file written by an earlier run, so that a run over one
+// directory adds to what is already there instead of replacing it.
+//
+// Throws on any line it does not recognise. The alternative — skipping what it
+// cannot read — would quietly lose thousands of patches on the next write, and a
+// hand-edited or half-written file is far better reported than merged.
+function readLua(file) {
+  const patches = new Map();
+  const aliases = new Map();
+  let current = null;
+  const lines = fs.readFileSync(file, "utf8").split("\n");
+  lines.forEach((line, index) => {
+    const fail = (why) => {
+      throw new Error(`${path.relative(repoRoot, file)}, line ${index + 1}: ${why}`);
+    };
+    if (current) {
+      const param = line.match(LUA_PARAM);
+      if (param) {
+        current.params[luaUnstring(param[1])] = luaUnstring(param[2]);
+        return;
+      }
+      if (line === "}") {
+        current = null;
+        return;
+      }
+      fail("expected a label or the end of the patch");
+    }
+    const entry = line.match(LUA_ENTRY);
+    if (entry) {
+      current = { params: {} };
+      patches.set(luaUnstring(entry[1]), current);
+      return;
+    }
+    const alias = line.match(LUA_ALIAS);
+    if (alias) {
+      aliases.set(luaUnstring(alias[1]), { name: luaUnstring(alias[2]) });
+      return;
+    }
+    if (!LUA_IGNORED.test(line)) {
+      fail("this is not a line written by the extraction script");
+    }
+  });
+  if (current) {
+    throw new Error(`${path.relative(repoRoot, file)} ends in the middle of a patch`);
+  }
+  return { patches, aliases };
+}
+
+// Adds what a run found to what the file already held. A patch that has been
+// extracted again replaces the entry it had before, as the file on disk is what
+// the patch says now.
+function mergeLabels(existing, found) {
+  const patches = new Map(existing.patches);
+  const aliases = new Map(existing.aliases);
+  let added = 0;
+  let replaced = 0;
+  for (const [name, entry] of found.patches) {
+    if (patches.has(name)) {
+      replaced += 1;
+      // The device name that led here was read from the patch as it was then.
+      // Now that the patch has been read again, only the device name this run
+      // found still leads to the right labels, so any earlier one goes — else a
+      // patch replaced by a different one keeps the old one's device name
+      // pointing at it.
+      for (const [aliasName, alias] of [...aliases]) {
+        if (alias.name === name) {
+          aliases.delete(aliasName);
+        }
+      }
+    } else {
+      added += 1;
+    }
+    patches.set(name, entry);
+  }
+  for (const [name, entry] of found.aliases) {
+    aliases.set(name, entry);
+  }
+  // the same rule as within a single run: a device name that is also a patch
+  // name gives way, and one whose patch is no longer there leads nowhere
+  for (const [name, alias] of [...aliases]) {
+    if (patches.has(name) || !patches.has(alias.name)) {
+      aliases.delete(name);
+    }
+  }
+  return { patches, aliases, added, replaced, kept: patches.size - added - replaced };
 }
 
 // Keeps the parameters of a patch in the order the Combinator itself has them,
@@ -662,7 +783,7 @@ function warn(message) {
 }
 
 function parseArgs(argv) {
-  const options = { out: defaultOutFile, quiet: false, selfTest: false, dirs: [] };
+  const options = { out: defaultOutFile, quiet: false, selfTest: false, replace: false, dirs: [] };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--out") {
@@ -673,6 +794,8 @@ function parseArgs(argv) {
       options.out = path.resolve(argv[i]);
     } else if (arg === "--quiet") {
       options.quiet = true;
+    } else if (arg === "--replace") {
+      options.replace = true;
     } else if (arg === "--self-test") {
       options.selfTest = true;
     } else if (arg.startsWith("-")) {
@@ -830,8 +953,68 @@ function selfTest() {
     console.error("Self test: failed, the rendered Lua does not hold the labels in order");
     return 1;
   }
+  const mergeFailure = mergeSelfTest();
+  if (mergeFailure) {
+    console.error(`Self test: failed, ${mergeFailure}`);
+    return 1;
+  }
   console.log(`Self test: success (${cases.length} patches)`);
   return 0;
+}
+
+// Checks that a file written by one run can be read back and added to by the
+// next, which is what lets separate runs over separate directories build one
+// file between them. Returns what went wrong, or nothing if all is well.
+function mergeSelfTest() {
+  const first = new Map([
+    // a name and a label with everything that has to survive the escaping
+    ['A "quoted" \\ name', { params: { "Rotary 1": 'say "hi"\\bye', "Button 2": "keep" } }],
+    ["B", { params: { "Rotary 1": "old" } }],
+  ]);
+  const firstAliases = new Map([["Device Of B", { name: "B" }]]);
+  const written = renderLua(first, firstAliases);
+
+  const file = path.join(os.tmpdir(), `combinator-labels-self-test-${process.pid}.lua`);
+  let readBack;
+  try {
+    fs.writeFileSync(file, written, "utf8");
+    readBack = readLua(file);
+  } catch (error) {
+    return `the file written could not be read back: ${error.message}`;
+  } finally {
+    fs.rmSync(file, { force: true });
+  }
+  for (const [name, entry] of first) {
+    const round = readBack.patches.get(name);
+    if (!round || !sameLabels(round.params, entry.params)) {
+      return `"${name}" did not survive being written and read back`;
+    }
+  }
+
+  // a second run replaces B and leaves A alone
+  const second = {
+    patches: new Map([["B", { params: { "Rotary 1": "new" } }]]),
+    aliases: new Map([["Device Of B Now", { name: "B" }]]),
+  };
+  const merged = mergeLabels(readBack, second);
+  if (merged.added !== 0 || merged.replaced !== 1 || merged.kept !== 1) {
+    return `merging counted ${merged.added} added, ${merged.replaced} replaced, ${merged.kept} kept`;
+  }
+  if (merged.patches.get("B").params["Rotary 1"] !== "new") {
+    return "the patch read again did not replace the one already in the file";
+  }
+  if (!merged.patches.has('A "quoted" \\ name')) {
+    return "a patch that was not read again was lost";
+  }
+  // the device name from the earlier run led to a patch that has been replaced,
+  // so it must not still point at it
+  if (merged.aliases.has("Device Of B")) {
+    return "a device name from the earlier run outlived the patch it led to";
+  }
+  if (merged.aliases.get("Device Of B Now")?.name !== "B") {
+    return "the device name found by the later run was not kept";
+  }
+  return null;
 }
 
 // the labels of the patch saved in the current layout, kept apart from the cases
@@ -892,13 +1075,34 @@ function main(argv) {
     }
     options.log(`Searching: ${dir}`);
   }
-  const { patches, aliases, patchCount, labelledCount, defaultedCount } = collect(dirs, options);
+  const found = collect(dirs, options);
+  // what the file already holds, so that a run over one directory adds to it
+  // rather than throwing away the patches of every other directory
+  let existing = { patches: new Map(), aliases: new Map() };
+  if (!options.replace && fs.existsSync(options.out)) {
+    try {
+      existing = readLua(options.out);
+      options.log(`Read ${existing.patches.size} patch name(s) already in the file`);
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+      console.error(
+        "Nothing has been written. Fix the file, or pass --replace to write a " +
+        "fresh one from the directories given."
+      );
+      return 1;
+    }
+  }
+  const { patches, aliases, added, replaced, kept } = mergeLabels(existing, found);
   fs.writeFileSync(options.out, renderLua(patches, aliases), "utf8");
   console.log(
-    `Extract: ${labelledCount} of ${patchCount} patch(es) have labels, ` +
+    `Extract: ${found.labelledCount} of ${found.patchCount} patch(es) have labels, ` +
     `written to ${path.relative(repoRoot, options.out)} ` +
     `(${patches.size} patch name(s), ${aliases.size} device name(s))`
   );
+  if (!options.replace) {
+    console.log(`Extract: ${added} added, ${replaced} replaced, ${kept} left as they were`);
+  }
+  const { defaultedCount } = found;
   if (defaultedCount > 0) {
     console.log(
       `Extract: ${defaultedCount} patch(es) left their controls at the names ` +

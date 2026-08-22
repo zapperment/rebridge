@@ -1128,6 +1128,32 @@ labels["A Sudden Change"] = {
   ["Button 5"] = "Chord ON",
 }
 
+labels["AI Will Take Over [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["AI Work"] = {
   ["Rotary 1"] = "LP- OFF - HP",
   ["Rotary 2"] = "Damping Mid Gain",
@@ -1759,6 +1785,32 @@ labels["African Tabloid"] = {
   ["Button 5"] = "Player",
 }
 
+labels["Afro Cumbria Tron [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Afro Swinger"] = {
   ["Rotary 1"] = "Pattern",
   ["Rotary 2"] = "Dirt",
@@ -1819,6 +1871,25 @@ labels["Against the Grain [Arp]"] = {
   ["Button 5"] = "Arp",
 }
 
+labels["Age Default"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
 labels["Aggressive Bass House [Seq]"] = {
   ["Rotary 1"] = "FM Colour",
   ["Rotary 2"] = "Sub Harmonics",
@@ -1828,6 +1899,39 @@ labels["Aggressive Bass House [Seq]"] = {
   ["Button 2"] = "SUB ON",
   ["Button 3"] = "FM Layer ON",
   ["Button 4"] = "Verb",
+}
+
+labels["Agouti Society Bassline"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
+labels["Agouti Society Beat"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
+labels["Agouti Society Psydel Gtr"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["Ah Yeah"] = {
@@ -2117,6 +2221,12 @@ labels["Algal Bloom"] = {
   ["Button 10"] = "Reverb Enable",
 }
 
+labels["AlgoROMpler"] = {
+  ["Rotary 1"] = "Patch",
+  ["Rotary 2"] = "FM Amount",
+  ["Rotary 3"] = "Dec/Rel",
+}
+
 labels["Algorithmic Reflection"] = {
   ["Rotary 1"] = "Attack",
   ["Rotary 2"] = "Decay",
@@ -2295,6 +2405,32 @@ labels["Alligator Delay"] = {
   ["Rotary 13"] = "Chorus Amt",
   ["Button 1"] = "On",
   ["Button 2"] = "On",
+}
+
+labels["Almost Industrial [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Alone in Miami [Run]"] = {
@@ -3365,6 +3501,10 @@ labels["Anthrax House Drums [Run]"] = {
   ["Button 4"] = "Pitch HiHats",
 }
 
+labels["Antidote Kit"] = {
+  ["Button 1"] = "Play",
+}
+
 labels["Anxiety Approaching"] = {
   ["Rotary 1"] = "Noise Mod",
   ["Rotary 2"] = "Osc. Shape",
@@ -3907,6 +4047,32 @@ labels["Astral Projection Pluck"] = {
   ["Button 5"] = "Sidechain",
 }
 
+labels["Astro Pop [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Astrobotanic Dewdrops [Arp]"] = {
   ["Rotary 1"] = "Rate",
   ["Rotary 2"] = "Pattern",
@@ -3974,6 +4140,32 @@ labels["Atlanta Drumkit"] = {
   ["Button 3"] = "Pattern Switch",
   ["Button 4"] = "Mute Clap",
   ["Button 5"] = "Player",
+}
+
+labels["Atmanz Hitek [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Atmo Keys"] = {
@@ -4781,6 +4973,32 @@ labels["Ba Zeus 808"] = {
   ["Button 4"] = "Dimension",
 }
 
+labels["Bacardi [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Back Out Keys [Run]"] = {
   ["Rotary 1"] = "GAIN",
   ["Rotary 2"] = "LOW CUT EQ",
@@ -5190,6 +5408,32 @@ labels["Band Pass Sparkle"] = {
   ["Button 2"] = "Spread",
   ["Button 3"] = "Delay",
   ["Button 4"] = "Reverb",
+}
+
+labels["Banger [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Bantam Destroyer [RUN]"] = {
@@ -5632,6 +5876,32 @@ labels["Bass-Subnautic"] = {
   ["Button 3"] = "Release",
 }
 
+labels["Bassmusic Activated [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Bassoon Shifter"] = {
   ["Rotary 1"] = "Reverb Amt",
   ["Rotary 2"] = "Decay",
@@ -5660,6 +5930,32 @@ labels["Bassta [Run]"] = {
   ["Button 4"] = "FM Mod",
   ["Button 5"] = "Sequencer",
   ["Button 6"] = "Octave Down",
+}
+
+labels["Batida [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Battery Low"] = {
@@ -5817,6 +6113,32 @@ labels["Beastin' Drums [Run]"] = {
   ["Button 15"] = "Echo",
   ["Button 16"] = "Echo",
   ["Button 17"] = "Comp.",
+}
+
+labels["Beat Plus [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Beatmap Riser 1"] = {
@@ -6034,6 +6356,17 @@ labels["Beeper Groove HiHats [Run]"] = {
   ["Button 3"] = "Ambience On/Off",
 }
 
+labels["Behind the Cold Door Spooky"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Being Boiled"] = {
   ["Rotary 1"] = "Env Rate",
   ["Rotary 2"] = "Env Depth",
@@ -6227,6 +6560,32 @@ labels["Beneath the Crystal Canopy [Seq]"] = {
   ["Rotary 8"] = "Pattern 2 Offset",
   ["Button 1"] = "Generate",
   ["Button 2"] = "Auto Play",
+}
+
+labels["Bent Beat [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Berlin Bass [Seq]"] = {
@@ -7086,6 +7445,32 @@ labels["Black Holes"] = {
   ["Button 4"] = "Delay",
 }
 
+labels["Black Tuxedo [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Blade Main Theme"] = {
   ["Rotary 1"] = "Reverb",
   ["Rotary 2"] = "Delay",
@@ -7203,6 +7588,32 @@ labels["Blinking Orange Lights [RUN]"] = {
   ["Button 32"] = "IR SIZE",
 }
 
+labels["Blip [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Blippmode"] = {
   ["Rotary 1"] = "Rotary",
   ["Rotary 2"] = "Filter Mod",
@@ -7223,6 +7634,32 @@ labels["Blissful Arp"] = {
   ["Button 1"] = "ARP",
   ["Button 2"] = "OCTAVE SPLT",
   ["Button 3"] = "DRIVE",
+}
+
+labels["Blokk [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Blood Rat"] = {
@@ -7283,6 +7720,32 @@ labels["Blown Drums"] = {
   ["Button 5"] = "BeatMap",
 }
 
+labels["Blue Hawaii [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Blue Pad"] = {
   ["Rotary 1"] = "Attack",
   ["Rotary 2"] = "Decay",
@@ -7306,6 +7769,58 @@ labels["Blueberry Synth [Run]"] = {
   ["Button 3"] = "PLAYER",
 }
 
+labels["Boil Me [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Boilermaker [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Bold Approach [RUN]"] = {
   ["Rotary 1"] = "Exciter",
   ["Rotary 2"] = "Modal",
@@ -7319,6 +7834,11 @@ labels["Bold Approach [RUN]"] = {
   ["Button 2"] = "Spread",
   ["Button 3"] = "Delay",
   ["Button 4"] = "Reverb",
+}
+
+labels["Bollerbass"] = {
+  ["Button 1"] = "busy",
+  ["Button 4"] = "run",
 }
 
 labels["Bone Breaker Drum Machine [Run]"] = {
@@ -7472,6 +7992,21 @@ labels["Boots and Cats"] = {
   ["Button 3"] = "Hats",
   ["Button 4"] = "Percussion",
   ["Button 5"] = "Sequence",
+}
+
+labels["Bop Bass"] = {
+  ["Button 4"] = "run",
+}
+
+labels["Boppivox Muffled Scream"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["Boron"] = {
@@ -7800,6 +8335,17 @@ labels["Brain Damage"] = {
   ["Button 4"] = "OSC2 Octave",
 }
 
+labels["Brambambel-Lead"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Branch Jumper"] = {
   ["Rotary 1"] = "Kick Pitch",
   ["Rotary 2"] = "Snare Pitch",
@@ -7838,6 +8384,41 @@ labels["Brass Smear"] = {
   ["Rotary 4"] = "Reverb",
   ["Button 1"] = "Beat Map",
   ["Button 2"] = "Chord Seq",
+}
+
+labels["Brass [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Brasser"] = {
+  ["Rotary 1"] = "Filter Frequency",
+  ["Rotary 2"] = "Filter Resonance",
+  ["Rotary 3"] = "Release",
+  ["Button 1"] = "Loose Lips",
+  ["Button 2"] = "Phase Phlux",
+  ["Button 3"] = "Alligator",
 }
 
 labels["Brazil"] = {
@@ -8481,6 +9062,11 @@ labels["Broken Guitar Pattern [Arp]"] = {
   ["Button 5"] = "Arp",
 }
 
+labels["Broken Images Penta Pad"] = {
+  ["Rotary 1"] = "E-G-A-B-D",
+  ["Button 1"] = "PLAY",
+}
+
 labels["Broken Mini Pad"] = {
   ["Rotary 1"] = "Filter",
   ["Rotary 2"] = "Wide OSC",
@@ -8901,6 +9487,30 @@ labels["Butterfly 808 [Run]"] = {
   ["Button 8"] = "Sequencer",
 }
 
+labels["Button Pushers Arpeggio"] = {
+  ["Rotary 1"] = "DIRT",
+  ["Rotary 2"] = "DELAY",
+  ["Button 1"] = "BUSY",
+  ["Button 2"] = "MALM MOD",
+  ["Button 4"] = "RUN",
+}
+
+labels["Button Pushers Bass"] = {
+  ["Button 4"] = "RUN",
+}
+
+labels["Button Pushers Drums"] = {
+  ["Button 1"] = "4 BEAT",
+  ["Button 2"] = "KICK ON/OFF",
+  ["Button 4"] = "RUN",
+}
+
+labels["Button Pushers Ohhh"] = {
+  ["Button 1"] = "BUSY",
+  ["Button 2"] = "BLAST",
+  ["Button 4"] = "RUN",
+}
+
 labels["Buzz [Arp]"] = {
   ["Rotary 1"] = "Reverb",
   ["Rotary 2"] = "Delay",
@@ -8982,6 +9592,21 @@ labels["Byzantine March [Run]"] = {
   ["Button 8"] = "LP / HP",
 }
 
+labels["COCO Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["COCO Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
 labels["CP Style Keys"] = {
   ["Rotary 1"] = "Reverb Amt",
   ["Rotary 2"] = "Reverb Decay",
@@ -9036,6 +9661,17 @@ labels["CS1 Trancer"] = {
   ["Button 4"] = "Reverb",
 }
 
+labels["CVReceive"] = {
+  ["Rotary 1"] = "CV1",
+  ["Rotary 2"] = "CV2",
+  ["Rotary 3"] = "CV3",
+  ["Rotary 4"] = "CV4",
+  ["Rotary 5"] = "CV5",
+  ["Rotary 6"] = "CV6",
+  ["Rotary 7"] = "CV7",
+  ["Rotary 8"] = "CV8",
+}
+
 labels["CWN Tone"] = {
   ["Rotary 1"] = "HP Filter",
   ["Rotary 2"] = "Filter ENV",
@@ -9045,6 +9681,17 @@ labels["CWN Tone"] = {
   ["Button 2"] = "Filter Flutter",
   ["Button 3"] = "Sub OSC",
   ["Button 4"] = "Delay",
+}
+
+labels["CZ-Sägezahn-Klavier"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["Cadence"] = {
@@ -9381,6 +10028,32 @@ labels["Cash Flow [Arp]"] = {
   ["Button 8"] = "Vibe",
 }
 
+labels["Casino [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Casket [Run]"] = {
   ["Rotary 1"] = "Parallel Comp",
   ["Rotary 2"] = "Drive",
@@ -9399,6 +10072,29 @@ labels["Cat's Eye Synth [Seq]"] = {
   ["Rotary 4"] = "Master",
   ["Button 1"] = "Attack",
   ["Button 2"] = "Bitcrush",
+}
+
+labels["Catacombs Calling [RUN]"] = {
+  ["Rotary 1"] = "Cutoff",
+  ["Rotary 2"] = "Resonance",
+  ["Rotary 3"] = "Exciter",
+  ["Rotary 4"] = "Modal",
+  ["Rotary 5"] = "Object 1",
+  ["Rotary 6"] = "Object 2",
+  ["Rotary 7"] = "Feedback",
+  ["Rotary 8"] = "Decay",
+  ["Rotary 9"] = "VARY",
+  ["Rotary 10"] = "dummy q1",
+  ["Rotary 11"] = "dummy q2",
+  ["Rotary 12"] = "OCTAVE",
+  ["Button 1"] = "LP / HP",
+  ["Button 2"] = "Spread",
+  ["Button 3"] = "KEY / SEQ",
+  ["Button 4"] = "dummy b4",
+  ["Button 5"] = "dummy b5",
+  ["Button 6"] = "dummy b6",
+  ["Button 7"] = "Delay",
+  ["Button 8"] = "Reverb",
 }
 
 labels["Cavern"] = {
@@ -11456,6 +12152,17 @@ labels["Clean Shimmer Chords"] = {
   ["Rotary 5"] = "Sine Chords",
 }
 
+labels["Clean and Classic – Micro from Mars"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Clear 80s"] = {
   ["Rotary 1"] = "Amp   A",
   ["Rotary 2"] = "Amp   D",
@@ -11779,6 +12486,32 @@ labels["Club Vibes"] = {
   ["Button 1"] = "Reverb",
   ["Button 2"] = "Delay",
   ["Button 3"] = "Sequence",
+}
+
+labels["Clubbed [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Clubscene Breathing"] = {
@@ -12175,6 +12908,17 @@ labels["Completronix [RUN]"] = {
   ["Button 7"] = "Perc 2",
 }
 
+labels["Complex Distant Piano"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
 labels["Complex Octaves"] = {
   ["Rotary 1"] = "Wave Shape",
   ["Rotary 2"] = "HP Filter",
@@ -12454,6 +13198,33 @@ labels["Control"] = {
   ["Button 4"] = "Delay",
 }
 
+labels["ControlMe"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Rotary 12"] = "Control 12",
+  ["Rotary 13"] = "Control 13",
+  ["Rotary 14"] = "Control 14",
+  ["Rotary 15"] = "Control 15",
+  ["Rotary 16"] = "Control 16",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
 labels["Cooltronics [Arp]"] = {
   ["Rotary 1"] = "Reverb",
   ["Rotary 2"] = "Delay",
@@ -12570,6 +13341,32 @@ labels["Cosmic Strings & Choir"] = {
   ["Button 2"] = "Layer 2 Octave",
   ["Button 3"] = "Layer 3 Octave",
   ["Button 4"] = "Resonator Size",
+}
+
+labels["Cosmopolitan [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Counterparts [Arp]"] = {
@@ -12767,6 +13564,32 @@ labels["Crate Kit"] = {
   ["Button 5"] = "Echo",
   ["Button 6"] = "Click",
   ["Button 7"] = "Shape",
+}
+
+labels["Crazy Juan [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Crazy Tuk-Tuk Flow [Run]"] = {
@@ -13325,6 +14148,13 @@ labels["Crystal Sword Growl"] = {
   ["Button 1"] = "Player",
 }
 
+labels["Cubic Combi Trim Test"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+}
+
 labels["Cult Of Darkness Lead"] = {
   ["Rotary 1"] = "Reverb",
   ["Rotary 2"] = "Delay",
@@ -13776,6 +14606,11 @@ labels["DI Indie Surf (Guitar)"] = {
   ["Button 2"] = "RATE",
 }
 
+labels["DJ Filter"] = {
+  ["Rotary 1"] = "LP / HP Filter",
+  ["Button 1"] = "24 dB",
+}
+
 labels["DRUMS - Analogue Kick Generator"] = {
   ["Rotary 1"] = "PUNCH",
   ["Rotary 2"] = "CLICK",
@@ -13796,12 +14631,38 @@ labels["DRUMS - Experimental Drum Kit"] = {
   ["Button 4"] = "HPF",
 }
 
+labels["DURI Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["DURI Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["DX Bass"] = {
+  ["Rotary 1"] = "Brightness",
+}
+
 labels["DX1 Bell"] = {
   ["Rotary 1"] = "Chorus Amount",
   ["Rotary 2"] = "Delay Amount",
   ["Rotary 3"] = "Resonance",
   ["Rotary 4"] = "High Pass",
   ["Rotary 5"] = "Room Reverb",
+}
+
+labels["DX7 Split Bass+Keys"] = {
+  ["Rotary 1"] = "bass",
+  ["Rotary 2"] = "piano",
+  ["Rotary 3"] = "strings",
+  ["Rotary 4"] = "reverb",
 }
 
 labels["Da House Strings"] = {
@@ -14192,6 +15053,11 @@ labels["Darbouka Filtration [Run]"] = {
   ["Button 8"] = "COMP",
 }
 
+labels["Darbourka Chords"] = {
+  ["Rotary 1"] = "loop",
+  ["Button 1"] = "busy",
+}
+
 labels["Dark & Deep [Run]"] = {
   ["Rotary 1"] = "Dist 1 AMT",
   ["Rotary 2"] = "Dist 2 AMT",
@@ -14348,6 +15214,32 @@ labels["Dark Formant Lead [Seq]"] = {
   ["Button 2"] = "Formant Filter",
   ["Button 3"] = "Player",
   ["Button 4"] = "Echo",
+}
+
+labels["Dark Garage [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Dark Guitar"] = {
@@ -14619,6 +15511,10 @@ labels["Dark Strings"] = {
   ["Button 3"] = "On",
 }
 
+labels["Dark Synth Piano"] = {
+  ["Button 1"] = "PLAY",
+}
+
 labels["Dark System"] = {
   ["Rotary 1"] = "LP- OFF - HP",
   ["Rotary 2"] = "Damping Mid Gain",
@@ -14822,6 +15718,17 @@ labels["Deep All Pass Bass"] = {
   ["Button 4"] = "Disperser",
 }
 
+labels["Deep Blue Nazca Piano"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Deep City"] = {
   ["Rotary 1"] = "Shape",
   ["Rotary 2"] = "Cutoff",
@@ -15018,6 +15925,32 @@ labels["Deep Notes"] = {
   ["Rotary 6"] = "Release",
   ["Button 1"] = "ON",
   ["Button 2"] = "ON",
+}
+
+labels["Deep Rhythm [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Deep Sea Odyssey [Arp]"] = {
@@ -15236,6 +16169,32 @@ labels["Delirium Keys [Run]"] = {
   ["Button 4"] = "Low Grade Amp.",
 }
 
+labels["Demon Elektrode [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Dense Piano [Seq]"] = {
   ["Rotary 1"] = "CHARACTER",
   ["Rotary 2"] = "COMP",
@@ -15245,6 +16204,32 @@ labels["Dense Piano [Seq]"] = {
   ["Button 2"] = "PIANO ATTACK",
   ["Button 3"] = "PUMP",
   ["Button 4"] = "SIDECHAIN FX",
+}
+
+labels["Denser [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Dephased Square Bass"] = {
@@ -15292,6 +16277,15 @@ labels["Depth Drums"] = {
   ["Button 3"] = "Compress",
   ["Button 4"] = "Saturate",
   ["Button 5"] = "Sequence",
+}
+
+labels["Der Schicker"] = {
+  ["Rotary 1"] = "dirt mix",
+  ["Rotary 2"] = "damage",
+  ["Rotary 3"] = "filter",
+  ["Rotary 4"] = "bass",
+  ["Button 1"] = "staccato",
+  ["Button 2"] = "delay",
 }
 
 labels["Derive [Run]"] = {
@@ -16198,6 +17192,11 @@ labels["Dirt Crush Bass"] = {
   ["Button 4"] = "Reverb",
 }
 
+labels["Dirt Lead"] = {
+  ["Rotary 1"] = "Brightness",
+  ["Rotary 2"] = "Peak",
+}
+
 labels["Dirt Reaper Bass"] = {
   ["Rotary 1"] = "Sub Split",
   ["Rotary 2"] = "Pre Drive",
@@ -16478,6 +17477,32 @@ labels["Disco Strings"] = {
   ["Rotary 4"] = "Dist",
 }
 
+labels["Diskomania [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Disorder 808 [Run]"] = {
   ["Rotary 1"] = "Gain",
   ["Rotary 2"] = "Soft Clip Amt",
@@ -16617,6 +17642,21 @@ labels["Distant Tines"] = {
   ["Button 2"] = "Pickup",
   ["Button 3"] = "Delay",
   ["Button 4"] = "Space",
+}
+
+labels["DistoSeqline"] = {
+  ["Rotary 1"] = "damage",
+  ["Rotary 2"] = "filter",
+  ["Rotary 3"] = "5th",
+  ["Button 1"] = "run seq",
+  ["Button 2"] = "comp",
+  ["Button 3"] = "chorus",
+}
+
+labels["DistoSeqline 2"] = {
+  ["Rotary 1"] = "damage",
+  ["Rotary 2"] = "filter",
+  ["Rotary 3"] = "resonance",
 }
 
 labels["Distorted Abientazoo"] = {
@@ -16865,6 +17905,17 @@ labels["DnB Sub Bass 1"] = {
   ["Rotary 4"] = "PORTAMENTO",
   ["Button 1"] = "ARP ON",
   ["Button 2"] = "RESO BOOST",
+}
+
+labels["Do I Hear 21"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["Do It"] = {
@@ -17629,6 +18680,11 @@ labels["Dreamy Monk Bowls [Run]"] = {
   ["Button 5"] = "Sequencer",
 }
 
+labels["Dreamy Parsec Strum"] = {
+  ["Rotary 4"] = "(OUT OF ORDER)",
+  ["Button 1"] = "Play",
+}
+
 labels["Dreamy Rhodes"] = {
   ["Rotary 1"] = "Chorus",
   ["Rotary 2"] = "Delay",
@@ -17960,6 +19016,32 @@ labels["Driving Trance Kit [Run]"] = {
   ["Button 1"] = "Player",
 }
 
+labels["Drmkod [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Droid"] = {
   ["Rotary 1"] = "Waveshape Env",
   ["Rotary 2"] = "Waveshape Mod",
@@ -18190,6 +19272,17 @@ labels["Drums [Run]"] = {
   ["Rotary 4"] = "Parallel Drive",
   ["Rotary 5"] = "Clap",
   ["Button 1"] = "Drum Sequencer",
+}
+
+labels["Drumtraks"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["Drunk Flow [RUN]"] = {
@@ -18424,6 +19517,17 @@ labels["Dual Shift Scream"] = {
   ["Button 4"] = "Unison",
 }
 
+labels["Dual Sid Frogs"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Dual Stretcher Run]"] = {
   ["Rotary 1"] = "Volume",
   ["Rotary 2"] = "Filter Cutoff",
@@ -18591,6 +19695,32 @@ labels["Dubstep Toppers [RUN]"] = {
   ["Rotary 11"] = "Delay Amount",
   ["Button 1"] = "LOOP",
   ["Button 2"] = "LP / HP",
+}
+
+labels["Due Tech [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Duo Top Bass [SEQ]"] = {
@@ -18793,6 +19923,28 @@ labels["Dynamix"] = {
   ["Button 7"] = "Clap",
   ["Button 8"] = "Rimshot",
   ["Button 9"] = "Cymbal",
+}
+
+labels["Dynamo Hum Acid Line"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
+labels["Dynamo Hum Beat"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["EBM Drums"] = {
@@ -19065,6 +20217,24 @@ labels["Edie Em [Run]"] = {
   ["Button 3"] = "Bass",
   ["Button 4"] = "Sub",
   ["Button 5"] = "Player",
+}
+
+labels["Eight Track"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Player Control",
+}
+
+labels["Eksperimental"] = {
+  ["Rotary 1"] = "TRIM 1",
+  ["Rotary 2"] = "TRIM 2",
+  ["Rotary 3"] = "TRIM 3",
+  ["Rotary 4"] = "TRIM 4",
 }
 
 labels["El Classico Strings"] = {
@@ -19709,6 +20879,32 @@ labels["Emax Keys Stack"] = {
   ["Rotary 4"] = "Room Reverb",
 }
 
+labels["Embellishment [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Emo Piano"] = {
   ["Rotary 1"] = "Reverb",
   ["Button 1"] = "EQ On",
@@ -19819,6 +21015,130 @@ labels["Empty Soundscape"] = {
   ["Button 3"] = "Hi Cut",
   ["Button 4"] = "Low Cut",
   ["Button 5"] = "Delay",
+}
+
+labels["Empty X-Touch QS Big Dark Gray"] = {
+  ["Rotary 9"] = "Fader",
+  ["Rotary 10"] = "Quad Select 1",
+  ["Rotary 11"] = "Quad Select 2",
+  ["Rotary 12"] = "Potentiometer",
+}
+
+labels["Empty X-Touch QS Blue"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["Empty X-Touch QS CamoTang"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["Empty X-Touch QS Pink"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["Empty X-Touch QS WheatBurg"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["Empty X-Touch Quad Select Performance"] = {
+  ["Rotary 9"] = "Fader",
+  ["Rotary 10"] = "Quad Select 1",
+  ["Rotary 11"] = "Quad Select 2",
+  ["Rotary 12"] = "Potentiometer",
+}
+
+labels["Empty X-Touch Quad-Switch"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
 }
 
 labels["Enchanted Droplets"] = {
@@ -19940,6 +21260,32 @@ labels["Endless Ride [Run]"] = {
   ["Button 3"] = "Sidechain",
   ["Button 4"] = "Distortion Mode",
   ["Button 5"] = "Player",
+}
+
+labels["Endorphin [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Energetic Electrons [Arp]"] = {
@@ -20680,6 +22026,32 @@ labels["Execution Bass"] = {
   ["Button 2"] = "Compression",
 }
 
+labels["Experimental [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Exploration"] = {
   ["Rotary 1"] = "Chorus Amount",
   ["Rotary 2"] = "Delay Level",
@@ -20784,6 +22156,36 @@ labels["FFT Tube 808 Bass [Seq]"] = {
   ["Button 2"] = "FFT Size",
   ["Button 3"] = "Sub Mod",
   ["Button 4"] = "Reverb",
+}
+
+labels["FHYD Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["FHYD Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["FLAM Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["FLAM Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
 }
 
 labels["FM Acoustic Piano"] = {
@@ -20951,6 +22353,17 @@ labels["FM House [Seq]"] = {
 }
 
 labels["FM Later Bass"] = {
+  ["Rotary 1"] = "Chorus Amount",
+  ["Rotary 2"] = "Reverb Amount",
+  ["Rotary 3"] = "Slapback Delay",
+  ["Rotary 4"] = "High Pass",
+  ["Rotary 5"] = "FM",
+  ["Rotary 6"] = "Square",
+  ["Rotary 7"] = "Noise",
+  ["Button 1"] = "Hard FM",
+}
+
+labels["FM Later Bass (mod)"] = {
   ["Rotary 1"] = "Chorus Amount",
   ["Rotary 2"] = "Reverb Amount",
   ["Rotary 3"] = "Slapback Delay",
@@ -22048,6 +23461,43 @@ labels["Final Lap"] = {
   ["Button 4"] = "Reverb",
 }
 
+labels["Fine Dining [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Fire Hydrant"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Player Control",
+}
+
 labels["Fireside maj7 Chord [Run]"] = {
   ["Rotary 1"] = "Filter Cutoff",
   ["Rotary 2"] = "Pitched Voices",
@@ -22055,6 +23505,32 @@ labels["Fireside maj7 Chord [Run]"] = {
   ["Rotary 4"] = "Master Level",
   ["Button 1"] = "Pattern",
   ["Button 2"] = "Extra Res",
+}
+
+labels["Firey [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["First Flowers"] = {
@@ -22132,6 +23608,32 @@ labels["Fivio Drill Sub Bass [Run]"] = {
   ["Button 2"] = "Auto Glider",
   ["Button 3"] = "Distortion",
   ["Button 4"] = "Comp. On/Off",
+}
+
+labels["Fizzin [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Flame Light"] = {
@@ -22961,6 +24463,32 @@ labels["Four on the Flour Drumkit"] = {
   ["Button 3"] = "HiFi",
   ["Button 4"] = "Percs Only",
   ["Button 5"] = "Sequence",
+}
+
+labels["Four to the Floor [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Fourier Sonics"] = {
@@ -23879,6 +25407,16 @@ labels["Fx Swirl"] = {
   ["Button 4"] = "Limiter",
 }
 
+labels["FxPhaseMeUp"] = {
+  ["Rotary 1"] = "Gain",
+  ["Rotary 2"] = "Freq",
+  ["Rotary 3"] = "Q",
+  ["Rotary 4"] = "LFO Curve",
+  ["Button 1"] = "Double Notch",
+  ["Button 2"] = "LFO on/off",
+  ["Button 3"] = "LFO fast/slow",
+}
+
 labels["GTR Bubbles [RUN]"] = {
   ["Rotary 1"] = "Tone",
   ["Rotary 2"] = "Reverb Amount",
@@ -24604,6 +26142,32 @@ labels["Ghatam Dub 100 [RUN]"] = {
   ["Button 2"] = "LP / HP",
 }
 
+labels["Ghetto [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Ghost Cat Drum Machine [Run]"] = {
   ["Rotary 1"] = "Part 1 Volume",
   ["Rotary 2"] = "Part 2 Volume",
@@ -24790,6 +26354,32 @@ labels["Gin And Tonic Drum Machine [Run]"] = {
   ["Button 21"] = "Part 7 Reverb",
   ["Button 22"] = "Part 8 Reverb",
   ["Button 23"] = "MOD SEQ",
+}
+
+labels["Gin and Juice [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Gitch Step"] = {
@@ -26146,6 +27736,32 @@ labels["Gusto Drive"] = {
   ["Button 2"] = "Delay",
   ["Button 3"] = "Delay Mod",
   ["Button 4"] = "Octave Stack",
+}
+
+labels["Haahdtekk [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Hacker Bugs Pad"] = {
@@ -27611,6 +29227,32 @@ labels["Helluva Life"] = {
   ["Button 4"] = "Distortion On",
 }
 
+labels["Hennchata [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Hexagon Bell [Run]"] = {
   ["Rotary 1"] = "Chorus Amount",
   ["Rotary 2"] = "Reverb Amount",
@@ -28075,6 +29717,32 @@ labels["Hippity Hop Drums [Run]"] = {
   ["Button 18"] = "Degrade Drums",
 }
 
+labels["Hiss [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Hold My Comb"] = {
   ["Rotary 1"] = "Shaper Function",
   ["Rotary 2"] = "Amp Attack",
@@ -28212,6 +29880,10 @@ labels["Hook Bass Guitar"] = {
   ["Button 2"] = "Delay",
   ["Button 3"] = "Compress",
   ["Button 4"] = "Fuzz",
+}
+
+labels["Hook Theory Major"] = {
+  ["Rotary 1"] = "key",
 }
 
 labels["Hope Fall [Arp]"] = {
@@ -28457,6 +30129,32 @@ labels["House Pound Drums"] = {
   ["Button 3"] = "Snare Mute",
   ["Button 4"] = "Hat Mute",
   ["Button 5"] = "Cymb+Perc Mute",
+}
+
+labels["House Shuffla [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Howitzer [Arp]"] = {
@@ -29206,6 +30904,32 @@ labels["Impala Song"] = {
   ["Button 6"] = "Fixed Pitch",
 }
 
+labels["Impersonator [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Impish Bass"] = {
   ["Rotary 1"] = "Attack",
   ["Rotary 2"] = "Noise",
@@ -29726,6 +31450,17 @@ labels["Italo 84 [Run]"] = {
   ["Button 5"] = "Player",
 }
 
+labels["Italy Square – Micro from Mars"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["JP Sweeper"] = {
   ["Rotary 1"] = "Shape",
   ["Rotary 2"] = "Cutoff",
@@ -30040,6 +31775,84 @@ labels["Jetson Beat Machine [RUN]"] = {
   ["Button 30"] = "Part 7 Reverb",
   ["Button 31"] = "Part 8 Reverb",
   ["Button 32"] = "IR SIZE",
+}
+
+labels["Jiggy [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Jingolism [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Jitter [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["John Hughes Lead"] = {
@@ -30562,6 +32375,37 @@ labels["Kick Machine"] = {
   ["Button 4"] = "Noise Click",
 }
 
+labels["Kickedikick"] = {
+  ["Button 1"] = "kick",
+  ["Button 2"] = "snare",
+}
+
+labels["Kickin Mule [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Kicks - 93' East Kick Bank"] = {
   ["Rotary 1"] = "FILTER",
   ["Rotary 2"] = "RESONANCE",
@@ -30885,6 +32729,32 @@ labels["Knockout [Seq]"] = {
   ["Button 7"] = "Generator On",
 }
 
+labels["Knuppel Minimal [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Kobolit"] = {
   ["Rotary 1"] = "Reverb Amt",
   ["Rotary 2"] = "Decay",
@@ -30940,6 +32810,32 @@ labels["Kolaborant [Arp]"] = {
   ["Button 3"] = "Noise",
   ["Button 4"] = "Arp",
   ["Button 5"] = "Arp Osc Mod",
+}
+
+labels["Kompakted Love [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Kong Dirt [Run]"] = {
@@ -31064,6 +32960,57 @@ labels["Ky Sinking"] = {
   ["Button 2"] = "Compressor",
   ["Button 3"] = "Extra Width",
   ["Button 4"] = "Mono Lo",
+}
+
+labels["LCXL3 Remote Surface Init"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Rotary 12"] = "Control 12",
+  ["Rotary 13"] = "Control 13",
+  ["Rotary 14"] = "Control 14",
+  ["Rotary 15"] = "Control 15",
+  ["Rotary 16"] = "Control 16",
+  ["Rotary 17"] = "Control 17",
+  ["Rotary 18"] = "Control 18",
+  ["Rotary 19"] = "Control 19",
+  ["Rotary 20"] = "Control 20",
+  ["Rotary 21"] = "Control 21",
+  ["Rotary 22"] = "Control 22",
+  ["Rotary 23"] = "Control 23",
+  ["Rotary 24"] = "Control 24",
+  ["Rotary 25"] = "Control 25",
+  ["Rotary 26"] = "Control 26",
+  ["Rotary 27"] = "Control 27",
+  ["Rotary 28"] = "Control 28",
+  ["Rotary 29"] = "Control 29",
+  ["Rotary 30"] = "Control 30",
+  ["Rotary 31"] = "Control 31",
+  ["Rotary 32"] = "Control 32",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "Switch 9",
+  ["Button 10"] = "Switch 10",
+  ["Button 11"] = "Switch 11",
+  ["Button 12"] = "Switch 12",
+  ["Button 13"] = "Switch 13",
+  ["Button 14"] = "Switch 14",
+  ["Button 15"] = "Switch 15",
+  ["Button 16"] = "Switch 16",
 }
 
 labels["LFO FX"] = {
@@ -31837,6 +33784,60 @@ labels["Left-Right [Arp]"] = {
   ["Button 4"] = "On",
 }
 
+labels["Legendary Beats"] = {
+  ["Rotary 1"] = "BEAT VOL",
+  ["Rotary 2"] = "HATS VOL",
+  ["Rotary 3"] = "BEAT XFADE",
+  ["Rotary 4"] = "FILTER CUTOFF",
+  ["Rotary 5"] = "FILTER RES",
+  ["Rotary 6"] = "FILTER DECAY",
+  ["Rotary 7"] = "REV DRY/WET",
+  ["Rotary 8"] = "REV DECAY",
+  ["Rotary 9"] = "MAIN VOL",
+  ["Rotary 10"] = "PATTERN SELECT",
+  ["Rotary 11"] = "Quad Select 2",
+  ["Rotary 12"] = "Potentiometer",
+  ["Button 1"] = "12DB/24DB",
+  ["Button 2"] = "HP/LP",
+}
+
+labels["Leke [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["LeonoreVoxChoir"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Let It Play Guitar"] = {
   ["Rotary 1"] = "LPF",
   ["Rotary 2"] = "HPF",
@@ -32176,6 +34177,13 @@ labels["Lil' Baby [Run]"] = {
   ["Rotary 3"] = "Delay",
   ["Rotary 4"] = "Pan",
   ["Button 1"] = "Seq. On/Off",
+}
+
+labels["LilithLoop"] = {
+  ["Rotary 1"] = "Decay",
+  ["Rotary 2"] = "Resonance",
+  ["Button 1"] = "Formant",
+  ["Button 2"] = "Compress",
 }
 
 labels["Lima Drumkit [Run]"] = {
@@ -32561,6 +34569,17 @@ labels["Little Obie [Arp]"] = {
   ["Button 3"] = "Phaser",
   ["Button 4"] = "Arp On",
   ["Button 5"] = "Saw To Square",
+}
+
+labels["Little Purple Combi"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
 }
 
 labels["Little [Run]"] = {
@@ -33040,6 +35059,32 @@ labels["Lofi"] = {
   ["Button 4"] = "Delay",
 }
 
+labels["Lofi 909 [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Lofi Chillsynth"] = {
   ["Rotary 1"] = "Pattern 1 - 4",
   ["Rotary 2"] = "Delay",
@@ -33069,6 +35114,58 @@ labels["Lofi House Explorations"] = {
   ["Rotary 4"] = "Delay",
   ["Rotary 5"] = "Reverb",
   ["Rotary 6"] = "Master Volume",
+}
+
+labels["Lofi Noise [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Lofi [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Logical Flow 127 [RUN]"] = {
@@ -33935,6 +36032,32 @@ labels["M-one Piano"] = {
   ["Button 4"] = "Delay",
 }
 
+labels["M00mba7h0n [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["MAP Chorus Piano"] = {
   ["Rotary 1"] = "Speed",
   ["Rotary 2"] = "Resonance",
@@ -34158,6 +36281,32 @@ labels["Macro Phaser Pad [Run]"] = {
   ["Button 3"] = "Formant Mod.",
   ["Button 4"] = "Oct. Down",
   ["Button 5"] = "Phaser On/Off",
+}
+
+labels["Maddhaus [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Made On A Soft Synth (Lead)"] = {
@@ -34493,6 +36642,17 @@ labels["Mangled Magic [Seq]"] = {
   ["Button 7"] = "Generator On",
 }
 
+labels["Map My Umpf"] = {
+  ["Rotary 1"] = "Pattern",
+  ["Rotary 2"] = "Kick",
+  ["Rotary 3"] = "Perc Filter",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
 labels["Marble Run"] = {
   ["Rotary 1"] = "Bounces",
   ["Rotary 2"] = "Chaos",
@@ -34665,6 +36825,17 @@ labels["Matching Tubes [Run]"] = {
   ["Button 5"] = "Player",
 }
 
+labels["Matilda Orchester"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Matrix Balls [Arp]"] = {
   ["Rotary 1"] = "A-B Width",
   ["Rotary 2"] = "Level A",
@@ -34780,6 +36951,32 @@ labels["Mean & Short Bass"] = {
   ["Button 3"] = "Player",
   ["Button 4"] = "Transpose",
   ["Button 5"] = "Eq.",
+}
+
+labels["Meccano Safari Tours [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Mechanic Metal Growl"] = {
@@ -35953,6 +38150,57 @@ labels["Mini Percs"] = {
   ["Button 5"] = "Sequence",
 }
 
+labels["Mini XL3"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Rotary 12"] = "Control 12",
+  ["Rotary 13"] = "Control 13",
+  ["Rotary 14"] = "Control 14",
+  ["Rotary 15"] = "Control 15",
+  ["Rotary 16"] = "Control 16",
+  ["Rotary 17"] = "Control 17",
+  ["Rotary 18"] = "Control 18",
+  ["Rotary 19"] = "Control 19",
+  ["Rotary 20"] = "Control 20",
+  ["Rotary 21"] = "Control 21",
+  ["Rotary 22"] = "Control 22",
+  ["Rotary 23"] = "Control 23",
+  ["Rotary 24"] = "Control 24",
+  ["Rotary 25"] = "Control 25",
+  ["Rotary 26"] = "Control 26",
+  ["Rotary 27"] = "Control 27",
+  ["Rotary 28"] = "Control 28",
+  ["Rotary 29"] = "Control 29",
+  ["Rotary 30"] = "Control 30",
+  ["Rotary 31"] = "Control 31",
+  ["Rotary 32"] = "Control 32",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "Switch 9",
+  ["Button 10"] = "Switch 10",
+  ["Button 11"] = "Switch 11",
+  ["Button 12"] = "Switch 12",
+  ["Button 13"] = "Switch 13",
+  ["Button 14"] = "Switch 14",
+  ["Button 15"] = "Switch 15",
+  ["Button 16"] = "Switch 16",
+}
+
 labels["Minimal Bouncy Tech [Run]"] = {
   ["Rotary 1"] = "Reverb",
   ["Rotary 2"] = "Transpose",
@@ -36100,6 +38348,32 @@ labels["Minimal Garage"] = {
   ["Rotary 10"] = "Perc",
   ["Rotary 11"] = "Snare Verb",
   ["Button 1"] = "Sequence",
+}
+
+labels["Minimal Groove [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Minimal Harmonic Bass"] = {
@@ -36641,6 +38915,32 @@ labels["Modalities 1989 - 1990 Drums"] = {
   ["Rotary 2"] = "Phaser",
   ["Rotary 3"] = "Low Pass",
   ["Rotary 4"] = "High Pass",
+}
+
+labels["Modern Cumbia [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Modern D&B Drum Riser [Run]"] = {
@@ -37953,6 +40253,10 @@ labels["Mysterious Streams"] = {
   ["Rotary 8"] = "Reverb Amount",
   ["Button 1"] = "Chords",
   ["Button 2"] = "Sequence",
+}
+
+labels["Mysterious Whisper"] = {
+  ["Button 4"] = "run",
 }
 
 labels["Mystic Basson [ModWheel]"] = {
@@ -39767,6 +42071,13 @@ labels["Nostalgic Times"] = {
   ["Button 2"] = "Delay",
 }
 
+labels["Noter Beatin"] = {
+  ["Button 1"] = "kick",
+  ["Button 2"] = "snare",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Nothing Left"] = {
   ["Rotary 1"] = "Flanger Amount",
   ["Rotary 2"] = "Delay Level",
@@ -39864,6 +42175,32 @@ labels["Nucleus X [Run]"] = {
   ["Button 4"] = "Delay On/Off",
 }
 
+labels["Nuskoolbrk [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Nutella [Run]"] = {
   ["Rotary 1"] = "Volume",
   ["Rotary 2"] = "Hi Pass Filter",
@@ -39934,6 +42271,72 @@ labels["OG Bass [Run]"] = {
   ["Button 3"] = "AlliGator",
   ["Button 4"] = "Tube Amp",
   ["Button 5"] = "Sequencer",
+}
+
+labels["OPD Jam Algoritm"] = {
+  ["Rotary 1"] = "Ripley D/W",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
+labels["OPD Jam Friktion"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
+labels["OPD Jam Obsession"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
+labels["OPD Jam Polytone"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
+labels["OPD Jam Processed Piano"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
+labels["OPD Jam Umpf"] = {
+  ["Rotary 1"] = "Pattern",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
 }
 
 labels["OTT Doom Comp FX"] = {
@@ -40008,6 +42411,13 @@ labels["Obie Poly [Run]"] = {
   ["Button 5"] = "Player",
 }
 
+labels["Objekt Brass Section"] = {
+  ["Rotary 9"] = "Fader",
+  ["Rotary 10"] = "Quad Select 1",
+  ["Rotary 11"] = "Quad Select 2",
+  ["Rotary 12"] = "Potentiometer",
+}
+
 labels["Objekt Saw"] = {
   ["Rotary 1"] = "Modal Freq",
   ["Rotary 2"] = "Modal Env",
@@ -40067,6 +42477,78 @@ labels["Objektorio"] = {
   ["Button 2"] = "Spread",
   ["Button 3"] = "Delay",
   ["Button 4"] = "Reverb",
+}
+
+labels["Obsession Drums"] = {
+  ["Rotary 1"] = "Kick",
+  ["Rotary 2"] = "Pan",
+  ["Rotary 3"] = "Snare",
+  ["Rotary 4"] = "Pan",
+  ["Rotary 5"] = "Clap",
+  ["Rotary 6"] = "Pan",
+  ["Rotary 7"] = "HH Closed",
+  ["Rotary 8"] = "Pan",
+  ["Rotary 9"] = "HH Open",
+  ["Rotary 10"] = "Pan",
+  ["Rotary 11"] = "Tom Hi",
+  ["Rotary 12"] = "Pan",
+  ["Rotary 13"] = "Tom Mid",
+  ["Rotary 14"] = "Pan",
+  ["Rotary 15"] = "Tom Lo",
+  ["Rotary 16"] = "Pan",
+  ["Rotary 17"] = "Timpani Hi",
+  ["Rotary 18"] = "Pan",
+  ["Rotary 19"] = "Timpani Lo",
+  ["Rotary 20"] = "Pan",
+  ["Rotary 21"] = "Metal",
+  ["Rotary 22"] = "Pan",
+  ["Rotary 23"] = "Reso Hat",
+  ["Rotary 24"] = "Pan",
+  ["Rotary 25"] = "Torch",
+  ["Rotary 26"] = "Pan",
+  ["Rotary 27"] = "Zip",
+  ["Rotary 28"] = "Pan",
+  ["Rotary 29"] = "Slap",
+  ["Rotary 30"] = "Pan",
+  ["Rotary 31"] = "Blip",
+  ["Rotary 32"] = "Pan",
+  ["Button 1"] = "Solo",
+  ["Button 2"] = "Mute",
+  ["Button 3"] = "Solo",
+  ["Button 4"] = "Mute",
+  ["Button 5"] = "Solo",
+  ["Button 6"] = "Mute",
+  ["Button 7"] = "Solo",
+  ["Button 8"] = "Mute",
+  ["Button 9"] = "Solo",
+  ["Button 10"] = "Mute",
+  ["Button 11"] = "Solo",
+  ["Button 12"] = "Mute",
+  ["Button 13"] = "Solo",
+  ["Button 14"] = "Mute",
+  ["Button 15"] = "Solo",
+  ["Button 16"] = "Mute",
+  ["Button 17"] = "Solo",
+  ["Button 18"] = "Mute",
+  ["Button 19"] = "Solo",
+  ["Button 20"] = "Mute",
+  ["Button 21"] = "Solo",
+  ["Button 22"] = "Mute",
+  ["Button 23"] = "Solo",
+  ["Button 24"] = "Mute",
+  ["Button 25"] = "Solo",
+  ["Button 26"] = "Mute",
+  ["Button 27"] = "Solo",
+  ["Button 28"] = "Mute",
+  ["Button 29"] = "Solo",
+  ["Button 30"] = "Mute",
+  ["Button 31"] = "Mute",
+  ["Button 32"] = "Solo",
+}
+
+labels["Obsession Sound Effects"] = {
+  ["Button 1"] = "OB Effects",
+  ["Button 2"] = "Pitch A/B",
 }
 
 labels["Ocarina Strings"] = {
@@ -40512,6 +42994,11 @@ labels["Open Sky Beat"] = {
   ["Button 4"] = "Robot Snare",
 }
 
+labels["Operator Madness"] = {
+  ["Rotary 1"] = "PATTERN",
+  ["Button 1"] = "FILTER",
+}
+
 labels["Opiuo Mind"] = {
   ["Rotary 1"] = "Speed",
   ["Rotary 2"] = "Formant",
@@ -40572,6 +43059,32 @@ labels["Orbit Line"] = {
   ["Button 2"] = "Scale Player",
   ["Button 3"] = "Wide",
   ["Button 4"] = "Delay",
+}
+
+labels["Orbital [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Orchestral Celeste"] = {
@@ -40900,6 +43413,12 @@ labels["Osaka Drumkit [Run]"] = {
   ["Button 5"] = "Sequencer",
 }
 
+labels["OsmiPluck"] = {
+  ["Rotary 2"] = "FEEDBACK",
+  ["Rotary 3"] = "FM AMT",
+  ["Rotary 4"] = "DEC REL",
+}
+
 labels["Ottawa Drumkit [Run]"] = {
   ["Rotary 1"] = "Pattern Select",
   ["Rotary 2"] = "HPF Delay",
@@ -41167,6 +43686,36 @@ labels["PIANO - VideoTAPEd Piano"] = {
   ["Button 4"] = "HPF",
 }
 
+labels["PLUM Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["PLUM Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["POML Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["POML Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
 labels["PPG Dark Bell"] = {
   ["Rotary 1"] = "Chorus Amount",
   ["Rotary 2"] = "Delay Amount",
@@ -41265,6 +43814,32 @@ labels["Pads - Silk Worms"] = {
   ["Rotary 2"] = "RESONANCE",
   ["Rotary 3"] = "REVERB DECAY",
   ["Rotary 4"] = "REVERB AMOUNT",
+}
+
+labels["Panama [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Pandoras Box Synth"] = {
@@ -41391,6 +43966,32 @@ labels["Parasite"] = {
   ["Button 2"] = "Delay On",
   ["Button 3"] = "Chorus On",
   ["Button 4"] = "Distortion On",
+}
+
+labels["Parklife [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Parliament Phunk"] = {
@@ -41523,6 +44124,102 @@ labels["Partial Stretch"] = {
   ["Button 4"] = "Hall",
 }
 
+labels["Party Girl Boilermaker"] = {
+  ["Rotary 1"] = "Intensity",
+  ["Rotary 2"] = "Control 15",
+  ["Rotary 3"] = "Control 1",
+  ["Rotary 4"] = "Control 2",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["Party Girl Euro Bass"] = {
+  ["Rotary 1"] = "(ctrl1)",
+  ["Rotary 2"] = "(ctrl2)",
+  ["Rotary 3"] = "(ctrl3)",
+  ["Rotary 4"] = "(ctrl4)",
+  ["Button 1"] = "(sw1)",
+  ["Button 2"] = "(sw 2)",
+  ["Button 3"] = "(sw 3)",
+  ["Button 4"] = "(sw 4)",
+}
+
+labels["Party Girl Guitar"] = {
+  ["Rotary 1"] = "PATTERN",
+  ["Rotary 2"] = "[rot 2]",
+  ["Rotary 3"] = "[rot 3]",
+  ["Rotary 4"] = "[macro]",
+  ["Button 1"] = "PLAY",
+  ["Button 2"] = "[sw 2]",
+  ["Button 3"] = "[sw 3]",
+  ["Button 4"] = "[sw 4]",
+}
+
+labels["Party Girl Klavier"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["Party Girl Obsession SFX"] = {
+  ["Button 1"] = "OB Effects",
+  ["Button 2"] = "Pitch A/B",
+}
+
+labels["Party Girl Synth'n'707"] = {
+  ["Rotary 1"] = "(ctrl1)",
+  ["Rotary 2"] = "(ctrl2)",
+  ["Rotary 3"] = "INTENSITY",
+  ["Rotary 4"] = "(ctrl4)",
+  ["Button 1"] = "(sw1)",
+  ["Button 2"] = "(sw2)",
+  ["Button 3"] = "(sw3)",
+  ["Button 4"] = "(sw4)",
+}
+
+labels["Party Girl Thick Acid"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["Party Girl Vocals FX"] = {
+  ["Rotary 1"] = "[rot 1]",
+  ["Rotary 2"] = "[rot 2]",
+  ["Rotary 3"] = "[rot 3]",
+  ["Rotary 4"] = "[macro]",
+  ["Button 1"] = "[play]",
+  ["Button 2"] = "[sw 2]",
+  ["Button 3"] = "[sw 3]",
+  ["Button 4"] = "[sw 4]",
+}
+
+labels["Party Girl Vocals FX (legacy)"] = {
+  ["Button 1"] = "Polar",
+  ["Button 2"] = "Ripley",
+  ["Button 3"] = "Superspook",
+  ["Button 4"] = "Silencer",
+}
+
+labels["Party Girl Vocals FX Combinator"] = {
+  ["Button 1"] = "Polar",
+  ["Button 2"] = "Ripley",
+  ["Button 3"] = "Superspook",
+  ["Button 4"] = "Silencer",
+}
+
 labels["Patatas Kit"] = {
   ["Rotary 1"] = "Kit Decay",
   ["Rotary 2"] = "Decay",
@@ -41547,6 +44244,31 @@ labels["Pattern Stutter-Gator FX"] = {
   ["Button 2"] = "AR-F & ST-P",
   ["Button 3"] = "Stutter Time Mod",
   ["Button 4"] = "Lo-Fi Mod",
+}
+
+labels["Patty's First Time Rhodes"] = {
+  ["Rotary 1"] = "Cutoff",
+  ["Rotary 2"] = "Res",
+  ["Rotary 3"] = "Decay Time",
+  ["Rotary 4"] = "Chorus",
+}
+
+labels["Patty's Grand C7"] = {
+  ["Rotary 1"] = "Attack",
+  ["Rotary 2"] = "Hammer",
+  ["Rotary 3"] = "Rel Reso",
+  ["Rotary 4"] = "Lo Cut",
+}
+
+labels["Patty's Impersonator"] = {
+  ["Rotary 1"] = "Pattern",
+  ["Rotary 2"] = "Kick",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
 }
 
 labels["Pd Activated"] = {
@@ -41659,6 +44381,32 @@ labels["Peggys Dance Piano"] = {
   ["Button 5"] = "Low Cut",
   ["Button 6"] = "Sequence",
   ["Button 7"] = "Fixed MIDI",
+}
+
+labels["Penalty [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Pencil Rewinder"] = {
@@ -42537,6 +45285,10 @@ labels["Piano [Run]"] = {
   ["Rotary 4"] = "Sidechain Amount",
 }
 
+labels["Piano and Bass Split"] = {
+  ["Button 1"] = "Split",
+}
+
 labels["Piano and Strings"] = {
   ["Rotary 1"] = "Piano",
   ["Rotary 2"] = "String",
@@ -43115,6 +45867,10 @@ labels["Playas [Seq]"] = {
   ["Button 5"] = "Arp",
 }
 
+labels["Player Clip Controller"] = {
+  ["Button 1"] = "Enable",
+}
+
 labels["Playful Shimmer"] = {
   ["Rotary 1"] = "Octave",
   ["Rotary 2"] = "Level",
@@ -43179,6 +45935,32 @@ labels["Playstation Lead"] = {
   ["Rotary 2"] = "Resonance",
   ["Rotary 3"] = "Echo",
   ["Rotary 4"] = "Reverb Decay",
+}
+
+labels["Ploddinon [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Plonky"] = {
@@ -43889,6 +46671,32 @@ labels["Post-Punk Chorus Bass"] = {
   ["Button 4"] = "Overdrive",
 }
 
+labels["Pounding [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Poussou"] = {
   ["Rotary 1"] = "Cutoff",
   ["Rotary 2"] = "Resonance",
@@ -43957,6 +46765,32 @@ labels["Prague Drumkit [Run]"] = {
   ["Button 5"] = "Sequencer",
 }
 
+labels["Prankster [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Precise Pop Bass"] = {
   ["Rotary 1"] = "Bass Character",
   ["Rotary 2"] = "Pick Noise",
@@ -44013,6 +46847,32 @@ labels["Prince Piano [Run]"] = {
   ["Button 3"] = "Reverb",
   ["Button 4"] = "Glitcher",
   ["Button 5"] = "Player",
+}
+
+labels["Prince [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Print Plate Pluck"] = {
@@ -44573,6 +47433,32 @@ labels["Pulcinella [Seq]"] = {
   ["Button 5"] = "Sequence",
 }
 
+labels["Pulled Patch [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Pulsar Transmission"] = {
   ["Rotary 1"] = "Pattern",
   ["Rotary 2"] = "Cutoff",
@@ -44670,6 +47556,32 @@ labels["Pumped Chords"] = {
   ["Button 4"] = "Rotor",
 }
 
+labels["Pumped [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Pumping Crackling"] = {
   ["Rotary 1"] = "Noise Color",
   ["Rotary 2"] = "Phasing",
@@ -44690,6 +47602,32 @@ labels["Pumping Piano [Seq]"] = {
   ["Button 2"] = "PIANO ATTACK",
   ["Button 3"] = "PUMP",
   ["Button 4"] = "SIDECHAIN FX",
+}
+
+labels["Punch Drunk [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Punchy & Dirty Kit"] = {
@@ -45014,6 +47952,26 @@ labels["Quarter Rhythmics"] = {
   ["Button 2"] = "ON",
 }
 
+labels["Quattro Retro DX"] = {
+  ["Rotary 1"] = "patch A",
+  ["Rotary 2"] = "patch B",
+  ["Rotary 3"] = "xfade A<->B",
+  ["Button 1"] = "saturation",
+  ["Button 2"] = "chorus",
+  ["Button 3"] = "compressor",
+  ["Button 4"] = "reverb",
+}
+
+labels["Quattro Retro DX 002"] = {
+  ["Rotary 1"] = "patch A",
+  ["Rotary 2"] = "patch B",
+  ["Rotary 3"] = "xfade A<->B",
+  ["Button 1"] = "saturation",
+  ["Button 2"] = "chorus",
+  ["Button 3"] = "compressor",
+  ["Button 4"] = "reverb",
+}
+
 labels["QueeQuee"] = {
   ["Rotary 1"] = "Layer Balance",
   ["Rotary 2"] = "Distortion",
@@ -45224,6 +48182,12 @@ labels["REM Layers [Seq]"] = {
   ["Button 2"] = "Arp. On/Off",
   ["Button 3"] = "Phaser On/Off",
   ["Button 4"] = "Dist. On/Off",
+}
+
+labels["Rabammel"] = {
+  ["Rotary 1"] = "Pattern",
+  ["Rotary 2"] = "Kick",
+  ["Rotary 3"] = "DampKik",
 }
 
 labels["Racer Bass [Seq]"] = {
@@ -45559,6 +48523,69 @@ labels["Raw Bandpass"] = {
   ["Rotary 11"] = "Mod FX Amt",
 }
 
+labels["Raw Oompf [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Raw Power [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Raw Techno Bass"] = {
+  ["Rotary 1"] = "Busy",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+}
+
 labels["Razor Bass"] = {
   ["Rotary 1"] = "Sync",
   ["Rotary 2"] = "Pitch Mod",
@@ -45617,6 +48644,53 @@ labels["Re-Up"] = {
   ["Button 2"] = "Delay On",
   ["Button 3"] = "Chorus On",
   ["Button 4"] = "Distortion On",
+}
+
+labels["ReBridge"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Rotary 10"] = "Control 10",
+  ["Rotary 11"] = "Control 11",
+  ["Rotary 12"] = "Control 12",
+  ["Rotary 13"] = "Control 13",
+  ["Rotary 14"] = "Control 14",
+  ["Rotary 15"] = "Control 15",
+  ["Rotary 16"] = "Control 16",
+  ["Rotary 17"] = "Control 17",
+  ["Rotary 18"] = "Control 18",
+  ["Rotary 19"] = "Control 19",
+  ["Rotary 20"] = "Control 20",
+  ["Rotary 21"] = "Control 21",
+  ["Rotary 22"] = "Control 22",
+  ["Rotary 23"] = "Control 23",
+  ["Rotary 24"] = "Control 24",
+  ["Rotary 25"] = "Control 25",
+  ["Rotary 26"] = "Control 26",
+  ["Rotary 27"] = "Control 27",
+  ["Rotary 28"] = "Control 28",
+  ["Rotary 29"] = "Control 29",
+  ["Rotary 30"] = "Control 30",
+  ["Rotary 31"] = "Control 31",
+  ["Rotary 32"] = "Control 32",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "Switch 9",
+  ["Button 10"] = "Switch 10",
+  ["Button 11"] = "Switch 11",
+  ["Button 12"] = "Switch 12",
 }
 
 labels["Ready 2 Rock [Run]"] = {
@@ -46281,6 +49355,32 @@ labels["Restless Guitar Chords [Run]"] = {
   ["Rotary 4"] = "Master Level",
   ["Button 1"] = "Reverse",
   ["Button 2"] = "Player On/Off",
+}
+
+labels["Restrained [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Resynthesised Bass"] = {
@@ -46998,6 +50098,32 @@ labels["Rhythmic Trance Pad"] = {
   ["Button 1"] = "Chord Sequencer",
 }
 
+labels["Rhythmoid [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Rhytmic Ambientophone"] = {
   ["Rotary 1"] = "Amp Release",
   ["Rotary 2"] = "Filter Freq",
@@ -47060,6 +50186,32 @@ labels["Rides on the Storm [Run]"] = {
   ["Button 2"] = "Comb",
   ["Button 3"] = "Filter Gate",
   ["Button 4"] = "Psyche",
+}
+
+labels["Ridik [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Riffugee"] = {
@@ -47138,6 +50290,32 @@ labels["Ring Modality"] = {
   ["Button 3"] = "Unison",
   ["Button 4"] = "Dirt",
   ["Button 5"] = "Pitch Detect",
+}
+
+labels["Rinsing [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Rio Grande 1982 [Arp]"] = {
@@ -47263,6 +50441,17 @@ labels["Road Warriors"] = {
   ["Button 4"] = "Trashed",
 }
 
+labels["Roar Bass"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Roboride [RUN]"] = {
   ["Rotary 1"] = "Kick Pitch",
   ["Rotary 2"] = "Snare Pitch",
@@ -47319,6 +50508,54 @@ labels["Rock And Lol"] = {
   ["Button 2"] = "Amp",
   ["Button 3"] = "Gator",
   ["Button 4"] = "Gator Speed",
+}
+
+labels["RockRiff Cheezy"] = {
+  ["Rotary 1"] = "wahwah",
+  ["Rotary 2"] = "decay",
+  ["Rotary 3"] = "bite",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
+labels["RockRiff Fuzzy"] = {
+  ["Rotary 1"] = "wahwah",
+  ["Rotary 2"] = "decay",
+  ["Rotary 3"] = "bite",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
+labels["Rollatech [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Roller Drum Loops [Run]"] = {
@@ -47585,6 +50822,58 @@ labels["Rousing Lead"] = {
   ["Button 1"] = "Modulation",
   ["Button 2"] = "On",
   ["Button 3"] = "On",
+}
+
+labels["Royal [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["Royce [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Rubbery Bass (Bass FX)"] = {
@@ -48550,6 +51839,32 @@ labels["Sceptrum"] = {
   ["Button 4"] = "Unison On",
 }
 
+labels["Sci Tec [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Sci-Fi Lead"] = {
   ["Rotary 1"] = "SCI FI LEAD",
   ["Rotary 2"] = "SAW LAYER",
@@ -48698,6 +52013,32 @@ labels["Screaming Bass"] = {
   ["Button 2"] = "Fuzz",
   ["Button 3"] = "Delay",
   ["Button 4"] = "Synth Reverb",
+}
+
+labels["Screwdriver [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Seabeams Across Orion Bass"] = {
@@ -48966,6 +52307,11 @@ labels["Select Character"] = {
   ["Button 2"] = "Lo Cut",
   ["Button 3"] = "Unison + Spread",
   ["Button 4"] = "Reverb",
+}
+
+labels["Sentimental"] = {
+  ["Rotary 1"] = "synth-natural",
+  ["Button 1"] = "play",
 }
 
 labels["Sentry Auto Lazer"] = {
@@ -49644,6 +52990,17 @@ labels["Shore Piano"] = {
   ["Button 5"] = "Sequence",
 }
 
+labels["Shorty Prevails Drums"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
+}
+
 labels["Should've Stayed Home"] = {
   ["Rotary 1"] = "Reverb Wet",
   ["Rotary 2"] = "Delay Wet",
@@ -49669,6 +53026,32 @@ labels["Shredded Roller Bass [Seq]"] = {
   ["Rotary 7"] = "Noise",
   ["Rotary 8"] = "Sidechain Amount",
   ["Button 1"] = "Sidechain",
+}
+
+labels["Shroom [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Shrooms"] = {
@@ -49710,6 +53093,32 @@ labels["Shuffle Plucks"] = {
   ["Button 3"] = "Ping-Pong",
   ["Button 4"] = "Synth Reverb",
   ["Button 5"] = "Player",
+}
+
+labels["Shuffled [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Shuttle Down"] = {
@@ -50530,6 +53939,32 @@ labels["Skreech Lead"] = {
   ["Button 2"] = "Extra Width",
 }
 
+labels["Skyballz [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Skyline Sunset"] = {
   ["Rotary 1"] = "Sample Speed",
   ["Rotary 2"] = "Cutoff",
@@ -50766,6 +54201,32 @@ labels["Slight Dropper 808 Sub [Seq]"] = {
   ["Button 2"] = "Player",
 }
 
+labels["Slightly Carnival [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Slim Boy Sunset [Run]"] = {
   ["Rotary 1"] = "Arp Speed",
   ["Rotary 2"] = "Filter Freq",
@@ -50997,6 +54458,32 @@ labels["Slow Subber"] = {
   ["Button 9"] = "Mono",
 }
 
+labels["Slow Tease Refuse"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Slowmotion Drone"] = {
   ["Rotary 1"] = "Amp   A",
   ["Rotary 2"] = "Amp   D",
@@ -51103,6 +54590,32 @@ labels["Smokey Eyes"] = {
   ["Rotary 12"] = "Tape Drive",
   ["Rotary 13"] = "Noise Level",
   ["Button 1"] = "LP / HP",
+}
+
+labels["Smokey [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Smooth Drive"] = {
@@ -51700,6 +55213,20 @@ labels["Soft Sub + Synth Guitar Pluck"] = {
   ["Button 2"] = "GUITAR OCTAVE",
   ["Button 3"] = "GUITAR PHASER",
   ["Button 4"] = "GUITAR 5THS",
+}
+
+labels["Soft Sweet Blow Bass"] = {
+  ["Rotary 4"] = "(OUT OF ORDER)",
+  ["Button 1"] = "Play",
+}
+
+labels["Soft Sweet Blow Beart"] = {
+  ["Button 1"] = "Play",
+}
+
+labels["Soft Sweet Blow Peggio"] = {
+  ["Rotary 4"] = "(OUT OF ORDER)",
+  ["Button 1"] = "Play",
 }
 
 labels["Soft Uplifting Pop [Run]"] = {
@@ -52786,6 +56313,32 @@ labels["Speed Racer Kit (136) [Run]"] = {
   ["Button 5"] = "PLAYER",
 }
 
+labels["Speedelek [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Spellbound Keys"] = {
   ["Rotary 1"] = "Speed",
   ["Rotary 2"] = "Length",
@@ -53093,6 +56646,12 @@ labels["Spooky Squares [Seq]"] = {
   ["Button 1"] = "Faster Phaser",
   ["Button 2"] = "Reverb & Echo",
   ["Button 3"] = "Player",
+}
+
+labels["SpookyLeonoreVoxChoir"] = {
+  ["Button 1"] = "Gate",
+  ["Button 2"] = "Filter",
+  ["Button 3"] = "Delay",
 }
 
 labels["Spounge Kit"] = {
@@ -55044,6 +58603,32 @@ labels["Straight Bas"] = {
   ["Rotary 4"] = "Drive",
 }
 
+labels["Straight Jackin [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Straight Pulser"] = {
   ["Rotary 1"] = "Pulse",
   ["Rotary 2"] = "Unison Detune",
@@ -55612,6 +59197,20 @@ labels["Studio Acoustic"] = {
   ["Rotary 5"] = "High Pass",
 }
 
+labels["Studio Piano"] = {
+  ["Rotary 1"] = "Timbre",
+  ["Rotary 2"] = "Close",
+  ["Rotary 3"] = "Jazz",
+  ["Rotary 4"] = "Room",
+}
+
+labels["Studio Piano Reverb"] = {
+  ["Rotary 1"] = "Dry/Wet",
+  ["Rotary 2"] = "Decay",
+  ["Rotary 3"] = "HF Damp",
+  ["Rotary 4"] = "Hi EQ",
+}
+
 labels["Stumble Step [RUN]"] = {
   ["Rotary 1"] = "VARIATION SELECT",
   ["Rotary 2"] = "Slice Attack",
@@ -55626,6 +59225,32 @@ labels["Stumble Step [RUN]"] = {
   ["Rotary 11"] = "Verb Amount",
   ["Rotary 12"] = "Delay Amount",
   ["Button 1"] = "LOOP",
+}
+
+labels["Stunted [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Stylophonic DNB Bass [RUN]"] = {
@@ -55820,6 +59445,32 @@ labels["Subgopnik"] = {
   ["Button 2"] = "Tone",
   ["Button 3"] = "Feedback",
   ["Button 4"] = "Release",
+}
+
+labels["Subhead Inspired [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Subsea Scanner"] = {
@@ -56825,6 +60476,32 @@ labels["Synchronicity"] = {
   ["Button 4"] = "Unison On",
 }
 
+labels["Syncopator [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Synnthiss"] = {
   ["Rotary 1"] = "Delay",
   ["Rotary 2"] = "Filter Gate Rel",
@@ -56946,6 +60623,32 @@ labels["Synth Royalty Lead [Run]"] = {
   ["Rotary 4"] = "Master Level",
   ["Rotary 5"] = "Release",
   ["Button 1"] = "Player On/Off",
+}
+
+labels["Synth n 707 [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Synthesized Percusion Machine [RUN]"] = {
@@ -57235,6 +60938,21 @@ labels["System Failure"] = {
   ["Button 4"] = "Lo-Fi",
 }
 
+labels["TANG Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["TANG Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
 labels["TB Or Not TB [Run]"] = {
   ["Rotary 1"] = "Chorus Amount",
   ["Rotary 2"] = "Delay Amount",
@@ -57243,6 +60961,21 @@ labels["TB Or Not TB [Run]"] = {
   ["Rotary 5"] = "Distortion",
   ["Rotary 6"] = "Reverb Amount",
   ["Button 1"] = "Pattern",
+}
+
+labels["TIFF Bus FX"] = {
+  ["Rotary 1"] = "MACRO",
+}
+
+labels["TIFF Instrument"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
 }
 
 labels["TT-Tube [Run]"] = {
@@ -57996,6 +61729,32 @@ labels["Technochrome Synth Chords"] = {
   ["Button 3"] = "Delay",
 }
 
+labels["Technoid [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Technologic [82 BPM]"] = {
   ["Rotary 1"] = "X Pos",
   ["Rotary 2"] = "Y Pos",
@@ -58535,6 +62294,32 @@ labels["The End [Seq]"] = {
   ["Rotary 8"] = "Chorus Depth",
   ["Button 1"] = "Seq. On/Off",
   ["Button 2"] = "Demolish On/Off",
+}
+
+labels["The Final Rhythm [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["The First Kiss"] = {
@@ -59972,6 +63757,32 @@ labels["Trap Drumkit [Run]"] = {
   ["Button 5"] = "Sequencer",
 }
 
+labels["Trap Hop [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Trap Horror [Seq]"] = {
   ["Rotary 1"] = "Image",
   ["Rotary 2"] = "Bottom Mic",
@@ -60079,6 +63890,32 @@ labels["Trapped"] = {
   ["Button 2"] = "Delay On",
   ["Button 3"] = "Chorus On",
   ["Button 4"] = "Distortion On",
+}
+
+labels["Trapperz [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Trappy Riser"] = {
@@ -60343,6 +64180,32 @@ labels["Triangulated [Seq]"] = {
   ["Button 3"] = "Player",
 }
 
+labels["Tribal Discotech [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Tribal Objekt"] = {
   ["Rotary 1"] = "Exciter",
   ["Rotary 2"] = "Modal",
@@ -60392,6 +64255,32 @@ labels["Tribal Tech House [Run]"] = {
   ["Rotary 9"] = "Comb Frequency",
   ["Button 1"] = "Comb Filter",
   ["Button 2"] = "Player",
+}
+
+labels["Tribalist [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["Tribes [Run]"] = {
@@ -60491,6 +64380,17 @@ labels["Triple 80's Poly Pluck"] = {
   ["Rotary 10"] = "Clean Sine Decay",
   ["Rotary 11"] = "Master Tape Mod",
   ["Button 1"] = "Malstrom Noise",
+}
+
+labels["Triple Complex"] = {
+  ["Rotary 1"] = "MACRO",
+  ["Rotary 2"] = "INSTR",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
 }
 
 labels["Triple Harmonic Pluck"] = {
@@ -60671,6 +64571,32 @@ labels["Tropical Time [Run]"] = {
   ["Button 3"] = "OSC1 Semi +7",
   ["Button 4"] = "OSC2 Plucked",
   ["Button 5"] = "Player On",
+}
+
+labels["Troublestep [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
 }
 
 labels["True Self Guitar"] = {
@@ -61265,6 +65191,11 @@ labels["Ultraviolet Synth Chords"] = {
   ["Button 2"] = "Unison",
   ["Button 3"] = "Reverb",
   ["Button 4"] = "Delay",
+}
+
+labels["Umpf Savanna"] = {
+  ["Rotary 1"] = "Pattern",
+  ["Button 1"] = "Play",
 }
 
 labels["Unbounded Emotion"] = {
@@ -62274,6 +66205,13 @@ labels["Vibrant SAW Chord"] = {
   ["Button 4"] = "Ping-Pong",
 }
 
+labels["Vibraslap"] = {
+  ["Rotary 1"] = "Length",
+  ["Rotary 2"] = "X",
+  ["Rotary 3"] = "Y",
+  ["Rotary 4"] = "Low",
+}
+
 labels["Victory Marcato [Run]"] = {
   ["Rotary 1"] = "Volume",
   ["Rotary 2"] = "Pan",
@@ -63020,6 +66958,32 @@ labels["Voltage [Arp]"] = {
   ["Button 7"] = "Arp 2",
 }
 
+labels["Vortextual [UCLUB]"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
 labels["Vox Air Synth"] = {
   ["Rotary 1"] = "Low Cut",
   ["Rotary 2"] = "High Cut",
@@ -63242,6 +67206,17 @@ labels["WInterz [Run]"] = {
   ["Button 4"] = "Gate Trigger",
   ["Button 5"] = "Player",
   ["Button 6"] = "Pattern Mutation",
+}
+
+labels["Waberndes Europa"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["Waiting For Hope Drum Machine [Run]"] = {
@@ -64951,6 +68926,247 @@ labels["X-Synth Mod Keys"] = {
   ["Button 4"] = "IR Mode",
 }
 
+labels["X-Touch Algo (2x Quad-Switch)"] = {
+  ["Rotary 1"] = "FEEDBACK",
+  ["Rotary 2"] = "FM AMOUNT",
+  ["Rotary 3"] = "DEC/REL",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "REV DECAY",
+  ["Rotary 8"] = "REV DRY/WET",
+  ["Rotary 9"] = "MASTER VOL",
+  ["Rotary 10"] = "PATCH SELECT",
+  ["Rotary 11"] = "FX SELECT",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["X-Touch Algoritm"] = {
+  ["Rotary 1"] = "FM AMOUNT",
+  ["Rotary 2"] = "DEC/REL",
+  ["Rotary 3"] = "FEEDBACK",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "EQ",
+  ["Button 10"] = "RESO",
+  ["Button 11"] = "CHRS",
+  ["Button 12"] = "COMP",
+  ["Button 13"] = "DLY",
+  ["Button 14"] = "REV",
+  ["Button 15"] = "Switch 15",
+  ["Button 16"] = "Switch 16",
+}
+
+labels["X-Touch Big Piano"] = {
+  ["Rotary 1"] = "Piano Volume",
+  ["Rotary 2"] = "Character",
+  ["Rotary 3"] = "E-Piano Volume",
+  ["Rotary 4"] = "Chorus Amount",
+  ["Rotary 5"] = "Drive Amount",
+  ["Rotary 6"] = "FM-Piano Volume",
+  ["Rotary 7"] = "FM Amount",
+  ["Rotary 8"] = "Chorus Amount",
+  ["Rotary 9"] = "Release",
+  ["Rotary 10"] = "Width",
+  ["Rotary 11"] = "Drive Color",
+  ["Rotary 12"] = "Drive Amount",
+  ["Rotary 13"] = "Reverb Amount",
+  ["Rotary 14"] = "Delay Amount",
+  ["Rotary 15"] = "Decay",
+  ["Rotary 16"] = "Feedback",
+  ["Rotary 17"] = "Mod Amount",
+  ["Rotary 18"] = "Speed",
+  ["Button 1"] = "Piano On",
+  ["Button 2"] = "Switch 4",
+  ["Button 3"] = "E-Piano On",
+  ["Button 4"] = "Switch 5",
+  ["Button 5"] = "Switch 6",
+  ["Button 6"] = "FM Piano On",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["X-Touch Empty"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "Switch 9",
+  ["Button 10"] = "Switch 10",
+  ["Button 11"] = "Switch 11",
+  ["Button 12"] = "Switch 12",
+  ["Button 13"] = "Switch 13",
+  ["Button 14"] = "Switch 14",
+  ["Button 15"] = "Switch 15",
+  ["Button 16"] = "Switch 16",
+}
+
+labels["X-Touch Empty Camou+Tang"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "Switch 9",
+  ["Button 10"] = "Switch 10",
+  ["Button 11"] = "Switch 11",
+  ["Button 12"] = "Switch 12",
+  ["Button 13"] = "Switch 13",
+  ["Button 14"] = "Switch 14",
+}
+
+labels["X-Touch Piano"] = {
+  ["Rotary 1"] = "CHARACTER",
+  ["Rotary 2"] = "INSTRUMENT",
+  ["Rotary 3"] = "MECHANICS",
+  ["Rotary 4"] = "MIC BLEND",
+  ["Rotary 5"] = "AMBIENCE",
+  ["Rotary 6"] = "AMB TYPE",
+  ["Rotary 7"] = "COMPRESSOR",
+  ["Rotary 8"] = "WIDTH",
+  ["Rotary 9"] = "VOLUME",
+}
+
+labels["X-Touch QS Algoritm"] = {
+  ["Rotary 1"] = "FEEDBACK",
+  ["Rotary 2"] = "FM AMOUNT",
+  ["Rotary 3"] = "DEC/REL",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "REV DECAY",
+  ["Rotary 8"] = "REV DRY/WET",
+  ["Rotary 9"] = "MASTER VOL",
+  ["Rotary 10"] = "PATCH SELECT",
+  ["Rotary 11"] = "REVERB SELECT",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+}
+
+labels["X-Touch Quad Piano"] = {
+  ["Rotary 1"] = "RAD PIANO VOL",
+  ["Rotary 2"] = "RAD KEYS VOL",
+  ["Rotary 3"] = "PX7 VOL",
+  ["Rotary 4"] = "PROC PIANO VOL",
+  ["Rotary 5"] = "LEGEND VOL",
+  ["Rotary 6"] = "OOMPH VOL",
+  ["Rotary 7"] = "REV DECAY",
+  ["Rotary 8"] = "REV DRY/WET",
+  ["Rotary 9"] = "MASTER VOL",
+  ["Rotary 10"] = "PATCH SELECT",
+  ["Rotary 11"] = "REVERB SELECT",
+  ["Rotary 12"] = "TRANSPOSE",
+  ["Button 1"] = "SPLIT MODE",
+  ["Button 2"] = "BASS SEQ",
+  ["Button 3"] = "BASS BUSY",
+  ["Button 4"] = "DRUMS BUSY",
+  ["Button 5"] = "KICK",
+  ["Button 6"] = "SNARE",
+  ["Button 7"] = "HI HATS",
+  ["Button 8"] = "PERCUSSION",
+}
+
+labels["X-Touch Quad Piano v2"] = {
+  ["Rotary 1"] = "RAD PIANO VOL",
+  ["Rotary 2"] = "RAD KEYS VOL",
+  ["Rotary 3"] = "PX7 VOL",
+  ["Rotary 4"] = "PROC PIANO VOL",
+  ["Rotary 5"] = "LEGEND VOL",
+  ["Rotary 6"] = "OOMPH VOL",
+  ["Rotary 7"] = "REV DECAY",
+  ["Rotary 8"] = "REV DRY/WET",
+  ["Rotary 9"] = "MASTER VOL",
+  ["Rotary 10"] = "PATCH SELECT",
+  ["Rotary 11"] = "REVERB SELECT",
+  ["Rotary 12"] = "TRANSPOSE",
+  ["Button 1"] = "SPLIT MODE",
+  ["Button 2"] = "BASS SEQ",
+  ["Button 3"] = "BASS BUSY",
+  ["Button 4"] = "DRUMS BUSY",
+  ["Button 5"] = "KICK",
+  ["Button 6"] = "SNARE",
+  ["Button 7"] = "HI HATS",
+  ["Button 8"] = "PERCUSSION",
+}
+
+labels["XT Cellofon"] = {
+  ["Rotary 1"] = "FM AMOUNT",
+  ["Rotary 2"] = "DEC/REL",
+  ["Rotary 3"] = "FEEDBACK",
+  ["Rotary 4"] = "Control 4",
+  ["Rotary 5"] = "Control 5",
+  ["Rotary 6"] = "Control 6",
+  ["Rotary 7"] = "Control 7",
+  ["Rotary 8"] = "Control 8",
+  ["Rotary 9"] = "Control 9",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "Switch 5",
+  ["Button 6"] = "Switch 6",
+  ["Button 7"] = "Switch 7",
+  ["Button 8"] = "Switch 8",
+  ["Button 9"] = "EQ",
+  ["Button 10"] = "RESO",
+  ["Button 11"] = "CHRS",
+  ["Button 12"] = "COMP",
+  ["Button 13"] = "DLY",
+  ["Button 14"] = "REV",
+  ["Button 15"] = "Switch 15",
+  ["Button 16"] = "Switch 16",
+}
+
 labels["Xo Xo [Arp]"] = {
   ["Rotary 1"] = "FILTER",
   ["Button 1"] = "B",
@@ -65083,6 +69299,17 @@ labels["You Better Run [Seq]"] = {
   ["Button 1"] = "Seq. On/Off",
   ["Button 2"] = "Tube On/Off",
   ["Button 3"] = "Body",
+}
+
+labels["You Can't Say No FX"] = {
+  ["Rotary 1"] = "Regler 1",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "Schalter 1",
+  ["Button 2"] = "Schalter 2",
+  ["Button 3"] = "Schalter 3",
+  ["Button 4"] = "Schalter 4",
 }
 
 labels["You Know 6 Pulse Bass"] = {
@@ -65265,6 +69492,26 @@ labels["Zaurak"] = {
   ["Button 4"] = "Unison On",
 }
 
+labels["Ze Beat"] = {
+  ["Rotary 1"] = "weirdo FX",
+  ["Rotary 2"] = "decay",
+  ["Rotary 3"] = "sd pitch",
+  ["Rotary 4"] = "delay",
+  ["Button 1"] = "kick",
+  ["Button 2"] = "snare",
+}
+
+labels["Ze Old Beat"] = {
+  ["Rotary 1"] = "pattern",
+  ["Rotary 2"] = "Regler 2",
+  ["Rotary 3"] = "Regler 3",
+  ["Rotary 4"] = "Regler 4",
+  ["Button 1"] = "kick",
+  ["Button 2"] = "snare",
+  ["Button 3"] = "hi hat",
+  ["Button 4"] = "drrr",
+}
+
 labels["Zenith"] = {
   ["Rotary 1"] = "Warmth",
   ["Rotary 2"] = "Voice Position",
@@ -65371,6 +69618,204 @@ labels["Zweihandler Kit"] = {
   ["Button 5"] = "Sequence",
 }
 
+labels["[AGE] 80s House Drum Kit"] = {
+  ["Rotary 1"] = "Parallel Comp",
+  ["Rotary 2"] = "Kick",
+  ["Rotary 3"] = "Snare",
+  ["Rotary 4"] = "Hats",
+  ["Rotary 5"] = "Perc",
+  ["Rotary 6"] = "Crash",
+  ["Rotary 7"] = "Tambourine",
+  ["Button 1"] = "PLAY",
+  ["Button 2"] = "Toggle Groove",
+}
+
+labels["[AGE] 80s Synth Pop Drums"] = {
+  ["Rotary 1"] = "Parallel Comp",
+  ["Rotary 2"] = "Kick",
+  ["Rotary 3"] = "Snare",
+  ["Rotary 4"] = "Clap",
+  ["Rotary 5"] = "Tops",
+  ["Rotary 6"] = "Toms",
+  ["Button 1"] = "PLAY",
+  ["Button 2"] = "Toggle Groove",
+}
+
+labels["[AGE] 90s Techno Kit"] = {
+  ["Rotary 1"] = "Kick Decay",
+  ["Rotary 2"] = "Snare Echo",
+  ["Rotary 3"] = "Cymbal Tune",
+  ["Rotary 4"] = "HiHat Tune",
+  ["Rotary 5"] = "HiHat Delay",
+  ["Button 1"] = "PLAY",
+}
+
+labels["[AGE] Backbone"] = {
+  ["Rotary 1"] = "Kick Decay",
+  ["Rotary 2"] = "Snare/Clap Decay",
+  ["Rotary 3"] = "Comb Mod",
+  ["Rotary 4"] = "Comb Amount",
+  ["Button 1"] = "Delay",
+  ["Button 2"] = "Crush",
+  ["Button 3"] = "Noise",
+  ["Button 4"] = "Compress",
+  ["Button 5"] = "{PLAY}",
+}
+
+labels["[AGE] Cinematic Soundtrack Drums"] = {
+  ["Rotary 1"] = "Master Volume",
+  ["Rotary 2"] = "Parallel Comp",
+  ["Rotary 3"] = "Kick",
+  ["Rotary 4"] = "Snare",
+  ["Rotary 5"] = "Tops",
+  ["Button 1"] = "{PLAY}",
+  ["Button 2"] = "Toggle Groove",
+}
+
+labels["[AGE] Dancehall Piano"] = {
+  ["Rotary 1"] = "Reverb",
+  ["Rotary 2"] = "Master",
+  ["Rotary 3"] = "Detune",
+  ["Button 1"] = "{PLAY}",
+}
+
+labels["[AGE] Dark Path Bass"] = {
+  ["Rotary 1"] = "LPF",
+  ["Rotary 2"] = "HP Delay",
+  ["Rotary 3"] = "Gadget Amt",
+  ["Rotary 4"] = "Exciter",
+  ["Button 1"] = "Pattern Mutation",
+  ["Button 2"] = "Acidize",
+  ["Button 3"] = "Gadget",
+  ["Button 4"] = "{PLAY}",
+  ["Button 5"] = "OSC 2",
+}
+
+labels["[AGE] Hypno-Therapy Keys"] = {
+  ["Rotary 1"] = "Faded Sync",
+  ["Rotary 2"] = "Echo",
+  ["Rotary 3"] = "Wave Shaper",
+  ["Button 1"] = "Hall Reverb",
+  ["Button 2"] = "Slight Detune",
+  ["Button 3"] = "{PLAY}",
+  ["Button 4"] = "Hp Filter",
+}
+
+labels["[AGE] Lead Saw"] = {
+  ["Rotary 1"] = "Hall Size",
+  ["Rotary 2"] = "Timbre",
+  ["Rotary 3"] = "FX Decay",
+  ["Rotary 4"] = "FX Level",
+  ["Button 1"] = "Synth Octave",
+  ["Button 2"] = "Brite Verb",
+  ["Button 3"] = "Long Delay",
+  ["Button 4"] = "Chorus",
+  ["Button 5"] = "{PLAY}",
+}
+
+labels["[AGE] Mechanica"] = {
+  ["Rotary 1"] = "BASS VOL",
+  ["Rotary 2"] = "FX VOL",
+  ["Rotary 3"] = "DECAY",
+  ["Rotary 4"] = "LP FILTER",
+  ["Button 1"] = "BASS",
+  ["Button 2"] = "CHORUS",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+  ["Button 5"] = "{PLAY}",
+}
+
+labels["[AGE] Paranoia"] = {
+  ["Rotary 1"] = "EERIE",
+  ["Rotary 2"] = "ATTACK",
+  ["Rotary 3"] = "DECAY",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "FX",
+  ["Button 2"] = "Switch 3",
+  ["Button 3"] = "Switch 4",
+  ["Button 4"] = "{PLAY}",
+}
+
+labels["[AGE] Transformer Gates"] = {
+  ["Rotary 1"] = "Volume",
+  ["Rotary 2"] = "Reverb",
+  ["Rotary 3"] = "Delay",
+  ["Button 1"] = "{PLAY}",
+  ["Button 2"] = "Mod. On/Off",
+}
+
+labels["[AGE] Treasure Chest"] = {
+  ["Rotary 1"] = "Decay",
+  ["Rotary 2"] = "HF Damp",
+  ["Rotary 3"] = "Dry/Wet",
+  ["Rotary 4"] = "Attack",
+  ["Rotary 5"] = "Decay",
+  ["Rotary 6"] = "Release",
+  ["Rotary 7"] = "Volume",
+  ["Rotary 8"] = "Delay",
+  ["Rotary 9"] = "Width",
+  ["Rotary 10"] = "Dry/Wet",
+  ["Rotary 11"] = "Feedback",
+  ["Rotary 12"] = "Color Drive",
+  ["Rotary 13"] = "Dry/Wet",
+  ["Rotary 14"] = "Low Cut",
+  ["Rotary 15"] = "High Cut",
+  ["Rotary 16"] = "Sustain",
+  ["Button 1"] = "Reverb",
+  ["Button 2"] = "Chorus",
+  ["Button 3"] = "Delay",
+  ["Button 4"] = "EQ",
+  ["Button 5"] = "Reverse Glitch",
+  ["Button 6"] = "Low Stutter",
+  ["Button 7"] = "{PLAY}",
+}
+
+labels["[AGE] Uno Arp"] = {
+  ["Rotary 1"] = "Pattern 1 - 4",
+  ["Rotary 2"] = "Chorus Amount",
+  ["Rotary 3"] = "Reverb Amount",
+  ["Rotary 4"] = "Delay Amount",
+  ["Button 1"] = "Dist",
+  ["Button 2"] = "Chorus",
+  ["Button 3"] = "Reverb",
+  ["Button 4"] = "Delay",
+  ["Button 5"] = "{PLAY}",
+}
+
+labels["[AGE] Uplifting Pop Piano"] = {
+  ["Rotary 1"] = "Reverb",
+  ["Rotary 2"] = "Transpose",
+  ["Rotary 3"] = "Piano Character",
+  ["Rotary 4"] = "Low Pass Filter",
+  ["Rotary 5"] = "Drive",
+  ["Rotary 6"] = "Pumping",
+  ["Rotary 7"] = "Delay",
+  ["Button 1"] = "{PLAY}",
+}
+
+labels["[AGE] Water Mystics"] = {
+  ["Rotary 1"] = "Volume",
+  ["Rotary 2"] = "Highs",
+  ["Rotary 3"] = "Lows",
+  ["Rotary 4"] = "Reverb",
+  ["Rotary 5"] = "Delay",
+  ["Rotary 6"] = "Freq.",
+  ["Rotary 7"] = "Res.",
+  ["Rotary 8"] = "Pan",
+  ["Button 1"] = "{PLAY}",
+  ["Button 2"] = "Eq. On/Off",
+  ["Button 3"] = "Reverb On/Off",
+  ["Button 4"] = "Delay On/Off",
+  ["Button 5"] = "Mutate",
+  ["Button 6"] = "Filter On/Off",
+  ["Button 7"] = "P. Pong",
+  ["Button 8"] = "Hall/Room",
+  ["Button 9"] = "Phaser Fx",
+  ["Button 10"] = "Lp/Hp",
+  ["Button 11"] = "Auto Filter",
+  ["Button 12"] = "Fast/Slow",
+}
+
 labels["[AMB] Dead Night"] = {
   ["Rotary 1"] = "Cutoff",
   ["Rotary 2"] = "Resonance",
@@ -65387,6 +69832,16 @@ labels["[AMB] Distant Noise"] = {
   ["Rotary 2"] = "High Pass",
   ["Rotary 3"] = "Attack",
   ["Rotary 4"] = "Release",
+}
+
+labels["[AMB] GChimes Tinkered"] = {
+  ["Rotary 1"] = "Speed",
+  ["Rotary 2"] = "Attack",
+  ["Rotary 3"] = "Cutoff",
+  ["Rotary 4"] = "Resonance",
+  ["Rotary 5"] = "Dly Propability",
+  ["Rotary 6"] = "Rev Popability",
+  ["Button 1"] = "Spread",
 }
 
 labels["[AMB] Grain Chimes"] = {
@@ -65419,6 +69874,69 @@ labels["[BASS] Liquid Warble"] = {
   ["Button 2"] = "Spread",
   ["Button 3"] = "Delay",
   ["Button 4"] = "Reverb",
+}
+
+labels["[BroS] Beatz"] = {
+  ["Rotary 1"] = "Pattern Select",
+  ["Rotary 2"] = "High Pass",
+  ["Rotary 3"] = "Low Pass",
+  ["Rotary 4"] = "Dirt",
+  ["Button 1"] = "Player",
+}
+
+labels["[BroS] GhostPno"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["[BroS] Grodan"] = {
+  ["Rotary 1"] = "A/B Mix",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Player Control",
+}
+
+labels["[BroS] Heavenly Garden"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Player Control",
+}
+
+labels["[BroS] Plucki"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Player Control",
+}
+
+labels["[BroS] Splurt"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Player Control",
 }
 
 labels["[DRUMS] Epic Boomer [Run]"] = {
@@ -65472,6 +69990,50 @@ labels["[FX] Soaring Siren [Run]"] = {
   ["Button 2"] = "RHYTHM",
   ["Button 3"] = "PHASE",
   ["Button 4"] = "REVERB",
+}
+
+labels["[GhSh] Bent Beat"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["[GrSh] Digi Beep in Space"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["[GrSh] Ghoulish Bass"] = {
+  ["Rotary 1"] = "Emphasis",
+  ["Rotary 2"] = "Ducking",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
+labels["[GrSh] SeqLine"] = {
+  ["Rotary 1"] = "Duck",
+  ["Rotary 2"] = "Filter",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
 }
 
 labels["[HATS] Sizzle Hats [Run]"] = {
@@ -65630,6 +70192,17 @@ labels["[VOX] Paranoia [Run]"] = {
   ["Button 2"] = "FX",
 }
 
+labels["[WeWi] EchoCry"] = {
+  ["Rotary 1"] = "Control 1",
+  ["Rotary 2"] = "Control 2",
+  ["Rotary 3"] = "Control 3",
+  ["Rotary 4"] = "Control 4",
+  ["Button 1"] = "Switch 1",
+  ["Button 2"] = "Switch 2",
+  ["Button 3"] = "Switch 3",
+  ["Button 4"] = "Switch 4",
+}
+
 labels["aRound [Seq]"] = {
   ["Rotary 1"] = "Arp Rate",
   ["Rotary 2"] = "Polar Feedback",
@@ -65640,6 +70213,107 @@ labels["aRound [Seq]"] = {
   ["Button 3"] = "Echo Drive",
   ["Button 4"] = "Max Decay",
   ["Button 5"] = "Player",
+}
+
+labels["combi-patch-example"] = {
+  ["Rotary 1"] = "Ch. 1 Vol.",
+  ["Rotary 2"] = "Ch. 2 Vol.",
+  ["Rotary 3"] = "Ch. 3 Vol.",
+  ["Rotary 4"] = "Ch. 4 Vol.",
+  ["Rotary 5"] = "Ch. 5 Vol.",
+  ["Rotary 6"] = "Ch. 6 Vol.",
+  ["Rotary 7"] = "Ch. 7 Vol.",
+  ["Rotary 8"] = "Ch. 8 Vol.",
+  ["Rotary 9"] = "Pattern",
+  ["Rotary 10"] = "Chop",
+  ["Rotary 11"] = "Delay",
+  ["Rotary 12"] = "Reverb",
+  ["Rotary 13"] = "Compressor",
+  ["Rotary 14"] = "Clean",
+  ["Button 1"] = "Ch. 1 On",
+  ["Button 2"] = "Ch. 2 On",
+  ["Button 3"] = "Ch. 3 On",
+  ["Button 4"] = "Ch. 4 On",
+  ["Button 5"] = "Ch. 5 On",
+  ["Button 6"] = "Ch. 6 On",
+  ["Button 7"] = "Ch. 7 On",
+  ["Button 8"] = "Ch. 8 On",
+  ["Button 9"] = "Rev. to Comp.",
+}
+
+labels["combi-patch-example2"] = {
+  ["Rotary 1"] = "HP FILTER",
+  ["Rotary 2"] = "PATTERN 1-4",
+  ["Button 1"] = "KICK",
+  ["Button 2"] = "CLAP",
+  ["Button 3"] = "HH",
+  ["Button 4"] = "RUMBLE",
+}
+
+labels["combi-patch-example3"] = {
+  ["Rotary 1"] = "Sweep Echo",
+  ["Rotary 2"] = "Vintage Saws",
+  ["Rotary 3"] = "Detuned Squares",
+  ["Rotary 4"] = "Formant OSC",
+  ["Rotary 5"] = "Filter Frequency",
+  ["Rotary 6"] = "AMP Attack",
+  ["Rotary 7"] = "AMP Release",
+  ["Rotary 8"] = "Square Sync",
+  ["Rotary 9"] = "Formant Sweep",
+  ["Rotary 10"] = "Filter Mod ENV",
+  ["Button 1"] = "Saw Detune",
+}
+
+labels["combi-patch-example4"] = {
+  ["Rotary 1"] = "Bell Pad",
+  ["Rotary 2"] = "Analog Saw",
+  ["Rotary 3"] = "Sub Osc.",
+  ["Rotary 4"] = "Release",
+  ["Button 1"] = "Wave Mod.",
+  ["Button 2"] = "Xciter",
+  ["Button 3"] = "Xtra Fat",
+  ["Button 4"] = "Hp Filter",
+  ["Button 5"] = "Sequencer On/Off",
+}
+
+labels["combi-patch-example5"] = {
+  ["Rotary 1"] = "Decay",
+  ["Rotary 2"] = "HF Damp",
+  ["Rotary 3"] = "Dry/Wet",
+  ["Rotary 4"] = "Attack",
+  ["Rotary 5"] = "Decay",
+  ["Rotary 6"] = "Release",
+  ["Rotary 7"] = "Volume",
+  ["Rotary 8"] = "Delay",
+  ["Rotary 9"] = "Width",
+  ["Rotary 10"] = "Dry/Wet",
+  ["Rotary 11"] = "Feedback",
+  ["Rotary 12"] = "Color Drive",
+  ["Rotary 13"] = "Dry/Wet",
+  ["Rotary 14"] = "Low Cut",
+  ["Rotary 15"] = "High Cut",
+  ["Button 1"] = "Reverb",
+  ["Button 2"] = "Chorus",
+  ["Button 3"] = "Delay",
+  ["Button 4"] = "EQ",
+  ["Button 5"] = "Reverse Glitch",
+  ["Button 6"] = "Low Stutter",
+  ["Button 7"] = "Arp On",
+  ["Button 8"] = "Arp 1",
+  ["Button 9"] = "Arp 2",
+  ["Button 10"] = "Arp 3",
+  ["Button 11"] = "Activate Loop",
+}
+
+labels["combi-patch-example9"] = {
+  ["Rotary 1"] = "Saw Synth",
+  ["Rotary 2"] = "Saw Arp Layer",
+  ["Rotary 3"] = "Reverb Decay",
+  ["Rotary 4"] = "Master Volume",
+  ["Button 1"] = "Synth Unison",
+  ["Button 2"] = "Pitch ENV",
+  ["Button 3"] = "Bright Verb",
+  ["Button 4"] = "Reverb",
 }
 
 -- the names these patches give the Combinator in the rack, to fall back on
@@ -65672,15 +70346,21 @@ labels["80's House Retro Pluck"] = labels["80s House Retro Pluck"]
 labels["80's House Synth Strings"] = labels["80s House Synth Strings"]
 labels["80's Hybrid Electric Bass"] = labels["80s Hybrid Electric Bass"]
 labels["80s FM ARP Bass"] = labels["80s FM Bass [Arp]"]
+labels["8TLR v8 Hydrant"] = labels["Obsession Sound Effects"]
+labels["8TLR v8 Tangerine"] = labels["Party Girl Klavier"]
+labels["8TLR v8 Tiffany"] = labels["Party Girl Thick Acid"]
+labels["8x Player Clip Controller"] = labels["Player Clip Controller"]
 labels["90's Tech [Seq]"] = labels["90's Tech [Run]"]
 labels["909er [RUN]"] = labels["Classic 909 Beat [RUN]"]
 labels["90s Dance Anthem [Run 118bpm]"] = labels["90s Dance Anthem [Run]"]
+labels["AI Will Take Over Kit [UCLUB]"] = labels["AI Will Take Over [UCLUB]"]
 labels["Abandoned Factory"] = labels["Abandonment"]
 labels["Abraham's Keys"] = labels["Abrahams Keys"]
 labels["Accent Chords"] = labels["Accent Chords [Arp]"]
 labels["Accustic Horror Machine"] = labels["Acoustic Horror Machine"]
 labels["Acid Hypnosis"] = labels["Acid Hypnosis [Arp]"]
 labels["Additive Tube 808 Bass"] = labels["Additive Tube 808 Bass [Seq]"]
+labels["Afro Cumbria Tron Kit [UCLUB]"] = labels["Afro Cumbria Tron [UCLUB]"]
 labels["Afro Swinger [RUN]"] = labels["Afro Swinger"]
 labels["Afrotron [RUN]"] = labels["Afrotron"]
 labels["Air Horn Mod Wheel FX [Seq]"] = labels["Air Horn Mod Wheel FX"]
@@ -65691,6 +70371,7 @@ labels["Algoritm Combi Pads INIT"] = labels["Exploration"]
 labels["Algoritm Combi Pluck INIT"] = labels["Atik"]
 labels["Alien Tribe"] = labels["Tribal Objekt"]
 labels["All Money In"] = labels["Dr All Money In [Run]"]
+labels["Almost Industrial Kit [UCLUB]"] = labels["Astro Pop [UCLUB]"]
 labels["Always Positive (Run - Default 125 BPM)"] = labels["Always Positive [Run]"]
 labels["Ambient Machine FX"] = labels["Ambient Machine [FX]"]
 labels["Ambient Pop (Run - Default 90 BPM)"] = labels["Ambient Pop [Run]"]
@@ -65710,8 +70391,10 @@ labels["Arp 2 [SEQ]"] = labels["Wonderlust Arp [Seq]"]
 labels["Arp Generator"] = labels["Arp Generator [Run]"]
 labels["Arp Glider"] = labels["Arp Glider [Arp]"]
 labels["Art of Vibes (Run - Default 100 BPM)"] = labels["Art of Vibes [Run]"]
+labels["Astro Pop Kit [UCLUB]"] = labels["Atmanz Hitek [UCLUB]"]
 labels["Astrobotanic Dewdrops"] = labels["Astrobotanic Dewdrops [Arp]"]
 labels["Atlanta Drumkit [Run]"] = labels["Atlanta Drumkit"]
+labels["Atmanz Hitek Kit [UCLUB]"] = labels["Bacardi [UCLUB]"]
 labels["AtmoStep"] = labels["AtmoStep [Run]"]
 labels["Atmos - Berlin Street Atmos"] = labels["Atmos - Berlin Street Atmos [Run]"]
 labels["Atmos - Dark Park 7"] = labels["Atmos - Dark Park 7 [Run]"]
@@ -65724,16 +70407,21 @@ labels["Automated Organ"] = labels["Automated Organ [Arp]"]
 labels["Avenue Red Atmos - laundomatt"] = labels["Red Rave Atmos - laundomatt"]
 labels["Azra Synth"] = labels["Azra Synth [Run]"]
 labels["Ba Messages"] = labels["Ba Messages [Run]"]
+labels["Bacardi Kit [UCLUB]"] = labels["Banger [UCLUB]"]
 labels["Bad Boy Drum Machine"] = labels["Bad Boy Drum Machine [Run]"]
+labels["Banger Kit [UCLUB]"] = labels["Bassmusic Activated [UCLUB]"]
 labels["Baroque House (Eb)"] = labels["Baroque House (Eb) [Run]"]
 labels["Barry's Bassline"] = labels["Barrys Bassline"]
 labels["Basement Funk [RUN]"] = labels["Basement Funk"]
 labels["Basic Reason+ Combi"] = labels["Dim Bulb Pad"]
 labels["Bass - Coninuum [Run]"] = labels[" Bass - Coninuum [Run]"]
+labels["Bassmusic Activated Kit [UCLUB]"] = labels["Batida [UCLUB]"]
+labels["Batida Kit [UCLUB]"] = labels["Beat Plus [UCLUB]"]
 labels["Be Dark Muse"] = labels["Be Dark Muse [Run]"]
 labels["Be Drive [RUN]"] = labels["Be Drive [Run]"]
 labels["Be Elementary"] = labels["Be Elementary [Run]"]
 labels["Beach Pike Pluck [Run]"] = labels["Beach Pike Pluck"]
+labels["Beat Plus Kit [UCLUB]"] = labels["Bent Beat [UCLUB]"]
 labels["Believe Me Arp [SEQ]"] = labels["Believe Me Arp [Seq]"]
 labels["Bells a Ringin'"] = labels["Bells a Ringin' [Run]"]
 labels["Berlin Tech [Seq]"] = labels["Berlin Tech [Run]"]
@@ -65750,10 +70438,16 @@ labels["Biolock Lead - Angel Club"] = labels["Biolock Lead - Angel Club [Run]"]
 labels["Biolock Pad - Master Pad"] = labels["Biolock Pad - Master Pad [Run]"]
 labels["Biolock Transfer FX - Typer Sweep"] = labels["Biolock Transfer FX - Typer Sweep [Run]"]
 labels["Bit Pulse"] = labels["Bit Pulse [Seq]"]
+labels["Black Tuxedo Kit [UCLUB]"] = labels["Black Tuxedo [UCLUB]"]
+labels["Blip Kit Kit [UCLUB]"] = labels["Blip [UCLUB]"]
 labels["BlippMode [Run]"] = labels["Blippmode"]
+labels["Blokk Kit [UCLUB]"] = labels["Blokk [UCLUB]"]
+labels["Blue Hawaii Kit [UCLUB]"] = labels["Boil Me [UCLUB]"]
 labels["Blue Stinger Bass - Le Bouf"] = labels["Bass - Le Bouf"]
 labels["Blue Stinger Pad - Defeat Pad"] = labels["Pad - Defeat Pad"]
 labels["Blueberry Synth"] = labels["Blueberry Synth [Run]"]
+labels["Boil Me Kit [UCLUB]"] = labels["Boilermaker [UCLUB]"]
+labels["Boilermaker Kit [UCLUB]"] = labels["Brass [UCLUB]"]
 labels["Bone Breaker Drum Machine [SEQ]"] = labels["Bone Breaker Drum Machine [Run]"]
 labels["Boom"] = labels["Boom [Run]"]
 labels["Boots and Cats [RUN]"] = labels["Boots and Cats"]
@@ -65761,6 +70455,7 @@ labels["Boss"] = labels["Boss [Arp]"]
 labels["Bossa Moods (Run - Default 110 BPM)"] = labels["Bossa Moods [Run]"]
 labels["Bottoms Up!"] = labels["Bottoms Up! [Run]"]
 labels["Branch Jumper [RUN]"] = labels["Branch Jumper"]
+labels["Brass Kit [UCLUB]"] = labels["Casino [UCLUB]"]
 labels["Break Maker"] = labels["Break Maker [Run]"]
 labels["Break Organ"] = labels["Break Organ [Run]"]
 labels["British Super Trance"] = labels["British Super Trance [Seq]"]
@@ -65773,6 +70468,7 @@ labels["Cadence Of Fifths"] = labels["Cadence Of Fifths [Run]"]
 labels["Calvins House Pop [Seq]"] = labels["Calvins House Pop [Run]"]
 labels["Caribbean Style"] = labels["Caribbean Style [Arp]"]
 labels["Cash Flow"] = labels["Cash Flow [Arp]"]
+labels["Casino Kit [UCLUB]"] = labels["Clubbed [UCLUB]"]
 labels["Cat's Eye Synth [SEQ]"] = labels["Cat's Eye Synth [Seq]"]
 labels["Cawboy Mushroom"] = labels["Cawboy Mushroom [Run]"]
 labels["Chattering Robot"] = labels["Chattering Robot [Run]"]
@@ -65806,6 +70502,8 @@ labels["Clicker Ticker [83 BPM]"] = labels["Clicker Ticker [Run]"]
 labels["Clong [Run]"] = labels["Clong"]
 labels["Close Gated Kit [Run]"] = labels["Close Gated Kit"]
 labels["Club Triangles [Seq]"] = labels["Club Triangles"]
+labels["Clubbed Kit [UCLUB]"] = labels["Cosmopolitan [UCLUB]"]
+labels["Coco Euro Bass"] = labels["Party Girl Euro Bass"]
 labels["Combinator Instrument Init"] = labels["Cosmic Strings & Choir"]
 labels["Compton Drumkit [Run]"] = labels["Compton Drumkit"]
 labels["Computer Bloops FX [Seq]"] = labels["Computer Bloops FX"]
@@ -65814,6 +70512,7 @@ labels["Crack House"] = labels["Crack House [Run]"]
 labels["Crackdown Synth"] = labels["Crackdown Synth [Run]"]
 labels["Crackling Sine BV-X Bass"] = labels["Crackling Sine Bass"]
 labels["Crank It Up"] = labels["Crank It Up [Seq]"]
+labels["Crazy Juan Kit [UCLUB]"] = labels["Crazy Juan [UCLUB]"]
 labels["Crisper"] = labels["Crisper [Seq]"]
 labels["Crunch Beat"] = labels["Crunch Beat [Run]"]
 labels["Curb Cop Drum Machine [SEQ]"] = labels["Curb Cop Drum Machine [Run]"]
@@ -65836,6 +70535,7 @@ labels["Dark & Deep"] = labels["Dark & Deep [Run]"]
 labels["Dark Angel Keys"] = labels["Dark Angel Keys [Run]"]
 labels["Dark Ballad (Run - Default 90 BPM)"] = labels["Dark Ballad [Run]"]
 labels["Dark Dancer"] = labels["Dark Dancer [Run]"]
+labels["Dark Garage Kit [UCLUB]"] = labels["Deep Rhythm [UCLUB]"]
 labels["Dark Noise Bells [Seq]"] = labels["Dark Noise Bells"]
 labels["Dark Path Bass"] = labels["Dark Path Bass [SEQ]"]
 labels["Dark Secrets Synth"] = labels["Dark Secrets Synth [Run]"]
@@ -65847,8 +70547,11 @@ labels["Debate"] = labels["Dr Debate [Run]"]
 labels["Deep Detuning [Seq]"] = labels["Deep Detuning"]
 labels["Deep Dive Drum Machine"] = labels["Deep Dive Drum Machine [Run]"]
 labels["Deep Impact Loop [Run]"] = labels["Deep Impact"]
+labels["Deep Rhythm Kit [UCLUB]"] = labels["Demon Elektrode [UCLUB]"]
 labels["Deep Tech Drumkit [Run]"] = labels["Deep Tech Drumkit"]
 labels["Delay Answer"] = labels["Delay Answer [Arp]"]
+labels["Demon Elektrode Kit [UCLUB]"] = labels["Denser [UCLUB]"]
+labels["Denser Kit [UCLUB]"] = labels["Diskomania [UCLUB]"]
 labels["Depth Charger [RUN]"] = labels["Depth Charger"]
 labels["Depth Drums [Run]"] = labels["Depth Drums"]
 labels["Deterior808"] = labels["Deterior808 [Run]"]
@@ -65868,6 +70571,7 @@ labels["Dirty Staccato"] = labels["Dirty Staccato [Run]"]
 labels["Dirty Tablas"] = labels["Dirty Tablas [Run]"]
 labels["Disco Doll House"] = labels["Disco Doll House [Run]"]
 labels["Disco Pop House [Seq]"] = labels["Disco Pop House [Run]"]
+labels["Diskomania Kit [UCLUB]"] = labels["Drmkod [UCLUB]"]
 labels["Dispersing Saw"] = labels["Dispersing Saw Bass"]
 labels["Distored Abientazoo"] = labels["Distorted Abientazoo"]
 labels["Distorted Octave Arp [Arp]"] = labels["Distorted Octave Arp [Run]"]
@@ -65879,6 +70583,7 @@ labels["Down to Earth"] = labels["Down to Earth [Run]"]
 labels["Down vs Up"] = labels["Down vs Up [Arp]"]
 labels["Dream Factory [Seq]"] = labels["Dream Factory [Run]"]
 labels["Drive Away Bass"] = labels["Drive Away Bass [SEQ]"]
+labels["Drmkod Kit [UCLUB]"] = labels["Due Tech [UCLUB]"]
 labels["Droptop Beats [RUN]"] = labels["Droptop Beats [Run]"]
 labels["Drum And Moog"] = labels["Drum And Moog [Seq]"]
 labels["Drum Kit"] = labels["Drum Kit [Run]"]
@@ -65908,11 +70613,13 @@ labels["Dry Hybrid Drum Kit"] = labels["Dry Hybrid Drum Kit [Run]"]
 labels["Dry Time Drum Machine [SEQ]"] = labels["Dry Time Drum Machine [Run]"]
 labels["Dual Runner"] = labels["Dual Runner [Arp]"]
 labels["Dubreq Lead"] = labels["Dubreq Lead [Seq]"]
+labels["Due Tech Kit [UCLUB]"] = labels["Embellishment [UCLUB]"]
 labels["Duo Top Bass"] = labels["Duo Top Bass [SEQ]"]
 labels["Dusty 5 Voice ARP"] = labels["Dusty 5 Voice [Arp]"]
 labels["Dynamix [RUN]"] = labels["Dynamix"]
 labels["Early Bird [Run]"] = labels["Early Bird"]
 labels["Edie Em [RUN]"] = labels["Edie Em [Run]"]
+labels["Eight Track LR v2"] = labels["[GhSh] Bent Beat"]
 labels["Electribe M1 Piano"] = labels["M-one Piano"]
 labels["Electric Bass"] = labels["Electric Bass [Seq]"]
 labels["Electric Flower Synth"] = labels["Electric Flower Synth [Run]"]
@@ -65943,7 +70650,10 @@ labels["Elysian Lead 01 - Playstation Lead"] = labels["Playstation Lead"]
 labels["Elysian Lead 02 - SNES Lead"] = labels["SNES Lead"]
 labels["Elysian Pad - Hold On"] = labels["Hold On Pad"]
 labels["Elysian Shaker - Elysian Shaker [Run]"] = labels["Elysian Shaker [Run]"]
+labels["Embellishment Kit [UCLUB]"] = labels["Endorphin [UCLUB]"]
+labels["Empty Combi v8 Hydrant"] = labels["Eksperimental"]
 labels["Endless Pad [Run]"] = labels["Endless Pad"]
+labels["Endorphin Kit [UCLUB]"] = labels["Experimental [UCLUB]"]
 labels["Energetic Bouncer"] = labels["Energetic Electrons [Arp]"]
 labels["Energy"] = labels["Energy [Run]"]
 labels["Enigmatic Synth"] = labels["Enigmatic Synth [Run]"]
@@ -65956,6 +70666,7 @@ labels["Event Horizon Percussion"] = labels["Event Horizon Percussion [Run]"]
 labels["Event Horizon Saz"] = labels["Event Horizon Saz [Run]"]
 labels["Evil Twin Bass"] = labels["Evil Twin Bass [SEQ]"]
 labels["Excitement [Run]"] = labels["Excitement [Seq]"]
+labels["Experimental Kit [UCLUB]"] = labels["Fine Dining [UCLUB]"]
 labels["Explorer Synth"] = labels["Explorer Synth [Run]"]
 labels["Extendo Bass [Run]"] = labels["Extendo Bass"]
 labels["FFT Tube 808 Bass"] = labels["FFT Tube 808 Bass [Seq]"]
@@ -65989,6 +70700,9 @@ labels["Female Solo"] = labels["Female Solo Voice"]
 labels["Fiddy G"] = labels["Fiddy G [Run]"]
 labels["Fifth Bounce"] = labels["Fifth Bounce [Run]"]
 labels["Filtered Vocal AdLibs (F#m_90BPM)"] = labels["Filtered Vocal AdLibs (FSharpMinor_90BPM)"]
+labels["Fine Dining Kit [UCLUB]"] = labels["Firey [UCLUB]"]
+labels["Firey Kit [UCLUB]"] = labels["Fizzin [UCLUB]"]
+labels["Fizzin Kit [UCLUB]"] = labels["Four to the Floor [UCLUB]"]
 labels["Flamming Whackers"] = labels["Flamming Whackers [Run]"]
 labels["Flickery [Seq]"] = labels["Flickery [Arp]"]
 labels["Florida Drumkit [Run]"] = labels["Florida Drumkit"]
@@ -65997,6 +70711,7 @@ labels["Folded Tneuques GoomSub"] = labels["Folded Tneuques GoomSub [Seq]"]
 labels["Footwork Kit"] = labels["Footwork Kit [Run]"]
 labels["Formanted Mixtape Alpha Bass [SEQ]"] = labels["Formanted Alpha Bass [SEQ]"]
 labels["Found You Again"] = labels["Big Vibes [Run]"]
+labels["Four To The Floor Kit [UCLUB]"] = labels["Ghetto [UCLUB]"]
 labels["Framework Bass - Kombucha Bass [Seq]"] = labels["Bass - Kombucha Bass [Run]"]
 labels["Framework Clap/Snare Bank - Hounds Clap"] = labels["Clap:Snare Bank - Hounds Clap"]
 labels["Framework Hats - Orange County Hats"] = labels["Hats - Orange County Hats"]
@@ -66035,8 +70750,10 @@ labels["Garage Vocal [Run]"] = labels["Garage Vocal"]
 labels["Garapeggio [Seq]"] = labels["Garapeggio [Arp]"]
 labels["Gated Vocoder Trem FX"] = labels["Gated Vocoder Trem [FX]"]
 labels["Gen Z EDM Pop [Seq]"] = labels["Gen Z EDM Pop [Run]"]
+labels["Ghetto Kit [UCLUB]"] = labels["Gin and Juice [UCLUB]"]
 labels["Ghost Cat Drum Machine [SEQ]"] = labels["Ghost Cat Drum Machine [Run]"]
 labels["Gin And Tonic Drum Machine"] = labels["Gin And Tonic Drum Machine [Run]"]
+labels["Gin and Juice Kit [UCLUB]"] = labels["Haahdtekk [UCLUB]"]
 labels["Gitch Step [RUN]"] = labels["Gitch Step"]
 labels["Glass Tech Bass"] = labels["Glass Tech Bass [SEQ]"]
 labels["Gliding Insect Sines [Seq]"] = labels["Gliding Insect Sines"]
@@ -66058,6 +70775,7 @@ labels["Groovy Vintage Sine Shimmer Pad"] = labels["Sine Shimmer Pad"]
 labels["Grotto Bass [Run]"] = labels["Grotto Bass"]
 labels["Ground Shake BV-X Bass"] = labels["Ground Shake Bass"]
 labels["HQ Yamaha Piano"] = labels["Hamamatsu Piano"]
+labels["Haahdtekk Kit [UCLUB]"] = labels["Hennchata [UCLUB]"]
 labels["Half Techre"] = labels["Half Techre [Run]"]
 labels["Hapi Grain Texture"] = labels["Handpan Grain Texture"]
 labels["Happy House (D)"] = labels["Happy House (D) [Run]"]
@@ -66080,15 +70798,19 @@ labels["Heaven On Earth Pad"] = labels["Heaven On Earth Pad [Run]"]
 labels["Heavenly D&B Drums"] = labels["Heavenly D&B Drums [Run]"]
 labels["Heavens�s Breath"] = labels["Heavens Breath"]
 labels["Heavy Rain [RUN]"] = labels["Heavy Rain"]
+labels["Hennchata Kit [UCLUB]"] = labels["Hiss [UCLUB]"]
 labels["Higher Hats Drum Machine [SEQ]"] = labels["Higher Hats Drum Machine [Run]"]
 labels["Hip Hop Chords 09 [Seq]"] = labels["Hip Hop Chords 09 [Run]"]
 labels["Hip Hop Pop [Seq]"] = labels["Hip Hop Pop [Run]"]
+labels["Hiss Kit [UCLUB]"] = labels["House Shuffla [UCLUB]"]
 labels["Horns & Strings"] = labels["Horns and Strings"]
 labels["Horny Lead"] = labels["Rousing Lead"]
+labels["House Shuffla Kit [UCLUB]"] = labels["Impersonator [UCLUB]"]
 labels["Howitzer"] = labels["Howitzer [Arp]"]
 labels["Hypertension Drums [Run}"] = labels["Hypertension Drums [Run]"]
 labels["I Like You"] = labels["I Like You [Run]"]
 labels["Ice Dirty Bass"] = labels["Ice Dirty Bass [SEQ]"]
+labels["Impersonator Kit [UCLUB]"] = labels["Jiggy [UCLUB]"]
 labels["In Limbo Drums [Run}"] = labels["In Limbo Drums [Run]"]
 labels["In the Clouds Piano [Run]"] = labels["In the Clouds Piano"]
 labels["Industrial Bounce [105 BPM]"] = labels["Industrial Bounce [Run]"]
@@ -66100,21 +70822,28 @@ labels["Italo 84 [Run 110bpm]"] = labels["Italo 84 [Run]"]
 labels["Jacker Tops [RUN]"] = labels["Classic Tops Selection [RUN]"]
 labels["Jazz Vibes (C)"] = labels["Jazz Vibes (C) [Run]"]
 labels["Jersey Drumkit [Run]"] = labels["Jersey Drumkit"]
+labels["Jiggy Kit [UCLUB]"] = labels["Jingolism [UCLUB]"]
+labels["Jingolism Kit [UCLUB]"] = labels["Jitter [UCLUB]"]
+labels["Jitter Kit [UCLUB]"] = labels["Kickin Mule [UCLUB]"]
 labels["Jumping Tones"] = labels["Jumping Tones [Arp]"]
 labels["Junk Tings"] = labels["Junk Tings [Run]"]
 labels["K Kicker [RUN]"] = labels["K-Kicker [RUN]"]
 labels["Kazoo Drum Machine"] = labels["Kazoo Drum Machine [Run]"]
 labels["Kick - Kraken"] = labels[" Kick - Kraken"]
 labels["Kick Machine + Sidechain"] = labels["Kick Machine"]
+labels["Kickin Mule Kit [UCLUB]"] = labels["Knuppel Minimal [UCLUB]"]
 labels["Killin' Hip Hop Drums"] = labels["Killin' Hip Hop Drums [Run]"]
 labels["Kitsune Drumkit [Run]"] = labels["Kitsune Drumkit"]
 labels["Kittin Kit [RUN]"] = labels["Kittin Kit"]
 labels["Knockout Punch Bass [Run]"] = labels["Knockout Punch Bass"]
+labels["Knuppel Minimal Kit [UCLUB]"] = labels["Kompakted Love [UCLUB]"]
+labels["Kompakted Love Kit [UCLUB]"] = labels["Leke [UCLUB]"]
 labels["Kraftbot Lead"] = labels["Kraftbot"]
 labels["Laminar Flow [65 BPM]"] = labels["Techre Flow [Run]"]
 labels["Laser Saws [Seq]"] = labels["Laser Saws"]
 labels["Lay-z Mooder"] = labels["Lay-z Mooder [Seq]"]
 labels["Layered Future 808 Bass"] = labels["Layered Future 808 Bass [Seq]"]
+labels["Leke Kit [UCLUB]"] = labels["Lofi 909 [UCLUB]"]
 labels["Lets Go"] = labels["Lets Go [Run]"]
 labels["Lifting Vibes"] = labels["Lifting Vibes [Arp]"]
 labels["Light Corrosion"] = labels["Light Corrosion [Run]"]
@@ -66125,7 +70854,10 @@ labels["Lo-Fi Taisho Drum Machine"] = labels["Lo-Fi Taisho Drum Machine [Run]"]
 labels["Lo-Fi Tape Drum Machine [SEQ]"] = labels["Lo-Fi Tape Drum Machine [Run]"]
 labels["Lo-Fi Top"] = labels["Lo-Fi Top [Run]"]
 labels["LoFi Bongos"] = labels["LoFi Bongos [Run]"]
+labels["Lofi 909 Kit [UCLUB]"] = labels["Lofi [UCLUB]"]
 labels["Lofi Hip Hop Pop [Seq]"] = labels["Lofi Hip Hop Pop [Run]"]
+labels["Lofi Kit [UCLUB]"] = labels["Lofi Noise [UCLUB]"]
+labels["Lofi Noise Kit [UCLUB]"] = labels["M00mba7h0n [UCLUB]"]
 labels["Long Beach Drumkit [Run]"] = labels["Long Beach Drumkit"]
 labels["Looking Into The Future [Seq]"] = labels["Looking Into The Future"]
 labels["Love On The Rocks Kit [130]"] = labels["Love On The Rocks Kit (130) [Run]"]
@@ -66135,6 +70867,7 @@ labels["Lp Gamer [Seq]"] = labels["Lp Gamer [Run]"]
 labels["Lumino Tech [RUN]"] = labels["Lumino Tech"]
 labels["Lunch Breaks [Run]"] = labels["Lunch Breaks"]
 labels["Lush Ambient ARP Pad [SEQ]"] = labels["Lush Ambient ARP Pad [Run]"]
+labels["M00mba7h0n Kit [UCLUB]"] = labels["Maddhaus [UCLUB]"]
 labels["MA Dream Drums [Run]"] = labels["Dream Drums [Run]"]
 labels["MA Hypnagogic Synth [Run]"] = labels["Hypnagogic Synth [Run]"]
 labels["MA Misremember Bass"] = labels["Misremember Bass [Run]"]
@@ -66155,6 +70888,7 @@ labels["MDM G [RUN]"] = labels["Click Perfection [RUN]"]
 labels["MDM H [RUN]"] = labels["Reloaded [RUN]"]
 labels["MDM J [RUN]"] = labels["Printed Jam [RUN]"]
 labels["Machine Wire"] = labels["Machine Wire [Seq]"]
+labels["Maddhaus Kit [UCLUB]"] = labels["Meccano Safari Tours [UCLUB]"]
 labels["Main Pad - Sky Warp"] = labels[" Main Pad - Sky Warp"]
 labels["Main Stage EDM Anthem [Seq]"] = labels["Main Stage EDM Anthem [Run]"]
 labels["Make a Name"] = labels["Dr Make a Name [Run]"]
@@ -66165,6 +70899,7 @@ labels["Matrix Balls"] = labels["Matrix Balls [Arp]"]
 labels["Matrix Jungle Drums [Run}"] = labels["Matrix Jungle Drums [Run]"]
 labels["Mayday"] = labels["All Luv [Run]"]
 labels["Mean & Short Bass [Run]"] = labels["Mean & Short Bass"]
+labels["Meccano Safari Tours Kit [UCLUB]"] = labels["Minimal Groove [UCLUB]"]
 labels["Mega Dirty Bass [Run]"] = labels["Mega Dirty Bass"]
 labels["Megadriven Party"] = labels["Megadriven Party [Run]"]
 labels["Melancholic Dark Pop [Seq]"] = labels["Melancholic Dark Pop [Run]"]
@@ -66196,12 +70931,14 @@ labels["Mimic Explorations Vol 3 - Vintage ARP [Run]"] = labels["Vintage ARP [Ru
 labels["Mimic Explorations Vol 3 - Warm Sampled PolyPad"] = labels["Warm Sampled PolyPad"]
 labels["Minimal Bouncy Tech [Seq]"] = labels["Minimal Bouncy Tech [Run]"]
 labels["Minimal EDM Pop [Seq]"] = labels["Minimal EDM Pop [Run]"]
+labels["Minimal Groove Kit [UCLUB]"] = labels["Modern Cumbia [UCLUB]"]
 labels["Minimal House Plucks [Seq]"] = labels["Minimal House Plucks [Run]"]
 labels["Minimal Tech [Seq]"] = labels["Minimal Tech [Run]"]
 labels["Minimalistic Funk"] = labels["Minimalistic Funk [Run]"]
 labels["Miniml Progress Drum Machine"] = labels["Bristol Club Drum Machine [Run]"]
 labels["Minitel"] = labels["Minitel [Run]"]
 labels["Minor Sequence"] = labels["Minor Sequence [Seq]"]
+labels["Modern Cumbia Kit [UCLUB]"] = labels["Nuskoolbrk [UCLUB]"]
 labels["Modern D&B Riser Synth Layer"] = labels["Modern D&B Riser Synth Layer [Seq]"]
 labels["Modern D&B Tech Chord Stabs"] = labels["Modern D&B Tech Chord Stabs [Seq]"]
 labels["Modern D&B Vol 1 High Drums [Run]"] = labels["Modern D&B High Drums [Run]"]
@@ -66234,6 +70971,7 @@ labels["Natural Clap Perc [Run]"] = labels["Natural Clap Perc"]
 labels["Natural Punch [Run]"] = labels["Natural Punch"]
 labels["Neo RnB (Run - Default 90 BPM)"] = labels["Neo RnB [Run]"]
 labels["Nervous"] = labels["Nervous [Run]"]
+labels["Neues Patch"] = labels["Agouti Society Bassline"]
 labels["Neurofied Doom BV-X Bass"] = labels["Neurofied Doom Bass"]
 labels["Night Driving [Run 105bpm]"] = labels["Night Driving [Run]"]
 labels["Ninja Mixtape Alpha Bass [SEQ]"] = labels["Ninja Alpha Bass [SEQ]"]
@@ -66242,9 +70980,13 @@ labels["Noisesub Of Doom"] = labels["Noisesub Of Doom [Seq]"]
 labels["Noisy Jumper"] = labels["Noisy Jumper [Run]"]
 labels["Noisy Mixtape Alpha Bass [SEQ]"] = labels["Noisy Alpha Bass [SEQ]"]
 labels["Not a Drill"] = labels["Dr Offline [Run]"]
+labels["Nuskoolbrk Kit [UCLUB]"] = labels["Orbital [UCLUB]"]
+labels["OPD Polytone"] = labels["OPD Jam Polytone"]
+labels["OPD Umpf"] = labels["OPD Jam Umpf"]
 labels["Old School Subby Kick"] = labels["Old School Subby Kick [Run]"]
 labels["On Approach"] = labels["On Approach [Seq]"]
 labels["One Two Three Four"] = labels["One Two Three Four [Seq]"]
+labels["Orbital Kit [UCLUB]"] = labels["Panama [UCLUB]"]
 labels["Organ Bass"] = labels["Organ Bass [Run]"]
 labels["Organ Fun [Run]"] = labels["Organ Fun"]
 labels["Organic Breakbeat [Run]"] = labels["Organic Breakbeat"]
@@ -66252,14 +70994,18 @@ labels["Organzola"] = labels["Organzola [Run]"]
 labels["Our Neighborhood Drum Machine [SEQ]"] = labels["Our Neighborhood Drum Machine [Run]"]
 labels["Overhouse [RUN]"] = labels["Overhouse [Run]"]
 labels["Pad"] = labels["Pad [Run]"]
+labels["Panama Kit [UCLUB]"] = labels["Parklife [UCLUB]"]
 labels["Pangea Arp"] = labels["Pangea Arp [Seq]"]
 labels["Paper Chase"] = labels["Paper Chase [Arp]"]
 labels["Parabolic Chamber"] = labels["Parabolic Chamber [Run]"]
 labels["Parallel Fall BV-X Bass"] = labels["Parallel Fall Bass"]
+labels["Parklife Kit [UCLUB]"] = labels["Penalty [UCLUB]"]
 labels["Parsecarpeggio"] = labels["Parsecarpeggio [Arp]"]
+labels["Party Girl Synth'n'707 Flamingo"] = labels["Party Girl Synth'n'707"]
 labels["Patch initial"] = labels["Church [Arp]"]
 labels["Peace Former Drum Machine [SEQ]"] = labels["Peace Former Drum Machine [Run]"]
 labels["Peggys' Dance Piano"] = labels["Peggys Dance Piano"]
+labels["Penalty Kit [UCLUB]"] = labels["Ploddinon [UCLUB]"]
 labels["Percussion Selecta [RUN]"] = labels["Percussion Selecta [Run]"]
 labels["Percussive Tech [Seq]"] = labels["Percussive Tech [Run]"]
 labels["Phasedrive [RUN]"] = labels["Phasedrive [Run]"]
@@ -66282,6 +71028,7 @@ labels["Pl Talk About It"] = labels["Pl Talk About It [Run]"]
 labels["Pl Viola Bell Pluck"] = labels["Pl Viola Morpher Bell Pluck"]
 labels["Plasticman [Run]"] = labels["Plasticman"]
 labels["Play Two"] = labels["Play Two [Run]"]
+labels["Ploddinon Kit [UCLUB]"] = labels["Pounding [UCLUB]"]
 labels["Polar Potion"] = labels["Polar Potion [Run]"]
 labels["Poly Arp"] = labels["Poly Arp [Seq]"]
 labels["Polyplex"] = labels["Polyplex [Run]"]
@@ -66292,7 +71039,10 @@ labels["Pophouse (Run - Default 115 BPM)"] = labels["Pophouse [Run]"]
 labels["Poppy Drumkit [Run]"] = labels["Poppy Drumkit"]
 labels["Popstar [Run]"] = labels["Popstar"]
 labels["Posse"] = labels["Dr Posse [Run]"]
+labels["Pounding Kit [UCLUB]"] = labels["Prankster [UCLUB]"]
 labels["Power Clubster Drums [Run}"] = labels["Power Clubster Drums [Run]"]
+labels["Prankster Kit [UCLUB]"] = labels["Prince [UCLUB]"]
+labels["Prince Kit [UCLUB]"] = labels["Pulled Patch [UCLUB]"]
 labels["Progressive House ARP Combo [Seq]"] = labels["Progressive House ARP Combo [Run]"]
 labels["Progressive Pop House [Seq]"] = labels["Progressive Pop House [Run]"]
 labels["Progressive Synthwave [Run 115bpm]"] = labels["Progressive Synthwave [Run]"]
@@ -66301,8 +71051,11 @@ labels["Proud And Dirty Drum Machine"] = labels["Proud And Dirty Drum Machine [R
 labels["Psy Drums [RUN]"] = labels["Psy Drums [Run]"]
 labels["Psy Perc Loop Layers [RUN]"] = labels["Psy Perc Loop Layers [Run]"]
 labels["Psychotik Bass [Run]"] = labels["Psychotik Bass"]
+labels["Pulled Patch Kit [UCLUB]"] = labels["Pumped [UCLUB]"]
 labels["Pulse Synth"] = labels["Pulse Synth [Seq]"]
 labels["Pulse Width Bells [Seq]"] = labels["Pulse Width Bells [Run]"]
+labels["Pumped Kit [UCLUB]"] = labels["Punch Drunk [UCLUB]"]
+labels["Punch Drunk Kit [UCLUB]"] = labels["Raw Oompf [UCLUB]"]
 labels["Punchy Pop Drums 1 [Run]"] = labels["Punchy Verse Clap [Run]"]
 labels["Punchy Pop Drums 10 [Run]"] = labels["Half-time [Run]"]
 labels["Punchy Pop Drums 2 [Run]"] = labels["Punchy Breakdown [Run]"]
@@ -66325,6 +71078,8 @@ labels["Radiation Plucks [Seq]"] = labels["Radiation Plucks [Run]"]
 labels["Radio Waves Drums"] = labels["Radio Waves Drums [Run]"]
 labels["Rainbow Road Kit [130]"] = labels["Rainbow Road Kit (130) [Run]"]
 labels["Ramp It Up"] = labels["Ramp It Up [Run]"]
+labels["Raw Oompf Kit [UCLUB]"] = labels["Raw Power [UCLUB]"]
+labels["Raw Power Kit [UCLUB]"] = labels["Restrained [UCLUB]"]
 labels["Razor Rise"] = labels["Razor Rise [Run]"]
 labels["Ready 2 Rock"] = labels["Ready 2 Rock [Run]"]
 labels["Reflecting Bells (Run - Default 92 BPM)"] = labels["Reflecting Bells [Run]"]
@@ -66333,6 +71088,7 @@ labels["Reso Viola Saw [Se]"] = labels["Abyss Bells [Seq]"]
 labels["Resonance King [Seq]"] = labels["Resonance King"]
 labels["Resonant Eights"] = labels["Resonant Eights [Run]"]
 labels["Resonant Shaker"] = labels["Resonant Shaker [Run]"]
+labels["Restrained Kit [UCLUB]"] = labels["Rhythmoid [UCLUB]"]
 labels["Retro Machines [Run]"] = labels["Retro Machines"]
 labels["Retro Pop Analogue Poly Chords"] = labels["Analogue Poly Chords"]
 labels["Retro Pop Clean Shimmer Chords"] = labels["Clean Shimmer Chords"]
@@ -66356,13 +71112,19 @@ labels["Rhythmic Polys 07"] = labels["Two Step Fusion"]
 labels["Rhythmic Polys 08"] = labels["Glassy Organ Stabs"]
 labels["Rhythmic Polys 09"] = labels["Offbeat Blocks"]
 labels["Rhythmic Polys 10"] = labels["Waves Of 8ths"]
+labels["Rhythmoid Kit [UCLUB]"] = labels["Ridik [UCLUB]"]
 labels["Ride - clu8 ryde"] = labels[" Ride - clu8 ryde"]
+labels["Ridik Kit [UCLUB]"] = labels["Rinsing [UCLUB]"]
+labels["Rinsing Kit [UCLUB]"] = labels["Rollatech [UCLUB]"]
 labels["Rise & Scream (4 Bar Rise)"] = labels["Rise and Scream (4 Bar Rise)"]
 labels["Riser - Peace Riser [Run]"] = labels[" Riser - Peace Riser [Run]"]
 labels["Robotics"] = labels["Robotics [Seq]"]
+labels["Rollatech Kit [UCLUB]"] = labels["Royal [UCLUB]"]
 labels["Rolling 80's Saw Bass"] = labels["Rolling 80s Saw Bass [Seq]"]
 labels["Room Shaker Bass [Run]"] = labels["Room Shaker Bass"]
 labels["Root & 5th Piano Textures [Seq]"] = labels["Root and 5th Piano Textures [Seq]"]
+labels["Royal Kit [UCLUB]"] = labels["Royce [UCLUB]"]
+labels["Royce Kit [UCLUB]"] = labels["Sci Tec [UCLUB]"]
 labels["Running Away I byM"] = labels["Running Away I"]
 labels["Running Away II byM"] = labels["Running Away II"]
 labels["Running Away III byM"] = labels["Running Away III"]
@@ -66417,12 +71179,16 @@ labels["Saturated Classic Bass [Run]"] = labels["Saturated Classic Bass"]
 labels["Saturated Hip Hob Sub"] = labels["Saturated Hip Hob Sub [Seq]"]
 labels["Saturn Club Drums [Run}"] = labels["Saturn Club Drums [Run]"]
 labels["Saw Stab [Run]"] = labels["Saw Stab"]
+labels["Sci Tec Kit [UCLUB]"] = labels["Screwdriver [UCLUB]"]
+labels["Screwdriver Kit [UCLUB]"] = labels["Shroom [UCLUB]"]
 labels["Seagrass Attack"] = labels["Seagrass Attack [Arp]"]
 labels["Sean's Super Sub"] = labels["Seans Super Sub [Seq]"]
 labels["Second Run"] = labels["Second Run [Arp]"]
 labels["Secret Subscilator"] = labels["Secret Subscilator [Seq]"]
 labels["See-Saw"] = labels["See-Saw [Run]"]
 labels["ShakerHat [RUN]"] = labels["Shaker Hats [RUN]"]
+labels["Shroom Kit [UCLUB]"] = labels["Shuffled [UCLUB]"]
+labels["Shuffled Kit [UCLUB]"] = labels["Skyballz [UCLUB]"]
 labels["Silenced Kahon"] = labels["Silenced Kahon [Run]"]
 labels["Sillent Hill Generator"] = labels["Ghost In The Scrapes Generator"]
 labels["Silverline Bass [RUN]"] = labels["Silverline Bass [Arp]"]
@@ -66432,14 +71198,17 @@ labels["Simple Vintage Poly Pad"] = labels["Simple Poly Pad"]
 labels["Sine Moded 808 VHS Squasher"] = labels["Sine Moded 808 VHS Squasher [Seq]"]
 labels["Sine Satz [Seq]"] = labels["Sine Satz [Run]"]
 labels["Skin Graft Bass [SEQ]"] = labels["Skin Graft Bass [Seq]"]
+labels["Skyballz Kit [UCLUB]"] = labels["Slightly Carnival [UCLUB]"]
 labels["Slap Drop Bass [Run]"] = labels["Slap Drop Bass"]
 labels["Slappy"] = labels["Slappy [Run]"]
 labels["Sliced Soul Guitar"] = labels["Sliced Soul Guitar (C1-A1)"]
 labels["Slick Kit [RUN]"] = labels["Slick Kit"]
+labels["Slightly Carnival Kit [UCLUB]"] = labels["Smokey [UCLUB]"]
 labels["Slim Boy Sunset"] = labels["Slim Boy Sunset [Run]"]
 labels["Slo-Tape Drum Machine [SEQ]"] = labels["Slo-Tape Drum Machine [Run]"]
 labels["Sloppy"] = labels["Dr Sloppy [Run]"]
 labels["Smoke & Mirrors [Run 122bpm]"] = labels["Smoke and Mirrors [Run]"]
+labels["Smokey Kit [UCLUB]"] = labels["Speedelek [UCLUB]"]
 labels["Smoky Eyes"] = labels["Smokey Eyes"]
 labels["Smooth Drums [Run]"] = labels["Smooth Drums"]
 labels["Smooth Soul (Run - Default 80 BPM)"] = labels["Smooth Soul [Run]"]
@@ -66462,6 +71231,7 @@ labels["Spacetime Dub"] = labels["Spacetime Dub [Run]"]
 labels["Spannered [RUN]"] = labels["Spannered"]
 labels["Sparkling Emotion"] = labels["Deep Sincerity"]
 labels["Speak & Spell Lead"] = labels["Speak and Lead"]
+labels["Speedelek Kit [UCLUB]"] = labels["Straight Jackin [UCLUB]"]
 labels["Spray Ride [Run]"] = labels["Spray Ride"]
 labels["Spring Step"] = labels["Spring Step [Run]"]
 labels["Sq - Chin Up"] = labels["Sq - Chin Up [Run]"]
@@ -66543,11 +71313,13 @@ labels["Steam Pad [Run]"] = labels["Steam Pad"]
 labels["Still Friends [Seq]"] = labels["Still Friends [Run]"]
 labels["Stormblade [Run]"] = labels["Stormblade"]
 labels["Straight"] = labels["Straight [Run]"]
+labels["Straight Jackin Kit [UCLUB]"] = labels["Stunted [UCLUB]"]
 labels["Street Dog Drum Machine [SEQ]"] = labels["Street Dog Drum Machine [Run]"]
 labels["Street Knowledge"] = labels["Street Knowledge [Run]"]
 labels["String"] = labels["String [Run]"]
 labels["Strings - Darted Knees [Run]"] = labels[" Strings - Darted Knees [Run]"]
 labels["Strong Pad (A#)"] = labels["Strong Pad (A#) [Run]"]
+labels["Stunted Kit [UCLUB]"] = labels["Subhead Inspired [UCLUB]"]
 labels["Sub Bass - Collect Freq [Run]"] = labels[" Sub Bass - Collect Freq [Run]"]
 labels["Sub-Supressed Aggression"] = labels["Sub-Supressed Aggression [Seq]"]
 labels["Sub25 Classic Tune"] = labels["Classic Tune"]
@@ -66560,6 +71332,7 @@ labels["Sub25 Seventh Keys"] = labels["Seventh Keys"]
 labels["Sub25 Snappy BPF"] = labels["Snappy BPF"]
 labels["Sub25 Synced"] = labels["Synced"]
 labels["Subbah"] = labels["Subber"]
+labels["Subhead Inspired Kit [UCLUB]"] = labels["Syncopator [UCLUB]"]
 labels["Sumer Piano House [Seq]"] = labels["Summer Piano House [Run]"]
 labels["Summer of 65 (Run - Default 105 BPM)"] = labels["Summer Of 65 [Run]"]
 labels["Sunday Love (Run - Default 80 BPM)"] = labels["Sunday Love [Run]"]
@@ -66576,6 +71349,8 @@ labels["Swing Thing"] = labels["Swing Thing [Run]"]
 labels["Syn Harp (Db)"] = labels["Syn Harp (Db) [Run]"]
 labels["Sync Swing Pluck"] = labels["Sync Swing"]
 labels["Synced Professor"] = labels["Synced Professor [Seq]"]
+labels["Syncopator Kit [UCLUB]"] = labels["Synth n 707 [UCLUB]"]
+labels["Synth n 707 Kit [UCLUB]"] = labels["Technoid [UCLUB]"]
 labels["Synthwave Acoustic Drums"] = labels["Acoustic Drums [Run]"]
 labels["Synthwave Drums"] = labels["Synthwave Drums [Run]"]
 labels["Synthwave Riser FX"] = labels["Space Riser FX"]
@@ -66593,6 +71368,7 @@ labels["Technicolor Arp"] = labels["Technicolor (Arp)"]
 labels["Techno Grooves 1.1"] = labels["Techno Grooves 1.1 [Run]"]
 labels["Techno Grooves 1.2"] = labels["Techno Grooves 1.2 [Run]"]
 labels["Techno Grooves 1.3"] = labels["Techno Grooves 1.3 [Run]"]
+labels["Technoid Kit [UCLUB]"] = labels["The Final Rhythm [UCLUB]"]
 labels["Technotronic! [Run]"] = labels["Technotronic [Run]"]
 labels["Techre Flow [108 BPM]"] = labels["Nomadic Roller [Run]"]
 labels["Tell Me These Things Bass - Rock Solid"] = labels["Bass - Rock Solid"]
@@ -66607,6 +71383,7 @@ labels["Tell Me These Things Snare - Italo Snare Bear"] = labels["Snare - Italo 
 labels["Tell Me These Things Vocal Chain - Vinyl Vox"] = labels["Vocal Chain - Vinyl Vox"]
 labels["Tension Arp"] = labels["Tension Arp [Run]"]
 labels["Textured Electro [80 BPM]"] = labels["Textured Electro [Run]"]
+labels["The Final Rhythm Kit [UCLUB]"] = labels["Trap Hop [UCLUB]"]
 labels["The Fisrt Kiss"] = labels["The First Kiss"]
 labels["The Foundary"] = labels["The Foundary [Run]"]
 labels["The Plug Kick"] = labels["The Plug 808"]
@@ -66624,12 +71401,17 @@ labels["Tight Jungle Kit [Run]"] = labels["Tight Kit"]
 labels["Tokyo Life Drum Machine [SEQ]"] = labels["Tokyo Life Drum Machine [Run]"]
 labels["Tough Day Drum Machine [SEQ]"] = labels["Tough Day Drum Machine [Run]"]
 labels["Trailer Perc Loop [Run]"] = labels["Trailer Perc"]
+labels["Trap Hop Kit [UCLUB]"] = labels["Trapperz [UCLUB]"]
 labels["Trap Kit"] = labels["Trap Drumkit [Run]"]
 labels["Trap Omega Bass [Run]"] = labels["Trap Omega Bass"]
 labels["Trap Season Bells [Seq]"] = labels["Trap Season Bells [Run]"]
+labels["Trapperz Kit [UCLUB]"] = labels["Tribal Discotech [UCLUB]"]
+labels["Tribal Discotech Kit [UCLUB]"] = labels["Tribalist [UCLUB]"]
+labels["Tribalist Kit [UCLUB]"] = labels["Troublestep [UCLUB]"]
 labels["Tribes"] = labels["Tribes [Run]"]
 labels["Triple Osc. Pad [Run]"] = labels["Triple Osc Pad [Run]"]
 labels["Tropical Time (Run - Default 125 BPM)"] = labels["Tropical Time [Run]"]
+labels["Troublestep Kit [UCLUB]"] = labels["Vortextual [UCLUB]"]
 labels["Tube SubSequent"] = labels["Tube SubSequent [Seq]"]
 labels["Tube Tape Tech [RUN]"] = labels["Tube Tape Tech [Run]"]
 labels["Tweekback"] = labels["Tweekback [Run]"]

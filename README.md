@@ -125,6 +125,19 @@ This searches every directory below the `PATH_REASON_COMBI_*` paths of your `.en
 yarn extract:combi ~/Documents/Reason/ReasonPatches
 ```
 
+A run **adds to** the file rather than replacing it, so separate runs over separate directories build one file between them:
+
+```
+yarn extract:combi ~/Documents/Reason/ReasonPatches
+yarn extract:combi ~/Music/Combis          # the patches above are kept
+```
+
+A patch that is extracted again replaces the entry it had before, so re-running over a directory picks up any relabelling. Entries whose patches were not in the directories searched are left alone — which also means a patch you have since deleted keeps its entry. To start over, pass `--replace`:
+
+```
+yarn extract:combi --replace ~/Documents/Reason/ReasonPatches
+```
+
 The codec looks the labels up by the patch name Reason reports, falling back on the name the Combinator carries in the rack, and shows them in place of the parameter names (see `src/lib/display/getDisplayName.lua`). A patch that has not been extracted, or a control the patch has not labelled, keeps the name Reason reports for it.
 
 Run the script again whenever you add or relabel a Combinator patch, then `yarn setup` to build and install the codec.
