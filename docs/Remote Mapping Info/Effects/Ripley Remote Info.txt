@@ -4,47 +4,47 @@ Propellerhead Software	se.propellerheads.Ripley
 
 Type	Done	Remotable	Min	Max	Input type	Output type
 
-(B)	[ ]	Enabled	0	2	Value	ValueOutput
+(B)	[X]	Enabled	0	2	Value	ValueOutput
 
 -- DELAY --
 
-(E)	[ ]	Delay Time	0	4194304	Value	ValueOutput
- (E)	[ ]	Synced Time	0	19	Value	ValueOutput
- (E)	[ ]	Delay Time L	0	4194304	Value	ValueOutput
- (E)	[ ]	Synced Time L	0	19	Value	ValueOutput
-(E)	[ ]	Time Offset L-R	0	4194304	Value	ValueOutput
-(E)	[ ]	Delay Time R	0	4194304	Value	ValueOutput
- (E)	[ ]	Synced Time R	0	19	Value	ValueOutput
-(E)	[ ]	Feedback	0	4194304	Value	ValueOutput
+(E)	[X]	Delay Time	0	4194304	Value	ValueOutput
+ (E)	[X]	Synced Time	0	19	Value	ValueOutput
+ (E)	[X]	Delay Time L	0	4194304	Value	ValueOutput
+ (E)	[X]	Synced Time L	0	19	Value	ValueOutput
+(E)	[X]	Time Offset L-R	0	4194304	Value	ValueOutput
+(E)	[X]	Delay Time R	0	4194304	Value	ValueOutput
+ (E)	[X]	Synced Time R	0	19	Value	ValueOutput
+(E)	[X]	Feedback	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Delay On	0	1	Toggle	ValueOutput
-(B)	[ ]	Delay Tempo Sync	0	1	Toggle	ValueOutput
-(B)	[ ]	Keep Pitch	0	1	Toggle	ValueOutput
-(B)	[ ]	Dual Delay	0	1	Toggle	ValueOutput
-(B)	[ ]	Freeze	0	1	Toggle	ValueOutput
-(B)	[ ]	Time Multiplier	0	2	Value	ValueOutput
+(B)	[X]	Delay On	0	1	Toggle	ValueOutput
+(B)	[X]	Delay Tempo Sync	0	1	Toggle	ValueOutput
+(B)	[X]	Keep Pitch	0	1	Toggle	ValueOutput
+(B)	[X]	Dual Delay	0	1	Toggle	ValueOutput
+(B)	[X]	Freeze	0	1	Toggle	ValueOutput
+(B)	[X]	Time Multiplier	0	2	Value	ValueOutput
 
 -- WOBBLER --
 
-(E)	[ ]	Wobbler Amount	0	4194304	Value	ValueOutput
+(E)	[X]	Wobbler Amount	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Wobbler On	0	1	Toggle	ValueOutput
+(B)	[X]	Wobbler On	0	1	Toggle	ValueOutput
 
 -- PING PONG --
 
-(E)	[ ]	Ping Pong Pan	0	4194304	Value	ValueOutput
+(E)	[X]	Ping Pong Pan	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Ping Pong	0	1	Toggle	ValueOutput
+(B)	[X]	Ping Pong	0	1	Toggle	ValueOutput
 
 -- SPACE --
 
-(E)	[ ]	Space Amount	0	4194304	Value	ValueOutput
-(E)	[ ]	Space Decay	0	4194304	Value	ValueOutput
-(E)	[ ]	Space Size	0	4194304	Value	ValueOutput
-(E)	[ ]	Space Width	0	4194304	Value	ValueOutput
+(E)	[X]	Space Amount	0	4194304	Value	ValueOutput
+(E)	[X]	Space Decay	0	4194304	Value	ValueOutput
+(E)	[X]	Space Size	0	4194304	Value	ValueOutput
+(E)	[X]	Space Width	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Space On	0	1	Toggle	ValueOutput
-(B)	[ ]	Space Parallel	0	1	Toggle	ValueOutput
+(B)	[X]	Space On	0	1	Toggle	ValueOutput
+(B)	[X]	Space Parallel	0	1	Toggle	ValueOutput
 
 -- FILTER --
 
@@ -58,9 +58,9 @@ Type	Done	Remotable	Min	Max	Input type	Output type
 
 -- LIMITER / WIDTH --
 
-(E)	[ ]	Delay Width	0	4194304	Value	ValueOutput
+(E)	[X]	Delay Width	0	4194304	Value	ValueOutput
 
-(B)	[ ]	Feedback Limiter	0	1	Toggle	ValueOutput
+(B)	[X]	Feedback Limiter	0	1	Toggle	ValueOutput
 
 -- NOISE --
 
@@ -91,6 +91,12 @@ Type	Done	Remotable	Min	Max	Input type	Output type
 (B)	[ ]	Digital On	0	1	Toggle	ValueOutput
 (B)	[ ]	Digital Position	0	3	Value	ValueOutput
 
+-- OUTPUT --
+
+(E)	[ ]	Dry-Wet	0	4194304	Value	ValueOutput
+(E)	[ ]	Output Gain	0	4194304	Value	ValueOutput
+
+
 -- EQ --
 
 (E)	[ ]	EQ Low Gain	0	4194304	Value	ValueOutput
@@ -101,11 +107,6 @@ Type	Done	Remotable	Min	Max	Input type	Output type
 
 (B)	[ ]	EQ On	0	1	Toggle	ValueOutput
 (B)	[ ]	EQ Position	0	4	Value	ValueOutput
-
--- OUTPUT --
-
-(E)	[ ]	Dry-Wet	0	4194304	Value	ValueOutput
-(E)	[ ]	Output Gain	0	4194304	Value	ValueOutput
 
 -- DUCKER --
 

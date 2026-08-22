@@ -36,6 +36,7 @@ return {
   },
   ripley = {
     ["Enabled"] = 3,
-    ["Time Multiplier"] = 3
+    ["Time Multiplier"] = 3,
+    ["Filter Type"] = 2,
   }
 }

@@ -648,5 +648,21 @@ return {
         useOtherParamWhenValue = false
       }
     },
+    ["Hi Cut Freq"] = {
+      dependsOn = "Filter Type",
+      colours = { ["127"] = "black", ["0"] = "pink" },
+    },
+    ["Lo Cut Freq"] = {
+      dependsOn = "Filter Type",
+      colours = { ["127"] = "black", ["0"] = "pink" },
+    },
+    ["Band Freq Shift"] = {
+      dependsOn = "Filter Type",
+      colours = { ["0"] = "black", ["127"] = "pink" },
+    },
+    ["Band Offset L-R"] = {
+      dependsOn = "Filter Type",
+      colours = { ["0"] = "black", ["127"] = "pink" },
+    },
   }
 }

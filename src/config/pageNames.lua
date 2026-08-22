@@ -23,5 +23,9 @@ return {
     "LFOs",
     "Curves",
     "Performance",
+  },
+  ripley = {
+    "Delay & Space",
+    "Extra Processing"
   }
 }

@@ -124,7 +124,7 @@ return {
       -- delay section
       "Delay Time", "Synced Time", "Delay Time L", "Synced Time L",
       "Delay Time R", "Synced Time R", "Time Offset L-R", "Delay On",
-      "Feedback", "Time Multiplier"
+      "Feedback", "Time Multiplier", "Delay Width", "Feedback Limiter"
     },
     yellow = {
       -- delay section (special because performance-relevant)
@@ -142,6 +142,10 @@ return {
       -- space section
       "Space On", "Space Parallel", "Space Amount",
       "Space Decay", "Space Size", "Space Width",
+    },
+    pink = {
+      -- filter section
+      "Filter On", "Filter Type",
     }
   })
 }

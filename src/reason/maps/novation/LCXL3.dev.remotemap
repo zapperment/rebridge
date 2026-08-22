@@ -523,6 +523,8 @@ Map	pageSelect2		Pages=Page 2
 Map	pageSelect3		Pages=Page 3
 Map	pageSelect4		Pages=Page 4
 
+// Page 1: Delay & Space
+
 Map	button1		Enabled			Page 1
 
 Map	encoder1		Delay Time			Page 1
@@ -540,23 +542,35 @@ Map	button2		Delay On			Page 1
 
 Map	button3		Time Multiplier			Page 1
 Map	button4		Freeze			Page 1
-Map	button10		Delay Tempo Sync			Page 1
-Map	button11		Keep Pitch			Page 1
-Map	button12		Dual Delay			Page 1
+Map	button9		Delay Tempo Sync			Page 1
+Map	button10		Keep Pitch			Page 1
+Map	button11		Dual Delay			Page 1
 
-Map	encoder21		Wobbler Amount			Page 1
+Map	encoder5		Wobbler Amount			Page 1
 Map	button5		Wobbler On			Page 1
 
-Map	encoder22		Ping Pong Pan			Page 1
+Map	encoder6		Ping Pong Pan			Page 1
 Map	button6		Ping Pong			Page 1
 
-Map	button7		Space On			Page 1
-Map	button15		Space Parallel			Page 1
+Map	button8		Space On			Page 1
+Map	button16		Space Parallel			Page 1
 
+Map	button12		Filter On			Page 1
+Map	button13		Filter Type			Page 1
+Map	button14		Feedback Limiter			Page 1
+
+Map	encoder12		Band Freq Shift			Page 1
+Map	encoder13		Hi Cut Freq			Page 1
+Map	encoder20		Band Offset L-R			Page 1
+Map	encoder21		Lo Cut Freq			Page 1
 Map	encoder7		Space Amount			Page 1
 Map	encoder15		Space Decay			Page 1
 Map	encoder16		Space Size			Page 1
+Map	encoder22		Delay Width			Page 1
 Map	encoder23		Space Width			Page 1
+
+// Page 2: Extra Processing
+
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name
