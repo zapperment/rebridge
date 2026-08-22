@@ -14,6 +14,15 @@
 -- Algorithm's Pan parameters work that way: their LED takes the colour of the
 -- module's Mode, but stays unlit while the module's Out is off, because there is
 -- no panning to be done then.
+--
+-- Instead of a single conditional, a parameter can also be given a list of them,
+-- which is how a parameter that is replaced by different parameters depending on
+-- several switches is described. The parameter then only displays while every
+-- conditional in the list is happy with the current value of the parameter it
+-- depends on (see lib/display/shouldDisplay), and the first conditional that has
+-- a label or a colour to give is the one that gives it. Ripley's Delay Time is
+-- such a parameter: Delay Tempo Sync turns it into Synced Time, and Dual Delay
+-- splits it into Delay Time L and Delay Time R.
 return {
   subtractor = {
     ["LFO1 Rate"] = {
@@ -578,4 +587,98 @@ return {
       useOtherParamWhenValue = false
     },
   },
+  ripley = {
+    ["Delay Time"] = {
+      {
+        dependsOn = "Delay Tempo Sync",
+        useOtherParamWhenValue = true
+      },
+      {
+        dependsOn = "Dual Delay",
+        useOtherParamWhenValue = true
+      },
+    },
+    ["Synced Time"] = {
+      {
+        dependsOn = "Delay Tempo Sync",
+        useOtherParamWhenValue = false
+      },
+      {
+        dependsOn = "Dual Delay",
+        useOtherParamWhenValue = true
+      }
+    },
+    ["Delay Time L"] = {
+      {
+        dependsOn = "Delay Tempo Sync",
+        useOtherParamWhenValue = true
+      },
+      {
+        dependsOn = "Dual Delay",
+        useOtherParamWhenValue = false
+      }
+    },
+    ["Synced Time L"] = {
+      {
+        dependsOn = "Delay Tempo Sync",
+        useOtherParamWhenValue = false
+      },
+      {
+        dependsOn = "Dual Delay",
+        useOtherParamWhenValue = false
+      },
+    },
+    ["Delay Time R"] = {
+      {
+        dependsOn = "Delay Tempo Sync",
+        useOtherParamWhenValue = true
+      },
+      {
+        dependsOn = "Dual Delay",
+        useOtherParamWhenValue = false
+      },
+    },
+    ["Synced Time R"] = {
+      {
+        dependsOn = "Delay Tempo Sync",
+        useOtherParamWhenValue = false
+      },
+      {
+        dependsOn = "Dual Delay",
+        useOtherParamWhenValue = false
+      }
+    },
+    ["Hi Cut Freq"] = {
+      dependsOn = "Filter Type",
+      colours = { ["127"] = "black", ["0"] = "pink" },
+    },
+    ["Lo Cut Freq"] = {
+      dependsOn = "Filter Type",
+      colours = { ["127"] = "black", ["0"] = "pink" },
+    },
+    ["Band Freq Shift"] = {
+      dependsOn = "Filter Type",
+      colours = { ["0"] = "black", ["127"] = "pink" },
+    },
+    ["Band Offset L-R"] = {
+      dependsOn = "Filter Type",
+      colours = { ["0"] = "black", ["127"] = "pink" },
+    },
+    ["LFO1 Rate"] = {
+      dependsOn = "LFO1 Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO1 Synced Rate"] = {
+      dependsOn = "LFO1 Sync",
+      useOtherParamWhenValue = false
+    },
+    ["LFO2 Rate"] = {
+      dependsOn = "LFO2 Sync",
+      useOtherParamWhenValue = true
+    },
+    ["LFO2 Synced Rate"] = {
+      dependsOn = "LFO2 Sync",
+      useOtherParamWhenValue = false
+    },
+  }
 }

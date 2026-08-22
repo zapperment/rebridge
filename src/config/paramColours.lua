@@ -113,5 +113,88 @@ return {
       "FM Amount Offset", "Decay/Release Offset",
       "LFO 3 Wave", "LFO 3 Rate", "LFO 3 Sync Rate", "LFO 3 Delay", "LFO 3 Tempo Sync", "LFO 3 Key Sync", "LFO 3 Global",
     },
+  }),
+  ripley = byParam({
+    red = {
+      -- main section
+      "Enabled",
+      "Delay Tempo Sync", "Keep Pitch", "Dual Delay",
+      -- output section
+      "Dry-Wet", "Output Gain",
+    },
+    green = {
+      -- delay section
+      "Delay Time", "Synced Time", "Delay Time L", "Synced Time L",
+      "Delay Time R", "Synced Time R", "Time Offset L-R", "Delay On",
+      "Feedback", "Time Multiplier", "Delay Width", "Feedback Limiter",
+      -- eq section
+      "EQ Low Gain", "EQ Mid Gain", "EQ Mid Q", "EQ Mid Frequency",
+      "EQ High Gain", "EQ On", "EQ Position",
+      -- matrix section
+      "Macro Button", "Macro Knob",
+    },
+    mint = {
+      -- matrix modulation
+      "Matrix Mod1 Source", "Matrix Mod1 Amt", "Matrix Mod1 Amt2", "Matrix Mod1 Scale Amt",
+      "Matrix Mod2 Source", "Matrix Mod2 Amt", "Matrix Mod2 Amt2", "Matrix Mod2 Scale Amt",
+      "Matrix Mod3 Source", "Matrix Mod3 Amt", "Matrix Mod3 Amt2", "Matrix Mod3 Scale Amt",
+    },
+    yellow = {
+      -- delay section (special because performance-relevant)
+      "Freeze",
+      -- LFO 1
+      "LFO1 Wave", "LFO1 Rate", "LFO1 Synced Rate", "LFO1 Phase", "LFO1 Sync",
+
+    },
+    blue = {
+      -- wobbler section
+      "Wobbler Amount", "Wobbler On",
+      -- ducker section
+      "Ducker Amount", "Ducker On", "Ducker Position",
+      -- LFO 2
+      "LFO2 Wave", "LFO2 Rate", "LFO2 Synced Rate", "LFO2 Phase", "LFO2 Sync",
+    },
+    orange = {
+      -- ping poing section
+      "Ping Pong Pan", "Ping Pong",
+      -- LFO 1 modulation
+      "LFO1 Mod1 Amt", "LFO1 Mod1 Amt2", "LFO1 Mod1 Scale Amt",
+      "LFO1 Mod2 Amt", "LFO1 Mod2 Amt2", "LFO1 Mod2 Scale Amt",
+      "LFO1 Mod3 Amt", "LFO1 Mod3 Amt2", "LFO1 Mod3 Scale Amt",
+    },
+    violet = {
+      -- space section
+      "Space On", "Space Parallel", "Space Amount",
+      "Space Decay", "Space Size", "Space Width",
+    },
+    pink = {
+      -- filter section
+      "Filter On", "Filter Type",
+      -- follower mod section
+      "Follow Mod1 Amt", "Follow Mod1 Amt2", "Follow Mod1 Scale Amt",
+      "Follow Mod2 Amt", "Follow Mod2 Amt2", "Follow Mod2 Scale Amt",
+      "Follow Mod3 Amt", "Follow Mod3 Amt2", "Follow Mod3 Scale Amt",
+    },
+    cyan = {
+      -- noise section
+      "Noise Amount", "Noise Character", "Noise High End", "Noise Type",
+      "Noise On", "Noise Stereo", "Noise Position",
+      -- LFO 2 modulation
+      "LFO2 Mod1 Amt", "LFO2 Mod1 Amt2", "LFO2 Mod1 Scale Amt",
+      "LFO2 Mod2 Amt", "LFO2 Mod2 Amt2", "LFO2 Mod2 Scale Amt",
+      "LFO2 Mod3 Amt", "LFO2 Mod3 Amt2", "LFO2 Mod3 Scale Amt",
+    },
+    magenta = {
+      -- dist section
+      "Dist Dry-Wet", "Dist Tone", "Dist Drive",
+      "Dist On", "Dist Position",
+      -- follower section
+      "Follow Sensitivity", "Follow Rise", "Follow Fall", "Follow Source Select",
+    },
+    amber = {
+      -- digital section
+      "Digital Dry-Wet", "Rate Crush", "Bit Crush",
+      "Digital On", "Digital Position",
+    }
   })
 }

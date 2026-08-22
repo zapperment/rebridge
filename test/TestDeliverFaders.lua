@@ -6,6 +6,7 @@ local items = require "src.config.items"
 local hex = require "src.lib.hex._"
 local deliverFaders = require "src.remote.deliverMidi.faders"
 local setFaders = require "src.remote.setState.faders"
+local setButtons = require "src.remote.setState.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
 
@@ -55,12 +56,17 @@ local function contains(events, event)
     return false
 end
 
--- simulates the host reporting the fader as mapped to "Volume"
-local function reportFader(fader)
+-- simulates the host reporting the fader as mapped to the given parameter
+local function reportFaderParam(fader, paramName, hostValue, textValue)
     remote.mock "get_item_state":impl(function()
-        return { is_enabled = true, value = 64, remote_item_name = "Volume", text_value = "64" }
+        return { is_enabled = true, value = hostValue, remote_item_name = paramName, text_value = textValue }
     end)
     setFaders({ items[fader].index })
+end
+
+-- simulates the host reporting the fader as mapped to "Volume"
+local function reportFader(fader)
+    reportFaderParam(fader, "Volume", 64, "64")
 end
 
 -- brings the fader into the assigned, in-sync state, as the host does when it
@@ -161,6 +167,96 @@ function TestDeliverFaders:testDoesNotResendParamNameWhenStatusIsUnchanged()
     local events = deliverFaders()
     local errorMessage = "expected no events when the fader status has not changed, but got " .. #events
     lu.assertEquals(#events, 0, errorMessage)
+end
+
+-- simulates the host reporting one of Ripley's delay switches on or off
+local function setRipleySwitch(button, param, on)
+    local previousImpl = remote.mock "get_item_state".implementation
+    remote.mock "get_item_state":impl(function()
+        return { is_enabled = true, value = on and 127 or 0, remote_item_name = param }
+    end)
+    setButtons({ items[button].index })
+    remote.mock "get_item_state".implementation = previousImpl
+end
+
+local function setDualDelay(on)
+    setRipleySwitch("button12", "Dual Delay", on)
+end
+
+local function setDelayTempoSync(on)
+    setRipleySwitch("button10", "Delay Tempo Sync", on)
+end
+
+-- No fader is mapped to a parameter that another one takes the place of at the
+-- moment, so this borrows Ripley's Delay Time R and its Synced Time R: neither
+-- of them is in force while Dual Delay is off, as there is no right-hand channel
+-- to give the fader a parameter at all.
+local function reportRipleyRightHandDelay()
+    state.set("deviceType", "ripley")
+    state.update "deviceType"
+    reportFaderParam("fader1", "Delay Time R", 64, "250 ms")
+    reportFaderParam("fader1alt", "Synced Time R", 32, "1/8")
+end
+
+function TestDeliverFaders:testSuppressesTheDisplayWhenNoneOfAFadersParamsIsInForce()
+    reportRipleyRightHandDelay()
+    setDelayTempoSync(false)
+    setDualDelay(true)
+    deliverFaders()
+    remote.clearMocks()
+    -- back to a single delay time, leaving fader1 with no parameter of its own
+    setDualDelay(false)
+    local events = deliverFaders()
+    local errorMessage = "expected the display of fader1 to be suppressed when neither Delay Time R " ..
+        "nor Synced Time R is in force, so that moving it shows nothing at all"
+    lu.assertEquals(events, { displayOff }, errorMessage)
+    errorMessage = "expected the display to be suppressed for fader1 (controller " ..
+        items.fader1.controller .. ")"
+    lu.assertEquals(targetsOf(displayOff), { items.fader1.controller }, errorMessage)
+end
+
+function TestDeliverFaders:testSendsNothingWhileNoneOfAFadersParamsIsInForce()
+    reportRipleyRightHandDelay()
+    setDelayTempoSync(false)
+    setDualDelay(false)
+    deliverFaders()
+    remote.clearMocks()
+    -- the host keeps reporting the parameter, even though nothing uses it
+    reportFaderParam("fader1", "Delay Time R", 100, "500 ms")
+    local events = deliverFaders()
+    local errorMessage = "expected a fader none of whose parameters is in force to be left alone, " ..
+        "but got " .. #events .. " events"
+    lu.assertEquals(#events, 0, errorMessage)
+end
+
+-- the parameter name is only sent when it changes, so a fader that takes over
+-- the display has to send its own name again: it never got the chance to while
+-- another parameter had the fader
+function TestDeliverFaders:testShowsTheParamNameWhenAFaderTakesOverTheDisplay()
+    reportRipleyRightHandDelay()
+    setDelayTempoSync(false)
+    setDualDelay(false)
+    deliverFaders()
+    remote.clearMocks()
+    -- the second delay time comes into use, and with it fader1's parameter
+    setDualDelay(true)
+    local events = deliverFaders()
+    local errorMessage = "expected Delay Time R to name itself and show its value when it takes over fader1"
+    lu.assertEquals(events, { displayOn, paramNameSysex "Delay Time R", valueSysex "250 ms" }, errorMessage)
+end
+
+function TestDeliverFaders:testShowsTheSyncedTimeWhenTempoSyncTakesOverTheFader()
+    reportRipleyRightHandDelay()
+    setDelayTempoSync(false)
+    setDualDelay(true)
+    deliverFaders()
+    remote.clearMocks()
+    -- the delay time is given in note lengths from here on
+    setDelayTempoSync(true)
+    local events = deliverFaders()
+    local errorMessage = "expected Synced Time R to name itself and show its own value when it takes " ..
+        "over fader1 from Delay Time R"
+    lu.assertEquals(events, { displayOn, paramNameSysex "Synced Time R", valueSysex "1/8" }, errorMessage)
 end
 
 function TestDeliverFaders:testSuppressesTheDisplayOfEveryFaderWhenPreparingForUse()

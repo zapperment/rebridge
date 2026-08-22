@@ -1,0 +1,249 @@
+Scope
+Manufacturer	Model
+Propellerhead Software	se.propellerheads.Ripley
+
+Type	Done	Remotable	Min	Max	Input type	Output type
+
+(B)	[X]	Enabled	0	2	Value	ValueOutput
+
+-- DELAY --
+
+(E)	[X]	Delay Time	0	4194304	Value	ValueOutput
+ (E)	[X]	Synced Time	0	19	Value	ValueOutput
+ (E)	[X]	Delay Time L	0	4194304	Value	ValueOutput
+ (E)	[X]	Synced Time L	0	19	Value	ValueOutput
+(E)	[X]	Time Offset L-R	0	4194304	Value	ValueOutput
+(E)	[X]	Delay Time R	0	4194304	Value	ValueOutput
+ (E)	[X]	Synced Time R	0	19	Value	ValueOutput
+(E)	[X]	Feedback	0	4194304	Value	ValueOutput
+
+(B)	[X]	Delay On	0	1	Toggle	ValueOutput
+(B)	[X]	Delay Tempo Sync	0	1	Toggle	ValueOutput
+(B)	[X]	Keep Pitch	0	1	Toggle	ValueOutput
+(B)	[X]	Dual Delay	0	1	Toggle	ValueOutput
+(B)	[X]	Freeze	0	1	Toggle	ValueOutput
+(B)	[X]	Time Multiplier	0	2	Value	ValueOutput
+
+-- WOBBLER --
+
+(E)	[X]	Wobbler Amount	0	4194304	Value	ValueOutput
+
+(B)	[X]	Wobbler On	0	1	Toggle	ValueOutput
+
+-- PING PONG --
+
+(E)	[X]	Ping Pong Pan	0	4194304	Value	ValueOutput
+
+(B)	[X]	Ping Pong	0	1	Toggle	ValueOutput
+
+-- SPACE --
+
+(E)	[X]	Space Amount	0	4194304	Value	ValueOutput
+(E)	[X]	Space Decay	0	4194304	Value	ValueOutput
+(E)	[X]	Space Size	0	4194304	Value	ValueOutput
+(E)	[X]	Space Width	0	4194304	Value	ValueOutput
+
+(B)	[X]	Space On	0	1	Toggle	ValueOutput
+(B)	[X]	Space Parallel	0	1	Toggle	ValueOutput
+
+-- FILTER --
+
+(E)	[X]	Band Freq Shift	0	4194304	Value	ValueOutput
+(E)	[X]	Band Offset L-R	0	4194304	Value	ValueOutput
+(E)	[X]	Lo Cut Freq	0	4194304	Value	ValueOutput
+(E)	[X]	Hi Cut Freq	0	4194304	Value	ValueOutput
+
+(B)	[X]	Filter On	0	1	Toggle	ValueOutput
+(B)	[X]	Filter Type	0	1	Toggle	ValueOutput
+
+-- LIMITER / WIDTH --
+
+(E)	[X]	Delay Width	0	4194304	Value	ValueOutput
+
+(B)	[X]	Feedback Limiter	0	1	Toggle	ValueOutput
+
+-- NOISE --
+
+(E)	[X]	Noise Amount	0	4194304	Value	ValueOutput
+(E)	[X]	Noise Character	0	4194304	Value	ValueOutput
+(E)	[X]	Noise High End	0	4194304	Value	ValueOutput
+(E)	[X]	Noise Type	0	4	Value	ValueOutput
+
+(B)	[X]	Noise On	0	1	Toggle	ValueOutput
+(B)	[X]	Noise Stereo	0	1	Toggle	ValueOutput
+(B)	[X]	Noise Position	0	4	Value	ValueOutput
+
+-- DIST --
+
+(E)	[X]	Dist Dry-Wet	0	4194304	Value	ValueOutput
+(E)	[X]	Dist Tone	0	4194304	Value	ValueOutput
+(E)	[X]	Dist Drive	0	4194304	Value	ValueOutput
+
+(B)	[X]	Dist On	0	1	Toggle	ValueOutput
+(B)	[X]	Dist Position	0	3	Value	ValueOutput
+
+-- DIGITAL
+
+(E)	[X]	Digital Dry-Wet	0	4194304	Value	ValueOutput
+(E)	[X]	Rate Crush	0	48	Value	ValueOutput
+(E)	[X]	Bit Crush	0	4194304	Value	ValueOutput
+
+(B)	[X]	Digital On	0	1	Toggle	ValueOutput
+(B)	[X]	Digital Position	0	3	Value	ValueOutput
+
+-- OUTPUT --
+
+(E)	[X]	Dry-Wet	0	4194304	Value	ValueOutput
+(E)	[X]	Output Gain	0	4194304	Value	ValueOutput
+
+
+-- EQ --
+
+(E)	[X]	EQ Low Gain	0	4194304	Value	ValueOutput
+(E)	[X]	EQ Mid Gain	0	4194304	Value	ValueOutput
+(E)	[X]	EQ Mid Q	0	4194304	Value	ValueOutput
+(E)	[X]	EQ Mid Frequency	0	4194304	Value	ValueOutput
+(E)	[X]	EQ High Gain	0	4194304	Value	ValueOutput
+
+(B)	[X]	EQ On	0	1	Toggle	ValueOutput
+(B)	[X]	EQ Position	0	4	Value	ValueOutput
+
+-- DUCKER --
+
+(E)	[X]	Ducker Amount	0	4194304	Value	ValueOutput
+
+(B)	[X]	Ducker On	0	1	Toggle	ValueOutput
+(B)	[X]	Ducker Position	0	2	Value	ValueOutput
+
+-- LFO
+
+(E)	[X]	LFO1 Wave	0	10	Value	ValueOutput
+(E)	[X]	LFO1 Rate	0	4194304	Value	ValueOutput
+ (E)	[X]	LFO1 Synced Rate	0	17	Value	ValueOutput
+(E)	[X]	LFO1 Phase	0	4194304	Value	ValueOutput
+
+(B)	[X]	LFO1 Sync	0	1	Toggle	ValueOutput
+
+(E)	[X]	LFO2 Wave	0	10	Value	ValueOutput
+(E)	[X]	LFO2 Rate	0	4194304	Value	ValueOutput
+ (E)	[X]	LFO2 Synced Rate	0	17	Value	ValueOutput
+(E)	[X]	LFO2 Phase	0	4194304	Value	ValueOutput
+
+(B)	[X]	LFO2 Sync	0	1	Toggle	ValueOutput
+
+-- LFO MOD
+
+(E)	[X]	LFO1 Mod1 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod1 Dest	0	56	Value	ValueOutput
+(E)	[X]	LFO1 Mod1 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod1 Dest2	0	56	Value	ValueOutput
+(E)	[X]	LFO1 Mod1 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod1 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	LFO1 Mod2 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod2 Dest	0	56	Value	ValueOutput
+(E)	[X]	LFO1 Mod2 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod2 Dest2	0	56	Value	ValueOutput
+(E)	[X]	LFO1 Mod2 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod2 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	LFO1 Mod3 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod3 Dest	0	56	Value	ValueOutput
+(E)	[X]	LFO1 Mod3 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod3 Dest2	0	56	Value	ValueOutput
+(E)	[X]	LFO1 Mod3 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO1 Mod3 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	LFO2 Mod1 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod1 Dest	0	56	Value	ValueOutput
+(E)	[X]	LFO2 Mod1 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod1 Dest2	0	56	Value	ValueOutput
+(E)	[X]	LFO2 Mod1 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod1 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	LFO2 Mod2 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod2 Dest	0	56	Value	ValueOutput
+(E)	[X]	LFO2 Mod2 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod2 Dest2	0	56	Value	ValueOutput
+(E)	[X]	LFO2 Mod2 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod2 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	LFO2 Mod3 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod3 Dest	0	56	Value	ValueOutput
+(E)	[X]	LFO2 Mod3 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod3 Dest2	0	56	Value	ValueOutput
+(E)	[X]	LFO2 Mod3 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	LFO2 Mod3 Scale	0	9	Value	ValueOutput
+
+-- FOLLOW --
+
+(E)	[X]	Follow Sensitivity	0	4194304	Value	ValueOutput
+(E)	[X]	Follow Rise	0	4194304	Value	ValueOutput
+(E)	[X]	Follow Fall	0	4194304	Value	ValueOutput
+
+(B)	[X]	Follow Source Select	0	4	Value	ValueOutput
+
+-- FOLLOW MOD --
+
+(E)	[X]	Follow Mod1 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod1 Dest	0	56	Value	ValueOutput
+(E)	[X]	Follow Mod1 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod1 Dest2	0	56	Value	ValueOutput
+(E)	[X]	Follow Mod1 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod1 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	Follow Mod2 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod2 Dest	0	56	Value	ValueOutput
+(E)	[X]	Follow Mod2 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod2 Dest2	0	56	Value	ValueOutput
+(E)	[X]	Follow Mod2 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod2 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	Follow Mod3 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod3 Dest	0	56	Value	ValueOutput
+(E)	[X]	Follow Mod3 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod3 Dest2	0	56	Value	ValueOutput
+(E)	[X]	Follow Mod3 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Follow Mod3 Scale	0	9	Value	ValueOutput
+
+-- MATRIX --
+
+(B)	[X]	Macro Button	0	1	Toggle	ValueOutput
+(E)	[X]	Macro Knob	0	4194304	Value	ValueOutput
+
+-- MATRIX MOD --
+
+(E)	[X]	Matrix Mod1 Source	0	9	Value	ValueOutput
+(E)	[X]	Matrix Mod1 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod1 Dest	0	56	Value	ValueOutput
+(E)	[X]	Matrix Mod1 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod1 Dest2	0	56	Value	ValueOutput
+(E)	[X]	Matrix Mod1 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod1 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	Matrix Mod2 Source	0	9	Value	ValueOutput
+(E)	[X]	Matrix Mod2 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod2 Dest	0	56	Value	ValueOutput
+(E)	[X]	Matrix Mod2 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod2 Dest2	0	56	Value	ValueOutput
+(E)	[X]	Matrix Mod2 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod2 Scale	0	9	Value	ValueOutput
+
+(E)	[X]	Matrix Mod3 Source	0	9	Value	ValueOutput
+(E)	[X]	Matrix Mod3 Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod3 Dest	0	56	Value	ValueOutput
+(E)	[X]	Matrix Mod3 Amt2	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod3 Dest2	0	56	Value	ValueOutput
+(E)	[X]	Matrix Mod3 Scale Amt	0	4194304	Value	ValueOutput
+(E)	[-]	Matrix Mod3 Scale	0	9	Value	ValueOutput
+
+(U)	[X]	Mod Source Tab	0	3	Value	ValueOutput
+
+-- INFO --
+
+(T)	[X]	Device Name	0	0	-	TextOutput
+(T)	[X]	Patch Name	0	0	-	TextOutput
+
+(-)	[-]	Select Patch Delta	0	0	Delta	TextOutput
+(-)	[-]	Select Previous Patch	0	0	Trig	TextOutput
+(-)	[-]	Select Next Patch	0	0	Trig	TextOutput

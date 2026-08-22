@@ -84,4 +84,32 @@ return {
       },
     })
   },
+  ripley = {
+    ["Mod Source Tab"] = byParam({
+      [0] = {
+        "LFO1 Wave", "LFO1 Rate", "LFO1 Synced Rate", "LFO1 Phase", "LFO1 Sync",
+        "LFO1 Mod1 Amt", "LFO1 Mod1 Amt2", "LFO1 Mod1 Scale Amt",
+        "LFO1 Mod2 Amt", "LFO1 Mod2 Amt2", "LFO1 Mod2 Scale Amt",
+        "LFO1 Mod3 Amt", "LFO1 Mod3 Amt2", "LFO1 Mod3 Scale Amt",
+      },
+      [42] = {
+        "LFO2 Wave", "LFO2 Rate", "LFO2 Synced Rate", "LFO2 Phase", "LFO2 Sync",
+        "LFO2 Mod1 Amt", "LFO2 Mod1 Amt2", "LFO2 Mod1 Scale Amt",
+        "LFO2 Mod2 Amt", "LFO2 Mod2 Amt2", "LFO2 Mod2 Scale Amt",
+        "LFO2 Mod3 Amt", "LFO2 Mod3 Amt2", "LFO2 Mod3 Scale Amt",
+      },
+      [85] = {
+        "Follow Sensitivity", "Follow Rise", "Follow Fall", "Follow Source Select",
+        "Follow Mod1 Amt", "Follow Mod1 Amt2", "Follow Mod1 Scale Amt",
+        "Follow Mod2 Amt", "Follow Mod2 Amt2", "Follow Mod2 Scale Amt",
+        "Follow Mod3 Amt", "Follow Mod3 Amt2", "Follow Mod3 Scale Amt",
+      },
+      [127] = {
+        "Macro Button", "Macro Knob",
+        "Matrix Mod1 Source", "Matrix Mod1 Amt", "Matrix Mod1 Amt2", "Matrix Mod1 Scale Amt",
+        "Matrix Mod2 Source", "Matrix Mod2 Amt", "Matrix Mod2 Amt2", "Matrix Mod2 Scale Amt",
+        "Matrix Mod3 Source", "Matrix Mod3 Amt", "Matrix Mod3 Amt2", "Matrix Mod3 Scale Amt",
+      },
+    })
+  }
 }

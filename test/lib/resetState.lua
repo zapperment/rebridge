@@ -18,6 +18,7 @@ return function()
 
   for _, control in ipairs(ctrl.encoders) do
     state.set(control .. ".enabled", false)
+    state.set(control .. ".displaying", false)
     state.set(control .. ".controlSurfaceValue", 0)
     state.set(control .. ".param", nil)
     state.set(control .. ".hostValue", nil)
@@ -25,6 +26,7 @@ return function()
   end
   for _, control in ipairs(ctrl.faders) do
     state.set(control .. ".enabled", false)
+    state.set(control .. ".displaying", false)
     state.set(control .. ".controlSurfaceValue", nil)
     state.set(control .. ".param", nil)
     state.set(control .. ".hostValue", nil)

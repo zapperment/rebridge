@@ -33,5 +33,19 @@ return {
     ["Resonator Select"] = 21,
     ["Key Mode"] = 3,
     ["Portamento Mode"] = 3,
+  },
+  ripley = {
+    ["Enabled"] = 3,
+    ["Time Multiplier"] = 3,
+    ["Filter Type"] = 2,
+    ["Noise Position"] = 5,
+    ["Dist Position"] = 5,
+    ["Digital Position"] = 5,
+    ["EQ Position"] = 5,
+    ["Ducker Position"] = 3,
+    ["Follow Source Select"] = 5,
+    ["Matrix Mod1 Source"] = 10,
+    ["Matrix Mod2 Source"] = 10,
+    ["Matrix Mod3 Source"] = 10,
   }
 }
