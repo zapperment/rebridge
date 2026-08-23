@@ -4,6 +4,7 @@
   "scripts": {
     "log": "node src/logReceiver/index.js",
     "extract:combi": "node scripts/extractCombinatorLabels.js",
+    "extract:reason-factory": "./scripts/extract-reason-factory-combinators.sh",
     "build": "./build.sh",
     "build:dev": "./build.sh --dev",
     "sync": "./sync.sh",
