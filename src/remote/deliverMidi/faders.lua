@@ -50,7 +50,8 @@ return function()
       -- an item that takes over from another one has to send everything again,
       -- as its own values have not necessarily changed while it was not on show
       if (item.paramChanged or displayingChanged) and item.param then
-        table.insert(events, midi.makeParamNameDisplayEvent(item.param, controller))
+        local displayName = disp.getDisplayName(deviceType, item.param)
+        table.insert(events, midi.makeParamNameDisplayEvent(displayName, controller))
       end
       if item.hostValue ~= nil and (item.hostTextValueChanged or item.statusChanged or displayingChanged) then
         local prefix, suffix = getPickupMarkers(item.status)

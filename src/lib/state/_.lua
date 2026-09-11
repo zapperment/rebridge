@@ -17,6 +17,9 @@ return {
   get = function(path)
     return stateManager:get(path)
   end,
+  forceParamUpdate = function()
+    stateManager:forceParamUpdate()
+  end,
   getHostValue = function(param)
     return stateManager:getHostValue(param)
   end,

@@ -41,7 +41,8 @@ return function()
     if enabled then
       -- display the parameter name briefly in the LCD if it has changed
       if paramChanged then
-        table.insert(events, midi.makeParamNameDisplayEvent(param, controller))
+        local displayName = disp.getDisplayName(deviceType, param)
+        table.insert(events, midi.makeParamNameDisplayEvent(displayName, controller))
       end
 
       -- if the value has changed, display it in the LCD briefly and report the
@@ -71,7 +72,11 @@ return function()
         end
       end
 
-      if not buttonLightHandled and hostValueChanged then
+      -- the LED has to be lit again whenever a button comes back into use, and
+      -- whenever it changes the parameter it is mapped to: switching to a
+      -- device without buttons turns the LED off, and switching back reports
+      -- the same host value as before, which on its own would leave the LED off
+      if not buttonLightHandled and (hostValueChanged or enabledChanged or paramChanged) then
         if logMe then
           local isButtonToggle = type == const.button.toggle and "true" or "false"
           deb.log(

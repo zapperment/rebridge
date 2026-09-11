@@ -182,6 +182,21 @@ function StateManager:updateAll()
     self:update "patchName"
 end
 
+-- Makes the next delivery send every control's parameter name to the surface
+-- again, even though the host has not changed any of them.
+--
+-- A Combinator calls its parameters "Rotary 1" ... "Button 16" whichever patch
+-- is loaded, while the labels the display shows for them come from the patch
+-- (see lib/display/getDisplayName). Loading another patch therefore changes
+-- every label without changing a single parameter name, and the deliveries,
+-- which only send a name once it has changed, would go on showing the labels of
+-- the patch before.
+function StateManager:forceParamUpdate()
+    for _, control in ipairs(ctrl.all) do
+        self[control].param.forceUpdate = true
+    end
+end
+
 function StateManager:get(path)
     local stateItem = tbl.getValueFromPath(self, path)
     if stateItem == nil then

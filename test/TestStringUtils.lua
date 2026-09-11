@@ -223,3 +223,27 @@ function TestStringUtils:testAreStringsSimilar11()
     local errorMessage = "Strings without common prefix or suffix should not be similar"
     lu.assertEquals(result, false, errorMessage)
 end
+
+function TestStringUtils:testTrim01()
+    local result = str.trim "  foo  "
+    local errorMessage = "Whitespace should be stripped from both ends"
+    lu.assertEquals(result, "foo", errorMessage)
+end
+
+function TestStringUtils:testTrim02()
+    local result = str.trim "foo bar"
+    local errorMessage = "Whitespace inside the string should be left alone"
+    lu.assertEquals(result, "foo bar", errorMessage)
+end
+
+function TestStringUtils:testTrim03()
+    local result = str.trim "   "
+    local errorMessage = "A string of nothing but whitespace should come back empty"
+    lu.assertEquals(result, "", errorMessage)
+end
+
+function TestStringUtils:testTrim04()
+    local result = str.trim(nil)
+    local errorMessage = "Anything that is not a string should be returned as it is"
+    lu.assertEquals(result, nil, errorMessage)
+end

@@ -185,6 +185,59 @@ function TestDeliverButtons:testHostReportDoesNotOverrideACycleButtonsColourWhil
     lu.assertEquals(contains(events, colourEvent("orange", 95)), true, errorMessage)
 end
 
+-- simulates the host reporting the button as unmapped, as it does when a device
+-- without buttons is selected
+local function disableButton(button, paramName)
+    remote.mock "get_item_state":impl(function()
+        return { is_enabled = false, value = 0, remote_item_name = paramName, text_value = "" }
+    end)
+    setButtons({ items[button].index })
+end
+
+function TestDeliverButtons:testLightsTheLedAgainWhenAButtonComesBackIntoUseWithTheSameValue()
+    enableButton "button1"
+    -- switching to a device without buttons: the host unmaps the button, which
+    -- turns its LED off
+    disableButton("button1", "")
+    deliverButtons()
+    remote.clearMocks()
+
+    -- switching back to the device with buttons: same parameter, same value as
+    -- before it was unmapped
+    reportButton("button1", "Mute", 127, "1")
+    local events = deliverButtons()
+    local errorMessage = "expected the LED to be lit again when the button comes back into use"
+    lu.assertEquals(contains(events, colourEvent(items.button1.colour, 95)), true, errorMessage)
+end
+
+function TestDeliverButtons:testLightsTheLedAgainWhenAButtonComesBackIntoUseKeepingItsParamName()
+    enableButton "button1"
+    -- the host may report the button as disabled without dropping the name of
+    -- the parameter it was mapped to
+    disableButton("button1", "Mute")
+    deliverButtons()
+    remote.clearMocks()
+
+    reportButton("button1", "Mute", 127, "1")
+    local events = deliverButtons()
+    local errorMessage = "expected the LED to be lit again when the button comes back into use"
+    lu.assertEquals(contains(events, colourEvent(items.button1.colour, 95)), true, errorMessage)
+end
+
+function TestDeliverButtons:testLeavesTheLedDimWhenAButtonThatIsOffComesBackIntoUse()
+    reportButton("button1", "Mute", 0, "0")
+    deliverButtons()
+    remote.clearMocks()
+    disableButton("button1", "")
+    deliverButtons()
+    remote.clearMocks()
+
+    reportButton("button1", "Mute", 0, "0")
+    local events = deliverButtons()
+    local errorMessage = "expected the LED of a button that is off to be dim when it comes back into use"
+    lu.assertEquals(contains(events, colourEvent(items.button1.colour, 1)), true, errorMessage)
+end
+
 function TestDeliverButtons:testTriggersTheDisplayOfThePressedButton()
     enableButton "button5"
     sendButton("button5", 127)

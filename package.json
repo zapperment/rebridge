@@ -3,12 +3,14 @@
   "description": "MIDI controller setup for Launch Control XL3 + Ableton Live + Reason",
   "scripts": {
     "log": "node src/logReceiver/index.js",
+    "extract:combi": "node scripts/extractCombinatorLabels.js",
+    "extract:reason-factory": "./scripts/extract-reason-factory-combinators.sh",
     "build": "./build.sh",
     "build:dev": "./build.sh --dev",
     "sync": "./sync.sh",
     "setup": "yarn build && yarn sync",
     "setup:dev": "yarn build:dev && yarn sync",
-    "test": "lua ./test/_.test.lua -v"
+    "test": "node scripts/extractCombinatorLabels.js --self-test && lua ./test/_.test.lua -v"
   },
   "packageManager": "yarn@4.14.1",
   "dependencies": {
