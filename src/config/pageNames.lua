@@ -29,5 +29,9 @@ return {
     "Extra Processing",
     "LFOs",
     "Follower & Matrix"
+  },
+  legend = {
+    "Main",
+    "Extra"
   }
 }
