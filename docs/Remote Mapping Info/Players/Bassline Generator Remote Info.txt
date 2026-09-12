@@ -7,6 +7,22 @@ MIDI Pitch	0	1	Toggle	ValueOutput
 MIDI Velocity	0	1	Toggle	ValueOutput
 Playback Mode	0	2	Value	ValueOutput
 Octave	0	4	Value	ValueOutput
+Pattern 1 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 2 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 3 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 4 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 5 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 6 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 7 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 8 OnBeat Bank	0	1	Toggle	ValueOutput
+Pattern 1 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 2 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 3 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 4 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 5 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 6 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 7 OffBeat Bank	0	1	Toggle	ValueOutput
+Pattern 8 OffBeat Bank	0	1	Toggle	ValueOutput
 Pattern 1 OnBeat Source	0	63	Value	ValueOutput
 Pattern 2 OnBeat Source	0	63	Value	ValueOutput
 Pattern 3 OnBeat Source	0	63	Value	ValueOutput
@@ -55,22 +71,22 @@ Pattern 5 OffBeat Note Length	0	4194304	Value	ValueOutput
 Pattern 6 OffBeat Note Length	0	4194304	Value	ValueOutput
 Pattern 7 OffBeat Note Length	0	4194304	Value	ValueOutput
 Pattern 8 OffBeat Note Length	0	4194304	Value	ValueOutput
-Pattern 1 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 2 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 3 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 4 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 5 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 6 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 7 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 8 OnBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 1 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 2 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 3 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 4 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 5 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 6 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 7 OffBeat Variator Shape	0	5	Value	ValueOutput
-Pattern 8 OffBeat Variator Shape	0	5	Value	ValueOutput
+Pattern 1 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 2 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 3 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 4 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 5 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 6 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 7 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 8 OnBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 1 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 2 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 3 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 4 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 5 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 6 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 7 OffBeat Variator Shape	0	17	Value	ValueOutput
+Pattern 8 OffBeat Variator Shape	0	17	Value	ValueOutput
 Pattern 1 OnBeat Variator Amount	0	4194304	Value	ValueOutput
 Pattern 2 OnBeat Variator Amount	0	4194304	Value	ValueOutput
 Pattern 3 OnBeat Variator Amount	0	4194304	Value	ValueOutput
@@ -135,6 +151,14 @@ Pattern 5 Shuffle	0	128	Value	ValueOutput
 Pattern 6 Shuffle	0	128	Value	ValueOutput
 Pattern 7 Shuffle	0	128	Value	ValueOutput
 Pattern 8 Shuffle	0	128	Value	ValueOutput
+Pattern 1 Shift	0	64	Value	ValueOutput
+Pattern 2 Shift	0	64	Value	ValueOutput
+Pattern 3 Shift	0	64	Value	ValueOutput
+Pattern 4 Shift	0	64	Value	ValueOutput
+Pattern 5 Shift	0	64	Value	ValueOutput
+Pattern 6 Shift	0	64	Value	ValueOutput
+Pattern 7 Shift	0	64	Value	ValueOutput
+Pattern 8 Shift	0	64	Value	ValueOutput
 On	0	1	Toggle	ValueOutput
 Run	0	1	Toggle	ValueOutput
 Pattern Select	-1	7	Value	ValueOutput

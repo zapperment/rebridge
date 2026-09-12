@@ -3,4 +3,5 @@ return {
   combinator = "Combinator",
   algoritm = "Algoritm",
   ripley = "Ripley",
+  legend = "The Legend",
 }

@@ -1,5 +1,5 @@
 return {
-  softwareVersion = "0.0.4 BETA",
+  softwareVersion = "0.0.5 SNAPSHOT",
   -- the number of encoders, faders and buttons on the remote surface
   counts = {
     encoders = 24,
