@@ -196,5 +196,62 @@ return {
       "Digital Dry-Wet", "Rate Crush", "Bit Crush",
       "Digital On", "Digital Position",
     }
+  }),
+  legend = byParam({
+    red = {
+      "Oscillator 1 Waveform",
+      "Oscillator 1 Range",
+      "Oscillator 1 Semi",
+      "Oscillator 1 Fine",
+      "Oscillator 1 Volume",
+      "Oscillator 1 Active",
+      "Unison Detune",
+      "Unison Spread",
+      "Polyphony",
+      "Effects Active",
+    },
+    orange = {
+      "Glide",
+      "Modulation Mix",
+      "Modulation Osc",
+      "Modulation Filter",
+    },
+    yellow = {
+      "Oscillator 3 Waveform",
+      "Oscillator 3 Range",
+      "Oscillator 3 Semi",
+      "Oscillator 3 Fine",
+      "Oscillator 3 Volume",
+      "Oscillator 3 Active",
+      "Oscillator 3 Keytrack",
+    },
+    violet = {
+      "Noise Amount",
+      "Noise Type",
+      "Drive Amount",
+      "Feedback Amount",
+    },
+    blue = {
+      "Filter Cutoff",
+      "Filter Resonance",
+      "Filter Envelope Amount",
+      "Filter Type",
+      "Filter LP/BP",
+      "Filter Keytrack 1",
+      "Filter Keytrack 2",
+      "Volume",
+    },
+    cyan = {
+      "Oscillator 2 Waveform",
+      "Oscillator 2 Range",
+      "Oscillator 2 Semi",
+      "Oscillator 2 Fine",
+      "Oscillator 2 Volume",
+      "Oscillator 2 Active",
+    },
+    green = {
+      "Tuning Coarse",
+      "Tuning Fine",
+    }
   })
 }
