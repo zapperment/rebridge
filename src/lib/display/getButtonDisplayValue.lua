@@ -36,6 +36,11 @@ return function(control)
     end
     return customDisplayValue
   end
+  -- a momentary button has no value to show: the host only says whether it is
+  -- held down (see config/momentaryParams)
+  if type == const.button.momentary then
+    return " "
+  end
   if type == const.button.cycle then
     if logMe then
       deb.log(

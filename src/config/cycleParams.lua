@@ -5,7 +5,22 @@
 -- the parameter can take, from the tables in "Reason Remote Support.pdf"
 -- (number of values = max + 1).
 --
--- Two-value parameters do not belong here: they stay ordinary toggles.
+-- A two-value parameter is normally a toggle and does not belong here; list it
+-- only if its button should step like the device's own, as the Bassline
+-- Generator's Bank buttons do, which step between bank A and bank B.
+
+-- lists the given parameter of each of a player's patterns under the names the
+-- host reports for them, e.g. "OnBeat Bank" as "Pattern 1 OnBeat Bank" …
+local function forEachPattern(params, count)
+  local cycleParams = {}
+  for pattern = 1, 8 do
+    for _, param in ipairs(params) do
+      cycleParams["Pattern " .. pattern .. " " .. param] = count
+    end
+  end
+  return cycleParams
+end
+
 return {
   subtractor = {
     ["Osc1 Phase Mode"] = 3,
@@ -47,5 +62,10 @@ return {
     ["Matrix Mod1 Source"] = 10,
     ["Matrix Mod2 Source"] = 10,
     ["Matrix Mod3 Source"] = 10,
-  }
+  },
+  bassline = (function()
+    local params = forEachPattern({ "OnBeat Bank", "OffBeat Bank" }, 2)
+    params["Playback Mode"] = 3
+    return params
+  end)()
 }

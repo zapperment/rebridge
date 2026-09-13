@@ -1,3 +1,5 @@
+local tbl = require("src.lib.table._")
+
 -- The colour of the LED of the encoder or button a parameter is mapped to,
 -- grouped by the sections of the device's own panel so that related controls
 -- light up alike. Keyed by the device type (as mapped to a name in the remote
@@ -17,6 +19,18 @@ local function byParam(groups)
     end
   end
   return colours
+end
+
+-- lists the given parameters of each of a player's patterns under the names
+-- the host reports for them, e.g. "Steps" as "Pattern 1 Steps" … "Pattern 8 Steps"
+local function patternParams(params)
+  local names = {}
+  for pattern = 1, 8 do
+    for _, param in ipairs(params) do
+      table.insert(names, "Pattern " .. pattern .. " " .. param)
+    end
+  end
+  return names
 end
 
 return {
@@ -253,5 +267,33 @@ return {
       "Tuning Coarse",
       "Tuning Fine",
     }
-  })
+  }),
+  bassline = byParam({
+    green = patternParams { -- OnBeat lane
+      "OnBeat Bank", "OnBeat Source", "OnBeat Velocity", "OnBeat Note Length",
+      "OnBeat Variator Shape", "OnBeat Variator Amount",
+    },
+    blue = patternParams { -- OffBeat lane
+      "OffBeat Bank", "OffBeat Source", "OffBeat Velocity", "OffBeat Note Length",
+      "OffBeat Variator Shape", "OffBeat Variator Amount",
+    },
+    amber = patternParams { -- rhythm and pitch of the pattern
+      "Steps", "Shift", "Rate", "Shuffle",
+    },
+    -- pitch of the pattern
+    magenta = tbl.concat(
+      patternParams {
+        "Root Note",
+      },
+      {
+        "Octave", "MIDI Pitch", "MIDI Velocity", "Playback Mode",
+      }
+    ),
+    cyan = patternParams { -- pitch of the pattern
+      "Note Range", "Minorness"
+    },
+    red = { -- the device as a whole
+      "On", "Run",
+    },
+  }),
 }

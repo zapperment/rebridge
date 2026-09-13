@@ -19,6 +19,13 @@ for i = 1, const.counts.buttons do
   table.insert(buttons, "button" .. i)
 end
 
+-- the bottom row of buttons, which a selecting device uses as its selection
+-- buttons, one per option (see remote/processMidi/selection)
+local selectionButtons = {}
+for i = 1, const.counts.options do
+  table.insert(selectionButtons, "button" .. (const.counts.buttons - const.counts.options + i))
+end
+
 local rackUIs = {}
 for i = 1, const.counts.rackUIs do
   table.insert(rackUIs, "rackUI" .. i)
@@ -35,6 +42,7 @@ return {
   encoders = encoders,
   faders = faders,
   buttons = buttons,
+  selectionButtons = selectionButtons,
   rackUIs = rackUIs,
   all = all
 }

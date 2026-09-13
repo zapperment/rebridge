@@ -43,3 +43,11 @@ function TestControls:testAllIsACopy()
     table.remove(controls.all)
     lu.assertEquals(after, before, "mutating all should not affect the encoders table")
 end
+
+function TestControls:testSelectionButtonsAreTheBottomRow()
+    lu.assertEquals(
+        controls.selectionButtons,
+        { "button9", "button10", "button11", "button12", "button13", "button14", "button15", "button16" },
+        "the selection buttons should be the bottom row of buttons, one per option"
+    )
+end

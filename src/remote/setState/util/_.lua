@@ -1,4 +1,4 @@
 return {
-  isToggle = require "src.remote.setState.util.isToggle",
+  getButtonType = require "src.remote.setState.util.getButtonType",
   set = require "src.remote.setState.util.set"
 }

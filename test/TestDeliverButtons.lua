@@ -258,3 +258,50 @@ function TestDeliverButtons:testDoesNotTriggerTheDisplayOnRelease()
     local errorMessage = "expected releasing a button not to trigger the display"
     lu.assertEquals(contains(events, sysex "04 xx 7f"), false, errorMessage)
 end
+
+-- simulates the host reporting the button as mapped to a parameter of the
+-- given device type
+local function reportButtonOf(deviceType, button, paramName, hostValue, textValue)
+    state.set("deviceType", deviceType)
+    state.update "deviceType"
+    reportButton(button, paramName, hostValue, textValue)
+end
+
+function TestDeliverButtons:testMomentaryButtonIsDimWhenItIsMapped()
+    reportButtonOf("bassline", "button6", "Run", 0, "Aus")
+    local events = deliverButtons()
+    local errorMessage = "expected a newly mapped momentary button to be dim"
+    lu.assertEquals(contains(events, colourEvent("red", 1)), true, errorMessage)
+    lu.assertEquals(contains(events, valueSysex " "), true, "expected a momentary button to show no value")
+end
+
+function TestDeliverButtons:testMomentaryButtonIsBrightWhileHeldDownAndDimAfterRelease()
+    reportButtonOf("bassline", "button6", "Run", 0, "Aus")
+    deliverButtons()
+    remote.clearMocks()
+
+    sendButton("button6", 127)
+    local events = deliverButtons()
+    lu.assertEquals(contains(events, colourEvent("red", 95)), true,
+        "expected the momentary button to be bright while held down")
+    remote.clearMocks()
+
+    sendButton("button6", 0)
+    events = deliverButtons()
+    lu.assertEquals(contains(events, colourEvent("red", 1)), true,
+        "expected the momentary button to be dim after it is released")
+end
+
+function TestDeliverButtons:testHostReportsLeaveAMomentaryButtonsLedAlone()
+    reportButtonOf("bassline", "button6", "Run", 0, "Aus")
+    deliverButtons()
+    remote.clearMocks()
+
+    -- the host echoes the button going down and up, or a click on the panel
+    reportButton("button6", "Run", 127, "An")
+    local events = deliverButtons()
+    lu.assertEquals(#events, 0, "expected the host reporting the button as down to send nothing, but got " .. #events)
+    reportButton("button6", "Run", 0, "Aus")
+    events = deliverButtons()
+    lu.assertEquals(#events, 0, "expected the host reporting the button as up to send nothing, but got " .. #events)
+end

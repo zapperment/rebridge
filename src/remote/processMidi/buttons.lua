@@ -1,12 +1,13 @@
 local ctrl = require "src.config.controls"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
+local const = require "src.config.constants"
 local cycleParams = require "src.config.cycleParams"
 local util = require "src.remote.processMidi.util._"
 local deb = require "src.lib.debug._"
 
 -- the number of values of the mapped parameter if the button cycles through
--- them like the momentary buttons on the device's own UI, nil for toggles
+-- them like the buttons on the device's own UI, nil for other buttons
 local function getCycleCount(paramName)
   local deviceCycleParams = cycleParams[state.get "deviceType"]
   return deviceCycleParams and deviceCycleParams[paramName]
@@ -65,6 +66,11 @@ return function(event)
               value = nextValueScaled
             })
           end
+        elseif state.get(control .. ".type") == const.button.momentary then
+          -- the host flips the parameter itself whenever the button goes down,
+          -- and needs to see it come up again before the next press counts, so
+          -- the codec passes both on (see config/momentaryParams)
+          remote.handle_input({ time_stamp = event.time_stamp, item = item.index, value = pressed and 127 or 0 })
         elseif pressed then
           local turnedOn = state.flip(control .. ".hostValue")
           if logMe then

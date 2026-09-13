@@ -4,6 +4,9 @@
 !.yarn/sdks
 !.yarn/versions
 **/.DS_Store
+.agents/skills
+.claude/settings.local.json
+.claude/skills
 .env
 .env.host
 .pnp.*

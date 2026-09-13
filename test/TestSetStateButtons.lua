@@ -65,6 +65,44 @@ function TestSetStateButtons:testMarksAnOrdinaryParamAsTheToggleType()
         "expected a parameter not configured in cycleParams to mark the button as a toggle type")
 end
 
+-- simulates the host reporting the momentary Run button as held down (127)
+-- or up (0), as it does after a press on the surface or a click on the panel
+local function reportRun(down)
+    reportButton("button6", "Run", down and 127 or 0, down and "An" or "Aus")
+end
+
+function TestSetStateButtons:testMarksAMomentaryParamAsTheMomentaryType()
+    setDeviceType "bassline"
+    reportRun(false)
+    lu.assertEquals(state.get "button6.type", const.button.momentary,
+        "expected a parameter configured in momentaryParams to mark the button as a momentary type")
+end
+
+function TestSetStateButtons:testDropsTheHostsReportOfAMomentaryButton()
+    setDeviceType "bassline"
+    reportRun(false)
+    state.updateAll()
+    reportRun(true)
+    lu.assertEquals(state.hasChanged "button6.hostValue", false,
+        "expected the host reporting the button as down to change nothing")
+    lu.assertEquals(state.hasChanged "button6.hostTextValue", false,
+        "expected the host's text for the button to be dropped")
+end
+
+function TestSetStateButtons:testShowsNoValueForAMomentaryParam()
+    setDeviceType "bassline"
+    reportRun(true)
+    lu.assertEquals(displayValueOf "button6", " ", "expected a momentary button to show no value")
+end
+
+function TestSetStateButtons:testMarksABankButtonAsTheCycleType()
+    setDeviceType "bassline"
+    reportButton("button1", "Pattern 5 OffBeat Bank", 127, "B")
+    lu.assertEquals(state.get "button1.type", const.button.cycle,
+        "expected the two-value Bank parameter to be a cycle button, as configured")
+    lu.assertEquals(displayValueOf "button1", "B", "expected the cycle button to show the host's text value")
+end
+
 function TestSetStateButtons:testShowsTheValue0AsOff()
     reportButton("button1", "Mute", 0, "0")
     lu.assertEquals(displayValueOf "button1", "Off", "expected the text value '0' to be shown as 'Off'")

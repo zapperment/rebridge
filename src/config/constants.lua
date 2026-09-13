@@ -1,11 +1,13 @@
 return {
-  softwareVersion = "0.0.4 BETA",
+  softwareVersion = "0.0.5 SNAPSHOT",
   -- the number of encoders, faders and buttons on the remote surface
   counts = {
     encoders = 24,
     faders = 8,
     buttons = 16,
     pageSelects = 13,
+    -- the options a selecting device can have, one per selection button
+    options = 8,
     rackUIs = 2,
   },
   pickupTolerance = 10,
@@ -19,7 +21,8 @@ return {
   },
   button = {
     toggle = 0,
-    cycle = 1
+    cycle = 1,
+    momentary = 2
   },
   interpolation = {
     linear = 0,

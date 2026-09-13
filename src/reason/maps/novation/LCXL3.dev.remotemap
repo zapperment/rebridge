@@ -766,3 +766,228 @@ Map	deviceName		Device Name
 Map	patchName		Patch Name
 
 Map	deviceType		"legend"
+
+Scope	Propellerhead Software	se.propellerheads.Bassline
+Define Group	Patterns	No Pattern	Pattern 1	Pattern 2	Pattern 3	Pattern 4	Pattern 5	Pattern 6	Pattern 7	Pattern 8
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+// Selection: the selection buttons set Pattern Select, and the codec keeps the
+// Patterns group in step with it
+
+Map	selector		Pattern Select
+Map	noOptionSelect		Patterns=No Pattern
+Map	optionSelect1		Patterns=Pattern 1
+Map	optionSelect2		Patterns=Pattern 2
+Map	optionSelect3		Patterns=Pattern 3
+Map	optionSelect4		Patterns=Pattern 4
+Map	optionSelect5		Patterns=Pattern 5
+Map	optionSelect6		Patterns=Pattern 6
+Map	optionSelect7		Patterns=Pattern 7
+Map	optionSelect8		Patterns=Pattern 8
+
+// The device as a whole, whichever pattern is selected
+Map	encoder24		Octave
+
+Map	button1		On
+Map	button3		Playback Mode
+Map	button4		MIDI Pitch
+Map	button5		MIDI Velocity
+Map	button8		Run
+
+// Pattern 1
+
+Map	encoder1		Pattern 1 OnBeat Note Length			Pattern 1
+Map	encoder2		Pattern 1 OnBeat Velocity			Pattern 1
+Map	encoder3		Pattern 1 OnBeat Source			Pattern 1
+Map	encoder9		Pattern 1 OnBeat Bank			Pattern 1
+Map	encoder10		Pattern 1 OnBeat Variator Shape			Pattern 1
+Map	encoder11		Pattern 1 OnBeat Variator Amount			Pattern 1
+
+Map	encoder6		Pattern 1 OffBeat Source			Pattern 1
+Map	encoder7		Pattern 1 OffBeat Velocity			Pattern 1
+Map	encoder8		Pattern 1 OffBeat Note Length			Pattern 1
+Map	encoder14		Pattern 1 OffBeat Variator Amount			Pattern 1
+Map	encoder15		Pattern 1 OffBeat Variator Shape			Pattern 1
+Map	encoder16		Pattern 1 OffBeat Bank			Pattern 1
+
+Map	encoder17		Pattern 1 Root Note			Pattern 1
+Map	encoder18		Pattern 1 Steps			Pattern 1
+Map	encoder19		Pattern 1 Shift			Pattern 1
+Map	encoder20		Pattern 1 Rate			Pattern 1
+Map	encoder21		Pattern 1 Shuffle			Pattern 1
+Map	encoder22		Pattern 1 Note Range			Pattern 1
+Map	encoder23		Pattern 1 Minorness			Pattern 1
+
+// Pattern 2
+
+Map	encoder1		Pattern 2 OnBeat Note Length			Pattern 2
+Map	encoder2		Pattern 2 OnBeat Velocity			Pattern 2
+Map	encoder3		Pattern 2 OnBeat Source			Pattern 2
+Map	encoder9		Pattern 2 OnBeat Bank			Pattern 2
+Map	encoder10		Pattern 2 OnBeat Variator Shape			Pattern 2
+Map	encoder11		Pattern 2 OnBeat Variator Amount			Pattern 2
+
+Map	encoder6		Pattern 2 OffBeat Source			Pattern 2
+Map	encoder7		Pattern 2 OffBeat Velocity			Pattern 2
+Map	encoder8		Pattern 2 OffBeat Note Length			Pattern 2
+Map	encoder14		Pattern 2 OffBeat Variator Amount			Pattern 2
+Map	encoder15		Pattern 2 OffBeat Variator Shape			Pattern 2
+Map	encoder16		Pattern 2 OffBeat Bank			Pattern 2
+
+Map	encoder17		Pattern 2 Root Note			Pattern 2
+Map	encoder18		Pattern 2 Steps			Pattern 2
+Map	encoder19		Pattern 2 Shift			Pattern 2
+Map	encoder20		Pattern 2 Rate			Pattern 2
+Map	encoder21		Pattern 2 Shuffle			Pattern 2
+Map	encoder22		Pattern 2 Note Range			Pattern 2
+Map	encoder23		Pattern 2 Minorness			Pattern 2
+
+// Pattern 3
+
+Map	encoder1		Pattern 3 OnBeat Note Length			Pattern 3
+Map	encoder2		Pattern 3 OnBeat Velocity			Pattern 3
+Map	encoder3		Pattern 3 OnBeat Source			Pattern 3
+Map	encoder9		Pattern 3 OnBeat Bank			Pattern 3
+Map	encoder10		Pattern 3 OnBeat Variator Shape			Pattern 3
+Map	encoder11		Pattern 3 OnBeat Variator Amount			Pattern 3
+
+Map	encoder6		Pattern 3 OffBeat Source			Pattern 3
+Map	encoder7		Pattern 3 OffBeat Velocity			Pattern 3
+Map	encoder8		Pattern 3 OffBeat Note Length			Pattern 3
+Map	encoder14		Pattern 3 OffBeat Variator Amount			Pattern 3
+Map	encoder15		Pattern 3 OffBeat Variator Shape			Pattern 3
+Map	encoder16		Pattern 3 OffBeat Bank			Pattern 3
+
+Map	encoder17		Pattern 3 Root Note			Pattern 3
+Map	encoder18		Pattern 3 Steps			Pattern 3
+Map	encoder19		Pattern 3 Shift			Pattern 3
+Map	encoder20		Pattern 3 Rate			Pattern 3
+Map	encoder21		Pattern 3 Shuffle			Pattern 3
+Map	encoder22		Pattern 3 Note Range			Pattern 3
+Map	encoder23		Pattern 3 Minorness			Pattern 3
+
+// Pattern 4
+
+Map	encoder1		Pattern 4 OnBeat Note Length			Pattern 4
+Map	encoder2		Pattern 4 OnBeat Velocity			Pattern 4
+Map	encoder3		Pattern 4 OnBeat Source			Pattern 4
+Map	encoder9		Pattern 4 OnBeat Bank			Pattern 4
+Map	encoder10		Pattern 4 OnBeat Variator Shape			Pattern 4
+Map	encoder11		Pattern 4 OnBeat Variator Amount			Pattern 4
+
+Map	encoder6		Pattern 4 OffBeat Source			Pattern 4
+Map	encoder7		Pattern 4 OffBeat Velocity			Pattern 4
+Map	encoder8		Pattern 4 OffBeat Note Length			Pattern 4
+Map	encoder14		Pattern 4 OffBeat Variator Amount			Pattern 4
+Map	encoder15		Pattern 4 OffBeat Variator Shape			Pattern 4
+Map	encoder16		Pattern 4 OffBeat Bank			Pattern 4
+
+Map	encoder17		Pattern 4 Root Note			Pattern 4
+Map	encoder18		Pattern 4 Steps			Pattern 4
+Map	encoder19		Pattern 4 Shift			Pattern 4
+Map	encoder20		Pattern 4 Rate			Pattern 4
+Map	encoder21		Pattern 4 Shuffle			Pattern 4
+Map	encoder22		Pattern 4 Note Range			Pattern 4
+Map	encoder23		Pattern 4 Minorness			Pattern 4
+
+// Pattern 5
+
+Map	encoder1		Pattern 5 OnBeat Note Length			Pattern 5
+Map	encoder2		Pattern 5 OnBeat Velocity			Pattern 5
+Map	encoder3		Pattern 5 OnBeat Source			Pattern 5
+Map	encoder9		Pattern 5 OnBeat Bank			Pattern 5
+Map	encoder10		Pattern 5 OnBeat Variator Shape			Pattern 5
+Map	encoder11		Pattern 5 OnBeat Variator Amount			Pattern 5
+
+Map	encoder6		Pattern 5 OffBeat Source			Pattern 5
+Map	encoder7		Pattern 5 OffBeat Velocity			Pattern 5
+Map	encoder8		Pattern 5 OffBeat Note Length			Pattern 5
+Map	encoder14		Pattern 5 OffBeat Variator Amount			Pattern 5
+Map	encoder15		Pattern 5 OffBeat Variator Shape			Pattern 5
+Map	encoder16		Pattern 5 OffBeat Bank			Pattern 5
+
+Map	encoder17		Pattern 5 Root Note			Pattern 5
+Map	encoder18		Pattern 5 Steps			Pattern 5
+Map	encoder19		Pattern 5 Shift			Pattern 5
+Map	encoder20		Pattern 5 Rate			Pattern 5
+Map	encoder21		Pattern 5 Shuffle			Pattern 5
+Map	encoder22		Pattern 5 Note Range			Pattern 5
+Map	encoder23		Pattern 5 Minorness			Pattern 5
+
+// Pattern 6
+
+Map	encoder1		Pattern 6 OnBeat Note Length			Pattern 6
+Map	encoder2		Pattern 6 OnBeat Velocity			Pattern 6
+Map	encoder3		Pattern 6 OnBeat Source			Pattern 6
+Map	encoder9		Pattern 6 OnBeat Bank			Pattern 6
+Map	encoder10		Pattern 6 OnBeat Variator Shape			Pattern 6
+Map	encoder11		Pattern 6 OnBeat Variator Amount			Pattern 6
+
+Map	encoder6		Pattern 6 OffBeat Source			Pattern 6
+Map	encoder7		Pattern 6 OffBeat Velocity			Pattern 6
+Map	encoder8		Pattern 6 OffBeat Note Length			Pattern 6
+Map	encoder14		Pattern 6 OffBeat Variator Amount			Pattern 6
+Map	encoder15		Pattern 6 OffBeat Variator Shape			Pattern 6
+Map	encoder16		Pattern 6 OffBeat Bank			Pattern 6
+
+Map	encoder17		Pattern 6 Root Note			Pattern 6
+Map	encoder18		Pattern 6 Steps			Pattern 6
+Map	encoder19		Pattern 6 Shift			Pattern 6
+Map	encoder20		Pattern 6 Rate			Pattern 6
+Map	encoder21		Pattern 6 Shuffle			Pattern 6
+Map	encoder22		Pattern 6 Note Range			Pattern 6
+Map	encoder23		Pattern 6 Minorness			Pattern 6
+
+// Pattern 7
+
+Map	encoder1		Pattern 7 OnBeat Note Length			Pattern 7
+Map	encoder2		Pattern 7 OnBeat Velocity			Pattern 7
+Map	encoder3		Pattern 7 OnBeat Source			Pattern 7
+Map	encoder9		Pattern 7 OnBeat Bank			Pattern 7
+Map	encoder10		Pattern 7 OnBeat Variator Shape			Pattern 7
+Map	encoder11		Pattern 7 OnBeat Variator Amount			Pattern 7
+
+Map	encoder6		Pattern 7 OffBeat Source			Pattern 7
+Map	encoder7		Pattern 7 OffBeat Velocity			Pattern 7
+Map	encoder8		Pattern 7 OffBeat Note Length			Pattern 7
+Map	encoder14		Pattern 7 OffBeat Variator Amount			Pattern 7
+Map	encoder15		Pattern 7 OffBeat Variator Shape			Pattern 7
+Map	encoder16		Pattern 7 OffBeat Bank			Pattern 7
+
+Map	encoder17		Pattern 7 Root Note			Pattern 7
+Map	encoder18		Pattern 7 Steps			Pattern 7
+Map	encoder19		Pattern 7 Shift			Pattern 7
+Map	encoder20		Pattern 7 Rate			Pattern 7
+Map	encoder21		Pattern 7 Shuffle			Pattern 7
+Map	encoder22		Pattern 7 Note Range			Pattern 7
+Map	encoder23		Pattern 7 Minorness			Pattern 7
+
+// Pattern 8
+
+Map	encoder1		Pattern 8 OnBeat Note Length			Pattern 8
+Map	encoder2		Pattern 8 OnBeat Velocity			Pattern 8
+Map	encoder3		Pattern 8 OnBeat Source			Pattern 8
+Map	encoder9		Pattern 8 OnBeat Bank			Pattern 8
+Map	encoder10		Pattern 8 OnBeat Variator Shape			Pattern 8
+Map	encoder11		Pattern 8 OnBeat Variator Amount			Pattern 8
+
+Map	encoder6		Pattern 8 OffBeat Source			Pattern 8
+Map	encoder7		Pattern 8 OffBeat Velocity			Pattern 8
+Map	encoder8		Pattern 8 OffBeat Note Length			Pattern 8
+Map	encoder14		Pattern 8 OffBeat Variator Amount			Pattern 8
+Map	encoder15		Pattern 8 OffBeat Variator Shape			Pattern 8
+Map	encoder16		Pattern 8 OffBeat Bank			Pattern 8
+
+Map	encoder17		Pattern 8 Root Note			Pattern 8
+Map	encoder18		Pattern 8 Steps			Pattern 8
+Map	encoder19		Pattern 8 Shift			Pattern 8
+Map	encoder20		Pattern 8 Rate			Pattern 8
+Map	encoder21		Pattern 8 Shuffle			Pattern 8
+Map	encoder22		Pattern 8 Note Range			Pattern 8
+Map	encoder23		Pattern 8 Minorness			Pattern 8
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
+Map	deviceType		"bassline"
