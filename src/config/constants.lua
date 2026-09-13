@@ -21,7 +21,8 @@ return {
   },
   button = {
     toggle = 0,
-    cycle = 1
+    cycle = 1,
+    momentary = 2
   },
   interpolation = {
     linear = 0,

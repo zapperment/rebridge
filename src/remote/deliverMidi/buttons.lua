@@ -66,8 +66,9 @@ return function()
         end
 
         if controlSurfaceValueChanged then
-          -- button down: light up button LED
-          if type == const.button.cycle then
+          -- button down: light up button LED; a cycle or momentary button is
+          -- bright only while it is held down
+          if type ~= const.button.toggle then
             local intensity = controlSurfaceValue > 0 and 95 or 1
             local colourName = col.getColourName(deviceType, param, item.colour)
             table.insert(events, midi.makeColourEvent(colourName, intensity, controller))

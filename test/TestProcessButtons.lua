@@ -2,6 +2,7 @@ local test = require "test.lib._"
 local lu = test.luaUnit
 local state = require "src.lib.state._"
 local items = require "src.config.items"
+local const = require "src.config.constants"
 local processButtons = require "src.remote.processMidi.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
@@ -131,4 +132,44 @@ function TestProcessButtons:testCycleParamsAreScopedToTheirDeviceType()
     local errorMessage = "expected the parameter to toggle on a device type without cycle parameters, " ..
         "but the handled values are " .. table.concat(handledValues(), ", ")
     lu.assertEquals(handledValues(), { 127 }, errorMessage)
+end
+
+local function makeMomentary()
+    setDeviceType "bassline"
+    setParamName "Run"
+    state.set("button13.type", const.button.momentary)
+    state.update "button13.type"
+end
+
+function TestProcessButtons:testAMomentaryButtonSendsAPressWhateverTheParamsState()
+    makeMomentary()
+    setHostValue(false)
+    sendButton("button13", 127)
+    local errorMessage = "expected a momentary button to send a press (127) even though the parameter is on, " ..
+        "as the host flips it itself, but the handled values are " .. table.concat(handledValues(), ", ")
+    lu.assertEquals(handledValues(), { 127 }, errorMessage)
+end
+
+function TestProcessButtons:testAMomentaryButtonSendsTheReleaseToo()
+    -- the host only counts a press once it has seen the button come up again
+    makeMomentary()
+    setHostValue(false)
+    sendButton("button13", 127)
+    sendButton("button13", 0)
+    local errorMessage = "expected the press and the release to reach the host, but the handled values are " ..
+        table.concat(handledValues(), ", ")
+    lu.assertEquals(handledValues(), { 127, 0 }, errorMessage)
+end
+
+function TestProcessButtons:testATwoValueCycleParamStepsBetweenItsValues()
+    -- the Bassline Generator's Bank buttons step between bank A (0) and B (127)
+    setDeviceType "bassline"
+    setParamName "Pattern 2 OnBeat Bank"
+    setHostValue(0)
+    sendButton("button13", 127)
+    setHostValue(127)
+    sendButton("button13", 127)
+    local errorMessage = "expected the Bank button to step from A to B and back, but the handled values are " ..
+        table.concat(handledValues(), ", ")
+    lu.assertEquals(handledValues(), { 127, 0 }, errorMessage)
 end

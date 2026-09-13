@@ -85,8 +85,19 @@ A rule that makes a parameter's label, colour or visibility depend on the
 value of another parameter of the same device.
 
 **Cycle parameter**:
-A parameter with more than two values that is mapped to a button; each press
-steps to the next value, like the momentary buttons on the device's own panel.
+A parameter mapped to a button that steps to its next value on every press,
+like the stepping buttons on the device's own panel; the codec works out the
+next value.
+
+**Momentary parameter**:
+A parameter that behaves like a pushbutton on the device's panel, like the
+Bassline Generator's Run: the host flips it whenever the button goes down and
+reports back only whether the button is down, never the parameter's state, so
+the surface shows the press and nothing else.
+
+**Display name**:
+The parameter name as shown on the surface: the host's name, shortened for a
+device whose names would otherwise be cut off.
 
 **Custom display value**:
 A label the codec shows in place of the host's value text, for devices whose
