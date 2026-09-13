@@ -1,8 +1,10 @@
 local StateManager = require "src.lib.state.StateManager"
 local PageManager = require "src.lib.state.PageManager"
+local SelectionManager = require "src.lib.state.SelectionManager"
 
 local stateManager = StateManager:new()
 local pageManager = PageManager:new({ state = stateManager })
+local selectionManager = SelectionManager:new({ state = stateManager })
 
 return {
   hasChanged = function(path)
@@ -19,6 +21,9 @@ return {
   end,
   forceParamUpdate = function()
     stateManager:forceParamUpdate()
+  end,
+  forceUpdate = function(path)
+    stateManager:forceUpdate(path)
   end,
   getHostValue = function(param)
     return stateManager:getHostValue(param)
@@ -91,5 +96,47 @@ return {
   end,
   getPageLabelAndName = function()
     return pageManager:getLabelAndName()
+  end,
+  resetSelection = function()
+    selectionManager:reset()
+  end,
+  setSelectorState = function(itemState)
+    selectionManager:setSelectorState(itemState)
+  end,
+  setOptionState = function(option, itemState)
+    selectionManager:setOptionState(option, itemState)
+  end,
+  updateSelection = function()
+    selectionManager:update()
+  end,
+  isSelecting = function()
+    return selectionManager:isEnabled()
+  end,
+  getSelectedOption = function()
+    return selectionManager:getSelected()
+  end,
+  getOptionCount = function()
+    return selectionManager:getCount()
+  end,
+  takeSelectionSwitch = function()
+    return selectionManager:takeSwitch()
+  end,
+  consumeSelectionPing = function()
+    return selectionManager:consumePing()
+  end,
+  getSelectorValueFor = function(option)
+    return selectionManager:getSelectorValueFor(option)
+  end,
+  isSelectionButton = function(control)
+    return selectionManager:isSelectionButton(control)
+  end,
+  getSelectorName = function()
+    return selectionManager:getSelectorName()
+  end,
+  getOptionLabel = function(option)
+    return selectionManager:getOptionLabel(option)
+  end,
+  getSelectionColour = function(defaultColour)
+    return selectionManager:getColour(defaultColour)
   end,
 }

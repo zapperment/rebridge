@@ -6,6 +6,8 @@ return {
     faders = 8,
     buttons = 16,
     pageSelects = 13,
+    -- the options a selecting device can have, one per selection button
+    options = 8,
     rackUIs = 2,
   },
   pickupTolerance = 10,

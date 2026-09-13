@@ -19,6 +19,18 @@ local function byParam(groups)
   return colours
 end
 
+-- lists the given parameters of each of a player's patterns under the names
+-- the host reports for them, e.g. "Steps" as "Pattern 1 Steps" … "Pattern 8 Steps"
+local function patternParams(params)
+  local names = {}
+  for pattern = 1, 8 do
+    for _, param in ipairs(params) do
+      table.insert(names, "Pattern " .. pattern .. " " .. param)
+    end
+  end
+  return names
+end
+
 return {
   subtractor = byParam({
     red = { -- oscillator 1
@@ -253,5 +265,21 @@ return {
       "Tuning Coarse",
       "Tuning Fine",
     }
-  })
+  }),
+  bassline = byParam({
+    green = patternParams { -- OnBeat lane
+      "OnBeat Bank", "OnBeat Source", "OnBeat Velocity", "OnBeat Note Length",
+      "OnBeat Variator Shape", "OnBeat Variator Amount",
+    },
+    blue = patternParams { -- OffBeat lane
+      "OffBeat Bank", "OffBeat Source", "OffBeat Velocity", "OffBeat Note Length",
+      "OffBeat Variator Shape", "OffBeat Variator Amount",
+    },
+    amber = patternParams { -- rhythm and pitch of the pattern
+      "Steps", "Shift", "Rate", "Shuffle", "Note Range", "Minorness", "Root Note",
+    },
+    red = { -- the device as a whole
+      "Octave", "On", "Run", "MIDI Pitch", "MIDI Velocity", "Playback Mode",
+    },
+  }),
 }

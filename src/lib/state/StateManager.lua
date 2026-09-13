@@ -29,6 +29,17 @@ function StateManager:new()
         deviceType = entry " ",
         deviceName = entry " ",
         patchName = entry " ",
+        -- the selection of a selecting device, as far as the delivery needs to
+        -- know about it (see lib/state/SelectionManager): whether the target
+        -- device has one, the selected option (0 for none), how many options
+        -- the remote map defines, and the device type the selection buttons
+        -- were last delivered for
+        selection = {
+            enabled = entry(false),
+            selected = entry(0),
+            count = entry(0),
+            deviceType = entry " ",
+        },
         hostValues = {},
         shifted = false,
     }
@@ -180,6 +191,10 @@ function StateManager:updateAll()
     self:update "deviceType"
     self:update "deviceName"
     self:update "patchName"
+    self:update "selection.enabled"
+    self:update "selection.selected"
+    self:update "selection.count"
+    self:update "selection.deviceType"
 end
 
 -- Makes the next delivery send every control's parameter name to the surface
@@ -195,6 +210,17 @@ function StateManager:forceParamUpdate()
     for _, control in ipairs(ctrl.all) do
         self[control].param.forceUpdate = true
     end
+end
+
+-- Makes the next delivery treat the value at the path as changed, even though
+-- it has not: when the selection buttons are handed back to the parameters the
+-- device maps to them, their LEDs and displays have to be delivered again.
+function StateManager:forceUpdate(path)
+    local item = tbl.getValueFromPath(self, path)
+    if item == nil then
+        return
+    end
+    item.forceUpdate = true
 end
 
 function StateManager:get(path)

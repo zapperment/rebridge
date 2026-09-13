@@ -153,6 +153,24 @@ return {
   pageSelect11 = { input = "button", output = "value", min = 0, max = 127 },
   pageSelect12 = { input = "button", output = "value", min = 0, max = 127 },
   pageSelect13 = { input = "button", output = "value", min = 0, max = 127 },
+  -- the selector parameter of a selecting device, e.g. the Bassline
+  -- Generator's Pattern Select: -1 while no option is selected, otherwise the
+  -- number of the selected option counted from 0
+  selector = { input = "value", output = "value", min = -1, max = 7 },
+  -- one selector per option of a selecting device, mapped to the value of the
+  -- group that holds the option's mapping (e.g. "Patterns=Pattern 1"), plus one
+  -- for the mapping in force while no option is selected; the codec presses
+  -- them to keep the group in step with the selector parameter, and the host
+  -- reports back which one is in force
+  noOptionSelect = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect1 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect2 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect3 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect4 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect5 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect6 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect7 = { input = "button", output = "value", min = 0, max = 127 },
+  optionSelect8 = { input = "button", output = "value", min = 0, max = 127 },
   playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 74 xx", controller = 116 },
   recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 76 xx", controller = 118 },
   stopButton = { input = "button", output = "value", min = 0, max = 127 },

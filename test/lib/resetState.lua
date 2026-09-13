@@ -4,6 +4,7 @@ local ctrl = require "src.config.controls"
 
 return function()
   state.resetPages()
+  state.resetSelection()
   state.setShifted(false)
   state.resetHostValues()
 
@@ -15,6 +16,7 @@ return function()
   state.set("deviceType", " ")
   state.set("deviceName", " ")
   state.set("patchName", " ")
+  state.set("selection.deviceType", " ")
 
   for _, control in ipairs(ctrl.encoders) do
     state.set(control .. ".enabled", false)

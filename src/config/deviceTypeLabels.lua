@@ -4,4 +4,5 @@ return {
   algoritm = "Algoritm",
   ripley = "Ripley",
   legend = "The Legend",
+  bassline = "Bassline Generator",
 }

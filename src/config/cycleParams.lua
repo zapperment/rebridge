@@ -47,5 +47,8 @@ return {
     ["Matrix Mod1 Source"] = 10,
     ["Matrix Mod2 Source"] = 10,
     ["Matrix Mod3 Source"] = 10,
+  },
+  bassline = {
+    ["Playback Mode"] = 3,
   }
 }

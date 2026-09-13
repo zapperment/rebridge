@@ -6,6 +6,7 @@ local deliverEncoders = require "src.remote.deliverMidi.encoders"
 local deliverFaders = require "src.remote.deliverMidi.faders"
 local deliverInfo = require "src.remote.deliverMidi.info"
 local deliverPages = require "src.remote.deliverMidi.pages"
+local deliverSelection = require "src.remote.deliverMidi.selection"
 local deliverTransport = require "src.remote.deliverMidi.transport"
 local items = require "src.config.items"
 local midi = require "src.lib.midi._"
@@ -15,12 +16,14 @@ local processFaders = require "src.remote.processMidi.faders"
 local processNavigation = require "src.remote.processMidi.navigation"
 local processTransport = require "src.remote.processMidi.transport"
 local processRackUI = require "src.remote.processMidi.rackUI"
+local processSelection = require "src.remote.processMidi.selection"
 local setButtons = require "src.remote.setState.buttons"
 local setEncoders = require "src.remote.setState.encoders"
 local setFaders = require "src.remote.setState.faders"
 local setRackUI = require "src.remote.setState.rackUI"
 local setInfo = require "src.remote.setState.info"
 local setPages = require "src.remote.setState.pages"
+local setSelection = require "src.remote.setState.selection"
 local setTransport = require "src.remote.setState.transport"
 local deb = require "src.lib.debug._"
 
@@ -52,6 +55,7 @@ end
 ---@diagnostic disable-next-line: lowercase-global
 function remote_process_midi(event)
   return processRackUI(event)
+      or processSelection(event)
       or processEncoders(event)
       or processFaders(event)
       or processButtons(event)
@@ -65,6 +69,7 @@ function remote_set_state(changedItems)
   setRackUI(changedItems)
   setInfo(changedItems)
   setPages(changedItems)
+  setSelection(changedItems)
   setEncoders(changedItems)
   setFaders(changedItems)
   setButtons(changedItems)
@@ -90,6 +95,11 @@ function remote_deliver_midi(_, port)
     table.insert(events, event)
   end
   for _, event in ipairs(deliverFaders()) do
+    table.insert(events, event)
+  end
+  -- before the buttons, which take back the selection buttons in the same
+  -- delivery when a selecting device loses the target
+  for _, event in ipairs(deliverSelection()) do
     table.insert(events, event)
   end
   for _, event in ipairs(deliverButtons()) do
