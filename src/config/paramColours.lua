@@ -1,3 +1,5 @@
+local tbl = require("src.lib.table._")
+
 -- The colour of the LED of the encoder or button a parameter is mapped to,
 -- grouped by the sections of the device's own panel so that related controls
 -- light up alike. Keyed by the device type (as mapped to a name in the remote
@@ -276,10 +278,22 @@ return {
       "OffBeat Variator Shape", "OffBeat Variator Amount",
     },
     amber = patternParams { -- rhythm and pitch of the pattern
-      "Steps", "Shift", "Rate", "Shuffle", "Note Range", "Minorness", "Root Note",
+      "Steps", "Shift", "Rate", "Shuffle",
+    },
+    -- pitch of the pattern
+    magenta = tbl.concat(
+      patternParams {
+        "Root Note",
+      },
+      {
+        "Octave", "MIDI Pitch", "MIDI Velocity", "Playback Mode",
+      }
+    ),
+    cyan = patternParams { -- pitch of the pattern
+      "Note Range", "Minorness"
     },
     red = { -- the device as a whole
-      "Octave", "On", "Run", "MIDI Pitch", "MIDI Velocity", "Playback Mode",
+      "On", "Run",
     },
   }),
 }

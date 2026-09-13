@@ -21,6 +21,6 @@ return {
   bassline = {
     options = patterns(),
     none = "No pattern",
-    colour = "green",
+    colour = "yellow",
   },
 }
