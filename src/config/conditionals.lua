@@ -680,5 +680,39 @@ return {
       dependsOn = "LFO2 Sync",
       useOtherParamWhenValue = false
     },
-  }
+  },
+  legendhz = {
+    ["MSEG 1 Rate"] = {
+      dependsOn = "MSEG 1 Sync",
+      useOtherParamWhenValue = true,
+    },
+    ["MSEG 1 Rate Sync"] = {
+      dependsOn = "MSEG 1 Sync",
+      useOtherParamWhenValue = false,
+    },
+    ["MSEG 2 Rate"] = {
+      dependsOn = "MSEG 2 Sync",
+      useOtherParamWhenValue = true,
+    },
+    ["MSEG 2 Rate Sync"] = {
+      dependsOn = "MSEG 2 Sync",
+      useOtherParamWhenValue = false,
+    },
+    ["MSEG 3 Rate"] = {
+      dependsOn = "MSEG 3 Sync",
+      useOtherParamWhenValue = true,
+    },
+    ["MSEG 3 Rate Sync"] = {
+      dependsOn = "MSEG 3 Sync",
+      useOtherParamWhenValue = false,
+    },
+    ["MSEG 4 Rate"] = {
+      dependsOn = "MSEG 4 Sync",
+      useOtherParamWhenValue = true,
+    },
+    ["MSEG 4 Rate Sync"] = {
+      dependsOn = "MSEG 4 Sync",
+      useOtherParamWhenValue = false,
+    },
+  },
 }

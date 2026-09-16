@@ -696,77 +696,6 @@ Map	deviceName		Device Name
 Map	patchName		Patch Name
 Map	deviceType		"ripley"
 
-Scope	Synapse Audio	com.synapseAudioSoftware.Legend
-
-Define Group	Pages	Page 1	Page 2
-
-//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
-
-Map	pageSelect1		Pages=Page 1
-Map	pageSelect2		Pages=Page 2
-
-Map	encoder1		Oscillator 1 Waveform				Page 1
-Map	encoder2		Oscillator 1 Range			Page 1
-Map	encoder3		Oscillator 1 Semi			Page 1
-Map	encoder4		Oscillator 1 Fine			Page 1
-Map	encoder5		Oscillator 1 Volume			Page 1
-Map	encoder6		Noise Amount			Page 1
-Map	encoder7		Filter Cutoff			Page 1
-Map	encoder8		Filter Resonance			Page 1
-Map	encoder9		Oscillator 2 Waveform				Page 1
-Map	encoder10		Oscillator 2 Range			Page 1
-Map	encoder11		Oscillator 2 Semi			Page 1
-Map	encoder12		Oscillator 2 Fine			Page 1
-Map	encoder13		Oscillator 2 Volume			Page 1
-Map	encoder14		Drive Amount			Page 1
-Map	encoder15		Filter Envelope Amount			Page 1
-Map	encoder17		Oscillator 3 Waveform				Page 1
-Map	encoder18		Oscillator 3 Range			Page 1
-Map	encoder19		Oscillator 3 Semi			Page 1
-Map	encoder20		Oscillator 3 Fine			Page 1
-Map	encoder21		Oscillator 3 Volume			Page 1
-Map	encoder22		Feedback Amount			Page 1
-Map	fader1		Filter Envelope Attack			Page 1
-Map	fader2		Filter Envelope Decay			Page 1
-Map	fader3		Filter Envelope Sustain			Page 1
-Map	fader4		Filter Envelope Release			Page 1
-Map	fader5		Amplifier Envelope Attack			Page 1
-Map	fader6		Amplifier Envelope Decay			Page 1
-Map	fader7		Amplifier Envelope Sustain			Page 1
-Map	fader8		Amplifier Envelope Release			Page 1
-Map	button1		Oscillator 1 Active			Page 1
-Map	button2		Oscillator 2 Active			Page 1
-Map	button3		Oscillator 3 Active			Page 1
-Map	button6		Noise Type			Page 1
-Map	button7		Filter Type			Page 1
-Map	button8		Filter LP/BP			Page 1
-Map	button11		Oscillator 3 Keytrack			Page 1
-Map	button15		Filter Keytrack 1			Page 1
-Map	button16		Filter Keytrack 2			Page 1
-
-Map	encoder1		Glide			Page 2
-Map	encoder2		Modulation Mix			Page 2
-Map	encoder3		Tuning Coarse			Page 2
-Map	encoder4		Tuning Fine			Page 2
-Map	encoder5		Unison Detune			Page 2
-Map	encoder6		Unison Spread			Page 2
-Map	encoder7		Polyphony			Page 2
-Map	encoder8		Volume			Page 2
-Map	encoder24		Aftertouch			Page 2
-
-Map	fader1		Pitch Bend			Page 2
-Map	fader2		Mod Wheel			Page 2
-
-Map	button1		Modulation Osc			Page 2
-Map	button7		Effects Active			Page 2
-Map	button9		Modulation Filter			Page 2
-Map	button16		Sustain Pedal			Page 2
-
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-
-Map	deviceType		"legend"
-
 Scope	Propellerhead Software	se.propellerheads.Bassline
 Define Group	Patterns	No Pattern	Pattern 1	Pattern 2	Pattern 3	Pattern 4	Pattern 5	Pattern 6	Pattern 7	Pattern 8
 
@@ -991,3 +920,232 @@ Map	deviceName		Device Name
 Map	patchName		Patch Name
 
 Map	deviceType		"bassline"
+
+Scope	Synapse Audio	com.synapseAudioSoftware.Legend
+
+Define Group	Pages	Page 1	Page 2
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	pageSelect1		Pages=Page 1
+Map	pageSelect2		Pages=Page 2
+
+Map	encoder1		Oscillator 1 Waveform				Page 1
+Map	encoder2		Oscillator 1 Range			Page 1
+Map	encoder3		Oscillator 1 Semi			Page 1
+Map	encoder4		Oscillator 1 Fine			Page 1
+Map	encoder5		Oscillator 1 Volume			Page 1
+Map	encoder6		Noise Amount			Page 1
+Map	encoder7		Filter Cutoff			Page 1
+Map	encoder8		Filter Resonance			Page 1
+Map	encoder9		Oscillator 2 Waveform				Page 1
+Map	encoder10		Oscillator 2 Range			Page 1
+Map	encoder11		Oscillator 2 Semi			Page 1
+Map	encoder12		Oscillator 2 Fine			Page 1
+Map	encoder13		Oscillator 2 Volume			Page 1
+Map	encoder14		Drive Amount			Page 1
+Map	encoder15		Filter Envelope Amount			Page 1
+Map	encoder17		Oscillator 3 Waveform				Page 1
+Map	encoder18		Oscillator 3 Range			Page 1
+Map	encoder19		Oscillator 3 Semi			Page 1
+Map	encoder20		Oscillator 3 Fine			Page 1
+Map	encoder21		Oscillator 3 Volume			Page 1
+Map	encoder22		Feedback Amount			Page 1
+Map	fader1		Filter Envelope Attack			Page 1
+Map	fader2		Filter Envelope Decay			Page 1
+Map	fader3		Filter Envelope Sustain			Page 1
+Map	fader4		Filter Envelope Release			Page 1
+Map	fader5		Amplifier Envelope Attack			Page 1
+Map	fader6		Amplifier Envelope Decay			Page 1
+Map	fader7		Amplifier Envelope Sustain			Page 1
+Map	fader8		Amplifier Envelope Release			Page 1
+Map	button1		Oscillator 1 Active			Page 1
+Map	button2		Oscillator 2 Active			Page 1
+Map	button3		Oscillator 3 Active			Page 1
+Map	button6		Noise Type			Page 1
+Map	button7		Filter Type			Page 1
+Map	button8		Filter LP/BP			Page 1
+Map	button11		Oscillator 3 Keytrack			Page 1
+Map	button15		Filter Keytrack 1			Page 1
+Map	button16		Filter Keytrack 2			Page 1
+
+Map	encoder1		Glide			Page 2
+Map	encoder2		Modulation Mix			Page 2
+Map	encoder3		Tuning Coarse			Page 2
+Map	encoder4		Tuning Fine			Page 2
+Map	encoder5		Unison Detune			Page 2
+Map	encoder6		Unison Spread			Page 2
+Map	encoder7		Polyphony			Page 2
+Map	encoder8		Volume			Page 2
+Map	encoder24		Aftertouch			Page 2
+
+Map	fader1		Pitch Bend			Page 2
+Map	fader2		Mod Wheel			Page 2
+
+Map	button1		Modulation Osc			Page 2
+Map	button7		Effects Active			Page 2
+Map	button9		Modulation Filter			Page 2
+Map	button16		Sustain Pedal			Page 2
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
+Map	deviceType		"legend"
+
+Scope	Synapse Audio	com.synapseAudioSoftware.LegendHZ
+
+Define Group	Pages	Page 1	Page 2	Page 3	Page 4
+
+Map	pageSelect1		Pages=Page 1
+Map	pageSelect2		Pages=Page 2
+Map	pageSelect3		Pages=Page 3
+Map	pageSelect4		Pages=Page 4
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	encoder1		Oscillator 1 Volume			Page 1
+Map	encoder2		Oscillator 4 Volume			Page 1
+Map	encoder4		Noise Amount			Page 1
+Map	encoder5		Filter Cutoff			Page 1
+Map	encoder6		Filter Resonance			Page 1
+Map	encoder7		Filter Envelope Amount			Page 1
+
+Map	encoder9		Oscillator 2 Volume			Page 1
+Map	encoder10		Oscillator 5 Volume			Page 1
+Map	encoder12		Drive Amount			Page 1
+Map	encoder13		Filter Envelope Attack			Page 1
+Map	encoder14		Filter Envelope Decay			Page 1
+Map	encoder15		Filter Envelope Sustain			Page 1
+Map	encoder16		Filter Envelope Release			Page 1
+
+Map	encoder17		Oscillator 3 Volume			Page 1
+Map	encoder18		Oscillator 6 Volume			Page 1
+Map	encoder20		Feedback Amount			Page 1
+Map	encoder21		Amplifier Envelope Attack			Page 1
+Map	encoder22		Amplifier Envelope Decay			Page 1
+Map	encoder23		Amplifier Envelope Sustain			Page 1
+Map	encoder24		Amplifier Envelope Release			Page 1
+
+Map	button4		Noise Type			Page 1
+Map	button6		Filter Type			Page 1
+Map	button7		Filter LP/BP			Page 1
+
+Map	button14		Filter Keytrack 1			Page 1
+Map	button15		Filter Keytrack 2			Page 1
+
+Map	encoder1		Oscillator 1 Waveform			Page 2
+Map	encoder2		Oscillator 1 Range			Page 2
+Map	encoder3		Oscillator 1 Semi			Page 2
+Map	encoder4		Oscillator 1 Fine			Page 2
+
+Map	encoder5		Oscillator 4 Waveform			Page 2
+Map	encoder6		Oscillator 4 Range			Page 2
+Map	encoder7		Oscillator 4 Semi			Page 2
+Map	encoder8		Oscillator 4 Fine			Page 2
+
+Map	encoder9		Oscillator 2 Waveform			Page 2
+Map	encoder10		Oscillator 2 Range			Page 2
+Map	encoder11		Oscillator 2 Semi			Page 2
+Map	encoder12		Oscillator 2 Fine			Page 2
+
+Map	encoder13		Oscillator 5 Waveform			Page 2
+Map	encoder14		Oscillator 5 Range			Page 2
+Map	encoder15		Oscillator 5 Semi			Page 2
+Map	encoder16		Oscillator 5 Fine			Page 2
+
+Map	encoder17		Oscillator 3 Waveform			Page 2
+Map	encoder18		Oscillator 3 Range			Page 2
+Map	encoder19		Oscillator 3 Semi			Page 2
+Map	encoder20		Oscillator 3 Fine			Page 2
+
+Map	encoder21		Oscillator 6 Waveform			Page 2
+Map	encoder22		Oscillator 6 Range			Page 2
+Map	encoder23		Oscillator 6 Semi			Page 2
+Map	encoder24		Oscillator 6 Fine			Page 2
+
+Map	button1		Oscillator 1 Active			Page 2
+Map	button2		Oscillator 3 Active			Page 2
+Map	button5		Oscillator 4 Active			Page 2
+Map	button6		Oscillator 6 Active			Page 2
+
+Map	button9		Oscillator 2 Active			Page 2
+Map	button10		Oscillator 3 Keytrack			Page 2
+Map	button13		Oscillator 5 Active			Page 2
+Map	button14		Oscillator 6 Keytrack			Page 2
+
+Map	encoder1		MM #1 Amount			Page 3
+Map	encoder2		MM #2 Amount			Page 3
+Map	encoder3		MM #3 Amount			Page 3
+Map	encoder4		MM #4 Amount			Page 3
+Map	encoder5		MM #5 Amount			Page 3
+Map	encoder6		MM #6 Amount			Page 3
+Map	encoder9		MM #7 Amount			Page 3
+Map	encoder10		MM #8 Amount			Page 3
+Map	encoder11		MM #9 Amount			Page 3
+Map	encoder12		MM #10 Amount			Page 3
+Map	encoder13		MM #11 Amount			Page 3
+Map	encoder14		MM #12 Amount			Page 3
+
+Map	encoder20		ARP Octave			Page 3
+Map	encoder21		ARP Rate			Page 3
+Map	encoder22		ARP Length			Page 3
+Map	encoder23		ARP Swing			Page 3
+Map	encoder24		ARP Slide			Page 3
+
+Map	button1		MM #1 Mute			Page 3
+Map	button2		MM #2 Mute			Page 3
+Map	button3		MM #3 Mute			Page 3
+Map	button4		MM #4 Mute			Page 3
+Map	button5		MM #5 Mute			Page 3
+Map	button6		MM #6 Mute			Page 3
+Map	button9		MM #7 Mute			Page 3
+Map	button10		MM #8 Mute			Page 3
+Map	button11		MM #9 Mute			Page 3
+Map	button12		MM #10 Mute			Page 3
+Map	button13		MM #11 Mute			Page 3
+Map	button14		MM #12 Mute			Page 3
+
+Map	button8		ARP Sync			Page 3
+
+Map	encoder1		Glide			Page 4
+Map	encoder2		Modulation Mix			Page 4
+Map	encoder3		Tuning Coarse			Page 4
+Map	encoder4		Tuning Fine			Page 4
+Map	encoder5		Unison Detune			Page 4
+Map	encoder6		Unison Spread			Page 4
+Map	encoder7		Polyphony			Page 4
+Map	encoder8		Volume			Page 4
+
+Map	encoder9		MSEG 1 Rate			Page 4
+Map	encoder9alt		MSEG 1 Rate Sync			Page 4
+Map	encoder10		MSEG 2 Rate			Page 4
+Map	encoder10alt		MSEG 2 Rate Sync			Page 4
+Map	encoder11		MSEG 3 Rate			Page 4
+Map	encoder11alt		MSEG 3 Rate Sync			Page 4
+Map	encoder12		MSEG 4 Rate			Page 4
+Map	encoder12alt		MSEG 4 Rate Sync			Page 4
+
+Map	encoder22		Aftertouch			Page 4
+Map	encoder23		Expression			Page 4
+Map	encoder24		Breath Control			Page 4
+
+Map	fader1		Pitch Bend			Page 4
+Map	fader2		Mod Wheel			Page 4
+
+Map	button1		Modulation Osc			Page 4
+Map	button2		Modulation Filter			Page 4
+Map	button5		Effects Active			Page 4
+Map	button6		ARP Active			Page 4
+Map	button7		Unison Mode			Page 4
+
+Map	button9		MSEG 1 Sync			Page 4
+Map	button10		MSEG 2 Sync			Page 4
+Map	button11		MSEG 3 Sync			Page 4
+Map	button12		MSEG 4 Sync			Page 4
+
+Map	button16		Sustain Pedal			Page 4
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
+Map	deviceType		"legendhz"

@@ -33,5 +33,11 @@ return {
   legend = {
     "Main",
     "Extra"
+  },
+  legendhz = {
+    "Mix / Filter / Amp",
+    "Oscillators",
+    "MM / Seq",
+    "Global / MSEG",
   }
 }

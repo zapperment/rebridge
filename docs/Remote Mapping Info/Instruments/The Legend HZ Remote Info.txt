@@ -1,0 +1,217 @@
+Scope
+Manufacturer	Model
+Synapse Audio	com.synapseAudioSoftware.LegendHZ
+
+Mapped	Remotable Name	Type	Page	Min	Max	Input type	Output type
+
+# Front panel
+
+## Top row
+
+[o]	Note On		?	0	1	-	ValueOutput
+
+[x]	Patch Name	patchName	0	0	-	TextOutput
+[x]	Device Name	deviceName	0	0	-	TextOutput
+
+## Row 2
+
+### Section CONTROLS
+
+(2 encoders, 2 buttons)
+
+[x]	Glide	encoder	?	0	4194304	Value	ValueOutput
+[x]	Modulation Mix	encoder	?	0	4194304	Value	ValueOutput
+[x]	Modulation Osc	button	?	0	1	Toggle	ValueOutput
+[x]	Modulation Filter	button	?	0	1	Toggle	ValueOutput
+
+### Section TUNING
+
+(2 encoders)
+
+[x]	Tuning Coarse	encoder	?	0	4	Value	ValueOutput
+[x]	Tuning Fine	encoder	?	0	4194304	Value	ValueOutput
+
+### Section OUTPUT
+
+(4 encoders, 3 buttons)
+
+[x]	Effects Active	button	?	0	1	Toggle	ValueOutput
+[x]	ARP Active	button	?	0	1	Toggle	ValueOutput
+
+[x]	Unison Detune	encoder	?	0	4194304	Value	ValueOutput
+[x]	Unison Spread	encoder	?	0	4194304	Value	ValueOutput
+[x]	Unison Mode	button	?	0	1	Toggle	ValueOutput
+[x]	Polyphony	encoder	?	0	4	Value	ValueOutput
+
+[x]	Volume	encoder	?	0	4194304	Value	ValueOutput
+
+## Row 3, Section MSEG
+
+(4 encoders, 4 buttons)
+
+[x]	MSEG 1 Sync	button	?	0	1	Toggle	ValueOutput
+[x]	MSEG 1 Rate	encoder	?	0	4194304	Value	ValueOutput
+[x]	MSEG 1 Rate Sync	encoder	?	0	26	Value	ValueOutput
+
+[x]	MSEG 2 Sync	button	?	0	1	Toggle	ValueOutput
+[x]	MSEG 2 Rate	encoder	?	0	4194304	Value	ValueOutput
+[x]	MSEG 2 Rate Sync	encoder	?	0	26	Value	ValueOutput
+
+[x]	MSEG 3 Sync	button	?	0	1	Toggle	ValueOutput
+[x]	MSEG 3 Rate	encoder	?	0	4194304	Value	ValueOutput
+[x]	MSEG 3 Rate Sync	encoder	?	0	26	Value	ValueOutput
+
+[x]	MSEG 4 Sync	button	?	0	1	Toggle	ValueOutput
+[x]	MSEG 4 Rate	encoder	?	0	4194304	Value	ValueOutput
+[x]	MSEG 4 Rate Sync	encoder	?	0	26	Value	ValueOutput
+
+## Row 4
+
+### Section OSCILLATORS
+
+(page 2)
+
+[x]	Oscillator 1 Active	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 1 Waveform	encoder	2	0	6	Value	ValueOutput
+[x]	Oscillator 1 Range	encoder	2	0	5	Value	ValueOutput
+[x]	Oscillator 1 Semi	encoder	2	0	4194304	Value	ValueOutput
+[x]	Oscillator 1 Fine	encoder	2	0	4194304	Value	ValueOutput
+
+[x]	Oscillator 2 Active	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 2 Waveform	encoder	2	0	6	Value	ValueOutput
+[x]	Oscillator 2 Range	encoder	2	0	5	Value	ValueOutput
+[x]	Oscillator 2 Semi	encoder	2	0	4194304	Value	ValueOutput
+[x]	Oscillator 2 Fine	encoder	2	0	4194304	Value	ValueOutput
+
+[x]	Oscillator 3 Active	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 3 Keytrack	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 3 Waveform	encoder	2	0	6	Value	ValueOutput
+[x]	Oscillator 3 Range	encoder	2	0	5	Value	ValueOutput
+[x]	Oscillator 3 Semi	encoder	2	0	4194304	Value	ValueOutput
+[x]	Oscillator 3 Fine	encoder	2	0	4194304	Value	ValueOutput
+
+[x]	Oscillator 4 Active	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 4 Waveform	encoder	2	0	6	Value	ValueOutput
+[x]	Oscillator 4 Range	encoder	2	0	5	Value	ValueOutput
+[x]	Oscillator 4 Semi	encoder	2	0	4194304	Value	ValueOutput
+[x]	Oscillator 4 Fine	encoder	2	0	4194304	Value	ValueOutput
+
+[x]	Oscillator 5 Active	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 5 Waveform	encoder	2	0	6	Value	ValueOutput
+[x]	Oscillator 5 Range	encoder	2	0	5	Value	ValueOutput
+[x]	Oscillator 5 Semi	encoder	2	0	4194304	Value	ValueOutput
+[x]	Oscillator 5 Fine	encoder	2	0	4194304	Value	ValueOutput
+
+[x]	Oscillator 6 Active	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 6 Keytrack	button	2	0	1	Toggle	ValueOutput
+[x]	Oscillator 6 Waveform	encoder	2	0	6	Value	ValueOutput
+[x]	Oscillator 6 Range	encoder	2	0	5	Value	ValueOutput
+[x]	Oscillator 6 Semi	encoder	2	0	4194304	Value	ValueOutput
+[x]	Oscillator 6 Fine	encoder	2	0	4194304	Value	ValueOutput
+
+### Section MIXER
+
+(page 1)
+
+[x]	Oscillator 1 Volume	encoder	1	0	4194304	Value	ValueOutput
+[x]	Oscillator 2 Volume	encoder	1	0	4194304	Value	ValueOutput
+[x]	Oscillator 3 Volume	encoder	1	0	4194304	Value	ValueOutput
+[x]	Oscillator 4 Volume	encoder	1	0	4194304	Value	ValueOutput
+[x]	Oscillator 5 Volume	encoder	1	0	4194304	Value	ValueOutput
+[x]	Oscillator 6 Volume	encoder	1	0	4194304	Value	ValueOutput
+
+[x]	Noise Type	button	1	0	1	Toggle	ValueOutput
+[x]	Noise Amount	encoder	1	0	4194304	Value	ValueOutput
+
+[x]	Drive Amount	encoder	1	0	4194304	Value	ValueOutput
+[x]	Feedback Amount	encoder	1	0	4194304	Value	ValueOutput
+
+### Section FILTER/AMPLIFIER
+
+(page 1)
+
+[x]	Filter Cutoff	encoder	1	0	4194304	Value	ValueOutput
+[x]	Filter Resonance	encoder	1	0	4194304	Value	ValueOutput
+[x]	Filter Envelope Amount	encoder	1	0	4194304	Value	ValueOutput
+[x]	Filter Type	button	1	0	1	Toggle	ValueOutput
+[x]	Filter LP/BP	button	1	0	1	Toggle	ValueOutput
+[x]	Filter Keytrack 1	button	1	0	1	Toggle	ValueOutput
+[x]	Filter Keytrack 2	button	1	0	1	Toggle	ValueOutput
+
+[x]	Filter Envelope Attack	encoder	1	0	4194304	Value	ValueOutput
+[x]	Filter Envelope Decay	encoder	1	0	4194304	Value	ValueOutput
+[x]	Filter Envelope Sustain	encoder	1	0	4194304	Value	ValueOutput
+[x]	Filter Envelope Release	encoder	1	0	4194304	Value	ValueOutput
+
+[x]	Amplifier Envelope Attack	encoder	1	0	4194304	Value	ValueOutput
+[x]	Amplifier Envelope Decay	encoder	1	0	4194304	Value	ValueOutput
+[x]	Amplifier Envelope Sustain	encoder	1	0	4194304	Value	ValueOutput
+[x]	Amplifier Envelope Release	encoder	1	0	4194304	Value	ValueOutput
+
+## Row 5 -- section ARPEGGIATOR/SEQUENCER
+
+### Tab MM
+
+(page 3)
+
+[x]	MM #1 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #1 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #2 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #2 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #3 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #3 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #4 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #4 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #5 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #5 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #6 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #6 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #7 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #7 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #8 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #8 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #9 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #9 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #10 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #10 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #11 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #11 Mute	button	0	1	Toggle	ValueOutput
+
+[x]	MM #12 Amount	encoder	0	4194304	Value	ValueOutput
+[x]	MM #12 Mute	button	0	1	Toggle	ValueOutput
+
+### Tab SEQ
+
+(page 3)
+
+[x]	ARP Octave	encoder	0	3	Value	ValueOutput
+[x]	ARP Sync	button	0	1	Toggle	ValueOutput
+[x]	ARP Rate	encoder	0	23	Value	ValueOutput
+[x]	ARP Length	encoder	0	4194304	Value	ValueOutput
+[x]	ARP Swing	encoder	0	4194304	Value	ValueOutput
+[x]	ARP Slide	encoder	0	4194304	Value	ValueOutput
+
+# Performance
+
+[x]	Pitch Bend	fader	-8192	8191	Value	ValueOutput
+[x]	Mod Wheel	fader	0	127	Value	ValueOutput
+[x]	Sustain Pedal	button	0	127	Value	ValueOutput
+[x]	Aftertouch	encoder	0	127	Value	ValueOutput
+[x]	Expression	encoder	0	127	Value	ValueOutput
+[x]	Breath Control	encoder	0	127	Value	ValueOutput
+
+# Misc
+
+[o]	Select Patch Delta	0	0	Delta	TextOutput
+[o]	Select Previous Patch	0	0	Trig	TextOutput
+[o]	Select Next Patch	0	0	Trig	TextOutput
