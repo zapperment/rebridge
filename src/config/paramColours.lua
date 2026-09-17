@@ -23,11 +23,11 @@ end
 
 -- lists the given parameters of each of a player's patterns under the names
 -- the host reports for them, e.g. "Steps" as "Pattern 1 Steps" … "Pattern 8 Steps"
-local function patternParams(params)
+local function patternParams(prefix, params)
   local names = {}
   for pattern = 1, 8 do
     for _, param in ipairs(params) do
-      table.insert(names, "Pattern " .. pattern .. " " .. param)
+      table.insert(names, prefix .. pattern .. " " .. param)
     end
   end
   return names
@@ -269,29 +269,33 @@ return {
     }
   }),
   bassline = byParam({
-    green = patternParams { -- OnBeat lane
-      "OnBeat Bank", "OnBeat Source", "OnBeat Velocity", "OnBeat Note Length",
-      "OnBeat Variator Shape", "OnBeat Variator Amount",
-    },
-    blue = patternParams { -- OffBeat lane
-      "OffBeat Bank", "OffBeat Source", "OffBeat Velocity", "OffBeat Note Length",
-      "OffBeat Variator Shape", "OffBeat Variator Amount",
-    },
-    amber = patternParams { -- rhythm and pitch of the pattern
-      "Steps", "Shift", "Rate", "Shuffle",
-    },
+    green = patternParams("Pattern ",
+      { -- OnBeat lane
+        "OnBeat Bank", "OnBeat Source", "OnBeat Velocity", "OnBeat Note Length",
+        "OnBeat Variator Shape", "OnBeat Variator Amount",
+      }),
+    blue = patternParams("Pattern ",
+      { -- OffBeat lane
+        "OffBeat Bank", "OffBeat Source", "OffBeat Velocity", "OffBeat Note Length",
+        "OffBeat Variator Shape", "OffBeat Variator Amount",
+      }),
+    amber = patternParams("Pattern ",
+      { -- rhythm and pitch of the pattern
+        "Steps", "Shift", "Rate", "Shuffle",
+      }),
     -- pitch of the pattern
     magenta = tbl.concat(
-      patternParams {
+      patternParams("Pattern ", {
         "Root Note",
-      },
+      }),
       {
         "Octave", "MIDI Pitch", "MIDI Velocity", "Playback Mode",
       }
     ),
-    cyan = patternParams { -- pitch of the pattern
-      "Note Range", "Minorness"
-    },
+    cyan = patternParams("Pattern ",
+      { -- pitch of the pattern
+        "Note Range", "Minorness"
+      }),
     red = { -- the device as a whole
       "On", "Run",
     },
@@ -408,6 +412,22 @@ return {
       "MSEG 2 Sync", "MSEG 2 Rate", "MSEG 2 Rate Sync",
       "MSEG 3 Sync", "MSEG 3 Rate", "MSEG 3 Rate Sync",
       "MSEG 4 Sync", "MSEG 4 Rate", "MSEG 4 Rate Sync",
+    },
+  }),
+  polystep = byParam({
+    green = {
+      "Run Mode", "Midi Transpose"
+    },
+    blue = patternParams("P",
+      {
+        "Auto Switch", "Key", "Scale"
+      }),
+    cyan = {
+      "Variation 1 Trigger", "Variation 2 Trigger",
+      "Variation 3 Trigger", "Variation 4 Trigger",
+    },
+    red = {
+      "On", "Run",
     },
   }),
 }

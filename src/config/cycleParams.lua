@@ -67,5 +67,8 @@ return {
     local params = forEachPattern({ "OnBeat Bank", "OffBeat Bank" }, 2)
     params["Playback Mode"] = 3
     return params
-  end)()
+  end)(),
+  polystep = {
+    ["Midi Transpose"] = 3,
+  },
 }

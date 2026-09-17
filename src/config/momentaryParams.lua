@@ -19,4 +19,11 @@ return {
   bassline = byName {
     "Run",
   },
+  polystep = byName {
+    "Run",
+    "Variation 1 Trigger",
+    "Variation 2 Trigger",
+    "Variation 3 Trigger",
+    "Variation 4 Trigger",
+  },
 }

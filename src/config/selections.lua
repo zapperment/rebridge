@@ -23,4 +23,9 @@ return {
     none = "No pattern",
     colour = "yellow",
   },
+  polystep = {
+    options = patterns(),
+    none = "No pattern",
+    colour = "yellow",
+  },
 }

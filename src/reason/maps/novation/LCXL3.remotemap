@@ -1150,3 +1150,69 @@ Map	patchName		Patch Name
 
 Map	deviceType		"legendhz"
 
+Scope	Propellerhead Software	se.propellerheads.PolyStepSequencer
+Define Group	Patterns	No Pattern	Pattern 1	Pattern 2	Pattern 3	Pattern 4	Pattern 5	Pattern 6	Pattern 7	Pattern 8
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+// Selection: the selection buttons set Pattern Select, and the codec keeps the
+// Patterns group in step with it
+
+Map	selector		Pattern Select
+Map	noOptionSelect		Patterns=No Pattern
+Map	optionSelect1		Patterns=Pattern 1
+Map	optionSelect2		Patterns=Pattern 2
+Map	optionSelect3		Patterns=Pattern 3
+Map	optionSelect4		Patterns=Pattern 4
+Map	optionSelect5		Patterns=Pattern 5
+Map	optionSelect6		Patterns=Pattern 6
+Map	optionSelect7		Patterns=Pattern 7
+Map	optionSelect8		Patterns=Pattern 8
+
+Map	button1		On
+Map	button2		Midi Transpose
+Map	button3		Run Mode
+
+Map	button4		Variation 1 Trigger
+Map	button5		Variation 2 Trigger
+Map	button6		Variation 3 Trigger
+Map	button7		Variation 4 Trigger
+
+Map	button8		Run
+
+Map	encoder1		P1 Auto Switch			Pattern 1
+Map	encoder2		P1 Key			Pattern 1
+Map	encoder3		P1 Scale			Pattern 1
+
+Map	encoder1		P2 Auto Switch			Pattern 2
+Map	encoder2		P2 Key			Pattern 2
+Map	encoder3		P2 Scale			Pattern 2
+
+Map	encoder1		P3 Auto Switch			Pattern 3
+Map	encoder2		P3 Key			Pattern 3
+Map	encoder3		P3 Scale			Pattern 3
+
+Map	encoder3		P4 Auto Switch			Pattern 4
+Map	encoder1		P4 Key			Pattern 4
+Map	encoder2		P4 Scale			Pattern 4
+
+Map	encoder3		P5 Auto Switch			Pattern 5
+Map	encoder1		P5 Key			Pattern 5
+Map	encoder2		P5 Scale			Pattern 5
+
+Map	encoder3		P6 Auto Switch			Pattern 6
+Map	encoder1		P6 Key			Pattern 6
+Map	encoder2		P6 Scale			Pattern 6
+
+Map	encoder3		P7 Auto Switch			Pattern 7
+Map	encoder1		P7 Key			Pattern 7
+Map	encoder2		P7 Scale			Pattern 7
+
+Map	encoder3		P8 Auto Switch			Pattern 8
+Map	encoder1		P8 Key			Pattern 8
+Map	encoder2		P8 Scale			Pattern 8
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
+Map	deviceType		"polystep"

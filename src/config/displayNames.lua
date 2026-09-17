@@ -9,4 +9,7 @@ return {
   bassline = {
     { find = "^Pattern %d+ ", replace = "" },
   },
+  polystep = {
+    { find = "^P%d+ ", replace = "" },
+  },
 }
