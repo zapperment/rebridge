@@ -39,5 +39,10 @@ return {
     "Oscillators",
     "MM / Seq",
     "Global / MSEG",
+  },
+  polytone = {
+    "Layer A Main", "Layer A Extra",
+    "Layer B Main", "Layer B Extra",
+    "Global"
   }
 }

@@ -930,7 +930,7 @@ Define Group	Pages	Page 1	Page 2
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
 
-Map	encoder1		Oscillator 1 Waveform				Page 1
+Map	encoder1		Oscillator 1 Waveform			Page 1
 Map	encoder2		Oscillator 1 Range			Page 1
 Map	encoder3		Oscillator 1 Semi			Page 1
 Map	encoder4		Oscillator 1 Fine			Page 1
@@ -938,14 +938,14 @@ Map	encoder5		Oscillator 1 Volume			Page 1
 Map	encoder6		Noise Amount			Page 1
 Map	encoder7		Filter Cutoff			Page 1
 Map	encoder8		Filter Resonance			Page 1
-Map	encoder9		Oscillator 2 Waveform				Page 1
+Map	encoder9		Oscillator 2 Waveform			Page 1
 Map	encoder10		Oscillator 2 Range			Page 1
 Map	encoder11		Oscillator 2 Semi			Page 1
 Map	encoder12		Oscillator 2 Fine			Page 1
 Map	encoder13		Oscillator 2 Volume			Page 1
 Map	encoder14		Drive Amount			Page 1
 Map	encoder15		Filter Envelope Amount			Page 1
-Map	encoder17		Oscillator 3 Waveform				Page 1
+Map	encoder17		Oscillator 3 Waveform			Page 1
 Map	encoder18		Oscillator 3 Range			Page 1
 Map	encoder19		Oscillator 3 Semi			Page 1
 Map	encoder20		Oscillator 3 Fine			Page 1
@@ -1216,3 +1216,184 @@ Map	deviceName		Device Name
 Map	patchName		Patch Name
 
 Map	deviceType		"polystep"
+
+Scope	Propellerhead Software	se.propellerheads.Polytone
+Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+Map	pageSelect1		Pages=Page 1
+Map	pageSelect2		Pages=Page 2
+Map	pageSelect3		Pages=Page 3
+Map	pageSelect4		Pages=Page 4
+Map	pageSelect5		Pages=Page 5
+
+Map	rackUI1		Layer Select
+
+Map	encoder1		Osc 1 Kbd A			Page 1
+Map	encoder2		Osc 1 Tune A			Page 1		
+Map	encoder3		Osc 1 Pitch A			Page 1	
+Map	encoder4		Osc 1 Pitch Mod A			Page 1
+Map	encoder5		Osc 1 Shape A			Page 1
+Map	encoder6		Osc 1 Shape Mod A			Page 1
+Map	encoder7		FM Amt A			Page 1
+Map	encoder8		FM Mod A			Page 1
+
+Map	button1		Osc 1 Wave A			Page 1
+Map	button2		Osc Sync A			Page 1
+
+Map	encoder9		Osc 2 Kbd A			Page 1
+Map	encoder10		Osc 2 Tune A			Page 1		
+Map	encoder11		Osc 2 Pitch A			Page 1	
+Map	encoder12		Osc 2 Pitch Mod A			Page 1
+Map	encoder13		Osc 2 Shape A			Page 1
+Map	encoder14		Osc 2 Shape Mod A			Page 1
+
+Map	encoder15		Filter Reso A			Page 1
+Map	encoder16		Filter Freq A			Page 1
+
+Map	encoder17		Osc Mix A			Page 1
+Map	encoder18		Osc Level A			Page 1
+Map	encoder19		Noise Level A			Page 1
+
+Map	encoder20		Filter Type A			Page 1
+Map	encoder21		Filter Env Amt A			Page 1
+Map	encoder22		Filter Env Vel A			Page 1
+Map	encoder23		Filter Mod A			Page 1
+Map	encoder24		Filter Kbd A			Page 1
+
+Map	button9		Osc 2 Wave A			Page 1
+
+Map	fader1		Filter Env Attack A			Page 1
+Map	fader2		Filter Env Decay A			Page 1
+Map	fader3		Filter Env Sustain A			Page 1
+Map	fader4		Filter Env Release A			Page 1
+
+Map	fader5		Amp Env Attack A			Page 1
+Map	fader6		Amp Env Decay A			Page 1
+Map	fader7		Amp Env Sustain A			Page 1
+Map	fader8		Amp Env Release A			Page 1
+
+Map	encoder1		Portamento Time A			Page 2
+Map	button1		Portamento Mode A			Page 2
+
+Map	encoder9		Wheel to FM A			Page 2
+Map	encoder17		Wheel to Filter A			Page 2
+Map	encoder10		Wheel to LFO A			Page 2
+Map	encoder18		Pitch Bend Range A			Page 2
+
+Map	encoder19		LFO Delay A			Page 2
+Map	encoder20		LFO Rate A			Page 2
+Map	button3		LFO Wave A			Page 2
+
+Map	fader5		Mod Env Attack A			Page 2
+Map	fader6		Mod Env Release A			Page 2
+Map	encoder22		Mod Env Vel A			Page 2
+
+Map	encoder8		Amp Gain A			Page 2
+Map	encoder16		Amp Vel A			Page 2
+Map	encoder24		Voice Spread A			Page 2
+
+Map	encoder1		Osc 1 Kbd B			Page 3
+Map	encoder2		Osc 1 Tune B			Page 3
+Map	encoder3		Osc 1 Pitch B			Page 3
+Map	encoder4		Osc 1 Pitch Mod B			Page 3
+Map	encoder5		Osc 1 Shape B			Page 3
+Map	encoder6		Osc 1 Shape Mod B			Page 3
+Map	encoder7		FM Amt B			Page 3
+Map	encoder8		FM Mod B			Page 3
+
+Map	button1		Osc 1 Wave B			Page 3
+Map	button2		Osc Sync B			Page 3
+
+Map	encoder9		Osc 2 Kbd B			Page 3
+Map	encoder10		Osc 2 Tune B			Page 3
+Map	encoder11		Osc 2 Pitch B			Page 3
+Map	encoder12		Osc 2 Pitch Mod B			Page 3
+Map	encoder13		Osc 2 Shape B			Page 3
+Map	encoder14		Osc 2 Shape Mod B			Page 3
+
+Map	encoder15		Filter Reso B			Page 3
+Map	encoder16		Filter Freq B			Page 3
+
+Map	encoder17		Osc Mix B			Page 3
+Map	encoder18		Osc Level B			Page 3
+Map	encoder19		Noise Level B			Page 3
+
+Map	encoder20		Filter Type B			Page 3
+Map	encoder21		Filter Env Amt B			Page 3
+Map	encoder22		Filter Env Vel B			Page 3
+Map	encoder23		Filter Mod B			Page 3
+Map	encoder24		Filter Kbd B			Page 3
+
+Map	button9		Osc 2 Wave B			Page 3
+
+Map	fader1		Filter Env Attack B			Page 3
+Map	fader2		Filter Env Decay B			Page 3
+Map	fader3		Filter Env Sustain B			Page 3
+Map	fader4		Filter Env Release B			Page 3
+
+Map	fader5		Amp Env Attack B			Page 3
+Map	fader6		Amp Env Decay B			Page 3
+Map	fader7		Amp Env Sustain B			Page 3
+Map	fader8		Amp Env Release B			Page 3
+
+Map	encoder1		Portamento Time B			Page 4
+Map	button1		Portamento Mode B			Page 4
+
+Map	encoder9		Wheel to FM B			Page 4
+Map	encoder17		Wheel to Filter B			Page 4
+Map	encoder10		Wheel to LFO B			Page 4
+Map	encoder18		Pitch Bend Range B			Page 4
+
+Map	encoder19		LFO Delay B			Page 4
+Map	encoder20		LFO Rate B			Page 4
+Map	button3		LFO Wave B			Page 4
+
+Map	fader5		Mod Env Attack B			Page 4
+Map	fader6		Mod Env Release B			Page 4
+Map	encoder22		Mod Env Vel B			Page 4
+
+Map	encoder8		Amp Gain B			Page 4
+Map	encoder16		Amp Vel B			Page 4
+Map	encoder24		Voice Spread B			Page 4
+
+Map	encoder7		Age			Page 5
+Map	encoder8		Master Volume			Page 5
+
+Map	fader5		Layer Balance			Page 5
+
+Map	button5		Layer Mode			Page 5
+Map	button13		Balance Mod			Page 5
+
+Map	fader1		Pitch Bend			Page 5
+Map	fader2		Mod Wheel			Page 5
+
+Map	button16		Sustain Pedal			Page 5
+
+Map	encoder17		Polyphony			Page 5
+
+Map	button1		Key Mode			Page 5
+
+Map	encoder18		Global LFO Rate			Page 5
+Map	encoder18alt		Global LFO Sync Rate			Page 5
+Map	encoder19		Global LFO Level			Page 5
+
+Map	button2		Global LFO Sync			Page 5
+Map	button10		Global LFO OneShot			Page 5
+Map	button3		Global LFO Wave			Page 5
+Map	button11		Global LFO Dest			Page 5
+
+Map	encoder22		Chorus Amount			Page 5
+
+Map	button6		Chorus Type			Page 5
+
+Map	encoder23		Reverb Amount			Page 5
+Map	encoder24		Reverb Decay			Page 5
+
+Map	button7		Reverb Type			Page 5
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
+Map	deviceType		"polytone"
+

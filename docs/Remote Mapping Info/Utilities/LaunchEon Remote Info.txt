@@ -1,0 +1,90 @@
+Scope
+Manufacturer	Model
+Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
+
+Remotable	Min	Max	Input type	Output type
+Device 1 Enable 1	0	1	Toggle	ValueOutput
+Device 1 Enable 2	0	1	Toggle	ValueOutput
+Device 1 Enable 3	0	1	Toggle	ValueOutput
+Device 1 Enable 4	0	1	Toggle	ValueOutput
+Device 1 Enable 5	0	1	Toggle	ValueOutput
+Device 1 Enable 6	0	1	Toggle	ValueOutput
+Device 1 Enable 7	0	1	Toggle	ValueOutput
+Device 1 Enable 8	0	1	Toggle	ValueOutput
+Device 2 Enable 1	0	1	Toggle	ValueOutput
+Device 2 Enable 2	0	1	Toggle	ValueOutput
+Device 2 Enable 3	0	1	Toggle	ValueOutput
+Device 2 Enable 4	0	1	Toggle	ValueOutput
+Device 2 Enable 5	0	1	Toggle	ValueOutput
+Device 2 Enable 6	0	1	Toggle	ValueOutput
+Device 2 Enable 7	0	1	Toggle	ValueOutput
+Device 2 Enable 8	0	1	Toggle	ValueOutput
+Device 3 Enable 1	0	1	Toggle	ValueOutput
+Device 3 Enable 2	0	1	Toggle	ValueOutput
+Device 3 Enable 3	0	1	Toggle	ValueOutput
+Device 3 Enable 4	0	1	Toggle	ValueOutput
+Device 3 Enable 5	0	1	Toggle	ValueOutput
+Device 3 Enable 6	0	1	Toggle	ValueOutput
+Device 3 Enable 7	0	1	Toggle	ValueOutput
+Device 3 Enable 8	0	1	Toggle	ValueOutput
+Device 4 Enable 1	0	1	Toggle	ValueOutput
+Device 4 Enable 2	0	1	Toggle	ValueOutput
+Device 4 Enable 3	0	1	Toggle	ValueOutput
+Device 4 Enable 4	0	1	Toggle	ValueOutput
+Device 4 Enable 5	0	1	Toggle	ValueOutput
+Device 4 Enable 6	0	1	Toggle	ValueOutput
+Device 4 Enable 7	0	1	Toggle	ValueOutput
+Device 4 Enable 8	0	1	Toggle	ValueOutput
+Device 5 Enable 1	0	1	Toggle	ValueOutput
+Device 5 Enable 2	0	1	Toggle	ValueOutput
+Device 5 Enable 3	0	1	Toggle	ValueOutput
+Device 5 Enable 4	0	1	Toggle	ValueOutput
+Device 5 Enable 5	0	1	Toggle	ValueOutput
+Device 5 Enable 6	0	1	Toggle	ValueOutput
+Device 5 Enable 7	0	1	Toggle	ValueOutput
+Device 5 Enable 8	0	1	Toggle	ValueOutput
+Device 6 Enable 1	0	1	Toggle	ValueOutput
+Device 6 Enable 2	0	1	Toggle	ValueOutput
+Device 6 Enable 3	0	1	Toggle	ValueOutput
+Device 6 Enable 4	0	1	Toggle	ValueOutput
+Device 6 Enable 5	0	1	Toggle	ValueOutput
+Device 6 Enable 6	0	1	Toggle	ValueOutput
+Device 6 Enable 7	0	1	Toggle	ValueOutput
+Device 6 Enable 8	0	1	Toggle	ValueOutput
+Device 7 Enable 1	0	1	Toggle	ValueOutput
+Device 7 Enable 2	0	1	Toggle	ValueOutput
+Device 7 Enable 3	0	1	Toggle	ValueOutput
+Device 7 Enable 4	0	1	Toggle	ValueOutput
+Device 7 Enable 5	0	1	Toggle	ValueOutput
+Device 7 Enable 6	0	1	Toggle	ValueOutput
+Device 7 Enable 7	0	1	Toggle	ValueOutput
+Device 7 Enable 8	0	1	Toggle	ValueOutput
+Device 8 Enable 1	0	1	Toggle	ValueOutput
+Device 8 Enable 2	0	1	Toggle	ValueOutput
+Device 8 Enable 3	0	1	Toggle	ValueOutput
+Device 8 Enable 4	0	1	Toggle	ValueOutput
+Device 8 Enable 5	0	1	Toggle	ValueOutput
+Device 8 Enable 6	0	1	Toggle	ValueOutput
+Device 8 Enable 7	0	1	Toggle	ValueOutput
+Device 8 Enable 8	0	1	Toggle	ValueOutput
+OnOff	0	1	Toggle	ValueOutput
+Scene Selector	0	63	Value	ValueOutput
+Morph X	0	503	Value	ValueOutput
+Morph Y	0	343	Value	ValueOutput
+Scene Timer	0	5	Value	ValueOutput
+Pattern Timer	0	5	Value	ValueOutput
+Enable Timer	0	5	Value	ValueOutput
+CV Timer	0	5	Value	ValueOutput
+Device 1 Pattern	0	9	Value	ValueOutput
+Device 2 Pattern	0	9	Value	ValueOutput
+Device 3 Pattern	0	9	Value	ValueOutput
+Device 4 Pattern	0	9	Value	ValueOutput
+Device 5 Pattern	0	9	Value	ValueOutput
+Device 6 Pattern	0	9	Value	ValueOutput
+Device 7 Pattern	0	9	Value	ValueOutput
+Device 8 Pattern	0	9	Value	ValueOutput
+Device Name	0	0	-	TextOutput
+Patch Name	0	0	-	TextOutput
+Select Patch Delta	0	0	Delta	TextOutput
+Select Previous Patch	0	0	Trig	TextOutput
+Select Next Patch	0	0	Trig	TextOutput

@@ -715,4 +715,14 @@ return {
       useOtherParamWhenValue = false,
     },
   },
+  polytone = {
+    ["Global LFO Rate"] = {
+      dependsOn = "Global LFO Sync",
+      useOtherParamWhenValue = true,
+    },
+    ["Global LFO Sync Rate"] = {
+      dependsOn = "Global LFO Sync",
+      useOtherParamWhenValue = false,
+    },
+  }
 }

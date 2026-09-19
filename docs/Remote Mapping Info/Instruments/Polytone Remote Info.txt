@@ -1,0 +1,165 @@
+Scope
+Manufacturer	Model
+Propellerhead Software	se.propellerheads.Polytone
+
+Mapped	Remotable			Control type	
+
+# BLUE PANEL (A)
+
+--------	Page 1:	Layer A Main	--------
+
+## OSCILLATOR 1
+
+[x]	Osc 1 Kbd A		encoder
+[x]	Osc 1 Tune A		encoder
+[x]	Osc 1 Pitch A		encoder
+[x]	Osc 1 Pitch Mod A		encoder
+[x]	Osc 1 Shape A		encoder
+[x]	Osc 1 Shape Mod A		encoder
+[x]	FM Amt A		encoder
+[x]	FM Mod A		encoder
+
+[x]	Osc 1 Wave A		button
+[x]	Osc Sync A		button
+
+## OSCILLATOR 2
+
+[x]	Osc 2 Kbd A		encoder
+[x]	Osc 2 Tune A		encoder
+[x]	Osc 2 Pitch A		encoder
+[x]	Osc 2 Pitch Mod A		encoder
+[x]	Osc 2 Shape A		encoder
+[x]	Osc 2 Shape Mod A		encoder
+
+[x]	Osc 2 Wave A		button
+
+## MIXER
+
+[x]	Osc Mix A		encoder
+[x]	Osc Level A		encoder
+[x]	Noise Level A		encoder
+
+## FILTER 
+
+[x]	Filter Reso A		encoder
+[x]	Filter Freq A		encoder
+[x]	Filter Type A		encoder
+[x]	Filter Env Amt A		encoder
+[x]	Filter Env Vel A		encoder
+[x]	Filter Mod A		encoder
+[x]	Filter Kbd A		encoder
+
+## FILTER ENV
+
+[x]	Filter Env Attack A		fader
+[x]	Filter Env Decay A		fader
+[x]	Filter Env Sustain A	fader	
+[x]	Filter Env Release A	fader
+
+## AMP ENV
+
+[x]	Amp Env Attack A		fader
+[x]	Amp Env Decay A		fader
+[x]	Amp Env Sustain A		fader
+[x]	Amp Env Release A		fader
+
+--------	Page 2:	Layer A Extra	--------
+
+## GLIDE
+
+[x]	Portamento Time A		encoder1
+
+[x]	Portamento Mode A		button1
+
+## WHEELS
+
+[x]	Wheel to FM A		encoder9
+[x]	Wheel to Filter A		encoder17
+[x]	Wheel to LFO A		encoder10
+
+[x]	Pitch Bend Range A		encoder18
+
+## MOD LFO
+
+[x]	LFO Delay A		encoder19
+[x]	LFO Rate A		encoder20
+
+[x]	LFO Wave A		button3
+
+## MOD ENV
+
+[x]	Mod Env Attack A		fader5
+[x]	Mod Env Release A		fader6
+[x]	Mod Env Vel A		encoder14
+
+## AMP 
+
+[x]	Amp Gain A		encoder8
+[x]	Amp Vel A		encoder16
+[x]	Voice Spread A		encoder24
+
+# RED PANEL (B)
+
+--------	Page 3:	Layer B Main	--------
+
+(...)
+
+--------	Page 4:	Layer B Extra	--------
+
+(...)
+
+# Top Row
+
+--------	Page 5:	Global	--------
+
+[x]	Layer Select		Rack UI
+
+[x]	Age		encoder7
+[x]	Master Volume		encoder8
+
+[x]	Layer Balance		fader5
+
+[x]	Layer Mode		button5
+[x]	Balance Mod		button13
+
+# Bottom Row
+
+[x]	Pitch Bend		fader1
+[x]	Mod Wheel		fader2
+
+[x]	Sustain Pedal		button16
+
+## VOICES 
+
+[x]	Polyphony		encoder1
+
+[x]	Key Mode		button1
+
+## GLOBAL LFO
+
+[x]	Global LFO Rate		encoder18
+[x]	Global LFO Sync Rate	encoder18alt
+[x]	Global LFO Level		encoder19
+
+[x]	Global LFO Sync		button2
+[x]	Global LFO OneShot		button10
+[x]	Global LFO Wave		button3
+[x]	Global LFO Dest		button11
+
+## CHORUS
+
+[x]	Chorus Amount		encoder22
+
+[x]	Chorus Type		button6
+
+## REVERB
+
+[x]	Reverb Amount		encoder23
+[x]	Reverb Decay		encoder24
+
+[x]	Reverb Type		button7
+
+# META
+
+[x]	Device Name		Text Ouput
+[x]	Patch Name		Text Output

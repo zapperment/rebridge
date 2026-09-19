@@ -111,5 +111,29 @@ return {
         "Matrix Mod3 Source", "Matrix Mod3 Amt", "Matrix Mod3 Amt2", "Matrix Mod3 Scale Amt",
       },
     })
+  },
+  polytone = {
+    ["Layer Select"] = byParam({
+      [0] = {
+        "Amp Env Attack A", "Amp Env Decay A", "Amp Env Release A", "Amp Env Sustain A",
+        "FM Amt A", "FM Mod A", "Filter Env Amt A", "Filter Env Attack A", "Filter Env Decay A",
+        "Filter Env Release A", "Filter Env Sustain A", "Filter Env Vel A", "Filter Freq A",
+        "Filter Kbd A", "Filter Mod A", "Filter Reso A", "Filter Type A", "Noise Level A",
+        "Osc 1 Kbd A", "Osc 1 Pitch A", "Osc 1 Pitch Mod A", "Osc 1 Shape A",
+        "Osc 1 Shape Mod A", "Osc 1 Tune A", "Osc 1 Wave A", "Osc 2 Kbd A", "Osc 2 Pitch A",
+        "Osc 2 Pitch Mod A", "Osc 2 Shape A", "Osc 2 Shape Mod A", "Osc 2 Tune A", "Osc 2 Wave A",
+        "Osc Level A", "Osc Mix A", "Osc Sync A",
+      },
+      [127] = {
+        "Amp Env Attack B", "Amp Env Decay B", "Amp Env Release B", "Amp Env Sustain B",
+        "FM Amt B", "FM Mod B", "Filter Env Amt B", "Filter Env Attack B", "Filter Env Decay B",
+        "Filter Env Release B", "Filter Env Sustain B", "Filter Env Vel B", "Filter Freq B",
+        "Filter Kbd B", "Filter Mod B", "Filter Reso B", "Filter Type B", "Noise Level B",
+        "Osc 1 Kbd B", "Osc 1 Pitch B", "Osc 1 Pitch Mod B", "Osc 1 Shape B",
+        "Osc 1 Shape Mod B", "Osc 1 Tune B", "Osc 1 Wave B", "Osc 2 Kbd B", "Osc 2 Pitch B",
+        "Osc 2 Pitch Mod B", "Osc 2 Shape B", "Osc 2 Shape Mod B", "Osc 2 Tune B", "Osc 2 Wave B",
+        "Osc Level B", "Osc Mix B", "Osc Sync B",
+      },
+    }),
   }
 }

@@ -71,4 +71,21 @@ return {
   polystep = {
     ["Midi Transpose"] = 3,
   },
+  polytone = {
+    ["Osc 1 Wave A"] = 6,
+    ["Osc 2 Wave A"] = 6,
+    ["Portamento Mode A"] = 3,
+    ["LFO Wave A"] = 7,
+    ["Osc 1 Wave B"] = 6,
+    ["Osc 2 Wave B"] = 6,
+    ["Portamento Mode B"] = 3,
+    ["LFO Wave B"] = 7,
+    ["Layer Mode"] = 3,
+    ["Balance Mod"] = 4,
+    ["Key Mode"] = 3,
+    ["Global LFO Dest"] = 8,
+    ["Global LFO Wave"] = 7,
+    ["Chorus Type"] = 3,
+    ["Reverb Type"] = 3,
+  }
 }
