@@ -5,7 +5,9 @@ Control Surface Model	Launch Control XL3 (developer version)
 Map Version	3.0.1
 
 Scope	Propellerheads	Reason Document
+
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
+
 Map	documentName		Document Name
 Map	targetTrackName		Target Track Name
 Map	trackRightButton		Target Previous Track
@@ -195,7 +197,7 @@ Map	patchName		Patch Name
 Map	deviceType		"subtractor"
 
 Scope	Propellerhead Software	se.propellerheads.Algoritm
-// https://github.com/mjuksel/remote-mappings/blob/main/Instruments/Algoritm%20Remote%20Info.txt
+
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11	Page 12	Page 13
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
@@ -1221,6 +1223,7 @@ Scope	Propellerhead Software	se.propellerheads.Polytone
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
 Map	pageSelect3		Pages=Page 3
@@ -1397,3 +1400,99 @@ Map	patchName		Patch Name
 
 Map	deviceType		"polytone"
 
+Scope	Propellerheads	Alligator
+Define Group	Pages	Page 1	Page 2
+
+Map	pageSelect1		Pages=Page 1
+Map	pageSelect2		Pages=Page 2
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	encoder1		High Pass LFO Amount			Page 1
+Map	encoder2		High Pass Frequency			Page 1
+Map	encoder3		High Pass Resonance			Page 1
+Map	encoder4		High Pass Env Amount			Page 1
+
+Map	encoder6		High Pass Drive Amount			Page 1
+Map	encoder7		High Pass Phaser Amount			Page 1
+Map	encoder8		High Pass Delay Amount			Page 1
+
+Map	encoder9		Band Pass LFO Amount			Page 1
+Map	encoder10		Band Pass Frequency			Page 1
+Map	encoder11		Band Pass Resonance			Page 1
+Map	encoder12		Band Pass Env Amount			Page 1
+
+Map	encoder14		Band Pass Drive Amount			Page 1
+Map	encoder15		Band Pass Phaser Amount			Page 1
+Map	encoder16		Band Pass Delay Amount			Page 1
+
+Map	encoder17		Low Pass LFO Amount			Page 1
+Map	encoder18		Low Pass Frequency			Page 1
+Map	encoder19		Low Pass Resonance			Page 1
+Map	encoder20		Low Pass Env Amount			Page 1
+
+Map	encoder22		Low Pass Drive Amount			Page 1
+Map	encoder23		Low Pass Phaser Amount			Page 1
+Map	encoder24		Low Pass Delay Amount			Page 1
+
+Map	button1		Gate 1 Trig			Page 1
+Map	button2		Gate 2 Trig			Page 1
+Map	button3		Gate 3 Trig			Page 1
+//Map	?	Gate 1 Open
+//Map	?	Gate 2 Open
+//Map	?	Gate 3 Open
+
+Map	button9		High Pass Filter On			Page 1
+Map	button10		Band Pass Filter On			Page 1
+Map	button11		Low Pass Filter On			Page 1
+
+Map	encoder1		High Pass Volume			Page 2
+Map	encoder2		High Pass Pan			Page 2
+
+Map	encoder9		Band Pass Volume			Page 2 
+Map	encoder10		Band Pass Pan			Page 2 
+
+Map	encoder17		Low Pass Volume			Page 2 
+Map	encoder18		Low Pass Pan			Page 2 
+
+Map	encoder8		Master Volume			Page 2 
+
+Map	fader1		Amp Env Attack			Page 2 
+Map	fader2		Amp Env Decay			Page 2 
+Map	fader3		Amp Env Release			Page 2 
+
+Map	fader5		Filter Env Attack			Page 2 
+Map	fader6		Filter Env Decay			Page 2 
+Map	fader7		Filter Env Release			Page 2 
+
+Map	encoder19		LFO Freq			Page 2 
+
+Map	encoder20		Delay Time			Page 2 
+Map	encoder21		Delay Feedback			Page 2 
+Map	encoder22		Delay Pan			Page 2 
+
+Map	encoder23		Phaser Rate			Page 2 
+Map	encoder24		Phaser Feedback			Page 2 
+
+Map	encoder14		Ducking			Page 2 
+Map	encoder15		Dry Pan			Page 2 
+Map	encoder16		Dry Volume			Page 2 
+
+Map	button3		LFO Waveform			Page 2
+Map	button11		LFOSync			Page 2 
+
+Map	button12		DelaySync			Page 2 
+
+Map	button1		Enabled			Page 2 	
+Map	button9		Pattern Enable			Page 2 
+
+Map	button4		Shuffle			Page 2 
+Map	button5		Resolution			Page 2 
+
+Map	encoder4		Pattern			Page 2 
+Map	encoder12		Shift			Page 2 
+
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
+Map	deviceType		"alligator"

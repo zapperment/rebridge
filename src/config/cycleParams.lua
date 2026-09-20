@@ -87,5 +87,10 @@ return {
     ["Global LFO Wave"] = 7,
     ["Chorus Type"] = 3,
     ["Reverb Type"] = 3,
+  },
+  alligator = {
+    ["LFO Waveform"] = 9,
+    ["Enabled"] = 3,
+    ["Resolution"] = 5,
   }
 }

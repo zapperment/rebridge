@@ -523,4 +523,86 @@ return {
       "Reverb Amount", "Reverb Decay", "Reverb Type",
     },
   }),
+  alligator = byParam {
+    red     = {
+      "High Pass LFO Amount",
+      "High Pass Frequency",
+      "High Pass Resonance",
+      "High Pass Env Amount",
+      "High Pass Drive Amount",
+      "High Pass Phaser Amount",
+      "High Pass Delay Amount",
+      "Gate 1 Trig",
+      "High Pass Filter On",
+      "High Pass Volume",
+      "High Pass Pan",
+    },
+    green   = {
+      "Band Pass LFO Amount",
+      "Band Pass Frequency",
+      "Band Pass Resonance",
+      "Band Pass Env Amount",
+      "Band Pass Drive Amount",
+      "Band Pass Phaser Amount",
+      "Band Pass Delay Amount",
+      "Gate 2 Trig",
+      "Band Pass Filter On",
+      "Band Pass Volume",
+      "Band Pass Pan",
+    },
+    blue    = {
+      "Low Pass LFO Amount",
+      "Low Pass Frequency",
+      "Low Pass Resonance",
+      "Low Pass Env Amount",
+      "Low Pass Drive Amount",
+      "Low Pass Phaser Amount",
+      "Low Pass Delay Amount",
+      "Gate 3 Trig",
+      "Low Pass Filter On",
+      "Low Pass Volume",
+      "Low Pass Pan",
+    },
+    magenta = {
+      "LFO Freq",
+      "LFO Waveform",
+      "LFOSync",
+    },
+    orange  = {
+      "Delay Time",
+      "Delay Feedback",
+      "Delay Pan",
+      "DelaySync",
+    },
+    yellow  = {
+      "Master Volue",
+      "Enabled",
+      "Pattern Enable",
+    },
+    sky     = {
+      "Shuffle",
+      "Resolution",
+      "Pattern",
+      "Shift",
+    },
+    cyan    = {
+      "Dry Volume",
+      "Dry Pan",
+      "Ducking",
+    },
+    pink    = {
+      "Phaser Rate",
+      "Phaser Feedback",
+    },
+    violet  = {
+
+    },
+    amber   = {
+
+    },
+    mint    = {
+
+    },
+
+  },
 }

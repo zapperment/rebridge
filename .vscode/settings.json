@@ -1,6 +1,6 @@
 {
   "[plaintext]": {
-    "editor.tabSize": 20,
+    "editor.tabSize": 30,
     "editor.detectIndentation": false
   },
   "[reason-remote]": {

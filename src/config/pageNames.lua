@@ -44,5 +44,9 @@ return {
     "Layer A Main", "Layer A Extra",
     "Layer B Main", "Layer B Extra",
     "Global"
-  }
+  },
+  alligator = {
+    "Main",
+    "Extra",
+  },
 }

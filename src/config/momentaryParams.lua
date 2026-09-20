@@ -26,4 +26,9 @@ return {
     "Variation 3 Trigger",
     "Variation 4 Trigger",
   },
+  alligator = byName {
+    "Gate 1 Trig",
+    "Gate 2 Trig",
+    "Gate 3 Trig",
+  },
 }
