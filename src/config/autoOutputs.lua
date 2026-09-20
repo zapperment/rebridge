@@ -1,0 +1,18 @@
+return {
+  { name = "button1led",  pattern = "B0 25 xx",      x = "value == 1 and 5 or 7",   port = 1 },
+  { name = "button2led",  pattern = "B0 26 xx",      x = "value == 1 and 21 or 23", port = 1 },
+  { name = "button3led",  pattern = "B0 27 xx",      x = "value == 1 and 45 or 47", port = 1 },
+  { name = "button4led",  pattern = "B0 28 0<000x>", port = 1 },
+  { name = "button5led",  pattern = "B0 29 0<000x>", port = 1 },
+  { name = "button6led",  pattern = "B0 2A 0<000x>", port = 1 },
+  { name = "button7led",  pattern = "B0 2B 0<000x>", port = 1 },
+  { name = "button8led",  pattern = "B0 2C 0<000x>", port = 1 },
+  { name = "button9led",  pattern = "B0 2D 0<000x>", port = 1 },
+  { name = "button10led", pattern = "B0 2E 0<000x>", port = 1 },
+  { name = "button11led", pattern = "B0 2F 0<000x>", port = 1 },
+  { name = "button12led", pattern = "B0 30 0<000x>", port = 1 },
+  { name = "button13led", pattern = "B0 31 0<000x>", port = 1 },
+  { name = "button14led", pattern = "B0 32 0<000x>", port = 1 },
+  { name = "button15led", pattern = "B0 33 0<000x>", port = 1 },
+  { name = "button16led", pattern = "B0 34 0<000x>", port = 1 },
+}

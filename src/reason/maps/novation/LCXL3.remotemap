@@ -1438,9 +1438,10 @@ Map	encoder24		Low Pass Delay Amount			Page 1
 Map	button1		Gate 1 Trig			Page 1
 Map	button2		Gate 2 Trig			Page 1
 Map	button3		Gate 3 Trig			Page 1
-//Map	?	Gate 1 Open
-//Map	?	Gate 2 Open
-//Map	?	Gate 3 Open
+
+Map	button1led		Gate 1 Open			Page 1
+Map	button2led		Gate 2 Open			Page 1
+Map	button3led		Gate 3 Open			Page 1
 
 Map	button9		High Pass Filter On			Page 1
 Map	button10		Band Pass Filter On			Page 1

@@ -1,4 +1,5 @@
 local autoInputs = require "src.config.autoInputs"
+local autoOutputs = require "src.config.autoOutputs"
 local const = require "src.config.constants"
 local deliverButtons = require "src.remote.deliverMidi.buttons"
 local deliverDisplay = require "src.remote.deliverMidi.display"
@@ -42,6 +43,7 @@ function remote_init()
   end
   remote.define_items(itemsToDefine)
   remote.define_auto_inputs(autoInputs)
+  remote.define_auto_outputs(autoOutputs)
   if _ENV ~= "test" then
     deb.log(
       "[reason.codecs.novation.LCXL3] " ..
