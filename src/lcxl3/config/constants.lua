@@ -1,7 +1,7 @@
 local const = require "src.config.constants"
 local tbl = require "src.lib.table._"
 
-local lcConst = {
+return tbl.merge(const, {
   softwareVersion = "0.0.10 BETA",
   -- the number of encoders, faders and buttons on the remote surface
   counts = {
@@ -15,8 +15,4 @@ local lcConst = {
   },
   sysexHeader = "f0 00 20 29 02 15",
   pickupTolerance = 10,
-}
-
-local lcConstAndGlobalConst = tbl.merge(const, lcConst)
-
-return lcConstAndGlobalConst
+})

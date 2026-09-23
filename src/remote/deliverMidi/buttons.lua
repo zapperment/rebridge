@@ -1,4 +1,4 @@
-local col = require "src.lib.colour._"
+local col = require "src.lcxl3.lib.colour._"
 local ctrl = require "src.lcxl3.config.controls"
 local const = require "src.lcxl3.config.constants"
 local disp = require "src.lib.display._"

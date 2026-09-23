@@ -1,4 +1,4 @@
-local col = require "src.lib.colour._"
+local col = require "src.lcxl3.lib.colour._"
 local makeSysexEvent = require "src.lib.midi.makeSysexEvent"
 local deb = require "src.lib.debug._"
 local str = require "src.lib.string._"

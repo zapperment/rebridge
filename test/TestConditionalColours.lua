@@ -1,7 +1,7 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local state = require "src.lib.state._"
-local col = require "src.lib.colour._"
+local col = require "src.lcxl3.lib.colour._"
 
 TestConditionalColours = {}
 
