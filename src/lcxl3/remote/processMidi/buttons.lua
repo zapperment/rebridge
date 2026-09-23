@@ -3,7 +3,7 @@ local state = require "src.lcxl3.lib.state._"
 local str = require "src.lib.string._"
 local const = require "src.lcxl3.config.constants"
 local cycleParams = require "src.lcxl3.config.cycleParams"
-local util = require "src.remote.processMidi.util._"
+local util = require "src.lcxl3.remote.processMidi.util._"
 local deb = require "src.lib.debug._"
 
 -- the number of values of the mapped parameter if the button cycles through

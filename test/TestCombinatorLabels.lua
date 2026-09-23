@@ -6,9 +6,9 @@ local disp = require "src.lcxl3.lib.display._"
 local hex = require "src.lib.hex._"
 local items = require "src.lcxl3.config.items"
 local state = require "src.lcxl3.lib.state._"
-local deliverEncoders = require "src.remote.deliverMidi.encoders"
-local setEncoders = require "src.remote.setState.encoders"
-local setInfo = require "src.remote.setState.info"
+local deliverEncoders = require "src.lcxl3.remote.deliverMidi.encoders"
+local setEncoders = require "src.lcxl3.remote.setState.encoders"
+local setInfo = require "src.lcxl3.remote.setState.info"
 
 require "src.reason.codecs.novation.LCXL3"
 

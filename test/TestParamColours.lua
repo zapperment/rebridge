@@ -3,10 +3,10 @@ local lu = test.luaUnit
 local state = require "src.lcxl3.lib.state._"
 local items = require "src.lcxl3.config.items"
 local col = require "src.lcxl3.lib.colour._"
-local setEncoders = require "src.remote.setState.encoders"
-local setButtons = require "src.remote.setState.buttons"
-local deliverEncoders = require "src.remote.deliverMidi.encoders"
-local deliverButtons = require "src.remote.deliverMidi.buttons"
+local setEncoders = require "src.lcxl3.remote.setState.encoders"
+local setButtons = require "src.lcxl3.remote.setState.buttons"
+local deliverEncoders = require "src.lcxl3.remote.deliverMidi.encoders"
+local deliverButtons = require "src.lcxl3.remote.deliverMidi.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
 

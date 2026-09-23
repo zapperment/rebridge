@@ -4,7 +4,7 @@ local state = require "src.lcxl3.lib.state._"
 local const = require "src.lcxl3.config.constants"
 local items = require "src.lcxl3.config.items"
 local disp = require "src.lcxl3.lib.display._"
-local setButtons = require "src.remote.setState.buttons"
+local setButtons = require "src.lcxl3.remote.setState.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
 

@@ -6,9 +6,9 @@ local items = require "src.lcxl3.config.items"
 local selections = require "src.lcxl3.config.selections"
 local hex = require "src.lib.hex._"
 local col = require "src.lcxl3.lib.colour._"
-local deliverSelection = require "src.remote.deliverMidi.selection"
-local deliverButtons = require "src.remote.deliverMidi.buttons"
-local setButtons = require "src.remote.setState.buttons"
+local deliverSelection = require "src.lcxl3.remote.deliverMidi.selection"
+local deliverButtons = require "src.lcxl3.remote.deliverMidi.buttons"
+local setButtons = require "src.lcxl3.remote.setState.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
 

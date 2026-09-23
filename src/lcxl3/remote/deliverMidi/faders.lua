@@ -1,24 +1,42 @@
-local col = require "src.lcxl3.lib.colour._"
+local const = require "src.lcxl3.config.constants"
 local ctrl = require "src.lcxl3.config.controls"
 local disp = require "src.lcxl3.lib.display._"
 local midi = require "src.lcxl3.lib.midi._"
 local state = require "src.lcxl3.lib.state._"
 local str = require "src.lib.string._"
-local util = require "src.remote.deliverMidi.util._"
+local util = require "src.lcxl3.remote.deliverMidi.util._"
 local deb = require "src.lib.debug._"
 
--- called regularly by the codec to update the remote surface (Launch Control)
+-- next to what every control has, a fader keeps the pickup status that decides
+-- which way the fader has to be moved to catch up with the parameter's value
+local function readStatus(item, control)
+  item.status, item.statusChanged = state.update(control .. ".status")
+end
+
+-- the arrows a fader shows around its value while it has not caught up with the
+-- value the parameter is at
+local function getPickupMarkers(status)
+  if status == const.fader.tooHigh then
+    return "v ", " v"
+  end
+  if status == const.fader.tooLow then
+    return "^ ", " ^"
+  end
+  return "", ""
+end
+
+-- called regularly by the codec to update the control surface (Launch Control)
 return function()
   local events = {}
-  local deviceType, deviceTypeChanged = state.update "deviceType"
-  for _, group in ipairs(util.readItemGroups(ctrl.encoders, deviceType)) do
+  local deviceType = state.update "deviceType"
+  for _, group in ipairs(util.readItemGroups(ctrl.faders, deviceType, readStatus)) do
     local controller = group.controller
     local item = group.displayedItem
     local displayingChanged = group.displayingChanged
-    local logMe = false --controller == 14
+    local logMe = false --controller == 5
     if logMe and displayingChanged then
       deb.log(
-        "[remote:deliverMidi:encoders] " ..
+        "[remote:deliverMidi:faders] " ..
         "controller=" .. controller .. " " ..
         "now shows " .. (item and str.serialise(item.control) or "nothing")
       )
@@ -35,27 +53,20 @@ return function()
         local displayName = disp.getDisplayName(deviceType, item.param)
         table.insert(events, midi.makeParamNameDisplayEvent(displayName, controller))
       end
-      if item.hostValue ~= nil then
-        if item.hostValueChanged or item.hostTextValueChanged or displayingChanged then
-          local displayValue = disp.getDisplayValue(item.control)
-          table.insert(events, midi.makeParamValueDisplayEvent(displayValue, controller))
-          table.insert(events, remote.make_midi(item.midi, { x = item.hostValue }))
-        end
-        if deviceTypeChanged or item.paramChanged or item.hostValueChanged or displayingChanged then
-          local colourName = col.getColourName(deviceType, item.param, item.colour)
-          table.insert(events, midi.makeColourEvent(colourName, item.hostValue, controller))
-        end
+      if item.hostValue ~= nil and (item.hostTextValueChanged or item.statusChanged or displayingChanged) then
+        local prefix, suffix = getPickupMarkers(item.status)
+        local displayValue = disp.getDisplayValue(item.control)
+        table.insert(events, midi.makeParamValueDisplayEvent(prefix .. displayValue .. suffix, controller))
       end
       if item.controlSurfaceValueChanged then
         table.insert(events, midi.makeParamDisplayTriggerEvent(controller))
       end
     elseif displayingChanged then
-      -- nothing is mapped to the encoder any more, so it neither lights up nor
-      -- brings up a display of its own when it is turned
+      -- nothing is mapped to the fader any more, so moving it brings up no
+      -- display of its own
       table.insert(events, midi.makeParamDisplayConfigEvent(
         controller, false, midi.displayArrangements.nameAndTextValue
       ))
-      table.insert(events, midi.makeColourEvent("black", 0, controller))
     end
   end
   return events

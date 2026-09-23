@@ -2,7 +2,7 @@ local test = require "test.lib._"
 local lu = test.luaUnit
 local items = require "src.lcxl3.config.items"
 local state = require "src.lcxl3.lib.state._"
-local setPages = require "src.remote.setState.pages"
+local setPages = require "src.lcxl3.remote.setState.pages"
 
 require "src.reason.codecs.novation.LCXL3"
 

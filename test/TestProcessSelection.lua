@@ -2,7 +2,7 @@ local test = require "test.lib._"
 local lu = test.luaUnit
 local items = require "src.lcxl3.config.items"
 local state = require "src.lcxl3.lib.state._"
-local processSelection = require "src.remote.processMidi.selection"
+local processSelection = require "src.lcxl3.remote.processMidi.selection"
 
 require "src.reason.codecs.novation.LCXL3"
 

@@ -3,8 +3,8 @@ local lu = test.luaUnit
 local state = require "src.lcxl3.lib.state._"
 local const = require "src.lcxl3.config.constants"
 local items = require "src.lcxl3.config.items"
-local setFaders = require "src.remote.setState.faders"
-local processFaders = require "src.remote.processMidi.faders"
+local setFaders = require "src.lcxl3.remote.setState.faders"
+local processFaders = require "src.lcxl3.remote.processMidi.faders"
 
 require "src.reason.codecs.novation.LCXL3"
 

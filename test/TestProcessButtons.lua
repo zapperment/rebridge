@@ -3,7 +3,7 @@ local lu = test.luaUnit
 local state = require "src.lcxl3.lib.state._"
 local items = require "src.lcxl3.config.items"
 local const = require "src.lcxl3.config.constants"
-local processButtons = require "src.remote.processMidi.buttons"
+local processButtons = require "src.lcxl3.remote.processMidi.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
 

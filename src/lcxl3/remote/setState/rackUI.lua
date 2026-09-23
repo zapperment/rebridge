@@ -1,5 +1,5 @@
 local ctrl = require "src.lcxl3.config.controls"
-local util = require "src.remote.setState.util._"
+local util = require "src.lcxl3.remote.setState.util._"
 local deb = require "src.lib.debug._"
 
 -- handles changes of the encoders of the host (Reason)
