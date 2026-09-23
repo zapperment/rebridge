@@ -1,6 +1,6 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local const = require "src.lcxl3.config.constants"
 local items = require "src.lcxl3.config.items"
 local hex = require "src.lib.hex._"

@@ -1,5 +1,5 @@
 local items = require "src.lcxl3.config.items"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local deb = require "src.lib.debug._"
 
 -- Shift is a feature control and reports on channel 7 rather than channel 1,

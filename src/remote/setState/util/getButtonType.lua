@@ -1,5 +1,5 @@
 local const = require "src.lcxl3.config.constants"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local cycleParams = require "src.lcxl3.config.cycleParams"
 local momentaryParams = require "src.lcxl3.config.momentaryParams"
 

@@ -1,6 +1,6 @@
 local ctrl = require "src.lcxl3.config.controls"
 local const = require "src.lcxl3.config.constants"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local util = require "src.remote.setState.util._"
 local deb = require "src.lib.debug._"
 

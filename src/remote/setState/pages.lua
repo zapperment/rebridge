@@ -1,6 +1,6 @@
 local items = require "src.lcxl3.config.items"
 local const = require "src.lcxl3.config.constants"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local deb = require "src.lib.debug._"
 
 -- Handles changes of the page selectors reported by the host (Reason). A

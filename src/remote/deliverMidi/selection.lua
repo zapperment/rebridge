@@ -2,7 +2,7 @@ local col = require "src.lcxl3.lib.colour._"
 local ctrl = require "src.lcxl3.config.controls"
 local items = require "src.lcxl3.config.items"
 local midi = require "src.lcxl3.lib.midi._"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 
 -- asks the surface for its mode, so that it replies with a MIDI event the codec
 -- can switch the mapping in force on (see processMidi/selection and ADR 0003):

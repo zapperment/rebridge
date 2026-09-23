@@ -1,6 +1,6 @@
-local StateManager = require "src.lib.state.StateManager"
-local PageManager = require "src.lib.state.PageManager"
-local SelectionManager = require "src.lib.state.SelectionManager"
+local StateManager = require "src.lcxl3.lib.state.StateManager"
+local PageManager = require "src.lcxl3.lib.state.PageManager"
+local SelectionManager = require "src.lcxl3.lib.state.SelectionManager"
 
 local stateManager = StateManager:new()
 local pageManager = PageManager:new({ state = stateManager })

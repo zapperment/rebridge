@@ -1,5 +1,5 @@
 local items = require "src.lcxl3.config.items"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local deb = require "src.lib.debug._"
 
 -- handles presses of the play and record buttons of the remote surface (Launch Control)

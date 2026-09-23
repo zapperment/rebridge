@@ -1,5 +1,5 @@
 local ctrl = require "src.lcxl3.config.controls"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local str = require "src.lib.string._"
 local const = require "src.lcxl3.config.constants"
 local cycleParams = require "src.lcxl3.config.cycleParams"

@@ -1,6 +1,6 @@
 local const = require "src.lcxl3.config.constants"
 local getCustomDisplayValue = require "src.lcxl3.lib.display.getCustomDisplayValue"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local deb = require "src.lib.debug._"
 
 local defaultDisplayValues = {

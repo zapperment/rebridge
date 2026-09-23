@@ -1,6 +1,6 @@
 local items = require "src.lcxl3.config.items"
 local const = require "src.lcxl3.config.constants"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 
 -- the option each option selector stands for: 0 for the one bound to the
 -- mapping in force while no option is selected

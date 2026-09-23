@@ -1,7 +1,7 @@
 local getConditionalDisplayValue = require "src.lcxl3.lib.display.getConditionalDisplayValue"
 local getCustomDisplayValue = require "src.lcxl3.lib.display.getCustomDisplayValue"
 local getInterpolatedDisplayValue = require "src.lcxl3.lib.display.getInterpolatedDisplayValue"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local deb = require "src.lib.debug._"
 
 return function(control)

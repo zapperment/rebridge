@@ -1,6 +1,6 @@
 local ctrl = require "src.lcxl3.config.controls"
 local items = require "src.lcxl3.config.items"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 
 -- the surface's reply to the query the delivery sends to get the codec here
 -- when the mapping in force has to be switched (see deliverMidi/selection):

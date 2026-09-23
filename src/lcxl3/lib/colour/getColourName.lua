@@ -1,7 +1,7 @@
 local paramColours = require "src.lcxl3.config.paramColours"
 local condi = require "src.lcxl3.lib.conditional._"
 local deb = require "src.lib.debug._"
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 
 -- The colour a conditional (or one of its overrides) gives for the current
 -- value of the parameter it depends on. Returns nil when that parameter has no

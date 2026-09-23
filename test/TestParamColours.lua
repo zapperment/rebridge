@@ -1,6 +1,6 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require "src.lib.state._"
+local state = require "src.lcxl3.lib.state._"
 local items = require "src.lcxl3.config.items"
 local col = require "src.lcxl3.lib.colour._"
 local setEncoders = require "src.remote.setState.encoders"
