@@ -1,5 +1,5 @@
 local col = require "src.lcxl3.lib.colour._"
-local makeSysexEvent = require "src.lib.midi.makeSysexEvent"
+local makeSysexEvent = require "src.lcxl3.lib.midi.makeSysexEvent"
 local deb = require "src.lib.debug._"
 local str = require "src.lib.string._"
 

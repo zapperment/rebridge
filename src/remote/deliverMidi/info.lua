@@ -1,6 +1,6 @@
 local state = require "src.lib.state._"
 local hex = require "src.lib.hex._"
-local midi = require "src.lib.midi._"
+local midi = require "src.lcxl3.lib.midi._"
 local deviceTypeLabels = require "src.config.deviceTypeLabels"
 local deb = require "src.lib.debug._"
 

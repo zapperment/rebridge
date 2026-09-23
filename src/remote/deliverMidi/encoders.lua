@@ -1,7 +1,7 @@
 local col = require "src.lcxl3.lib.colour._"
 local ctrl = require "src.lcxl3.config.controls"
 local disp = require "src.lcxl3.lib.display._"
-local midi = require "src.lib.midi._"
+local midi = require "src.lcxl3.lib.midi._"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
 local util = require "src.remote.deliverMidi.util._"

@@ -1,5 +1,5 @@
 local state = require "src.lib.state._"
-local midi = require "src.lib.midi._"
+local midi = require "src.lcxl3.lib.midi._"
 local deb = require "src.lib.debug._"
 
 -- called regularly by the codec to update the remote surface (Launch Control);

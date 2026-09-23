@@ -1,5 +1,5 @@
-local makeSysexEvent = require "src.lib.midi.makeSysexEvent"
-local displayArrangements = require "src.lib.midi.displayArrangements"
+local makeSysexEvent = require "src.lcxl3.lib.midi.makeSysexEvent"
+local displayArrangements = require "src.lcxl3.lib.midi.displayArrangements"
 
 -- Bits 0-4 of the config byte hold the display arrangement (see
 -- displayArrangements); it has to stay non-zero, as a config of zero merely
