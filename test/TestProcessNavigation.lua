@@ -1,7 +1,7 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local items = require "src.config.items"
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local state = require "src.lib.state._"
 local processNavigation = require "src.remote.processMidi.navigation"
 

@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 
 local encoders = {}
 for i = 1, const.counts.encoders do

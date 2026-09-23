@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local state = require "src.lib.state._"
 local cycleParams = require "src.config.cycleParams"
 local momentaryParams = require "src.config.momentaryParams"

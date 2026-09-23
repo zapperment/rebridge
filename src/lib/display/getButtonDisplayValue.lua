@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local getCustomDisplayValue = require "src.lib.display.getCustomDisplayValue"
 local state = require "src.lib.state._"
 local deb = require "src.lib.debug._"

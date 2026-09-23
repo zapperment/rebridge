@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local pageNames = require "src.config.pageNames"
 local PageManager = {}
 

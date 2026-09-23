@@ -1,7 +1,7 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local combinatorLabels = require "src.config.combinatorLabels"
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local disp = require "src.lib.display._"
 local hex = require "src.lib.hex._"
 local items = require "src.config.items"

@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local ctrl = require "src.config.controls"
 local selections = require "src.config.selections"
 

@@ -1,5 +1,5 @@
 local ctrl = require "src.config.controls"
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local state = require "src.lib.state._"
 local util = require "src.remote.processMidi.util._"
 local deb = require "src.lib.debug._"

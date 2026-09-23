@@ -1,4 +1,4 @@
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local items = require "src.config.items"
 local setSelection = require "src.remote.setState.selection"
 

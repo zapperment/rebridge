@@ -1,5 +1,5 @@
 local items = require "src.config.items"
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local state = require "src.lib.state._"
 
 -- the option each option selector stands for: 0 for the one bound to the

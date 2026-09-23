@@ -1,7 +1,7 @@
 local ctrl = require "src.config.controls"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local cycleParams = require "src.config.cycleParams"
 local util = require "src.remote.processMidi.util._"
 local deb = require "src.lib.debug._"

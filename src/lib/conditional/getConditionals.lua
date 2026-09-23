@@ -1,4 +1,4 @@
-local cond = require "src.config.conditionals"
+local cond = require "src.lcxl3.config.conditionals"
 
 -- The conditionals config/conditionals holds for a parameter, always as a list.
 --

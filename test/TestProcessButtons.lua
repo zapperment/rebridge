@@ -2,7 +2,7 @@ local test = require "test.lib._"
 local lu = test.luaUnit
 local state = require "src.lib.state._"
 local items = require "src.config.items"
-local const = require "src.config.constants"
+local const = require "src.lcxl3.config.constants"
 local processButtons = require "src.remote.processMidi.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
