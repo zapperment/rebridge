@@ -1,3 +1,4 @@
+local autoOutputs = require "src.config.autoOutputs"
 local items = require "src.config.items"
 local test = require "test.lib._"
 local lu = test.luaUnit
@@ -30,9 +31,11 @@ end
 function TestRemoteInit:testDefinesAutoOutputs()
     remote_init()
     local numberOfCalls = #remote.mock "define_auto_outputs".calls
-    local errorMessage = "expected remote.define_auto_outputs to not have been called, but it was called " ..
+    local errorMessage = "expected remote.define_auto_outputs to have been called once, but it was called " ..
         numberOfCalls .. " times"
-    lu.assertEquals(numberOfCalls, 0, errorMessage)
+    lu.assertEquals(numberOfCalls, 1, errorMessage)
+    lu.assertIs(remote.mock "define_auto_outputs".calls[1][1], autoOutputs,
+        "expected remote.define_auto_outputs to have been called with the configured auto outputs")
 end
 
 function TestRemoteInit:testAddsIndicesToItems()

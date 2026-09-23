@@ -3,6 +3,7 @@ local lu = test.luaUnit
 local state = require "src.lib.state._"
 local const = require "src.config.constants"
 local items = require "src.config.items"
+local selections = require "src.config.selections"
 local hex = require "src.lib.hex._"
 local col = require "src.lib.colour._"
 local deliverSelection = require "src.remote.deliverMidi.selection"
@@ -14,6 +15,11 @@ require "src.reason.codecs.novation.LCXL3"
 TestDeliverSelection = {}
 
 local reportSelection = test.reportSelection
+
+local basslineColour = selections.bassline.colour
+
+-- a selecting device without a configuration in config/selections
+local unconfiguredDeviceType = "unconfigured"
 
 local function sysex(payload)
     return const.sysexHeader .. " " .. payload .. " f7"
@@ -127,9 +133,9 @@ end
 function TestDeliverSelection:testLightsTheSelectedOptionBrightlyAndTheOthersDimly()
     reportSelection(2, 8, 3)
     deliverSelection()
-    lu.assertEquals(targetsOf(colourEvent("green", 95)), controllersOf "button11",
+    lu.assertEquals(targetsOf(colourEvent(basslineColour, 95)), controllersOf "button11",
         "expected only the button of the selected option to be lit brightly")
-    lu.assertEquals(targetsOf(colourEvent("green", 1)),
+    lu.assertEquals(targetsOf(colourEvent(basslineColour, 1)),
         controllersOf("button9", "button10", "button12", "button13", "button14", "button15", "button16"),
         "expected the buttons of the other options to be lit dimly")
 end
@@ -165,9 +171,9 @@ function TestDeliverSelection:testMovesTheBrightLedToTheNewSelection()
     establishSelection(2, 8, 3)
     reportSelection(4, 8, 5)
     deliverSelection()
-    lu.assertEquals(targetsOf(colourEvent("green", 95)), controllersOf "button13",
+    lu.assertEquals(targetsOf(colourEvent(basslineColour, 95)), controllersOf "button13",
         "expected the button of the newly selected option to be lit brightly")
-    lu.assertEquals(contains(targetsOf(colourEvent("green", 1)), items.button11.controller), true,
+    lu.assertEquals(contains(targetsOf(colourEvent(basslineColour, 1)), items.button11.controller), true,
         "expected the button of the previously selected option to be lit dimly")
 end
 
@@ -175,8 +181,8 @@ function TestDeliverSelection:testLeavesAllButtonsDimWhileNoOptionIsSelected()
     establishSelection(2, 8, 3)
     reportSelection(-1, 8, 0)
     deliverSelection()
-    lu.assertEquals(targetsOf(colourEvent("green", 95)), {}, "expected no button to be lit brightly")
-    lu.assertEquals(#targetsOf(colourEvent("green", 1)), 8, "expected every selection button to be lit dimly")
+    lu.assertEquals(targetsOf(colourEvent(basslineColour, 95)), {}, "expected no button to be lit brightly")
+    lu.assertEquals(#targetsOf(colourEvent(basslineColour, 1)), 8, "expected every selection button to be lit dimly")
 end
 
 function TestDeliverSelection:testShowsTheNewSelectionOnTheOverlay()
@@ -224,7 +230,7 @@ function TestDeliverSelection:testTurnsOffTheButtonsBeyondTheOptionCount()
 end
 
 function TestDeliverSelection:testUsesTheButtonColoursAndOptionNumbersOnAnUnconfiguredDevice()
-    setDeviceType "polystep"
+    setDeviceType(unconfiguredDeviceType)
     reportSelection(0, 8, 1)
     deliverSelection()
     lu.assertEquals(targetsOf(colourEvent(items.button9.colour, 95)), controllersOf "button9",
@@ -235,7 +241,7 @@ end
 
 function TestDeliverSelection:testRelabelsTheButtonsWhenAnotherSelectingDeviceBecomesTheTarget()
     establishSelection(0, 8, 1)
-    setDeviceType "polystep"
+    setDeviceType(unconfiguredDeviceType)
     local events = deliverSelection()
     lu.assertEquals(contains(events, nameEvent "1"), true,
         "expected the buttons to be relabelled for the new device")
