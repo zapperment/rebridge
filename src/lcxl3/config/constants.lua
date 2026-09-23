@@ -17,6 +17,6 @@ local lcConst = {
   pickupTolerance = 10,
 }
 
-local lcConstAndGlobalConst = tbl.concat(const, lcConst)
+local lcConstAndGlobalConst = tbl.merge(const, lcConst)
 
 return lcConstAndGlobalConst

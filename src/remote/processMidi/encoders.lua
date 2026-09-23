@@ -1,4 +1,4 @@
-local ctrl = require "src.config.controls"
+local ctrl = require "src.lcxl3.config.controls"
 local util = require "src.remote.processMidi.util._"
 local deb = require "src.lib.debug._"
 

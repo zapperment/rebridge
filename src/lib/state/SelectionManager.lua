@@ -1,5 +1,5 @@
 local const = require "src.lcxl3.config.constants"
-local ctrl = require "src.config.controls"
+local ctrl = require "src.lcxl3.config.controls"
 local selections = require "src.config.selections"
 
 local SelectionManager = {}

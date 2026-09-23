@@ -1,5 +1,5 @@
 local col = require "src.lib.colour._"
-local ctrl = require "src.config.controls"
+local ctrl = require "src.lcxl3.config.controls"
 local const = require "src.lcxl3.config.constants"
 local disp = require "src.lib.display._"
 local items = require "src.config.items"

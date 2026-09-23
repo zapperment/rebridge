@@ -1,4 +1,4 @@
-local ctrl = require "src.config.controls"
+local ctrl = require "src.lcxl3.config.controls"
 local items = require "src.config.items"
 local state = require "src.lib.state._"
 
