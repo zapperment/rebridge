@@ -1,5 +1,5 @@
 -- Mocks the remote host, i.e. Reason
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 
 local MockHost = {}
 

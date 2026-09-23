@@ -1,6 +1,6 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local state = require "src.lib.state._"
 local setPages = require "src.remote.setState.pages"
 

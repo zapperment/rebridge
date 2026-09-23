@@ -1,5 +1,5 @@
 local state = require "src.lib.state._"
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local midi = require "src.lib.midi._"
 local deb = require "src.lib.debug._"
 

@@ -1,4 +1,4 @@
-local customDisplayValues = require "src.config.customDisplayValues"
+local customDisplayValues = require "src.lcxl3.config.customDisplayValues"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"
 

@@ -1,5 +1,5 @@
 local ctrl = require "src.lcxl3.config.controls"
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local state = require "src.lib.state._"
 
 -- the surface's reply to the query the delivery sends to get the codec here

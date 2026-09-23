@@ -1,5 +1,5 @@
 local disp = require "src.lib.display._"
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local state = require "src.lib.state._"
 
 -- Reads the state of one item of the control surface and reports what a delivery

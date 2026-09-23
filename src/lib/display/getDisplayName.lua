@@ -1,5 +1,5 @@
 local combinatorLabels = require "src.config.combinatorLabels"
-local displayNames = require "src.config.displayNames"
+local displayNames = require "src.lcxl3.config.displayNames"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"

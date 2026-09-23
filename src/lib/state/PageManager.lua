@@ -1,5 +1,5 @@
 local const = require "src.lcxl3.config.constants"
-local pageNames = require "src.config.pageNames"
+local pageNames = require "src.lcxl3.config.pageNames"
 local PageManager = {}
 
 -- Tracks the parameter pages of the target device, fed by the pageSelect

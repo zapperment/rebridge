@@ -1,5 +1,5 @@
 local state = require "src.lib.state._"
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local deb = require "src.lib.debug._"
 
 -- The names a Combinator's labels are looked up under (see

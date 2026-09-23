@@ -1,5 +1,5 @@
 local const = require "src.lcxl3.config.constants"
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local setSelection = require "src.remote.setState.selection"
 
 -- Simulates the host (Reason) reporting the selection of the target device

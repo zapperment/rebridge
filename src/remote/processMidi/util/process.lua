@@ -1,4 +1,4 @@
-local items = require "src.config.items"
+local items = require "src.lcxl3.config.items"
 local state = require "src.lib.state._"
 local deb = require "src.lib.debug._"
 local str = require "src.lib.string._"

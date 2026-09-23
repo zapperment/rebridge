@@ -1,6 +1,6 @@
 local calc = require "src.lib.calc._"
 local const = require "src.lcxl3.config.constants"
-local interpolatedValues = require "src.config.interpolatedValues"
+local interpolatedValues = require "src.lcxl3.config.interpolatedValues"
 local deb = require "src.lib.debug._"
 
 return function(deviceType, param, hostValue)

@@ -1,7 +1,7 @@
 local const = require "src.lcxl3.config.constants"
 local ctrl = require "src.lcxl3.config.controls"
 local cond = require "src.lcxl3.config.conditionals"
-local rui = require "src.config.rackUI"
+local rui = require "src.lcxl3.config.rackUI"
 local condi = require "src.lib.conditional._"
 local tbl = require "src.lib.table._"
 local str = require "src.lib.string._"

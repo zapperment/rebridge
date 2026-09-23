@@ -1,7 +1,7 @@
 local const = require "src.lcxl3.config.constants"
 local state = require "src.lib.state._"
-local cycleParams = require "src.config.cycleParams"
-local momentaryParams = require "src.config.momentaryParams"
+local cycleParams = require "src.lcxl3.config.cycleParams"
+local momentaryParams = require "src.lcxl3.config.momentaryParams"
 
 -- The way a button behaves for the parameter it is mapped to: an ordinary
 -- toggle (values on/off), a cycle button that steps through the parameter's
