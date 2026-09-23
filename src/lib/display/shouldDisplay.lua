@@ -1,4 +1,4 @@
-local condi = require "src.lib.conditional._"
+local condi = require "src.lcxl3.lib.conditional._"
 local state = require "src.lib.state._"
 local str = require "src.lib.string._"
 local deb = require "src.lib.debug._"

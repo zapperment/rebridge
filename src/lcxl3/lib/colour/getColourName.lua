@@ -1,5 +1,5 @@
 local paramColours = require "src.lcxl3.config.paramColours"
-local condi = require "src.lib.conditional._"
+local condi = require "src.lcxl3.lib.conditional._"
 local deb = require "src.lib.debug._"
 local state = require "src.lib.state._"
 
