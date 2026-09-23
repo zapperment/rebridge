@@ -1463,14 +1463,14 @@ Map	button10		High Pass Filter On			Page 1
 Map	button11		Band Pass Filter On			Page 1
 Map	button12		Low Pass Filter On			Page 1
 
-Map	encoder1		High Pass Volume			Page 2
-Map	encoder2		High Pass Pan			Page 2
+Map	encoder1		High Pass Pan			Page 2
+Map	encoder2		High Pass Volume			Page 2
 
-Map	encoder9		Band Pass Volume			Page 2 
-Map	encoder10		Band Pass Pan			Page 2 
+Map	encoder9		Band Pass Pan			Page 2 
+Map	encoder10		Band Pass Volume			Page 2 
 
-Map	encoder17		Low Pass Volume			Page 2 
-Map	encoder18		Low Pass Pan			Page 2 
+Map	encoder17		Low Pass Pan			Page 2 
+Map	encoder18		Low Pass Volume			Page 2 
 
 Map	encoder8		Master Volume			Page 2 
 
