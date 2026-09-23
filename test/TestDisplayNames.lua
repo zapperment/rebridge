@@ -1,6 +1,6 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local disp = require "src.lib.display._"
+local disp = require "src.lcxl3.lib.display._"
 
 TestDisplayNames = {}
 

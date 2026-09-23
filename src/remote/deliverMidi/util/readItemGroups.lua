@@ -1,4 +1,4 @@
-local disp = require "src.lib.display._"
+local disp = require "src.lcxl3.lib.display._"
 local items = require "src.lcxl3.config.items"
 local state = require "src.lib.state._"
 
