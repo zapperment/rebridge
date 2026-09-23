@@ -1408,44 +1408,60 @@ Map	pageSelect2		Pages=Page 2
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
 
-Map	encoder1		High Pass LFO Amount			Page 1
-Map	encoder2		High Pass Frequency			Page 1
-Map	encoder3		High Pass Resonance			Page 1
-Map	encoder4		High Pass Env Amount			Page 1
+Map	button1		Pattern Enable			Page 1
+
+Map	button9		Shuffle			Page 1 
+
+Map	encoder1		Pattern			Page 1 
+Map	encoder9		Resolution			Page 1 
+Map	encoder17		Shift			Page 1 
+
+Map	encoder2		High Pass LFO Amount			Page 1
+Map	encoder3		High Pass Frequency			Page 1
+Map	encoder4		High Pass Resonance			Page 1
+Map	encoder5		High Pass Env Amount			Page 1
 
 Map	encoder6		High Pass Drive Amount			Page 1
 Map	encoder7		High Pass Phaser Amount			Page 1
 Map	encoder8		High Pass Delay Amount			Page 1
 
-Map	encoder9		Band Pass LFO Amount			Page 1
-Map	encoder10		Band Pass Frequency			Page 1
-Map	encoder11		Band Pass Resonance			Page 1
-Map	encoder12		Band Pass Env Amount			Page 1
+Map	encoder10		Band Pass LFO Amount			Page 1
+Map	encoder11		Band Pass Frequency			Page 1
+Map	encoder12		Band Pass Resonance			Page 1
+Map	encoder13		Band Pass Env Amount			Page 1
 
 Map	encoder14		Band Pass Drive Amount			Page 1
 Map	encoder15		Band Pass Phaser Amount			Page 1
 Map	encoder16		Band Pass Delay Amount			Page 1
 
-Map	encoder17		Low Pass LFO Amount			Page 1
-Map	encoder18		Low Pass Frequency			Page 1
-Map	encoder19		Low Pass Resonance			Page 1
-Map	encoder20		Low Pass Env Amount			Page 1
+Map	encoder18		Low Pass LFO Amount			Page 1
+Map	encoder19		Low Pass Frequency			Page 1
+Map	encoder20		Low Pass Resonance			Page 1
+Map	encoder21		Low Pass Env Amount			Page 1
 
 Map	encoder22		Low Pass Drive Amount			Page 1
 Map	encoder23		Low Pass Phaser Amount			Page 1
 Map	encoder24		Low Pass Delay Amount			Page 1
 
-Map	button1		Gate 1 Trig			Page 1
-Map	button2		Gate 2 Trig			Page 1
-Map	button3		Gate 3 Trig			Page 1
+Map	fader1		Amp Env Attack			Page 1
+Map	fader2		Amp Env Decay			Page 1
+Map	fader3		Amp Env Release			Page 1 
 
-Map	button1led		Gate 1 Open			Page 1
-Map	button2led		Gate 2 Open			Page 1
-Map	button3led		Gate 3 Open			Page 1
+Map	fader5		Filter Env Attack			Page 1 
+Map	fader6		Filter Env Decay			Page 1 
+Map	fader7		Filter Env Release			Page 1 
 
-Map	button9		High Pass Filter On			Page 1
-Map	button10		Band Pass Filter On			Page 1
-Map	button11		Low Pass Filter On			Page 1
+Map	button2		Gate 1 Trig			Page 1
+Map	button3		Gate 2 Trig			Page 1
+Map	button4		Gate 3 Trig			Page 1
+
+Map	buttonLed2red		Gate 1 Open			Page 1
+Map	buttonLed3green		Gate 2 Open			Page 1
+Map	buttonLed4blue		Gate 3 Open			Page 1
+
+Map	button10		High Pass Filter On			Page 1
+Map	button11		Band Pass Filter On			Page 1
+Map	button12		Low Pass Filter On			Page 1
 
 Map	encoder1		High Pass Volume			Page 2
 Map	encoder2		High Pass Pan			Page 2
@@ -1457,14 +1473,6 @@ Map	encoder17		Low Pass Volume			Page 2
 Map	encoder18		Low Pass Pan			Page 2 
 
 Map	encoder8		Master Volume			Page 2 
-
-Map	fader1		Amp Env Attack			Page 2 
-Map	fader2		Amp Env Decay			Page 2 
-Map	fader3		Amp Env Release			Page 2 
-
-Map	fader5		Filter Env Attack			Page 2 
-Map	fader6		Filter Env Decay			Page 2 
-Map	fader7		Filter Env Release			Page 2 
 
 Map	encoder19		LFO Freq			Page 2 
 
@@ -1485,13 +1493,7 @@ Map	button11		LFOSync			Page 2
 Map	button12		DelaySync			Page 2 
 
 Map	button1		Enabled			Page 2 	
-Map	button9		Pattern Enable			Page 2 
-
-Map	button4		Shuffle			Page 2 
-Map	button5		Resolution			Page 2 
-
-Map	encoder4		Pattern			Page 2 
-Map	encoder12		Shift			Page 2 
+Map	buttonLed9peakMeter		Input Peak Meter			Page 2
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name

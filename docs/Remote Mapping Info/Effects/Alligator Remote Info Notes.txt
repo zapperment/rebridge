@@ -1,0 +1,94 @@
+Scope
+Manufacturer	Model
+Propellerheads	Alligator
+
+
+encoder1	High Pass LFO Amount		Page 1
+encoder2	High Pass Frequency		Page 1
+encoder3	High Pass Resonance		Page 1
+encoder4	High Pass Env Amount		Page 1
+
+encoder6	High Pass Drive Amount		Page 1
+encoder7	High Pass Phaser Amount		Page 1
+encoder8	High Pass Delay Amount		Page 1
+
+encoder9	Band Pass LFO Amount		Page 1
+encoder10	Band Pass Frequency		Page 1
+encoder11	Band Pass Resonance		Page 1
+encoder12	Band Pass Env Amount		Page 1
+
+encoder14	Band Pass Drive Amount		Page 1
+encoder15	Band Pass Phaser Amount		Page 1
+encoder16	Band Pass Delay Amount		Page 1
+
+encoder17	Low Pass LFO Amount		Page 1
+encoder18	Low Pass Frequency		Page 1
+encoder19	Low Pass Resonance		Page 1
+encoder20	Low Pass Env Amount		Page 1
+
+encoder22	Low Pass Drive Amount		Page 1
+encoder23	Low Pass Phaser Amount		Page 1
+encoder24	Low Pass Delay Amount		Page 1
+
+button1	Gate 1 Trig	momentary	Page 1
+button2	Gate 2 Trig	momentary	Page 1
+button3	Gate 3 Trig	momentary	Page 1
+?	Gate 1 Open
+?	Gate 2 Open
+?	Gate 3 Open
+
+button9	High Pass Filter On	toggle	Page 1
+button10	Band Pass Filter On	toggle	Page 1
+button11	Low Pass Filter On	toggle	Page 1
+
+encoder1	High Pass Volume		Page 2
+encoder2	High Pass Pan		Page 2
+
+encoder9	Band Pass Volume		Page 2 
+encoder10	Band Pass Pan		Page 2 
+
+encoder17	Low Pass Volume		Page 2 
+encoder18	Low Pass Pan		Page 2 
+
+encoder8	Master Volume		Page 2 
+
+fader1	Amp Env Attack		Page 2 
+fader2	Amp Env Decay		Page 2 
+fader3	Amp Env Release		Page 2 
+
+fader5	Filter Env Attack		Page 2 
+fader6	Filter Env Decay		Page 2 
+fader7	Filter Env Release		Page 2 
+
+encoder19	LFO Freq		Page 2 
+
+encoder20	Delay Time		Page 2 
+encoder21	Delay Feedback		Page 2 
+encoder22	Delay Pan		Page 2 
+
+encoder23	Phaser Rate		Page 2 
+encoder24	Phaser Feedback		Page 2 
+
+encoder14	Dry Volume		Page 2 
+encoder15	Dry Pan		Page 2 
+encoder16	Ducking		Page 2 
+
+button3	LFO Waveform	cycle 9	Page 2
+button11	LFOSync	toggle	Page 2 
+
+button12	DelaySync	toggle	Page 2 
+
+button1	Enabled	cycle 3	Page 2 	
+button9	Pattern Enable	toggle	Page 2 
+
+button4	Shuffle	toggle	Page 2 
+button12	Resolution	cycle 5	Page 2 
+
+encoder4	Pattern		Page 2 
+encoder12	Shift		Page 2 
+
+
+meta	Device Name
+meta	Patch Name
+
+not supported	Input Peak Meter

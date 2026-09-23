@@ -2,93 +2,71 @@ Scope
 Manufacturer	Model
 Propellerheads	Alligator
 
-
-encoder1	High Pass LFO Amount		Page 1
-encoder2	High Pass Frequency		Page 1
-encoder3	High Pass Resonance		Page 1
-encoder4	High Pass Env Amount		Page 1
-
-encoder6	High Pass Drive Amount		Page 1
-encoder7	High Pass Phaser Amount		Page 1
-encoder8	High Pass Delay Amount		Page 1
-
-encoder9	Band Pass LFO Amount		Page 1
-encoder10	Band Pass Frequency		Page 1
-encoder11	Band Pass Resonance		Page 1
-encoder12	Band Pass Env Amount		Page 1
-
-encoder14	Band Pass Drive Amount		Page 1
-encoder15	Band Pass Phaser Amount		Page 1
-encoder16	Band Pass Delay Amount		Page 1
-
-encoder17	Low Pass LFO Amount		Page 1
-encoder18	Low Pass Frequency		Page 1
-encoder19	Low Pass Resonance		Page 1
-encoder20	Low Pass Env Amount		Page 1
-
-encoder22	Low Pass Drive Amount		Page 1
-encoder23	Low Pass Phaser Amount		Page 1
-encoder24	Low Pass Delay Amount		Page 1
-
-button1	Gate 1 Trig	momentary	Page 1
-button2	Gate 2 Trig	momentary	Page 1
-button3	Gate 3 Trig	momentary	Page 1
-?	Gate 1 Open
-?	Gate 2 Open
-?	Gate 3 Open
-
-button9	High Pass Filter On	toggle	Page 1
-button10	Band Pass Filter On	toggle	Page 1
-button11	Low Pass Filter On	toggle	Page 1
-
-encoder1	High Pass Volume		Page 2
-encoder2	High Pass Pan		Page 2
-
-encoder9	Band Pass Volume		Page 2 
-encoder10	Band Pass Pan		Page 2 
-
-encoder17	Low Pass Volume		Page 2 
-encoder18	Low Pass Pan		Page 2 
-
-encoder8	Master Volume		Page 2 
-
-fader1	Amp Env Attack		Page 2 
-fader2	Amp Env Decay		Page 2 
-fader3	Amp Env Release		Page 2 
-
-fader5	Filter Env Attack		Page 2 
-fader6	Filter Env Decay		Page 2 
-fader7	Filter Env Release		Page 2 
-
-encoder19	LFO Freq		Page 2 
-
-encoder20	Delay Time		Page 2 
-encoder21	Delay Feedback		Page 2 
-encoder22	Delay Pan		Page 2 
-
-encoder23	Phaser Rate		Page 2 
-encoder24	Phaser Feedback		Page 2 
-
-encoder14	Dry Volume		Page 2 
-encoder15	Dry Pan		Page 2 
-encoder16	Ducking		Page 2 
-
-button3	LFO Waveform	cycle 9	Page 2
-button11	LFOSync	toggle	Page 2 
-
-button12	DelaySync	toggle	Page 2 
-
-button1	Enabled	cycle 3	Page 2 	
-button9	Pattern Enable	toggle	Page 2 
-
-button4	Shuffle	toggle	Page 2 
-button12	Resolution	cycle 5	Page 2 
-
-encoder4	Pattern		Page 2 
-encoder12	Shift		Page 2 
-
-
-meta	Device Name
-meta	Patch Name
-
-not supported	Input Peak Meter
+Remotable	Min	Max	Input type	Output type
+Pattern Enable	0	1	Toggle	ValueOutput
+Shift	0	32	Value	ValueOutput
+Resolution	0	4	Value	ValueOutput
+Pattern	0	63	Value	ValueOutput
+Shuffle	0	1	Toggle	ValueOutput
+Gate 1 Trig	0	1	Hold	ValueOutput
+Gate 2 Trig	0	1	Hold	ValueOutput
+Gate 3 Trig	0	1	Hold	ValueOutput
+Amp Env Attack	0	127	Value	ValueOutput
+Amp Env Decay	0	127	Value	ValueOutput
+Amp Env Release	0	127	Value	ValueOutput
+High Pass Filter On	0	1	Toggle	ValueOutput
+High Pass Frequency	0	127	Value	ValueOutput
+High Pass Resonance	0	127	Value	ValueOutput
+High Pass Env Amount	-64	63	Value	ValueOutput
+High Pass LFO Amount	-64	63	Value	ValueOutput
+Band Pass Filter On	0	1	Toggle	ValueOutput
+Band Pass Frequency	0	127	Value	ValueOutput
+Band Pass Resonance	0	127	Value	ValueOutput
+Band Pass Env Amount	-64	63	Value	ValueOutput
+Band Pass LFO Amount	-64	63	Value	ValueOutput
+Low Pass Filter On	0	1	Toggle	ValueOutput
+Low Pass Frequency	0	127	Value	ValueOutput
+Low Pass Resonance	0	127	Value	ValueOutput
+Low Pass Env Amount	-64	63	Value	ValueOutput
+Low Pass LFO Amount	-64	63	Value	ValueOutput
+Filter Env Attack	0	127	Value	ValueOutput
+Filter Env Decay	0	127	Value	ValueOutput
+Filter Env Release	0	127	Value	ValueOutput
+LFO Freq	0	127	Value	ValueOutput
+LFO Waveform	0	8	Value	ValueOutput
+LFOSync	0	1	Toggle	ValueOutput
+High Pass Drive Amount	0	127	Value	ValueOutput
+High Pass Phaser Amount	0	127	Value	ValueOutput
+High Pass Delay Amount	0	127	Value	ValueOutput
+Band Pass Drive Amount	0	127	Value	ValueOutput
+Band Pass Phaser Amount	0	127	Value	ValueOutput
+Band Pass Delay Amount	0	127	Value	ValueOutput
+Low Pass Drive Amount	0	127	Value	ValueOutput
+Low Pass Phaser Amount	0	127	Value	ValueOutput
+Low Pass Delay Amount	0	127	Value	ValueOutput
+Delay Time	0	127	Value	ValueOutput
+Delay Feedback	0	127	Value	ValueOutput
+DelaySync	0	1	Toggle	ValueOutput
+Delay Pan	-64	63	Value	ValueOutput
+Phaser Rate	0	127	Value	ValueOutput
+Phaser Feedback	0	127	Value	ValueOutput
+High Pass Volume	0	127	Value	ValueOutput
+High Pass Pan	-64	63	Value	ValueOutput
+Band Pass Volume	0	127	Value	ValueOutput
+Band Pass Pan	-64	63	Value	ValueOutput
+Low Pass Volume	0	127	Value	ValueOutput
+Low Pass Pan	-64	63	Value	ValueOutput
+Dry Volume	0	127	Value	ValueOutput
+Dry Pan	-64	63	Value	ValueOutput
+Ducking	0	127	Value	ValueOutput
+Master Volume	0	127	Value	ValueOutput
+Enabled	0	2	Value	ValueOutput
+Gate 3 Open	0	1	-	ValueOutput
+Input Peak Meter	0	3	-	ValueOutput
+Gate 2 Open	0	1	-	ValueOutput
+Gate 1 Open	0	1	-	ValueOutput
+Device Name	0	0	-	TextOutput
+Patch Name	0	0	-	TextOutput
+Select Patch Delta	0	0	Delta	TextOutput
+Select Previous Patch	0	0	Trig	TextOutput
+Select Next Patch	0	0	Trig	TextOutput

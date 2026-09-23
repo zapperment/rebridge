@@ -180,6 +180,7 @@ return {
   buttonLed2red = { min = 0, max = 1, output = "value" },
   buttonLed3green = { min = 0, max = 1, output = "value" },
   buttonLed4blue = { min = 0, max = 1, output = "value" },
+  buttonLed9peakMeter = { min = 0, max = 3, output = "value" },
   rackUI1 = { input = "value", output = "value", min = 0, max = 127 },
   rackUI2 = { input = "value", output = "value", min = 0, max = 127 },
 }

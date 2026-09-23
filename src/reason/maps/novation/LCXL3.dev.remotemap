@@ -1493,6 +1493,7 @@ Map	button11		LFOSync			Page 2
 Map	button12		DelaySync			Page 2 
 
 Map	button1		Enabled			Page 2 	
+Map	buttonLed9peakMeter		Input Peak Meter			Page 2
 
 Map	deviceName		Device Name
 Map	patchName		Patch Name
