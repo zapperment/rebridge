@@ -578,12 +578,12 @@ return {
       "Master Volue",
       "Enabled",
       "Pattern Enable",
-    },
-    sky     = {
       "Shuffle",
       "Resolution",
       "Pattern",
       "Shift",
+    },
+    sky     = {
     },
     cyan    = {
       "Dry Volume",
