@@ -19,7 +19,13 @@ Map	stopButton		Stop
 Map	recordButton		Record
 
 Scope	Propellerheads	Combinator
+
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	deviceType		"combinator"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
+
 Map	encoder1		Rotary 1
 Map	encoder2		Rotary 2
 Map	encoder3		Rotary 3
@@ -68,14 +74,16 @@ Map	button13		Button 13
 Map	button14		Button 14
 Map	button15		Button 15
 Map	button16		Button 16
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-Map	deviceType		"combinator"
 
 Scope	Propellerheads	SubTractor Analog Synthesizer
+
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"subtractor"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
@@ -192,15 +200,15 @@ Map	encoder22		Filter Decay Vel Amount			Page 4
 Map	encoder23		Mix Vel Amount			Page 4
 Map	encoder24		Amp Attack Vel Amount			Page 4
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-Map	deviceType		"subtractor"
-
 Scope	Propellerhead Software	se.propellerheads.Algoritm
 
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5	Page 6	Page 7	Page 8	Page 9	Page 10	Page 11	Page 12	Page 13
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"algoritm"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
@@ -511,14 +519,15 @@ Map	encoder22		FM Amount Offset			Page 13
 Map	encoder23		Decay/Release Offset			Page 13
 Map	encoder24		Rate Key Scale			Page 13
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-Map	deviceType		"algoritm"
-
 Scope	Propellerhead Software	se.propellerheads.Ripley
+
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"ripley"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
@@ -694,12 +703,12 @@ Map	encoder24		Matrix Mod3 Scale Amt			Page 4
 
 Map	rackUI1		Mod Source Tab
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-Map	deviceType		"ripley"
-
 Scope	Propellerhead Software	se.propellerheads.Bassline
 Define Group	Patterns	No Pattern	Pattern 1	Pattern 2	Pattern 3	Pattern 4	Pattern 5	Pattern 6	Pattern 7	Pattern 8
+
+Map	deviceType		"bassline"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
 
@@ -918,16 +927,15 @@ Map	encoder21		Pattern 8 Shuffle			Pattern 8
 Map	encoder22		Pattern 8 Note Range			Pattern 8
 Map	encoder23		Pattern 8 Minorness			Pattern 8
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-
-Map	deviceType		"bassline"
-
 Scope	Synapse Audio	com.synapseAudioSoftware.Legend
 
 Define Group	Pages	Page 1	Page 2
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"legend"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
@@ -989,14 +997,13 @@ Map	button7		Effects Active			Page 2
 Map	button9		Modulation Filter			Page 2
 Map	button16		Sustain Pedal			Page 2
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-
-Map	deviceType		"legend"
-
 Scope	Synapse Audio	com.synapseAudioSoftware.LegendHZ
 
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4
+
+Map	deviceType		"legendhz"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
@@ -1147,15 +1154,15 @@ Map	button12		MSEG 4 Sync			Page 4
 
 Map	button16		Sustain Pedal			Page 4
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-
-Map	deviceType		"legendhz"
-
 Scope	Propellerhead Software	se.propellerheads.PolyStepSequencer
+
 Define Group	Patterns	No Pattern	Pattern 1	Pattern 2	Pattern 3	Pattern 4	Pattern 5	Pattern 6	Pattern 7	Pattern 8
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"polystep"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 // Selection: the selection buttons set Pattern Select, and the codec keeps the
 // Patterns group in step with it
@@ -1214,15 +1221,15 @@ Map	encoder3		P8 Auto Switch			Pattern 8
 Map	encoder1		P8 Key			Pattern 8
 Map	encoder2		P8 Scale			Pattern 8
 
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-
-Map	deviceType		"polystep"
-
 Scope	Propellerhead Software	se.propellerheads.Polytone
+
 Define Group	Pages	Page 1	Page 2	Page 3	Page 4	Page 5
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"polytone"
+Map	deviceName		Device Name
+Map	patchName		Patch Name
 
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
@@ -1395,18 +1402,18 @@ Map	encoder24		Reverb Decay			Page 5
 
 Map	button7		Reverb Type			Page 5
 
+Scope	Propellerheads	Alligator
+
+Define Group	Pages	Page 1	Page 2
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
+
+Map	deviceType		"alligator"
 Map	deviceName		Device Name
 Map	patchName		Patch Name
 
-Map	deviceType		"polytone"
-
-Scope	Propellerheads	Alligator
-Define Group	Pages	Page 1	Page 2
-
 Map	pageSelect1		Pages=Page 1
 Map	pageSelect2		Pages=Page 2
-
-//	Control Surface Item	Key	Remotable Item	Scale	Mode	Group
 
 Map	button1		Pattern Enable			Page 1
 
@@ -1494,8 +1501,3 @@ Map	button12		DelaySync			Page 2
 
 Map	button1		Enabled			Page 2 	
 Map	buttonLed9peakMeter		Input Peak Meter			Page 2
-
-Map	deviceName		Device Name
-Map	patchName		Patch Name
-
-Map	deviceType		"alligator"
