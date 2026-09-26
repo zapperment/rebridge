@@ -2,7 +2,7 @@ local const = require "src.config.constants"
 local tbl = require "src.lib.table._"
 
 return tbl.merge(const, {
-  softwareVersion = "0.0.10 BETA",
+  softwareVersion = "0.0.11 BETA",
   -- the number of encoders, faders and buttons on the remote surface
   counts = {
     encoders = 24,
