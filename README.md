@@ -1,6 +1,51 @@
 # ReBridge
 
-MIDI controller setup for Launch Control XL3 + Ableton Live + Reason
+*MIDI controller setup for Launch Control XL3 + Reason*
+
+The goal of this project is to allow you to use Reason rack devices without having to look at the screen, for a “DAW-less experience”.
+
+It goes far beyond the capabilities of the Launch Control support for other DAWs such as Ableton Live provided by Novation.
+
+## Features
+
+- Everything that **can** be controlled by the LaunchControl **is** controlled — use *Page* buttons on your Launch Control to flip through pages for devices that have more parameters than encoders/faders/buttons on the LC
+- Encoders, faders and buttons on the Launch Control were carefully mapped to match the layout of the device in the Reason Rack as possible (example Alligator: three rows of filter channels correspond to three rows of encoders)
+- Colour coding of encoder and button LEDs were carefully assigned to provide visual cues of parameter groups (example SubTractor: OSC 1 encoders and buttons are red, OSC 2 encoders and buttons are yellow)
+- Older devices where the parameters only have numerical values were carefully adjusted to have meaningful values in the Launch Control's display (example SubTractor: Oscillator waveforms are named sawtooth, square, triangle, sine instead of just 1, 2, 3, 4)
+- Buttons on the Launch Control have various modes:
+  — toggle to turn a parameter on or off
+  - cycle to step through parameter values (e.g. SubTractor oscillator phase mode)
+  - momentary to activate a parameter as long as you hold the button (e.g. Alligator manual gate triggers)
+- Some devices use LEDs on buttons as indicator lights (e.g. Alligator shows currently active trigger pattern)
+- Press *Page* button while holding *Shift* to browse through patches
+- Use *Track* buttons to cycle through Rack devices
+- Use *Play* and *Record* buttons to you-guessed-what
+- Hold down *Shift* and twist an encoder, move a fader or push a button to see in the display what it does without actually changing the parameter value
+- Faders have “pick up” functionality to avoid value jumps; `^` and `v` symbols in the display indicate if the position of the fader on the Lauch Control is currently above or below the parameter value in the Reason rack
+
+## Supported Devices
+
+### Instruments
+
+- Reason Studios SubTractor Analog Synthesizer
+- Reason Studios Algoritm FM Synthesizer
+- Reason Studios Polytone Dual-Layer Synthesizer
+- Synapse Audio The Legend
+- Synapse Audio The Legend HZ
+
+### Effects
+
+- Reason Studios Alligator Filter Gate
+- Reason Studios Ripley Space Delay
+
+### Utilities
+
+- Reason Studios Combinator
+
+### Players
+
+- Reason Studios Bassline Generator
+- Reason Studios PolyStep Sequencer
 
 ## Getting started
 
