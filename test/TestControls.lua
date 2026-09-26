@@ -1,5 +1,5 @@
 local lu = require "test.lib._".luaUnit
-local controls = require "src.config.controls"
+local controls = require "src.lcxl3.config.controls"
 
 TestControls = {}
 

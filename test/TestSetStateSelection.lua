@@ -1,8 +1,8 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local items = require "src.config.items"
-local state = require "src.lib.state._"
-local setSelection = require "src.remote.setState.selection"
+local items = require "src.lcxl3.config.items"
+local state = require "src.lcxl3.lib.state._"
+local setSelection = require "src.lcxl3.remote.setState.selection"
 
 require "src.reason.codecs.novation.LCXL3"
 

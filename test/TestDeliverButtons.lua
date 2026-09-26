@@ -1,13 +1,13 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require "src.lib.state._"
-local const = require "src.config.constants"
-local items = require "src.config.items"
+local state = require "src.lcxl3.lib.state._"
+local const = require "src.lcxl3.config.constants"
+local items = require "src.lcxl3.config.items"
 local hex = require "src.lib.hex._"
-local col = require "src.lib.colour._"
-local processButtons = require "src.remote.processMidi.buttons"
-local deliverButtons = require "src.remote.deliverMidi.buttons"
-local setButtons = require "src.remote.setState.buttons"
+local col = require "src.lcxl3.lib.colour._"
+local processButtons = require "src.lcxl3.remote.processMidi.buttons"
+local deliverButtons = require "src.lcxl3.remote.deliverMidi.buttons"
+local setButtons = require "src.lcxl3.remote.setState.buttons"
 
 require "src.reason.codecs.novation.LCXL3"
 

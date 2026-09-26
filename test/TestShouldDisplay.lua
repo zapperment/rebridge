@@ -1,7 +1,7 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local disp = require "src.lib.display._"
-local state = require "src.lib.state._"
+local disp = require "src.lcxl3.lib.display._"
+local state = require "src.lcxl3.lib.state._"
 
 TestShouldDisplay = {}
 
@@ -153,7 +153,7 @@ function TestShouldDisplay:testShouldDisplayWhenOneOfSeveralConditionalsHasNoVal
   state.update "button10.hostValue"
   local result = ripleyDisplays("Delay Time")
   local errorMessage =
-      "When the value of one of the parameters a param depends on is unknown, param should display"
+  "When the value of one of the parameters a param depends on is unknown, param should display"
   lu.assertEquals(result, true, errorMessage)
 end
 
@@ -166,6 +166,6 @@ function TestShouldDisplay:testShouldNotDisplayWhenTheKnownOfSeveralConditionals
   state.update "button10.hostValue"
   local result = ripleyDisplays("Delay Time")
   local errorMessage =
-      "When one of the parameters a param depends on replaces it, param should not display"
+  "When one of the parameters a param depends on replaces it, param should not display"
   lu.assertEquals(result, false, errorMessage)
 end

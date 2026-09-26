@@ -1,9 +1,9 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local state = require "src.lib.state._"
-local const = require "src.config.constants"
+local state = require "src.lcxl3.lib.state._"
+local const = require "src.lcxl3.config.constants"
 local hex = require "src.lib.hex._"
-local deliverPages = require "src.remote.deliverMidi.pages"
+local deliverPages = require "src.lcxl3.remote.deliverMidi.pages"
 
 require "src.reason.codecs.novation.LCXL3"
 

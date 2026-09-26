@@ -1,5 +1,5 @@
-local autoOutputs = require "src.config.autoOutputs"
-local items = require "src.config.items"
+local autoOutputs = require "src.lcxl3.config.autoOutputs"
+local items = require "src.lcxl3.config.items"
 local test = require "test.lib._"
 local lu = test.luaUnit
 
