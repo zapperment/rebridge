@@ -1,4 +1,7 @@
 {
+  "files.associations": {
+    "*.luacodec": "lua"
+  },
   "[plaintext]": {
     "editor.tabSize": 30,
     "editor.detectIndentation": false

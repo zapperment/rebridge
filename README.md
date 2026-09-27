@@ -78,7 +78,9 @@ Enjoy your Launch Control!
 
 ## Disclaimer
 
-The project maintainer is in no way associated with Novation nor Reason Studios. Company and product names are trademarks of Novation or Reason Studios. The project is strictly non-commercial, free to use by anyone without limitations. It comes without any warranty of any kind. The project maintainer cannot be held accountable for any problems with your music production setup that may be caused by this software. 
+The project maintainer is in no way associated with Novation nor Reason Studios. Company and product names are trademarks of Novation or Reason Studios. 
+
+The project is strictly non-commercial, free to use by anyone without limitations. It comes without any warranty of any kind. The project maintainer cannot be held accountable for any problems with your music production setup that may be caused by this software. 
 
 Please remember that the project maintainer is developing this in his free time, for his own personal use. Do not expect him to provide support – although he'll be happy to help if you ask nicely and he can find the time. 😅
 

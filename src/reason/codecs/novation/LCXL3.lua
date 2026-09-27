@@ -47,6 +47,7 @@ function remote_init()
   if _ENV ~= "test" then
     deb.log(
       "[reason.codecs.novation.LCXL3] " ..
+      "Novation Launch Control XL3 " ..
       "remote codec version " .. const.softwareVersion .. " " ..
       "initialised successfully!"
     )
