@@ -19,8 +19,10 @@ function StateManager:new()
     -- LaunchEon's Pattern Timer, 0 (off) to 5 (4 bars)
     patternTimer = entry(0),
     transport = {
-      -- starts out as changed, so that the play button is lit from the start
+      -- start out as changed, so that the play and record buttons are lit from
+      -- the start
       playing = { current = nil, next = false },
+      recording = { current = nil, next = false },
     },
     songPosition = entry(nil),
   }

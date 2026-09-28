@@ -12,13 +12,14 @@ local defineItemIndices = require "test.lppmk3.defineItemIndices"
 
 TestTransport = {}
 
--- the play button sends CC 20 on channel 1
+-- the play and record buttons send CC 20 and 10 on channel 1
 local playButtonMidi = "b0 14 xx"
+local recordButtonMidi = "b0 0a xx"
 
--- simulates the play button sending the given value
-local function pressPlayButton(value)
+-- simulates the button with the given MIDI sending the given value
+local function pressButton(buttonMidi, value)
   remote.mock "match_midi":impl(function(midi)
-    if midi == playButtonMidi then
+    if midi == buttonMidi then
       return { x = value }
     end
     return nil
@@ -26,12 +27,29 @@ local function pressPlayButton(value)
   return processTransport({ time_stamp = 0 })
 end
 
--- simulates the host reporting the state of its Play remotable
-local function reportPlaying(playing)
+local function pressPlayButton(value)
+  return pressButton(playButtonMidi, value)
+end
+
+local function pressRecordButton(value)
+  return pressButton(recordButtonMidi, value)
+end
+
+-- simulates the host reporting the state of the remotable mapped to the given
+-- button
+local function report(button, on)
   remote.mock "get_item_state":impl(function()
-    return { is_enabled = true, value = playing and 1 or 0 }
+    return { is_enabled = true, value = on and 1 or 0 }
   end)
-  setTransport({ items.playButton.index })
+  setTransport({ items[button].index })
+end
+
+local function reportPlaying(playing)
+  report("playButton", playing)
+end
+
+local function reportRecording(recording)
+  report("recordButton", recording)
 end
 
 -- the item triggered by the only call of remote.handle_input
@@ -47,6 +65,8 @@ function TestTransport:setUp()
   defineItemIndices()
   state.set("transport.playing", false)
   state.update "transport.playing"
+  state.set("transport.recording", false)
+  state.update "transport.recording"
 end
 
 function TestTransport:testPlayButtonStartsTransportWhenStopped()
@@ -79,9 +99,11 @@ function TestTransport:testRecordsPlayingState()
   lu.assertFalse(state.get "transport.playing")
 end
 
-function TestTransport:testPlayButtonIsLitFromTheStart()
+function TestTransport:testPlayAndRecordButtonsAreLitFromTheStart()
   local StateManager = require "src.lppmk3.lib.state.StateManager"
-  lu.assertTrue(StateManager:new():hasChanged "transport.playing")
+  local stateManager = StateManager:new()
+  lu.assertTrue(stateManager:hasChanged "transport.playing")
+  lu.assertTrue(stateManager:hasChanged "transport.recording")
 end
 
 function TestTransport:testPlayButtonIsDimAndStaticWhenStopped()
@@ -99,5 +121,46 @@ function TestTransport:testPlayButtonIsBrightAndPulsingWhenPlaying()
 end
 
 function TestTransport:testDeliversNothingWhenTransportUnchanged()
+  lu.assertEquals(deliverTransport(), {})
+end
+
+function TestTransport:testRecordButtonTogglesRecording()
+  lu.assertTrue(pressRecordButton(127))
+  lu.assertEquals(triggeredItem(), items.recordButton.index)
+  remote.clearMocks()
+  reportRecording(true)
+  pressRecordButton(127)
+  lu.assertEquals(triggeredItem(), items.recordButton.index)
+end
+
+function TestTransport:testReleasingRecordButtonDoesNothing()
+  lu.assertTrue(pressRecordButton(0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestTransport:testRecordsRecordingState()
+  reportRecording(true)
+  lu.assertTrue(state.get "transport.recording")
+  reportRecording(false)
+  lu.assertFalse(state.get "transport.recording")
+end
+
+function TestTransport:testRecordButtonIsDimAndStaticWhenRecordingIsOff()
+  reportRecording(true)
+  state.update "transport.recording"
+  reportRecording(false)
+  lu.assertEquals(deliverTransport(), { makeColourEvent(10, colours.red.dim) })
+end
+
+function TestTransport:testRecordButtonIsBrightAndPulsingWhenRecordingIsOn()
+  reportRecording(true)
+  lu.assertEquals(deliverTransport(), {
+    makeColourEvent(10, colours.red.vibrant, const.colourBehaviour.pulsing),
+  })
+end
+
+function TestTransport:testDeliversRecordButtonOnlyOnce()
+  reportRecording(true)
+  deliverTransport()
   lu.assertEquals(deliverTransport(), {})
 end

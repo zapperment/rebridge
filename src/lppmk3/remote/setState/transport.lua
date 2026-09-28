@@ -15,6 +15,9 @@ return function(hostItems)
     elseif hostItemIndex == items.playButton.index then
       local changedItem = remote.get_item_state(hostItemIndex)
       state.set("transport.playing", changedItem.is_enabled and changedItem.value > 0)
+    elseif hostItemIndex == items.recordButton.index then
+      local changedItem = remote.get_item_state(hostItemIndex)
+      state.set("transport.recording", changedItem.is_enabled and changedItem.value > 0)
     elseif hostItemIndex == items.songPosition.index then
       newSongPosition = remote.get_item_state(hostItemIndex).value
     end

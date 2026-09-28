@@ -12,4 +12,5 @@ return {
   songPosition = { output = "value", min = 0, max = 2147483646 },
   playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 14 xx", controller = 20 },
   stopButton = { input = "button", output = "value", min = 0, max = 127 },
+  recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 0a xx", controller = 10 },
 }

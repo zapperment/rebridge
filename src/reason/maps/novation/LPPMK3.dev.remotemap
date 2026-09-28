@@ -11,6 +11,7 @@ Scope	Propellerheads	Reason Document
 Map	songPosition		Song Position
 Map	playButton		Play
 Map	stopButton		Stop
+Map	recordButton		Record
 
 Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
 
