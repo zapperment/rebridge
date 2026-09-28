@@ -7,9 +7,9 @@ local col = require "src.lppmk3.lib.colour._"
 
 -- called regularly by the codec to update the remote surface (Launchpad)
 return function()
+  local logMe = false
   local events = {}
   for _, pattern in ipairs(ctrl.patterns) do
-    local logMe = true
     local enabled = state.update(pattern .. ".enabled")
     local hostValue, hostValueChanged = state.update(pattern .. ".hostValue")
     if enabled and hostValueChanged then
