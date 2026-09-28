@@ -6,6 +6,7 @@ local items = require "src.lppmk3.config.items"
 local state = require "src.lppmk3.lib.state._"
 local setPatterns = require "src.lppmk3.remote.setState.patterns"
 local setTransport = require "src.lppmk3.remote.setState.transport"
+local defineItemIndices = require "test.lppmk3.defineItemIndices"
 
 TestSetStateTiming = {}
 
@@ -17,19 +18,6 @@ local fourBars = 5
 
 local function startOfBar(n)
   return (n - 1) * bar
-end
-
--- gives the items the indices remote_init would give them, without loading
--- the codec, which would replace the Launch Control XL3's globals
-local function defineItemIndices()
-  local names = {}
-  for name in pairs(items) do
-    table.insert(names, name)
-  end
-  table.sort(names)
-  for index, name in ipairs(names) do
-    items[name].index = index
-  end
 end
 
 -- simulates the host reporting the given items with the given values, as
@@ -49,14 +37,14 @@ local function report(values)
 end
 
 local function startPlaying(timer)
-  report { patternTimer = timer, play = 1, songPosition = startOfBar(1) }
+  report { patternTimer = timer, playButton = 1, songPosition = startOfBar(1) }
 end
 
 function TestSetStateTiming:setUp()
   remote.clearMocks()
   defineItemIndices()
   state.set("patternTimer", 0)
-  state.set("transportPlaying", false)
+  state.set("transport.playing", false)
   state.set("songPosition", nil)
   for _, device in ipairs(ctrl.devices) do
     state.set(device .. ".enabled", false)
@@ -118,7 +106,7 @@ end
 function TestSetStateTiming:testPendingPatternsPlayWhenTransportStops()
   startPlaying(fourBars)
   report { device1 = 4, device2 = 1 }
-  report { play = 0 }
+  report { playButton = 0 }
   lu.assertEquals(state.get "device1.playingValue", 4)
   lu.assertEquals(state.get "device2.playingValue", 1)
 end
@@ -151,7 +139,7 @@ function TestSetStateTiming:testJumpBackOntoGridIsSwitchPoint()
 end
 
 function TestSetStateTiming:testFirstSongPositionIsNoSwitchPoint()
-  report { patternTimer = fourBars, play = 1 }
+  report { patternTimer = fourBars, playButton = 1 }
   report { device1 = 4 }
   report { songPosition = startOfBar(5) }
   lu.assertEquals(state.get "device1.playingValue", 3)

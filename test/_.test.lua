@@ -39,6 +39,7 @@ require "test.lppmk3.TestProcessShift"
 require "test.lppmk3.TestSetStateTiming"
 require "test.lppmk3.TestStateShift"
 require "test.lppmk3.TestSwitchInterval"
+require "test.lppmk3.TestTransport"
 require "test.lppmk3.TestUnselectedPatternColour"
 
 os.exit(lu.LuaUnit.run())

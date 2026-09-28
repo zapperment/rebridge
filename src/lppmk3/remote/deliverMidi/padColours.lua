@@ -41,7 +41,7 @@ end
 return function()
   local logMe = false
   local events = {}
-  local transportPlaying, transportPlayingChanged = state.update "transportPlaying"
+  local transportPlaying, transportPlayingChanged = state.update "transport.playing"
   for _, device in ipairs(ctrl.devices) do
     local enabled, enabledChanged = state.update(device .. ".enabled")
     local hostValue, hostValueChanged = state.update(device .. ".hostValue")

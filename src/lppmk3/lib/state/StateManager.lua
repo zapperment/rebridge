@@ -18,7 +18,10 @@ function StateManager:new()
     shifted = false,
     -- LaunchEon's Pattern Timer, 0 (off) to 5 (4 bars)
     patternTimer = entry(0),
-    transportPlaying = entry(false),
+    transport = {
+      -- starts out as changed, so that the play button is lit from the start
+      playing = { current = nil, next = false },
+    },
     songPosition = entry(nil),
   }
   for _, device in ipairs(ctrl.devices) do

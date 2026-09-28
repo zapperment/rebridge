@@ -12,8 +12,9 @@ return function(hostItems)
   for _, hostItemIndex in ipairs(hostItems) do
     if hostItemIndex == items.patternTimer.index then
       state.set("patternTimer", remote.get_item_state(hostItemIndex).value)
-    elseif hostItemIndex == items.play.index then
-      state.set("transportPlaying", remote.get_item_state(hostItemIndex).value == 1)
+    elseif hostItemIndex == items.playButton.index then
+      local changedItem = remote.get_item_state(hostItemIndex)
+      state.set("transport.playing", changedItem.is_enabled and changedItem.value > 0)
     elseif hostItemIndex == items.songPosition.index then
       newSongPosition = remote.get_item_state(hostItemIndex).value
     end

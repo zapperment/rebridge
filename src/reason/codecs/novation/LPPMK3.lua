@@ -4,9 +4,11 @@ local deb = require "src.lib.debug._"
 local midi = require "src.lppmk3.lib.midi._"
 local processPads = require "src.lppmk3.remote.processMidi.pads"
 local processShift = require "src.lppmk3.remote.processMidi.shift"
+local processTransport = require "src.lppmk3.remote.processMidi.transport"
 local setPattern = require "src.lppmk3.remote.setState.patterns"
 local setTransport = require "src.lppmk3.remote.setState.transport"
 local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
+local deliverTransport = require "src.lppmk3.remote.deliverMidi.transport"
 
 ---@diagnostic disable-next-line: lowercase-global
 function remote_init()
@@ -35,7 +37,7 @@ end
 -- Remote surface (Launchpad) -> remote codec -> host (Reason)
 ---@diagnostic disable-next-line: lowercase-global
 function remote_process_midi(event)
-  return processShift(event) or processPads(event)
+  return processShift(event) or processTransport(event) or processPads(event)
 end
 
 -- Host (Reason) -> remote codec
@@ -45,7 +47,7 @@ function remote_set_state(changedItems)
   setTransport(changedItems)
 end
 
--- Remote codec -> remote surface (Launch Control)
+-- Remote codec -> remote surface (Launchpad)
 ---@diagnostic disable-next-line: lowercase-global
 function remote_deliver_midi(_, port)
   if port == 2 then
@@ -53,6 +55,12 @@ function remote_deliver_midi(_, port)
   end
 
   local events = {}
+
+  -- the play button goes first, as the pad colours mark the transport state
+  -- as delivered
+  for _, event in ipairs(deliverTransport()) do
+    table.insert(events, event)
+  end
 
   for _, event in ipairs(deliverPadColours()) do
     table.insert(events, event)

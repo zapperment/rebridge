@@ -4,5 +4,5 @@ local state = require "src.lppmk3.lib.state._"
 -- the case while the transport is playing and the Pattern Timer is on;
 -- otherwise, LaunchEon switches at once
 return function()
-  return state.get "transportPlaying" and state.get "patternTimer" ~= 0
+  return state.get "transport.playing" and state.get "patternTimer" ~= 0
 end

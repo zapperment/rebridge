@@ -9,7 +9,8 @@ Scope	Propellerheads	Reason Document
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
 
 Map	songPosition		Song Position
-Map	play		Play
+Map	playButton		Play
+Map	stopButton		Stop
 
 Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
 
