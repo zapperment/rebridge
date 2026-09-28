@@ -10,6 +10,7 @@ local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
 TestDeliverPadColours = {}
 
 local flashing = const.colourBehaviour.flashing
+local pulsing = const.colourBehaviour.pulsing
 
 -- the pads of device1, the top row, from left to right
 local device1Pads = { 81, 82, 83, 84, 85, 86, 87, 88 }
@@ -22,6 +23,8 @@ local function setValue(device, value)
 end
 
 function TestDeliverPadColours:setUp()
+    state.set("transportPlaying", false)
+    state.update "transportPlaying"
     for _, device in ipairs(ctrl.devices) do
         state.set(device .. ".enabled", false)
         setValue(device, nil)
@@ -182,6 +185,7 @@ function TestDeliverPadColours:testLightsPadsAgainWhenPatternIsReEnabled()
 end
 
 function TestDeliverPadColours:testFlashesPendingPadBetweenDimAndBright()
+    state.set("transportPlaying", true)
     state.set("device1.enabled", true)
     setValue("device1", 2)
     state.set("device1.colour2", colours.red.vibrant)
@@ -190,7 +194,7 @@ function TestDeliverPadColours:testFlashesPendingPadBetweenDimAndBright()
     state.set("device1.hostValue", 5)
     lu.assertEquals(deliverPadColours(), {
         makeColourEvent(81, colours.off),
-        makeColourEvent(82, colours.red.vibrant),
+        makeColourEvent(82, colours.red.vibrant, pulsing),
         makeColourEvent(83, colours.off),
         makeColourEvent(84, colours.off),
         makeColourEvent(85, colours.blue.dim),
@@ -202,6 +206,7 @@ function TestDeliverPadColours:testFlashesPendingPadBetweenDimAndBright()
 end
 
 function TestDeliverPadColours:testFlashesPlayingPadBetweenBrightAndDimForPendingStop()
+    state.set("transportPlaying", true)
     state.set("device1.enabled", true)
     setValue("device1", 2)
     state.set("device1.colour2", colours.red.vibrant)
@@ -209,11 +214,12 @@ function TestDeliverPadColours:testFlashesPlayingPadBetweenBrightAndDimForPendin
     state.set("device1.hostValue", 0)
     local events = deliverPadColours()
     lu.assertEquals(#events, 9)
-    lu.assertEquals(events[2], makeColourEvent(82, colours.red.vibrant))
+    lu.assertEquals(events[2], makeColourEvent(82, colours.red.vibrant, pulsing))
     lu.assertEquals(events[3], makeColourEvent(82, colours.red.dim, flashing))
 end
 
 function TestDeliverPadColours:testShowsPadsStaticOnceSwitched()
+    state.set("transportPlaying", true)
     state.set("device1.enabled", true)
     setValue("device1", 2)
     state.set("device1.colour2", colours.red.vibrant)
@@ -225,5 +231,47 @@ function TestDeliverPadColours:testShowsPadsStaticOnceSwitched()
     local events = deliverPadColours()
     lu.assertEquals(#events, 8)
     lu.assertEquals(events[2], makeColourEvent(82, colours.red.dim))
-    lu.assertEquals(events[5], makeColourEvent(85, colours.blue.vibrant))
+    lu.assertEquals(events[5], makeColourEvent(85, colours.blue.vibrant, pulsing))
+end
+
+function TestDeliverPadColours:testPulsesPlayingPadWhileTransportIsPlaying()
+    state.set("transportPlaying", true)
+    state.set("device1.enabled", true)
+    setValue("device1", 2)
+    state.set("device1.colour2", colours.red.vibrant)
+    state.set("device1.colour5", colours.blue.vibrant)
+    local events = deliverPadColours()
+    lu.assertEquals(#events, 8)
+    lu.assertEquals(events[2], makeColourEvent(82, colours.red.vibrant, pulsing))
+    lu.assertEquals(events[5], makeColourEvent(85, colours.blue.dim))
+end
+
+function TestDeliverPadColours:testPulsesPlayingPadWhenTransportStarts()
+    state.set("device1.enabled", true)
+    setValue("device1", 2)
+    state.set("device1.colour2", colours.red.vibrant)
+    deliverPadColours()
+    state.set("transportPlaying", true)
+    local events = deliverPadColours()
+    lu.assertEquals(#events, 8)
+    lu.assertEquals(events[2], makeColourEvent(82, colours.red.vibrant, pulsing))
+end
+
+function TestDeliverPadColours:testShowsPlayingPadStaticWhenTransportStops()
+    state.set("transportPlaying", true)
+    state.set("device1.enabled", true)
+    setValue("device1", 2)
+    state.set("device1.colour2", colours.red.vibrant)
+    deliverPadColours()
+    state.set("transportPlaying", false)
+    local events = deliverPadColours()
+    lu.assertEquals(#events, 8)
+    lu.assertEquals(events[2], makeColourEvent(82, colours.red.vibrant))
+end
+
+function TestDeliverPadColours:testDeliversNothingForDisabledDeviceWhenTransportStarts()
+    setValue("device1", 2)
+    deliverPadColours()
+    state.set("transportPlaying", true)
+    lu.assertEquals(deliverPadColours(), {})
 end

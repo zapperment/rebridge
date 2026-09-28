@@ -36,7 +36,8 @@ _Avoid_: clip
 
 **Pattern pad**:
 The pad that stands for one pattern of one device: lit brightly in its pattern
-colour while that pattern plays, dimly otherwise.
+colour while that pattern plays, pulsing while the transport is playing and
+steady while it is stopped, and dimly otherwise.
 
 **Pattern colour**:
 The colour the performer gives a pattern pad to recognise it on stage. The
