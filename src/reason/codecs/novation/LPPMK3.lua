@@ -3,6 +3,7 @@ local items = require "src.lppmk3.config.items"
 local deb = require "src.lib.debug._"
 local midi = require "src.lppmk3.lib.midi._"
 local processPads = require "src.lppmk3.remote.processMidi.pads"
+local processShift = require "src.lppmk3.remote.processMidi.shift"
 local setPattern = require "src.lppmk3.remote.setState.patterns"
 local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
 
@@ -33,7 +34,7 @@ end
 -- Remote surface (Launchpad) -> remote codec -> host (Reason)
 ---@diagnostic disable-next-line: lowercase-global
 function remote_process_midi(event)
-  return processPads(event)
+  return processShift(event) or processPads(event)
 end
 
 -- Host (Reason) -> remote codec

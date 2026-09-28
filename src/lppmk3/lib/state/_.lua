@@ -15,4 +15,16 @@ return {
   set = function(path, next)
     stateManager:set(path, next)
   end,
+  shift = function()
+    stateManager:shift()
+  end,
+  unshift = function()
+    stateManager:unshift()
+  end,
+  setShifted = function(shifted)
+    stateManager:setShifted(shifted)
+  end,
+  isShifted = function()
+    return stateManager:isShifted()
+  end,
 }

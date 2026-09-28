@@ -32,5 +32,9 @@ require "test.lcxl3.TestStateManagement"
 -- Launchpad Pro [MK3]
 require "test.lppmk3.TestDeliverPadColours"
 require "test.lppmk3.TestMakeColourEvent"
+require "test.lppmk3.TestNextPatternColour"
+require "test.lppmk3.TestProcessPads"
+require "test.lppmk3.TestProcessShift"
+require "test.lppmk3.TestStateShift"
 
 os.exit(lu.LuaUnit.run())

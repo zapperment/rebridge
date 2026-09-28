@@ -12,7 +12,8 @@ return function()
   for _, pattern in ipairs(ctrl.patterns) do
     local enabled = state.update(pattern .. ".enabled")
     local hostValue, hostValueChanged = state.update(pattern .. ".hostValue")
-    if enabled and hostValueChanged then
+    local patternColour, colourChanged = state.update(pattern .. ".colour")
+    if enabled and (hostValueChanged or colourChanged) then
       if logMe then
         deb.log(
           "[lppmk3.deliverMidi.padColours] " ..
@@ -26,7 +27,7 @@ return function()
       for index, padController in ipairs(padControllers[pattern]) do
         local colour = col.config.off
         if index == hostValue then
-          colour = col.config.white.bright
+          colour = patternColour
         end
         table.insert(events, midi.makeColourEvent(padController, colour))
       end

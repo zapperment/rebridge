@@ -1,5 +1,6 @@
 local tbl = require "src.lib.table._"
 local ctrl = require "src.lppmk3.config.controls"
+local patternColours = require "src.lppmk3.config.patternColours"
 
 local StateManager = {}
 
@@ -13,11 +14,15 @@ end
 function StateManager:new()
   local instance = {
     deviceType = entry " ",
+    shifted = false,
   }
   for _, pattern in ipairs(ctrl.patterns) do
     instance[pattern] = {
       enabled = entry(false),
       hostValue = entry(nil),
+      -- the colour of the pattern's lit pad, which is up to the user rather
+      -- than the host (see remote/processMidi/pads)
+      colour = entry(patternColours[1]),
     }
   end
   setmetatable(instance, self)
@@ -58,6 +63,25 @@ function StateManager:set(path, next)
   end
   item.next = next
   return next
+end
+
+function StateManager:shift()
+  self.shifted = true
+end
+
+function StateManager:unshift()
+  self.shifted = false
+end
+
+function StateManager:setShifted(shifted)
+  if type(shifted) ~= "boolean" then
+    return
+  end
+  self.shifted = shifted
+end
+
+function StateManager:isShifted()
+  return self.shifted
 end
 
 return StateManager
