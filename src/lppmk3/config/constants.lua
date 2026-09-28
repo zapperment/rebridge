@@ -6,5 +6,11 @@ return tbl.merge(const, {
   sysexHeader = "f0 00 20 29 02 0e",
   counts = {
     pads = 64,
+    patterns = 8,
+  },
+  colourBehaviour = {
+    static = 1,
+    flashing = 2,
+    pulsing = 3,
   }
 })

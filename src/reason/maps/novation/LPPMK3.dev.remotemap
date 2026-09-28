@@ -10,11 +10,11 @@ Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
 
 Map	deviceType		"launcheon"
 
-Map	track1		Device 1 Pattern
-Map	track2		Device 2 Pattern
-Map	track3		Device 3 Pattern
-Map	track4		Device 4 Pattern
-Map	track5		Device 5 Pattern
-Map	track6		Device 6 Pattern
-Map	track7		Device 7 Pattern
-Map	track8		Device 8 Pattern
+Map	pattern1		Device 1 Pattern
+Map	pattern2		Device 2 Pattern
+Map	pattern3		Device 3 Pattern
+Map	pattern4		Device 4 Pattern
+Map	pattern5		Device 5 Pattern
+Map	pattern6		Device 6 Pattern
+Map	pattern7		Device 7 Pattern
+Map	pattern8		Device 8 Pattern

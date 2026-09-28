@@ -1,15 +1,17 @@
-version={0,0,1}
+version = { 0, 0, 1 }
 
 function remote_supported_control_surfaces()
   local surfaces = {
-    { manufacturer = "Novation", 
+    {
+      manufacturer = "Novation",
       model = "Launchpad Pro [MK3]",
       source = "LPPMK3.lua",
       picture = "LPPMK3.png",
-      in_ports = { { description = "Input (DAW)" } },
-      out_ports = { { description = "Output (DAW)" } },
-      setup_info_text = "Launchpad Pro [MK3] is Novation's most powerful grid controller for producing; it gives you everything you need to create and perform your tracks",
-      has_keyboard= false
+      in_ports = { { description = "Input (LPProMK3 MIDI)" } },
+      out_ports = { { description = "Output (LPProMK3 MIDI)" } },
+      setup_info_text =
+      "Launchpad Pro [MK3] is Novation's most powerful grid controller for producing; it gives you everything you need to create and perform your tracks",
+      has_keyboard = false
     }
   }
   return surfaces

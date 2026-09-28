@@ -1,0 +1,17 @@
+return {
+  off = 0,
+  white = { dim = 1, neutral = 2, bright = 3 },
+  red = { pastel = 4, vibrant = 5, neutral = 6, dim = 7 },
+  orange = { pastel = 8, vibrant = 9, neutral = 10, dim = 11 },
+  yellow = { pastel = 12, vibrant = 13, neutral = 14, dim = 15 },
+  lime = { pastel = 16, vibrant = 17, neutral = 18, dim = 19 },
+  green = { pastel = 24, vibrant = 25, neutral = 26, dim = 27 },
+  turquoise = { pastel = 28, vibrant = 29, neutral = 30, dim = 31 },
+  cyan = { pastel = 32, vibrant = 33, neutral = 34, dim = 35 },
+  lightBlue = { pastel = 36, vibrant = 37, neutral = 38, dim = 39 },
+  blue = { pastel = 40, vibrant = 41, neutral = 42, dim = 43 },
+  darkBlue = { pastel = 44, vibrant = 45, neutral = 46, dim = 47 },
+  purple = { pastel = 48, vibrant = 49, neutral = 50, dim = 51 },
+  fuchsia = { pastel = 52, vibrant = 53, neutral = 54, dim = 55 },
+  pink = { pastel = 56, vibrant = 57, neutral = 58, dim = 59 },
+}
