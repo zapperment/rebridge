@@ -77,6 +77,16 @@ for a pending stop; until then its pattern pad flashes (for a pending stop, the
 playing pattern's pad does). While the transport is stopped, nothing is ever
 pending: a change takes effect at once.
 
+**Switch meter**:
+The row of eight buttons above the bottom row, lit from left to right as
+playback moves through the current switch interval, so that the whole row is
+lit during its last step. Dark while the Pattern Timer is off.
+_Avoid_: progress bar, countdown
+
+**Step**:
+One eighth of the switch interval: the time for which one more button of the
+switch meter is lit.
+
 **Loop**:
 Reason's loop between the left and right locators; unrelated to switching
 patterns.

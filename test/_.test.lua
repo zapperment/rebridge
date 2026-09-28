@@ -31,6 +31,7 @@ require "test.lcxl3.TestStateManagement"
 
 -- Launchpad Pro [MK3]
 require "test.lppmk3.TestDeliverPadColours"
+require "test.lppmk3.TestDeliverSwitchMeter"
 require "test.lppmk3.TestIsSwitchPoint"
 require "test.lppmk3.TestMakeColourEvent"
 require "test.lppmk3.TestNextPatternColour"
@@ -39,6 +40,7 @@ require "test.lppmk3.TestProcessShift"
 require "test.lppmk3.TestSetStateTiming"
 require "test.lppmk3.TestStateShift"
 require "test.lppmk3.TestSwitchInterval"
+require "test.lppmk3.TestSwitchMeterSteps"
 require "test.lppmk3.TestTransport"
 require "test.lppmk3.TestUnselectedPatternColour"
 

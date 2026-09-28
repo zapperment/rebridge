@@ -9,6 +9,8 @@ return tbl.merge(const, {
     devices = 8,
     -- the patterns a device can play (not counting 0 for none), one per pad
     patternValues = 8,
+    -- the buttons of the switch meter, one per step
+    switchMeterButtons = 8,
   },
   -- the length of one 4/4 bar in the units of the host's song position
   songPositionPerBar = 61440,

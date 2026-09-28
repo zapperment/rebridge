@@ -25,7 +25,17 @@ function StateManager:new()
       recording = { current = nil, next = false },
     },
     songPosition = entry(nil),
+    -- the colour and behaviour each button of the switch meter was last lit
+    -- with (button1 ... button8), starting out unknown so that the meter is
+    -- delivered from the start
+    switchMeter = {},
   }
+  for button = 1, const.counts.switchMeterButtons do
+    instance.switchMeter["button" .. button] = {
+      colour = entry(nil),
+      behaviour = entry(nil),
+    }
+  end
   for _, device in ipairs(ctrl.devices) do
     instance[device] = {
       enabled = entry(false),

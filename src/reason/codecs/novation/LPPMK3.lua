@@ -9,6 +9,7 @@ local setPattern = require "src.lppmk3.remote.setState.patterns"
 local setTransport = require "src.lppmk3.remote.setState.transport"
 local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
 local deliverTransport = require "src.lppmk3.remote.deliverMidi.transport"
+local deliverSwitchMeter = require "src.lppmk3.remote.deliverMidi.switchMeter"
 
 ---@diagnostic disable-next-line: lowercase-global
 function remote_init()
@@ -63,6 +64,10 @@ function remote_deliver_midi(_, port)
   end
 
   for _, event in ipairs(deliverPadColours()) do
+    table.insert(events, event)
+  end
+
+  for _, event in ipairs(deliverSwitchMeter()) do
     table.insert(events, event)
   end
 

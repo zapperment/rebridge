@@ -11,7 +11,10 @@ return function(hostItems)
   local newSongPosition = nil
   for _, hostItemIndex in ipairs(hostItems) do
     if hostItemIndex == items.patternTimer.index then
-      state.set("patternTimer", remote.get_item_state(hostItemIndex).value)
+      -- while LaunchEon is not the focused device, its timer can't be seen,
+      -- so it counts as off
+      local changedItem = remote.get_item_state(hostItemIndex)
+      state.set("patternTimer", changedItem.is_enabled and changedItem.value or 0)
     elseif hostItemIndex == items.playButton.index then
       local changedItem = remote.get_item_state(hostItemIndex)
       state.set("transport.playing", changedItem.is_enabled and changedItem.value > 0)
