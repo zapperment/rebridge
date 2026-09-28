@@ -5,6 +5,7 @@ local midi = require "src.lppmk3.lib.midi._"
 local processPads = require "src.lppmk3.remote.processMidi.pads"
 local processShift = require "src.lppmk3.remote.processMidi.shift"
 local setPattern = require "src.lppmk3.remote.setState.patterns"
+local setTransport = require "src.lppmk3.remote.setState.transport"
 local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
 
 ---@diagnostic disable-next-line: lowercase-global
@@ -41,6 +42,7 @@ end
 ---@diagnostic disable-next-line: lowercase-global
 function remote_set_state(changedItems)
   setPattern(changedItems)
+  setTransport(changedItems)
 end
 
 -- Remote codec -> remote surface (Launch Control)

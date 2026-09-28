@@ -16,17 +16,24 @@ function StateManager:new()
   local instance = {
     deviceType = entry " ",
     shifted = false,
+    -- LaunchEon's Pattern Timer, 0 (off) to 5 (4 bars)
+    patternTimer = entry(0),
+    transportPlaying = entry(false),
+    songPosition = entry(nil),
   }
-  for _, pattern in ipairs(ctrl.patterns) do
-    instance[pattern] = {
+  for _, device in ipairs(ctrl.devices) do
+    instance[device] = {
       enabled = entry(false),
       hostValue = entry(nil),
+      -- the value actually playing, which lags behind the host value while a
+      -- switch is pending (see lib/timing)
+      playingValue = entry(nil),
     }
-    -- the colour each of the pattern's values is shown in when its pad is lit
+    -- the colour each of the device's patterns is shown in when its pad is lit
     -- (colour1 ... colour8), which is up to the user rather than the host (see
     -- remote/processMidi/pads)
     for value = 1, const.counts.patternValues do
-      instance[pattern]["colour" .. value] = entry(patternColours[1])
+      instance[device]["colour" .. value] = entry(patternColours[1])
     end
   end
   setmetatable(instance, self)

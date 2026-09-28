@@ -1,4 +1,4 @@
-# ReBridge
+# Launch Control XL3
 
 Vocabulary of the Launch Control XL3 remote codec for Reason: what the surface's
 controls, the host's parameters and the pieces that tie them together are called.

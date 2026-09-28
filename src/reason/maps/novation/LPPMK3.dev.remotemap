@@ -4,17 +4,26 @@ Control Surface Manufacturer	Novation
 Control Surface Model	Launchpad Pro [MK3] (developer version)
 Map Version	3.0.1
 
+Scope	Propellerheads	Reason Document
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	songPosition		Song Position
+Map	play		Play
+
 Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
 
 Map	deviceType		"launcheon"
 
-Map	pattern1		Device 1 Pattern
-Map	pattern2		Device 2 Pattern
-Map	pattern3		Device 3 Pattern
-Map	pattern4		Device 4 Pattern
-Map	pattern5		Device 5 Pattern
-Map	pattern6		Device 6 Pattern
-Map	pattern7		Device 7 Pattern
-Map	pattern8		Device 8 Pattern
+Map	patternTimer		Pattern Timer
+
+Map	device1		Device 1 Pattern
+Map	device2		Device 2 Pattern
+Map	device3		Device 3 Pattern
+Map	device4		Device 4 Pattern
+Map	device5		Device 5 Pattern
+Map	device6		Device 6 Pattern
+Map	device7		Device 7 Pattern
+Map	device8		Device 8 Pattern

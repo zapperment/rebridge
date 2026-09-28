@@ -5,12 +5,12 @@ for i = 1, const.counts.pads do
   table.insert(pads, "pad" .. i)
 end
 
-local patterns = {}
-for i = 1, const.counts.patterns do
-  table.insert(patterns, "pattern" .. i)
+local devices = {}
+for i = 1, const.counts.devices do
+  table.insert(devices, "device" .. i)
 end
 
 return {
   pads = pads,
-  patterns = patterns,
+  devices = devices,
 }

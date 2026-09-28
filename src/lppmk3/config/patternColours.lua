@@ -1,6 +1,6 @@
 local colours = require "src.lppmk3.lib.colour.config"
 
--- The colours a pattern's pads can be given by pressing one of them while
+-- The colours a device's pads can be given by pressing one of them while
 -- Shift is held down, in the order they are cycled through; the first one is
 -- the colour each pattern starts with
 return {
