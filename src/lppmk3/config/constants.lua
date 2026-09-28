@@ -7,6 +7,8 @@ return tbl.merge(const, {
   counts = {
     pads = 64,
     patterns = 8,
+    -- the values a pattern can take (not counting 0 for none), one per pad
+    patternValues = 8,
   },
   colourBehaviour = {
     static = 1,

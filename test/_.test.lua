@@ -36,5 +36,6 @@ require "test.lppmk3.TestNextPatternColour"
 require "test.lppmk3.TestProcessPads"
 require "test.lppmk3.TestProcessShift"
 require "test.lppmk3.TestStateShift"
+require "test.lppmk3.TestUnselectedPatternColour"
 
 os.exit(lu.LuaUnit.run())

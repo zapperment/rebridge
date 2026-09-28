@@ -4,8 +4,9 @@ local items = require "src.lppmk3.config.items"
 local col = require "src.lppmk3.lib.colour._"
 
 -- handles changes of the buttons of the remote surface (Launchpad): on their
--- own, the pads select the patterns; with Shift held down, they cycle through
--- the colours of the pattern they belong to
+-- own, the pads select the patterns; with Shift held down, the lit pad of a
+-- pattern (the one showing its active value) cycles through the colours of
+-- that value, while the other pads do nothing
 return function(event)
   local logMe = false
   local processed = false
@@ -21,18 +22,22 @@ return function(event)
         "patternValue=" .. patternValue
       )
     end
+    local hostValue = state.get(pattern .. ".hostValue")
     if state.isShifted() then
-      local colour = col.nextPatternColour(state.get(pattern .. ".colour"))
+      if hostValue ~= patternValue then
+        return true
+      end
+      local colourPath = pattern .. ".colour" .. patternValue
+      local colour = col.nextPatternColour(state.get(colourPath))
       if logMe then
         deb.log(
           "[lppmk3:remote:processMidi:pads] " ..
           "colour=" .. colour
         )
       end
-      state.set(pattern .. ".colour", colour)
+      state.set(colourPath, colour)
       return true
     end
-    local hostValue = state.get(pattern .. ".hostValue")
     if logMe then
       deb.log(
         "[lppmk3:remote:processMidi:pads] " ..

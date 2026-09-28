@@ -4,7 +4,7 @@ local colours = require "src.lppmk3.lib.colour.config"
 -- Shift is held down, in the order they are cycled through; the first one is
 -- the colour each pattern starts with
 return {
-  colours.white.bright,
+  colours.white.dim,
   colours.red.vibrant,
   colours.orange.vibrant,
   colours.yellow.vibrant,

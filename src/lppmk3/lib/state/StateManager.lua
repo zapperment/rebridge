@@ -1,4 +1,5 @@
 local tbl = require "src.lib.table._"
+local const = require "src.lppmk3.config.constants"
 local ctrl = require "src.lppmk3.config.controls"
 local patternColours = require "src.lppmk3.config.patternColours"
 
@@ -20,10 +21,13 @@ function StateManager:new()
     instance[pattern] = {
       enabled = entry(false),
       hostValue = entry(nil),
-      -- the colour of the pattern's lit pad, which is up to the user rather
-      -- than the host (see remote/processMidi/pads)
-      colour = entry(patternColours[1]),
     }
+    -- the colour each of the pattern's values is shown in when its pad is lit
+    -- (colour1 ... colour8), which is up to the user rather than the host (see
+    -- remote/processMidi/pads)
+    for value = 1, const.counts.patternValues do
+      instance[pattern]["colour" .. value] = entry(patternColours[1])
+    end
   end
   setmetatable(instance, self)
   self.__index = self

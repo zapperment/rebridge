@@ -20,9 +20,9 @@ function TestNextPatternColour:testCyclesThroughAllColoursAndBackToWhite()
     colours.purple.vibrant,
     colours.fuchsia.vibrant,
     colours.pink.vibrant,
-    colours.white.bright,
+    colours.white.dim,
   }
-  local colour = colours.white.bright
+  local colour = colours.white.dim
   for _, expectedColour in ipairs(expected) do
     colour = nextPatternColour(colour)
     lu.assertEquals(colour, expectedColour)
@@ -30,6 +30,6 @@ function TestNextPatternColour:testCyclesThroughAllColoursAndBackToWhite()
 end
 
 function TestNextPatternColour:testStartsOverWithColourNotInCycle()
-  lu.assertEquals(nextPatternColour(colours.red.pastel), colours.white.bright)
-  lu.assertEquals(nextPatternColour(nil), colours.white.bright)
+  lu.assertEquals(nextPatternColour(colours.red.pastel), colours.white.dim)
+  lu.assertEquals(nextPatternColour(nil), colours.white.dim)
 end
