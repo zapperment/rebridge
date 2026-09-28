@@ -12,8 +12,8 @@ return function(event)
   local processed = false
   local ret = remote.match_midi("90 xx yy", event)
   if ret and ret.y ~= 0 then
-    local patternIndex = ret.x % 10
-    local patternValue = 9 - ((ret.x - patternIndex) / 10)
+    local patternValue = ret.x % 10
+    local patternIndex = 9 - ((ret.x - patternValue) / 10)
     local pattern = "pattern" .. patternIndex
     if logMe then
       deb.log(
