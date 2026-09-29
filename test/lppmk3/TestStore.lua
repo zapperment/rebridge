@@ -243,3 +243,21 @@ function TestStore:testIgnoresItsOwnEchoedColours()
   lu.assertEquals(state.get "device1.colour1", white)
   lu.assertEquals(state.get "device2.colour3", red)
 end
+
+function TestStore:testDoesNothingWhileSongHasNoName()
+  reportNames("", "LaunchEon 1")
+  lu.assertNil(state.get "store.documentName")
+  lu.assertEquals(deliverStore(), {})
+  recolourPad("device2", 3)
+  lu.assertEquals(deliverStore(), {})
+end
+
+function TestStore:testSendsColoursSetBeforeSongWasFirstSaved()
+  reportNames("", "LaunchEon 1")
+  recolourPad("device2", 3)
+  deliverStore()
+  reportNames("My Set", "LaunchEon 1")
+  lu.assertEquals(deliverStore(), {
+    store.makeColoursEvent("My Set", "LaunchEon 1", store.colours.get()),
+  })
+end

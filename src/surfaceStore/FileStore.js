@@ -18,7 +18,12 @@ class FileStore {
     return { ...data, songs: data.songs || {} };
   }
 
+  // a song without a name, i.e. one not saved yet, has no colours, and none
+  // are stored for it, so that new songs start out without colours
   getColours(documentName, deviceName) {
+    if (!documentName) {
+      return null;
+    }
     const settings = this.data.songs[documentName]?.[deviceName];
     return settings?.patternColours || null;
   }
@@ -26,6 +31,9 @@ class FileStore {
   // stores the colours, unless they are stored already, as they are when the
   // store hears its own reply on a port used in both directions
   setColours(documentName, deviceName, colours) {
+    if (!documentName) {
+      return false;
+    }
     const stored = this.getColours(documentName, deviceName);
     if (stored && stored.length === colours.length && stored.every((colour, i) => colour === colours[i])) {
       return false;

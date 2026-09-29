@@ -14,8 +14,10 @@ of using the surface, which neither loading another song nor a crash calls.
 ## Consequences
 
 - Songs, and LaunchEons within a song, are told apart by name alone: songs of
-  the same name in different folders, and all unsaved new songs, share their
-  colours.
+  the same name in different folders share their colours.
+- A song that has never been saved has no name, and nothing is stored for it
+  until it is first saved, so that new songs do not start out with the
+  colours of some earlier unsaved song.
 - When the store has no colours for a song and LaunchEon, the pads keep the
   colours they have, which are then stored under the new names. The codec cannot
   tell *Save As* or renaming a LaunchEon from loading another song, and losing

@@ -69,3 +69,19 @@ test("ignores its own hello and unknown", () => {
   assert.strictEqual(handleMessage({ command: commands.hello }, store), null);
   assert.strictEqual(handleMessage({ command: commands.unknown, documentName: "My Set", deviceName: "L1" }, store), null);
 });
+
+test("neither stores nor sends colours for a song without a name", () => {
+  const file = temporaryFile();
+  const store = new FileStore(file);
+  assert.strictEqual(handleMessage({ command: commands.colours, documentName: "", deviceName: "L1", colours }, store), null);
+  assert.strictEqual(fs.existsSync(file), false);
+  const reply = handleMessage({ command: commands.request, documentName: "", deviceName: "L1" }, store);
+  assert.deepStrictEqual(reply, { command: commands.unknown, documentName: "", deviceName: "L1" });
+});
+
+test("ignores colours stored for a song without a name before", () => {
+  const file = temporaryFile();
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify({ songs: { "": { L1: { patternColours: colours } } } }));
+  assert.strictEqual(new FileStore(file).getColours("", "L1"), null);
+});

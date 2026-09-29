@@ -2,12 +2,17 @@ local items = require "src.lppmk3.config.items"
 local state = require "src.lppmk3.lib.state._"
 
 -- the name the host reports for the given item, or nil while the item is not
--- mapped, as the LaunchEon's name is while another device has remote focus
+-- mapped, as the LaunchEon's name is while another device has remote focus, or
+-- while the name is empty, as the song's is until it is first saved
 local function nameOf(hostItemIndex)
   if not remote.is_item_enabled(hostItemIndex) then
     return nil
   end
-  return remote.get_item_text_value(hostItemIndex)
+  local name = remote.get_item_text_value(hostItemIndex)
+  if name == "" then
+    return nil
+  end
+  return name
 end
 
 -- handles changes of the names of the song and the LaunchEon, which together
