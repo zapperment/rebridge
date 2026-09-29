@@ -41,7 +41,13 @@ steady while it is stopped, and dimly otherwise.
 
 **Pattern colour**:
 The colour the performer gives a pattern pad to recognise it on stage. The
-host knows nothing about it; it lives on the surface side only.
+host knows nothing about it; the surface store remembers it.
+
+**Surface store**:
+A service beside Reason that remembers, per song and LaunchEon, the settings
+the host knows nothing about (so far, the pattern colours), talking to the
+codec over MIDI. A song and LaunchEon are told apart by their names alone.
+_Avoid_: colour service, settings server
 
 **Scene**:
 One of LaunchEon's 64 stored combinations of patterns across devices. Unlike

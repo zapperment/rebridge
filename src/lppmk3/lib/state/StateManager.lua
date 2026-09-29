@@ -29,6 +29,15 @@ function StateManager:new()
     -- with (button1 ... button8), starting out unknown so that the meter is
     -- delivered from the start
     switchMeter = {},
+    -- what the codec knows about the song and LaunchEon, and where it stands
+    -- with the surface store (see remote/deliverMidi/store)
+    store = {
+      documentName = entry(nil),
+      deviceName = entry(nil),
+      requestedKey = entry(nil),
+      awaitingReply = entry(false),
+      dirty = entry(false),
+    },
   }
   for button = 1, const.counts.switchMeterButtons do
     instance.switchMeter["button" .. button] = {

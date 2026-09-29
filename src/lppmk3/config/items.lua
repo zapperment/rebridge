@@ -8,6 +8,8 @@ return {
   device7 = { input = "value", output = "value", min = 0, max = 9 },
   device8 = { input = "value", output = "value", min = 0, max = 9 },
   deviceType = { output = "text" },
+  documentName = { output = "text" },
+  deviceName = { output = "text" },
   patternTimer = { output = "value", min = 0, max = 5 },
   songPosition = { output = "value", min = 0, max = 2147483646 },
   playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 14 xx", controller = 20 },

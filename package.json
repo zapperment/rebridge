@@ -18,7 +18,8 @@
     "setup:lppmk3:dev": "yarn build:lppmk3:dev && yarn sync",
     "setup:lcxl3": "yarn build:lcxl3 && yarn sync",
     "setup:lcxl3:dev": "yarn build:lcxl3:dev && yarn sync",
-    "test": "node scripts/extractCombinatorLabels.js --self-test && lua ./test/_.test.lua -v"
+    "test": "node scripts/extractCombinatorLabels.js --self-test && node --test \"src/surfaceStore/*.test.js\" && lua ./test/_.test.lua -v",
+    "store": "node src/surfaceStore/index.js"
   },
   "packageManager": "yarn@4.14.1",
   "dependencies": {

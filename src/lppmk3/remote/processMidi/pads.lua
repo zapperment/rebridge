@@ -38,6 +38,10 @@ return function(event)
         )
       end
       state.set(colourPath, colour)
+      -- the colours are to be stored, and a reply to an earlier request would
+      -- now be out of date
+      state.set("store.dirty", true)
+      state.set("store.awaitingReply", false)
       return true
     end
     if logMe then

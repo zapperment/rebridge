@@ -173,6 +173,22 @@ Concatenating strings:
 debug.log("value: " .. my_value)
 ```
 
+### Surface store (Launchpad Pro [MK3])
+
+Reason's codecs cannot save anything, so the pad colours of the Launchpad Pro [MK3] codec are kept by a separate script, the surface store, which remembers them per song and LaunchEon in `~/.rebridge/surfaceStore.json` (see `src/lppmk3/docs/adr/0002-remember-pattern-colours-in-a-surface-store.md`).
+
+In the macOS “Audio MIDI Setup” app, add a port to the IAC device called “ReBridge Store”.
+
+In Reason's control surface settings for the Launchpad Pro [MK3], select “IAC ReBridge Store” for both “Input (store)” and “Output (store)”. Both are optional: without them, or without the store running, the pads simply start out white.
+
+Start the store:
+
+```
+yarn store "IAC ReBridge Store"
+```
+
+Run without a port, it lists the available ones. Another file can be given with `--file <path>`. The store can be started before or after Reason.
+
 ### Combinator labels
 
 Reason tells a remote codec nothing about a Combinator's controls beyond `Rotary 1` … `Rotary 32` and `Button 1` … `Button 16`, so the labels the patch author wrote on the Combinator's front panel — `RELEASE`, `REVERB` and so on — never reach the Launch Control's displays.

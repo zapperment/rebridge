@@ -8,6 +8,7 @@ Scope	Propellerheads	Reason Document
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
 
+Map	documentName		Document Name
 Map	songPosition		Song Position
 Map	playButton		Play
 Map	stopButton		Stop
@@ -18,6 +19,7 @@ Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
 
 Map	deviceType		"launcheon"
+Map	deviceName		Device Name
 
 Map	patternTimer		Pattern Timer
 

@@ -7,8 +7,14 @@ function remote_supported_control_surfaces()
       model = "Launchpad Pro [MK3]",
       source = "LPPMK3.lua",
       picture = "LPPMK3.png",
-      in_ports = { { description = "Input (LPProMK3 MIDI)" } },
-      out_ports = { { description = "Output (LPProMK3 MIDI)" } },
+      in_ports = {
+        { description = "Input (LPProMK3 MIDI)" },
+        { description = "Input (store)", optional = true },
+      },
+      out_ports = {
+        { description = "Output (LPProMK3 MIDI)" },
+        { description = "Output (store)", optional = true },
+      },
       setup_info_text =
       "Launchpad Pro [MK3] is Novation's most powerful grid controller for producing; it gives you everything you need to create and perform your tracks",
       has_keyboard = false

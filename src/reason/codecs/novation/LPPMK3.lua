@@ -5,11 +5,14 @@ local midi = require "src.lppmk3.lib.midi._"
 local processPads = require "src.lppmk3.remote.processMidi.pads"
 local processShift = require "src.lppmk3.remote.processMidi.shift"
 local processTransport = require "src.lppmk3.remote.processMidi.transport"
+local processStore = require "src.lppmk3.remote.processMidi.store"
 local setPattern = require "src.lppmk3.remote.setState.patterns"
 local setTransport = require "src.lppmk3.remote.setState.transport"
+local setStore = require "src.lppmk3.remote.setState.store"
 local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
 local deliverTransport = require "src.lppmk3.remote.deliverMidi.transport"
 local deliverSwitchMeter = require "src.lppmk3.remote.deliverMidi.switchMeter"
+local deliverStore = require "src.lppmk3.remote.deliverMidi.store"
 local deliverPadsOff = require "src.lppmk3.remote.deliverMidi.padsOff"
 
 ---@diagnostic disable-next-line: lowercase-global
@@ -39,7 +42,7 @@ end
 -- Remote surface (Launchpad) -> remote codec -> host (Reason)
 ---@diagnostic disable-next-line: lowercase-global
 function remote_process_midi(event)
-  return processShift(event) or processTransport(event) or processPads(event)
+  return processStore(event) or processShift(event) or processTransport(event) or processPads(event)
 end
 
 -- Host (Reason) -> remote codec
@@ -47,13 +50,18 @@ end
 function remote_set_state(changedItems)
   setPattern(changedItems)
   setTransport(changedItems)
+  setStore(changedItems)
 end
 
 -- Remote codec -> remote surface (Launchpad)
 ---@diagnostic disable-next-line: lowercase-global
 function remote_deliver_midi(_, port)
-  if port == 2 then
+  if port == const.ports.log then
     return deb.dump()
+  end
+
+  if port == const.ports.store then
+    return deliverStore()
   end
 
   local events = {}
