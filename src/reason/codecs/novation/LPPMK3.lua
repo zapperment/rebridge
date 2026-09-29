@@ -10,6 +10,7 @@ local setTransport = require "src.lppmk3.remote.setState.transport"
 local deliverPadColours = require "src.lppmk3.remote.deliverMidi.padColours"
 local deliverTransport = require "src.lppmk3.remote.deliverMidi.transport"
 local deliverSwitchMeter = require "src.lppmk3.remote.deliverMidi.switchMeter"
+local deliverPadsOff = require "src.lppmk3.remote.deliverMidi.padsOff"
 
 ---@diagnostic disable-next-line: lowercase-global
 function remote_init()
@@ -76,10 +77,15 @@ end
 
 ---@diagnostic disable-next-line: lowercase-global
 function remote_prepare_for_use()
-  return {
+  local events = {
     -- turn on programmer mode
     midi.makeSysexEvent "0e 01",
   }
+  -- clear the pads the last session left lit
+  for _, event in ipairs(deliverPadsOff()) do
+    table.insert(events, event)
+  end
+  return events
 end
 
 ---@diagnostic disable-next-line: lowercase-global
