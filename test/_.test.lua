@@ -4,6 +4,7 @@ _ENV = "test"
 
 -- shared
 require "test.TestMockFunction"
+require "test.TestRemoteMaps"
 require "test.TestStringUtils"
 require "test.TestTableUtils"
 
