@@ -25,6 +25,9 @@ function StateManager:new()
       recording = { current = nil, next = false },
     },
     songPosition = entry(nil),
+    -- the name of the LaunchEon the patterns were last reported for (see
+    -- remote/setState/patterns)
+    launchEon = entry(nil),
     -- the colour and behaviour each button of the switch meter was last lit
     -- with (button1 ... button8), starting out unknown so that the meter is
     -- delivered from the start
