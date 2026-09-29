@@ -97,6 +97,7 @@ function TestStore:setUp()
   end
   state.set("store.awaitingReply", false)
   state.set("store.dirty", false)
+  state.set("store.sameSong", false)
 end
 
 function TestStore:testEncodesNamesAsNibbles()
@@ -260,4 +261,41 @@ function TestStore:testSendsColoursSetBeforeSongWasFirstSaved()
   lu.assertEquals(deliverStore(), {
     store.makeColoursEvent("My Set", "LaunchEon 1", store.colours.get()),
   })
+end
+
+function TestStore:testLaunchEonAddedToSongStartsOutWhite()
+  reportNames("My Set", "LaunchEon 1")
+  deliverStore()
+  receive(message(3, "My Set", "LaunchEon 1", storedColours()))
+  reportNames("My Set", "LaunchEon 2")
+  lu.assertEquals(deliverStore(), { store.makeRequestEvent("My Set", "LaunchEon 2") })
+  receive(message(4, "My Set", "LaunchEon 2"))
+  lu.assertEquals(state.get "device1.colour1", white)
+  lu.assertEquals(deliverStore(), {
+    store.makeColoursEvent("My Set", "LaunchEon 2", store.colours.get()),
+  })
+end
+
+function TestStore:testSongWithSimilarNameIsNotTheSameSong()
+  state.set("device1.colour1", red)
+  reportNames("My Set", "LaunchEon 1")
+  deliverStore()
+  reportNames("My Set v2", "LaunchEon 1")
+  deliverStore()
+  receive(message(4, "My Set v2", "LaunchEon 1"))
+  lu.assertEquals(state.get "device1.colour1", red)
+end
+
+function TestStore:testSwitchingBetweenLaunchEonsShowsTheirStoredColours()
+  reportNames("My Set", "LaunchEon 1")
+  deliverStore()
+  receive(message(3, "My Set", "LaunchEon 1", storedColours()))
+  reportNames("My Set", "LaunchEon 2")
+  deliverStore()
+  receive(message(4, "My Set", "LaunchEon 2"))
+  deliverStore()
+  reportNames("My Set", "LaunchEon 1")
+  lu.assertEquals(deliverStore(), { store.makeRequestEvent("My Set", "LaunchEon 1") })
+  receive(message(3, "My Set", "LaunchEon 1", storedColours()))
+  lu.assertEquals(state.get "device1.colour1", red)
 end

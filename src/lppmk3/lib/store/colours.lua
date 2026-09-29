@@ -1,6 +1,7 @@
 local const = require "src.lppmk3.config.constants"
 local ctrl = require "src.lppmk3.config.controls"
 local state = require "src.lppmk3.lib.state._"
+local patternColours = require "src.lppmk3.config.patternColours"
 
 local count = const.counts.devices * const.counts.patternValues
 
@@ -31,7 +32,17 @@ local function set(colours)
   end
 end
 
+-- gives every pattern the colour it starts with
+local function reset()
+  for _, device in ipairs(ctrl.devices) do
+    for value = 1, const.counts.patternValues do
+      state.set(device .. ".colour" .. value, patternColours[1])
+    end
+  end
+end
+
 return {
   get = get,
   set = set,
+  reset = reset,
 }

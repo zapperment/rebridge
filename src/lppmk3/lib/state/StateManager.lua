@@ -35,6 +35,9 @@ function StateManager:new()
       documentName = entry(nil),
       deviceName = entry(nil),
       requestedKey = entry(nil),
+      -- whether the last request was for another LaunchEon of the song asked
+      -- for before
+      sameSong = entry(false),
       awaitingReply = entry(false),
       dirty = entry(false),
     },

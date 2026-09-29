@@ -24,8 +24,10 @@ local function answersRequest(message)
 end
 
 -- handles the messages of the surface store: its colours for the song and
--- LaunchEon asked for are shown; if it has none, the pads keep theirs, which
--- are then stored; when it starts, it gets the colours the performer has set,
+-- LaunchEon asked for are shown; if it has none, a LaunchEon added to the song
+-- starts out with the colours each pattern starts with, while for a song it
+-- does not know, as after Save As, the pads keep theirs; either are then
+-- stored; when it starts, it gets the colours the performer has set,
 -- or is asked for its own
 return function(event)
   if event.port ~= const.ports.store then
@@ -45,6 +47,9 @@ return function(event)
     store.colours.set(message.colours)
     state.set("store.awaitingReply", false)
   elseif message.command == commands.unknown and answersRequest(message) then
+    if state.get "store.sameSong" then
+      store.colours.reset()
+    end
     state.set("store.dirty", true)
     state.set("store.awaitingReply", false)
   end

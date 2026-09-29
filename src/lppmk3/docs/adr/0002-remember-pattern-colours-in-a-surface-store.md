@@ -20,10 +20,13 @@ of using the surface, which neither loading another song nor a crash calls.
   colours of some earlier unsaved song.
 - When the store has no colours for a song and LaunchEon, the pads keep the
   colours they have, which are then stored under the new names. The codec cannot
-  tell *Save As* or renaming a LaunchEon from loading another song, and losing
-  the colours after *Save As* is the worse surprise than a new song inheriting
-  the previous one's.
-- Colours are stored as soon as they are set, whether or not the song is saved.
+  tell *Save As* from loading another song, and losing the colours after *Save
+  As* is the worse surprise than a new song inheriting the previous one's.
+- Only when the song is the one asked for before, but the LaunchEon is not, do
+  the pads start out white instead, as for a LaunchEon just added to the song.
+  Renaming a LaunchEon therefore loses its colours.
+- Colours are stored as soon as they are set, without waiting for the song to
+  be saved again.
 - Without the store running, the codec works as before, with white pads; a store
   started later says hello, and the codec answers with its colours or asks for
   them.

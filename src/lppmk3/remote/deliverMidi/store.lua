@@ -17,7 +17,10 @@ return function()
     state.set("store.awaitingReply", false)
     return { store.makeColoursEvent(documentName, deviceName, store.colours.get()) }
   end
-  if key ~= state.get "store.requestedKey" then
+  local requestedKey = state.get "store.requestedKey"
+  if key ~= requestedKey then
+    state.set("store.sameSong", requestedKey ~= nil and
+      string.sub(requestedKey, 1, string.len(documentName) + 1) == documentName .. "\n")
     state.set("store.requestedKey", key)
     state.set("store.awaitingReply", true)
     return { store.makeRequestEvent(documentName, deviceName) }
