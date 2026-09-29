@@ -1,0 +1,18 @@
+return {
+  device1 = { input = "value", output = "value", min = 0, max = 9 },
+  device2 = { input = "value", output = "value", min = 0, max = 9 },
+  device3 = { input = "value", output = "value", min = 0, max = 9 },
+  device4 = { input = "value", output = "value", min = 0, max = 9 },
+  device5 = { input = "value", output = "value", min = 0, max = 9 },
+  device6 = { input = "value", output = "value", min = 0, max = 9 },
+  device7 = { input = "value", output = "value", min = 0, max = 9 },
+  device8 = { input = "value", output = "value", min = 0, max = 9 },
+  deviceType = { output = "text" },
+  documentName = { output = "text" },
+  deviceName = { output = "text" },
+  patternTimer = { output = "value", min = 0, max = 5 },
+  songPosition = { output = "value", min = 0, max = 2147483646 },
+  playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 14 xx", controller = 20 },
+  stopButton = { input = "button", output = "value", min = 0, max = 127 },
+  recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 0a xx", controller = 10 },
+}

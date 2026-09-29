@@ -1,12 +1,16 @@
 # ReBridge
 
-*MIDI controller setup for Launch Control XL3 + Reason*
+*Use your Novation gear with Reason as stand-alone DAW!*
 
 The goal of this project is to allow you to use Reason rack devices without having to look at the screen, for a “DAW-less experience”.
 
-It goes far beyond the capabilities of the Launch Control support for other DAWs such as Ableton Live provided by Novation.
+ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3 and the Launchpad Pro \[MK3\].
 
-## Features
+While the Launchpad codec is still in its early stages of development, the Launch Control codec is already quite useful.
+
+It goes far beyond the capabilities of the Launch Control drivers for other DAWs (Ableton Live etc.) provided by Novation.
+
+## Launch Control Features
 
 - Everything that **can** be controlled by the LaunchControl **is** controlled — use *Page* buttons on your Launch Control to flip through pages for devices that have more parameters than encoders/faders/buttons on the LC
 - Encoders, faders and buttons on the Launch Control were carefully mapped to match the layout of the device in the Reason Rack as possible (example Alligator: three rows of filter channels correspond to three rows of encoders)
@@ -17,13 +21,14 @@ It goes far beyond the capabilities of the Launch Control support for other DAWs
   - cycle to step through parameter values (e.g. SubTractor oscillator phase mode)
   - momentary to activate a parameter as long as you hold the button (e.g. Alligator manual gate triggers)
 - Some devices use LEDs on buttons as indicator lights (e.g. Alligator shows currently active trigger pattern)
+- For Combinator patches from the Reason Factory Sound Bank and many (albeit not all) Combinator patches from the Reason+ packs, the Launch Control's display shows the actual parameter names instead of just “Control 1” or “Switch 1”
 - Press *Page* button while holding *Shift* to browse through patches
-- Use *Track* buttons to cycle through Rack devices
+- Use *Track* buttons to cycle through Rack devices or tracks
 - Use *Play* and *Record* buttons to you-guessed-what
 - Hold down *Shift* and twist an encoder, move a fader or push a button to see in the display what it does without actually changing the parameter value
 - Faders have “pick up” functionality to avoid value jumps; `^` and `v` symbols in the display indicate if the position of the fader on the Lauch Control is currently above or below the parameter value in the Reason rack
 
-## Supported Devices
+## Launch Control Supported Devices
 
 ### Instruments
 
@@ -47,7 +52,7 @@ It goes far beyond the capabilities of the Launch Control support for other DAWs
 - Reason Studios Bassline Generator
 - Reason Studios PolyStep Sequencer
 
-## Getting started
+## Getting started with the Launch Control Codec
 
 ### Prerequisites
 
@@ -71,7 +76,21 @@ The Reason remote files and the Max for Live files will also work on Windows mac
 
 Enjoy your Launch Control!
 
-## Development
+## Disclaimer
+
+The project maintainer is in no way associated with Novation nor Reason Studios. Company and product names are trademarks of Novation or Reason Studios. 
+
+The project is strictly non-commercial, free to use by anyone without limitations. It comes without any warranty of any kind. The project maintainer cannot be held accountable for any problems with your music production setup that may be caused by this software. 
+
+Please remember that the project maintainer is developing this in his free time, for his own personal use. Do not expect him to provide support – although he'll be happy to help if you ask nicely and he can find the time. 😅
+
+## “This is AI Slop”
+
+No. No it is not. Claude Code was indeed used to write parts of the code. However, the project maintainer is an experienced software developer who uses AI to improve his productivity, while maintaining full control over the software architecture and while understanding exactly what each line of code does. 
+
+The codebase is actually based on a remote codec for the [Novation SL MkIII](https://github.com/zapperment/mkiii-custom-reason) keyboard that the project maintainer wrote years before AI-assisted coding was a thing.
+
+## Launch Control Codec Developer Guide
 
 ### Documentation
 
@@ -153,6 +172,22 @@ Concatenating strings:
 ```
 debug.log("value: " .. my_value)
 ```
+
+### Surface store (Launchpad Pro [MK3])
+
+Reason's codecs cannot save anything, so the pad colours of the Launchpad Pro [MK3] codec are kept by a separate script, the surface store, which remembers them per song and LaunchEon in `~/.rebridge/surfaceStore.json` (see `src/lppmk3/docs/adr/0002-remember-pattern-colours-in-a-surface-store.md`).
+
+In the macOS “Audio MIDI Setup” app, add a port to the IAC device called “ReBridge Store”.
+
+In Reason's control surface settings for the Launchpad Pro [MK3], select “IAC ReBridge Store” for both “Input (store)” and “Output (store)”. Both are optional: without them, or without the store running, the pads simply start out white.
+
+Start the store:
+
+```
+yarn store "IAC ReBridge Store"
+```
+
+Run without a port, it lists the available ones. Another file can be given with `--file <path>`. The store can be started before or after Reason.
 
 ### Combinator labels
 

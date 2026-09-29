@@ -1,0 +1,33 @@
+Propellerhead Remote Mapping File
+File Format Version	1.0.0
+Control Surface Manufacturer	Novation
+Control Surface Model	Launchpad Pro [MK3] (developer version)
+Map Version	3.0.1
+
+Scope	Propellerheads	Reason Document
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	documentName		Document Name
+Map	songPosition		Song Position
+Map	playButton		Play
+Map	stopButton		Stop
+Map	recordButton		Record
+
+Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	deviceType		"launcheon"
+Map	deviceName		Device Name
+
+Map	patternTimer		Pattern Timer
+
+Map	device1		Device 1 Pattern
+Map	device2		Device 2 Pattern
+Map	device3		Device 3 Pattern
+Map	device4		Device 4 Pattern
+Map	device5		Device 5 Pattern
+Map	device6		Device 6 Pattern
+Map	device7		Device 7 Pattern
+Map	device8		Device 8 Pattern
