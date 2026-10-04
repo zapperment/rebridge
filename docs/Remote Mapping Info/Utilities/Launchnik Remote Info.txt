@@ -1,0 +1,90 @@
+Scope
+Manufacturer	Model
+Zapperment	rocks.zapperment.Launchnik
+
+Remotable	Min	Max	Input type	Output type
+Track 1 Selection	0	8	Value	ValueOutput
+Track 1 Stop	0	2	-	ValueOutput
+Track 1 Pattern 1	0	2	-	ValueOutput
+Track 1 Pattern 2	0	2	-	ValueOutput
+Track 1 Pattern 3	0	2	-	ValueOutput
+Track 1 Pattern 4	0	2	-	ValueOutput
+Track 1 Pattern 5	0	2	-	ValueOutput
+Track 1 Pattern 6	0	2	-	ValueOutput
+Track 1 Pattern 7	0	2	-	ValueOutput
+Track 1 Pattern 8	0	2	-	ValueOutput
+Track 2 Selection	0	8	Value	ValueOutput
+Track 2 Stop	0	2	-	ValueOutput
+Track 2 Pattern 1	0	2	-	ValueOutput
+Track 2 Pattern 2	0	2	-	ValueOutput
+Track 2 Pattern 3	0	2	-	ValueOutput
+Track 2 Pattern 4	0	2	-	ValueOutput
+Track 2 Pattern 5	0	2	-	ValueOutput
+Track 2 Pattern 6	0	2	-	ValueOutput
+Track 2 Pattern 7	0	2	-	ValueOutput
+Track 2 Pattern 8	0	2	-	ValueOutput
+Track 3 Selection	0	8	Value	ValueOutput
+Track 3 Stop	0	2	-	ValueOutput
+Track 3 Pattern 1	0	2	-	ValueOutput
+Track 3 Pattern 2	0	2	-	ValueOutput
+Track 3 Pattern 3	0	2	-	ValueOutput
+Track 3 Pattern 4	0	2	-	ValueOutput
+Track 3 Pattern 5	0	2	-	ValueOutput
+Track 3 Pattern 6	0	2	-	ValueOutput
+Track 3 Pattern 7	0	2	-	ValueOutput
+Track 3 Pattern 8	0	2	-	ValueOutput
+Track 4 Selection	0	8	Value	ValueOutput
+Track 4 Stop	0	2	-	ValueOutput
+Track 4 Pattern 1	0	2	-	ValueOutput
+Track 4 Pattern 2	0	2	-	ValueOutput
+Track 4 Pattern 3	0	2	-	ValueOutput
+Track 4 Pattern 4	0	2	-	ValueOutput
+Track 4 Pattern 5	0	2	-	ValueOutput
+Track 4 Pattern 6	0	2	-	ValueOutput
+Track 4 Pattern 7	0	2	-	ValueOutput
+Track 4 Pattern 8	0	2	-	ValueOutput
+Track 5 Selection	0	8	Value	ValueOutput
+Track 5 Stop	0	2	-	ValueOutput
+Track 5 Pattern 1	0	2	-	ValueOutput
+Track 5 Pattern 2	0	2	-	ValueOutput
+Track 5 Pattern 3	0	2	-	ValueOutput
+Track 5 Pattern 4	0	2	-	ValueOutput
+Track 5 Pattern 5	0	2	-	ValueOutput
+Track 5 Pattern 6	0	2	-	ValueOutput
+Track 5 Pattern 7	0	2	-	ValueOutput
+Track 5 Pattern 8	0	2	-	ValueOutput
+Track 6 Selection	0	8	Value	ValueOutput
+Track 6 Stop	0	2	-	ValueOutput
+Track 6 Pattern 1	0	2	-	ValueOutput
+Track 6 Pattern 2	0	2	-	ValueOutput
+Track 6 Pattern 3	0	2	-	ValueOutput
+Track 6 Pattern 4	0	2	-	ValueOutput
+Track 6 Pattern 5	0	2	-	ValueOutput
+Track 6 Pattern 6	0	2	-	ValueOutput
+Track 6 Pattern 7	0	2	-	ValueOutput
+Track 6 Pattern 8	0	2	-	ValueOutput
+Track 7 Selection	0	8	Value	ValueOutput
+Track 7 Stop	0	2	-	ValueOutput
+Track 7 Pattern 1	0	2	-	ValueOutput
+Track 7 Pattern 2	0	2	-	ValueOutput
+Track 7 Pattern 3	0	2	-	ValueOutput
+Track 7 Pattern 4	0	2	-	ValueOutput
+Track 7 Pattern 5	0	2	-	ValueOutput
+Track 7 Pattern 6	0	2	-	ValueOutput
+Track 7 Pattern 7	0	2	-	ValueOutput
+Track 7 Pattern 8	0	2	-	ValueOutput
+Track 8 Selection	0	8	Value	ValueOutput
+Track 8 Stop	0	2	-	ValueOutput
+Track 8 Pattern 1	0	2	-	ValueOutput
+Track 8 Pattern 2	0	2	-	ValueOutput
+Track 8 Pattern 3	0	2	-	ValueOutput
+Track 8 Pattern 4	0	2	-	ValueOutput
+Track 8 Pattern 5	0	2	-	ValueOutput
+Track 8 Pattern 6	0	2	-	ValueOutput
+Track 8 Pattern 7	0	2	-	ValueOutput
+Track 8 Pattern 8	0	2	-	ValueOutput
+Device Name	0	0	-	TextOutput
+Patch Name	0	0	-	TextOutput
+Select Patch Delta	0	0	Delta	TextOutput
+Select Previous Patch	0	0	Trig	TextOutput
+Select Next Patch	0	0	Trig	TextOutput

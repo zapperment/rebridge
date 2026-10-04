@@ -1,4 +1,4 @@
-return {
+local items = {
   device1 = { input = "value", output = "value", min = 0, max = 9 },
   device2 = { input = "value", output = "value", min = 0, max = 9 },
   device3 = { input = "value", output = "value", min = 0, max = 9 },
@@ -16,3 +16,9 @@ return {
   stopButton = { input = "button", output = "value", min = 0, max = 127 },
   recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 0a xx", controller = 10 },
 }
+
+for pad = 1, 64 do
+  items["pad" .. pad .. "led"] = { output = "value", min = 0, max = 2 }
+end
+
+return items

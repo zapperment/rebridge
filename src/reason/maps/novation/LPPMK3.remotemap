@@ -31,3 +31,83 @@ Map	device5		Device 5 Pattern
 Map	device6		Device 6 Pattern
 Map	device7		Device 7 Pattern
 Map	device8		Device 8 Pattern
+
+Scope	Zapperment	rocks.zapperment.Launchnik
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	deviceType		"launchnik"
+Map	deviceName		Device Name
+
+Map	pad1led		Track 1 Pattern 1
+Map	pad2led		Track 2 Pattern 1
+Map	pad3led		Track 3 Pattern 1
+Map	pad4led		Track 4 Pattern 1
+Map	pad5led		Track 5 Pattern 1
+Map	pad6led		Track 6 Pattern 1
+Map	pad7led		Track 7 Pattern 1
+Map	pad8led		Track 8 Pattern 1
+
+Map	pad9led		Track 1 Pattern 2
+Map	pad10led		Track 2 Pattern 2
+Map	pad11led		Track 3 Pattern 2
+Map	pad12led		Track 4 Pattern 2
+Map	pad13led		Track 5 Pattern 2
+Map	pad14led		Track 6 Pattern 2
+Map	pad15led		Track 7 Pattern 2
+Map	pad16led		Track 8 Pattern 2
+
+Map	pad17led		Track 1 Pattern 3
+Map	pad18led		Track 2 Pattern 3
+Map	pad19led		Track 3 Pattern 3
+Map	pad20led		Track 4 Pattern 3
+Map	pad21led		Track 5 Pattern 3
+Map	pad22led		Track 6 Pattern 3
+Map	pad23led		Track 7 Pattern 3
+Map	pad24led		Track 8 Pattern 3
+
+Map	pad25led		Track 1 Pattern 4
+Map	pad26led		Track 2 Pattern 4
+Map	pad27led		Track 3 Pattern 4
+Map	pad28led		Track 4 Pattern 4
+Map	pad29led		Track 5 Pattern 4
+Map	pad30led		Track 6 Pattern 4
+Map	pad31led		Track 7 Pattern 4
+Map	pad32led		Track 8 Pattern 4
+
+Map	pad33led		Track 1 Pattern 5
+Map	pad34led		Track 2 Pattern 5
+Map	pad35led		Track 3 Pattern 5
+Map	pad36led		Track 4 Pattern 5
+Map	pad37led		Track 5 Pattern 5
+Map	pad38led		Track 6 Pattern 5
+Map	pad39led		Track 7 Pattern 5
+Map	pad40led		Track 8 Pattern 5
+
+Map	pad41led		Track 1 Pattern 6
+Map	pad42led		Track 2 Pattern 6
+Map	pad43led		Track 3 Pattern 6
+Map	pad44led		Track 4 Pattern 6
+Map	pad45led		Track 5 Pattern 6
+Map	pad46led		Track 6 Pattern 6
+Map	pad47led		Track 7 Pattern 6
+Map	pad48led		Track 8 Pattern 6
+
+Map	pad49led		Track 1 Pattern 7
+Map	pad50led		Track 2 Pattern 7
+Map	pad51led		Track 3 Pattern 7
+Map	pad52led		Track 4 Pattern 7
+Map	pad53led		Track 5 Pattern 7
+Map	pad54led		Track 6 Pattern 7
+Map	pad55led		Track 7 Pattern 7
+Map	pad56led		Track 8 Pattern 7
+
+Map	pad57led		Track 1 Pattern 8
+Map	pad58led		Track 2 Pattern 8
+Map	pad59led		Track 3 Pattern 8
+Map	pad50led		Track 4 Pattern 8
+Map	pad61led		Track 5 Pattern 8
+Map	pad62led		Track 6 Pattern 8
+Map	pad63led		Track 7 Pattern 8
+Map	pad64led		Track 8 Pattern 8
+
