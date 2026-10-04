@@ -110,3 +110,12 @@ Map	pad61led		Track 5 Pattern 8
 Map	pad62led		Track 6 Pattern 8
 Map	pad63led		Track 7 Pattern 8
 Map	pad64led		Track 8 Pattern 8
+
+Map	trackButton1led		Track 1 Stop
+Map	trackButton2led		Track 2 Stop
+Map	trackButton3led		Track 3 Stop
+Map	trackButton4led		Track 4 Stop
+Map	trackButton5led		Track 5 Stop
+Map	trackButton6led		Track 6 Stop
+Map	trackButton7led		Track 7 Stop
+Map	trackButton8led		Track 8 Stop

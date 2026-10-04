@@ -21,4 +21,8 @@ for pad = 1, 64 do
   items["pad" .. pad .. "led"] = { output = "value", min = 0, max = 2 }
 end
 
+for trackButton = 1, 8 do
+  items["trackButton" .. trackButton .. "led"] = { output = "value", min = 0, max = 2 }
+end
+
 return items
