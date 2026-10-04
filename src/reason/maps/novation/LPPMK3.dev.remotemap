@@ -8,29 +8,9 @@ Scope	Propellerheads	Reason Document
 
 //	Control Surface Item	Key	Remotable Item	Scale	Mode
 
-Map	documentName		Document Name
-Map	songPosition		Song Position
 Map	playButton		Play
 Map	stopButton		Stop
 Map	recordButton		Record
-
-Scope	Enlightenspeed Ltd	uk.enlightenspeed.LaunchEon
-
-//	Control Surface Item	Key	Remotable Item	Scale	Mode
-
-Map	deviceType		"launcheon"
-Map	deviceName		Device Name
-
-Map	patternTimer		Pattern Timer
-
-Map	device1		Device 1 Pattern
-Map	device2		Device 2 Pattern
-Map	device3		Device 3 Pattern
-Map	device4		Device 4 Pattern
-Map	device5		Device 5 Pattern
-Map	device6		Device 6 Pattern
-Map	device7		Device 7 Pattern
-Map	device8		Device 8 Pattern
 
 Scope	Zapperment	rocks.zapperment.Launchnik
 
@@ -119,3 +99,12 @@ Map	trackButton5led		Track 5 Stop
 Map	trackButton6led		Track 6 Stop
 Map	trackButton7led		Track 7 Stop
 Map	trackButton8led		Track 8 Stop
+
+Map	track1slot		Track 1 Selection
+Map	track2slot		Track 2 Selection
+Map	track3slot		Track 3 Selection
+Map	track4slot		Track 4 Selection
+Map	track5slot		Track 5 Selection
+Map	track6slot		Track 6 Selection
+Map	track7slot		Track 7 Selection
+Map	track8slot		Track 8 Selection

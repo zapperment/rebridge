@@ -1,17 +1,6 @@
 local items = {
-  device1 = { input = "value", output = "value", min = 0, max = 9 },
-  device2 = { input = "value", output = "value", min = 0, max = 9 },
-  device3 = { input = "value", output = "value", min = 0, max = 9 },
-  device4 = { input = "value", output = "value", min = 0, max = 9 },
-  device5 = { input = "value", output = "value", min = 0, max = 9 },
-  device6 = { input = "value", output = "value", min = 0, max = 9 },
-  device7 = { input = "value", output = "value", min = 0, max = 9 },
-  device8 = { input = "value", output = "value", min = 0, max = 9 },
   deviceType = { output = "text" },
-  documentName = { output = "text" },
   deviceName = { output = "text" },
-  patternTimer = { output = "value", min = 0, max = 5 },
-  songPosition = { output = "value", min = 0, max = 2147483646 },
   playButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 14 xx", controller = 20 },
   stopButton = { input = "button", output = "value", min = 0, max = 127 },
   recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 0a xx", controller = 10 },
@@ -21,8 +10,10 @@ for pad = 1, 64 do
   items["pad" .. pad .. "led"] = { output = "value", min = 0, max = 2 }
 end
 
-for trackButton = 1, 8 do
-  items["trackButton" .. trackButton .. "led"] = { output = "value", min = 0, max = 2 }
+for track = 1, 8 do
+  items["trackButton" .. track .. "led"] = { output = "value", min = 0, max = 2 }
+  -- 0 stops the track, 1 to 8 select one of its patterns
+  items["track" .. track .. "slot"] = { input = "value", min = 0, max = 8 }
 end
 
 return items

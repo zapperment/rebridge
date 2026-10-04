@@ -7,14 +7,13 @@ local col = require "src.lppmk3.lib.colour._"
 local pulsing = const.colourBehaviour.pulsing
 
 -- called regularly by the codec to update the play and record button LEDs:
--- dim and static while off, bright and pulsing while on; it only reads whether
--- the transport is playing, which the pad colours then mark as delivered (see
--- remote/deliverMidi/padColours), so it has to be called before them
+-- dim and static while off, bright and pulsing while on; each change is
+-- delivered once
 return function()
   local events = {}
 
   if state.hasChanged "transport.playing" then
-    local playing = state.get "transport.playing"
+    local playing = state.update "transport.playing"
     local colour = playing and col.config.green.vibrant or col.config.green.dim
     local behaviour = playing and pulsing or nil
     table.insert(events, midi.makeColourEvent(items.playButton.controller, colour, behaviour))
