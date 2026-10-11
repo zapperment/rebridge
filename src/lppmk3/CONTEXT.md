@@ -1,98 +1,37 @@
 # Launchpad Pro [MK3]
 
-Vocabulary of the Launchpad Pro [MK3] remote codec for Reason: playing the
-patterns of a LaunchEon from the pads, the way clips are launched in Ableton
-Live's session mode.
+Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
+Launchnik, and uses Launchnik's own words for everything that belongs to the
+device: track, launch button, stop button, clip, selection, light, launch mode,
+setup mode, clip picking, clip editing. Those are defined in the glossary of the
+Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and
+are not repeated here.
 
 ## Language
 
-### Surface and host
-
 **Surface**:
-The Launchpad Pro [MK3] hardware, used in programmer mode: an 8×8 grid of pads
-plus the buttons around it.
-_Avoid_: controller, Launchpad (in prose, when the role is meant)
+The Launchpad Pro [MK3] hardware.
+_Avoid_: controller, hardware, LPPMK3 (in prose)
 
 **Host**:
-Reason. It owns the LaunchEon's state and reports it; the codec keeps only what
-the host cannot know, like the colours of the pads.
+Reason. It owns the device's values and reports them; the codec keeps copies
+only to decide what a press means.
+_Avoid_: DAW
 
-**LaunchEon**:
-The rack device (by Enlightenspeed) the surface plays; the only device the
-codec supports.
+**Pad**:
+One of the 64 square pads in the surface's 8x8 grid. It stands for the launch
+button in the same row and column of Launchnik, shows that launch button's
+light, and a press of it means what a click on that launch button means.
+_Avoid_: slot, cell, button (for a pad)
 
-### Devices and patterns
+**Track button**:
+One of the eight buttons in the upper of the two rows beneath the grid. It
+stands for the stop button of the track above it and shows that stop button's
+light.
+_Avoid_: stop pad, slot 0
 
-**Device**:
-One of LaunchEon's eight outputs, each sending one pattern choice to the
-players it is wired to; shown on the surface as one row of pads. Named after
-LaunchEon's own panel.
-_Avoid_: track, lane, channel
-
-**Pattern**:
-One of the eight values a device can be set to (1–8), the counterpart of a
-clip in Ableton Live. A device plays one pattern at a time, or none.
-_Avoid_: clip
-
-**Pattern pad**:
-The pad that stands for one pattern of one device: lit brightly in its pattern
-colour while that pattern plays, pulsing while the transport is playing and
-steady while it is stopped, and dimly otherwise.
-
-**Pattern colour**:
-The colour the performer gives a pattern pad to recognise it on stage. The
-host knows nothing about it; the surface store remembers it.
-
-**Surface store**:
-A service beside Reason that remembers, per song and LaunchEon, the settings
-the host knows nothing about (so far, the pattern colours), talking to the
-codec over MIDI. A song and LaunchEon are told apart by their names alone.
-_Avoid_: colour service, settings server
-
-**Scene**:
-One of LaunchEon's 64 stored combinations of patterns across devices. Unlike
-an Ableton Live scene, it is not a row of pads.
-
-### Switching patterns in time
-
-**Pattern Timer**:
-LaunchEon's setting, labelled "Scenes" on its panel, that delays a device's
-change of pattern to the next switch point: Off, ¼, ½, 1, 2 or 4 bars.
-_Avoid_: Scene Timer (a different setting, labelled "Master"), clip trigger
-quantisation
-
-**Switch interval**:
-The length the Pattern Timer is set to. Switch points lie on a grid of this
-length counted from the start of bar 1, assuming 4/4 throughout.
-_Avoid_: loop
-
-**Switch point**:
-A line of the switch interval's grid that playback reaches, either by moving
-forward across it or by jumping exactly onto it, as at the end of Reason's
-loop; that is where every pending pattern starts to play. A jump onto any
-other position is not a switch point.
-_Avoid_: loop start
-
-**Playing pattern**:
-The pattern a device is actually playing, which may differ from the one the
-host reports while a switch is pending.
-
-**Pending pattern**:
-The pattern a device will switch to at the next switch point, or no pattern
-for a pending stop; until then its pattern pad flashes (for a pending stop, the
-playing pattern's pad does). While the transport is stopped, nothing is ever
-pending: a change takes effect at once.
-
-**Switch meter**:
-The row of eight buttons above the bottom row, lit from left to right as
-playback moves through the current switch interval, so that the whole row is
-lit during its last step. Dark while the Pattern Timer is off.
-_Avoid_: progress bar, countdown
-
-**Step**:
-One eighth of the switch interval: the time for which one more button of the
-switch meter is lit.
-
-**Loop**:
-Reason's loop between the left and right locators; unrelated to switching
-patterns.
+**Setup button**:
+The button at the bottom left of the surface. It stands for the setup button of
+Launchnik: releasing it means what a click on that button means. It has no
+light; the surface's logo is lit while setup mode is on.
+_Avoid_: settings button

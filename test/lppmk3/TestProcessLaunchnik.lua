@@ -1,0 +1,148 @@
+local test = require "test.lib._"
+local lu = test.luaUnit
+local items = require "src.lppmk3.config.items"
+local launchnik = require "src.lppmk3.lib.launchnik._"
+local processLaunchnik = require "src.lppmk3.remote.processMidi.launchnik"
+local defineItemIndices = require "test.lppmk3.defineItemIndices"
+
+TestProcessLaunchnik = {}
+
+local noteOn = 144
+local controlChange = 176
+local state = launchnik.state
+local press = launchnik.press
+
+-- simulates the remote surface sending the given MIDI message
+local function receive(status, data1, data2)
+  remote.mock "match_midi":impl(function()
+    return { x = status, y = data1, z = data2 }
+  end)
+  return processLaunchnik.processPadsAndTrackButtons({ time_stamp = 0 })
+end
+
+-- the pad in the given place sends this note; row 1 is the top row
+local function pad(track, row)
+  return (9 - row) * 10 + track
+end
+
+-- the input passed to the only call of remote.handle_input
+local function handledInput()
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 1)
+  return calls[1][1]
+end
+
+function TestProcessLaunchnik:setUp()
+  remote.clearMocks()
+  defineItemIndices()
+  state.reset()
+end
+
+function TestProcessLaunchnik:tearDown()
+  state.reset()
+end
+
+-- the host scales an item's range onto the remotable's, so the ranges have to
+-- be those of Launchnik's Remote items for the values to arrive unchanged
+function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
+  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 65 })
+  for track = 1, 8 do
+    local selection = items["track" .. track .. "selection"]
+    lu.assertEquals({ selection.min, selection.max }, { 0, 8 })
+    for row = 1, 8 do
+      local clip = "track" .. track .. "clip" .. row
+      lu.assertEquals({ items[clip .. "light"].min, items[clip .. "light"].max }, { 0, 42 })
+      lu.assertEquals({ items[clip .. "present"].min, items[clip .. "present"].max }, { 0, 1 })
+      lu.assertEquals({ items[clip .. "pattern"].min, items[clip .. "pattern"].max }, { 0, 7 })
+      lu.assertEquals({ items[clip .. "colour"].min, items[clip .. "colour"].max }, { 0, 13 })
+    end
+  end
+end
+
+function TestProcessLaunchnik:testEveryPadWithAClipSelectsItsRowOfItsTrack()
+  for index = 0, 63 do
+    state.present[index] = true
+  end
+  for row = 1, 8 do
+    for track = 1, 8 do
+      remote.clearMocks()
+      lu.assertTrue(receive(noteOn, pad(track, row), 127))
+      local input = handledInput()
+      lu.assertEquals(input.item, items["track" .. track .. "selection"].index)
+      lu.assertEquals(input.value, row)
+    end
+  end
+end
+
+function TestProcessLaunchnik:testEmptyPadStopsItsTrack()
+  lu.assertTrue(receive(noteOn, pad(3, 5), 127))
+  local input = handledInput()
+  lu.assertEquals(input.item, items.track3selection.index)
+  lu.assertEquals(input.value, 0)
+end
+
+function TestProcessLaunchnik:testTrackButtonStopsItsTrackInEveryMode()
+  for _, setup in ipairs { press.setupLaunchMode, press.setupClipPicking, press.setupFirstClipEditing } do
+    remote.clearMocks()
+    state.setup = setup
+    lu.assertTrue(receive(controlChange, 103, 127))
+    local input = handledInput()
+    lu.assertEquals(input.item, items.track3selection.index)
+    lu.assertEquals(input.value, 0)
+  end
+end
+
+function TestProcessLaunchnik:testPadInClipPickingOpensItsLaunchButton()
+  state.setup = press.setupClipPicking
+  lu.assertTrue(receive(noteOn, pad(2, 3), 127))
+  local input = handledInput()
+  lu.assertEquals(input.item, items.setup.index)
+  lu.assertEquals(input.value, 2 + 8 + 2)
+end
+
+function TestProcessLaunchnik:testTogglePadInClipEditingSwitchesThePickedClipOn()
+  state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(noteOn, pad(8, 1), 127))
+  local input = handledInput()
+  lu.assertEquals(input.item, items.track2clip3present.index)
+  lu.assertEquals(input.value, 1)
+end
+
+function TestProcessLaunchnik:testTogglePadInClipEditingSwitchesThePickedClipOff()
+  state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
+  state.present[press.buttonIndex(2, 3)] = true
+  lu.assertTrue(receive(noteOn, pad(8, 1), 127))
+  lu.assertEquals(handledInput().value, 0)
+end
+
+function TestProcessLaunchnik:testColourAndPatternPadsInClipEditingChangeThePickedClip()
+  state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
+  state.present[press.buttonIndex(2, 3)] = true
+
+  lu.assertTrue(receive(noteOn, pad(4, 3), 127))
+  local input = handledInput()
+  lu.assertEquals(input.item, items.track2clip3colour.index)
+  lu.assertEquals(input.value, 10)
+
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(6, 5), 127))
+  input = handledInput()
+  lu.assertEquals(input.item, items.track2clip3pattern.index)
+  lu.assertEquals(input.value, 5)
+end
+
+function TestProcessLaunchnik:testPadWithoutMeaningIsSwallowed()
+  state.setup = press.setupFirstClipEditing
+  lu.assertTrue(receive(noteOn, pad(1, 7), 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testReleasingPadDoesNothing()
+  lu.assertFalse(receive(noteOn, 81, 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testIgnoresOtherControlChanges()
+  lu.assertFalse(receive(controlChange, 90, 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end

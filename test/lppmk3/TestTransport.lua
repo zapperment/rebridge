@@ -120,6 +120,12 @@ function TestTransport:testPlayButtonIsBrightAndPulsingWhenPlaying()
   })
 end
 
+function TestTransport:testDeliversPlayButtonOnlyOnce()
+  reportPlaying(true)
+  deliverTransport()
+  lu.assertEquals(deliverTransport(), {})
+end
+
 function TestTransport:testDeliversNothingWhenTransportUnchanged()
   lu.assertEquals(deliverTransport(), {})
 end

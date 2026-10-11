@@ -84,6 +84,17 @@ The project is strictly non-commercial, free to use by anyone without limitation
 
 Please remember that the project maintainer is developing this in his free time, for his own personal use. Do not expect him to provide support – although he'll be happy to help if you ask nicely and he can find the time. 😅
 
+## Launchpad Pro [MK3] with Launchnik
+
+The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d4 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
+
+- The 8×8 pads stand for the launch buttons in the same places, show their lights in the clips' colours and do what a click on them does, in launch mode and in setup mode alike.
+- The eight track buttons in the upper row beneath the pads stand for the stop buttons and light up as they do: dark for a track without clips, dim red while it is stopped, vibrant red while a clip plays, flashing while it is about to stop.
+- The Setup button at the bottom left stands for Launchnik's setup button and acts when it is released. The Novation logo is green while setup mode is on.
+- Flashing pads flash at the Launchpad's own tempo, not in step with Reason.
+
+When adding the surface in Reason's settings, set **two** input ports: "Input (LPProMK3 MIDI)" to the Launchpad's MIDI port and "Input (LPProMK3 DAW)" to its DAW port. The Setup button only reaches the codec through the DAW port.
+
 ## “This is AI Slop”
 
 No. No it is not. Claude Code was indeed used to write parts of the code. However, the project maintainer is an experienced software developer who uses AI to improve his productivity, while maintaining full control over the software architecture and while understanding exactly what each line of code does. 
@@ -172,22 +183,6 @@ Concatenating strings:
 ```
 debug.log("value: " .. my_value)
 ```
-
-### Surface store (Launchpad Pro [MK3])
-
-Reason's codecs cannot save anything, so the pad colours of the Launchpad Pro [MK3] codec are kept by a separate script, the surface store, which remembers them per song and LaunchEon in `~/.rebridge/surfaceStore.json` (see `src/lppmk3/docs/adr/0002-remember-pattern-colours-in-a-surface-store.md`).
-
-In the macOS “Audio MIDI Setup” app, add a port to the IAC device called “ReBridge Store”.
-
-In Reason's control surface settings for the Launchpad Pro [MK3], select “IAC ReBridge Store” for both “Input (store)” and “Output (store)”. Both are optional: without them, or without the store running, the pads simply start out white.
-
-Start the store:
-
-```
-yarn store "IAC ReBridge Store"
-```
-
-Run without a port, it lists the available ones. Another file can be given with `--file <path>`. The store can be started before or after Reason.
 
 ### Combinator labels
 
