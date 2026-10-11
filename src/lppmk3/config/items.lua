@@ -16,4 +16,10 @@ for track = 1, 8 do
   items["track" .. track .. "slot"] = { input = "value", min = 0, max = 8 }
 end
 
+-- THROWAWAY: the Remote items of the Launchnik Spike device, see src/lppmk3/spike
+items.spikeClipPresent = { input = "value", output = "value", min = 0, max = 1 }
+items.spikeClipColour = { input = "value", output = "value", min = 0, max = 13 }
+items.spikeSetup = { input = "value", output = "value", min = 0, max = 65 }
+items.spikeLight = { output = "value", min = 0, max = 28 }
+
 return items

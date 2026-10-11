@@ -5,6 +5,7 @@ local deb = require "src.lib.debug._"
 local midi = require "src.lppmk3.lib.midi._"
 local processSurface = require "src.lppmk3.remote.processMidi.surface"
 local setTransport = require "src.lppmk3.remote.setState.transport"
+local setSpike = require "src.lppmk3.spike.setState"
 local deliverSurface = require "src.lppmk3.remote.deliverMidi.surface"
 local deliverPadsOff = require "src.lppmk3.remote.deliverMidi.padsOff"
 
@@ -43,6 +44,7 @@ end
 ---@diagnostic disable-next-line: lowercase-global
 function remote_set_state(changedItems)
   setTransport(changedItems)
+  setSpike(changedItems)
 end
 
 -- Remote codec -> remote surface (Launchpad)

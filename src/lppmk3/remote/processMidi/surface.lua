@@ -2,6 +2,7 @@ local const = require "src.lppmk3.config.constants"
 local processShift = require "src.lppmk3.remote.processMidi.shift"
 local processTransport = require "src.lppmk3.remote.processMidi.transport"
 local processTrackSlots = require "src.lppmk3.remote.processMidi.trackSlots"
+local processSpike = require "src.lppmk3.spike.processMidi"
 
 -- handles the MIDI of the remote surface (Launchpad); anything arriving on
 -- another port is swallowed: a port used in both directions, like an IAC bus,
@@ -11,5 +12,5 @@ return function(event)
   if event.port ~= const.ports.surface then
     return true
   end
-  return processShift(event) or processTransport(event) or processTrackSlots(event)
+  return processShift(event) or processTransport(event) or processSpike(event) or processTrackSlots(event)
 end

@@ -108,3 +108,12 @@ Map	track5slot		Track 5 Selection
 Map	track6slot		Track 6 Selection
 Map	track7slot		Track 7 Selection
 Map	track8slot		Track 8 Selection
+
+Scope	Zapperment	rocks.zapperment.LaunchnikSpike
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	spikeClipPresent		Clip Present
+Map	spikeClipColour		Clip Colour
+Map	spikeSetup		Setup
+Map	spikeLight		Light
