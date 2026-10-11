@@ -19,77 +19,295 @@ Scope	Zapperment	rocks.zapperment.Launchnik
 Map	deviceType		"launchnik"
 Map	deviceName		Device Name
 
-Map	pad1led		Track 1 Pattern 1
-Map	pad2led		Track 2 Pattern 1
-Map	pad3led		Track 3 Pattern 1
-Map	pad4led		Track 4 Pattern 1
-Map	pad5led		Track 5 Pattern 1
-Map	pad6led		Track 6 Pattern 1
-Map	pad7led		Track 7 Pattern 1
-Map	pad8led		Track 8 Pattern 1
+Map	setup		Setup
 
-Map	pad9led		Track 1 Pattern 2
-Map	pad10led		Track 2 Pattern 2
-Map	pad11led		Track 3 Pattern 2
-Map	pad12led		Track 4 Pattern 2
-Map	pad13led		Track 5 Pattern 2
-Map	pad14led		Track 6 Pattern 2
-Map	pad15led		Track 7 Pattern 2
-Map	pad16led		Track 8 Pattern 2
+Map	track1clip1light		Track 1 Clip 1 Light
+Map	track2clip1light		Track 2 Clip 1 Light
+Map	track3clip1light		Track 3 Clip 1 Light
+Map	track4clip1light		Track 4 Clip 1 Light
+Map	track5clip1light		Track 5 Clip 1 Light
+Map	track6clip1light		Track 6 Clip 1 Light
+Map	track7clip1light		Track 7 Clip 1 Light
+Map	track8clip1light		Track 8 Clip 1 Light
 
-Map	pad17led		Track 1 Pattern 3
-Map	pad18led		Track 2 Pattern 3
-Map	pad19led		Track 3 Pattern 3
-Map	pad20led		Track 4 Pattern 3
-Map	pad21led		Track 5 Pattern 3
-Map	pad22led		Track 6 Pattern 3
-Map	pad23led		Track 7 Pattern 3
-Map	pad24led		Track 8 Pattern 3
+Map	track1clip2light		Track 1 Clip 2 Light
+Map	track2clip2light		Track 2 Clip 2 Light
+Map	track3clip2light		Track 3 Clip 2 Light
+Map	track4clip2light		Track 4 Clip 2 Light
+Map	track5clip2light		Track 5 Clip 2 Light
+Map	track6clip2light		Track 6 Clip 2 Light
+Map	track7clip2light		Track 7 Clip 2 Light
+Map	track8clip2light		Track 8 Clip 2 Light
 
-Map	pad25led		Track 1 Pattern 4
-Map	pad26led		Track 2 Pattern 4
-Map	pad27led		Track 3 Pattern 4
-Map	pad28led		Track 4 Pattern 4
-Map	pad29led		Track 5 Pattern 4
-Map	pad30led		Track 6 Pattern 4
-Map	pad31led		Track 7 Pattern 4
-Map	pad32led		Track 8 Pattern 4
+Map	track1clip3light		Track 1 Clip 3 Light
+Map	track2clip3light		Track 2 Clip 3 Light
+Map	track3clip3light		Track 3 Clip 3 Light
+Map	track4clip3light		Track 4 Clip 3 Light
+Map	track5clip3light		Track 5 Clip 3 Light
+Map	track6clip3light		Track 6 Clip 3 Light
+Map	track7clip3light		Track 7 Clip 3 Light
+Map	track8clip3light		Track 8 Clip 3 Light
 
-Map	pad33led		Track 1 Pattern 5
-Map	pad34led		Track 2 Pattern 5
-Map	pad35led		Track 3 Pattern 5
-Map	pad36led		Track 4 Pattern 5
-Map	pad37led		Track 5 Pattern 5
-Map	pad38led		Track 6 Pattern 5
-Map	pad39led		Track 7 Pattern 5
-Map	pad40led		Track 8 Pattern 5
+Map	track1clip4light		Track 1 Clip 4 Light
+Map	track2clip4light		Track 2 Clip 4 Light
+Map	track3clip4light		Track 3 Clip 4 Light
+Map	track4clip4light		Track 4 Clip 4 Light
+Map	track5clip4light		Track 5 Clip 4 Light
+Map	track6clip4light		Track 6 Clip 4 Light
+Map	track7clip4light		Track 7 Clip 4 Light
+Map	track8clip4light		Track 8 Clip 4 Light
 
-Map	pad41led		Track 1 Pattern 6
-Map	pad42led		Track 2 Pattern 6
-Map	pad43led		Track 3 Pattern 6
-Map	pad44led		Track 4 Pattern 6
-Map	pad45led		Track 5 Pattern 6
-Map	pad46led		Track 6 Pattern 6
-Map	pad47led		Track 7 Pattern 6
-Map	pad48led		Track 8 Pattern 6
+Map	track1clip5light		Track 1 Clip 5 Light
+Map	track2clip5light		Track 2 Clip 5 Light
+Map	track3clip5light		Track 3 Clip 5 Light
+Map	track4clip5light		Track 4 Clip 5 Light
+Map	track5clip5light		Track 5 Clip 5 Light
+Map	track6clip5light		Track 6 Clip 5 Light
+Map	track7clip5light		Track 7 Clip 5 Light
+Map	track8clip5light		Track 8 Clip 5 Light
 
-Map	pad49led		Track 1 Pattern 7
-Map	pad50led		Track 2 Pattern 7
-Map	pad51led		Track 3 Pattern 7
-Map	pad52led		Track 4 Pattern 7
-Map	pad53led		Track 5 Pattern 7
-Map	pad54led		Track 6 Pattern 7
-Map	pad55led		Track 7 Pattern 7
-Map	pad56led		Track 8 Pattern 7
+Map	track1clip6light		Track 1 Clip 6 Light
+Map	track2clip6light		Track 2 Clip 6 Light
+Map	track3clip6light		Track 3 Clip 6 Light
+Map	track4clip6light		Track 4 Clip 6 Light
+Map	track5clip6light		Track 5 Clip 6 Light
+Map	track6clip6light		Track 6 Clip 6 Light
+Map	track7clip6light		Track 7 Clip 6 Light
+Map	track8clip6light		Track 8 Clip 6 Light
 
-Map	pad57led		Track 1 Pattern 8
-Map	pad58led		Track 2 Pattern 8
-Map	pad59led		Track 3 Pattern 8
-Map	pad60led		Track 4 Pattern 8
-Map	pad61led		Track 5 Pattern 8
-Map	pad62led		Track 6 Pattern 8
-Map	pad63led		Track 7 Pattern 8
-Map	pad64led		Track 8 Pattern 8
+Map	track1clip7light		Track 1 Clip 7 Light
+Map	track2clip7light		Track 2 Clip 7 Light
+Map	track3clip7light		Track 3 Clip 7 Light
+Map	track4clip7light		Track 4 Clip 7 Light
+Map	track5clip7light		Track 5 Clip 7 Light
+Map	track6clip7light		Track 6 Clip 7 Light
+Map	track7clip7light		Track 7 Clip 7 Light
+Map	track8clip7light		Track 8 Clip 7 Light
+
+Map	track1clip8light		Track 1 Clip 8 Light
+Map	track2clip8light		Track 2 Clip 8 Light
+Map	track3clip8light		Track 3 Clip 8 Light
+Map	track4clip8light		Track 4 Clip 8 Light
+Map	track5clip8light		Track 5 Clip 8 Light
+Map	track6clip8light		Track 6 Clip 8 Light
+Map	track7clip8light		Track 7 Clip 8 Light
+Map	track8clip8light		Track 8 Clip 8 Light
+
+Map	track1clip1present		Track 1 Clip 1 Present
+Map	track2clip1present		Track 2 Clip 1 Present
+Map	track3clip1present		Track 3 Clip 1 Present
+Map	track4clip1present		Track 4 Clip 1 Present
+Map	track5clip1present		Track 5 Clip 1 Present
+Map	track6clip1present		Track 6 Clip 1 Present
+Map	track7clip1present		Track 7 Clip 1 Present
+Map	track8clip1present		Track 8 Clip 1 Present
+
+Map	track1clip2present		Track 1 Clip 2 Present
+Map	track2clip2present		Track 2 Clip 2 Present
+Map	track3clip2present		Track 3 Clip 2 Present
+Map	track4clip2present		Track 4 Clip 2 Present
+Map	track5clip2present		Track 5 Clip 2 Present
+Map	track6clip2present		Track 6 Clip 2 Present
+Map	track7clip2present		Track 7 Clip 2 Present
+Map	track8clip2present		Track 8 Clip 2 Present
+
+Map	track1clip3present		Track 1 Clip 3 Present
+Map	track2clip3present		Track 2 Clip 3 Present
+Map	track3clip3present		Track 3 Clip 3 Present
+Map	track4clip3present		Track 4 Clip 3 Present
+Map	track5clip3present		Track 5 Clip 3 Present
+Map	track6clip3present		Track 6 Clip 3 Present
+Map	track7clip3present		Track 7 Clip 3 Present
+Map	track8clip3present		Track 8 Clip 3 Present
+
+Map	track1clip4present		Track 1 Clip 4 Present
+Map	track2clip4present		Track 2 Clip 4 Present
+Map	track3clip4present		Track 3 Clip 4 Present
+Map	track4clip4present		Track 4 Clip 4 Present
+Map	track5clip4present		Track 5 Clip 4 Present
+Map	track6clip4present		Track 6 Clip 4 Present
+Map	track7clip4present		Track 7 Clip 4 Present
+Map	track8clip4present		Track 8 Clip 4 Present
+
+Map	track1clip5present		Track 1 Clip 5 Present
+Map	track2clip5present		Track 2 Clip 5 Present
+Map	track3clip5present		Track 3 Clip 5 Present
+Map	track4clip5present		Track 4 Clip 5 Present
+Map	track5clip5present		Track 5 Clip 5 Present
+Map	track6clip5present		Track 6 Clip 5 Present
+Map	track7clip5present		Track 7 Clip 5 Present
+Map	track8clip5present		Track 8 Clip 5 Present
+
+Map	track1clip6present		Track 1 Clip 6 Present
+Map	track2clip6present		Track 2 Clip 6 Present
+Map	track3clip6present		Track 3 Clip 6 Present
+Map	track4clip6present		Track 4 Clip 6 Present
+Map	track5clip6present		Track 5 Clip 6 Present
+Map	track6clip6present		Track 6 Clip 6 Present
+Map	track7clip6present		Track 7 Clip 6 Present
+Map	track8clip6present		Track 8 Clip 6 Present
+
+Map	track1clip7present		Track 1 Clip 7 Present
+Map	track2clip7present		Track 2 Clip 7 Present
+Map	track3clip7present		Track 3 Clip 7 Present
+Map	track4clip7present		Track 4 Clip 7 Present
+Map	track5clip7present		Track 5 Clip 7 Present
+Map	track6clip7present		Track 6 Clip 7 Present
+Map	track7clip7present		Track 7 Clip 7 Present
+Map	track8clip7present		Track 8 Clip 7 Present
+
+Map	track1clip8present		Track 1 Clip 8 Present
+Map	track2clip8present		Track 2 Clip 8 Present
+Map	track3clip8present		Track 3 Clip 8 Present
+Map	track4clip8present		Track 4 Clip 8 Present
+Map	track5clip8present		Track 5 Clip 8 Present
+Map	track6clip8present		Track 6 Clip 8 Present
+Map	track7clip8present		Track 7 Clip 8 Present
+Map	track8clip8present		Track 8 Clip 8 Present
+
+Map	track1clip1pattern		Track 1 Clip 1 Pattern
+Map	track2clip1pattern		Track 2 Clip 1 Pattern
+Map	track3clip1pattern		Track 3 Clip 1 Pattern
+Map	track4clip1pattern		Track 4 Clip 1 Pattern
+Map	track5clip1pattern		Track 5 Clip 1 Pattern
+Map	track6clip1pattern		Track 6 Clip 1 Pattern
+Map	track7clip1pattern		Track 7 Clip 1 Pattern
+Map	track8clip1pattern		Track 8 Clip 1 Pattern
+
+Map	track1clip2pattern		Track 1 Clip 2 Pattern
+Map	track2clip2pattern		Track 2 Clip 2 Pattern
+Map	track3clip2pattern		Track 3 Clip 2 Pattern
+Map	track4clip2pattern		Track 4 Clip 2 Pattern
+Map	track5clip2pattern		Track 5 Clip 2 Pattern
+Map	track6clip2pattern		Track 6 Clip 2 Pattern
+Map	track7clip2pattern		Track 7 Clip 2 Pattern
+Map	track8clip2pattern		Track 8 Clip 2 Pattern
+
+Map	track1clip3pattern		Track 1 Clip 3 Pattern
+Map	track2clip3pattern		Track 2 Clip 3 Pattern
+Map	track3clip3pattern		Track 3 Clip 3 Pattern
+Map	track4clip3pattern		Track 4 Clip 3 Pattern
+Map	track5clip3pattern		Track 5 Clip 3 Pattern
+Map	track6clip3pattern		Track 6 Clip 3 Pattern
+Map	track7clip3pattern		Track 7 Clip 3 Pattern
+Map	track8clip3pattern		Track 8 Clip 3 Pattern
+
+Map	track1clip4pattern		Track 1 Clip 4 Pattern
+Map	track2clip4pattern		Track 2 Clip 4 Pattern
+Map	track3clip4pattern		Track 3 Clip 4 Pattern
+Map	track4clip4pattern		Track 4 Clip 4 Pattern
+Map	track5clip4pattern		Track 5 Clip 4 Pattern
+Map	track6clip4pattern		Track 6 Clip 4 Pattern
+Map	track7clip4pattern		Track 7 Clip 4 Pattern
+Map	track8clip4pattern		Track 8 Clip 4 Pattern
+
+Map	track1clip5pattern		Track 1 Clip 5 Pattern
+Map	track2clip5pattern		Track 2 Clip 5 Pattern
+Map	track3clip5pattern		Track 3 Clip 5 Pattern
+Map	track4clip5pattern		Track 4 Clip 5 Pattern
+Map	track5clip5pattern		Track 5 Clip 5 Pattern
+Map	track6clip5pattern		Track 6 Clip 5 Pattern
+Map	track7clip5pattern		Track 7 Clip 5 Pattern
+Map	track8clip5pattern		Track 8 Clip 5 Pattern
+
+Map	track1clip6pattern		Track 1 Clip 6 Pattern
+Map	track2clip6pattern		Track 2 Clip 6 Pattern
+Map	track3clip6pattern		Track 3 Clip 6 Pattern
+Map	track4clip6pattern		Track 4 Clip 6 Pattern
+Map	track5clip6pattern		Track 5 Clip 6 Pattern
+Map	track6clip6pattern		Track 6 Clip 6 Pattern
+Map	track7clip6pattern		Track 7 Clip 6 Pattern
+Map	track8clip6pattern		Track 8 Clip 6 Pattern
+
+Map	track1clip7pattern		Track 1 Clip 7 Pattern
+Map	track2clip7pattern		Track 2 Clip 7 Pattern
+Map	track3clip7pattern		Track 3 Clip 7 Pattern
+Map	track4clip7pattern		Track 4 Clip 7 Pattern
+Map	track5clip7pattern		Track 5 Clip 7 Pattern
+Map	track6clip7pattern		Track 6 Clip 7 Pattern
+Map	track7clip7pattern		Track 7 Clip 7 Pattern
+Map	track8clip7pattern		Track 8 Clip 7 Pattern
+
+Map	track1clip8pattern		Track 1 Clip 8 Pattern
+Map	track2clip8pattern		Track 2 Clip 8 Pattern
+Map	track3clip8pattern		Track 3 Clip 8 Pattern
+Map	track4clip8pattern		Track 4 Clip 8 Pattern
+Map	track5clip8pattern		Track 5 Clip 8 Pattern
+Map	track6clip8pattern		Track 6 Clip 8 Pattern
+Map	track7clip8pattern		Track 7 Clip 8 Pattern
+Map	track8clip8pattern		Track 8 Clip 8 Pattern
+
+Map	track1clip1colour		Track 1 Clip 1 Colour
+Map	track2clip1colour		Track 2 Clip 1 Colour
+Map	track3clip1colour		Track 3 Clip 1 Colour
+Map	track4clip1colour		Track 4 Clip 1 Colour
+Map	track5clip1colour		Track 5 Clip 1 Colour
+Map	track6clip1colour		Track 6 Clip 1 Colour
+Map	track7clip1colour		Track 7 Clip 1 Colour
+Map	track8clip1colour		Track 8 Clip 1 Colour
+
+Map	track1clip2colour		Track 1 Clip 2 Colour
+Map	track2clip2colour		Track 2 Clip 2 Colour
+Map	track3clip2colour		Track 3 Clip 2 Colour
+Map	track4clip2colour		Track 4 Clip 2 Colour
+Map	track5clip2colour		Track 5 Clip 2 Colour
+Map	track6clip2colour		Track 6 Clip 2 Colour
+Map	track7clip2colour		Track 7 Clip 2 Colour
+Map	track8clip2colour		Track 8 Clip 2 Colour
+
+Map	track1clip3colour		Track 1 Clip 3 Colour
+Map	track2clip3colour		Track 2 Clip 3 Colour
+Map	track3clip3colour		Track 3 Clip 3 Colour
+Map	track4clip3colour		Track 4 Clip 3 Colour
+Map	track5clip3colour		Track 5 Clip 3 Colour
+Map	track6clip3colour		Track 6 Clip 3 Colour
+Map	track7clip3colour		Track 7 Clip 3 Colour
+Map	track8clip3colour		Track 8 Clip 3 Colour
+
+Map	track1clip4colour		Track 1 Clip 4 Colour
+Map	track2clip4colour		Track 2 Clip 4 Colour
+Map	track3clip4colour		Track 3 Clip 4 Colour
+Map	track4clip4colour		Track 4 Clip 4 Colour
+Map	track5clip4colour		Track 5 Clip 4 Colour
+Map	track6clip4colour		Track 6 Clip 4 Colour
+Map	track7clip4colour		Track 7 Clip 4 Colour
+Map	track8clip4colour		Track 8 Clip 4 Colour
+
+Map	track1clip5colour		Track 1 Clip 5 Colour
+Map	track2clip5colour		Track 2 Clip 5 Colour
+Map	track3clip5colour		Track 3 Clip 5 Colour
+Map	track4clip5colour		Track 4 Clip 5 Colour
+Map	track5clip5colour		Track 5 Clip 5 Colour
+Map	track6clip5colour		Track 6 Clip 5 Colour
+Map	track7clip5colour		Track 7 Clip 5 Colour
+Map	track8clip5colour		Track 8 Clip 5 Colour
+
+Map	track1clip6colour		Track 1 Clip 6 Colour
+Map	track2clip6colour		Track 2 Clip 6 Colour
+Map	track3clip6colour		Track 3 Clip 6 Colour
+Map	track4clip6colour		Track 4 Clip 6 Colour
+Map	track5clip6colour		Track 5 Clip 6 Colour
+Map	track6clip6colour		Track 6 Clip 6 Colour
+Map	track7clip6colour		Track 7 Clip 6 Colour
+Map	track8clip6colour		Track 8 Clip 6 Colour
+
+Map	track1clip7colour		Track 1 Clip 7 Colour
+Map	track2clip7colour		Track 2 Clip 7 Colour
+Map	track3clip7colour		Track 3 Clip 7 Colour
+Map	track4clip7colour		Track 4 Clip 7 Colour
+Map	track5clip7colour		Track 5 Clip 7 Colour
+Map	track6clip7colour		Track 6 Clip 7 Colour
+Map	track7clip7colour		Track 7 Clip 7 Colour
+Map	track8clip7colour		Track 8 Clip 7 Colour
+
+Map	track1clip8colour		Track 1 Clip 8 Colour
+Map	track2clip8colour		Track 2 Clip 8 Colour
+Map	track3clip8colour		Track 3 Clip 8 Colour
+Map	track4clip8colour		Track 4 Clip 8 Colour
+Map	track5clip8colour		Track 5 Clip 8 Colour
+Map	track6clip8colour		Track 6 Clip 8 Colour
+Map	track7clip8colour		Track 7 Clip 8 Colour
+Map	track8clip8colour		Track 8 Clip 8 Colour
 
 Map	trackButton1led		Track 1 Stop
 Map	trackButton2led		Track 2 Stop
@@ -100,20 +318,11 @@ Map	trackButton6led		Track 6 Stop
 Map	trackButton7led		Track 7 Stop
 Map	trackButton8led		Track 8 Stop
 
-Map	track1slot		Track 1 Selection
-Map	track2slot		Track 2 Selection
-Map	track3slot		Track 3 Selection
-Map	track4slot		Track 4 Selection
-Map	track5slot		Track 5 Selection
-Map	track6slot		Track 6 Selection
-Map	track7slot		Track 7 Selection
-Map	track8slot		Track 8 Selection
-
-Scope	Zapperment	rocks.zapperment.LaunchnikSpike
-
-//	Control Surface Item	Key	Remotable Item	Scale	Mode
-
-Map	spikeClipPresent		Clip Present
-Map	spikeClipColour		Clip Colour
-Map	spikeSetup		Setup
-Map	spikeLight		Light
+Map	track1selection		Track 1 Selection
+Map	track2selection		Track 2 Selection
+Map	track3selection		Track 3 Selection
+Map	track4selection		Track 4 Selection
+Map	track5selection		Track 5 Selection
+Map	track6selection		Track 6 Selection
+Map	track7selection		Track 7 Selection
+Map	track8selection		Track 8 Selection

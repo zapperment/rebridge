@@ -28,3 +28,9 @@ _Avoid_: slot, cell, button (for a pad)
 One of the eight buttons in the upper of the two rows beneath the grid. It
 stands for the stop button of the track above it.
 _Avoid_: stop pad, slot 0
+
+**Setup button**:
+The button at the bottom left of the surface. It stands for the setup button of
+Launchnik: releasing it means what a click on that button means. It has no
+light; the surface's logo is lit while setup mode is on.
+_Avoid_: settings button

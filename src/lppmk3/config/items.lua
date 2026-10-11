@@ -6,20 +6,30 @@ local items = {
   recordButton = { input = "button", output = "value", min = 0, max = 127, midi = "b0 0a xx", controller = 10 },
 }
 
-for pad = 1, 64 do
-  items["pad" .. pad .. "led"] = { output = "value", min = 0, max = 2 }
-end
+-- The items of Launchnik follow, named after its Remote items. The host
+-- scales an item's range onto the remotable's, so each range has to be that of
+-- the remotable for the values to arrive unchanged. The launchnik entry says
+-- what the item stands for; a launch button's index is 0..63, counted down
+-- track 1 first.
+
+-- 0 = launch mode, 1 = clip picking, 2..65 = clip editing
+items.setup = { input = "value", output = "value", min = 0, max = 65, launchnik = { kind = "setup" } }
 
 for track = 1, 8 do
+  -- the state of the track's stop button: 0 = off, 1 = queued, 2 = active
   items["trackButton" .. track .. "led"] = { output = "value", min = 0, max = 2 }
-  -- 0 stops the track, 1 to 8 select one of its patterns
-  items["track" .. track .. "slot"] = { input = "value", min = 0, max = 8 }
-end
+  -- 0 stops the track, 1 to 8 select the clip in that row
+  items["track" .. track .. "selection"] = { input = "value", min = 0, max = 8 }
 
--- THROWAWAY: the Remote items of the Launchnik Spike device, see src/lppmk3/spike
-items.spikeClipPresent = { input = "value", output = "value", min = 0, max = 1 }
-items.spikeClipColour = { input = "value", output = "value", min = 0, max = 13 }
-items.spikeSetup = { input = "value", output = "value", min = 0, max = 65 }
-items.spikeLight = { output = "value", min = 0, max = 28 }
+  for row = 1, 8 do
+    local clip = "track" .. track .. "clip" .. row
+    local index = (track - 1) * 8 + (row - 1)
+    -- 0 = unlit, then dim, vibrant and flashing for each of the 14 colours
+    items[clip .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "light", index = index } }
+    items[clip .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "present", index = index } }
+    items[clip .. "pattern"] = { input = "value", min = 0, max = 7 }
+    items[clip .. "colour"] = { input = "value", min = 0, max = 13 }
+  end
+end
 
 return items

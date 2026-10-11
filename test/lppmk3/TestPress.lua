@@ -1,0 +1,89 @@
+local test = require "test.lib._"
+local lu = test.luaUnit
+local press = require "src.lppmk3.lib.launchnik.press"
+
+-- The cases are those of tests/PressTest.cpp in the Launchnik repository: the
+-- surface has to change what the device's own panel changes. Tracks count from
+-- 1 here and from 0 there.
+TestPress = {}
+
+local launchMode = press.setupLaunchMode
+local clipPicking = press.setupClipPicking
+local editing = press.setupFirstClipEditing + press.buttonIndex(4, 6)
+local picked = press.buttonIndex(4, 6)
+
+function TestPress:testButtonIndexCountsDownTrackOneFirst()
+  lu.assertEquals(press.buttonIndex(1, 1), 0)
+  lu.assertEquals(press.buttonIndex(1, 8), 7)
+  lu.assertEquals(press.buttonIndex(2, 1), 8)
+  lu.assertEquals(press.buttonIndex(8, 8), 63)
+end
+
+function TestPress:testLaunchModeSelectsTheClip()
+  lu.assertEquals(press.launchButton(launchMode, 3, 5, true, false), { kind = "selection", track = 3, value = 5 })
+  lu.assertEquals(press.launchButton(launchMode, 8, 8, true, false), { kind = "selection", track = 8, value = 8 })
+end
+
+function TestPress:testLaunchModeEmptyLaunchButtonSelectsStop()
+  lu.assertEquals(press.launchButton(launchMode, 3, 5, false, false), { kind = "selection", track = 3, value = 0 })
+end
+
+function TestPress:testStopButtonSelectsStop()
+  lu.assertEquals(press.stopButton(5), { kind = "selection", track = 5, value = 0 })
+end
+
+function TestPress:testSetupButtonSwitchesBetweenLaunchModeAndClipPicking()
+  lu.assertEquals(press.setupButton(launchMode), { kind = "setup", value = clipPicking })
+  lu.assertEquals(press.setupButton(clipPicking), { kind = "setup", value = launchMode })
+  -- from clip editing it leaves setup mode altogether
+  lu.assertEquals(press.setupButton(editing), { kind = "setup", value = launchMode })
+end
+
+function TestPress:testClipPickingOpensThePressedLaunchButton()
+  lu.assertEquals(press.launchButton(clipPicking, 1, 1, false, false), { kind = "setup", value = 2 })
+  lu.assertEquals(press.launchButton(clipPicking, 8, 8, true, false), { kind = "setup", value = 65 })
+  lu.assertEquals(press.launchButton(clipPicking, 4, 6, true, false), { kind = "setup", value = editing })
+end
+
+function TestPress:testClipEditingToggleSwitchesThePickedClip()
+  lu.assertEquals(press.launchButton(editing, 8, 1, false, false), { kind = "present", index = picked, value = 1 })
+  lu.assertEquals(press.launchButton(editing, 8, 1, false, true), { kind = "present", index = picked, value = 0 })
+end
+
+function TestPress:testClipEditingBackReturnsToClipPicking()
+  lu.assertEquals(press.launchButton(editing, 8, 8, false, true), { kind = "setup", value = clipPicking })
+  lu.assertEquals(press.launchButton(editing, 8, 8, false, false), { kind = "setup", value = clipPicking })
+end
+
+function TestPress:testClipEditingColourRows()
+  for column = 1, 7 do
+    lu.assertEquals(press.launchButton(editing, column, 2, false, true),
+      { kind = "colour", index = picked, value = column - 1 })
+    lu.assertEquals(press.launchButton(editing, column, 3, false, true),
+      { kind = "colour", index = picked, value = 7 + column - 1 })
+  end
+  -- column 8 of the colour rows is not a control
+  lu.assertNil(press.launchButton(editing, 8, 2, false, true))
+  lu.assertNil(press.launchButton(editing, 8, 3, false, true))
+end
+
+function TestPress:testClipEditingPatternRow()
+  for column = 1, 8 do
+    lu.assertEquals(press.launchButton(editing, column, 5, false, true),
+      { kind = "pattern", index = picked, value = column - 1 })
+  end
+end
+
+function TestPress:testClipEditingUnusedLaunchButtonsDoNothing()
+  lu.assertNil(press.launchButton(editing, 1, 1, false, true))
+  lu.assertNil(press.launchButton(editing, 4, 4, false, true))
+  -- not even the picked launch button itself, whatever it holds
+  lu.assertNil(press.launchButton(editing, 4, 6, true, true))
+  lu.assertNil(press.launchButton(editing, 1, 8, false, true))
+end
+
+function TestPress:testClipEditingWithoutClipHasNoColourOrPatternControls()
+  lu.assertNil(press.launchButton(editing, 3, 2, false, false))
+  lu.assertNil(press.launchButton(editing, 3, 3, false, false))
+  lu.assertNil(press.launchButton(editing, 3, 5, false, false))
+end

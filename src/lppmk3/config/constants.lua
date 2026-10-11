@@ -16,6 +16,9 @@ return tbl.merge(const, {
   inputPorts = {
     daw = 2,
   },
+  -- for how many milliseconds after the codec has switched the surface to
+  -- programmer mode a layout report counts as the answer to that switch
+  setupButtonQuietTime = 2000,
   colourBehaviour = {
     static = 1,
     flashing = 2,
