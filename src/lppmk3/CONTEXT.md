@@ -26,7 +26,8 @@ _Avoid_: slot, cell, button (for a pad)
 
 **Track button**:
 One of the eight buttons in the upper of the two rows beneath the grid. It
-stands for the stop button of the track above it.
+stands for the stop button of the track above it and shows that stop button's
+light.
 _Avoid_: stop pad, slot 0
 
 **Setup button**:

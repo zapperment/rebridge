@@ -16,8 +16,9 @@ local items = {
 items.setup = { input = "value", output = "value", min = 0, max = 65, launchnik = { kind = "setup" } }
 
 for track = 1, 8 do
-  -- the state of the track's stop button: 0 = off, 1 = queued, 2 = active
-  items["trackButton" .. track .. "led"] = { output = "value", min = 0, max = 2 }
+  -- the light of the track's stop button: 0 = unlit, 1 = dim, 2 = vibrant,
+  -- 3 = flashing
+  items["track" .. track .. "stoplight"] = { output = "value", min = 0, max = 3, launchnik = { kind = "stoplight", track = track } }
   -- 0 stops the track, 1 to 8 select the clip in that row
   items["track" .. track .. "selection"] = { input = "value", min = 0, max = 8 }
 

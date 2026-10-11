@@ -5,7 +5,7 @@ Zapperment	rocks.zapperment.Launchnik
 Remotable	Min	Max	Input type	Output type
 Setup	0	65	Value	ValueOutput
 Track 1 Selection	0	8	Value	ValueOutput
-Track 1 Stop	0	2	-	ValueOutput
+Track 1 Stop Light	0	3	-	ValueOutput
 Track 1 Clip 1 Light	0	42	-	ValueOutput
 Track 1 Clip 1 Present	0	1	Value	ValueOutput
 Track 1 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -39,7 +39,7 @@ Track 1 Clip 8 Present	0	1	Value	ValueOutput
 Track 1 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 1 Clip 8 Colour	0	13	Value	ValueOutput
 Track 2 Selection	0	8	Value	ValueOutput
-Track 2 Stop	0	2	-	ValueOutput
+Track 2 Stop Light	0	3	-	ValueOutput
 Track 2 Clip 1 Light	0	42	-	ValueOutput
 Track 2 Clip 1 Present	0	1	Value	ValueOutput
 Track 2 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -73,7 +73,7 @@ Track 2 Clip 8 Present	0	1	Value	ValueOutput
 Track 2 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 2 Clip 8 Colour	0	13	Value	ValueOutput
 Track 3 Selection	0	8	Value	ValueOutput
-Track 3 Stop	0	2	-	ValueOutput
+Track 3 Stop Light	0	3	-	ValueOutput
 Track 3 Clip 1 Light	0	42	-	ValueOutput
 Track 3 Clip 1 Present	0	1	Value	ValueOutput
 Track 3 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -107,7 +107,7 @@ Track 3 Clip 8 Present	0	1	Value	ValueOutput
 Track 3 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 3 Clip 8 Colour	0	13	Value	ValueOutput
 Track 4 Selection	0	8	Value	ValueOutput
-Track 4 Stop	0	2	-	ValueOutput
+Track 4 Stop Light	0	3	-	ValueOutput
 Track 4 Clip 1 Light	0	42	-	ValueOutput
 Track 4 Clip 1 Present	0	1	Value	ValueOutput
 Track 4 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -141,7 +141,7 @@ Track 4 Clip 8 Present	0	1	Value	ValueOutput
 Track 4 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 4 Clip 8 Colour	0	13	Value	ValueOutput
 Track 5 Selection	0	8	Value	ValueOutput
-Track 5 Stop	0	2	-	ValueOutput
+Track 5 Stop Light	0	3	-	ValueOutput
 Track 5 Clip 1 Light	0	42	-	ValueOutput
 Track 5 Clip 1 Present	0	1	Value	ValueOutput
 Track 5 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -175,7 +175,7 @@ Track 5 Clip 8 Present	0	1	Value	ValueOutput
 Track 5 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 5 Clip 8 Colour	0	13	Value	ValueOutput
 Track 6 Selection	0	8	Value	ValueOutput
-Track 6 Stop	0	2	-	ValueOutput
+Track 6 Stop Light	0	3	-	ValueOutput
 Track 6 Clip 1 Light	0	42	-	ValueOutput
 Track 6 Clip 1 Present	0	1	Value	ValueOutput
 Track 6 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -209,7 +209,7 @@ Track 6 Clip 8 Present	0	1	Value	ValueOutput
 Track 6 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 6 Clip 8 Colour	0	13	Value	ValueOutput
 Track 7 Selection	0	8	Value	ValueOutput
-Track 7 Stop	0	2	-	ValueOutput
+Track 7 Stop Light	0	3	-	ValueOutput
 Track 7 Clip 1 Light	0	42	-	ValueOutput
 Track 7 Clip 1 Present	0	1	Value	ValueOutput
 Track 7 Clip 1 Pattern	0	7	Value	ValueOutput
@@ -243,7 +243,7 @@ Track 7 Clip 8 Present	0	1	Value	ValueOutput
 Track 7 Clip 8 Pattern	0	7	Value	ValueOutput
 Track 7 Clip 8 Colour	0	13	Value	ValueOutput
 Track 8 Selection	0	8	Value	ValueOutput
-Track 8 Stop	0	2	-	ValueOutput
+Track 8 Stop Light	0	3	-	ValueOutput
 Track 8 Clip 1 Light	0	42	-	ValueOutput
 Track 8 Clip 1 Present	0	1	Value	ValueOutput
 Track 8 Clip 1 Pattern	0	7	Value	ValueOutput

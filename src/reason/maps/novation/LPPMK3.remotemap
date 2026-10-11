@@ -309,14 +309,14 @@ Map	track6clip8colour		Track 6 Clip 8 Colour
 Map	track7clip8colour		Track 7 Clip 8 Colour
 Map	track8clip8colour		Track 8 Clip 8 Colour
 
-Map	trackButton1led		Track 1 Stop
-Map	trackButton2led		Track 2 Stop
-Map	trackButton3led		Track 3 Stop
-Map	trackButton4led		Track 4 Stop
-Map	trackButton5led		Track 5 Stop
-Map	trackButton6led		Track 6 Stop
-Map	trackButton7led		Track 7 Stop
-Map	trackButton8led		Track 8 Stop
+Map	track1stoplight		Track 1 Stop Light
+Map	track2stoplight		Track 2 Stop Light
+Map	track3stoplight		Track 3 Stop Light
+Map	track4stoplight		Track 4 Stop Light
+Map	track5stoplight		Track 5 Stop Light
+Map	track6stoplight		Track 6 Stop Light
+Map	track7stoplight		Track 7 Stop Light
+Map	track8stoplight		Track 8 Stop Light
 
 Map	track1selection		Track 1 Selection
 Map	track2selection		Track 2 Selection

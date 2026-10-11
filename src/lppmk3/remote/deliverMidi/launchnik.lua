@@ -17,33 +17,47 @@ local palette = {
   col.config.purple, col.config.fuchsia, col.config.pink,
 }
 
--- a light is 0 for unlit, then dim, vibrant and flashing for each colour
+-- the track buttons send and take control changes 101 to 108
+local firstTrackButton = 101
+
 local dim, vibrant = 0, 1
 
--- the events that make a pad show a light; a flashing pad alternates between
--- its static colour and the colour sent on the flashing channel, at the
--- surface's own tempo
+-- the events that make a pad or button show a colour dim, vibrant or
+-- flashing; a flashing one alternates between its static colour and the
+-- colour sent on the flashing channel, at the surface's own tempo
+local function colourEvents(control, colour, brightness)
+  if brightness == dim then
+    return { midi.makeColourEvent(control, colour.dim) }
+  end
+  if brightness == vibrant then
+    return { midi.makeColourEvent(control, colour.vibrant) }
+  end
+  return {
+    midi.makeColourEvent(control, colour.dim),
+    midi.makeColourEvent(control, colour.vibrant, const.colourBehaviour.flashing),
+  }
+end
+
+-- a launch button's light is 0 for unlit, then dim, vibrant and flashing for
+-- each colour
 local function lightEvents(pad, light)
   if light == 0 then
     return { midi.makeColourEvent(pad, col.config.off) }
   end
-  local colour = palette[math.floor((light - 1) / 3) + 1]
-  local brightness = (light - 1) % 3
-  if brightness == dim then
-    return { midi.makeColourEvent(pad, colour.dim) }
+  return colourEvents(pad, palette[math.floor((light - 1) / 3) + 1], (light - 1) % 3)
+end
+
+-- a stop button's light is 0 for unlit, then dim, vibrant and flashing, in red
+local function stopLightEvents(button, light)
+  if light == 0 then
+    return { midi.makeColourEvent(button, col.config.off) }
   end
-  if brightness == vibrant then
-    return { midi.makeColourEvent(pad, colour.vibrant) }
-  end
-  return {
-    midi.makeColourEvent(pad, colour.dim),
-    midi.makeColourEvent(pad, colour.vibrant, const.colourBehaviour.flashing),
-  }
+  return colourEvents(button, col.config.red, light - 1)
 end
 
 -- called regularly by the codec to make the pads show the lights of the launch
--- buttons in their place, and the logo the setup mode; each change is
--- delivered once
+-- buttons in their place, the track buttons the lights of the stop buttons,
+-- and the logo the setup mode; each change is delivered once
 return function()
   local state = launchnik.state
   local events = {}
@@ -60,6 +74,15 @@ return function()
     end
   end
   state.changedLights = {}
+
+  for track = 1, 8 do
+    if state.changedStopLights[track] then
+      for _, event in ipairs(stopLightEvents(firstTrackButton + track - 1, state.stopLights[track])) do
+        table.insert(events, event)
+      end
+    end
+  end
+  state.changedStopLights = {}
 
   if state.setupChanged then
     state.setupChanged = false

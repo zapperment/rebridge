@@ -1,4 +1,3 @@
-local autoOutputs = require "src.lppmk3.config.autoOutputs"
 local const = require "src.lppmk3.config.constants"
 local items = require "src.lppmk3.config.items"
 local deb = require "src.lib.debug._"
@@ -24,7 +23,6 @@ function remote_init()
     item.index = #itemsToDefine
   end
   remote.define_items(itemsToDefine)
-  remote.define_auto_outputs(autoOutputs)
   if _ENV ~= "test" then
     deb.log(
       "[reason.codecs.novation.LPPMK3] " ..

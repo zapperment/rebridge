@@ -98,6 +98,29 @@ function TestLaunchnikLights:testUnchangedLightIsNotDeliveredAgain()
   lu.assertEquals(deliverLaunchnik(), {})
 end
 
+-- the track buttons are control changes 101 to 108
+function TestLaunchnikLights:testStopLightsShowOnTheTrackButtonsInRed()
+  report { track1stoplight = 1 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(101, colours.red.dim) })
+  report { track8stoplight = 2 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(108, colours.red.vibrant) })
+  report { track3stoplight = 3 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(103, colours.red.dim),
+    makeColourEvent(103, colours.red.vibrant, flashing),
+  })
+  report { track3stoplight = 0 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(103, colours.off) })
+  lu.assertEquals(deliverLaunchnik(), {})
+end
+
+function TestLaunchnikLights:testStopLightRangeIsThatOfLaunchniksRemoteItem()
+  for track = 1, 8 do
+    local item = items["track" .. track .. "stoplight"]
+    lu.assertEquals({ item.min, item.max }, { 0, 3 })
+  end
+end
+
 function TestLaunchnikLights:testLogoIsGreenWhileSetupModeIsOn()
   report { setup = 1 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.green.vibrant) })
@@ -110,11 +133,12 @@ end
 
 -- while no Launchnik is mapped, its items are disabled
 function TestLaunchnikLights:testPadsAndLogoGoDarkWhenLaunchnikIsNoLongerMapped()
-  report { track1clip1light = 5, track1clip1present = 1, setup = 1 }
+  report { track1clip1light = 5, track1clip1present = 1, track1stoplight = 2, setup = 1 }
   deliverLaunchnik()
-  report({ track1clip1light = 5, track1clip1present = 1, setup = 1 }, false)
+  report({ track1clip1light = 5, track1clip1present = 1, track1stoplight = 2, setup = 1 }, false)
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(81, colours.off),
+    makeColourEvent(101, colours.off),
     makeColourEvent(99, colours.off),
   })
   lu.assertFalse(state.present[0])
