@@ -1,0 +1,30 @@
+# Launchpad Pro [MK3]
+
+Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
+Launchnik, and uses Launchnik's own words for everything that belongs to the
+device: track, launch button, stop button, clip, selection, light, launch mode,
+setup mode, clip picking, clip editing. Those are defined in the glossary of the
+Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and
+are not repeated here.
+
+## Language
+
+**Surface**:
+The Launchpad Pro [MK3] hardware.
+_Avoid_: controller, hardware, LPPMK3 (in prose)
+
+**Host**:
+Reason. It owns the device's values and reports them; the codec keeps copies
+only to decide what a press means.
+_Avoid_: DAW
+
+**Pad**:
+One of the 64 square pads in the surface's 8x8 grid. It stands for the launch
+button in the same row and column of Launchnik, shows that launch button's
+light, and a press of it means what a click on that launch button means.
+_Avoid_: slot, cell, button (for a pad)
+
+**Track button**:
+One of the eight buttons in the upper of the two rows beneath the grid. It
+stands for the stop button of the track above it.
+_Avoid_: stop pad, slot 0
