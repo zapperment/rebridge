@@ -9,6 +9,7 @@ function remote_supported_control_surfaces()
       picture = "LPPMK3.png",
       in_ports = {
         { description = "Input (LPProMK3 MIDI)" },
+        { description = "Input (LPProMK3 DAW)" },
       },
       out_ports = {
         { description = "Input (LPProMK3 MIDI)" },

@@ -10,6 +10,12 @@ return tbl.merge(const, {
     surface = 1,
     log = 2,
   },
+  -- input ports are numbered separately from output ports; the surface sends
+  -- its pads and buttons on its MIDI port (input port 1, as above) and its
+  -- layout reports, which is all the Setup button produces, on its DAW port
+  inputPorts = {
+    daw = 2,
+  },
   colourBehaviour = {
     static = 1,
     flashing = 2,

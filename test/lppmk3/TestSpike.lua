@@ -4,6 +4,8 @@ local items = require "src.lppmk3.config.items"
 local spike = require "src.lppmk3.spike.state"
 local processSpike = require "src.lppmk3.spike.processMidi"
 local deliverSpike = require "src.lppmk3.spike.deliverMidi"
+local processSurface = require "src.lppmk3.remote.processMidi.surface"
+local const = require "src.lppmk3.config.constants"
 local colours = require "src.lppmk3.lib.colour.config"
 local makeColourEvent = require "src.lppmk3.lib.midi.makeColourEvent"
 local defineItemIndices = require "test.lppmk3.defineItemIndices"
@@ -73,6 +75,21 @@ end
 
 function TestSpike:testProgrammerLayoutReportSwitchesSetupOn()
   lu.assertTrue(reportLayout(17))
+  local input = handledInput()
+  lu.assertEquals(input.item, items.spikeSetup.index)
+  lu.assertEquals(input.value, 1)
+end
+
+-- the surface sends its layout reports on its DAW port, not on the MIDI port
+-- its pads and buttons use
+function TestSpike:testLayoutReportArrivingOnDawPortSwitchesSetupOn()
+  remote.mock "match_midi":impl(function(midi)
+    if midi == layoutReportMidi then
+      return { x = 17, y = 0 }
+    end
+    return nil
+  end)
+  lu.assertTrue(processSurface({ time_stamp = 0, port = const.inputPorts.daw }))
   local input = handledInput()
   lu.assertEquals(input.item, items.spikeSetup.index)
   lu.assertEquals(input.value, 1)
