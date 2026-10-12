@@ -14,6 +14,7 @@ TestLaunchnikLights = {}
 
 local state = launchnik.state
 local flashing = const.colourBehaviour.flashing
+local pulsing = const.colourBehaviour.pulsing
 
 -- simulates the host reporting new values for the named items
 local function report(values, isEnabled)
@@ -70,7 +71,57 @@ end
 
 function TestLaunchnikLights:testVibrantWhiteUsesBrightWhite()
   report { track3clip2light = 2 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(73, colours.white.bright) })
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(73, colours.white.bright, pulsing) })
+end
+
+-- light 5 is vibrant red: in launch mode, the light of a clip that is playing
+function TestLaunchnikLights:testPadOfAPlayingClipPulses()
+  report { track1clip1light = 5 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(81, colours.red.vibrant, pulsing) })
+  lu.assertEquals(deliverLaunchnik(), {})
+end
+
+function TestLaunchnikLights:testPadStopsPulsingWhenItsClipStops()
+  report { track1clip1light = 5 }
+  deliverLaunchnik()
+  report { track1clip1light = 4 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(81, colours.red.dim) })
+end
+
+-- in setup mode vibrant marks a chosen setting, which stands still
+function TestLaunchnikLights:testVibrantPadStandsStillInSetupMode()
+  report { setup = 2 }
+  deliverLaunchnik()
+  report { track1clip1light = 5 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(81, colours.red.vibrant) })
+end
+
+-- a pad whose light is vibrant in both modes gets no new light from the host
+function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
+  report { track1clip1light = 5 }
+  deliverLaunchnik()
+
+  report { setup = 2 }
+  local events = deliverLaunchnik()
+  lu.assertItemsEquals(events, {
+    makeColourEvent(81, colours.red.vibrant),
+    makeColourEvent(99, colours.green.vibrant),
+  })
+
+  report { setup = 0 }
+  events = deliverLaunchnik()
+  lu.assertItemsEquals(events, {
+    makeColourEvent(81, colours.red.vibrant, pulsing),
+    makeColourEvent(99, colours.off),
+  })
+end
+
+function TestLaunchnikLights:testTrackAndSceneButtonsDoNotPulse()
+  report { track8stoplight = 2, scene1light = 5 }
+  lu.assertItemsEquals(deliverLaunchnik(), {
+    makeColourEvent(108, colours.red.vibrant),
+    makeColourEvent(0x59, colours.red.vibrant),
+  })
 end
 
 function TestLaunchnikLights:testEveryLightHasAPaletteEntry()
