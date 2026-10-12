@@ -33,4 +33,10 @@ for track = 1, 8 do
   end
 end
 
+for scene = 1, 8 do
+  -- the light of the scene button, its part of the interval meter; encoded
+  -- like the light of a launch button
+  items["scene" .. scene .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "scenelight", scene = scene } }
+end
+
 return items

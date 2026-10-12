@@ -7,6 +7,8 @@
 --   { kind = "selection", track = 1..8, value = 0..8 }
 --   { kind = "setup", value = 0..65 }
 --   { kind = "present" | "pattern" | "colour", index = 0..63, value = ... }
+-- A press of a launch button, a stop button or the setup button changes one
+-- property at most; a press of a scene button yields a list of changes.
 
 local selectionStop = 0
 
@@ -62,6 +64,21 @@ local function stopButton(track)
   return { kind = "selection", track = track, value = selectionStop }
 end
 
+-- in launch mode, a scene button means what the eight launch buttons of its
+-- scene mean, track by track; in setup mode it does nothing (see ADR 0004 of
+-- the Launchnik repository); holdsClip says of each track, 1..8, whether its
+-- launch button in the scene holds a clip; returns a list of changes
+local function sceneButton(setup, scene, holdsClip)
+  local changes = {}
+  if setup ~= setupLaunchMode then
+    return changes
+  end
+  for track = 1, 8 do
+    table.insert(changes, launchButton(setup, track, scene, holdsClip[track], false))
+  end
+  return changes
+end
+
 local function setupButton(setup)
   local inSetupMode = setup ~= setupLaunchMode
   return { kind = "setup", value = inSetupMode and setupLaunchMode or setupClipPicking }
@@ -74,5 +91,6 @@ return {
   buttonIndex = buttonIndex,
   launchButton = launchButton,
   stopButton = stopButton,
+  sceneButton = sceneButton,
   setupButton = setupButton,
 }

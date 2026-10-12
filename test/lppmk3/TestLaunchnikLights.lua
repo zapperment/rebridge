@@ -144,3 +144,39 @@ function TestLaunchnikLights:testPadsAndLogoGoDarkWhenLaunchnikIsNoLongerMapped(
   lu.assertFalse(state.present[0])
   lu.assertEquals(state.setup, 0)
 end
+
+-- the scene buttons take control changes 89 at the top to 19 at the bottom;
+-- light 16 is dim green, 10 dim yellow, 4 dim red
+function TestLaunchnikLights:testSceneLightsAreDeliveredOnceToTheSceneButtons()
+  report { scene8light = 16 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(0x13, colours.green.dim) })
+  lu.assertEquals(deliverLaunchnik(), {})
+
+  report { scene3light = 10 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(0x45, colours.yellow.dim) })
+
+  report { scene1light = 4 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(0x59, colours.red.dim) })
+end
+
+function TestLaunchnikLights:testEverySceneButtonHasItsControlChange()
+  local controllers = { 0x59, 0x4f, 0x45, 0x3b, 0x31, 0x27, 0x1d, 0x13 }
+  for scene, controller in ipairs(controllers) do
+    report { ["scene" .. scene .. "light"] = 16 }
+    lu.assertEquals(deliverLaunchnik(), { makeColourEvent(controller, colours.green.dim) })
+  end
+end
+
+function TestLaunchnikLights:testSceneLightGoesOutWhenTheIntervalMeterStartsAgain()
+  report { scene1light = 4 }
+  deliverLaunchnik()
+  report { scene1light = 0 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(0x59, colours.off) })
+end
+
+function TestLaunchnikLights:testSceneLightsGoOutWhileNoLaunchnikIsMapped()
+  report { scene8light = 16 }
+  deliverLaunchnik()
+  report({ scene8light = 16 }, false)
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(0x13, colours.off) })
+end

@@ -9,6 +9,10 @@ local noteOn = 144
 local controlChange = 176
 local firstTrackButton = 101
 local lastTrackButton = 108
+-- the scene buttons send the control change that continues the numbering of
+-- the pads in their row: 19 at the bottom to 89 at the top
+local firstSceneButton = 19
+local lastSceneButton = 89
 
 -- the name of the item that carries a change to the host
 local function itemName(change)
@@ -33,9 +37,10 @@ local function write(event, change)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
 end
 
--- handles presses of the pads and the track buttons: a pad means what a click
--- on the launch button in its place means, a track button what a click on the
--- stop button of its track means
+-- handles presses of the pads, the track buttons and the scene buttons: a pad
+-- means what a click on the launch button in its place means, a track button
+-- what a click on the stop button of its track means, a scene button what a
+-- click on the scene button of its row means
 local function processPadsAndTrackButtons(event)
   local ret = remote.match_midi("xx yy zz", event)
   if not ret or ret.z == 0 then
@@ -53,6 +58,18 @@ local function processPadsAndTrackButtons(event)
   end
   if ret.x == controlChange and ret.y >= firstTrackButton and ret.y <= lastTrackButton then
     write(event, press.stopButton(ret.y - firstTrackButton + 1))
+    return true
+  end
+  local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9
+  if ret.x == controlChange and isSceneButton then
+    local scene = 9 - (ret.y - 9) / 10
+    local holdsClip = {}
+    for track = 1, 8 do
+      holdsClip[track] = state.present[press.buttonIndex(track, scene)]
+    end
+    for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip)) do
+      write(event, change)
+    end
     return true
   end
   return false

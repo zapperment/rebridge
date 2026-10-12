@@ -20,6 +20,13 @@ local palette = {
 -- the track buttons send and take control changes 101 to 108
 local firstTrackButton = 101
 
+-- the scene buttons, to the right of the grid, send and take the control
+-- change that continues the numbering of the pads in their row: 89 at the top
+-- to 19 at the bottom
+local function sceneButton(scene)
+  return (9 - scene) * 10 + 9
+end
+
 local dim, vibrant = 0, 1
 
 -- the events that make a pad or button show a colour dim, vibrant or
@@ -57,7 +64,8 @@ end
 
 -- called regularly by the codec to make the pads show the lights of the launch
 -- buttons in their place, the track buttons the lights of the stop buttons,
--- and the logo the setup mode; each change is delivered once
+-- the scene buttons the lights of the scene buttons, and the logo the setup
+-- mode; each change is delivered once
 return function()
   local state = launchnik.state
   local events = {}
@@ -83,6 +91,15 @@ return function()
     end
   end
   state.changedStopLights = {}
+
+  for scene = 1, 8 do
+    if state.changedSceneLights[scene] then
+      for _, event in ipairs(lightEvents(sceneButton(scene), state.sceneLights[scene])) do
+        table.insert(events, event)
+      end
+    end
+  end
+  state.changedSceneLights = {}
 
   if state.setupChanged then
     state.setupChanged = false

@@ -18,8 +18,14 @@ function state.reset()
   -- the lights of the stop buttons, by track, 1..8
   state.stopLights = {}
   state.changedStopLights = {}
+  -- the lights of the scene buttons, by scene, 1..8 from the top
+  state.sceneLights = {}
+  state.changedSceneLights = {}
   for track = 1, 8 do
     state.stopLights[track] = 0
+  end
+  for scene = 1, 8 do
+    state.sceneLights[scene] = 0
   end
   for index = 0, buttonCount - 1 do
     state.present[index] = false
