@@ -20,6 +20,13 @@ local palette = {
 -- the track buttons send and take control changes 101 to 108
 local firstTrackButton = 101
 
+-- the scene buttons, to the right of the grid, send and take the control
+-- change that continues the numbering of the pads in their row: 89 at the top
+-- to 19 at the bottom
+local function sceneButton(scene)
+  return (9 - scene) * 10 + 9
+end
+
 local dim, vibrant = 0, 1
 
 -- the events that make a pad or button show a colour dim, vibrant or
@@ -40,11 +47,20 @@ end
 
 -- a launch button's light is 0 for unlit, then dim, vibrant and flashing for
 -- each colour
-local function lightEvents(pad, light)
+local function isVibrant(light)
+  return light > 0 and (light - 1) % 3 == vibrant
+end
+
+-- pulses says that a vibrant light is to pulse instead of standing still
+local function lightEvents(pad, light, pulses)
   if light == 0 then
     return { midi.makeColourEvent(pad, col.config.off) }
   end
-  return colourEvents(pad, palette[math.floor((light - 1) / 3) + 1], (light - 1) % 3)
+  local colour = palette[math.floor((light - 1) / 3) + 1]
+  if pulses and isVibrant(light) then
+    return { midi.makeColourEvent(pad, colour.vibrant, const.colourBehaviour.pulsing) }
+  end
+  return colourEvents(pad, colour, (light - 1) % 3)
 end
 
 -- a stop button's light is 0 for unlit, then dim, vibrant and flashing, in red
@@ -57,18 +73,25 @@ end
 
 -- called regularly by the codec to make the pads show the lights of the launch
 -- buttons in their place, the track buttons the lights of the stop buttons,
--- and the logo the setup mode; each change is delivered once
+-- the scene buttons the lights of the scene buttons, and the logo the setup
+-- mode; each change is delivered once
+--
+-- In launch mode a vibrant launch button is one whose clip is playing, and its
+-- pad pulses, which the panel of Launchnik does not do. In setup mode vibrant
+-- marks a chosen setting and stands still, so a pad whose light is vibrant in
+-- both is delivered again when the mode changes.
 return function()
   local state = launchnik.state
   local events = {}
+  local inLaunchMode = state.setup == launchnik.press.setupLaunchMode
 
   for index = 0, 63 do
-    if state.changedLights[index] then
+    if state.changedLights[index] or (state.setupChanged and isVibrant(state.lights[index])) then
       local track = math.floor(index / 8) + 1
       local row = index % 8 + 1
       -- the pads are numbered 11 at the bottom left to 88 at the top right
       local pad = (9 - row) * 10 + track
-      for _, event in ipairs(lightEvents(pad, state.lights[index])) do
+      for _, event in ipairs(lightEvents(pad, state.lights[index], inLaunchMode)) do
         table.insert(events, event)
       end
     end
@@ -83,6 +106,15 @@ return function()
     end
   end
   state.changedStopLights = {}
+
+  for scene = 1, 8 do
+    if state.changedSceneLights[scene] then
+      for _, event in ipairs(lightEvents(sceneButton(scene), state.sceneLights[scene])) do
+        table.insert(events, event)
+      end
+    end
+  end
+  state.changedSceneLights = {}
 
   if state.setupChanged then
     state.setupChanged = false

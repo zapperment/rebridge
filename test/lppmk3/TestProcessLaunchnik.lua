@@ -146,3 +146,71 @@ function TestProcessLaunchnik:testIgnoresOtherControlChanges()
   lu.assertFalse(receive(controlChange, 90, 127))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
+
+-- the scene buttons send these control changes, from the bottom to the top
+local sceneButtons = { 0x13, 0x1d, 0x27, 0x31, 0x3b, 0x45, 0x4f, 0x59 }
+
+function TestProcessLaunchnik:testEverySceneButtonSelectsItsRowOnEveryTrack()
+  for index = 0, 63 do
+    state.present[index] = true
+  end
+  for fromBottom, controller in ipairs(sceneButtons) do
+    remote.clearMocks()
+    local scene = 9 - fromBottom
+    lu.assertTrue(receive(controlChange, controller, 127))
+    local calls = remote.mock "handle_input".calls
+    lu.assertEquals(#calls, 8)
+    for track = 1, 8 do
+      lu.assertEquals(calls[track][1].item, items["track" .. track .. "selection"].index)
+      lu.assertEquals(calls[track][1].value, scene)
+    end
+  end
+end
+
+function TestProcessLaunchnik:testSceneButtonStopsTracksWithAnEmptyLaunchButton()
+  state.present[press.buttonIndex(2, 8)] = true
+  lu.assertTrue(receive(controlChange, 0x13, 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 8)
+  for track = 1, 8 do
+    lu.assertEquals(calls[track][1].item, items["track" .. track .. "selection"].index)
+    lu.assertEquals(calls[track][1].value, track == 2 and 8 or 0)
+  end
+end
+
+function TestProcessLaunchnik:testSceneButtonIsSwallowedInClipEditing()
+  state.setup = press.setupFirstClipEditing
+  lu.assertTrue(receive(controlChange, 0x59, 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+-- from the bottom: immediate, one beat, half a bar, 1, 2, 4, 8 and 16 bars
+function TestProcessLaunchnik:testSceneButtonInClipPickingChoosesItsLengthAndLeavesSetupMode()
+  for fromBottom, controller in ipairs(sceneButtons) do
+    remote.clearMocks()
+    state.setup = press.setupClipPicking
+    lu.assertTrue(receive(controlChange, controller, 127))
+    local calls = remote.mock "handle_input".calls
+    lu.assertEquals(#calls, 2)
+    lu.assertEquals(calls[1][1].item, items.switchinterval.index)
+    lu.assertEquals(calls[1][1].value, fromBottom - 1)
+    lu.assertEquals(calls[2][1].item, items.setup.index)
+    lu.assertEquals(calls[2][1].value, press.setupLaunchMode)
+  end
+end
+
+function TestProcessLaunchnik:testSwitchIntervalItemHasTheRangeOfTheLengths()
+  lu.assertEquals({ items.switchinterval.min, items.switchinterval.max }, { 0, 7 })
+end
+
+function TestProcessLaunchnik:testReleasingSceneButtonDoesNothing()
+  lu.assertFalse(receive(controlChange, 0x59, 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testSceneLightItemsHaveTheRangeOfALight()
+  for scene = 1, 8 do
+    local light = items["scene" .. scene .. "light"]
+    lu.assertEquals({ light.min, light.max }, { 0, 42 })
+  end
+end

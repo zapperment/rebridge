@@ -87,3 +87,46 @@ function TestPress:testClipEditingWithoutClipHasNoColourOrPatternControls()
   lu.assertNil(press.launchButton(editing, 3, 3, false, false))
   lu.assertNil(press.launchButton(editing, 3, 5, false, false))
 end
+
+function TestPress:testSceneButtonSelectsItsRowOnEveryTrack()
+  local holdsClip = { true, true, true, true, true, true, true, true }
+  local changes = press.sceneButton(press.setupLaunchMode, 3, holdsClip)
+  lu.assertEquals(#changes, 8)
+  for track = 1, 8 do
+    lu.assertEquals(changes[track], { kind = "selection", track = track, value = 3 })
+  end
+end
+
+function TestPress:testSceneButtonStopsTracksWithAnEmptyLaunchButton()
+  local holdsClip = { true, false, false, true, false, false, false, true }
+  local changes = press.sceneButton(press.setupLaunchMode, 8, holdsClip)
+  lu.assertEquals(#changes, 8)
+  for track = 1, 8 do
+    lu.assertEquals(changes[track], { kind = "selection", track = track, value = holdsClip[track] and 8 or 0 })
+  end
+end
+
+function TestPress:testSceneButtonOfAnEmptySceneStopsEveryTrack()
+  local holdsClip = { false, false, false, false, false, false, false, false }
+  local changes = press.sceneButton(press.setupLaunchMode, 1, holdsClip)
+  lu.assertEquals(#changes, 8)
+  for track = 1, 8 do
+    lu.assertEquals(changes[track], { kind = "selection", track = track, value = 0 })
+  end
+end
+
+function TestPress:testSceneButtonDoesNothingInClipEditing()
+  local holdsClip = { true, true, true, true, true, true, true, true }
+  lu.assertEquals(press.sceneButton(editing, 3, holdsClip), {})
+end
+
+-- from the bottom: immediate, one beat, half a bar, 1, 2, 4, 8 and 16 bars
+function TestPress:testSceneButtonInClipPickingChoosesItsLengthAndLeavesSetupMode()
+  local holdsClip = { true, true, true, true, true, true, true, true }
+  for scene = 1, 8 do
+    lu.assertEquals(press.sceneButton(press.setupClipPicking, scene, holdsClip), {
+      { kind = "length", value = 8 - scene },
+      { kind = "setup", value = press.setupLaunchMode },
+    })
+  end
+end

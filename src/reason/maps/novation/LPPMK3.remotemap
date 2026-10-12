@@ -20,6 +20,7 @@ Map	deviceType		"launchnik"
 Map	deviceName		Device Name
 
 Map	setup		Setup
+Map	switchinterval		Switch Interval
 
 Map	track1clip1light		Track 1 Clip 1 Light
 Map	track2clip1light		Track 2 Clip 1 Light
@@ -317,6 +318,15 @@ Map	track5stoplight		Track 5 Stop Light
 Map	track6stoplight		Track 6 Stop Light
 Map	track7stoplight		Track 7 Stop Light
 Map	track8stoplight		Track 8 Stop Light
+
+Map	scene1light		Scene 1 Light
+Map	scene2light		Scene 2 Light
+Map	scene3light		Scene 3 Light
+Map	scene4light		Scene 4 Light
+Map	scene5light		Scene 5 Light
+Map	scene6light		Scene 6 Light
+Map	scene7light		Scene 7 Light
+Map	scene8light		Scene 8 Light
 
 Map	track1selection		Track 1 Selection
 Map	track2selection		Track 2 Selection

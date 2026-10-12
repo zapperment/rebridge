@@ -6,10 +6,10 @@ local padsOff = require "src.lppmk3.remote.deliverMidi.padsOff"
 
 TestPadsOff = {}
 
-function TestPadsOff:testTurnsOffEveryPatternPad()
+function TestPadsOff:testTurnsOffEveryPadAndSceneButton()
     local expected = {}
     for row = 8, 1, -1 do
-        for column = 1, 8 do
+        for column = 1, 9 do
             table.insert(expected, makeColourEvent(row * 10 + column, colours.off))
         end
     end
