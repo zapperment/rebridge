@@ -20,6 +20,7 @@ Map	deviceType		"launchnik"
 Map	deviceName		Device Name
 
 Map	setup		Setup
+Map	switchinterval		Switch Interval
 
 Map	track1clip1light		Track 1 Clip 1 Light
 Map	track2clip1light		Track 2 Clip 1 Light

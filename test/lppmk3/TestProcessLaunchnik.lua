@@ -178,13 +178,29 @@ function TestProcessLaunchnik:testSceneButtonStopsTracksWithAnEmptyLaunchButton(
   end
 end
 
-function TestProcessLaunchnik:testSceneButtonIsSwallowedInSetupMode()
-  for _, setup in ipairs { press.setupClipPicking, press.setupFirstClipEditing } do
+function TestProcessLaunchnik:testSceneButtonIsSwallowedInClipEditing()
+  state.setup = press.setupFirstClipEditing
+  lu.assertTrue(receive(controlChange, 0x59, 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+-- from the bottom: immediate, one beat, half a bar, 1, 2, 4, 8 and 16 bars
+function TestProcessLaunchnik:testSceneButtonInClipPickingChoosesItsLengthAndLeavesSetupMode()
+  for fromBottom, controller in ipairs(sceneButtons) do
     remote.clearMocks()
-    state.setup = setup
-    lu.assertTrue(receive(controlChange, 0x59, 127))
-    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+    state.setup = press.setupClipPicking
+    lu.assertTrue(receive(controlChange, controller, 127))
+    local calls = remote.mock "handle_input".calls
+    lu.assertEquals(#calls, 2)
+    lu.assertEquals(calls[1][1].item, items.switchinterval.index)
+    lu.assertEquals(calls[1][1].value, fromBottom - 1)
+    lu.assertEquals(calls[2][1].item, items.setup.index)
+    lu.assertEquals(calls[2][1].value, press.setupLaunchMode)
   end
+end
+
+function TestProcessLaunchnik:testSwitchIntervalItemHasTheRangeOfTheLengths()
+  lu.assertEquals({ items.switchinterval.min, items.switchinterval.max }, { 0, 7 })
 end
 
 function TestProcessLaunchnik:testReleasingSceneButtonDoesNothing()

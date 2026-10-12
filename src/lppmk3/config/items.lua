@@ -15,6 +15,10 @@ local items = {
 -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing
 items.setup = { input = "value", output = "value", min = 0, max = 65, launchnik = { kind = "setup" } }
 
+-- the length of the switch interval: 0 = immediate, 1 = one beat, 2 = half a
+-- bar, 3..7 = 1, 2, 4, 8 and 16 bars
+items.switchinterval = { input = "value", min = 0, max = 7 }
+
 for track = 1, 8 do
   -- the light of the track's stop button: 0 = unlit, 1 = dim, 2 = vibrant,
   -- 3 = flashing
@@ -34,8 +38,8 @@ for track = 1, 8 do
 end
 
 for scene = 1, 8 do
-  -- the light of the scene button, its part of the interval meter; encoded
-  -- like the light of a launch button
+  -- the light of the scene button: its part of the interval meter, or in clip
+  -- picking the length it stands for; encoded like the light of a launch button
   items["scene" .. scene .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "scenelight", scene = scene } }
 end
 

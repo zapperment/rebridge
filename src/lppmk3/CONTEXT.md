@@ -3,7 +3,8 @@
 Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
 Launchnik, and uses Launchnik's own words for everything that belongs to the
 device: track, launch button, stop button, clip, selection, light, launch mode,
-setup mode, clip picking, clip editing, scene, interval meter. Those are defined in the glossary of the
+setup mode, clip picking, clip editing, scene, interval meter, length (of the
+switch interval), immediate. Those are defined in the glossary of the
 Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and
 are not repeated here.
 
@@ -33,7 +34,8 @@ _Avoid_: stop pad, slot 0
 **Scene button**:
 One of the eight buttons in the column to the right of the grid. It stands for
 the scene button of Launchnik beside the same row, shows that scene button's
-light, and a press of it means what a click on that scene button means. Read
+light, and a press of it means what a click on that scene button means:
+launching its scene in launch mode, choosing a length in clip picking. Read
 together, the eight show Launchnik's interval meter.
 _Avoid_: scene launch button, side button, arrow button
 

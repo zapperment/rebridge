@@ -180,3 +180,18 @@ function TestLaunchnikLights:testSceneLightsGoOutWhileNoLaunchnikIsMapped()
   report({ scene8light = 16 }, false)
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(0x13, colours.off) })
 end
+
+-- in clip picking the scene buttons flash: light 3 is flashing white, 18
+-- flashing green
+function TestLaunchnikLights:testFlashingSceneLightsAreDeliveredAsDimPlusFlashingVibrant()
+  report { scene3light = 18 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(0x45, colours.green.dim),
+    makeColourEvent(0x45, colours.green.vibrant, flashing),
+  })
+  report { scene1light = 3 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(0x59, colours.white.dim),
+    makeColourEvent(0x59, colours.white.bright, flashing),
+  })
+end

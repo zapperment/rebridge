@@ -22,6 +22,9 @@ local function itemName(change)
   if change.kind == "setup" then
     return "setup"
   end
+  if change.kind == "length" then
+    return "switchinterval"
+  end
   local track = math.floor(change.index / 8) + 1
   local row = change.index % 8 + 1
   return "track" .. track .. "clip" .. row .. change.kind

@@ -6,6 +6,7 @@
 -- counted down track 1 first. A change names one property and its new value:
 --   { kind = "selection", track = 1..8, value = 0..8 }
 --   { kind = "setup", value = 0..65 }
+--   { kind = "length", value = 0..7 }
 --   { kind = "present" | "pattern" | "colour", index = 0..63, value = ... }
 -- A press of a launch button, a stop button or the setup button changes one
 -- property at most; a press of a scene button yields a list of changes.
@@ -65,11 +66,20 @@ local function stopButton(track)
 end
 
 -- in launch mode, a scene button means what the eight launch buttons of its
--- scene mean, track by track; in setup mode it does nothing (see ADR 0004 of
--- the Launchnik repository); holdsClip says of each track, 1..8, whether its
--- launch button in the scene holds a clip; returns a list of changes
+-- scene mean, track by track; in clip picking it chooses the length of the
+-- switch interval it stands for, immediate at the bottom and sixteen bars at
+-- the top, and returns to launch mode; in clip editing it does nothing (see
+-- ADR 0004 of the Launchnik repository); holdsClip says of each track, 1..8,
+-- whether its launch button in the scene holds a clip; returns a list of
+-- changes
 local function sceneButton(setup, scene, holdsClip)
   local changes = {}
+  if setup == setupClipPicking then
+    return {
+      { kind = "length", value = 8 - scene },
+      { kind = "setup", value = setupLaunchMode },
+    }
+  end
   if setup ~= setupLaunchMode then
     return changes
   end

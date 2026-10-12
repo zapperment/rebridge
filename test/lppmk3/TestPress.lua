@@ -115,8 +115,18 @@ function TestPress:testSceneButtonOfAnEmptySceneStopsEveryTrack()
   end
 end
 
-function TestPress:testSceneButtonDoesNothingInSetupMode()
+function TestPress:testSceneButtonDoesNothingInClipEditing()
   local holdsClip = { true, true, true, true, true, true, true, true }
-  lu.assertEquals(press.sceneButton(press.setupClipPicking, 3, holdsClip), {})
   lu.assertEquals(press.sceneButton(editing, 3, holdsClip), {})
+end
+
+-- from the bottom: immediate, one beat, half a bar, 1, 2, 4, 8 and 16 bars
+function TestPress:testSceneButtonInClipPickingChoosesItsLengthAndLeavesSetupMode()
+  local holdsClip = { true, true, true, true, true, true, true, true }
+  for scene = 1, 8 do
+    lu.assertEquals(press.sceneButton(press.setupClipPicking, scene, holdsClip), {
+      { kind = "length", value = 8 - scene },
+      { kind = "setup", value = press.setupLaunchMode },
+    })
+  end
 end
