@@ -86,7 +86,7 @@ Please remember that the project maintainer is developing this in his free time,
 
 ## Launchpad Pro [MK3] with Launchnik
 
-The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d8 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
+The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d9 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
 
 - The 8×8 pads stand for the launch buttons in the same places, show their lights in the clips' colours and do what a click on them does, in launch mode and in setup mode alike.
 - The eight track buttons in the upper row beneath the pads stand for the stop buttons and light up as they do: dark for a track without clips, dim red while it is stopped, vibrant red while a clip plays, flashing while it is about to stop.
