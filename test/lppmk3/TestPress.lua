@@ -11,6 +11,7 @@ local launchMode = press.setupLaunchMode
 local clipPicking = press.setupClipPicking
 local editing = press.setupFirstClipEditing + press.buttonIndex(4, 6)
 local picked = press.buttonIndex(4, 6)
+local fillInEditing = press.setupFirstFillInEditing + press.buttonIndex(4, 6)
 
 function TestPress:testButtonIndexCountsDownTrackOneFirst()
   lu.assertEquals(press.buttonIndex(1, 1), 0)
@@ -54,6 +55,8 @@ function TestPress:testBackButtonGoesBackOneStep()
   lu.assertNil(press.backButton(launchMode))
   lu.assertEquals(press.backButton(clipPicking), { kind = "setup", value = launchMode })
   lu.assertEquals(press.backButton(editing), { kind = "setup", value = clipPicking })
+  -- from fill-in editing it returns to clip editing of the same launch button
+  lu.assertEquals(press.backButton(fillInEditing), { kind = "setup", value = editing })
 end
 
 -- the back button has taken over from the launch button in row 8, column 8
@@ -136,4 +139,85 @@ function TestPress:testSceneButtonInClipPickingChoosesItsLengthAndLeavesSetupMod
       { kind = "setup", value = press.setupLaunchMode },
     })
   end
+end
+
+function TestPress:testSetupNumbering()
+  lu.assertEquals(press.setupFirstFillInEditing, 66)
+  lu.assertFalse(press.isClipEditing(clipPicking))
+  lu.assertTrue(press.isClipEditing(2))
+  lu.assertTrue(press.isClipEditing(65))
+  lu.assertFalse(press.isClipEditing(66))
+  lu.assertFalse(press.isFillInEditing(65))
+  lu.assertTrue(press.isFillInEditing(66))
+  lu.assertTrue(press.isFillInEditing(129))
+  lu.assertFalse(press.isFillInEditing(130))
+  lu.assertNil(press.pickedButton(launchMode))
+  lu.assertNil(press.pickedButton(clipPicking))
+  lu.assertEquals(press.pickedButton(editing), picked)
+  lu.assertEquals(press.pickedButton(fillInEditing), picked)
+end
+
+function TestPress:testSetupButtonLeavesFillInEditing()
+  lu.assertEquals(press.setupButton(fillInEditing), { kind = "setup", value = launchMode })
+end
+
+function TestPress:testSetFillInButtonGoesOnFromClipEditingOfAClip()
+  lu.assertEquals(press.setFillInButton(editing, true), { kind = "setup", value = fillInEditing })
+  lu.assertNil(press.setFillInButton(editing, false))
+  lu.assertNil(press.setFillInButton(launchMode, true))
+  lu.assertNil(press.setFillInButton(clipPicking, true))
+  lu.assertNil(press.setFillInButton(fillInEditing, true))
+end
+
+function TestPress:testFillInButtonFollowsTheButton()
+  lu.assertEquals(press.fillInButton(true), { kind = "fillin", value = 1 })
+  lu.assertEquals(press.fillInButton(false), { kind = "fillin", value = 0 })
+end
+
+function TestPress:testLaunchButtonDoesNothingInFillInEditing()
+  lu.assertNil(press.launchButton(fillInEditing, 8, 1, false, true))
+  lu.assertNil(press.launchButton(fillInEditing, 1, 2, false, true))
+end
+
+function TestPress:testFillInEditingDoesNothingElsewhere()
+  lu.assertEquals(press.fillInEditingLaunchButton(launchMode, 8, 1, false, 2), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(clipPicking, 8, 1, false, 2), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(editing, 8, 1, false, 2), {})
+end
+
+-- a new fill-in has the pattern of its clip, in white
+function TestPress:testFillInEditingToggleSetsUpANewFillIn()
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, false, 4), {
+    { kind = "fillinpresent", index = picked, value = 1 },
+    { kind = "fillinpattern", index = picked, value = 4 },
+    { kind = "fillincolour", index = picked, value = 0 },
+  })
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, true, 4), {
+    { kind = "fillinpresent", index = picked, value = 0 },
+  })
+end
+
+function TestPress:testFillInEditingColourAndPatternRows()
+  for column = 1, 7 do
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 2, true, 0), { { kind = "fillincolour", index = picked, value = column - 1 } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, true, 0), { { kind = "fillincolour", index = picked, value = 6 + column } })
+  end
+  for column = 1, 8 do
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, true, 0), { { kind = "fillinpattern", index = picked, value = column - 1 } })
+  end
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, true, 0), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 1, 1, true, 0), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 4, 6, true, 0), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 1, 8, true, 0), {})
+end
+
+function TestPress:testFillInEditingWithoutFillInHasNoColourOrPatternControls()
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, 2, false, 0), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, 3, false, 0), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, 5, false, 0), {})
+end
+
+function TestPress:testSceneButtonDoesNothingInFillInEditing()
+  local holdsClip = { true, true, true, true, true, true, true, true }
+  lu.assertEquals(press.sceneButton(fillInEditing, 3, holdsClip), {})
 end

@@ -189,6 +189,17 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
     makeColourEvent(99, colours.yellow.vibrant),
     makeColourEvent(91, colours.green.vibrant),
   })
+  -- in fill-in editing the logo is red, the back button yellow
+  report { setup = 76 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.red.vibrant),
+    makeColourEvent(91, colours.yellow.vibrant),
+  })
+  report { setup = 12 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.yellow.vibrant),
+    makeColourEvent(91, colours.green.vibrant),
+  })
   -- editing another launch button keeps the colours
   report { setup = 13 }
   lu.assertEquals(deliverLaunchnik(), {})
@@ -274,5 +285,45 @@ function TestLaunchnikLights:testFlashingSceneLightsAreDeliveredAsDimPlusFlashin
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(0x59, colours.white.dim),
     makeColourEvent(0x59, colours.white.bright, flashing),
+  })
+end
+
+function TestLaunchnikLights:testKeepsPatternsAndFillIns()
+  report { track2clip3pattern = 5, track2clip3fillinpresent = 1 }
+  lu.assertEquals(state.patterns[launchnik.press.buttonIndex(2, 3)], 5)
+  lu.assertTrue(state.fillInPresent[launchnik.press.buttonIndex(2, 3)])
+  report { track2clip3fillinpresent = 0 }
+  lu.assertFalse(state.fillInPresent[launchnik.press.buttonIndex(2, 3)])
+end
+
+-- the fill-in button's light is 1 (dim white) or 5 (vibrant red) and shows on
+-- control change 30; the set fill-in button's is 0 (unlit) or 5 and shows on
+-- control change 92
+function TestLaunchnikLights:testFillInAndSetFillInButtonsShowTheirLights()
+  report { setup = 0, fillinlight = 1, setfillinlight = 0 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.white.bright),
+    makeColourEvent(30, colours.white.dim),
+  })
+  report { fillinlight = 5 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(30, colours.red.vibrant) })
+  lu.assertEquals(deliverLaunchnik(), {})
+  report { setfillinlight = 5 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(92, colours.red.vibrant) })
+  report { setfillinlight = 0, fillinlight = 1 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(30, colours.white.dim),
+    makeColourEvent(92, colours.off),
+  })
+end
+
+function TestLaunchnikLights:testFillInButtonsGoDarkWhenLaunchnikIsNoLongerMapped()
+  report { setup = 0, fillinlight = 5, setfillinlight = 5 }
+  deliverLaunchnik()
+  report({ setup = 0, fillinlight = 5, setfillinlight = 5 }, false)
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.off),
+    makeColourEvent(30, colours.off),
+    makeColourEvent(92, colours.off),
   })
 end

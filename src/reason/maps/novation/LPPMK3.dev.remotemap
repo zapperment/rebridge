@@ -21,6 +21,9 @@ Map	deviceName		Device Name
 
 Map	setup		Setup
 Map	switchinterval		Switch Interval
+Map	fillin		Fill-In
+Map	fillinlight		Fill-In Light
+Map	setfillinlight		Set Fill-In Light
 
 Map	track1clip1light		Track 1 Clip 1 Light
 Map	track2clip1light		Track 2 Clip 1 Light
@@ -336,3 +339,219 @@ Map	track5selection		Track 5 Selection
 Map	track6selection		Track 6 Selection
 Map	track7selection		Track 7 Selection
 Map	track8selection		Track 8 Selection
+
+Map	track1clip1fillinpresent		Track 1 Clip 1 Fill-In Present
+Map	track2clip1fillinpresent		Track 2 Clip 1 Fill-In Present
+Map	track3clip1fillinpresent		Track 3 Clip 1 Fill-In Present
+Map	track4clip1fillinpresent		Track 4 Clip 1 Fill-In Present
+Map	track5clip1fillinpresent		Track 5 Clip 1 Fill-In Present
+Map	track6clip1fillinpresent		Track 6 Clip 1 Fill-In Present
+Map	track7clip1fillinpresent		Track 7 Clip 1 Fill-In Present
+Map	track8clip1fillinpresent		Track 8 Clip 1 Fill-In Present
+
+Map	track1clip2fillinpresent		Track 1 Clip 2 Fill-In Present
+Map	track2clip2fillinpresent		Track 2 Clip 2 Fill-In Present
+Map	track3clip2fillinpresent		Track 3 Clip 2 Fill-In Present
+Map	track4clip2fillinpresent		Track 4 Clip 2 Fill-In Present
+Map	track5clip2fillinpresent		Track 5 Clip 2 Fill-In Present
+Map	track6clip2fillinpresent		Track 6 Clip 2 Fill-In Present
+Map	track7clip2fillinpresent		Track 7 Clip 2 Fill-In Present
+Map	track8clip2fillinpresent		Track 8 Clip 2 Fill-In Present
+
+Map	track1clip3fillinpresent		Track 1 Clip 3 Fill-In Present
+Map	track2clip3fillinpresent		Track 2 Clip 3 Fill-In Present
+Map	track3clip3fillinpresent		Track 3 Clip 3 Fill-In Present
+Map	track4clip3fillinpresent		Track 4 Clip 3 Fill-In Present
+Map	track5clip3fillinpresent		Track 5 Clip 3 Fill-In Present
+Map	track6clip3fillinpresent		Track 6 Clip 3 Fill-In Present
+Map	track7clip3fillinpresent		Track 7 Clip 3 Fill-In Present
+Map	track8clip3fillinpresent		Track 8 Clip 3 Fill-In Present
+
+Map	track1clip4fillinpresent		Track 1 Clip 4 Fill-In Present
+Map	track2clip4fillinpresent		Track 2 Clip 4 Fill-In Present
+Map	track3clip4fillinpresent		Track 3 Clip 4 Fill-In Present
+Map	track4clip4fillinpresent		Track 4 Clip 4 Fill-In Present
+Map	track5clip4fillinpresent		Track 5 Clip 4 Fill-In Present
+Map	track6clip4fillinpresent		Track 6 Clip 4 Fill-In Present
+Map	track7clip4fillinpresent		Track 7 Clip 4 Fill-In Present
+Map	track8clip4fillinpresent		Track 8 Clip 4 Fill-In Present
+
+Map	track1clip5fillinpresent		Track 1 Clip 5 Fill-In Present
+Map	track2clip5fillinpresent		Track 2 Clip 5 Fill-In Present
+Map	track3clip5fillinpresent		Track 3 Clip 5 Fill-In Present
+Map	track4clip5fillinpresent		Track 4 Clip 5 Fill-In Present
+Map	track5clip5fillinpresent		Track 5 Clip 5 Fill-In Present
+Map	track6clip5fillinpresent		Track 6 Clip 5 Fill-In Present
+Map	track7clip5fillinpresent		Track 7 Clip 5 Fill-In Present
+Map	track8clip5fillinpresent		Track 8 Clip 5 Fill-In Present
+
+Map	track1clip6fillinpresent		Track 1 Clip 6 Fill-In Present
+Map	track2clip6fillinpresent		Track 2 Clip 6 Fill-In Present
+Map	track3clip6fillinpresent		Track 3 Clip 6 Fill-In Present
+Map	track4clip6fillinpresent		Track 4 Clip 6 Fill-In Present
+Map	track5clip6fillinpresent		Track 5 Clip 6 Fill-In Present
+Map	track6clip6fillinpresent		Track 6 Clip 6 Fill-In Present
+Map	track7clip6fillinpresent		Track 7 Clip 6 Fill-In Present
+Map	track8clip6fillinpresent		Track 8 Clip 6 Fill-In Present
+
+Map	track1clip7fillinpresent		Track 1 Clip 7 Fill-In Present
+Map	track2clip7fillinpresent		Track 2 Clip 7 Fill-In Present
+Map	track3clip7fillinpresent		Track 3 Clip 7 Fill-In Present
+Map	track4clip7fillinpresent		Track 4 Clip 7 Fill-In Present
+Map	track5clip7fillinpresent		Track 5 Clip 7 Fill-In Present
+Map	track6clip7fillinpresent		Track 6 Clip 7 Fill-In Present
+Map	track7clip7fillinpresent		Track 7 Clip 7 Fill-In Present
+Map	track8clip7fillinpresent		Track 8 Clip 7 Fill-In Present
+
+Map	track1clip8fillinpresent		Track 1 Clip 8 Fill-In Present
+Map	track2clip8fillinpresent		Track 2 Clip 8 Fill-In Present
+Map	track3clip8fillinpresent		Track 3 Clip 8 Fill-In Present
+Map	track4clip8fillinpresent		Track 4 Clip 8 Fill-In Present
+Map	track5clip8fillinpresent		Track 5 Clip 8 Fill-In Present
+Map	track6clip8fillinpresent		Track 6 Clip 8 Fill-In Present
+Map	track7clip8fillinpresent		Track 7 Clip 8 Fill-In Present
+Map	track8clip8fillinpresent		Track 8 Clip 8 Fill-In Present
+
+Map	track1clip1fillinpattern		Track 1 Clip 1 Fill-In Pattern
+Map	track2clip1fillinpattern		Track 2 Clip 1 Fill-In Pattern
+Map	track3clip1fillinpattern		Track 3 Clip 1 Fill-In Pattern
+Map	track4clip1fillinpattern		Track 4 Clip 1 Fill-In Pattern
+Map	track5clip1fillinpattern		Track 5 Clip 1 Fill-In Pattern
+Map	track6clip1fillinpattern		Track 6 Clip 1 Fill-In Pattern
+Map	track7clip1fillinpattern		Track 7 Clip 1 Fill-In Pattern
+Map	track8clip1fillinpattern		Track 8 Clip 1 Fill-In Pattern
+
+Map	track1clip2fillinpattern		Track 1 Clip 2 Fill-In Pattern
+Map	track2clip2fillinpattern		Track 2 Clip 2 Fill-In Pattern
+Map	track3clip2fillinpattern		Track 3 Clip 2 Fill-In Pattern
+Map	track4clip2fillinpattern		Track 4 Clip 2 Fill-In Pattern
+Map	track5clip2fillinpattern		Track 5 Clip 2 Fill-In Pattern
+Map	track6clip2fillinpattern		Track 6 Clip 2 Fill-In Pattern
+Map	track7clip2fillinpattern		Track 7 Clip 2 Fill-In Pattern
+Map	track8clip2fillinpattern		Track 8 Clip 2 Fill-In Pattern
+
+Map	track1clip3fillinpattern		Track 1 Clip 3 Fill-In Pattern
+Map	track2clip3fillinpattern		Track 2 Clip 3 Fill-In Pattern
+Map	track3clip3fillinpattern		Track 3 Clip 3 Fill-In Pattern
+Map	track4clip3fillinpattern		Track 4 Clip 3 Fill-In Pattern
+Map	track5clip3fillinpattern		Track 5 Clip 3 Fill-In Pattern
+Map	track6clip3fillinpattern		Track 6 Clip 3 Fill-In Pattern
+Map	track7clip3fillinpattern		Track 7 Clip 3 Fill-In Pattern
+Map	track8clip3fillinpattern		Track 8 Clip 3 Fill-In Pattern
+
+Map	track1clip4fillinpattern		Track 1 Clip 4 Fill-In Pattern
+Map	track2clip4fillinpattern		Track 2 Clip 4 Fill-In Pattern
+Map	track3clip4fillinpattern		Track 3 Clip 4 Fill-In Pattern
+Map	track4clip4fillinpattern		Track 4 Clip 4 Fill-In Pattern
+Map	track5clip4fillinpattern		Track 5 Clip 4 Fill-In Pattern
+Map	track6clip4fillinpattern		Track 6 Clip 4 Fill-In Pattern
+Map	track7clip4fillinpattern		Track 7 Clip 4 Fill-In Pattern
+Map	track8clip4fillinpattern		Track 8 Clip 4 Fill-In Pattern
+
+Map	track1clip5fillinpattern		Track 1 Clip 5 Fill-In Pattern
+Map	track2clip5fillinpattern		Track 2 Clip 5 Fill-In Pattern
+Map	track3clip5fillinpattern		Track 3 Clip 5 Fill-In Pattern
+Map	track4clip5fillinpattern		Track 4 Clip 5 Fill-In Pattern
+Map	track5clip5fillinpattern		Track 5 Clip 5 Fill-In Pattern
+Map	track6clip5fillinpattern		Track 6 Clip 5 Fill-In Pattern
+Map	track7clip5fillinpattern		Track 7 Clip 5 Fill-In Pattern
+Map	track8clip5fillinpattern		Track 8 Clip 5 Fill-In Pattern
+
+Map	track1clip6fillinpattern		Track 1 Clip 6 Fill-In Pattern
+Map	track2clip6fillinpattern		Track 2 Clip 6 Fill-In Pattern
+Map	track3clip6fillinpattern		Track 3 Clip 6 Fill-In Pattern
+Map	track4clip6fillinpattern		Track 4 Clip 6 Fill-In Pattern
+Map	track5clip6fillinpattern		Track 5 Clip 6 Fill-In Pattern
+Map	track6clip6fillinpattern		Track 6 Clip 6 Fill-In Pattern
+Map	track7clip6fillinpattern		Track 7 Clip 6 Fill-In Pattern
+Map	track8clip6fillinpattern		Track 8 Clip 6 Fill-In Pattern
+
+Map	track1clip7fillinpattern		Track 1 Clip 7 Fill-In Pattern
+Map	track2clip7fillinpattern		Track 2 Clip 7 Fill-In Pattern
+Map	track3clip7fillinpattern		Track 3 Clip 7 Fill-In Pattern
+Map	track4clip7fillinpattern		Track 4 Clip 7 Fill-In Pattern
+Map	track5clip7fillinpattern		Track 5 Clip 7 Fill-In Pattern
+Map	track6clip7fillinpattern		Track 6 Clip 7 Fill-In Pattern
+Map	track7clip7fillinpattern		Track 7 Clip 7 Fill-In Pattern
+Map	track8clip7fillinpattern		Track 8 Clip 7 Fill-In Pattern
+
+Map	track1clip8fillinpattern		Track 1 Clip 8 Fill-In Pattern
+Map	track2clip8fillinpattern		Track 2 Clip 8 Fill-In Pattern
+Map	track3clip8fillinpattern		Track 3 Clip 8 Fill-In Pattern
+Map	track4clip8fillinpattern		Track 4 Clip 8 Fill-In Pattern
+Map	track5clip8fillinpattern		Track 5 Clip 8 Fill-In Pattern
+Map	track6clip8fillinpattern		Track 6 Clip 8 Fill-In Pattern
+Map	track7clip8fillinpattern		Track 7 Clip 8 Fill-In Pattern
+Map	track8clip8fillinpattern		Track 8 Clip 8 Fill-In Pattern
+
+Map	track1clip1fillincolour		Track 1 Clip 1 Fill-In Colour
+Map	track2clip1fillincolour		Track 2 Clip 1 Fill-In Colour
+Map	track3clip1fillincolour		Track 3 Clip 1 Fill-In Colour
+Map	track4clip1fillincolour		Track 4 Clip 1 Fill-In Colour
+Map	track5clip1fillincolour		Track 5 Clip 1 Fill-In Colour
+Map	track6clip1fillincolour		Track 6 Clip 1 Fill-In Colour
+Map	track7clip1fillincolour		Track 7 Clip 1 Fill-In Colour
+Map	track8clip1fillincolour		Track 8 Clip 1 Fill-In Colour
+
+Map	track1clip2fillincolour		Track 1 Clip 2 Fill-In Colour
+Map	track2clip2fillincolour		Track 2 Clip 2 Fill-In Colour
+Map	track3clip2fillincolour		Track 3 Clip 2 Fill-In Colour
+Map	track4clip2fillincolour		Track 4 Clip 2 Fill-In Colour
+Map	track5clip2fillincolour		Track 5 Clip 2 Fill-In Colour
+Map	track6clip2fillincolour		Track 6 Clip 2 Fill-In Colour
+Map	track7clip2fillincolour		Track 7 Clip 2 Fill-In Colour
+Map	track8clip2fillincolour		Track 8 Clip 2 Fill-In Colour
+
+Map	track1clip3fillincolour		Track 1 Clip 3 Fill-In Colour
+Map	track2clip3fillincolour		Track 2 Clip 3 Fill-In Colour
+Map	track3clip3fillincolour		Track 3 Clip 3 Fill-In Colour
+Map	track4clip3fillincolour		Track 4 Clip 3 Fill-In Colour
+Map	track5clip3fillincolour		Track 5 Clip 3 Fill-In Colour
+Map	track6clip3fillincolour		Track 6 Clip 3 Fill-In Colour
+Map	track7clip3fillincolour		Track 7 Clip 3 Fill-In Colour
+Map	track8clip3fillincolour		Track 8 Clip 3 Fill-In Colour
+
+Map	track1clip4fillincolour		Track 1 Clip 4 Fill-In Colour
+Map	track2clip4fillincolour		Track 2 Clip 4 Fill-In Colour
+Map	track3clip4fillincolour		Track 3 Clip 4 Fill-In Colour
+Map	track4clip4fillincolour		Track 4 Clip 4 Fill-In Colour
+Map	track5clip4fillincolour		Track 5 Clip 4 Fill-In Colour
+Map	track6clip4fillincolour		Track 6 Clip 4 Fill-In Colour
+Map	track7clip4fillincolour		Track 7 Clip 4 Fill-In Colour
+Map	track8clip4fillincolour		Track 8 Clip 4 Fill-In Colour
+
+Map	track1clip5fillincolour		Track 1 Clip 5 Fill-In Colour
+Map	track2clip5fillincolour		Track 2 Clip 5 Fill-In Colour
+Map	track3clip5fillincolour		Track 3 Clip 5 Fill-In Colour
+Map	track4clip5fillincolour		Track 4 Clip 5 Fill-In Colour
+Map	track5clip5fillincolour		Track 5 Clip 5 Fill-In Colour
+Map	track6clip5fillincolour		Track 6 Clip 5 Fill-In Colour
+Map	track7clip5fillincolour		Track 7 Clip 5 Fill-In Colour
+Map	track8clip5fillincolour		Track 8 Clip 5 Fill-In Colour
+
+Map	track1clip6fillincolour		Track 1 Clip 6 Fill-In Colour
+Map	track2clip6fillincolour		Track 2 Clip 6 Fill-In Colour
+Map	track3clip6fillincolour		Track 3 Clip 6 Fill-In Colour
+Map	track4clip6fillincolour		Track 4 Clip 6 Fill-In Colour
+Map	track5clip6fillincolour		Track 5 Clip 6 Fill-In Colour
+Map	track6clip6fillincolour		Track 6 Clip 6 Fill-In Colour
+Map	track7clip6fillincolour		Track 7 Clip 6 Fill-In Colour
+Map	track8clip6fillincolour		Track 8 Clip 6 Fill-In Colour
+
+Map	track1clip7fillincolour		Track 1 Clip 7 Fill-In Colour
+Map	track2clip7fillincolour		Track 2 Clip 7 Fill-In Colour
+Map	track3clip7fillincolour		Track 3 Clip 7 Fill-In Colour
+Map	track4clip7fillincolour		Track 4 Clip 7 Fill-In Colour
+Map	track5clip7fillincolour		Track 5 Clip 7 Fill-In Colour
+Map	track6clip7fillincolour		Track 6 Clip 7 Fill-In Colour
+Map	track7clip7fillincolour		Track 7 Clip 7 Fill-In Colour
+Map	track8clip7fillincolour		Track 8 Clip 7 Fill-In Colour
+
+Map	track1clip8fillincolour		Track 1 Clip 8 Fill-In Colour
+Map	track2clip8fillincolour		Track 2 Clip 8 Fill-In Colour
+Map	track3clip8fillincolour		Track 3 Clip 8 Fill-In Colour
+Map	track4clip8fillincolour		Track 4 Clip 8 Fill-In Colour
+Map	track5clip8fillincolour		Track 5 Clip 8 Fill-In Colour
+Map	track6clip8fillincolour		Track 6 Clip 8 Fill-In Colour
+Map	track7clip8fillincolour		Track 7 Clip 8 Fill-In Colour
+Map	track8clip8fillincolour		Track 8 Clip 8 Fill-In Colour
