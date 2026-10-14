@@ -42,5 +42,6 @@ _Avoid_: scene launch button, side button, arrow button
 **Setup button**:
 The button at the bottom left of the surface. It stands for the setup button of
 Launchnik: releasing it means what a click on that button means. It has no
-light; the surface's logo is lit while setup mode is on.
+light; the surface's logo shows Launchnik's mode colour instead: white in
+launch mode, green in clip picking, yellow in clip editing.
 _Avoid_: settings button

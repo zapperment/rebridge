@@ -11,6 +11,10 @@ function state.reset()
   -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing
   state.setup = 0
   state.setupChanged = false
+  -- whether a Launchnik is mapped, which the setup item tells
+  state.mapped = false
+  -- the colour last delivered to the logo, which is dark to begin with
+  state.logoColour = 0
   -- by launch button index, 0..63
   state.present = {}
   state.lights = {}
