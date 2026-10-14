@@ -8,8 +8,8 @@
 --   { kind = "setup", value = 0..65 }
 --   { kind = "length", value = 0..7 }
 --   { kind = "present" | "pattern" | "colour", index = 0..63, value = ... }
--- A press of a launch button, a stop button or the setup button changes one
--- property at most; a press of a scene button yields a list of changes.
+-- A press of a launch button, a stop button, the setup button or the back
+-- button changes one property at most; a press of a scene button yields a list of changes.
 
 local selectionStop = 0
 
@@ -19,7 +19,6 @@ local setupFirstClipEditing = 2
 
 -- where the controls of clip editing sit on the grid
 local toggle = { track = 8, row = 1 }
-local back = { track = 8, row = 8 }
 local firstColourRow = 2
 local coloursPerRow = 7
 local patternRow = 5
@@ -43,9 +42,6 @@ local function launchButton(setup, track, row, pressedHoldsClip, pickedHoldsClip
   local picked = setup - setupFirstClipEditing
   if track == toggle.track and row == toggle.row then
     return { kind = "present", index = picked, value = pickedHoldsClip and 0 or 1 }
-  end
-  if track == back.track and row == back.row then
-    return { kind = "setup", value = setupClipPicking }
   end
   -- the colour and pattern controls are not there without a clip
   if not pickedHoldsClip then
@@ -94,6 +90,15 @@ local function setupButton(setup)
   return { kind = "setup", value = inSetupMode and setupLaunchMode or setupClipPicking }
 end
 
+-- goes back one step of setup mode: from clip editing to clip picking, from
+-- clip picking to launch mode; in launch mode it does nothing, so returns nil
+local function backButton(setup)
+  if setup == setupLaunchMode then
+    return nil
+  end
+  return { kind = "setup", value = setup == setupClipPicking and setupLaunchMode or setupClipPicking }
+end
+
 return {
   setupLaunchMode = setupLaunchMode,
   setupClipPicking = setupClipPicking,
@@ -103,4 +108,5 @@ return {
   stopButton = stopButton,
   sceneButton = sceneButton,
   setupButton = setupButton,
+  backButton = backButton,
 }

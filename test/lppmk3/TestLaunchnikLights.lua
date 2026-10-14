@@ -106,6 +106,7 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
   lu.assertItemsEquals(events, {
     makeColourEvent(81, colours.red.vibrant),
     makeColourEvent(99, colours.yellow.vibrant),
+    makeColourEvent(91, colours.green.vibrant),
   })
 
   report { setup = 0 }
@@ -113,6 +114,7 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
   lu.assertItemsEquals(events, {
     makeColourEvent(81, colours.red.vibrant, pulsing),
     makeColourEvent(99, colours.white.bright),
+    makeColourEvent(91, colours.off),
   })
 end
 
@@ -173,17 +175,28 @@ function TestLaunchnikLights:testStopLightRangeIsThatOfLaunchniksRemoteItem()
 end
 
 -- the logo shows Launchnik's mode colour: white in launch mode, green in clip
--- picking, yellow in clip editing
-function TestLaunchnikLights:testLogoShowsTheModeColour()
+-- picking, yellow in clip editing,
+-- and the back button the light of Launchnik's back button: vibrant white in
+-- clip picking, vibrant green in clip editing, dark in launch mode
+function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   report { setup = 1 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.green.vibrant) })
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.green.vibrant),
+    makeColourEvent(91, colours.white.bright),
+  })
   report { setup = 12 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.yellow.vibrant) })
-  -- editing another launch button keeps the colour
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.yellow.vibrant),
+    makeColourEvent(91, colours.green.vibrant),
+  })
+  -- editing another launch button keeps the colours
   report { setup = 13 }
   lu.assertEquals(deliverLaunchnik(), {})
   report { setup = 0 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.white.bright) })
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.white.bright),
+    makeColourEvent(91, colours.off),
+  })
 end
 
 -- a Launchnik in launch mode has the setup state the codec starts with, so it
@@ -199,7 +212,7 @@ function TestLaunchnikLights:testLogoTurnsWhiteWhenLaunchnikIsMapped()
 end
 
 -- while no Launchnik is mapped, its items are disabled
-function TestLaunchnikLights:testPadsAndLogoGoDarkWhenLaunchnikIsNoLongerMapped()
+function TestLaunchnikLights:testPadsLogoAndBackButtonGoDarkWhenLaunchnikIsNoLongerMapped()
   report { track1clip1light = 5, track1clip1present = 1, track1stoplight = 2, setup = 1 }
   deliverLaunchnik()
   report({ track1clip1light = 5, track1clip1present = 1, track1stoplight = 2, setup = 1 }, false)
@@ -207,6 +220,7 @@ function TestLaunchnikLights:testPadsAndLogoGoDarkWhenLaunchnikIsNoLongerMapped(
     makeColourEvent(81, colours.off),
     makeColourEvent(101, colours.off),
     makeColourEvent(99, colours.off),
+    makeColourEvent(91, colours.off),
   })
   lu.assertFalse(state.present[0])
   lu.assertEquals(state.setup, 0)

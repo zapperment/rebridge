@@ -50,9 +50,16 @@ function TestPress:testClipEditingToggleSwitchesThePickedClip()
   lu.assertEquals(press.launchButton(editing, 8, 1, false, true), { kind = "present", index = picked, value = 0 })
 end
 
-function TestPress:testClipEditingBackReturnsToClipPicking()
-  lu.assertEquals(press.launchButton(editing, 8, 8, false, true), { kind = "setup", value = clipPicking })
-  lu.assertEquals(press.launchButton(editing, 8, 8, false, false), { kind = "setup", value = clipPicking })
+function TestPress:testBackButtonGoesBackOneStep()
+  lu.assertNil(press.backButton(launchMode))
+  lu.assertEquals(press.backButton(clipPicking), { kind = "setup", value = launchMode })
+  lu.assertEquals(press.backButton(editing), { kind = "setup", value = clipPicking })
+end
+
+-- the back button has taken over from the launch button in row 8, column 8
+function TestPress:testClipEditingLastLaunchButtonDoesNothing()
+  lu.assertNil(press.launchButton(editing, 8, 8, false, true))
+  lu.assertNil(press.launchButton(editing, 8, 8, false, false))
 end
 
 function TestPress:testClipEditingColourRows()

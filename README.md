@@ -86,11 +86,12 @@ Please remember that the project maintainer is developing this in his free time,
 
 ## Launchpad Pro [MK3] with Launchnik
 
-The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d4 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
+The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d8 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
 
 - The 8×8 pads stand for the launch buttons in the same places, show their lights in the clips' colours and do what a click on them does, in launch mode and in setup mode alike.
 - The eight track buttons in the upper row beneath the pads stand for the stop buttons and light up as they do: dark for a track without clips, dim red while it is stopped, vibrant red while a clip plays, flashing while it is about to stop.
 - The Setup button at the bottom left stands for Launchnik's setup button and acts when it is released. The Novation logo is green while setup mode is on.
+- The button with the arrow pointing left, beside Shift, stands for Launchnik's back button and lights up as it does: vibrant white in clip picking, vibrant green in clip editing, dark in launch mode, where it does nothing.
 - Flashing pads flash at the Launchpad's own tempo, not in step with Reason.
 
 When adding the surface in Reason's settings, set **two** input ports: "Input (LPProMK3 MIDI)" to the Launchpad's MIDI port and "Input (LPProMK3 DAW)" to its DAW port. The Setup button only reaches the codec through the DAW port.

@@ -13,6 +13,8 @@ local lastTrackButton = 108
 -- the pads in their row: 19 at the bottom to 89 at the top
 local firstSceneButton = 19
 local lastSceneButton = 89
+-- the button with the arrow pointing left, beside Shift
+local backButton = 91
 
 -- the name of the item that carries a change to the host
 local function itemName(change)
@@ -40,10 +42,11 @@ local function write(event, change)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
 end
 
--- handles presses of the pads, the track buttons and the scene buttons: a pad
--- means what a click on the launch button in its place means, a track button
--- what a click on the stop button of its track means, a scene button what a
--- click on the scene button of its row means
+-- handles presses of the pads, the track buttons, the scene buttons and the
+-- back button: a pad means what a click on the launch button in its place
+-- means, a track button what a click on the stop button of its track means, a
+-- scene button what a click on the scene button of its row means, the back
+-- button what a click on Launchnik's back button means
 local function processPadsAndTrackButtons(event)
   local ret = remote.match_midi("xx yy zz", event)
   if not ret or ret.z == 0 then
@@ -61,6 +64,10 @@ local function processPadsAndTrackButtons(event)
   end
   if ret.x == controlChange and ret.y >= firstTrackButton and ret.y <= lastTrackButton then
     write(event, press.stopButton(ret.y - firstTrackButton + 1))
+    return true
+  end
+  if ret.x == controlChange and ret.y == backButton then
+    write(event, press.backButton(state.setup))
     return true
   end
   local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9

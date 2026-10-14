@@ -21,6 +21,22 @@ local function logoColour(state)
   return col.config.yellow.vibrant
 end
 
+-- the back button, with the arrow pointing left beside Shift, shows the light
+-- of Launchnik's back button, which only depends on the setup state: dark in
+-- launch mode, vibrant white in clip picking, vibrant green in clip editing;
+-- it is dark while no Launchnik is mapped
+local backButton = 91
+
+local function backButtonColour(state)
+  if not state.mapped or state.setup == launchnik.press.setupLaunchMode then
+    return col.config.off
+  end
+  if state.setup == launchnik.press.setupClipPicking then
+    return col.config.white.bright
+  end
+  return col.config.green.vibrant
+end
+
 -- Launchnik's colours in its order, each with the palette entries for dim and
 -- vibrant; white has no entry called vibrant
 local palette = {
@@ -87,8 +103,9 @@ end
 
 -- called regularly by the codec to make the pads show the lights of the launch
 -- buttons in their place, the track buttons the lights of the stop buttons,
--- the scene buttons the lights of the scene buttons, and the logo the mode
--- colour; each change is delivered once
+-- the scene buttons the lights of the scene buttons, the logo the mode colour
+-- and the back button the light of Launchnik's back button; each change is
+-- delivered once
 --
 -- In launch mode a vibrant launch button is one whose clip is playing, and its
 -- pad pulses, which the panel of Launchnik does not do. In setup mode vibrant
@@ -136,6 +153,12 @@ return function()
   if colour ~= state.logoColour then
     state.logoColour = colour
     table.insert(events, midi.makeColourEvent(logo, colour))
+  end
+
+  colour = backButtonColour(state)
+  if colour ~= state.backButtonColour then
+    state.backButtonColour = colour
+    table.insert(events, midi.makeColourEvent(backButton, colour))
   end
 
   return events

@@ -214,3 +214,26 @@ function TestProcessLaunchnik:testSceneLightItemsHaveTheRangeOfALight()
     lu.assertEquals({ light.min, light.max }, { 0, 42 })
   end
 end
+
+-- the button with the arrow pointing left sends control change 91
+function TestProcessLaunchnik:testBackButtonGoesBackOneStep()
+  state.setup = press.setupFirstClipEditing + 12
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupClipPicking })
+
+  remote.clearMocks()
+  state.setup = press.setupClipPicking
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+function TestProcessLaunchnik:testBackButtonDoesNothingInLaunchMode()
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testReleasingBackButtonDoesNothing()
+  state.setup = press.setupClipPicking
+  lu.assertFalse(receive(controlChange, 91, 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end

@@ -45,3 +45,10 @@ Launchnik: releasing it means what a click on that button means. It has no
 light; the surface's logo shows Launchnik's mode colour instead: white in
 launch mode, green in clip picking, yellow in clip editing.
 _Avoid_: settings button
+
+**Back button**:
+The button with the arrow pointing left, beside Shift at the top left of the
+surface. It stands for the back button of Launchnik: pressing it means what a
+click on that button means, and it shows the same light: off in launch mode,
+vibrant white in clip picking, vibrant green in clip editing.
+_Avoid_: left arrow, arrow button

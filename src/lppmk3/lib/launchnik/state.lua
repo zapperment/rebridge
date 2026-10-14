@@ -15,6 +15,8 @@ function state.reset()
   state.mapped = false
   -- the colour last delivered to the logo, which is dark to begin with
   state.logoColour = 0
+  -- the colour last delivered to the back button, which is dark to begin with
+  state.backButtonColour = 0
   -- by launch button index, 0..63
   state.present = {}
   state.lights = {}
