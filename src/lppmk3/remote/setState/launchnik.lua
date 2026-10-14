@@ -17,9 +17,9 @@ local function findItem(index)
   return itemsByIndex[index]
 end
 
--- keeps a copy of what the host reports about Launchnik: the setup state,
--- which launch buttons hold a clip, and the light of every launch button,
--- stop button and scene button;
+-- keeps a copy of what the host reports about Launchnik: whether it is mapped,
+-- the setup state, which launch buttons hold a clip, and the light of every
+-- launch button, stop button and scene button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
 -- device, so that the pads go dark
 local function setState(hostItems)
@@ -35,6 +35,7 @@ local function setState(hostItems)
           state.setup = value
           state.setupChanged = true
         end
+        state.mapped = changedItem.is_enabled
       elseif kind == "present" then
         state.present[item.launchnik.index] = value > 0
       elseif kind == "stoplight" then

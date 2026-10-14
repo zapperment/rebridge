@@ -3,9 +3,23 @@ local midi = require "src.lppmk3.lib.midi._"
 local col = require "src.lppmk3.lib.colour._"
 local launchnik = require "src.lppmk3.lib.launchnik._"
 
--- the Novation logo at the top right shows that setup mode is on, since the
--- Setup button has no light the codec could use
+-- the Novation logo at the top right shows Launchnik's mode colour, as the
+-- Launchnik logo does on the panel, since the Setup button has no light the
+-- codec could use; it is dark while no Launchnik is mapped
 local logo = 99
+
+local function logoColour(state)
+  if not state.mapped then
+    return col.config.off
+  end
+  if state.setup == launchnik.press.setupLaunchMode then
+    return col.config.white.bright
+  end
+  if state.setup == launchnik.press.setupClipPicking then
+    return col.config.green.vibrant
+  end
+  return col.config.yellow.vibrant
+end
 
 -- Launchnik's colours in its order, each with the palette entries for dim and
 -- vibrant; white has no entry called vibrant
@@ -73,8 +87,8 @@ end
 
 -- called regularly by the codec to make the pads show the lights of the launch
 -- buttons in their place, the track buttons the lights of the stop buttons,
--- the scene buttons the lights of the scene buttons, and the logo the setup
--- mode; each change is delivered once
+-- the scene buttons the lights of the scene buttons, and the logo the mode
+-- colour; each change is delivered once
 --
 -- In launch mode a vibrant launch button is one whose clip is playing, and its
 -- pad pulses, which the panel of Launchnik does not do. In setup mode vibrant
@@ -116,10 +130,12 @@ return function()
   end
   state.changedSceneLights = {}
 
-  if state.setupChanged then
-    state.setupChanged = false
-    local inSetupMode = state.setup ~= launchnik.press.setupLaunchMode
-    table.insert(events, midi.makeColourEvent(logo, inSetupMode and col.config.green.vibrant or col.config.off))
+  state.setupChanged = false
+
+  local colour = logoColour(state)
+  if colour ~= state.logoColour then
+    state.logoColour = colour
+    table.insert(events, midi.makeColourEvent(logo, colour))
   end
 
   return events

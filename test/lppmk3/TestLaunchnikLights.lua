@@ -105,14 +105,14 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
   local events = deliverLaunchnik()
   lu.assertItemsEquals(events, {
     makeColourEvent(81, colours.red.vibrant),
-    makeColourEvent(99, colours.green.vibrant),
+    makeColourEvent(99, colours.yellow.vibrant),
   })
 
   report { setup = 0 }
   events = deliverLaunchnik()
   lu.assertItemsEquals(events, {
     makeColourEvent(81, colours.red.vibrant, pulsing),
-    makeColourEvent(99, colours.off),
+    makeColourEvent(99, colours.white.bright),
   })
 end
 
@@ -172,13 +172,29 @@ function TestLaunchnikLights:testStopLightRangeIsThatOfLaunchniksRemoteItem()
   end
 end
 
-function TestLaunchnikLights:testLogoIsGreenWhileSetupModeIsOn()
+-- the logo shows Launchnik's mode colour: white in launch mode, green in clip
+-- picking, yellow in clip editing
+function TestLaunchnikLights:testLogoShowsTheModeColour()
   report { setup = 1 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.green.vibrant) })
-  -- moving on to clip editing changes nothing about the logo's colour
   report { setup = 12 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.green.vibrant) })
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.yellow.vibrant) })
+  -- editing another launch button keeps the colour
+  report { setup = 13 }
+  lu.assertEquals(deliverLaunchnik(), {})
   report { setup = 0 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.white.bright) })
+end
+
+-- a Launchnik in launch mode has the setup state the codec starts with, so it
+-- is being mapped that lights the logo
+function TestLaunchnikLights:testLogoTurnsWhiteWhenLaunchnikIsMapped()
+  lu.assertEquals(deliverLaunchnik(), {})
+  report { setup = 0 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.white.bright) })
+  report { setup = 0 }
+  lu.assertEquals(deliverLaunchnik(), {})
+  report({ setup = 0 }, false)
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.off) })
 end
 
