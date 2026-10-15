@@ -18,8 +18,36 @@ local function logoColour(state)
   if state.setup == launchnik.press.setupClipPicking then
     return col.config.green.vibrant
   end
+  if launchnik.press.isFillInEditing(state.setup) then
+    return col.config.red.vibrant
+  end
   return col.config.yellow.vibrant
 end
+
+-- the back button, with the arrow pointing left beside Shift, shows the light
+-- of Launchnik's back button, which only depends on the setup state: dark in
+-- launch mode, vibrant white in clip picking, vibrant green in clip editing,
+-- vibrant yellow in fill-in editing; it is dark while no Launchnik is mapped
+local backButton = 91
+
+local function backButtonColour(state)
+  if not state.mapped or state.setup == launchnik.press.setupLaunchMode then
+    return col.config.off
+  end
+  if state.setup == launchnik.press.setupClipPicking then
+    return col.config.white.bright
+  end
+  if launchnik.press.isFillInEditing(state.setup) then
+    return col.config.yellow.vibrant
+  end
+  return col.config.green.vibrant
+end
+
+-- the button to the left of the sixth row of pads shows the light of
+-- Launchnik's fill-in button, the button above the second column of pads that
+-- of its set fill-in button
+local fillInButton = 30
+local setFillInButton = 92
 
 -- Launchnik's colours in its order, each with the palette entries for dim and
 -- vibrant; white has no entry called vibrant
@@ -85,10 +113,22 @@ local function stopLightEvents(button, light)
   return colourEvents(button, col.config.red, light - 1)
 end
 
+-- the static colour a light of the fill-in button or the set fill-in button
+-- stands for; neither of them flashes
+local function lightColour(light)
+  if light == 0 then
+    return col.config.off
+  end
+  local colour = palette[math.floor((light - 1) / 3) + 1]
+  return isVibrant(light) and colour.vibrant or colour.dim
+end
+
 -- called regularly by the codec to make the pads show the lights of the launch
 -- buttons in their place, the track buttons the lights of the stop buttons,
--- the scene buttons the lights of the scene buttons, and the logo the mode
--- colour; each change is delivered once
+-- the scene buttons the lights of the scene buttons, the logo the mode colour,
+-- and the back button, the set fill-in button and the fill-in button the
+-- lights of Launchnik's buttons of the same names; each change is delivered
+-- once
 --
 -- In launch mode a vibrant launch button is one whose clip is playing, and its
 -- pad pulses, which the panel of Launchnik does not do. In setup mode vibrant
@@ -136,6 +176,24 @@ return function()
   if colour ~= state.logoColour then
     state.logoColour = colour
     table.insert(events, midi.makeColourEvent(logo, colour))
+  end
+
+  colour = backButtonColour(state)
+  if colour ~= state.backButtonColour then
+    state.backButtonColour = colour
+    table.insert(events, midi.makeColourEvent(backButton, colour))
+  end
+
+  colour = state.mapped and lightColour(state.fillInLight) or col.config.off
+  if colour ~= state.fillInButtonColour then
+    state.fillInButtonColour = colour
+    table.insert(events, midi.makeColourEvent(fillInButton, colour))
+  end
+
+  colour = state.mapped and lightColour(state.setFillInLight) or col.config.off
+  if colour ~= state.setFillInButtonColour then
+    state.setFillInButtonColour = colour
+    table.insert(events, midi.makeColourEvent(setFillInButton, colour))
   end
 
   return events

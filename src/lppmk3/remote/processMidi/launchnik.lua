@@ -13,6 +13,12 @@ local lastTrackButton = 108
 -- the pads in their row: 19 at the bottom to 89 at the top
 local firstSceneButton = 19
 local lastSceneButton = 89
+-- the button with the arrow pointing left, beside Shift
+local backButton = 91
+-- the button in the top row above the second column of pads
+local setFillInButton = 92
+-- the button to the left of the sixth row of pads from the top
+local fillInButton = 30
 
 -- the name of the item that carries a change to the host
 local function itemName(change)
@@ -24,6 +30,9 @@ local function itemName(change)
   end
   if change.kind == "length" then
     return "switchinterval"
+  end
+  if change.kind == "fillin" then
+    return "fillin"
   end
   local track = math.floor(change.index / 8) + 1
   local row = change.index % 8 + 1
@@ -40,27 +49,52 @@ local function write(event, change)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
 end
 
--- handles presses of the pads, the track buttons and the scene buttons: a pad
--- means what a click on the launch button in its place means, a track button
--- what a click on the stop button of its track means, a scene button what a
--- click on the scene button of its row means
+-- handles presses of the pads, the track buttons, the scene buttons, the back
+-- button, the set fill-in button and the fill-in button: a pad means what a
+-- click on the launch button in its place means, a track button what a click
+-- on the stop button of its track means, a scene button what a click on the
+-- scene button of its row means, the other buttons what a click on the button
+-- of the same name on Launchnik means; the fill-in button is held down for as
+-- long as its button on the surface is
 local function processPadsAndTrackButtons(event)
   local ret = remote.match_midi("xx yy zz", event)
-  if not ret or ret.z == 0 then
+  if not ret then
+    return false
+  end
+  if ret.x == controlChange and ret.y == fillInButton then
+    write(event, press.fillInButton(ret.z > 0))
+    return true
+  end
+  if ret.z == 0 then
     return false
   end
   if ret.x == noteOn then
     -- the pads send note 11 at the bottom left to 88 at the top right
     local track = ret.y % 10
     local row = 9 - ((ret.y - track) / 10)
+    local picked = press.pickedButton(state.setup)
+    if press.isFillInEditing(state.setup) then
+      for _, change in ipairs(press.fillInEditingLaunchButton(state.setup, track, row, state.fillInPresent[picked], state.patterns[picked])) do
+        write(event, change)
+      end
+      return true
+    end
     local pressedHoldsClip = state.present[press.buttonIndex(track, row)]
-    local isClipEditing = state.setup >= press.setupFirstClipEditing
-    local pickedHoldsClip = isClipEditing and state.present[state.setup - press.setupFirstClipEditing]
+    local pickedHoldsClip = picked ~= nil and state.present[picked]
     write(event, press.launchButton(state.setup, track, row, pressedHoldsClip, pickedHoldsClip))
+    return true
+  end
+  if ret.x == controlChange and ret.y == setFillInButton then
+    local picked = press.pickedButton(state.setup)
+    write(event, press.setFillInButton(state.setup, picked ~= nil and state.present[picked]))
     return true
   end
   if ret.x == controlChange and ret.y >= firstTrackButton and ret.y <= lastTrackButton then
     write(event, press.stopButton(ret.y - firstTrackButton + 1))
+    return true
+  end
+  if ret.x == controlChange and ret.y == backButton then
+    write(event, press.backButton(state.setup))
     return true
   end
   local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9

@@ -5,7 +5,7 @@
 - [Launch Control XL3](./src/lcxl3/CONTEXT.md): maps the surface's encoders,
   faders and buttons to the parameters of many Reason devices, page by page
 - [Launchpad Pro [MK3]](./src/lppmk3/CONTEXT.md): makes the surface's pads and
-  buttons stand for the launch, stop, scene and setup buttons of the Launchnik
+  buttons stand for the launch, stop, scene, setup and back buttons of the Launchnik
   rack extension
 
 ## Relationships

@@ -12,12 +12,20 @@ local items = {
 -- what the item stands for; a launch button's index is 0..63, counted down
 -- track 1 first.
 
--- 0 = launch mode, 1 = clip picking, 2..65 = clip editing
-items.setup = { input = "value", output = "value", min = 0, max = 65, launchnik = { kind = "setup" } }
+-- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 = fill-in
+-- editing
+items.setup = { input = "value", output = "value", min = 0, max = 129, launchnik = { kind = "setup" } }
 
 -- the length of the switch interval: 0 = immediate, 1 = one beat, 2 = half a
 -- bar, 3..7 = 1, 2, 4, 8 and 16 bars
 items.switchinterval = { input = "value", min = 0, max = 7 }
+
+-- 1 while the fill-in button is held down, 0 once it is let go
+items.fillin = { input = "value", min = 0, max = 1 }
+-- the lights of the fill-in button and the set fill-in button, encoded like
+-- the light of a launch button
+items.fillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "fillinlight" } }
+items.setfillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "setfillinlight" } }
 
 for track = 1, 8 do
   -- the light of the track's stop button: 0 = unlit, 1 = dim, 2 = vibrant,
@@ -32,8 +40,12 @@ for track = 1, 8 do
     -- 0 = unlit, then dim, vibrant and flashing for each of the 14 colours
     items[clip .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "light", index = index } }
     items[clip .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "present", index = index } }
-    items[clip .. "pattern"] = { input = "value", min = 0, max = 7 }
+    -- the clip's pattern is what a new fill-in starts with
+    items[clip .. "pattern"] = { input = "value", output = "value", min = 0, max = 7, launchnik = { kind = "pattern", index = index } }
     items[clip .. "colour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "fillinpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinpresent", index = index } }
+    items[clip .. "fillinpattern"] = { input = "value", min = 0, max = 7 }
+    items[clip .. "fillincolour"] = { input = "value", min = 0, max = 13 }
   end
 end
 
