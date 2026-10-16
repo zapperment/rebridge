@@ -18,9 +18,10 @@ local function findItem(index)
 end
 
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
--- the setup state, which launch buttons hold a clip or a fill-in, the pattern
--- of every clip, and the light of every launch button, stop button and scene
--- button, of the fill-in button and of the set fill-in button;
+-- the setup state, the function, which launch buttons hold a clip or a
+-- fill-in, the pattern of every clip, and the light of every launch button,
+-- function button and scene button, of the fill-in button and of the set
+-- fill-in button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
 -- device, so that the pads go dark
 local function setState(hostItems)
@@ -37,6 +38,11 @@ local function setState(hostItems)
           state.setupChanged = true
         end
         state.mapped = changedItem.is_enabled
+      elseif kind == "function" then
+        if value ~= state["function"] then
+          state["function"] = value
+          state.functionChanged = true
+        end
       elseif kind == "present" then
         state.present[item.launchnik.index] = value > 0
       elseif kind == "pattern" then
@@ -47,10 +53,10 @@ local function setState(hostItems)
         state.fillInLight = value
       elseif kind == "setfillinlight" then
         state.setFillInLight = value
-      elseif kind == "stoplight" then
-        if value ~= state.stopLights[item.launchnik.track] then
-          state.stopLights[item.launchnik.track] = value
-          state.changedStopLights[item.launchnik.track] = true
+      elseif kind == "functionlight" then
+        if value ~= state.functionLights[item.launchnik.track] then
+          state.functionLights[item.launchnik.track] = value
+          state.changedFunctionLights[item.launchnik.track] = true
         end
       elseif kind == "scenelight" then
         if value ~= state.sceneLights[item.launchnik.scene] then

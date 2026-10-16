@@ -10,12 +10,20 @@
 --   { kind = "present" | "pattern" | "colour", index = 0..63, value = ... }
 --   { kind = "fillinpresent" | "fillinpattern" | "fillincolour", index = 0..63, value = ... }
 --   { kind = "fillin", value = 0..1 }
--- A press of a launch button outside fill-in editing, a stop button, the setup
--- button, the back button, the set fill-in button or the fill-in button
--- changes one property at most; a press of a scene button, or of a launch
+--   { kind = "function", value = 0..2 }
+--   { kind = "mute" | "solo", track = 1..8, value = 0..1 }
+-- A press of a launch button outside fill-in editing, a function button, a
+-- function select button, the setup button, the back button, the set fill-in
+-- button or the fill-in button changes one property at most; a press of a scene button, or of a launch
 -- button in fill-in editing, yields a list of changes.
 
 local selectionStop = 0
+
+-- what the function buttons do
+local functionStop = 0
+local functionMute = 1
+local functionSolo = 2
+local functionCount = 3
 
 local setupLaunchMode = 0
 local setupClipPicking = 1
@@ -128,6 +136,40 @@ local function stopButton(track)
   return { kind = "selection", track = track, value = selectionStop }
 end
 
+-- holding down a function button and letting it go: in stop function a press
+-- chooses stop and letting go does nothing; in mute and solo function the
+-- button is held down, as the mute or solo button of its track, for as long as
+-- it is, and whether a press mutes or solos is up to Launchnik; trackHasClips
+-- says whether the track holds any clip: without one, a press does nothing;
+-- letting go is always passed on, so that a button that is held down can be
+-- let go of; returns nil if nothing changes
+local function functionButton(func, track, trackHasClips, pressed)
+  if track < 1 or track > 8 then
+    return nil
+  end
+  if pressed and not trackHasClips then
+    return nil
+  end
+  if func == functionMute then
+    return { kind = "mute", track = track, value = pressed and 1 or 0 }
+  end
+  if func == functionSolo then
+    return { kind = "solo", track = track, value = pressed and 1 or 0 }
+  end
+  if pressed then
+    return stopButton(track)
+  end
+  return nil
+end
+
+-- chooses the function of a function select button
+local function functionSelectButton(func)
+  if func < 0 or func >= functionCount then
+    return nil
+  end
+  return { kind = "function", value = func }
+end
+
 -- in launch mode, a scene button means what the eight launch buttons of its
 -- scene mean, track by track; in clip picking it chooses the length of the
 -- switch interval it stands for, immediate at the bottom and sixteen bars at
@@ -190,6 +232,9 @@ return {
   setupClipPicking = setupClipPicking,
   setupFirstClipEditing = setupFirstClipEditing,
   setupFirstFillInEditing = setupFirstFillInEditing,
+  functionStop = functionStop,
+  functionMute = functionMute,
+  functionSolo = functionSolo,
   buttonIndex = buttonIndex,
   isClipEditing = isClipEditing,
   isFillInEditing = isFillInEditing,
@@ -197,6 +242,8 @@ return {
   launchButton = launchButton,
   fillInEditingLaunchButton = fillInEditingLaunchButton,
   stopButton = stopButton,
+  functionButton = functionButton,
+  functionSelectButton = functionSelectButton,
   sceneButton = sceneButton,
   setupButton = setupButton,
   backButton = backButton,

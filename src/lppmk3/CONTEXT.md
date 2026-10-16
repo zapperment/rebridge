@@ -2,7 +2,7 @@
 
 Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
 Launchnik, and uses Launchnik's own words for everything that belongs to the
-device: track, launch button, stop button, clip, selection, light, launch mode,
+device: track, launch button, function, function button, stop, mute, solo, clip, selection, light, launch mode,
 setup mode, clip picking, clip editing, fill-in, fill-in editing, scene,
 interval meter, length (of the switch interval), immediate. Those are defined in the glossary of the
 Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and
@@ -25,11 +25,20 @@ button in the same row and column of Launchnik, shows that launch button's
 light, and a press of it means what a click on that launch button means.
 _Avoid_: slot, cell, button (for a pad)
 
-**Track button**:
+**Function button**:
 One of the eight buttons in the upper of the two rows beneath the grid. It
-stands for the stop button of the track above it and shows that stop button's
-light.
-_Avoid_: stop pad, slot 0
+stands for the function button of the track above it, shows that function
+button's light (red for stop, yellow for mute, blue for solo) and a press of it
+means what a click on that function button means in the current function.
+_Avoid_: track button, stop pad, slot 0
+
+**Function select button**:
+One of the buttons in the lower of the two rows beneath the grid (CC 2 for
+mute, CC 3 for solo, CC 8 for stop). It stands for the function select button
+of Launchnik with the same caption: vibrant in the function's colour while
+that function is chosen, dim white otherwise. The other five buttons of the
+row do nothing and are off.
+_Avoid_: mode button
 
 **Scene button**:
 One of the eight buttons in the column to the right of the grid. It stands for
