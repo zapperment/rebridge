@@ -87,7 +87,9 @@ function TestProcessLaunchnik:testEmptyPadStopsItsTrack()
   lu.assertEquals(input.value, 0)
 end
 
-function TestProcessLaunchnik:testTrackButtonStopsItsTrackInEveryMode()
+-- the function buttons are control changes 101 to 108
+function TestProcessLaunchnik:testFunctionButtonStopsItsTrackInEveryMode()
+  state.present[press.buttonIndex(3, 1)] = true
   for _, setup in ipairs { press.setupLaunchMode, press.setupClipPicking, press.setupFirstClipEditing } do
     remote.clearMocks()
     state.setup = setup
@@ -95,6 +97,70 @@ function TestProcessLaunchnik:testTrackButtonStopsItsTrackInEveryMode()
     local input = handledInput()
     lu.assertEquals(input.item, items.track3selection.index)
     lu.assertEquals(input.value, 0)
+    remote.clearMocks()
+    lu.assertTrue(receive(controlChange, 103, 0))
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  end
+end
+
+function TestProcessLaunchnik:testFunctionButtonOfATrackWithoutClipsDoesNothing()
+  for func = 0, 2 do
+    remote.clearMocks()
+    state["function"] = func
+    lu.assertTrue(receive(controlChange, 103, 127))
+    lu.assertTrue(receive(controlChange, 103, 0))
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  end
+end
+
+-- in mute and solo function a function button is held down for as long as the
+-- button on the surface is
+function TestProcessLaunchnik:testFunctionButtonIsHeldAsMuteOrSoloButton()
+  state.present[press.buttonIndex(5, 2)] = true
+  for func, name in pairs { [press.functionMute] = "mute", [press.functionSolo] = "solo" } do
+    state["function"] = func
+    remote.clearMocks()
+    lu.assertTrue(receive(controlChange, 105, 127))
+    local input = handledInput()
+    lu.assertEquals(input.item, items["track5" .. name].index)
+    lu.assertEquals(input.value, 1)
+    remote.clearMocks()
+    lu.assertTrue(receive(controlChange, 105, 0))
+    input = handledInput()
+    lu.assertEquals(input.item, items["track5" .. name].index)
+    lu.assertEquals(input.value, 0)
+  end
+end
+
+-- letting go lets go of the button that was pressed, even if the function has
+-- changed meanwhile
+function TestProcessLaunchnik:testLettingGoOfAFunctionButtonLetsGoOfWhatWasPressed()
+  state.present[press.buttonIndex(5, 2)] = true
+  state["function"] = press.functionMute
+  receive(controlChange, 105, 127)
+  state["function"] = press.functionStop
+  remote.clearMocks()
+  lu.assertTrue(receive(controlChange, 105, 0))
+  local input = handledInput()
+  lu.assertEquals(input.item, items.track5mute.index)
+  lu.assertEquals(input.value, 0)
+end
+
+-- the function select buttons are control changes 2 (mute), 3 (solo) and 8
+-- (stop) in the row below the function buttons
+function TestProcessLaunchnik:testFunctionSelectButtonsChooseTheFunction()
+  for control, func in pairs { [2] = 1, [3] = 2, [8] = 0 } do
+    remote.clearMocks()
+    lu.assertTrue(receive(controlChange, control, 127))
+    local input = handledInput()
+    lu.assertEquals(input.item, items["function"].index)
+    lu.assertEquals(input.value, func)
+  end
+  -- the other buttons of the row do nothing
+  for _, control in ipairs { 1, 4, 5, 6, 7 } do
+    remote.clearMocks()
+    receive(controlChange, control, 127)
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
   end
 end
 

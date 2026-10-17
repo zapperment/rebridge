@@ -22,15 +22,21 @@ items.switchinterval = { input = "value", min = 0, max = 7 }
 
 -- 1 while the fill-in button is held down, 0 once it is let go
 items.fillin = { input = "value", min = 0, max = 1 }
+-- what the function buttons do: 0 = stop, 1 = mute, 2 = solo
+items["function"] = { input = "value", output = "value", min = 0, max = 2, launchnik = { kind = "function" } }
+
 -- the lights of the fill-in button and the set fill-in button, encoded like
 -- the light of a launch button
 items.fillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "fillinlight" } }
 items.setfillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "setfillinlight" } }
 
 for track = 1, 8 do
-  -- the light of the track's stop button: 0 = unlit, 1 = dim, 2 = vibrant,
-  -- 3 = flashing
-  items["track" .. track .. "stoplight"] = { output = "value", min = 0, max = 3, launchnik = { kind = "stoplight", track = track } }
+  -- the light of the track's function button, in the colour of the function:
+  -- 0 = unlit, 1 = dim, 2 = vibrant, 3 = flashing
+  items["track" .. track .. "functionlight"] = { output = "value", min = 0, max = 3, launchnik = { kind = "functionlight", track = track } }
+  -- 1 while the track's mute or solo button is held down, 0 once it is let go
+  items["track" .. track .. "mute"] = { input = "value", min = 0, max = 1 }
+  items["track" .. track .. "solo"] = { input = "value", min = 0, max = 1 }
   -- 0 stops the track, 1 to 8 select the clip in that row
   items["track" .. track .. "selection"] = { input = "value", min = 0, max = 8 }
 

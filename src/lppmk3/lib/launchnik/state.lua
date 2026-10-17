@@ -12,6 +12,16 @@ function state.reset()
   -- fill-in editing
   state.setup = 0
   state.setupChanged = false
+  -- 0 = stop, 1 = mute, 2 = solo
+  state["function"] = 0
+  state.functionChanged = false
+  -- the colours last delivered to the function select buttons, by their
+  -- control change, which are dark to begin with
+  state.functionSelectColours = {}
+  -- the kind of change, "mute" or "solo", that a function button held down on
+  -- the surface has made, by track, so that letting go of it lets go of the
+  -- same button of Launchnik
+  state.heldFunctionButtons = {}
   -- whether a Launchnik is mapped, which the setup item tells
   state.mapped = false
   -- the colour last delivered to the logo, which is dark to begin with
@@ -31,14 +41,14 @@ function state.reset()
   state.fillInPresent = {}
   state.lights = {}
   state.changedLights = {}
-  -- the lights of the stop buttons, by track, 1..8
-  state.stopLights = {}
-  state.changedStopLights = {}
+  -- the lights of the function buttons, by track, 1..8
+  state.functionLights = {}
+  state.changedFunctionLights = {}
   -- the lights of the scene buttons, by scene, 1..8 from the top
   state.sceneLights = {}
   state.changedSceneLights = {}
   for track = 1, 8 do
-    state.stopLights[track] = 0
+    state.functionLights[track] = 0
   end
   for scene = 1, 8 do
     state.sceneLights[scene] = 0

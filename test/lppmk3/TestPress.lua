@@ -33,6 +33,35 @@ function TestPress:testStopButtonSelectsStop()
   lu.assertEquals(press.stopButton(5), { kind = "selection", track = 5, value = 0 })
 end
 
+-- the same cases as the function button tests of PressTest.cpp
+function TestPress:testFunctionButtonInStopFunctionSelectsStop()
+  lu.assertEquals(press.functionButton(press.functionStop, 5, true, true), { kind = "selection", track = 5, value = 0 })
+  lu.assertNil(press.functionButton(press.functionStop, 5, true, false))
+end
+
+function TestPress:testFunctionButtonIsHeldDownAsMuteOrSoloButton()
+  lu.assertEquals(press.functionButton(press.functionMute, 3, true, true), { kind = "mute", track = 3, value = 1 })
+  lu.assertEquals(press.functionButton(press.functionMute, 3, true, false), { kind = "mute", track = 3, value = 0 })
+  lu.assertEquals(press.functionButton(press.functionSolo, 8, true, true), { kind = "solo", track = 8, value = 1 })
+  lu.assertEquals(press.functionButton(press.functionSolo, 8, true, false), { kind = "solo", track = 8, value = 0 })
+end
+
+function TestPress:testFunctionButtonOfATrackWithoutClipsDoesNothing()
+  lu.assertNil(press.functionButton(press.functionStop, 5, false, true))
+  lu.assertNil(press.functionButton(press.functionMute, 5, false, true))
+  lu.assertNil(press.functionButton(press.functionSolo, 5, false, true))
+  -- a button that is held down can still be let go of
+  lu.assertEquals(press.functionButton(press.functionMute, 5, false, false), { kind = "mute", track = 5, value = 0 })
+  lu.assertNil(press.functionButton(press.functionMute, 9, true, true))
+end
+
+function TestPress:testFunctionSelectButtonChoosesItsFunction()
+  lu.assertEquals(press.functionSelectButton(press.functionMute), { kind = "function", value = 1 })
+  lu.assertEquals(press.functionSelectButton(press.functionSolo), { kind = "function", value = 2 })
+  lu.assertEquals(press.functionSelectButton(press.functionStop), { kind = "function", value = 0 })
+  lu.assertNil(press.functionSelectButton(3))
+end
+
 function TestPress:testSetupButtonSwitchesBetweenLaunchModeAndClipPicking()
   lu.assertEquals(press.setupButton(launchMode), { kind = "setup", value = clipPicking })
   lu.assertEquals(press.setupButton(clipPicking), { kind = "setup", value = launchMode })

@@ -24,6 +24,7 @@ Map	switchinterval		Switch Interval
 Map	fillin		Fill-In
 Map	fillinlight		Fill-In Light
 Map	setfillinlight		Set Fill-In Light
+Map	function		Function
 
 Map	track1clip1light		Track 1 Clip 1 Light
 Map	track2clip1light		Track 2 Clip 1 Light
@@ -313,14 +314,32 @@ Map	track6clip8colour		Track 6 Clip 8 Colour
 Map	track7clip8colour		Track 7 Clip 8 Colour
 Map	track8clip8colour		Track 8 Clip 8 Colour
 
-Map	track1stoplight		Track 1 Stop Light
-Map	track2stoplight		Track 2 Stop Light
-Map	track3stoplight		Track 3 Stop Light
-Map	track4stoplight		Track 4 Stop Light
-Map	track5stoplight		Track 5 Stop Light
-Map	track6stoplight		Track 6 Stop Light
-Map	track7stoplight		Track 7 Stop Light
-Map	track8stoplight		Track 8 Stop Light
+Map	track1mute		Track 1 Mute
+Map	track2mute		Track 2 Mute
+Map	track3mute		Track 3 Mute
+Map	track4mute		Track 4 Mute
+Map	track5mute		Track 5 Mute
+Map	track6mute		Track 6 Mute
+Map	track7mute		Track 7 Mute
+Map	track8mute		Track 8 Mute
+
+Map	track1solo		Track 1 Solo
+Map	track2solo		Track 2 Solo
+Map	track3solo		Track 3 Solo
+Map	track4solo		Track 4 Solo
+Map	track5solo		Track 5 Solo
+Map	track6solo		Track 6 Solo
+Map	track7solo		Track 7 Solo
+Map	track8solo		Track 8 Solo
+
+Map	track1functionlight		Track 1 Function Light
+Map	track2functionlight		Track 2 Function Light
+Map	track3functionlight		Track 3 Function Light
+Map	track4functionlight		Track 4 Function Light
+Map	track5functionlight		Track 5 Function Light
+Map	track6functionlight		Track 6 Function Light
+Map	track7functionlight		Track 7 Function Light
+Map	track8functionlight		Track 8 Function Light
 
 Map	scene1light		Scene 1 Light
 Map	scene2light		Scene 2 Light

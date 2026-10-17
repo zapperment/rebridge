@@ -59,8 +59,23 @@ local palette = {
   col.config.purple, col.config.fuchsia, col.config.pink,
 }
 
--- the track buttons send and take control changes 101 to 108
-local firstTrackButton = 101
+-- the function buttons send and take control changes 101 to 108
+local firstFunctionButton = 101
+
+-- the function select buttons, in the row below, take control changes 2
+-- (mute), 3 (solo) and 8 (stop)
+local functionSelectButtons = {
+  [2] = launchnik.press.functionMute,
+  [3] = launchnik.press.functionSolo,
+  [8] = launchnik.press.functionStop,
+}
+
+-- the colour of each function: red for stop, yellow for mute, blue for solo
+local functionColours = {
+  [launchnik.press.functionStop] = col.config.red,
+  [launchnik.press.functionMute] = col.config.yellow,
+  [launchnik.press.functionSolo] = col.config.blue,
+}
 
 -- the scene buttons, to the right of the grid, send and take the control
 -- change that continues the numbering of the pads in their row: 89 at the top
@@ -105,12 +120,26 @@ local function lightEvents(pad, light, pulses)
   return colourEvents(pad, colour, (light - 1) % 3)
 end
 
--- a stop button's light is 0 for unlit, then dim, vibrant and flashing, in red
-local function stopLightEvents(button, light)
+-- a function button's light is 0 for unlit, then dim, vibrant and flashing,
+-- in the colour of the function
+local function functionLightEvents(button, light, func)
   if light == 0 then
     return { midi.makeColourEvent(button, col.config.off) }
   end
-  return colourEvents(button, col.config.red, light - 1)
+  return colourEvents(button, functionColours[func] or col.config.red, light - 1)
+end
+
+-- a function select button is vibrant in the colour of its function while
+-- that function is chosen, dim white otherwise, and dark while no Launchnik is
+-- mapped
+local function functionSelectColour(state, func)
+  if not state.mapped then
+    return col.config.off
+  end
+  if func == state["function"] then
+    return functionColours[func].vibrant
+  end
+  return col.config.white.dim
 end
 
 -- the static colour a light of the fill-in button or the set fill-in button
@@ -124,7 +153,8 @@ local function lightColour(light)
 end
 
 -- called regularly by the codec to make the pads show the lights of the launch
--- buttons in their place, the track buttons the lights of the stop buttons,
+-- buttons in their place, the function buttons and the function select
+-- buttons the lights of Launchnik's buttons of the same names,
 -- the scene buttons the lights of the scene buttons, the logo the mode colour,
 -- and the back button, the set fill-in button and the fill-in button the
 -- lights of Launchnik's buttons of the same names; each change is delivered
@@ -152,14 +182,27 @@ return function()
   end
   state.changedLights = {}
 
+  -- a change of function changes the colour of every function button
   for track = 1, 8 do
-    if state.changedStopLights[track] then
-      for _, event in ipairs(stopLightEvents(firstTrackButton + track - 1, state.stopLights[track])) do
+    if state.changedFunctionLights[track] or state.functionChanged then
+      for _, event in ipairs(functionLightEvents(firstFunctionButton + track - 1, state.functionLights[track], state["function"])) do
         table.insert(events, event)
       end
     end
   end
-  state.changedStopLights = {}
+  state.changedFunctionLights = {}
+  state.functionChanged = false
+
+  for button = 1, 8 do
+    local func = functionSelectButtons[button]
+    if func then
+      local colour = functionSelectColour(state, func)
+      if colour ~= (state.functionSelectColours[button] or col.config.off) then
+        state.functionSelectColours[button] = colour
+        table.insert(events, midi.makeColourEvent(button, colour))
+      end
+    end
+  end
 
   for scene = 1, 8 do
     if state.changedSceneLights[scene] then

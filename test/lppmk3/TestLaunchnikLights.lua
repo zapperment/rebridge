@@ -30,6 +30,35 @@ local function report(values, isEnabled)
   setLaunchnik.setState(changed)
 end
 
+-- the events with which the function select buttons light up when a
+-- Launchnik is mapped, followed by the given ones: dim white for mute and
+-- solo, vibrant red for stop, which is the function a song opens with
+local function mappedFunctionSelect(...)
+  local events = {
+    makeColourEvent(2, colours.white.dim),
+    makeColourEvent(3, colours.white.dim),
+    makeColourEvent(8, colours.red.vibrant),
+  }
+  for _, event in ipairs({ ... }) do
+    table.insert(events, event)
+  end
+  return events
+end
+
+-- the events with which they go dark when it is no longer mapped, followed
+-- by the given ones
+local function unmappedFunctionSelect(...)
+  local events = {
+    makeColourEvent(2, colours.off),
+    makeColourEvent(3, colours.off),
+    makeColourEvent(8, colours.off),
+  }
+  for _, event in ipairs({ ... }) do
+    table.insert(events, event)
+  end
+  return events
+end
+
 function TestLaunchnikLights:setUp()
   remote.clearMocks()
   defineItemIndices()
@@ -105,6 +134,9 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
   local events = deliverLaunchnik()
   lu.assertItemsEquals(events, {
     makeColourEvent(81, colours.red.vibrant),
+    makeColourEvent(2, colours.white.dim),
+    makeColourEvent(3, colours.white.dim),
+    makeColourEvent(8, colours.red.vibrant),
     makeColourEvent(99, colours.yellow.vibrant),
     makeColourEvent(91, colours.green.vibrant),
   })
@@ -119,7 +151,7 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
 end
 
 function TestLaunchnikLights:testTrackAndSceneButtonsDoNotPulse()
-  report { track8stoplight = 2, scene1light = 5 }
+  report { track8functionlight = 2, scene1light = 5 }
   lu.assertItemsEquals(deliverLaunchnik(), {
     makeColourEvent(108, colours.red.vibrant),
     makeColourEvent(0x59, colours.red.vibrant),
@@ -151,27 +183,75 @@ function TestLaunchnikLights:testUnchangedLightIsNotDeliveredAgain()
   lu.assertEquals(deliverLaunchnik(), {})
 end
 
--- the track buttons are control changes 101 to 108
-function TestLaunchnikLights:testStopLightsShowOnTheTrackButtonsInRed()
-  report { track1stoplight = 1 }
+-- the function buttons are control changes 101 to 108; in stop function,
+-- which a song opens with, they are red
+function TestLaunchnikLights:testFunctionLightsShowInRedInStopFunction()
+  report { track1functionlight = 1 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(101, colours.red.dim) })
-  report { track8stoplight = 2 }
+  report { track8functionlight = 2 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(108, colours.red.vibrant) })
-  report { track3stoplight = 3 }
+  report { track3functionlight = 3 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(103, colours.red.dim),
     makeColourEvent(103, colours.red.vibrant, flashing),
   })
-  report { track3stoplight = 0 }
+  report { track3functionlight = 0 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(103, colours.off) })
   lu.assertEquals(deliverLaunchnik(), {})
 end
 
-function TestLaunchnikLights:testStopLightRangeIsThatOfLaunchniksRemoteItem()
+function TestLaunchnikLights:testFunctionItemRangesAreThoseOfLaunchniksRemoteItems()
+  lu.assertEquals({ items["function"].min, items["function"].max }, { 0, 2 })
   for track = 1, 8 do
-    local item = items["track" .. track .. "stoplight"]
+    local item = items["track" .. track .. "functionlight"]
     lu.assertEquals({ item.min, item.max }, { 0, 3 })
+    lu.assertEquals({ items["track" .. track .. "mute"].min, items["track" .. track .. "mute"].max }, { 0, 1 })
+    lu.assertEquals({ items["track" .. track .. "solo"].min, items["track" .. track .. "solo"].max }, { 0, 1 })
   end
+end
+
+-- in mute function the function buttons are yellow, in solo function blue; a
+-- change of function delivers every function button again in its new colour
+-- (no Launchnik is mapped here, so the function select buttons stay dark)
+function TestLaunchnikLights:testFunctionLightsTakeTheColourOfTheFunction()
+  report { track1functionlight = 2, track2functionlight = 1, track3functionlight = 0 }
+  deliverLaunchnik()
+  report { ["function"] = 1 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(101, colours.yellow.vibrant),
+    makeColourEvent(102, colours.yellow.dim),
+    makeColourEvent(103, colours.off),
+    makeColourEvent(104, colours.off),
+    makeColourEvent(105, colours.off),
+    makeColourEvent(106, colours.off),
+    makeColourEvent(107, colours.off),
+    makeColourEvent(108, colours.off),
+  })
+  report { ["function"] = 2, track1functionlight = 1, track2functionlight = 2 }
+  local events = deliverLaunchnik()
+  lu.assertEquals(events[1], makeColourEvent(101, colours.blue.dim))
+  lu.assertEquals(events[2], makeColourEvent(102, colours.blue.vibrant))
+  lu.assertEquals(deliverLaunchnik(), {})
+end
+
+-- the function select buttons take control changes 2 (mute), 3 (solo) and 8
+-- (stop): vibrant in the colour of their function while it is chosen, dim
+-- white otherwise
+function TestLaunchnikLights:testFunctionSelectButtonsShowTheFunction()
+  report { setup = 0 }
+  deliverLaunchnik()
+  report { ["function"] = 2 }
+  local events = deliverLaunchnik()
+  lu.assertItemsEquals({ events[#events - 1], events[#events] }, {
+    makeColourEvent(3, colours.blue.vibrant),
+    makeColourEvent(8, colours.white.dim),
+  })
+  report { ["function"] = 0 }
+  events = deliverLaunchnik()
+  lu.assertItemsEquals({ events[#events - 1], events[#events] }, {
+    makeColourEvent(3, colours.white.dim),
+    makeColourEvent(8, colours.red.vibrant),
+  })
 end
 
 -- the logo shows Launchnik's mode colour: white in launch mode, green in clip
@@ -180,10 +260,10 @@ end
 -- clip picking, vibrant green in clip editing, dark in launch mode
 function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   report { setup = 1 }
-  lu.assertEquals(deliverLaunchnik(), {
+  lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
     makeColourEvent(99, colours.green.vibrant),
-    makeColourEvent(91, colours.white.bright),
-  })
+    makeColourEvent(91, colours.white.bright)
+  ))
   report { setup = 12 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.yellow.vibrant),
@@ -215,21 +295,24 @@ end
 function TestLaunchnikLights:testLogoTurnsWhiteWhenLaunchnikIsMapped()
   lu.assertEquals(deliverLaunchnik(), {})
   report { setup = 0 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.white.bright) })
+  lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(makeColourEvent(99, colours.white.bright)))
   report { setup = 0 }
   lu.assertEquals(deliverLaunchnik(), {})
   report({ setup = 0 }, false)
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(99, colours.off) })
+  lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(makeColourEvent(99, colours.off)))
 end
 
 -- while no Launchnik is mapped, its items are disabled
 function TestLaunchnikLights:testPadsLogoAndBackButtonGoDarkWhenLaunchnikIsNoLongerMapped()
-  report { track1clip1light = 5, track1clip1present = 1, track1stoplight = 2, setup = 1 }
+  report { track1clip1light = 5, track1clip1present = 1, track1functionlight = 2, setup = 1 }
   deliverLaunchnik()
-  report({ track1clip1light = 5, track1clip1present = 1, track1stoplight = 2, setup = 1 }, false)
+  report({ track1clip1light = 5, track1clip1present = 1, track1functionlight = 2, setup = 1 }, false)
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(81, colours.off),
     makeColourEvent(101, colours.off),
+    makeColourEvent(2, colours.off),
+    makeColourEvent(3, colours.off),
+    makeColourEvent(8, colours.off),
     makeColourEvent(99, colours.off),
     makeColourEvent(91, colours.off),
   })
@@ -301,10 +384,10 @@ end
 -- control change 92
 function TestLaunchnikLights:testFillInAndSetFillInButtonsShowTheirLights()
   report { setup = 0, fillinlight = 1, setfillinlight = 0 }
-  lu.assertEquals(deliverLaunchnik(), {
+  lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
     makeColourEvent(99, colours.white.bright),
-    makeColourEvent(30, colours.white.dim),
-  })
+    makeColourEvent(30, colours.white.dim)
+  ))
   report { fillinlight = 5 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(30, colours.red.vibrant) })
   lu.assertEquals(deliverLaunchnik(), {})
@@ -321,9 +404,9 @@ function TestLaunchnikLights:testFillInButtonsGoDarkWhenLaunchnikIsNoLongerMappe
   report { setup = 0, fillinlight = 5, setfillinlight = 5 }
   deliverLaunchnik()
   report({ setup = 0, fillinlight = 5, setfillinlight = 5 }, false)
-  lu.assertEquals(deliverLaunchnik(), {
+  lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(
     makeColourEvent(99, colours.off),
     makeColourEvent(30, colours.off),
-    makeColourEvent(92, colours.off),
-  })
+    makeColourEvent(92, colours.off)
+  ))
 end
