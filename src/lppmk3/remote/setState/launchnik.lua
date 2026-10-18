@@ -17,9 +17,19 @@ local function findItem(index)
   return itemsByIndex[index]
 end
 
+-- the settings of the CV outputs the codec keeps, by the kind of their items
+local outputSettings = {
+  pattern = "patterns",
+  unipolar = "unipolar",
+  bipolar = "bipolar",
+  transition = "transitions",
+  fillintransition = "fillInTransitions",
+}
+
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
 -- the setup state, the function, which launch buttons hold a clip or a
--- fill-in, the pattern of every clip, and the light of every launch button,
+-- fill-in, the CV modes, the values and transitions of every clip, the
+-- transitions of every fill-in, and the light of every launch button,
 -- function button and scene button, of the fill-in button and of the set
 -- fill-in button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
@@ -45,8 +55,10 @@ local function setState(hostItems)
         end
       elseif kind == "present" then
         state.present[item.launchnik.index] = value > 0
-      elseif kind == "pattern" then
-        state.patterns[item.launchnik.index] = value
+      elseif outputSettings[kind] then
+        state[outputSettings[kind]][item.launchnik.index][item.launchnik.output] = value
+      elseif kind == "cvmode" then
+        state.cvModes[item.launchnik.track][item.launchnik.output] = value
       elseif kind == "fillinpresent" then
         state.fillInPresent[item.launchnik.index] = value > 0
       elseif kind == "fillinlight" then

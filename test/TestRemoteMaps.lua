@@ -34,3 +34,26 @@ end
 function TestRemoteMaps:testLaunchpadMapsMatch()
     assertMapsMatch("LPPMK3", "Launchpad Pro [MK3]")
 end
+
+-- the Launchnik part of the Launchpad map is generated, and maps every item
+-- of the codec that stands for one of Launchnik's Remote items
+function TestRemoteMaps:testLaunchnikMapIsGenerated()
+    local launchnikMap = require "scripts.launchnikRemoteMap"
+    local devMap = read(mapsDir .. "LPPMK3.dev.remotemap")
+    lu.assertEquals(devMap, launchnikMap.withLaunchnikMap(devMap))
+end
+
+function TestRemoteMaps:testLaunchnikMapUsesTheCodecsItems()
+    local items = require "src.lppmk3.config.items"
+    local devMap = read(mapsDir .. "LPPMK3.dev.remotemap")
+    local mapped = {}
+    for item in string.gmatch(devMap, "\nMap\t(%w+)\t") do
+        lu.assertNotNil(items[item], item)
+        mapped[item] = true
+    end
+    for name, item in pairs(items) do
+        if item.launchnik or item.input == "value" then
+            lu.assertTrue(mapped[name] == true, name)
+        end
+    end
+end
