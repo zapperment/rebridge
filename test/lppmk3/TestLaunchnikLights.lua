@@ -371,9 +371,15 @@ function TestLaunchnikLights:testFlashingSceneLightsAreDeliveredAsDimPlusFlashin
   })
 end
 
-function TestLaunchnikLights:testKeepsPatternsAndFillIns()
-  report { track2clip3pattern = 5, track2clip3fillinpresent = 1 }
-  lu.assertEquals(state.patterns[launchnik.press.buttonIndex(2, 3)], 5)
+function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
+  report { track2clip3bpattern = 5, track2clip3fillinpresent = 1 }
+  lu.assertEquals(state.patterns[launchnik.press.buttonIndex(2, 3)][2], 5)
+  report { track2clip3cunipolar = 4, track2clip3dbipolar = 1, track2clip3etransition = 2, track2clip3fillinftransition = 3, track2cvmodec = 0 }
+  lu.assertEquals(state.unipolar[launchnik.press.buttonIndex(2, 3)][3], 4)
+  lu.assertEquals(state.bipolar[launchnik.press.buttonIndex(2, 3)][4], 1)
+  lu.assertEquals(state.transitions[launchnik.press.buttonIndex(2, 3)][5], 2)
+  lu.assertEquals(state.fillInTransitions[launchnik.press.buttonIndex(2, 3)][6], 3)
+  lu.assertEquals(state.cvModes[2][3], 0)
   lu.assertTrue(state.fillInPresent[launchnik.press.buttonIndex(2, 3)])
   report { track2clip3fillinpresent = 0 }
   lu.assertFalse(state.fillInPresent[launchnik.press.buttonIndex(2, 3)])

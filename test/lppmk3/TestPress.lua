@@ -21,12 +21,12 @@ function TestPress:testButtonIndexCountsDownTrackOneFirst()
 end
 
 function TestPress:testLaunchModeSelectsTheClip()
-  lu.assertEquals(press.launchButton(launchMode, 3, 5, true, false), { kind = "selection", track = 3, value = 5 })
-  lu.assertEquals(press.launchButton(launchMode, 8, 8, true, false), { kind = "selection", track = 8, value = 8 })
+  lu.assertEquals(press.launchButton(launchMode, 3, 5, true, press.edited(false)), { kind = "selection", track = 3, value = 5 })
+  lu.assertEquals(press.launchButton(launchMode, 8, 8, true, press.edited(false)), { kind = "selection", track = 8, value = 8 })
 end
 
 function TestPress:testLaunchModeEmptyLaunchButtonSelectsStop()
-  lu.assertEquals(press.launchButton(launchMode, 3, 5, false, false), { kind = "selection", track = 3, value = 0 })
+  lu.assertEquals(press.launchButton(launchMode, 3, 5, false, press.edited(false)), { kind = "selection", track = 3, value = 0 })
 end
 
 function TestPress:testStopButtonSelectsStop()
@@ -70,14 +70,14 @@ function TestPress:testSetupButtonSwitchesBetweenLaunchModeAndClipPicking()
 end
 
 function TestPress:testClipPickingOpensThePressedLaunchButton()
-  lu.assertEquals(press.launchButton(clipPicking, 1, 1, false, false), { kind = "setup", value = 2 })
-  lu.assertEquals(press.launchButton(clipPicking, 8, 8, true, false), { kind = "setup", value = 65 })
-  lu.assertEquals(press.launchButton(clipPicking, 4, 6, true, false), { kind = "setup", value = editing })
+  lu.assertEquals(press.launchButton(clipPicking, 1, 1, false, press.edited(false)), { kind = "setup", value = 2 })
+  lu.assertEquals(press.launchButton(clipPicking, 8, 8, true, press.edited(false)), { kind = "setup", value = 65 })
+  lu.assertEquals(press.launchButton(clipPicking, 4, 6, true, press.edited(false)), { kind = "setup", value = editing })
 end
 
 function TestPress:testClipEditingToggleSwitchesThePickedClip()
-  lu.assertEquals(press.launchButton(editing, 8, 1, false, false), { kind = "present", index = picked, value = 1 })
-  lu.assertEquals(press.launchButton(editing, 8, 1, false, true), { kind = "present", index = picked, value = 0 })
+  lu.assertEquals(press.launchButton(editing, 8, 1, false, press.edited(false)), { kind = "present", index = picked, value = 1 })
+  lu.assertEquals(press.launchButton(editing, 8, 1, false, press.edited(true)), { kind = "present", index = picked, value = 0 })
 end
 
 function TestPress:testBackButtonGoesBackOneStep()
@@ -88,43 +88,61 @@ function TestPress:testBackButtonGoesBackOneStep()
   lu.assertEquals(press.backButton(fillInEditing), { kind = "setup", value = editing })
 end
 
--- the back button has taken over from the launch button in row 8, column 8
-function TestPress:testClipEditingLastLaunchButtonDoesNothing()
-  lu.assertNil(press.launchButton(editing, 8, 8, false, true))
-  lu.assertNil(press.launchButton(editing, 8, 8, false, false))
+-- output A in pattern mode, B unipolar, C bipolar, the others as on a new
+-- device; transitions off, except C at B and D at D
+local function mixedModes(present)
+  return press.edited(present, { 2, 1, 0, 1, 1, 1 }, { 0, 0, 2, 4, 0, 0 })
 end
 
 function TestPress:testClipEditingColourRows()
   for column = 1, 7 do
-    lu.assertEquals(press.launchButton(editing, column, 2, false, true),
+    lu.assertEquals(press.launchButton(editing, column, 1, false, press.edited(true)),
       { kind = "colour", index = picked, value = column - 1 })
-    lu.assertEquals(press.launchButton(editing, column, 3, false, true),
+    lu.assertEquals(press.launchButton(editing, column, 2, false, press.edited(true)),
       { kind = "colour", index = picked, value = 7 + column - 1 })
   end
-  -- column 8 of the colour rows is not a control
-  lu.assertNil(press.launchButton(editing, 8, 2, false, true))
-  lu.assertNil(press.launchButton(editing, 8, 3, false, true))
+  -- column 8 of the second colour row is not a control
+  lu.assertNil(press.launchButton(editing, 8, 2, false, press.edited(true)))
 end
 
-function TestPress:testClipEditingPatternRow()
+function TestPress:testClipEditingPatternMode()
+  -- output A, in row 3, is in pattern mode: all eight columns are patterns
   for column = 1, 8 do
-    lu.assertEquals(press.launchButton(editing, column, 5, false, true),
-      { kind = "pattern", index = picked, value = column - 1 })
+    lu.assertEquals(press.launchButton(editing, column, 3, false, mixedModes(true)),
+      { kind = "pattern", index = picked, output = 1, value = column - 1 })
   end
+end
+
+function TestPress:testClipEditingUnipolarAndBipolarValues()
+  for column = 1, 7 do
+    lu.assertEquals(press.launchButton(editing, column, 4, false, mixedModes(true)),
+      { kind = "unipolar", index = picked, output = 2, value = column - 1 })
+    lu.assertEquals(press.launchButton(editing, column, 5, false, mixedModes(true)),
+      { kind = "bipolar", index = picked, output = 3, value = column - 1 })
+    lu.assertEquals(press.launchButton(editing, column, 8, false, mixedModes(true)),
+      { kind = "unipolar", index = picked, output = 6, value = column - 1 })
+  end
+end
+
+function TestPress:testClipEditingTransitionButtonGoesRound()
+  lu.assertEquals(press.launchButton(editing, 8, 4, false, mixedModes(true)),
+    { kind = "transition", index = picked, output = 2, value = 1 })
+  lu.assertEquals(press.launchButton(editing, 8, 5, false, mixedModes(true)),
+    { kind = "transition", index = picked, output = 3, value = 3 })
+  -- after D it is off again
+  lu.assertEquals(press.launchButton(editing, 8, 6, false, mixedModes(true)),
+    { kind = "transition", index = picked, output = 4, value = 0 })
 end
 
 function TestPress:testClipEditingUnusedLaunchButtonsDoNothing()
-  lu.assertNil(press.launchButton(editing, 1, 1, false, true))
-  lu.assertNil(press.launchButton(editing, 4, 4, false, true))
-  -- not even the picked launch button itself, whatever it holds
-  lu.assertNil(press.launchButton(editing, 4, 6, true, true))
-  lu.assertNil(press.launchButton(editing, 1, 8, false, true))
+  lu.assertNil(press.launchButton(editing, 8, 2, true, press.edited(true)))
 end
 
-function TestPress:testClipEditingWithoutClipHasNoColourOrPatternControls()
-  lu.assertNil(press.launchButton(editing, 3, 2, false, false))
-  lu.assertNil(press.launchButton(editing, 3, 3, false, false))
-  lu.assertNil(press.launchButton(editing, 3, 5, false, false))
+function TestPress:testClipEditingWithoutClipHasNoColourOrCVControls()
+  for row = 1, 8 do
+    lu.assertNil(press.launchButton(editing, 3, row, false, mixedModes(false)))
+  end
+  lu.assertNil(press.launchButton(editing, 8, 4, false, mixedModes(false)))
 end
 
 function TestPress:testSceneButtonSelectsItsRowOnEveryTrack()
@@ -204,46 +222,59 @@ function TestPress:testFillInButtonFollowsTheButton()
 end
 
 function TestPress:testLaunchButtonDoesNothingInFillInEditing()
-  lu.assertNil(press.launchButton(fillInEditing, 8, 1, false, true))
-  lu.assertNil(press.launchButton(fillInEditing, 1, 2, false, true))
+  lu.assertNil(press.launchButton(fillInEditing, 8, 1, false, press.edited(true)))
+  lu.assertNil(press.launchButton(fillInEditing, 1, 2, false, press.edited(true)))
 end
+
+local someClipValues = {
+  patterns = { 0, 1, 2, 3, 4, 5 },
+  unipolar = { 6, 5, 4, 3, 2, 1 },
+  bipolar = { 0, 1, 2, 3, 4, 5 },
+}
 
 function TestPress:testFillInEditingDoesNothingElsewhere()
-  lu.assertEquals(press.fillInEditingLaunchButton(launchMode, 8, 1, false, 2), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(clipPicking, 8, 1, false, 2), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(editing, 8, 1, false, 2), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(launchMode, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(clipPicking, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(editing, 8, 1, press.edited(false), someClipValues), {})
 end
 
--- a new fill-in has the pattern of its clip, in white
+-- a new fill-in is a copy of its clip's values, with every transition off, in
+-- white
 function TestPress:testFillInEditingToggleSetsUpANewFillIn()
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, false, 4), {
+  local expected = {
     { kind = "fillinpresent", index = picked, value = 1 },
-    { kind = "fillinpattern", index = picked, value = 4 },
     { kind = "fillincolour", index = picked, value = 0 },
-  })
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, true, 4), {
+  }
+  for output = 1, 6 do
+    table.insert(expected, { kind = "fillinpattern", index = picked, output = output, value = output - 1 })
+    table.insert(expected, { kind = "fillinunipolar", index = picked, output = output, value = 7 - output })
+    table.insert(expected, { kind = "fillinbipolar", index = picked, output = output, value = output - 1 })
+    table.insert(expected, { kind = "fillintransition", index = picked, output = output, value = 0 })
+  end
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), someClipValues), expected)
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(true), someClipValues), {
     { kind = "fillinpresent", index = picked, value = 0 },
   })
 end
 
-function TestPress:testFillInEditingColourAndPatternRows()
+function TestPress:testFillInEditingColourAndCVRows()
   for column = 1, 7 do
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 2, true, 0), { { kind = "fillincolour", index = picked, value = column - 1 } })
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, true, 0), { { kind = "fillincolour", index = picked, value = 6 + column } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 1, mixedModes(true), someClipValues), { { kind = "fillincolour", index = picked, value = column - 1 } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 2, mixedModes(true), someClipValues), { { kind = "fillincolour", index = picked, value = 6 + column } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 4, mixedModes(true), someClipValues), { { kind = "fillinunipolar", index = picked, output = 2, value = column - 1 } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, mixedModes(true), someClipValues), { { kind = "fillinbipolar", index = picked, output = 3, value = column - 1 } })
   end
   for column = 1, 8 do
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, true, 0), { { kind = "fillinpattern", index = picked, value = column - 1 } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { { kind = "fillinpattern", index = picked, output = 1, value = column - 1 } })
   end
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, true, 0), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 1, 1, true, 0), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 4, 6, true, 0), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 1, 8, true, 0), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 5, mixedModes(true), someClipValues), { { kind = "fillintransition", index = picked, output = 3, value = 3 } })
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), {})
 end
 
-function TestPress:testFillInEditingWithoutFillInHasNoColourOrPatternControls()
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, 2, false, 0), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, 3, false, 0), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, 5, false, 0), {})
+function TestPress:testFillInEditingWithoutFillInHasNoColourOrCVControls()
+  for row = 1, 8 do
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 3, row, mixedModes(false), someClipValues), {})
+  end
 end
 
 function TestPress:testSceneButtonDoesNothingInFillInEditing()

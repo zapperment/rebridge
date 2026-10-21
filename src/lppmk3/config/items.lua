@@ -30,7 +30,25 @@ items["function"] = { input = "value", output = "value", min = 0, max = 2, launc
 items.fillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "fillinlight" } }
 items.setfillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "setfillinlight" } }
 
+-- the CV outputs A to F of each track, as in Launchnik's Remote items
+local outputLetters = { "a", "b", "c", "d", "e", "f" }
+
+-- the settings of a CV output of a clip or a fill-in, and their ranges: eight
+-- patterns, seven unipolar or bipolar values, five transitions (off, A to D)
+local outputSettings = {
+  { name = "pattern", max = 7 },
+  { name = "unipolar", max = 6 },
+  { name = "bipolar", max = 6 },
+  { name = "transition", max = 4 },
+}
+
 for track = 1, 8 do
+  -- the CV mode of each CV output: 0 = bipolar, 1 = unipolar, 2 = pattern; the
+  -- codec only reads it, to tell what a press in clip editing means
+  for output, letter in ipairs(outputLetters) do
+    items["track" .. track .. "cvmode" .. letter] = { output = "value", min = 0, max = 2, launchnik = { kind = "cvmode", track = track, output = output } }
+  end
+
   -- the light of the track's function button, in the colour of the function:
   -- 0 = unlit, 1 = dim, 2 = vibrant, 3 = flashing
   items["track" .. track .. "functionlight"] = { output = "value", min = 0, max = 3, launchnik = { kind = "functionlight", track = track } }
@@ -46,12 +64,23 @@ for track = 1, 8 do
     -- 0 = unlit, then dim, vibrant and flashing for each of the 14 colours
     items[clip .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "light", index = index } }
     items[clip .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "present", index = index } }
-    -- the clip's pattern is what a new fill-in starts with
-    items[clip .. "pattern"] = { input = "value", output = "value", min = 0, max = 7, launchnik = { kind = "pattern", index = index } }
     items[clip .. "colour"] = { input = "value", min = 0, max = 13 }
     items[clip .. "fillinpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinpresent", index = index } }
-    items[clip .. "fillinpattern"] = { input = "value", min = 0, max = 7 }
     items[clip .. "fillincolour"] = { input = "value", min = 0, max = 13 }
+    -- the settings of the CV outputs, for example track1clip1apattern and
+    -- track1clip1fillinapattern; the codec reads the clip's, which a new
+    -- fill-in starts as a copy of, and the transitions, which a press moves on
+    for output, letter in ipairs(outputLetters) do
+      for _, setting in ipairs(outputSettings) do
+        items[clip .. letter .. setting.name] = { input = "value", output = "value", min = 0, max = setting.max, launchnik = { kind = setting.name, index = index, output = output } }
+        local fillIn = { input = "value", min = 0, max = setting.max }
+        if setting.name == "transition" then
+          fillIn.output = "value"
+          fillIn.launchnik = { kind = "fillintransition", index = index, output = output }
+        end
+        items[clip .. "fillin" .. letter .. setting.name] = fillIn
+      end
+    end
   end
 end
 

@@ -3,6 +3,7 @@
 -- means and to deliver the lights.
 
 local buttonCount = 64
+local outputCount = 6
 
 local state = {}
 
@@ -35,10 +36,18 @@ function state.reset()
   -- the lights of the fill-in button and the set fill-in button
   state.fillInLight = 0
   state.setFillInLight = 0
-  -- by launch button index, 0..63
+  -- by launch button index, 0..63; the settings of the CV outputs by index
+  -- and then by output, 1..6
   state.present = {}
   state.patterns = {}
+  state.unipolar = {}
+  state.bipolar = {}
+  state.transitions = {}
   state.fillInPresent = {}
+  state.fillInTransitions = {}
+  -- the CV modes by track, 1..8, and then by output: 0 = bipolar, 1 =
+  -- unipolar, 2 = pattern
+  state.cvModes = {}
   state.lights = {}
   state.changedLights = {}
   -- the lights of the function buttons, by track, 1..8
@@ -49,13 +58,29 @@ function state.reset()
   state.changedSceneLights = {}
   for track = 1, 8 do
     state.functionLights[track] = 0
+    state.cvModes[track] = {}
+    for output = 1, outputCount do
+      state.cvModes[track][output] = output == 1 and 2 or 1
+    end
   end
   for scene = 1, 8 do
     state.sceneLights[scene] = 0
   end
   for index = 0, buttonCount - 1 do
     state.present[index] = false
-    state.patterns[index] = 0
+    state.patterns[index] = {}
+    state.unipolar[index] = {}
+    state.bipolar[index] = {}
+    state.transitions[index] = {}
+    state.fillInTransitions[index] = {}
+    -- a new clip plays the pattern of its row, at unipolar and bipolar 0
+    for output = 1, outputCount do
+      state.patterns[index][output] = index % 8
+      state.unipolar[index][output] = 0
+      state.bipolar[index][output] = 3
+      state.transitions[index][output] = 0
+      state.fillInTransitions[index][output] = 0
+    end
     state.fillInPresent[index] = false
     state.lights[index] = 0
   end

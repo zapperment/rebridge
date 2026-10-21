@@ -45,7 +45,18 @@ local function itemName(change)
   end
   local track = math.floor(change.index / 8) + 1
   local row = change.index % 8 + 1
-  return "track" .. track .. "clip" .. row .. change.kind
+  local clip = "track" .. track .. "clip" .. row
+  -- a setting of a CV output, such as track1clip1apattern or
+  -- track1clip1fillinapattern
+  if change.output then
+    local letter = string.char(string.byte("a") + change.output - 1)
+    local fillIn, setting = string.match(change.kind, "^(fillin)(.+)$")
+    if fillIn then
+      return clip .. "fillin" .. letter .. setting
+    end
+    return clip .. letter .. change.kind
+  end
+  return clip .. change.kind
 end
 
 -- hands a change to the host; nil stands for a press that changes nothing
@@ -56,6 +67,16 @@ local function write(event, change)
   local name = itemName(change)
   deb.log("[lppmk3:remote:processMidi:launchnik] " .. name .. " = " .. change.value)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
+end
+
+-- what a press in clip editing or fill-in editing needs to know of the clip
+-- or fill-in being edited
+local function editedSettings(picked, fillIn)
+  local track = math.floor(picked / 8) + 1
+  if fillIn then
+    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked])
+  end
+  return press.edited(state.present[picked], state.cvModes[track], state.transitions[picked])
 end
 
 -- whether any launch button of a track holds a clip
@@ -117,14 +138,15 @@ local function processPadsAndTrackButtons(event)
     local row = 9 - ((ret.y - track) / 10)
     local picked = press.pickedButton(state.setup)
     if press.isFillInEditing(state.setup) then
-      for _, change in ipairs(press.fillInEditingLaunchButton(state.setup, track, row, state.fillInPresent[picked], state.patterns[picked])) do
+      local clipValues = { patterns = state.patterns[picked], unipolar = state.unipolar[picked], bipolar = state.bipolar[picked] }
+      for _, change in ipairs(press.fillInEditingLaunchButton(state.setup, track, row, editedSettings(picked, true), clipValues)) do
         write(event, change)
       end
       return true
     end
     local pressedHoldsClip = state.present[press.buttonIndex(track, row)]
-    local pickedHoldsClip = picked ~= nil and state.present[picked]
-    write(event, press.launchButton(state.setup, track, row, pressedHoldsClip, pickedHoldsClip))
+    local pickedClip = picked ~= nil and editedSettings(picked, false) or press.edited(false)
+    write(event, press.launchButton(state.setup, track, row, pressedHoldsClip, pickedClip))
     return true
   end
   if ret.x == controlChange and ret.y == setFillInButton then
