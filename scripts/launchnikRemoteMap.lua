@@ -64,6 +64,7 @@ local function launchnikMap()
   clipGroups("fillincolour", "Fill-In Colour")
   clipGroups("landingpresent", "Landing Present")
   clipGroups("landingcolour", "Landing Colour")
+  clipGroups("landingonebarpattern", "Landing One-Bar Pattern")
 
   -- the CV modes, a group of six for each track
   for track = 1, 8 do

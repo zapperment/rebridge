@@ -79,7 +79,7 @@ local function editedSettings(picked)
     return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked])
   end
   if press.isLandingEditing(state.setup) then
-    return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked])
+    return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked], state.landingOneBarPattern[picked])
   end
   return press.edited(state.present[picked], state.cvModes[track], state.transitions[picked])
 end

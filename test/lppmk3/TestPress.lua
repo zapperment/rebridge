@@ -316,6 +316,7 @@ function TestPress:testLandingEditingToggleSetsUpANewLanding()
     table.insert(expected, { kind = "landingbipolar", index = picked, output = output, value = output - 1 })
     table.insert(expected, { kind = "landingtransition", index = picked, output = output, value = 0 })
   end
+  table.insert(expected, { kind = "landingonebarpattern", index = picked, value = 0 })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(false), someClipValues), expected)
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(true), someClipValues), {
     { kind = "landingpresent", index = picked, value = 0 },
@@ -330,4 +331,14 @@ function TestPress:testLandingEditingColourAndCVRows()
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 6, mixedModes(true), someClipValues), { { kind = "landingtransition", index = picked, output = 4, value = 0 } })
   -- without a landing there is nothing but the toggle
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 2, mixedModes(false), someClipValues), {})
+end
+
+function TestPress:testOneBarPatternSwitchGoesOnAndOff()
+  local landing = mixedModes(true)
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, landing, someClipValues), { { kind = "landingonebarpattern", index = picked, value = 1 } })
+  landing.oneBarPattern = true
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, landing, someClipValues), { { kind = "landingonebarpattern", index = picked, value = 0 } })
+  -- not there without a landing, nor in fill-in editing
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, mixedModes(false), someClipValues), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), {})
 end

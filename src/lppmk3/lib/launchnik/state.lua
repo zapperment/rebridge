@@ -47,6 +47,7 @@ function state.reset()
   state.fillInTransitions = {}
   state.landingPresent = {}
   state.landingTransitions = {}
+  state.landingOneBarPattern = {}
   -- the CV modes by track, 1..8, and then by output: 0 = bipolar, 1 =
   -- unipolar, 2 = pattern
   state.cvModes = {}
@@ -87,6 +88,7 @@ function state.reset()
     end
     state.fillInPresent[index] = false
     state.landingPresent[index] = false
+    state.landingOneBarPattern[index] = false
     state.lights[index] = 0
   end
   -- when the codec last switched the surface to programmer mode

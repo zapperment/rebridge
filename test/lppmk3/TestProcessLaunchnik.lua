@@ -61,6 +61,7 @@ function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
       lu.assertEquals({ items[clip .. "fillincolour"].min, items[clip .. "fillincolour"].max }, { 0, 13 })
       lu.assertEquals({ items[clip .. "landingpresent"].min, items[clip .. "landingpresent"].max }, { 0, 1 })
       lu.assertEquals({ items[clip .. "landingcolour"].min, items[clip .. "landingcolour"].max }, { 0, 13 })
+      lu.assertEquals({ items[clip .. "landingonebarpattern"].min, items[clip .. "landingonebarpattern"].max }, { 0, 1 })
       for _, letter in ipairs({ "a", "b", "c", "d", "e", "f" }) do
         for _, kind in ipairs({ "", "fillin", "landing" }) do
           local prefix = clip .. kind .. letter
@@ -413,7 +414,8 @@ function TestProcessLaunchnik:testTogglePadInLandingEditingSetsUpANewLanding()
   state.bipolar[picked][6] = 1
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 2 + 4 * 6)
+  lu.assertEquals(#calls, 3 + 4 * 6)
+  lu.assertEquals(calls[27][1], { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 0 })
   lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip3landingpresent.index, value = 1 })
   lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track2clip3landingcolour.index, value = 0 })
   lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.track2clip3landingapattern.index, value = 6 })
@@ -450,6 +452,15 @@ function TestProcessLaunchnik:testColourAndCVPadsInLandingEditingChangeTheLandin
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(8, 4), 127))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingbtransition.index, value = 0 })
+
+  -- the one-bar pattern switch goes on, and off again
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(8, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 1 })
+  remote.clearMocks()
+  state.landingOneBarPattern[picked] = true
+  lu.assertTrue(receive(noteOn, pad(8, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 0 })
 end
 
 -- a new fill-in is a copy of its clip's values, with every transition off,

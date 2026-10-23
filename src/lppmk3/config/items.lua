@@ -70,6 +70,7 @@ for track = 1, 8 do
     items[clip .. "fillincolour"] = { input = "value", min = 0, max = 13 }
     items[clip .. "landingpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingpresent", index = index } }
     items[clip .. "landingcolour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "landingonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingonebarpattern", index = index } }
     -- the settings of the CV outputs, for example track1clip1apattern,
     -- track1clip1fillinapattern and track1clip1landingapattern; the codec
     -- reads the clip's, which a new fill-in or landing starts as a copy of,
