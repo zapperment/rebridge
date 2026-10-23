@@ -76,7 +76,7 @@ end
 local function editedSettings(picked)
   local track = math.floor(picked / 8) + 1
   if press.isFillInEditing(state.setup) then
-    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked])
+    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked], state.fillInOneBarPattern[picked])
   end
   if press.isLandingEditing(state.setup) then
     return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked], state.landingOneBarPattern[picked])

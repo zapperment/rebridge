@@ -59,6 +59,7 @@ function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
       lu.assertEquals({ items[clip .. "colour"].min, items[clip .. "colour"].max }, { 0, 13 })
       lu.assertEquals({ items[clip .. "fillinpresent"].min, items[clip .. "fillinpresent"].max }, { 0, 1 })
       lu.assertEquals({ items[clip .. "fillincolour"].min, items[clip .. "fillincolour"].max }, { 0, 13 })
+      lu.assertEquals({ items[clip .. "fillinonebarpattern"].min, items[clip .. "fillinonebarpattern"].max }, { 0, 1 })
       lu.assertEquals({ items[clip .. "landingpresent"].min, items[clip .. "landingpresent"].max }, { 0, 1 })
       lu.assertEquals({ items[clip .. "landingcolour"].min, items[clip .. "landingcolour"].max }, { 0, 13 })
       lu.assertEquals({ items[clip .. "landingonebarpattern"].min, items[clip .. "landingonebarpattern"].max }, { 0, 1 })
@@ -474,7 +475,8 @@ function TestProcessLaunchnik:testTogglePadInFillInEditingSetsUpANewFillIn()
   state.bipolar[picked][6] = 1
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 2 + 4 * 6)
+  lu.assertEquals(#calls, 3 + 4 * 6)
+  lu.assertEquals(calls[27][1], { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
   lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip3fillinpresent.index, value = 1 })
   lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track2clip3fillincolour.index, value = 0 })
   lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.track2clip3fillinapattern.index, value = 6 })
@@ -511,8 +513,10 @@ function TestProcessLaunchnik:testColourAndCVPadsInFillInEditingChangeTheFillIn(
   lu.assertTrue(receive(noteOn, pad(8, 4), 127))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinbtransition.index, value = 2 })
 
-  -- the pad in the last track of the second colour row is swallowed
+  -- the pad in the last track of the second colour row switches one-bar
+  -- pattern
   remote.clearMocks()
+  state.fillInOneBarPattern[picked] = true
   lu.assertTrue(receive(noteOn, pad(8, 2), 127))
-  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
 end

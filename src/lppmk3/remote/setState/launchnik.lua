@@ -66,6 +66,8 @@ local function setState(hostItems)
         state.landingPresent[item.launchnik.index] = value > 0
       elseif kind == "landingonebarpattern" then
         state.landingOneBarPattern[item.launchnik.index] = value > 0
+      elseif kind == "fillinonebarpattern" then
+        state.fillInOneBarPattern[item.launchnik.index] = value > 0
       elseif kind == "fillinlight" then
         state.fillInLight = value
       elseif kind == "forwardlight" then

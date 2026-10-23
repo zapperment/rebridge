@@ -9,7 +9,7 @@
 --   { kind = "length", value = 0..7 }
 --   { kind = "present" | "colour", index = 0..63, value = ... }
 --   { kind = "pattern" | "unipolar" | "bipolar" | "transition", index = 0..63, output = 1..6, value = ... }
---   { kind = "fillinpresent" | "fillincolour", index = 0..63, value = ... }
+--   { kind = "fillinpresent" | "fillincolour" | "fillinonebarpattern", index = 0..63, value = ... }
 --   { kind = "fillinpattern" | "fillinunipolar" | "fillinbipolar" | "fillintransition", index = 0..63, output = 1..6, value = ... }
 --   { kind = "landingpresent" | "landingcolour" | "landingonebarpattern", index = 0..63, value = ... }
 --   { kind = "landingpattern" | "landingunipolar" | "landingbipolar" | "landingtransition", index = 0..63, output = 1..6, value = ... }
@@ -58,8 +58,8 @@ local firstColourRow = 1
 local coloursPerRow = 7
 local firstOutputRow = 3
 local transitionTrack = 8
--- in landing editing only, the one-bar pattern switch sits in the last track
--- of the second colour row
+-- in fill-in editing and landing editing only, the one-bar pattern switch
+-- sits in the last track of the second colour row
 local oneBarPattern = { track = 8, row = 2 }
 
 local function defaultCVMode(output)
@@ -70,7 +70,7 @@ end
 -- know of the settings being edited: whether there are any, the CV modes of the picked
 -- launch button's track and the transitions, by output; with present alone,
 -- the CV modes of a new device and every transition off; oneBarPattern says
--- of a landing whether one-bar pattern is on
+-- of a fill-in or a landing whether one-bar pattern is on
 local function edited(present, cvModes, transitions, oneBarPattern)
   local result = { present = present, cvModes = {}, transitions = {}, oneBarPattern = oneBarPattern or false }
   for output = 1, outputCount do
@@ -88,8 +88,8 @@ local function editSetting(prefix, picked, track, row, settings)
   if isColourRow and track <= coloursPerRow then
     return { kind = prefix .. "colour", index = picked, value = (row - firstColourRow) * coloursPerRow + track - 1 }
   end
-  if prefix == "landing" and track == oneBarPattern.track and row == oneBarPattern.row then
-    return { kind = "landingonebarpattern", index = picked, value = settings.oneBarPattern and 0 or 1 }
+  if prefix ~= "" and track == oneBarPattern.track and row == oneBarPattern.row then
+    return { kind = prefix .. "onebarpattern", index = picked, value = settings.oneBarPattern and 0 or 1 }
   end
   local output = row - firstOutputRow + 1
   if output < 1 or output > outputCount or track < 1 or track > 8 then
@@ -173,7 +173,7 @@ end
 -- editing; settings, made by edited(), describes the fill-in or landing,
 -- clipValues the values of its clip by output, { patterns = {}, unipolar =
 -- {}, bipolar = {} }, which a new one starts as a copy of, with every
--- transition off, in white; returns a list of changes
+-- transition off and one-bar pattern off, in white; returns a list of changes
 local function editOverlay(prefix, setup, track, row, settings, clipValues)
   local picked = pickedButton(setup)
   if track == toggle.track and row == toggle.row then
@@ -190,10 +190,7 @@ local function editOverlay(prefix, setup, track, row, settings, clipValues)
       table.insert(changes, { kind = prefix .. "bipolar", index = picked, output = output, value = clipValues.bipolar[output] })
       table.insert(changes, { kind = prefix .. "transition", index = picked, output = output, value = transitionOff })
     end
-    -- a new landing has one-bar pattern off
-    if prefix == "landing" then
-      table.insert(changes, { kind = "landingonebarpattern", index = picked, value = 0 })
-    end
+    table.insert(changes, { kind = prefix .. "onebarpattern", index = picked, value = 0 })
     return changes
   end
   -- the colour and CV controls are not there without a fill-in or landing

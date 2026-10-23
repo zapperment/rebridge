@@ -68,6 +68,7 @@ for track = 1, 8 do
     items[clip .. "colour"] = { input = "value", min = 0, max = 13 }
     items[clip .. "fillinpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinpresent", index = index } }
     items[clip .. "fillincolour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "fillinonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinonebarpattern", index = index } }
     items[clip .. "landingpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingpresent", index = index } }
     items[clip .. "landingcolour"] = { input = "value", min = 0, max = 13 }
     items[clip .. "landingonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingonebarpattern", index = index } }

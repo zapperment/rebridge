@@ -264,6 +264,7 @@ function TestPress:testFillInEditingToggleSetsUpANewFillIn()
     table.insert(expected, { kind = "fillinbipolar", index = picked, output = output, value = output - 1 })
     table.insert(expected, { kind = "fillintransition", index = picked, output = output, value = 0 })
   end
+  table.insert(expected, { kind = "fillinonebarpattern", index = picked, value = 0 })
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), someClipValues), expected)
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(true), someClipValues), {
     { kind = "fillinpresent", index = picked, value = 0 },
@@ -281,7 +282,8 @@ function TestPress:testFillInEditingColourAndCVRows()
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { { kind = "fillinpattern", index = picked, output = 1, value = column - 1 } })
   end
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 5, mixedModes(true), someClipValues), { { kind = "fillintransition", index = picked, output = 3, value = 3 } })
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), {})
+  -- the last track of the second colour row is the one-bar pattern switch
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), { { kind = "fillinonebarpattern", index = picked, value = 1 } })
 end
 
 function TestPress:testFillInEditingWithoutFillInHasNoColourOrCVControls()
@@ -338,7 +340,9 @@ function TestPress:testOneBarPatternSwitchGoesOnAndOff()
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, landing, someClipValues), { { kind = "landingonebarpattern", index = picked, value = 1 } })
   landing.oneBarPattern = true
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, landing, someClipValues), { { kind = "landingonebarpattern", index = picked, value = 0 } })
-  -- not there without a landing, nor in fill-in editing
+  -- not there without a landing
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, mixedModes(false), someClipValues), {})
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), {})
+  -- in fill-in editing it is the fill-in's
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), { { kind = "fillinonebarpattern", index = picked, value = 1 } })
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(false), someClipValues), {})
 end

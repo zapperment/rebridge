@@ -386,6 +386,8 @@ function TestLaunchnikLights:testKeepsLandings()
   lu.assertFalse(state.landingPresent[launchnik.press.buttonIndex(2, 3)])
   report { track2clip3landingonebarpattern = 1 }
   lu.assertTrue(state.landingOneBarPattern[launchnik.press.buttonIndex(2, 3)])
+  report { track2clip3fillinonebarpattern = 1 }
+  lu.assertTrue(state.fillInOneBarPattern[launchnik.press.buttonIndex(2, 3)])
 end
 
 function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
