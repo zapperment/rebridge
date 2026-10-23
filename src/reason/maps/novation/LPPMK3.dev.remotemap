@@ -23,7 +23,7 @@ Map	setup		Setup
 Map	switchinterval		Switch Interval
 Map	fillin		Fill-In
 Map	fillinlight		Fill-In Light
-Map	setfillinlight		Set Fill-In Light
+Map	forwardlight		Forward Light
 Map	function		Function
 
 Map	track1clip1light		Track 1 Clip 1 Light
@@ -260,6 +260,15 @@ Map	track6solo		Track 6 Solo
 Map	track7solo		Track 7 Solo
 Map	track8solo		Track 8 Solo
 
+Map	track1relaunch		Track 1 Relaunch
+Map	track2relaunch		Track 2 Relaunch
+Map	track3relaunch		Track 3 Relaunch
+Map	track4relaunch		Track 4 Relaunch
+Map	track5relaunch		Track 5 Relaunch
+Map	track6relaunch		Track 6 Relaunch
+Map	track7relaunch		Track 7 Relaunch
+Map	track8relaunch		Track 8 Relaunch
+
 Map	track1functionlight		Track 1 Function Light
 Map	track2functionlight		Track 2 Function Light
 Map	track3functionlight		Track 3 Function Light
@@ -430,6 +439,294 @@ Map	track5clip8fillincolour		Track 5 Clip 8 Fill-In Colour
 Map	track6clip8fillincolour		Track 6 Clip 8 Fill-In Colour
 Map	track7clip8fillincolour		Track 7 Clip 8 Fill-In Colour
 Map	track8clip8fillincolour		Track 8 Clip 8 Fill-In Colour
+
+Map	track1clip1fillinonebarpattern		Track 1 Clip 1 Fill-In One-Bar Pattern
+Map	track2clip1fillinonebarpattern		Track 2 Clip 1 Fill-In One-Bar Pattern
+Map	track3clip1fillinonebarpattern		Track 3 Clip 1 Fill-In One-Bar Pattern
+Map	track4clip1fillinonebarpattern		Track 4 Clip 1 Fill-In One-Bar Pattern
+Map	track5clip1fillinonebarpattern		Track 5 Clip 1 Fill-In One-Bar Pattern
+Map	track6clip1fillinonebarpattern		Track 6 Clip 1 Fill-In One-Bar Pattern
+Map	track7clip1fillinonebarpattern		Track 7 Clip 1 Fill-In One-Bar Pattern
+Map	track8clip1fillinonebarpattern		Track 8 Clip 1 Fill-In One-Bar Pattern
+
+Map	track1clip2fillinonebarpattern		Track 1 Clip 2 Fill-In One-Bar Pattern
+Map	track2clip2fillinonebarpattern		Track 2 Clip 2 Fill-In One-Bar Pattern
+Map	track3clip2fillinonebarpattern		Track 3 Clip 2 Fill-In One-Bar Pattern
+Map	track4clip2fillinonebarpattern		Track 4 Clip 2 Fill-In One-Bar Pattern
+Map	track5clip2fillinonebarpattern		Track 5 Clip 2 Fill-In One-Bar Pattern
+Map	track6clip2fillinonebarpattern		Track 6 Clip 2 Fill-In One-Bar Pattern
+Map	track7clip2fillinonebarpattern		Track 7 Clip 2 Fill-In One-Bar Pattern
+Map	track8clip2fillinonebarpattern		Track 8 Clip 2 Fill-In One-Bar Pattern
+
+Map	track1clip3fillinonebarpattern		Track 1 Clip 3 Fill-In One-Bar Pattern
+Map	track2clip3fillinonebarpattern		Track 2 Clip 3 Fill-In One-Bar Pattern
+Map	track3clip3fillinonebarpattern		Track 3 Clip 3 Fill-In One-Bar Pattern
+Map	track4clip3fillinonebarpattern		Track 4 Clip 3 Fill-In One-Bar Pattern
+Map	track5clip3fillinonebarpattern		Track 5 Clip 3 Fill-In One-Bar Pattern
+Map	track6clip3fillinonebarpattern		Track 6 Clip 3 Fill-In One-Bar Pattern
+Map	track7clip3fillinonebarpattern		Track 7 Clip 3 Fill-In One-Bar Pattern
+Map	track8clip3fillinonebarpattern		Track 8 Clip 3 Fill-In One-Bar Pattern
+
+Map	track1clip4fillinonebarpattern		Track 1 Clip 4 Fill-In One-Bar Pattern
+Map	track2clip4fillinonebarpattern		Track 2 Clip 4 Fill-In One-Bar Pattern
+Map	track3clip4fillinonebarpattern		Track 3 Clip 4 Fill-In One-Bar Pattern
+Map	track4clip4fillinonebarpattern		Track 4 Clip 4 Fill-In One-Bar Pattern
+Map	track5clip4fillinonebarpattern		Track 5 Clip 4 Fill-In One-Bar Pattern
+Map	track6clip4fillinonebarpattern		Track 6 Clip 4 Fill-In One-Bar Pattern
+Map	track7clip4fillinonebarpattern		Track 7 Clip 4 Fill-In One-Bar Pattern
+Map	track8clip4fillinonebarpattern		Track 8 Clip 4 Fill-In One-Bar Pattern
+
+Map	track1clip5fillinonebarpattern		Track 1 Clip 5 Fill-In One-Bar Pattern
+Map	track2clip5fillinonebarpattern		Track 2 Clip 5 Fill-In One-Bar Pattern
+Map	track3clip5fillinonebarpattern		Track 3 Clip 5 Fill-In One-Bar Pattern
+Map	track4clip5fillinonebarpattern		Track 4 Clip 5 Fill-In One-Bar Pattern
+Map	track5clip5fillinonebarpattern		Track 5 Clip 5 Fill-In One-Bar Pattern
+Map	track6clip5fillinonebarpattern		Track 6 Clip 5 Fill-In One-Bar Pattern
+Map	track7clip5fillinonebarpattern		Track 7 Clip 5 Fill-In One-Bar Pattern
+Map	track8clip5fillinonebarpattern		Track 8 Clip 5 Fill-In One-Bar Pattern
+
+Map	track1clip6fillinonebarpattern		Track 1 Clip 6 Fill-In One-Bar Pattern
+Map	track2clip6fillinonebarpattern		Track 2 Clip 6 Fill-In One-Bar Pattern
+Map	track3clip6fillinonebarpattern		Track 3 Clip 6 Fill-In One-Bar Pattern
+Map	track4clip6fillinonebarpattern		Track 4 Clip 6 Fill-In One-Bar Pattern
+Map	track5clip6fillinonebarpattern		Track 5 Clip 6 Fill-In One-Bar Pattern
+Map	track6clip6fillinonebarpattern		Track 6 Clip 6 Fill-In One-Bar Pattern
+Map	track7clip6fillinonebarpattern		Track 7 Clip 6 Fill-In One-Bar Pattern
+Map	track8clip6fillinonebarpattern		Track 8 Clip 6 Fill-In One-Bar Pattern
+
+Map	track1clip7fillinonebarpattern		Track 1 Clip 7 Fill-In One-Bar Pattern
+Map	track2clip7fillinonebarpattern		Track 2 Clip 7 Fill-In One-Bar Pattern
+Map	track3clip7fillinonebarpattern		Track 3 Clip 7 Fill-In One-Bar Pattern
+Map	track4clip7fillinonebarpattern		Track 4 Clip 7 Fill-In One-Bar Pattern
+Map	track5clip7fillinonebarpattern		Track 5 Clip 7 Fill-In One-Bar Pattern
+Map	track6clip7fillinonebarpattern		Track 6 Clip 7 Fill-In One-Bar Pattern
+Map	track7clip7fillinonebarpattern		Track 7 Clip 7 Fill-In One-Bar Pattern
+Map	track8clip7fillinonebarpattern		Track 8 Clip 7 Fill-In One-Bar Pattern
+
+Map	track1clip8fillinonebarpattern		Track 1 Clip 8 Fill-In One-Bar Pattern
+Map	track2clip8fillinonebarpattern		Track 2 Clip 8 Fill-In One-Bar Pattern
+Map	track3clip8fillinonebarpattern		Track 3 Clip 8 Fill-In One-Bar Pattern
+Map	track4clip8fillinonebarpattern		Track 4 Clip 8 Fill-In One-Bar Pattern
+Map	track5clip8fillinonebarpattern		Track 5 Clip 8 Fill-In One-Bar Pattern
+Map	track6clip8fillinonebarpattern		Track 6 Clip 8 Fill-In One-Bar Pattern
+Map	track7clip8fillinonebarpattern		Track 7 Clip 8 Fill-In One-Bar Pattern
+Map	track8clip8fillinonebarpattern		Track 8 Clip 8 Fill-In One-Bar Pattern
+
+Map	track1clip1landingpresent		Track 1 Clip 1 Landing Present
+Map	track2clip1landingpresent		Track 2 Clip 1 Landing Present
+Map	track3clip1landingpresent		Track 3 Clip 1 Landing Present
+Map	track4clip1landingpresent		Track 4 Clip 1 Landing Present
+Map	track5clip1landingpresent		Track 5 Clip 1 Landing Present
+Map	track6clip1landingpresent		Track 6 Clip 1 Landing Present
+Map	track7clip1landingpresent		Track 7 Clip 1 Landing Present
+Map	track8clip1landingpresent		Track 8 Clip 1 Landing Present
+
+Map	track1clip2landingpresent		Track 1 Clip 2 Landing Present
+Map	track2clip2landingpresent		Track 2 Clip 2 Landing Present
+Map	track3clip2landingpresent		Track 3 Clip 2 Landing Present
+Map	track4clip2landingpresent		Track 4 Clip 2 Landing Present
+Map	track5clip2landingpresent		Track 5 Clip 2 Landing Present
+Map	track6clip2landingpresent		Track 6 Clip 2 Landing Present
+Map	track7clip2landingpresent		Track 7 Clip 2 Landing Present
+Map	track8clip2landingpresent		Track 8 Clip 2 Landing Present
+
+Map	track1clip3landingpresent		Track 1 Clip 3 Landing Present
+Map	track2clip3landingpresent		Track 2 Clip 3 Landing Present
+Map	track3clip3landingpresent		Track 3 Clip 3 Landing Present
+Map	track4clip3landingpresent		Track 4 Clip 3 Landing Present
+Map	track5clip3landingpresent		Track 5 Clip 3 Landing Present
+Map	track6clip3landingpresent		Track 6 Clip 3 Landing Present
+Map	track7clip3landingpresent		Track 7 Clip 3 Landing Present
+Map	track8clip3landingpresent		Track 8 Clip 3 Landing Present
+
+Map	track1clip4landingpresent		Track 1 Clip 4 Landing Present
+Map	track2clip4landingpresent		Track 2 Clip 4 Landing Present
+Map	track3clip4landingpresent		Track 3 Clip 4 Landing Present
+Map	track4clip4landingpresent		Track 4 Clip 4 Landing Present
+Map	track5clip4landingpresent		Track 5 Clip 4 Landing Present
+Map	track6clip4landingpresent		Track 6 Clip 4 Landing Present
+Map	track7clip4landingpresent		Track 7 Clip 4 Landing Present
+Map	track8clip4landingpresent		Track 8 Clip 4 Landing Present
+
+Map	track1clip5landingpresent		Track 1 Clip 5 Landing Present
+Map	track2clip5landingpresent		Track 2 Clip 5 Landing Present
+Map	track3clip5landingpresent		Track 3 Clip 5 Landing Present
+Map	track4clip5landingpresent		Track 4 Clip 5 Landing Present
+Map	track5clip5landingpresent		Track 5 Clip 5 Landing Present
+Map	track6clip5landingpresent		Track 6 Clip 5 Landing Present
+Map	track7clip5landingpresent		Track 7 Clip 5 Landing Present
+Map	track8clip5landingpresent		Track 8 Clip 5 Landing Present
+
+Map	track1clip6landingpresent		Track 1 Clip 6 Landing Present
+Map	track2clip6landingpresent		Track 2 Clip 6 Landing Present
+Map	track3clip6landingpresent		Track 3 Clip 6 Landing Present
+Map	track4clip6landingpresent		Track 4 Clip 6 Landing Present
+Map	track5clip6landingpresent		Track 5 Clip 6 Landing Present
+Map	track6clip6landingpresent		Track 6 Clip 6 Landing Present
+Map	track7clip6landingpresent		Track 7 Clip 6 Landing Present
+Map	track8clip6landingpresent		Track 8 Clip 6 Landing Present
+
+Map	track1clip7landingpresent		Track 1 Clip 7 Landing Present
+Map	track2clip7landingpresent		Track 2 Clip 7 Landing Present
+Map	track3clip7landingpresent		Track 3 Clip 7 Landing Present
+Map	track4clip7landingpresent		Track 4 Clip 7 Landing Present
+Map	track5clip7landingpresent		Track 5 Clip 7 Landing Present
+Map	track6clip7landingpresent		Track 6 Clip 7 Landing Present
+Map	track7clip7landingpresent		Track 7 Clip 7 Landing Present
+Map	track8clip7landingpresent		Track 8 Clip 7 Landing Present
+
+Map	track1clip8landingpresent		Track 1 Clip 8 Landing Present
+Map	track2clip8landingpresent		Track 2 Clip 8 Landing Present
+Map	track3clip8landingpresent		Track 3 Clip 8 Landing Present
+Map	track4clip8landingpresent		Track 4 Clip 8 Landing Present
+Map	track5clip8landingpresent		Track 5 Clip 8 Landing Present
+Map	track6clip8landingpresent		Track 6 Clip 8 Landing Present
+Map	track7clip8landingpresent		Track 7 Clip 8 Landing Present
+Map	track8clip8landingpresent		Track 8 Clip 8 Landing Present
+
+Map	track1clip1landingcolour		Track 1 Clip 1 Landing Colour
+Map	track2clip1landingcolour		Track 2 Clip 1 Landing Colour
+Map	track3clip1landingcolour		Track 3 Clip 1 Landing Colour
+Map	track4clip1landingcolour		Track 4 Clip 1 Landing Colour
+Map	track5clip1landingcolour		Track 5 Clip 1 Landing Colour
+Map	track6clip1landingcolour		Track 6 Clip 1 Landing Colour
+Map	track7clip1landingcolour		Track 7 Clip 1 Landing Colour
+Map	track8clip1landingcolour		Track 8 Clip 1 Landing Colour
+
+Map	track1clip2landingcolour		Track 1 Clip 2 Landing Colour
+Map	track2clip2landingcolour		Track 2 Clip 2 Landing Colour
+Map	track3clip2landingcolour		Track 3 Clip 2 Landing Colour
+Map	track4clip2landingcolour		Track 4 Clip 2 Landing Colour
+Map	track5clip2landingcolour		Track 5 Clip 2 Landing Colour
+Map	track6clip2landingcolour		Track 6 Clip 2 Landing Colour
+Map	track7clip2landingcolour		Track 7 Clip 2 Landing Colour
+Map	track8clip2landingcolour		Track 8 Clip 2 Landing Colour
+
+Map	track1clip3landingcolour		Track 1 Clip 3 Landing Colour
+Map	track2clip3landingcolour		Track 2 Clip 3 Landing Colour
+Map	track3clip3landingcolour		Track 3 Clip 3 Landing Colour
+Map	track4clip3landingcolour		Track 4 Clip 3 Landing Colour
+Map	track5clip3landingcolour		Track 5 Clip 3 Landing Colour
+Map	track6clip3landingcolour		Track 6 Clip 3 Landing Colour
+Map	track7clip3landingcolour		Track 7 Clip 3 Landing Colour
+Map	track8clip3landingcolour		Track 8 Clip 3 Landing Colour
+
+Map	track1clip4landingcolour		Track 1 Clip 4 Landing Colour
+Map	track2clip4landingcolour		Track 2 Clip 4 Landing Colour
+Map	track3clip4landingcolour		Track 3 Clip 4 Landing Colour
+Map	track4clip4landingcolour		Track 4 Clip 4 Landing Colour
+Map	track5clip4landingcolour		Track 5 Clip 4 Landing Colour
+Map	track6clip4landingcolour		Track 6 Clip 4 Landing Colour
+Map	track7clip4landingcolour		Track 7 Clip 4 Landing Colour
+Map	track8clip4landingcolour		Track 8 Clip 4 Landing Colour
+
+Map	track1clip5landingcolour		Track 1 Clip 5 Landing Colour
+Map	track2clip5landingcolour		Track 2 Clip 5 Landing Colour
+Map	track3clip5landingcolour		Track 3 Clip 5 Landing Colour
+Map	track4clip5landingcolour		Track 4 Clip 5 Landing Colour
+Map	track5clip5landingcolour		Track 5 Clip 5 Landing Colour
+Map	track6clip5landingcolour		Track 6 Clip 5 Landing Colour
+Map	track7clip5landingcolour		Track 7 Clip 5 Landing Colour
+Map	track8clip5landingcolour		Track 8 Clip 5 Landing Colour
+
+Map	track1clip6landingcolour		Track 1 Clip 6 Landing Colour
+Map	track2clip6landingcolour		Track 2 Clip 6 Landing Colour
+Map	track3clip6landingcolour		Track 3 Clip 6 Landing Colour
+Map	track4clip6landingcolour		Track 4 Clip 6 Landing Colour
+Map	track5clip6landingcolour		Track 5 Clip 6 Landing Colour
+Map	track6clip6landingcolour		Track 6 Clip 6 Landing Colour
+Map	track7clip6landingcolour		Track 7 Clip 6 Landing Colour
+Map	track8clip6landingcolour		Track 8 Clip 6 Landing Colour
+
+Map	track1clip7landingcolour		Track 1 Clip 7 Landing Colour
+Map	track2clip7landingcolour		Track 2 Clip 7 Landing Colour
+Map	track3clip7landingcolour		Track 3 Clip 7 Landing Colour
+Map	track4clip7landingcolour		Track 4 Clip 7 Landing Colour
+Map	track5clip7landingcolour		Track 5 Clip 7 Landing Colour
+Map	track6clip7landingcolour		Track 6 Clip 7 Landing Colour
+Map	track7clip7landingcolour		Track 7 Clip 7 Landing Colour
+Map	track8clip7landingcolour		Track 8 Clip 7 Landing Colour
+
+Map	track1clip8landingcolour		Track 1 Clip 8 Landing Colour
+Map	track2clip8landingcolour		Track 2 Clip 8 Landing Colour
+Map	track3clip8landingcolour		Track 3 Clip 8 Landing Colour
+Map	track4clip8landingcolour		Track 4 Clip 8 Landing Colour
+Map	track5clip8landingcolour		Track 5 Clip 8 Landing Colour
+Map	track6clip8landingcolour		Track 6 Clip 8 Landing Colour
+Map	track7clip8landingcolour		Track 7 Clip 8 Landing Colour
+Map	track8clip8landingcolour		Track 8 Clip 8 Landing Colour
+
+Map	track1clip1landingonebarpattern		Track 1 Clip 1 Landing One-Bar Pattern
+Map	track2clip1landingonebarpattern		Track 2 Clip 1 Landing One-Bar Pattern
+Map	track3clip1landingonebarpattern		Track 3 Clip 1 Landing One-Bar Pattern
+Map	track4clip1landingonebarpattern		Track 4 Clip 1 Landing One-Bar Pattern
+Map	track5clip1landingonebarpattern		Track 5 Clip 1 Landing One-Bar Pattern
+Map	track6clip1landingonebarpattern		Track 6 Clip 1 Landing One-Bar Pattern
+Map	track7clip1landingonebarpattern		Track 7 Clip 1 Landing One-Bar Pattern
+Map	track8clip1landingonebarpattern		Track 8 Clip 1 Landing One-Bar Pattern
+
+Map	track1clip2landingonebarpattern		Track 1 Clip 2 Landing One-Bar Pattern
+Map	track2clip2landingonebarpattern		Track 2 Clip 2 Landing One-Bar Pattern
+Map	track3clip2landingonebarpattern		Track 3 Clip 2 Landing One-Bar Pattern
+Map	track4clip2landingonebarpattern		Track 4 Clip 2 Landing One-Bar Pattern
+Map	track5clip2landingonebarpattern		Track 5 Clip 2 Landing One-Bar Pattern
+Map	track6clip2landingonebarpattern		Track 6 Clip 2 Landing One-Bar Pattern
+Map	track7clip2landingonebarpattern		Track 7 Clip 2 Landing One-Bar Pattern
+Map	track8clip2landingonebarpattern		Track 8 Clip 2 Landing One-Bar Pattern
+
+Map	track1clip3landingonebarpattern		Track 1 Clip 3 Landing One-Bar Pattern
+Map	track2clip3landingonebarpattern		Track 2 Clip 3 Landing One-Bar Pattern
+Map	track3clip3landingonebarpattern		Track 3 Clip 3 Landing One-Bar Pattern
+Map	track4clip3landingonebarpattern		Track 4 Clip 3 Landing One-Bar Pattern
+Map	track5clip3landingonebarpattern		Track 5 Clip 3 Landing One-Bar Pattern
+Map	track6clip3landingonebarpattern		Track 6 Clip 3 Landing One-Bar Pattern
+Map	track7clip3landingonebarpattern		Track 7 Clip 3 Landing One-Bar Pattern
+Map	track8clip3landingonebarpattern		Track 8 Clip 3 Landing One-Bar Pattern
+
+Map	track1clip4landingonebarpattern		Track 1 Clip 4 Landing One-Bar Pattern
+Map	track2clip4landingonebarpattern		Track 2 Clip 4 Landing One-Bar Pattern
+Map	track3clip4landingonebarpattern		Track 3 Clip 4 Landing One-Bar Pattern
+Map	track4clip4landingonebarpattern		Track 4 Clip 4 Landing One-Bar Pattern
+Map	track5clip4landingonebarpattern		Track 5 Clip 4 Landing One-Bar Pattern
+Map	track6clip4landingonebarpattern		Track 6 Clip 4 Landing One-Bar Pattern
+Map	track7clip4landingonebarpattern		Track 7 Clip 4 Landing One-Bar Pattern
+Map	track8clip4landingonebarpattern		Track 8 Clip 4 Landing One-Bar Pattern
+
+Map	track1clip5landingonebarpattern		Track 1 Clip 5 Landing One-Bar Pattern
+Map	track2clip5landingonebarpattern		Track 2 Clip 5 Landing One-Bar Pattern
+Map	track3clip5landingonebarpattern		Track 3 Clip 5 Landing One-Bar Pattern
+Map	track4clip5landingonebarpattern		Track 4 Clip 5 Landing One-Bar Pattern
+Map	track5clip5landingonebarpattern		Track 5 Clip 5 Landing One-Bar Pattern
+Map	track6clip5landingonebarpattern		Track 6 Clip 5 Landing One-Bar Pattern
+Map	track7clip5landingonebarpattern		Track 7 Clip 5 Landing One-Bar Pattern
+Map	track8clip5landingonebarpattern		Track 8 Clip 5 Landing One-Bar Pattern
+
+Map	track1clip6landingonebarpattern		Track 1 Clip 6 Landing One-Bar Pattern
+Map	track2clip6landingonebarpattern		Track 2 Clip 6 Landing One-Bar Pattern
+Map	track3clip6landingonebarpattern		Track 3 Clip 6 Landing One-Bar Pattern
+Map	track4clip6landingonebarpattern		Track 4 Clip 6 Landing One-Bar Pattern
+Map	track5clip6landingonebarpattern		Track 5 Clip 6 Landing One-Bar Pattern
+Map	track6clip6landingonebarpattern		Track 6 Clip 6 Landing One-Bar Pattern
+Map	track7clip6landingonebarpattern		Track 7 Clip 6 Landing One-Bar Pattern
+Map	track8clip6landingonebarpattern		Track 8 Clip 6 Landing One-Bar Pattern
+
+Map	track1clip7landingonebarpattern		Track 1 Clip 7 Landing One-Bar Pattern
+Map	track2clip7landingonebarpattern		Track 2 Clip 7 Landing One-Bar Pattern
+Map	track3clip7landingonebarpattern		Track 3 Clip 7 Landing One-Bar Pattern
+Map	track4clip7landingonebarpattern		Track 4 Clip 7 Landing One-Bar Pattern
+Map	track5clip7landingonebarpattern		Track 5 Clip 7 Landing One-Bar Pattern
+Map	track6clip7landingonebarpattern		Track 6 Clip 7 Landing One-Bar Pattern
+Map	track7clip7landingonebarpattern		Track 7 Clip 7 Landing One-Bar Pattern
+Map	track8clip7landingonebarpattern		Track 8 Clip 7 Landing One-Bar Pattern
+
+Map	track1clip8landingonebarpattern		Track 1 Clip 8 Landing One-Bar Pattern
+Map	track2clip8landingonebarpattern		Track 2 Clip 8 Landing One-Bar Pattern
+Map	track3clip8landingonebarpattern		Track 3 Clip 8 Landing One-Bar Pattern
+Map	track4clip8landingonebarpattern		Track 4 Clip 8 Landing One-Bar Pattern
+Map	track5clip8landingonebarpattern		Track 5 Clip 8 Landing One-Bar Pattern
+Map	track6clip8landingonebarpattern		Track 6 Clip 8 Landing One-Bar Pattern
+Map	track7clip8landingonebarpattern		Track 7 Clip 8 Landing One-Bar Pattern
+Map	track8clip8landingonebarpattern		Track 8 Clip 8 Landing One-Bar Pattern
 
 Map	track1cvmodea		Track 1 Output A CV Mode
 Map	track1cvmodeb		Track 1 Output B CV Mode
@@ -4070,3 +4367,1795 @@ Map	track8clip8fillinctransition		Track 8 Clip 8 Fill-In Output C Transition
 Map	track8clip8fillindtransition		Track 8 Clip 8 Fill-In Output D Transition
 Map	track8clip8fillinetransition		Track 8 Clip 8 Fill-In Output E Transition
 Map	track8clip8fillinftransition		Track 8 Clip 8 Fill-In Output F Transition
+
+Map	track1clip1landingapattern		Track 1 Clip 1 Landing Output A Pattern
+Map	track1clip1landingbpattern		Track 1 Clip 1 Landing Output B Pattern
+Map	track1clip1landingcpattern		Track 1 Clip 1 Landing Output C Pattern
+Map	track1clip1landingdpattern		Track 1 Clip 1 Landing Output D Pattern
+Map	track1clip1landingepattern		Track 1 Clip 1 Landing Output E Pattern
+Map	track1clip1landingfpattern		Track 1 Clip 1 Landing Output F Pattern
+
+Map	track2clip1landingapattern		Track 2 Clip 1 Landing Output A Pattern
+Map	track2clip1landingbpattern		Track 2 Clip 1 Landing Output B Pattern
+Map	track2clip1landingcpattern		Track 2 Clip 1 Landing Output C Pattern
+Map	track2clip1landingdpattern		Track 2 Clip 1 Landing Output D Pattern
+Map	track2clip1landingepattern		Track 2 Clip 1 Landing Output E Pattern
+Map	track2clip1landingfpattern		Track 2 Clip 1 Landing Output F Pattern
+
+Map	track3clip1landingapattern		Track 3 Clip 1 Landing Output A Pattern
+Map	track3clip1landingbpattern		Track 3 Clip 1 Landing Output B Pattern
+Map	track3clip1landingcpattern		Track 3 Clip 1 Landing Output C Pattern
+Map	track3clip1landingdpattern		Track 3 Clip 1 Landing Output D Pattern
+Map	track3clip1landingepattern		Track 3 Clip 1 Landing Output E Pattern
+Map	track3clip1landingfpattern		Track 3 Clip 1 Landing Output F Pattern
+
+Map	track4clip1landingapattern		Track 4 Clip 1 Landing Output A Pattern
+Map	track4clip1landingbpattern		Track 4 Clip 1 Landing Output B Pattern
+Map	track4clip1landingcpattern		Track 4 Clip 1 Landing Output C Pattern
+Map	track4clip1landingdpattern		Track 4 Clip 1 Landing Output D Pattern
+Map	track4clip1landingepattern		Track 4 Clip 1 Landing Output E Pattern
+Map	track4clip1landingfpattern		Track 4 Clip 1 Landing Output F Pattern
+
+Map	track5clip1landingapattern		Track 5 Clip 1 Landing Output A Pattern
+Map	track5clip1landingbpattern		Track 5 Clip 1 Landing Output B Pattern
+Map	track5clip1landingcpattern		Track 5 Clip 1 Landing Output C Pattern
+Map	track5clip1landingdpattern		Track 5 Clip 1 Landing Output D Pattern
+Map	track5clip1landingepattern		Track 5 Clip 1 Landing Output E Pattern
+Map	track5clip1landingfpattern		Track 5 Clip 1 Landing Output F Pattern
+
+Map	track6clip1landingapattern		Track 6 Clip 1 Landing Output A Pattern
+Map	track6clip1landingbpattern		Track 6 Clip 1 Landing Output B Pattern
+Map	track6clip1landingcpattern		Track 6 Clip 1 Landing Output C Pattern
+Map	track6clip1landingdpattern		Track 6 Clip 1 Landing Output D Pattern
+Map	track6clip1landingepattern		Track 6 Clip 1 Landing Output E Pattern
+Map	track6clip1landingfpattern		Track 6 Clip 1 Landing Output F Pattern
+
+Map	track7clip1landingapattern		Track 7 Clip 1 Landing Output A Pattern
+Map	track7clip1landingbpattern		Track 7 Clip 1 Landing Output B Pattern
+Map	track7clip1landingcpattern		Track 7 Clip 1 Landing Output C Pattern
+Map	track7clip1landingdpattern		Track 7 Clip 1 Landing Output D Pattern
+Map	track7clip1landingepattern		Track 7 Clip 1 Landing Output E Pattern
+Map	track7clip1landingfpattern		Track 7 Clip 1 Landing Output F Pattern
+
+Map	track8clip1landingapattern		Track 8 Clip 1 Landing Output A Pattern
+Map	track8clip1landingbpattern		Track 8 Clip 1 Landing Output B Pattern
+Map	track8clip1landingcpattern		Track 8 Clip 1 Landing Output C Pattern
+Map	track8clip1landingdpattern		Track 8 Clip 1 Landing Output D Pattern
+Map	track8clip1landingepattern		Track 8 Clip 1 Landing Output E Pattern
+Map	track8clip1landingfpattern		Track 8 Clip 1 Landing Output F Pattern
+
+Map	track1clip2landingapattern		Track 1 Clip 2 Landing Output A Pattern
+Map	track1clip2landingbpattern		Track 1 Clip 2 Landing Output B Pattern
+Map	track1clip2landingcpattern		Track 1 Clip 2 Landing Output C Pattern
+Map	track1clip2landingdpattern		Track 1 Clip 2 Landing Output D Pattern
+Map	track1clip2landingepattern		Track 1 Clip 2 Landing Output E Pattern
+Map	track1clip2landingfpattern		Track 1 Clip 2 Landing Output F Pattern
+
+Map	track2clip2landingapattern		Track 2 Clip 2 Landing Output A Pattern
+Map	track2clip2landingbpattern		Track 2 Clip 2 Landing Output B Pattern
+Map	track2clip2landingcpattern		Track 2 Clip 2 Landing Output C Pattern
+Map	track2clip2landingdpattern		Track 2 Clip 2 Landing Output D Pattern
+Map	track2clip2landingepattern		Track 2 Clip 2 Landing Output E Pattern
+Map	track2clip2landingfpattern		Track 2 Clip 2 Landing Output F Pattern
+
+Map	track3clip2landingapattern		Track 3 Clip 2 Landing Output A Pattern
+Map	track3clip2landingbpattern		Track 3 Clip 2 Landing Output B Pattern
+Map	track3clip2landingcpattern		Track 3 Clip 2 Landing Output C Pattern
+Map	track3clip2landingdpattern		Track 3 Clip 2 Landing Output D Pattern
+Map	track3clip2landingepattern		Track 3 Clip 2 Landing Output E Pattern
+Map	track3clip2landingfpattern		Track 3 Clip 2 Landing Output F Pattern
+
+Map	track4clip2landingapattern		Track 4 Clip 2 Landing Output A Pattern
+Map	track4clip2landingbpattern		Track 4 Clip 2 Landing Output B Pattern
+Map	track4clip2landingcpattern		Track 4 Clip 2 Landing Output C Pattern
+Map	track4clip2landingdpattern		Track 4 Clip 2 Landing Output D Pattern
+Map	track4clip2landingepattern		Track 4 Clip 2 Landing Output E Pattern
+Map	track4clip2landingfpattern		Track 4 Clip 2 Landing Output F Pattern
+
+Map	track5clip2landingapattern		Track 5 Clip 2 Landing Output A Pattern
+Map	track5clip2landingbpattern		Track 5 Clip 2 Landing Output B Pattern
+Map	track5clip2landingcpattern		Track 5 Clip 2 Landing Output C Pattern
+Map	track5clip2landingdpattern		Track 5 Clip 2 Landing Output D Pattern
+Map	track5clip2landingepattern		Track 5 Clip 2 Landing Output E Pattern
+Map	track5clip2landingfpattern		Track 5 Clip 2 Landing Output F Pattern
+
+Map	track6clip2landingapattern		Track 6 Clip 2 Landing Output A Pattern
+Map	track6clip2landingbpattern		Track 6 Clip 2 Landing Output B Pattern
+Map	track6clip2landingcpattern		Track 6 Clip 2 Landing Output C Pattern
+Map	track6clip2landingdpattern		Track 6 Clip 2 Landing Output D Pattern
+Map	track6clip2landingepattern		Track 6 Clip 2 Landing Output E Pattern
+Map	track6clip2landingfpattern		Track 6 Clip 2 Landing Output F Pattern
+
+Map	track7clip2landingapattern		Track 7 Clip 2 Landing Output A Pattern
+Map	track7clip2landingbpattern		Track 7 Clip 2 Landing Output B Pattern
+Map	track7clip2landingcpattern		Track 7 Clip 2 Landing Output C Pattern
+Map	track7clip2landingdpattern		Track 7 Clip 2 Landing Output D Pattern
+Map	track7clip2landingepattern		Track 7 Clip 2 Landing Output E Pattern
+Map	track7clip2landingfpattern		Track 7 Clip 2 Landing Output F Pattern
+
+Map	track8clip2landingapattern		Track 8 Clip 2 Landing Output A Pattern
+Map	track8clip2landingbpattern		Track 8 Clip 2 Landing Output B Pattern
+Map	track8clip2landingcpattern		Track 8 Clip 2 Landing Output C Pattern
+Map	track8clip2landingdpattern		Track 8 Clip 2 Landing Output D Pattern
+Map	track8clip2landingepattern		Track 8 Clip 2 Landing Output E Pattern
+Map	track8clip2landingfpattern		Track 8 Clip 2 Landing Output F Pattern
+
+Map	track1clip3landingapattern		Track 1 Clip 3 Landing Output A Pattern
+Map	track1clip3landingbpattern		Track 1 Clip 3 Landing Output B Pattern
+Map	track1clip3landingcpattern		Track 1 Clip 3 Landing Output C Pattern
+Map	track1clip3landingdpattern		Track 1 Clip 3 Landing Output D Pattern
+Map	track1clip3landingepattern		Track 1 Clip 3 Landing Output E Pattern
+Map	track1clip3landingfpattern		Track 1 Clip 3 Landing Output F Pattern
+
+Map	track2clip3landingapattern		Track 2 Clip 3 Landing Output A Pattern
+Map	track2clip3landingbpattern		Track 2 Clip 3 Landing Output B Pattern
+Map	track2clip3landingcpattern		Track 2 Clip 3 Landing Output C Pattern
+Map	track2clip3landingdpattern		Track 2 Clip 3 Landing Output D Pattern
+Map	track2clip3landingepattern		Track 2 Clip 3 Landing Output E Pattern
+Map	track2clip3landingfpattern		Track 2 Clip 3 Landing Output F Pattern
+
+Map	track3clip3landingapattern		Track 3 Clip 3 Landing Output A Pattern
+Map	track3clip3landingbpattern		Track 3 Clip 3 Landing Output B Pattern
+Map	track3clip3landingcpattern		Track 3 Clip 3 Landing Output C Pattern
+Map	track3clip3landingdpattern		Track 3 Clip 3 Landing Output D Pattern
+Map	track3clip3landingepattern		Track 3 Clip 3 Landing Output E Pattern
+Map	track3clip3landingfpattern		Track 3 Clip 3 Landing Output F Pattern
+
+Map	track4clip3landingapattern		Track 4 Clip 3 Landing Output A Pattern
+Map	track4clip3landingbpattern		Track 4 Clip 3 Landing Output B Pattern
+Map	track4clip3landingcpattern		Track 4 Clip 3 Landing Output C Pattern
+Map	track4clip3landingdpattern		Track 4 Clip 3 Landing Output D Pattern
+Map	track4clip3landingepattern		Track 4 Clip 3 Landing Output E Pattern
+Map	track4clip3landingfpattern		Track 4 Clip 3 Landing Output F Pattern
+
+Map	track5clip3landingapattern		Track 5 Clip 3 Landing Output A Pattern
+Map	track5clip3landingbpattern		Track 5 Clip 3 Landing Output B Pattern
+Map	track5clip3landingcpattern		Track 5 Clip 3 Landing Output C Pattern
+Map	track5clip3landingdpattern		Track 5 Clip 3 Landing Output D Pattern
+Map	track5clip3landingepattern		Track 5 Clip 3 Landing Output E Pattern
+Map	track5clip3landingfpattern		Track 5 Clip 3 Landing Output F Pattern
+
+Map	track6clip3landingapattern		Track 6 Clip 3 Landing Output A Pattern
+Map	track6clip3landingbpattern		Track 6 Clip 3 Landing Output B Pattern
+Map	track6clip3landingcpattern		Track 6 Clip 3 Landing Output C Pattern
+Map	track6clip3landingdpattern		Track 6 Clip 3 Landing Output D Pattern
+Map	track6clip3landingepattern		Track 6 Clip 3 Landing Output E Pattern
+Map	track6clip3landingfpattern		Track 6 Clip 3 Landing Output F Pattern
+
+Map	track7clip3landingapattern		Track 7 Clip 3 Landing Output A Pattern
+Map	track7clip3landingbpattern		Track 7 Clip 3 Landing Output B Pattern
+Map	track7clip3landingcpattern		Track 7 Clip 3 Landing Output C Pattern
+Map	track7clip3landingdpattern		Track 7 Clip 3 Landing Output D Pattern
+Map	track7clip3landingepattern		Track 7 Clip 3 Landing Output E Pattern
+Map	track7clip3landingfpattern		Track 7 Clip 3 Landing Output F Pattern
+
+Map	track8clip3landingapattern		Track 8 Clip 3 Landing Output A Pattern
+Map	track8clip3landingbpattern		Track 8 Clip 3 Landing Output B Pattern
+Map	track8clip3landingcpattern		Track 8 Clip 3 Landing Output C Pattern
+Map	track8clip3landingdpattern		Track 8 Clip 3 Landing Output D Pattern
+Map	track8clip3landingepattern		Track 8 Clip 3 Landing Output E Pattern
+Map	track8clip3landingfpattern		Track 8 Clip 3 Landing Output F Pattern
+
+Map	track1clip4landingapattern		Track 1 Clip 4 Landing Output A Pattern
+Map	track1clip4landingbpattern		Track 1 Clip 4 Landing Output B Pattern
+Map	track1clip4landingcpattern		Track 1 Clip 4 Landing Output C Pattern
+Map	track1clip4landingdpattern		Track 1 Clip 4 Landing Output D Pattern
+Map	track1clip4landingepattern		Track 1 Clip 4 Landing Output E Pattern
+Map	track1clip4landingfpattern		Track 1 Clip 4 Landing Output F Pattern
+
+Map	track2clip4landingapattern		Track 2 Clip 4 Landing Output A Pattern
+Map	track2clip4landingbpattern		Track 2 Clip 4 Landing Output B Pattern
+Map	track2clip4landingcpattern		Track 2 Clip 4 Landing Output C Pattern
+Map	track2clip4landingdpattern		Track 2 Clip 4 Landing Output D Pattern
+Map	track2clip4landingepattern		Track 2 Clip 4 Landing Output E Pattern
+Map	track2clip4landingfpattern		Track 2 Clip 4 Landing Output F Pattern
+
+Map	track3clip4landingapattern		Track 3 Clip 4 Landing Output A Pattern
+Map	track3clip4landingbpattern		Track 3 Clip 4 Landing Output B Pattern
+Map	track3clip4landingcpattern		Track 3 Clip 4 Landing Output C Pattern
+Map	track3clip4landingdpattern		Track 3 Clip 4 Landing Output D Pattern
+Map	track3clip4landingepattern		Track 3 Clip 4 Landing Output E Pattern
+Map	track3clip4landingfpattern		Track 3 Clip 4 Landing Output F Pattern
+
+Map	track4clip4landingapattern		Track 4 Clip 4 Landing Output A Pattern
+Map	track4clip4landingbpattern		Track 4 Clip 4 Landing Output B Pattern
+Map	track4clip4landingcpattern		Track 4 Clip 4 Landing Output C Pattern
+Map	track4clip4landingdpattern		Track 4 Clip 4 Landing Output D Pattern
+Map	track4clip4landingepattern		Track 4 Clip 4 Landing Output E Pattern
+Map	track4clip4landingfpattern		Track 4 Clip 4 Landing Output F Pattern
+
+Map	track5clip4landingapattern		Track 5 Clip 4 Landing Output A Pattern
+Map	track5clip4landingbpattern		Track 5 Clip 4 Landing Output B Pattern
+Map	track5clip4landingcpattern		Track 5 Clip 4 Landing Output C Pattern
+Map	track5clip4landingdpattern		Track 5 Clip 4 Landing Output D Pattern
+Map	track5clip4landingepattern		Track 5 Clip 4 Landing Output E Pattern
+Map	track5clip4landingfpattern		Track 5 Clip 4 Landing Output F Pattern
+
+Map	track6clip4landingapattern		Track 6 Clip 4 Landing Output A Pattern
+Map	track6clip4landingbpattern		Track 6 Clip 4 Landing Output B Pattern
+Map	track6clip4landingcpattern		Track 6 Clip 4 Landing Output C Pattern
+Map	track6clip4landingdpattern		Track 6 Clip 4 Landing Output D Pattern
+Map	track6clip4landingepattern		Track 6 Clip 4 Landing Output E Pattern
+Map	track6clip4landingfpattern		Track 6 Clip 4 Landing Output F Pattern
+
+Map	track7clip4landingapattern		Track 7 Clip 4 Landing Output A Pattern
+Map	track7clip4landingbpattern		Track 7 Clip 4 Landing Output B Pattern
+Map	track7clip4landingcpattern		Track 7 Clip 4 Landing Output C Pattern
+Map	track7clip4landingdpattern		Track 7 Clip 4 Landing Output D Pattern
+Map	track7clip4landingepattern		Track 7 Clip 4 Landing Output E Pattern
+Map	track7clip4landingfpattern		Track 7 Clip 4 Landing Output F Pattern
+
+Map	track8clip4landingapattern		Track 8 Clip 4 Landing Output A Pattern
+Map	track8clip4landingbpattern		Track 8 Clip 4 Landing Output B Pattern
+Map	track8clip4landingcpattern		Track 8 Clip 4 Landing Output C Pattern
+Map	track8clip4landingdpattern		Track 8 Clip 4 Landing Output D Pattern
+Map	track8clip4landingepattern		Track 8 Clip 4 Landing Output E Pattern
+Map	track8clip4landingfpattern		Track 8 Clip 4 Landing Output F Pattern
+
+Map	track1clip5landingapattern		Track 1 Clip 5 Landing Output A Pattern
+Map	track1clip5landingbpattern		Track 1 Clip 5 Landing Output B Pattern
+Map	track1clip5landingcpattern		Track 1 Clip 5 Landing Output C Pattern
+Map	track1clip5landingdpattern		Track 1 Clip 5 Landing Output D Pattern
+Map	track1clip5landingepattern		Track 1 Clip 5 Landing Output E Pattern
+Map	track1clip5landingfpattern		Track 1 Clip 5 Landing Output F Pattern
+
+Map	track2clip5landingapattern		Track 2 Clip 5 Landing Output A Pattern
+Map	track2clip5landingbpattern		Track 2 Clip 5 Landing Output B Pattern
+Map	track2clip5landingcpattern		Track 2 Clip 5 Landing Output C Pattern
+Map	track2clip5landingdpattern		Track 2 Clip 5 Landing Output D Pattern
+Map	track2clip5landingepattern		Track 2 Clip 5 Landing Output E Pattern
+Map	track2clip5landingfpattern		Track 2 Clip 5 Landing Output F Pattern
+
+Map	track3clip5landingapattern		Track 3 Clip 5 Landing Output A Pattern
+Map	track3clip5landingbpattern		Track 3 Clip 5 Landing Output B Pattern
+Map	track3clip5landingcpattern		Track 3 Clip 5 Landing Output C Pattern
+Map	track3clip5landingdpattern		Track 3 Clip 5 Landing Output D Pattern
+Map	track3clip5landingepattern		Track 3 Clip 5 Landing Output E Pattern
+Map	track3clip5landingfpattern		Track 3 Clip 5 Landing Output F Pattern
+
+Map	track4clip5landingapattern		Track 4 Clip 5 Landing Output A Pattern
+Map	track4clip5landingbpattern		Track 4 Clip 5 Landing Output B Pattern
+Map	track4clip5landingcpattern		Track 4 Clip 5 Landing Output C Pattern
+Map	track4clip5landingdpattern		Track 4 Clip 5 Landing Output D Pattern
+Map	track4clip5landingepattern		Track 4 Clip 5 Landing Output E Pattern
+Map	track4clip5landingfpattern		Track 4 Clip 5 Landing Output F Pattern
+
+Map	track5clip5landingapattern		Track 5 Clip 5 Landing Output A Pattern
+Map	track5clip5landingbpattern		Track 5 Clip 5 Landing Output B Pattern
+Map	track5clip5landingcpattern		Track 5 Clip 5 Landing Output C Pattern
+Map	track5clip5landingdpattern		Track 5 Clip 5 Landing Output D Pattern
+Map	track5clip5landingepattern		Track 5 Clip 5 Landing Output E Pattern
+Map	track5clip5landingfpattern		Track 5 Clip 5 Landing Output F Pattern
+
+Map	track6clip5landingapattern		Track 6 Clip 5 Landing Output A Pattern
+Map	track6clip5landingbpattern		Track 6 Clip 5 Landing Output B Pattern
+Map	track6clip5landingcpattern		Track 6 Clip 5 Landing Output C Pattern
+Map	track6clip5landingdpattern		Track 6 Clip 5 Landing Output D Pattern
+Map	track6clip5landingepattern		Track 6 Clip 5 Landing Output E Pattern
+Map	track6clip5landingfpattern		Track 6 Clip 5 Landing Output F Pattern
+
+Map	track7clip5landingapattern		Track 7 Clip 5 Landing Output A Pattern
+Map	track7clip5landingbpattern		Track 7 Clip 5 Landing Output B Pattern
+Map	track7clip5landingcpattern		Track 7 Clip 5 Landing Output C Pattern
+Map	track7clip5landingdpattern		Track 7 Clip 5 Landing Output D Pattern
+Map	track7clip5landingepattern		Track 7 Clip 5 Landing Output E Pattern
+Map	track7clip5landingfpattern		Track 7 Clip 5 Landing Output F Pattern
+
+Map	track8clip5landingapattern		Track 8 Clip 5 Landing Output A Pattern
+Map	track8clip5landingbpattern		Track 8 Clip 5 Landing Output B Pattern
+Map	track8clip5landingcpattern		Track 8 Clip 5 Landing Output C Pattern
+Map	track8clip5landingdpattern		Track 8 Clip 5 Landing Output D Pattern
+Map	track8clip5landingepattern		Track 8 Clip 5 Landing Output E Pattern
+Map	track8clip5landingfpattern		Track 8 Clip 5 Landing Output F Pattern
+
+Map	track1clip6landingapattern		Track 1 Clip 6 Landing Output A Pattern
+Map	track1clip6landingbpattern		Track 1 Clip 6 Landing Output B Pattern
+Map	track1clip6landingcpattern		Track 1 Clip 6 Landing Output C Pattern
+Map	track1clip6landingdpattern		Track 1 Clip 6 Landing Output D Pattern
+Map	track1clip6landingepattern		Track 1 Clip 6 Landing Output E Pattern
+Map	track1clip6landingfpattern		Track 1 Clip 6 Landing Output F Pattern
+
+Map	track2clip6landingapattern		Track 2 Clip 6 Landing Output A Pattern
+Map	track2clip6landingbpattern		Track 2 Clip 6 Landing Output B Pattern
+Map	track2clip6landingcpattern		Track 2 Clip 6 Landing Output C Pattern
+Map	track2clip6landingdpattern		Track 2 Clip 6 Landing Output D Pattern
+Map	track2clip6landingepattern		Track 2 Clip 6 Landing Output E Pattern
+Map	track2clip6landingfpattern		Track 2 Clip 6 Landing Output F Pattern
+
+Map	track3clip6landingapattern		Track 3 Clip 6 Landing Output A Pattern
+Map	track3clip6landingbpattern		Track 3 Clip 6 Landing Output B Pattern
+Map	track3clip6landingcpattern		Track 3 Clip 6 Landing Output C Pattern
+Map	track3clip6landingdpattern		Track 3 Clip 6 Landing Output D Pattern
+Map	track3clip6landingepattern		Track 3 Clip 6 Landing Output E Pattern
+Map	track3clip6landingfpattern		Track 3 Clip 6 Landing Output F Pattern
+
+Map	track4clip6landingapattern		Track 4 Clip 6 Landing Output A Pattern
+Map	track4clip6landingbpattern		Track 4 Clip 6 Landing Output B Pattern
+Map	track4clip6landingcpattern		Track 4 Clip 6 Landing Output C Pattern
+Map	track4clip6landingdpattern		Track 4 Clip 6 Landing Output D Pattern
+Map	track4clip6landingepattern		Track 4 Clip 6 Landing Output E Pattern
+Map	track4clip6landingfpattern		Track 4 Clip 6 Landing Output F Pattern
+
+Map	track5clip6landingapattern		Track 5 Clip 6 Landing Output A Pattern
+Map	track5clip6landingbpattern		Track 5 Clip 6 Landing Output B Pattern
+Map	track5clip6landingcpattern		Track 5 Clip 6 Landing Output C Pattern
+Map	track5clip6landingdpattern		Track 5 Clip 6 Landing Output D Pattern
+Map	track5clip6landingepattern		Track 5 Clip 6 Landing Output E Pattern
+Map	track5clip6landingfpattern		Track 5 Clip 6 Landing Output F Pattern
+
+Map	track6clip6landingapattern		Track 6 Clip 6 Landing Output A Pattern
+Map	track6clip6landingbpattern		Track 6 Clip 6 Landing Output B Pattern
+Map	track6clip6landingcpattern		Track 6 Clip 6 Landing Output C Pattern
+Map	track6clip6landingdpattern		Track 6 Clip 6 Landing Output D Pattern
+Map	track6clip6landingepattern		Track 6 Clip 6 Landing Output E Pattern
+Map	track6clip6landingfpattern		Track 6 Clip 6 Landing Output F Pattern
+
+Map	track7clip6landingapattern		Track 7 Clip 6 Landing Output A Pattern
+Map	track7clip6landingbpattern		Track 7 Clip 6 Landing Output B Pattern
+Map	track7clip6landingcpattern		Track 7 Clip 6 Landing Output C Pattern
+Map	track7clip6landingdpattern		Track 7 Clip 6 Landing Output D Pattern
+Map	track7clip6landingepattern		Track 7 Clip 6 Landing Output E Pattern
+Map	track7clip6landingfpattern		Track 7 Clip 6 Landing Output F Pattern
+
+Map	track8clip6landingapattern		Track 8 Clip 6 Landing Output A Pattern
+Map	track8clip6landingbpattern		Track 8 Clip 6 Landing Output B Pattern
+Map	track8clip6landingcpattern		Track 8 Clip 6 Landing Output C Pattern
+Map	track8clip6landingdpattern		Track 8 Clip 6 Landing Output D Pattern
+Map	track8clip6landingepattern		Track 8 Clip 6 Landing Output E Pattern
+Map	track8clip6landingfpattern		Track 8 Clip 6 Landing Output F Pattern
+
+Map	track1clip7landingapattern		Track 1 Clip 7 Landing Output A Pattern
+Map	track1clip7landingbpattern		Track 1 Clip 7 Landing Output B Pattern
+Map	track1clip7landingcpattern		Track 1 Clip 7 Landing Output C Pattern
+Map	track1clip7landingdpattern		Track 1 Clip 7 Landing Output D Pattern
+Map	track1clip7landingepattern		Track 1 Clip 7 Landing Output E Pattern
+Map	track1clip7landingfpattern		Track 1 Clip 7 Landing Output F Pattern
+
+Map	track2clip7landingapattern		Track 2 Clip 7 Landing Output A Pattern
+Map	track2clip7landingbpattern		Track 2 Clip 7 Landing Output B Pattern
+Map	track2clip7landingcpattern		Track 2 Clip 7 Landing Output C Pattern
+Map	track2clip7landingdpattern		Track 2 Clip 7 Landing Output D Pattern
+Map	track2clip7landingepattern		Track 2 Clip 7 Landing Output E Pattern
+Map	track2clip7landingfpattern		Track 2 Clip 7 Landing Output F Pattern
+
+Map	track3clip7landingapattern		Track 3 Clip 7 Landing Output A Pattern
+Map	track3clip7landingbpattern		Track 3 Clip 7 Landing Output B Pattern
+Map	track3clip7landingcpattern		Track 3 Clip 7 Landing Output C Pattern
+Map	track3clip7landingdpattern		Track 3 Clip 7 Landing Output D Pattern
+Map	track3clip7landingepattern		Track 3 Clip 7 Landing Output E Pattern
+Map	track3clip7landingfpattern		Track 3 Clip 7 Landing Output F Pattern
+
+Map	track4clip7landingapattern		Track 4 Clip 7 Landing Output A Pattern
+Map	track4clip7landingbpattern		Track 4 Clip 7 Landing Output B Pattern
+Map	track4clip7landingcpattern		Track 4 Clip 7 Landing Output C Pattern
+Map	track4clip7landingdpattern		Track 4 Clip 7 Landing Output D Pattern
+Map	track4clip7landingepattern		Track 4 Clip 7 Landing Output E Pattern
+Map	track4clip7landingfpattern		Track 4 Clip 7 Landing Output F Pattern
+
+Map	track5clip7landingapattern		Track 5 Clip 7 Landing Output A Pattern
+Map	track5clip7landingbpattern		Track 5 Clip 7 Landing Output B Pattern
+Map	track5clip7landingcpattern		Track 5 Clip 7 Landing Output C Pattern
+Map	track5clip7landingdpattern		Track 5 Clip 7 Landing Output D Pattern
+Map	track5clip7landingepattern		Track 5 Clip 7 Landing Output E Pattern
+Map	track5clip7landingfpattern		Track 5 Clip 7 Landing Output F Pattern
+
+Map	track6clip7landingapattern		Track 6 Clip 7 Landing Output A Pattern
+Map	track6clip7landingbpattern		Track 6 Clip 7 Landing Output B Pattern
+Map	track6clip7landingcpattern		Track 6 Clip 7 Landing Output C Pattern
+Map	track6clip7landingdpattern		Track 6 Clip 7 Landing Output D Pattern
+Map	track6clip7landingepattern		Track 6 Clip 7 Landing Output E Pattern
+Map	track6clip7landingfpattern		Track 6 Clip 7 Landing Output F Pattern
+
+Map	track7clip7landingapattern		Track 7 Clip 7 Landing Output A Pattern
+Map	track7clip7landingbpattern		Track 7 Clip 7 Landing Output B Pattern
+Map	track7clip7landingcpattern		Track 7 Clip 7 Landing Output C Pattern
+Map	track7clip7landingdpattern		Track 7 Clip 7 Landing Output D Pattern
+Map	track7clip7landingepattern		Track 7 Clip 7 Landing Output E Pattern
+Map	track7clip7landingfpattern		Track 7 Clip 7 Landing Output F Pattern
+
+Map	track8clip7landingapattern		Track 8 Clip 7 Landing Output A Pattern
+Map	track8clip7landingbpattern		Track 8 Clip 7 Landing Output B Pattern
+Map	track8clip7landingcpattern		Track 8 Clip 7 Landing Output C Pattern
+Map	track8clip7landingdpattern		Track 8 Clip 7 Landing Output D Pattern
+Map	track8clip7landingepattern		Track 8 Clip 7 Landing Output E Pattern
+Map	track8clip7landingfpattern		Track 8 Clip 7 Landing Output F Pattern
+
+Map	track1clip8landingapattern		Track 1 Clip 8 Landing Output A Pattern
+Map	track1clip8landingbpattern		Track 1 Clip 8 Landing Output B Pattern
+Map	track1clip8landingcpattern		Track 1 Clip 8 Landing Output C Pattern
+Map	track1clip8landingdpattern		Track 1 Clip 8 Landing Output D Pattern
+Map	track1clip8landingepattern		Track 1 Clip 8 Landing Output E Pattern
+Map	track1clip8landingfpattern		Track 1 Clip 8 Landing Output F Pattern
+
+Map	track2clip8landingapattern		Track 2 Clip 8 Landing Output A Pattern
+Map	track2clip8landingbpattern		Track 2 Clip 8 Landing Output B Pattern
+Map	track2clip8landingcpattern		Track 2 Clip 8 Landing Output C Pattern
+Map	track2clip8landingdpattern		Track 2 Clip 8 Landing Output D Pattern
+Map	track2clip8landingepattern		Track 2 Clip 8 Landing Output E Pattern
+Map	track2clip8landingfpattern		Track 2 Clip 8 Landing Output F Pattern
+
+Map	track3clip8landingapattern		Track 3 Clip 8 Landing Output A Pattern
+Map	track3clip8landingbpattern		Track 3 Clip 8 Landing Output B Pattern
+Map	track3clip8landingcpattern		Track 3 Clip 8 Landing Output C Pattern
+Map	track3clip8landingdpattern		Track 3 Clip 8 Landing Output D Pattern
+Map	track3clip8landingepattern		Track 3 Clip 8 Landing Output E Pattern
+Map	track3clip8landingfpattern		Track 3 Clip 8 Landing Output F Pattern
+
+Map	track4clip8landingapattern		Track 4 Clip 8 Landing Output A Pattern
+Map	track4clip8landingbpattern		Track 4 Clip 8 Landing Output B Pattern
+Map	track4clip8landingcpattern		Track 4 Clip 8 Landing Output C Pattern
+Map	track4clip8landingdpattern		Track 4 Clip 8 Landing Output D Pattern
+Map	track4clip8landingepattern		Track 4 Clip 8 Landing Output E Pattern
+Map	track4clip8landingfpattern		Track 4 Clip 8 Landing Output F Pattern
+
+Map	track5clip8landingapattern		Track 5 Clip 8 Landing Output A Pattern
+Map	track5clip8landingbpattern		Track 5 Clip 8 Landing Output B Pattern
+Map	track5clip8landingcpattern		Track 5 Clip 8 Landing Output C Pattern
+Map	track5clip8landingdpattern		Track 5 Clip 8 Landing Output D Pattern
+Map	track5clip8landingepattern		Track 5 Clip 8 Landing Output E Pattern
+Map	track5clip8landingfpattern		Track 5 Clip 8 Landing Output F Pattern
+
+Map	track6clip8landingapattern		Track 6 Clip 8 Landing Output A Pattern
+Map	track6clip8landingbpattern		Track 6 Clip 8 Landing Output B Pattern
+Map	track6clip8landingcpattern		Track 6 Clip 8 Landing Output C Pattern
+Map	track6clip8landingdpattern		Track 6 Clip 8 Landing Output D Pattern
+Map	track6clip8landingepattern		Track 6 Clip 8 Landing Output E Pattern
+Map	track6clip8landingfpattern		Track 6 Clip 8 Landing Output F Pattern
+
+Map	track7clip8landingapattern		Track 7 Clip 8 Landing Output A Pattern
+Map	track7clip8landingbpattern		Track 7 Clip 8 Landing Output B Pattern
+Map	track7clip8landingcpattern		Track 7 Clip 8 Landing Output C Pattern
+Map	track7clip8landingdpattern		Track 7 Clip 8 Landing Output D Pattern
+Map	track7clip8landingepattern		Track 7 Clip 8 Landing Output E Pattern
+Map	track7clip8landingfpattern		Track 7 Clip 8 Landing Output F Pattern
+
+Map	track8clip8landingapattern		Track 8 Clip 8 Landing Output A Pattern
+Map	track8clip8landingbpattern		Track 8 Clip 8 Landing Output B Pattern
+Map	track8clip8landingcpattern		Track 8 Clip 8 Landing Output C Pattern
+Map	track8clip8landingdpattern		Track 8 Clip 8 Landing Output D Pattern
+Map	track8clip8landingepattern		Track 8 Clip 8 Landing Output E Pattern
+Map	track8clip8landingfpattern		Track 8 Clip 8 Landing Output F Pattern
+
+Map	track1clip1landingaunipolar		Track 1 Clip 1 Landing Output A Unipolar
+Map	track1clip1landingbunipolar		Track 1 Clip 1 Landing Output B Unipolar
+Map	track1clip1landingcunipolar		Track 1 Clip 1 Landing Output C Unipolar
+Map	track1clip1landingdunipolar		Track 1 Clip 1 Landing Output D Unipolar
+Map	track1clip1landingeunipolar		Track 1 Clip 1 Landing Output E Unipolar
+Map	track1clip1landingfunipolar		Track 1 Clip 1 Landing Output F Unipolar
+
+Map	track2clip1landingaunipolar		Track 2 Clip 1 Landing Output A Unipolar
+Map	track2clip1landingbunipolar		Track 2 Clip 1 Landing Output B Unipolar
+Map	track2clip1landingcunipolar		Track 2 Clip 1 Landing Output C Unipolar
+Map	track2clip1landingdunipolar		Track 2 Clip 1 Landing Output D Unipolar
+Map	track2clip1landingeunipolar		Track 2 Clip 1 Landing Output E Unipolar
+Map	track2clip1landingfunipolar		Track 2 Clip 1 Landing Output F Unipolar
+
+Map	track3clip1landingaunipolar		Track 3 Clip 1 Landing Output A Unipolar
+Map	track3clip1landingbunipolar		Track 3 Clip 1 Landing Output B Unipolar
+Map	track3clip1landingcunipolar		Track 3 Clip 1 Landing Output C Unipolar
+Map	track3clip1landingdunipolar		Track 3 Clip 1 Landing Output D Unipolar
+Map	track3clip1landingeunipolar		Track 3 Clip 1 Landing Output E Unipolar
+Map	track3clip1landingfunipolar		Track 3 Clip 1 Landing Output F Unipolar
+
+Map	track4clip1landingaunipolar		Track 4 Clip 1 Landing Output A Unipolar
+Map	track4clip1landingbunipolar		Track 4 Clip 1 Landing Output B Unipolar
+Map	track4clip1landingcunipolar		Track 4 Clip 1 Landing Output C Unipolar
+Map	track4clip1landingdunipolar		Track 4 Clip 1 Landing Output D Unipolar
+Map	track4clip1landingeunipolar		Track 4 Clip 1 Landing Output E Unipolar
+Map	track4clip1landingfunipolar		Track 4 Clip 1 Landing Output F Unipolar
+
+Map	track5clip1landingaunipolar		Track 5 Clip 1 Landing Output A Unipolar
+Map	track5clip1landingbunipolar		Track 5 Clip 1 Landing Output B Unipolar
+Map	track5clip1landingcunipolar		Track 5 Clip 1 Landing Output C Unipolar
+Map	track5clip1landingdunipolar		Track 5 Clip 1 Landing Output D Unipolar
+Map	track5clip1landingeunipolar		Track 5 Clip 1 Landing Output E Unipolar
+Map	track5clip1landingfunipolar		Track 5 Clip 1 Landing Output F Unipolar
+
+Map	track6clip1landingaunipolar		Track 6 Clip 1 Landing Output A Unipolar
+Map	track6clip1landingbunipolar		Track 6 Clip 1 Landing Output B Unipolar
+Map	track6clip1landingcunipolar		Track 6 Clip 1 Landing Output C Unipolar
+Map	track6clip1landingdunipolar		Track 6 Clip 1 Landing Output D Unipolar
+Map	track6clip1landingeunipolar		Track 6 Clip 1 Landing Output E Unipolar
+Map	track6clip1landingfunipolar		Track 6 Clip 1 Landing Output F Unipolar
+
+Map	track7clip1landingaunipolar		Track 7 Clip 1 Landing Output A Unipolar
+Map	track7clip1landingbunipolar		Track 7 Clip 1 Landing Output B Unipolar
+Map	track7clip1landingcunipolar		Track 7 Clip 1 Landing Output C Unipolar
+Map	track7clip1landingdunipolar		Track 7 Clip 1 Landing Output D Unipolar
+Map	track7clip1landingeunipolar		Track 7 Clip 1 Landing Output E Unipolar
+Map	track7clip1landingfunipolar		Track 7 Clip 1 Landing Output F Unipolar
+
+Map	track8clip1landingaunipolar		Track 8 Clip 1 Landing Output A Unipolar
+Map	track8clip1landingbunipolar		Track 8 Clip 1 Landing Output B Unipolar
+Map	track8clip1landingcunipolar		Track 8 Clip 1 Landing Output C Unipolar
+Map	track8clip1landingdunipolar		Track 8 Clip 1 Landing Output D Unipolar
+Map	track8clip1landingeunipolar		Track 8 Clip 1 Landing Output E Unipolar
+Map	track8clip1landingfunipolar		Track 8 Clip 1 Landing Output F Unipolar
+
+Map	track1clip2landingaunipolar		Track 1 Clip 2 Landing Output A Unipolar
+Map	track1clip2landingbunipolar		Track 1 Clip 2 Landing Output B Unipolar
+Map	track1clip2landingcunipolar		Track 1 Clip 2 Landing Output C Unipolar
+Map	track1clip2landingdunipolar		Track 1 Clip 2 Landing Output D Unipolar
+Map	track1clip2landingeunipolar		Track 1 Clip 2 Landing Output E Unipolar
+Map	track1clip2landingfunipolar		Track 1 Clip 2 Landing Output F Unipolar
+
+Map	track2clip2landingaunipolar		Track 2 Clip 2 Landing Output A Unipolar
+Map	track2clip2landingbunipolar		Track 2 Clip 2 Landing Output B Unipolar
+Map	track2clip2landingcunipolar		Track 2 Clip 2 Landing Output C Unipolar
+Map	track2clip2landingdunipolar		Track 2 Clip 2 Landing Output D Unipolar
+Map	track2clip2landingeunipolar		Track 2 Clip 2 Landing Output E Unipolar
+Map	track2clip2landingfunipolar		Track 2 Clip 2 Landing Output F Unipolar
+
+Map	track3clip2landingaunipolar		Track 3 Clip 2 Landing Output A Unipolar
+Map	track3clip2landingbunipolar		Track 3 Clip 2 Landing Output B Unipolar
+Map	track3clip2landingcunipolar		Track 3 Clip 2 Landing Output C Unipolar
+Map	track3clip2landingdunipolar		Track 3 Clip 2 Landing Output D Unipolar
+Map	track3clip2landingeunipolar		Track 3 Clip 2 Landing Output E Unipolar
+Map	track3clip2landingfunipolar		Track 3 Clip 2 Landing Output F Unipolar
+
+Map	track4clip2landingaunipolar		Track 4 Clip 2 Landing Output A Unipolar
+Map	track4clip2landingbunipolar		Track 4 Clip 2 Landing Output B Unipolar
+Map	track4clip2landingcunipolar		Track 4 Clip 2 Landing Output C Unipolar
+Map	track4clip2landingdunipolar		Track 4 Clip 2 Landing Output D Unipolar
+Map	track4clip2landingeunipolar		Track 4 Clip 2 Landing Output E Unipolar
+Map	track4clip2landingfunipolar		Track 4 Clip 2 Landing Output F Unipolar
+
+Map	track5clip2landingaunipolar		Track 5 Clip 2 Landing Output A Unipolar
+Map	track5clip2landingbunipolar		Track 5 Clip 2 Landing Output B Unipolar
+Map	track5clip2landingcunipolar		Track 5 Clip 2 Landing Output C Unipolar
+Map	track5clip2landingdunipolar		Track 5 Clip 2 Landing Output D Unipolar
+Map	track5clip2landingeunipolar		Track 5 Clip 2 Landing Output E Unipolar
+Map	track5clip2landingfunipolar		Track 5 Clip 2 Landing Output F Unipolar
+
+Map	track6clip2landingaunipolar		Track 6 Clip 2 Landing Output A Unipolar
+Map	track6clip2landingbunipolar		Track 6 Clip 2 Landing Output B Unipolar
+Map	track6clip2landingcunipolar		Track 6 Clip 2 Landing Output C Unipolar
+Map	track6clip2landingdunipolar		Track 6 Clip 2 Landing Output D Unipolar
+Map	track6clip2landingeunipolar		Track 6 Clip 2 Landing Output E Unipolar
+Map	track6clip2landingfunipolar		Track 6 Clip 2 Landing Output F Unipolar
+
+Map	track7clip2landingaunipolar		Track 7 Clip 2 Landing Output A Unipolar
+Map	track7clip2landingbunipolar		Track 7 Clip 2 Landing Output B Unipolar
+Map	track7clip2landingcunipolar		Track 7 Clip 2 Landing Output C Unipolar
+Map	track7clip2landingdunipolar		Track 7 Clip 2 Landing Output D Unipolar
+Map	track7clip2landingeunipolar		Track 7 Clip 2 Landing Output E Unipolar
+Map	track7clip2landingfunipolar		Track 7 Clip 2 Landing Output F Unipolar
+
+Map	track8clip2landingaunipolar		Track 8 Clip 2 Landing Output A Unipolar
+Map	track8clip2landingbunipolar		Track 8 Clip 2 Landing Output B Unipolar
+Map	track8clip2landingcunipolar		Track 8 Clip 2 Landing Output C Unipolar
+Map	track8clip2landingdunipolar		Track 8 Clip 2 Landing Output D Unipolar
+Map	track8clip2landingeunipolar		Track 8 Clip 2 Landing Output E Unipolar
+Map	track8clip2landingfunipolar		Track 8 Clip 2 Landing Output F Unipolar
+
+Map	track1clip3landingaunipolar		Track 1 Clip 3 Landing Output A Unipolar
+Map	track1clip3landingbunipolar		Track 1 Clip 3 Landing Output B Unipolar
+Map	track1clip3landingcunipolar		Track 1 Clip 3 Landing Output C Unipolar
+Map	track1clip3landingdunipolar		Track 1 Clip 3 Landing Output D Unipolar
+Map	track1clip3landingeunipolar		Track 1 Clip 3 Landing Output E Unipolar
+Map	track1clip3landingfunipolar		Track 1 Clip 3 Landing Output F Unipolar
+
+Map	track2clip3landingaunipolar		Track 2 Clip 3 Landing Output A Unipolar
+Map	track2clip3landingbunipolar		Track 2 Clip 3 Landing Output B Unipolar
+Map	track2clip3landingcunipolar		Track 2 Clip 3 Landing Output C Unipolar
+Map	track2clip3landingdunipolar		Track 2 Clip 3 Landing Output D Unipolar
+Map	track2clip3landingeunipolar		Track 2 Clip 3 Landing Output E Unipolar
+Map	track2clip3landingfunipolar		Track 2 Clip 3 Landing Output F Unipolar
+
+Map	track3clip3landingaunipolar		Track 3 Clip 3 Landing Output A Unipolar
+Map	track3clip3landingbunipolar		Track 3 Clip 3 Landing Output B Unipolar
+Map	track3clip3landingcunipolar		Track 3 Clip 3 Landing Output C Unipolar
+Map	track3clip3landingdunipolar		Track 3 Clip 3 Landing Output D Unipolar
+Map	track3clip3landingeunipolar		Track 3 Clip 3 Landing Output E Unipolar
+Map	track3clip3landingfunipolar		Track 3 Clip 3 Landing Output F Unipolar
+
+Map	track4clip3landingaunipolar		Track 4 Clip 3 Landing Output A Unipolar
+Map	track4clip3landingbunipolar		Track 4 Clip 3 Landing Output B Unipolar
+Map	track4clip3landingcunipolar		Track 4 Clip 3 Landing Output C Unipolar
+Map	track4clip3landingdunipolar		Track 4 Clip 3 Landing Output D Unipolar
+Map	track4clip3landingeunipolar		Track 4 Clip 3 Landing Output E Unipolar
+Map	track4clip3landingfunipolar		Track 4 Clip 3 Landing Output F Unipolar
+
+Map	track5clip3landingaunipolar		Track 5 Clip 3 Landing Output A Unipolar
+Map	track5clip3landingbunipolar		Track 5 Clip 3 Landing Output B Unipolar
+Map	track5clip3landingcunipolar		Track 5 Clip 3 Landing Output C Unipolar
+Map	track5clip3landingdunipolar		Track 5 Clip 3 Landing Output D Unipolar
+Map	track5clip3landingeunipolar		Track 5 Clip 3 Landing Output E Unipolar
+Map	track5clip3landingfunipolar		Track 5 Clip 3 Landing Output F Unipolar
+
+Map	track6clip3landingaunipolar		Track 6 Clip 3 Landing Output A Unipolar
+Map	track6clip3landingbunipolar		Track 6 Clip 3 Landing Output B Unipolar
+Map	track6clip3landingcunipolar		Track 6 Clip 3 Landing Output C Unipolar
+Map	track6clip3landingdunipolar		Track 6 Clip 3 Landing Output D Unipolar
+Map	track6clip3landingeunipolar		Track 6 Clip 3 Landing Output E Unipolar
+Map	track6clip3landingfunipolar		Track 6 Clip 3 Landing Output F Unipolar
+
+Map	track7clip3landingaunipolar		Track 7 Clip 3 Landing Output A Unipolar
+Map	track7clip3landingbunipolar		Track 7 Clip 3 Landing Output B Unipolar
+Map	track7clip3landingcunipolar		Track 7 Clip 3 Landing Output C Unipolar
+Map	track7clip3landingdunipolar		Track 7 Clip 3 Landing Output D Unipolar
+Map	track7clip3landingeunipolar		Track 7 Clip 3 Landing Output E Unipolar
+Map	track7clip3landingfunipolar		Track 7 Clip 3 Landing Output F Unipolar
+
+Map	track8clip3landingaunipolar		Track 8 Clip 3 Landing Output A Unipolar
+Map	track8clip3landingbunipolar		Track 8 Clip 3 Landing Output B Unipolar
+Map	track8clip3landingcunipolar		Track 8 Clip 3 Landing Output C Unipolar
+Map	track8clip3landingdunipolar		Track 8 Clip 3 Landing Output D Unipolar
+Map	track8clip3landingeunipolar		Track 8 Clip 3 Landing Output E Unipolar
+Map	track8clip3landingfunipolar		Track 8 Clip 3 Landing Output F Unipolar
+
+Map	track1clip4landingaunipolar		Track 1 Clip 4 Landing Output A Unipolar
+Map	track1clip4landingbunipolar		Track 1 Clip 4 Landing Output B Unipolar
+Map	track1clip4landingcunipolar		Track 1 Clip 4 Landing Output C Unipolar
+Map	track1clip4landingdunipolar		Track 1 Clip 4 Landing Output D Unipolar
+Map	track1clip4landingeunipolar		Track 1 Clip 4 Landing Output E Unipolar
+Map	track1clip4landingfunipolar		Track 1 Clip 4 Landing Output F Unipolar
+
+Map	track2clip4landingaunipolar		Track 2 Clip 4 Landing Output A Unipolar
+Map	track2clip4landingbunipolar		Track 2 Clip 4 Landing Output B Unipolar
+Map	track2clip4landingcunipolar		Track 2 Clip 4 Landing Output C Unipolar
+Map	track2clip4landingdunipolar		Track 2 Clip 4 Landing Output D Unipolar
+Map	track2clip4landingeunipolar		Track 2 Clip 4 Landing Output E Unipolar
+Map	track2clip4landingfunipolar		Track 2 Clip 4 Landing Output F Unipolar
+
+Map	track3clip4landingaunipolar		Track 3 Clip 4 Landing Output A Unipolar
+Map	track3clip4landingbunipolar		Track 3 Clip 4 Landing Output B Unipolar
+Map	track3clip4landingcunipolar		Track 3 Clip 4 Landing Output C Unipolar
+Map	track3clip4landingdunipolar		Track 3 Clip 4 Landing Output D Unipolar
+Map	track3clip4landingeunipolar		Track 3 Clip 4 Landing Output E Unipolar
+Map	track3clip4landingfunipolar		Track 3 Clip 4 Landing Output F Unipolar
+
+Map	track4clip4landingaunipolar		Track 4 Clip 4 Landing Output A Unipolar
+Map	track4clip4landingbunipolar		Track 4 Clip 4 Landing Output B Unipolar
+Map	track4clip4landingcunipolar		Track 4 Clip 4 Landing Output C Unipolar
+Map	track4clip4landingdunipolar		Track 4 Clip 4 Landing Output D Unipolar
+Map	track4clip4landingeunipolar		Track 4 Clip 4 Landing Output E Unipolar
+Map	track4clip4landingfunipolar		Track 4 Clip 4 Landing Output F Unipolar
+
+Map	track5clip4landingaunipolar		Track 5 Clip 4 Landing Output A Unipolar
+Map	track5clip4landingbunipolar		Track 5 Clip 4 Landing Output B Unipolar
+Map	track5clip4landingcunipolar		Track 5 Clip 4 Landing Output C Unipolar
+Map	track5clip4landingdunipolar		Track 5 Clip 4 Landing Output D Unipolar
+Map	track5clip4landingeunipolar		Track 5 Clip 4 Landing Output E Unipolar
+Map	track5clip4landingfunipolar		Track 5 Clip 4 Landing Output F Unipolar
+
+Map	track6clip4landingaunipolar		Track 6 Clip 4 Landing Output A Unipolar
+Map	track6clip4landingbunipolar		Track 6 Clip 4 Landing Output B Unipolar
+Map	track6clip4landingcunipolar		Track 6 Clip 4 Landing Output C Unipolar
+Map	track6clip4landingdunipolar		Track 6 Clip 4 Landing Output D Unipolar
+Map	track6clip4landingeunipolar		Track 6 Clip 4 Landing Output E Unipolar
+Map	track6clip4landingfunipolar		Track 6 Clip 4 Landing Output F Unipolar
+
+Map	track7clip4landingaunipolar		Track 7 Clip 4 Landing Output A Unipolar
+Map	track7clip4landingbunipolar		Track 7 Clip 4 Landing Output B Unipolar
+Map	track7clip4landingcunipolar		Track 7 Clip 4 Landing Output C Unipolar
+Map	track7clip4landingdunipolar		Track 7 Clip 4 Landing Output D Unipolar
+Map	track7clip4landingeunipolar		Track 7 Clip 4 Landing Output E Unipolar
+Map	track7clip4landingfunipolar		Track 7 Clip 4 Landing Output F Unipolar
+
+Map	track8clip4landingaunipolar		Track 8 Clip 4 Landing Output A Unipolar
+Map	track8clip4landingbunipolar		Track 8 Clip 4 Landing Output B Unipolar
+Map	track8clip4landingcunipolar		Track 8 Clip 4 Landing Output C Unipolar
+Map	track8clip4landingdunipolar		Track 8 Clip 4 Landing Output D Unipolar
+Map	track8clip4landingeunipolar		Track 8 Clip 4 Landing Output E Unipolar
+Map	track8clip4landingfunipolar		Track 8 Clip 4 Landing Output F Unipolar
+
+Map	track1clip5landingaunipolar		Track 1 Clip 5 Landing Output A Unipolar
+Map	track1clip5landingbunipolar		Track 1 Clip 5 Landing Output B Unipolar
+Map	track1clip5landingcunipolar		Track 1 Clip 5 Landing Output C Unipolar
+Map	track1clip5landingdunipolar		Track 1 Clip 5 Landing Output D Unipolar
+Map	track1clip5landingeunipolar		Track 1 Clip 5 Landing Output E Unipolar
+Map	track1clip5landingfunipolar		Track 1 Clip 5 Landing Output F Unipolar
+
+Map	track2clip5landingaunipolar		Track 2 Clip 5 Landing Output A Unipolar
+Map	track2clip5landingbunipolar		Track 2 Clip 5 Landing Output B Unipolar
+Map	track2clip5landingcunipolar		Track 2 Clip 5 Landing Output C Unipolar
+Map	track2clip5landingdunipolar		Track 2 Clip 5 Landing Output D Unipolar
+Map	track2clip5landingeunipolar		Track 2 Clip 5 Landing Output E Unipolar
+Map	track2clip5landingfunipolar		Track 2 Clip 5 Landing Output F Unipolar
+
+Map	track3clip5landingaunipolar		Track 3 Clip 5 Landing Output A Unipolar
+Map	track3clip5landingbunipolar		Track 3 Clip 5 Landing Output B Unipolar
+Map	track3clip5landingcunipolar		Track 3 Clip 5 Landing Output C Unipolar
+Map	track3clip5landingdunipolar		Track 3 Clip 5 Landing Output D Unipolar
+Map	track3clip5landingeunipolar		Track 3 Clip 5 Landing Output E Unipolar
+Map	track3clip5landingfunipolar		Track 3 Clip 5 Landing Output F Unipolar
+
+Map	track4clip5landingaunipolar		Track 4 Clip 5 Landing Output A Unipolar
+Map	track4clip5landingbunipolar		Track 4 Clip 5 Landing Output B Unipolar
+Map	track4clip5landingcunipolar		Track 4 Clip 5 Landing Output C Unipolar
+Map	track4clip5landingdunipolar		Track 4 Clip 5 Landing Output D Unipolar
+Map	track4clip5landingeunipolar		Track 4 Clip 5 Landing Output E Unipolar
+Map	track4clip5landingfunipolar		Track 4 Clip 5 Landing Output F Unipolar
+
+Map	track5clip5landingaunipolar		Track 5 Clip 5 Landing Output A Unipolar
+Map	track5clip5landingbunipolar		Track 5 Clip 5 Landing Output B Unipolar
+Map	track5clip5landingcunipolar		Track 5 Clip 5 Landing Output C Unipolar
+Map	track5clip5landingdunipolar		Track 5 Clip 5 Landing Output D Unipolar
+Map	track5clip5landingeunipolar		Track 5 Clip 5 Landing Output E Unipolar
+Map	track5clip5landingfunipolar		Track 5 Clip 5 Landing Output F Unipolar
+
+Map	track6clip5landingaunipolar		Track 6 Clip 5 Landing Output A Unipolar
+Map	track6clip5landingbunipolar		Track 6 Clip 5 Landing Output B Unipolar
+Map	track6clip5landingcunipolar		Track 6 Clip 5 Landing Output C Unipolar
+Map	track6clip5landingdunipolar		Track 6 Clip 5 Landing Output D Unipolar
+Map	track6clip5landingeunipolar		Track 6 Clip 5 Landing Output E Unipolar
+Map	track6clip5landingfunipolar		Track 6 Clip 5 Landing Output F Unipolar
+
+Map	track7clip5landingaunipolar		Track 7 Clip 5 Landing Output A Unipolar
+Map	track7clip5landingbunipolar		Track 7 Clip 5 Landing Output B Unipolar
+Map	track7clip5landingcunipolar		Track 7 Clip 5 Landing Output C Unipolar
+Map	track7clip5landingdunipolar		Track 7 Clip 5 Landing Output D Unipolar
+Map	track7clip5landingeunipolar		Track 7 Clip 5 Landing Output E Unipolar
+Map	track7clip5landingfunipolar		Track 7 Clip 5 Landing Output F Unipolar
+
+Map	track8clip5landingaunipolar		Track 8 Clip 5 Landing Output A Unipolar
+Map	track8clip5landingbunipolar		Track 8 Clip 5 Landing Output B Unipolar
+Map	track8clip5landingcunipolar		Track 8 Clip 5 Landing Output C Unipolar
+Map	track8clip5landingdunipolar		Track 8 Clip 5 Landing Output D Unipolar
+Map	track8clip5landingeunipolar		Track 8 Clip 5 Landing Output E Unipolar
+Map	track8clip5landingfunipolar		Track 8 Clip 5 Landing Output F Unipolar
+
+Map	track1clip6landingaunipolar		Track 1 Clip 6 Landing Output A Unipolar
+Map	track1clip6landingbunipolar		Track 1 Clip 6 Landing Output B Unipolar
+Map	track1clip6landingcunipolar		Track 1 Clip 6 Landing Output C Unipolar
+Map	track1clip6landingdunipolar		Track 1 Clip 6 Landing Output D Unipolar
+Map	track1clip6landingeunipolar		Track 1 Clip 6 Landing Output E Unipolar
+Map	track1clip6landingfunipolar		Track 1 Clip 6 Landing Output F Unipolar
+
+Map	track2clip6landingaunipolar		Track 2 Clip 6 Landing Output A Unipolar
+Map	track2clip6landingbunipolar		Track 2 Clip 6 Landing Output B Unipolar
+Map	track2clip6landingcunipolar		Track 2 Clip 6 Landing Output C Unipolar
+Map	track2clip6landingdunipolar		Track 2 Clip 6 Landing Output D Unipolar
+Map	track2clip6landingeunipolar		Track 2 Clip 6 Landing Output E Unipolar
+Map	track2clip6landingfunipolar		Track 2 Clip 6 Landing Output F Unipolar
+
+Map	track3clip6landingaunipolar		Track 3 Clip 6 Landing Output A Unipolar
+Map	track3clip6landingbunipolar		Track 3 Clip 6 Landing Output B Unipolar
+Map	track3clip6landingcunipolar		Track 3 Clip 6 Landing Output C Unipolar
+Map	track3clip6landingdunipolar		Track 3 Clip 6 Landing Output D Unipolar
+Map	track3clip6landingeunipolar		Track 3 Clip 6 Landing Output E Unipolar
+Map	track3clip6landingfunipolar		Track 3 Clip 6 Landing Output F Unipolar
+
+Map	track4clip6landingaunipolar		Track 4 Clip 6 Landing Output A Unipolar
+Map	track4clip6landingbunipolar		Track 4 Clip 6 Landing Output B Unipolar
+Map	track4clip6landingcunipolar		Track 4 Clip 6 Landing Output C Unipolar
+Map	track4clip6landingdunipolar		Track 4 Clip 6 Landing Output D Unipolar
+Map	track4clip6landingeunipolar		Track 4 Clip 6 Landing Output E Unipolar
+Map	track4clip6landingfunipolar		Track 4 Clip 6 Landing Output F Unipolar
+
+Map	track5clip6landingaunipolar		Track 5 Clip 6 Landing Output A Unipolar
+Map	track5clip6landingbunipolar		Track 5 Clip 6 Landing Output B Unipolar
+Map	track5clip6landingcunipolar		Track 5 Clip 6 Landing Output C Unipolar
+Map	track5clip6landingdunipolar		Track 5 Clip 6 Landing Output D Unipolar
+Map	track5clip6landingeunipolar		Track 5 Clip 6 Landing Output E Unipolar
+Map	track5clip6landingfunipolar		Track 5 Clip 6 Landing Output F Unipolar
+
+Map	track6clip6landingaunipolar		Track 6 Clip 6 Landing Output A Unipolar
+Map	track6clip6landingbunipolar		Track 6 Clip 6 Landing Output B Unipolar
+Map	track6clip6landingcunipolar		Track 6 Clip 6 Landing Output C Unipolar
+Map	track6clip6landingdunipolar		Track 6 Clip 6 Landing Output D Unipolar
+Map	track6clip6landingeunipolar		Track 6 Clip 6 Landing Output E Unipolar
+Map	track6clip6landingfunipolar		Track 6 Clip 6 Landing Output F Unipolar
+
+Map	track7clip6landingaunipolar		Track 7 Clip 6 Landing Output A Unipolar
+Map	track7clip6landingbunipolar		Track 7 Clip 6 Landing Output B Unipolar
+Map	track7clip6landingcunipolar		Track 7 Clip 6 Landing Output C Unipolar
+Map	track7clip6landingdunipolar		Track 7 Clip 6 Landing Output D Unipolar
+Map	track7clip6landingeunipolar		Track 7 Clip 6 Landing Output E Unipolar
+Map	track7clip6landingfunipolar		Track 7 Clip 6 Landing Output F Unipolar
+
+Map	track8clip6landingaunipolar		Track 8 Clip 6 Landing Output A Unipolar
+Map	track8clip6landingbunipolar		Track 8 Clip 6 Landing Output B Unipolar
+Map	track8clip6landingcunipolar		Track 8 Clip 6 Landing Output C Unipolar
+Map	track8clip6landingdunipolar		Track 8 Clip 6 Landing Output D Unipolar
+Map	track8clip6landingeunipolar		Track 8 Clip 6 Landing Output E Unipolar
+Map	track8clip6landingfunipolar		Track 8 Clip 6 Landing Output F Unipolar
+
+Map	track1clip7landingaunipolar		Track 1 Clip 7 Landing Output A Unipolar
+Map	track1clip7landingbunipolar		Track 1 Clip 7 Landing Output B Unipolar
+Map	track1clip7landingcunipolar		Track 1 Clip 7 Landing Output C Unipolar
+Map	track1clip7landingdunipolar		Track 1 Clip 7 Landing Output D Unipolar
+Map	track1clip7landingeunipolar		Track 1 Clip 7 Landing Output E Unipolar
+Map	track1clip7landingfunipolar		Track 1 Clip 7 Landing Output F Unipolar
+
+Map	track2clip7landingaunipolar		Track 2 Clip 7 Landing Output A Unipolar
+Map	track2clip7landingbunipolar		Track 2 Clip 7 Landing Output B Unipolar
+Map	track2clip7landingcunipolar		Track 2 Clip 7 Landing Output C Unipolar
+Map	track2clip7landingdunipolar		Track 2 Clip 7 Landing Output D Unipolar
+Map	track2clip7landingeunipolar		Track 2 Clip 7 Landing Output E Unipolar
+Map	track2clip7landingfunipolar		Track 2 Clip 7 Landing Output F Unipolar
+
+Map	track3clip7landingaunipolar		Track 3 Clip 7 Landing Output A Unipolar
+Map	track3clip7landingbunipolar		Track 3 Clip 7 Landing Output B Unipolar
+Map	track3clip7landingcunipolar		Track 3 Clip 7 Landing Output C Unipolar
+Map	track3clip7landingdunipolar		Track 3 Clip 7 Landing Output D Unipolar
+Map	track3clip7landingeunipolar		Track 3 Clip 7 Landing Output E Unipolar
+Map	track3clip7landingfunipolar		Track 3 Clip 7 Landing Output F Unipolar
+
+Map	track4clip7landingaunipolar		Track 4 Clip 7 Landing Output A Unipolar
+Map	track4clip7landingbunipolar		Track 4 Clip 7 Landing Output B Unipolar
+Map	track4clip7landingcunipolar		Track 4 Clip 7 Landing Output C Unipolar
+Map	track4clip7landingdunipolar		Track 4 Clip 7 Landing Output D Unipolar
+Map	track4clip7landingeunipolar		Track 4 Clip 7 Landing Output E Unipolar
+Map	track4clip7landingfunipolar		Track 4 Clip 7 Landing Output F Unipolar
+
+Map	track5clip7landingaunipolar		Track 5 Clip 7 Landing Output A Unipolar
+Map	track5clip7landingbunipolar		Track 5 Clip 7 Landing Output B Unipolar
+Map	track5clip7landingcunipolar		Track 5 Clip 7 Landing Output C Unipolar
+Map	track5clip7landingdunipolar		Track 5 Clip 7 Landing Output D Unipolar
+Map	track5clip7landingeunipolar		Track 5 Clip 7 Landing Output E Unipolar
+Map	track5clip7landingfunipolar		Track 5 Clip 7 Landing Output F Unipolar
+
+Map	track6clip7landingaunipolar		Track 6 Clip 7 Landing Output A Unipolar
+Map	track6clip7landingbunipolar		Track 6 Clip 7 Landing Output B Unipolar
+Map	track6clip7landingcunipolar		Track 6 Clip 7 Landing Output C Unipolar
+Map	track6clip7landingdunipolar		Track 6 Clip 7 Landing Output D Unipolar
+Map	track6clip7landingeunipolar		Track 6 Clip 7 Landing Output E Unipolar
+Map	track6clip7landingfunipolar		Track 6 Clip 7 Landing Output F Unipolar
+
+Map	track7clip7landingaunipolar		Track 7 Clip 7 Landing Output A Unipolar
+Map	track7clip7landingbunipolar		Track 7 Clip 7 Landing Output B Unipolar
+Map	track7clip7landingcunipolar		Track 7 Clip 7 Landing Output C Unipolar
+Map	track7clip7landingdunipolar		Track 7 Clip 7 Landing Output D Unipolar
+Map	track7clip7landingeunipolar		Track 7 Clip 7 Landing Output E Unipolar
+Map	track7clip7landingfunipolar		Track 7 Clip 7 Landing Output F Unipolar
+
+Map	track8clip7landingaunipolar		Track 8 Clip 7 Landing Output A Unipolar
+Map	track8clip7landingbunipolar		Track 8 Clip 7 Landing Output B Unipolar
+Map	track8clip7landingcunipolar		Track 8 Clip 7 Landing Output C Unipolar
+Map	track8clip7landingdunipolar		Track 8 Clip 7 Landing Output D Unipolar
+Map	track8clip7landingeunipolar		Track 8 Clip 7 Landing Output E Unipolar
+Map	track8clip7landingfunipolar		Track 8 Clip 7 Landing Output F Unipolar
+
+Map	track1clip8landingaunipolar		Track 1 Clip 8 Landing Output A Unipolar
+Map	track1clip8landingbunipolar		Track 1 Clip 8 Landing Output B Unipolar
+Map	track1clip8landingcunipolar		Track 1 Clip 8 Landing Output C Unipolar
+Map	track1clip8landingdunipolar		Track 1 Clip 8 Landing Output D Unipolar
+Map	track1clip8landingeunipolar		Track 1 Clip 8 Landing Output E Unipolar
+Map	track1clip8landingfunipolar		Track 1 Clip 8 Landing Output F Unipolar
+
+Map	track2clip8landingaunipolar		Track 2 Clip 8 Landing Output A Unipolar
+Map	track2clip8landingbunipolar		Track 2 Clip 8 Landing Output B Unipolar
+Map	track2clip8landingcunipolar		Track 2 Clip 8 Landing Output C Unipolar
+Map	track2clip8landingdunipolar		Track 2 Clip 8 Landing Output D Unipolar
+Map	track2clip8landingeunipolar		Track 2 Clip 8 Landing Output E Unipolar
+Map	track2clip8landingfunipolar		Track 2 Clip 8 Landing Output F Unipolar
+
+Map	track3clip8landingaunipolar		Track 3 Clip 8 Landing Output A Unipolar
+Map	track3clip8landingbunipolar		Track 3 Clip 8 Landing Output B Unipolar
+Map	track3clip8landingcunipolar		Track 3 Clip 8 Landing Output C Unipolar
+Map	track3clip8landingdunipolar		Track 3 Clip 8 Landing Output D Unipolar
+Map	track3clip8landingeunipolar		Track 3 Clip 8 Landing Output E Unipolar
+Map	track3clip8landingfunipolar		Track 3 Clip 8 Landing Output F Unipolar
+
+Map	track4clip8landingaunipolar		Track 4 Clip 8 Landing Output A Unipolar
+Map	track4clip8landingbunipolar		Track 4 Clip 8 Landing Output B Unipolar
+Map	track4clip8landingcunipolar		Track 4 Clip 8 Landing Output C Unipolar
+Map	track4clip8landingdunipolar		Track 4 Clip 8 Landing Output D Unipolar
+Map	track4clip8landingeunipolar		Track 4 Clip 8 Landing Output E Unipolar
+Map	track4clip8landingfunipolar		Track 4 Clip 8 Landing Output F Unipolar
+
+Map	track5clip8landingaunipolar		Track 5 Clip 8 Landing Output A Unipolar
+Map	track5clip8landingbunipolar		Track 5 Clip 8 Landing Output B Unipolar
+Map	track5clip8landingcunipolar		Track 5 Clip 8 Landing Output C Unipolar
+Map	track5clip8landingdunipolar		Track 5 Clip 8 Landing Output D Unipolar
+Map	track5clip8landingeunipolar		Track 5 Clip 8 Landing Output E Unipolar
+Map	track5clip8landingfunipolar		Track 5 Clip 8 Landing Output F Unipolar
+
+Map	track6clip8landingaunipolar		Track 6 Clip 8 Landing Output A Unipolar
+Map	track6clip8landingbunipolar		Track 6 Clip 8 Landing Output B Unipolar
+Map	track6clip8landingcunipolar		Track 6 Clip 8 Landing Output C Unipolar
+Map	track6clip8landingdunipolar		Track 6 Clip 8 Landing Output D Unipolar
+Map	track6clip8landingeunipolar		Track 6 Clip 8 Landing Output E Unipolar
+Map	track6clip8landingfunipolar		Track 6 Clip 8 Landing Output F Unipolar
+
+Map	track7clip8landingaunipolar		Track 7 Clip 8 Landing Output A Unipolar
+Map	track7clip8landingbunipolar		Track 7 Clip 8 Landing Output B Unipolar
+Map	track7clip8landingcunipolar		Track 7 Clip 8 Landing Output C Unipolar
+Map	track7clip8landingdunipolar		Track 7 Clip 8 Landing Output D Unipolar
+Map	track7clip8landingeunipolar		Track 7 Clip 8 Landing Output E Unipolar
+Map	track7clip8landingfunipolar		Track 7 Clip 8 Landing Output F Unipolar
+
+Map	track8clip8landingaunipolar		Track 8 Clip 8 Landing Output A Unipolar
+Map	track8clip8landingbunipolar		Track 8 Clip 8 Landing Output B Unipolar
+Map	track8clip8landingcunipolar		Track 8 Clip 8 Landing Output C Unipolar
+Map	track8clip8landingdunipolar		Track 8 Clip 8 Landing Output D Unipolar
+Map	track8clip8landingeunipolar		Track 8 Clip 8 Landing Output E Unipolar
+Map	track8clip8landingfunipolar		Track 8 Clip 8 Landing Output F Unipolar
+
+Map	track1clip1landingabipolar		Track 1 Clip 1 Landing Output A Bipolar
+Map	track1clip1landingbbipolar		Track 1 Clip 1 Landing Output B Bipolar
+Map	track1clip1landingcbipolar		Track 1 Clip 1 Landing Output C Bipolar
+Map	track1clip1landingdbipolar		Track 1 Clip 1 Landing Output D Bipolar
+Map	track1clip1landingebipolar		Track 1 Clip 1 Landing Output E Bipolar
+Map	track1clip1landingfbipolar		Track 1 Clip 1 Landing Output F Bipolar
+
+Map	track2clip1landingabipolar		Track 2 Clip 1 Landing Output A Bipolar
+Map	track2clip1landingbbipolar		Track 2 Clip 1 Landing Output B Bipolar
+Map	track2clip1landingcbipolar		Track 2 Clip 1 Landing Output C Bipolar
+Map	track2clip1landingdbipolar		Track 2 Clip 1 Landing Output D Bipolar
+Map	track2clip1landingebipolar		Track 2 Clip 1 Landing Output E Bipolar
+Map	track2clip1landingfbipolar		Track 2 Clip 1 Landing Output F Bipolar
+
+Map	track3clip1landingabipolar		Track 3 Clip 1 Landing Output A Bipolar
+Map	track3clip1landingbbipolar		Track 3 Clip 1 Landing Output B Bipolar
+Map	track3clip1landingcbipolar		Track 3 Clip 1 Landing Output C Bipolar
+Map	track3clip1landingdbipolar		Track 3 Clip 1 Landing Output D Bipolar
+Map	track3clip1landingebipolar		Track 3 Clip 1 Landing Output E Bipolar
+Map	track3clip1landingfbipolar		Track 3 Clip 1 Landing Output F Bipolar
+
+Map	track4clip1landingabipolar		Track 4 Clip 1 Landing Output A Bipolar
+Map	track4clip1landingbbipolar		Track 4 Clip 1 Landing Output B Bipolar
+Map	track4clip1landingcbipolar		Track 4 Clip 1 Landing Output C Bipolar
+Map	track4clip1landingdbipolar		Track 4 Clip 1 Landing Output D Bipolar
+Map	track4clip1landingebipolar		Track 4 Clip 1 Landing Output E Bipolar
+Map	track4clip1landingfbipolar		Track 4 Clip 1 Landing Output F Bipolar
+
+Map	track5clip1landingabipolar		Track 5 Clip 1 Landing Output A Bipolar
+Map	track5clip1landingbbipolar		Track 5 Clip 1 Landing Output B Bipolar
+Map	track5clip1landingcbipolar		Track 5 Clip 1 Landing Output C Bipolar
+Map	track5clip1landingdbipolar		Track 5 Clip 1 Landing Output D Bipolar
+Map	track5clip1landingebipolar		Track 5 Clip 1 Landing Output E Bipolar
+Map	track5clip1landingfbipolar		Track 5 Clip 1 Landing Output F Bipolar
+
+Map	track6clip1landingabipolar		Track 6 Clip 1 Landing Output A Bipolar
+Map	track6clip1landingbbipolar		Track 6 Clip 1 Landing Output B Bipolar
+Map	track6clip1landingcbipolar		Track 6 Clip 1 Landing Output C Bipolar
+Map	track6clip1landingdbipolar		Track 6 Clip 1 Landing Output D Bipolar
+Map	track6clip1landingebipolar		Track 6 Clip 1 Landing Output E Bipolar
+Map	track6clip1landingfbipolar		Track 6 Clip 1 Landing Output F Bipolar
+
+Map	track7clip1landingabipolar		Track 7 Clip 1 Landing Output A Bipolar
+Map	track7clip1landingbbipolar		Track 7 Clip 1 Landing Output B Bipolar
+Map	track7clip1landingcbipolar		Track 7 Clip 1 Landing Output C Bipolar
+Map	track7clip1landingdbipolar		Track 7 Clip 1 Landing Output D Bipolar
+Map	track7clip1landingebipolar		Track 7 Clip 1 Landing Output E Bipolar
+Map	track7clip1landingfbipolar		Track 7 Clip 1 Landing Output F Bipolar
+
+Map	track8clip1landingabipolar		Track 8 Clip 1 Landing Output A Bipolar
+Map	track8clip1landingbbipolar		Track 8 Clip 1 Landing Output B Bipolar
+Map	track8clip1landingcbipolar		Track 8 Clip 1 Landing Output C Bipolar
+Map	track8clip1landingdbipolar		Track 8 Clip 1 Landing Output D Bipolar
+Map	track8clip1landingebipolar		Track 8 Clip 1 Landing Output E Bipolar
+Map	track8clip1landingfbipolar		Track 8 Clip 1 Landing Output F Bipolar
+
+Map	track1clip2landingabipolar		Track 1 Clip 2 Landing Output A Bipolar
+Map	track1clip2landingbbipolar		Track 1 Clip 2 Landing Output B Bipolar
+Map	track1clip2landingcbipolar		Track 1 Clip 2 Landing Output C Bipolar
+Map	track1clip2landingdbipolar		Track 1 Clip 2 Landing Output D Bipolar
+Map	track1clip2landingebipolar		Track 1 Clip 2 Landing Output E Bipolar
+Map	track1clip2landingfbipolar		Track 1 Clip 2 Landing Output F Bipolar
+
+Map	track2clip2landingabipolar		Track 2 Clip 2 Landing Output A Bipolar
+Map	track2clip2landingbbipolar		Track 2 Clip 2 Landing Output B Bipolar
+Map	track2clip2landingcbipolar		Track 2 Clip 2 Landing Output C Bipolar
+Map	track2clip2landingdbipolar		Track 2 Clip 2 Landing Output D Bipolar
+Map	track2clip2landingebipolar		Track 2 Clip 2 Landing Output E Bipolar
+Map	track2clip2landingfbipolar		Track 2 Clip 2 Landing Output F Bipolar
+
+Map	track3clip2landingabipolar		Track 3 Clip 2 Landing Output A Bipolar
+Map	track3clip2landingbbipolar		Track 3 Clip 2 Landing Output B Bipolar
+Map	track3clip2landingcbipolar		Track 3 Clip 2 Landing Output C Bipolar
+Map	track3clip2landingdbipolar		Track 3 Clip 2 Landing Output D Bipolar
+Map	track3clip2landingebipolar		Track 3 Clip 2 Landing Output E Bipolar
+Map	track3clip2landingfbipolar		Track 3 Clip 2 Landing Output F Bipolar
+
+Map	track4clip2landingabipolar		Track 4 Clip 2 Landing Output A Bipolar
+Map	track4clip2landingbbipolar		Track 4 Clip 2 Landing Output B Bipolar
+Map	track4clip2landingcbipolar		Track 4 Clip 2 Landing Output C Bipolar
+Map	track4clip2landingdbipolar		Track 4 Clip 2 Landing Output D Bipolar
+Map	track4clip2landingebipolar		Track 4 Clip 2 Landing Output E Bipolar
+Map	track4clip2landingfbipolar		Track 4 Clip 2 Landing Output F Bipolar
+
+Map	track5clip2landingabipolar		Track 5 Clip 2 Landing Output A Bipolar
+Map	track5clip2landingbbipolar		Track 5 Clip 2 Landing Output B Bipolar
+Map	track5clip2landingcbipolar		Track 5 Clip 2 Landing Output C Bipolar
+Map	track5clip2landingdbipolar		Track 5 Clip 2 Landing Output D Bipolar
+Map	track5clip2landingebipolar		Track 5 Clip 2 Landing Output E Bipolar
+Map	track5clip2landingfbipolar		Track 5 Clip 2 Landing Output F Bipolar
+
+Map	track6clip2landingabipolar		Track 6 Clip 2 Landing Output A Bipolar
+Map	track6clip2landingbbipolar		Track 6 Clip 2 Landing Output B Bipolar
+Map	track6clip2landingcbipolar		Track 6 Clip 2 Landing Output C Bipolar
+Map	track6clip2landingdbipolar		Track 6 Clip 2 Landing Output D Bipolar
+Map	track6clip2landingebipolar		Track 6 Clip 2 Landing Output E Bipolar
+Map	track6clip2landingfbipolar		Track 6 Clip 2 Landing Output F Bipolar
+
+Map	track7clip2landingabipolar		Track 7 Clip 2 Landing Output A Bipolar
+Map	track7clip2landingbbipolar		Track 7 Clip 2 Landing Output B Bipolar
+Map	track7clip2landingcbipolar		Track 7 Clip 2 Landing Output C Bipolar
+Map	track7clip2landingdbipolar		Track 7 Clip 2 Landing Output D Bipolar
+Map	track7clip2landingebipolar		Track 7 Clip 2 Landing Output E Bipolar
+Map	track7clip2landingfbipolar		Track 7 Clip 2 Landing Output F Bipolar
+
+Map	track8clip2landingabipolar		Track 8 Clip 2 Landing Output A Bipolar
+Map	track8clip2landingbbipolar		Track 8 Clip 2 Landing Output B Bipolar
+Map	track8clip2landingcbipolar		Track 8 Clip 2 Landing Output C Bipolar
+Map	track8clip2landingdbipolar		Track 8 Clip 2 Landing Output D Bipolar
+Map	track8clip2landingebipolar		Track 8 Clip 2 Landing Output E Bipolar
+Map	track8clip2landingfbipolar		Track 8 Clip 2 Landing Output F Bipolar
+
+Map	track1clip3landingabipolar		Track 1 Clip 3 Landing Output A Bipolar
+Map	track1clip3landingbbipolar		Track 1 Clip 3 Landing Output B Bipolar
+Map	track1clip3landingcbipolar		Track 1 Clip 3 Landing Output C Bipolar
+Map	track1clip3landingdbipolar		Track 1 Clip 3 Landing Output D Bipolar
+Map	track1clip3landingebipolar		Track 1 Clip 3 Landing Output E Bipolar
+Map	track1clip3landingfbipolar		Track 1 Clip 3 Landing Output F Bipolar
+
+Map	track2clip3landingabipolar		Track 2 Clip 3 Landing Output A Bipolar
+Map	track2clip3landingbbipolar		Track 2 Clip 3 Landing Output B Bipolar
+Map	track2clip3landingcbipolar		Track 2 Clip 3 Landing Output C Bipolar
+Map	track2clip3landingdbipolar		Track 2 Clip 3 Landing Output D Bipolar
+Map	track2clip3landingebipolar		Track 2 Clip 3 Landing Output E Bipolar
+Map	track2clip3landingfbipolar		Track 2 Clip 3 Landing Output F Bipolar
+
+Map	track3clip3landingabipolar		Track 3 Clip 3 Landing Output A Bipolar
+Map	track3clip3landingbbipolar		Track 3 Clip 3 Landing Output B Bipolar
+Map	track3clip3landingcbipolar		Track 3 Clip 3 Landing Output C Bipolar
+Map	track3clip3landingdbipolar		Track 3 Clip 3 Landing Output D Bipolar
+Map	track3clip3landingebipolar		Track 3 Clip 3 Landing Output E Bipolar
+Map	track3clip3landingfbipolar		Track 3 Clip 3 Landing Output F Bipolar
+
+Map	track4clip3landingabipolar		Track 4 Clip 3 Landing Output A Bipolar
+Map	track4clip3landingbbipolar		Track 4 Clip 3 Landing Output B Bipolar
+Map	track4clip3landingcbipolar		Track 4 Clip 3 Landing Output C Bipolar
+Map	track4clip3landingdbipolar		Track 4 Clip 3 Landing Output D Bipolar
+Map	track4clip3landingebipolar		Track 4 Clip 3 Landing Output E Bipolar
+Map	track4clip3landingfbipolar		Track 4 Clip 3 Landing Output F Bipolar
+
+Map	track5clip3landingabipolar		Track 5 Clip 3 Landing Output A Bipolar
+Map	track5clip3landingbbipolar		Track 5 Clip 3 Landing Output B Bipolar
+Map	track5clip3landingcbipolar		Track 5 Clip 3 Landing Output C Bipolar
+Map	track5clip3landingdbipolar		Track 5 Clip 3 Landing Output D Bipolar
+Map	track5clip3landingebipolar		Track 5 Clip 3 Landing Output E Bipolar
+Map	track5clip3landingfbipolar		Track 5 Clip 3 Landing Output F Bipolar
+
+Map	track6clip3landingabipolar		Track 6 Clip 3 Landing Output A Bipolar
+Map	track6clip3landingbbipolar		Track 6 Clip 3 Landing Output B Bipolar
+Map	track6clip3landingcbipolar		Track 6 Clip 3 Landing Output C Bipolar
+Map	track6clip3landingdbipolar		Track 6 Clip 3 Landing Output D Bipolar
+Map	track6clip3landingebipolar		Track 6 Clip 3 Landing Output E Bipolar
+Map	track6clip3landingfbipolar		Track 6 Clip 3 Landing Output F Bipolar
+
+Map	track7clip3landingabipolar		Track 7 Clip 3 Landing Output A Bipolar
+Map	track7clip3landingbbipolar		Track 7 Clip 3 Landing Output B Bipolar
+Map	track7clip3landingcbipolar		Track 7 Clip 3 Landing Output C Bipolar
+Map	track7clip3landingdbipolar		Track 7 Clip 3 Landing Output D Bipolar
+Map	track7clip3landingebipolar		Track 7 Clip 3 Landing Output E Bipolar
+Map	track7clip3landingfbipolar		Track 7 Clip 3 Landing Output F Bipolar
+
+Map	track8clip3landingabipolar		Track 8 Clip 3 Landing Output A Bipolar
+Map	track8clip3landingbbipolar		Track 8 Clip 3 Landing Output B Bipolar
+Map	track8clip3landingcbipolar		Track 8 Clip 3 Landing Output C Bipolar
+Map	track8clip3landingdbipolar		Track 8 Clip 3 Landing Output D Bipolar
+Map	track8clip3landingebipolar		Track 8 Clip 3 Landing Output E Bipolar
+Map	track8clip3landingfbipolar		Track 8 Clip 3 Landing Output F Bipolar
+
+Map	track1clip4landingabipolar		Track 1 Clip 4 Landing Output A Bipolar
+Map	track1clip4landingbbipolar		Track 1 Clip 4 Landing Output B Bipolar
+Map	track1clip4landingcbipolar		Track 1 Clip 4 Landing Output C Bipolar
+Map	track1clip4landingdbipolar		Track 1 Clip 4 Landing Output D Bipolar
+Map	track1clip4landingebipolar		Track 1 Clip 4 Landing Output E Bipolar
+Map	track1clip4landingfbipolar		Track 1 Clip 4 Landing Output F Bipolar
+
+Map	track2clip4landingabipolar		Track 2 Clip 4 Landing Output A Bipolar
+Map	track2clip4landingbbipolar		Track 2 Clip 4 Landing Output B Bipolar
+Map	track2clip4landingcbipolar		Track 2 Clip 4 Landing Output C Bipolar
+Map	track2clip4landingdbipolar		Track 2 Clip 4 Landing Output D Bipolar
+Map	track2clip4landingebipolar		Track 2 Clip 4 Landing Output E Bipolar
+Map	track2clip4landingfbipolar		Track 2 Clip 4 Landing Output F Bipolar
+
+Map	track3clip4landingabipolar		Track 3 Clip 4 Landing Output A Bipolar
+Map	track3clip4landingbbipolar		Track 3 Clip 4 Landing Output B Bipolar
+Map	track3clip4landingcbipolar		Track 3 Clip 4 Landing Output C Bipolar
+Map	track3clip4landingdbipolar		Track 3 Clip 4 Landing Output D Bipolar
+Map	track3clip4landingebipolar		Track 3 Clip 4 Landing Output E Bipolar
+Map	track3clip4landingfbipolar		Track 3 Clip 4 Landing Output F Bipolar
+
+Map	track4clip4landingabipolar		Track 4 Clip 4 Landing Output A Bipolar
+Map	track4clip4landingbbipolar		Track 4 Clip 4 Landing Output B Bipolar
+Map	track4clip4landingcbipolar		Track 4 Clip 4 Landing Output C Bipolar
+Map	track4clip4landingdbipolar		Track 4 Clip 4 Landing Output D Bipolar
+Map	track4clip4landingebipolar		Track 4 Clip 4 Landing Output E Bipolar
+Map	track4clip4landingfbipolar		Track 4 Clip 4 Landing Output F Bipolar
+
+Map	track5clip4landingabipolar		Track 5 Clip 4 Landing Output A Bipolar
+Map	track5clip4landingbbipolar		Track 5 Clip 4 Landing Output B Bipolar
+Map	track5clip4landingcbipolar		Track 5 Clip 4 Landing Output C Bipolar
+Map	track5clip4landingdbipolar		Track 5 Clip 4 Landing Output D Bipolar
+Map	track5clip4landingebipolar		Track 5 Clip 4 Landing Output E Bipolar
+Map	track5clip4landingfbipolar		Track 5 Clip 4 Landing Output F Bipolar
+
+Map	track6clip4landingabipolar		Track 6 Clip 4 Landing Output A Bipolar
+Map	track6clip4landingbbipolar		Track 6 Clip 4 Landing Output B Bipolar
+Map	track6clip4landingcbipolar		Track 6 Clip 4 Landing Output C Bipolar
+Map	track6clip4landingdbipolar		Track 6 Clip 4 Landing Output D Bipolar
+Map	track6clip4landingebipolar		Track 6 Clip 4 Landing Output E Bipolar
+Map	track6clip4landingfbipolar		Track 6 Clip 4 Landing Output F Bipolar
+
+Map	track7clip4landingabipolar		Track 7 Clip 4 Landing Output A Bipolar
+Map	track7clip4landingbbipolar		Track 7 Clip 4 Landing Output B Bipolar
+Map	track7clip4landingcbipolar		Track 7 Clip 4 Landing Output C Bipolar
+Map	track7clip4landingdbipolar		Track 7 Clip 4 Landing Output D Bipolar
+Map	track7clip4landingebipolar		Track 7 Clip 4 Landing Output E Bipolar
+Map	track7clip4landingfbipolar		Track 7 Clip 4 Landing Output F Bipolar
+
+Map	track8clip4landingabipolar		Track 8 Clip 4 Landing Output A Bipolar
+Map	track8clip4landingbbipolar		Track 8 Clip 4 Landing Output B Bipolar
+Map	track8clip4landingcbipolar		Track 8 Clip 4 Landing Output C Bipolar
+Map	track8clip4landingdbipolar		Track 8 Clip 4 Landing Output D Bipolar
+Map	track8clip4landingebipolar		Track 8 Clip 4 Landing Output E Bipolar
+Map	track8clip4landingfbipolar		Track 8 Clip 4 Landing Output F Bipolar
+
+Map	track1clip5landingabipolar		Track 1 Clip 5 Landing Output A Bipolar
+Map	track1clip5landingbbipolar		Track 1 Clip 5 Landing Output B Bipolar
+Map	track1clip5landingcbipolar		Track 1 Clip 5 Landing Output C Bipolar
+Map	track1clip5landingdbipolar		Track 1 Clip 5 Landing Output D Bipolar
+Map	track1clip5landingebipolar		Track 1 Clip 5 Landing Output E Bipolar
+Map	track1clip5landingfbipolar		Track 1 Clip 5 Landing Output F Bipolar
+
+Map	track2clip5landingabipolar		Track 2 Clip 5 Landing Output A Bipolar
+Map	track2clip5landingbbipolar		Track 2 Clip 5 Landing Output B Bipolar
+Map	track2clip5landingcbipolar		Track 2 Clip 5 Landing Output C Bipolar
+Map	track2clip5landingdbipolar		Track 2 Clip 5 Landing Output D Bipolar
+Map	track2clip5landingebipolar		Track 2 Clip 5 Landing Output E Bipolar
+Map	track2clip5landingfbipolar		Track 2 Clip 5 Landing Output F Bipolar
+
+Map	track3clip5landingabipolar		Track 3 Clip 5 Landing Output A Bipolar
+Map	track3clip5landingbbipolar		Track 3 Clip 5 Landing Output B Bipolar
+Map	track3clip5landingcbipolar		Track 3 Clip 5 Landing Output C Bipolar
+Map	track3clip5landingdbipolar		Track 3 Clip 5 Landing Output D Bipolar
+Map	track3clip5landingebipolar		Track 3 Clip 5 Landing Output E Bipolar
+Map	track3clip5landingfbipolar		Track 3 Clip 5 Landing Output F Bipolar
+
+Map	track4clip5landingabipolar		Track 4 Clip 5 Landing Output A Bipolar
+Map	track4clip5landingbbipolar		Track 4 Clip 5 Landing Output B Bipolar
+Map	track4clip5landingcbipolar		Track 4 Clip 5 Landing Output C Bipolar
+Map	track4clip5landingdbipolar		Track 4 Clip 5 Landing Output D Bipolar
+Map	track4clip5landingebipolar		Track 4 Clip 5 Landing Output E Bipolar
+Map	track4clip5landingfbipolar		Track 4 Clip 5 Landing Output F Bipolar
+
+Map	track5clip5landingabipolar		Track 5 Clip 5 Landing Output A Bipolar
+Map	track5clip5landingbbipolar		Track 5 Clip 5 Landing Output B Bipolar
+Map	track5clip5landingcbipolar		Track 5 Clip 5 Landing Output C Bipolar
+Map	track5clip5landingdbipolar		Track 5 Clip 5 Landing Output D Bipolar
+Map	track5clip5landingebipolar		Track 5 Clip 5 Landing Output E Bipolar
+Map	track5clip5landingfbipolar		Track 5 Clip 5 Landing Output F Bipolar
+
+Map	track6clip5landingabipolar		Track 6 Clip 5 Landing Output A Bipolar
+Map	track6clip5landingbbipolar		Track 6 Clip 5 Landing Output B Bipolar
+Map	track6clip5landingcbipolar		Track 6 Clip 5 Landing Output C Bipolar
+Map	track6clip5landingdbipolar		Track 6 Clip 5 Landing Output D Bipolar
+Map	track6clip5landingebipolar		Track 6 Clip 5 Landing Output E Bipolar
+Map	track6clip5landingfbipolar		Track 6 Clip 5 Landing Output F Bipolar
+
+Map	track7clip5landingabipolar		Track 7 Clip 5 Landing Output A Bipolar
+Map	track7clip5landingbbipolar		Track 7 Clip 5 Landing Output B Bipolar
+Map	track7clip5landingcbipolar		Track 7 Clip 5 Landing Output C Bipolar
+Map	track7clip5landingdbipolar		Track 7 Clip 5 Landing Output D Bipolar
+Map	track7clip5landingebipolar		Track 7 Clip 5 Landing Output E Bipolar
+Map	track7clip5landingfbipolar		Track 7 Clip 5 Landing Output F Bipolar
+
+Map	track8clip5landingabipolar		Track 8 Clip 5 Landing Output A Bipolar
+Map	track8clip5landingbbipolar		Track 8 Clip 5 Landing Output B Bipolar
+Map	track8clip5landingcbipolar		Track 8 Clip 5 Landing Output C Bipolar
+Map	track8clip5landingdbipolar		Track 8 Clip 5 Landing Output D Bipolar
+Map	track8clip5landingebipolar		Track 8 Clip 5 Landing Output E Bipolar
+Map	track8clip5landingfbipolar		Track 8 Clip 5 Landing Output F Bipolar
+
+Map	track1clip6landingabipolar		Track 1 Clip 6 Landing Output A Bipolar
+Map	track1clip6landingbbipolar		Track 1 Clip 6 Landing Output B Bipolar
+Map	track1clip6landingcbipolar		Track 1 Clip 6 Landing Output C Bipolar
+Map	track1clip6landingdbipolar		Track 1 Clip 6 Landing Output D Bipolar
+Map	track1clip6landingebipolar		Track 1 Clip 6 Landing Output E Bipolar
+Map	track1clip6landingfbipolar		Track 1 Clip 6 Landing Output F Bipolar
+
+Map	track2clip6landingabipolar		Track 2 Clip 6 Landing Output A Bipolar
+Map	track2clip6landingbbipolar		Track 2 Clip 6 Landing Output B Bipolar
+Map	track2clip6landingcbipolar		Track 2 Clip 6 Landing Output C Bipolar
+Map	track2clip6landingdbipolar		Track 2 Clip 6 Landing Output D Bipolar
+Map	track2clip6landingebipolar		Track 2 Clip 6 Landing Output E Bipolar
+Map	track2clip6landingfbipolar		Track 2 Clip 6 Landing Output F Bipolar
+
+Map	track3clip6landingabipolar		Track 3 Clip 6 Landing Output A Bipolar
+Map	track3clip6landingbbipolar		Track 3 Clip 6 Landing Output B Bipolar
+Map	track3clip6landingcbipolar		Track 3 Clip 6 Landing Output C Bipolar
+Map	track3clip6landingdbipolar		Track 3 Clip 6 Landing Output D Bipolar
+Map	track3clip6landingebipolar		Track 3 Clip 6 Landing Output E Bipolar
+Map	track3clip6landingfbipolar		Track 3 Clip 6 Landing Output F Bipolar
+
+Map	track4clip6landingabipolar		Track 4 Clip 6 Landing Output A Bipolar
+Map	track4clip6landingbbipolar		Track 4 Clip 6 Landing Output B Bipolar
+Map	track4clip6landingcbipolar		Track 4 Clip 6 Landing Output C Bipolar
+Map	track4clip6landingdbipolar		Track 4 Clip 6 Landing Output D Bipolar
+Map	track4clip6landingebipolar		Track 4 Clip 6 Landing Output E Bipolar
+Map	track4clip6landingfbipolar		Track 4 Clip 6 Landing Output F Bipolar
+
+Map	track5clip6landingabipolar		Track 5 Clip 6 Landing Output A Bipolar
+Map	track5clip6landingbbipolar		Track 5 Clip 6 Landing Output B Bipolar
+Map	track5clip6landingcbipolar		Track 5 Clip 6 Landing Output C Bipolar
+Map	track5clip6landingdbipolar		Track 5 Clip 6 Landing Output D Bipolar
+Map	track5clip6landingebipolar		Track 5 Clip 6 Landing Output E Bipolar
+Map	track5clip6landingfbipolar		Track 5 Clip 6 Landing Output F Bipolar
+
+Map	track6clip6landingabipolar		Track 6 Clip 6 Landing Output A Bipolar
+Map	track6clip6landingbbipolar		Track 6 Clip 6 Landing Output B Bipolar
+Map	track6clip6landingcbipolar		Track 6 Clip 6 Landing Output C Bipolar
+Map	track6clip6landingdbipolar		Track 6 Clip 6 Landing Output D Bipolar
+Map	track6clip6landingebipolar		Track 6 Clip 6 Landing Output E Bipolar
+Map	track6clip6landingfbipolar		Track 6 Clip 6 Landing Output F Bipolar
+
+Map	track7clip6landingabipolar		Track 7 Clip 6 Landing Output A Bipolar
+Map	track7clip6landingbbipolar		Track 7 Clip 6 Landing Output B Bipolar
+Map	track7clip6landingcbipolar		Track 7 Clip 6 Landing Output C Bipolar
+Map	track7clip6landingdbipolar		Track 7 Clip 6 Landing Output D Bipolar
+Map	track7clip6landingebipolar		Track 7 Clip 6 Landing Output E Bipolar
+Map	track7clip6landingfbipolar		Track 7 Clip 6 Landing Output F Bipolar
+
+Map	track8clip6landingabipolar		Track 8 Clip 6 Landing Output A Bipolar
+Map	track8clip6landingbbipolar		Track 8 Clip 6 Landing Output B Bipolar
+Map	track8clip6landingcbipolar		Track 8 Clip 6 Landing Output C Bipolar
+Map	track8clip6landingdbipolar		Track 8 Clip 6 Landing Output D Bipolar
+Map	track8clip6landingebipolar		Track 8 Clip 6 Landing Output E Bipolar
+Map	track8clip6landingfbipolar		Track 8 Clip 6 Landing Output F Bipolar
+
+Map	track1clip7landingabipolar		Track 1 Clip 7 Landing Output A Bipolar
+Map	track1clip7landingbbipolar		Track 1 Clip 7 Landing Output B Bipolar
+Map	track1clip7landingcbipolar		Track 1 Clip 7 Landing Output C Bipolar
+Map	track1clip7landingdbipolar		Track 1 Clip 7 Landing Output D Bipolar
+Map	track1clip7landingebipolar		Track 1 Clip 7 Landing Output E Bipolar
+Map	track1clip7landingfbipolar		Track 1 Clip 7 Landing Output F Bipolar
+
+Map	track2clip7landingabipolar		Track 2 Clip 7 Landing Output A Bipolar
+Map	track2clip7landingbbipolar		Track 2 Clip 7 Landing Output B Bipolar
+Map	track2clip7landingcbipolar		Track 2 Clip 7 Landing Output C Bipolar
+Map	track2clip7landingdbipolar		Track 2 Clip 7 Landing Output D Bipolar
+Map	track2clip7landingebipolar		Track 2 Clip 7 Landing Output E Bipolar
+Map	track2clip7landingfbipolar		Track 2 Clip 7 Landing Output F Bipolar
+
+Map	track3clip7landingabipolar		Track 3 Clip 7 Landing Output A Bipolar
+Map	track3clip7landingbbipolar		Track 3 Clip 7 Landing Output B Bipolar
+Map	track3clip7landingcbipolar		Track 3 Clip 7 Landing Output C Bipolar
+Map	track3clip7landingdbipolar		Track 3 Clip 7 Landing Output D Bipolar
+Map	track3clip7landingebipolar		Track 3 Clip 7 Landing Output E Bipolar
+Map	track3clip7landingfbipolar		Track 3 Clip 7 Landing Output F Bipolar
+
+Map	track4clip7landingabipolar		Track 4 Clip 7 Landing Output A Bipolar
+Map	track4clip7landingbbipolar		Track 4 Clip 7 Landing Output B Bipolar
+Map	track4clip7landingcbipolar		Track 4 Clip 7 Landing Output C Bipolar
+Map	track4clip7landingdbipolar		Track 4 Clip 7 Landing Output D Bipolar
+Map	track4clip7landingebipolar		Track 4 Clip 7 Landing Output E Bipolar
+Map	track4clip7landingfbipolar		Track 4 Clip 7 Landing Output F Bipolar
+
+Map	track5clip7landingabipolar		Track 5 Clip 7 Landing Output A Bipolar
+Map	track5clip7landingbbipolar		Track 5 Clip 7 Landing Output B Bipolar
+Map	track5clip7landingcbipolar		Track 5 Clip 7 Landing Output C Bipolar
+Map	track5clip7landingdbipolar		Track 5 Clip 7 Landing Output D Bipolar
+Map	track5clip7landingebipolar		Track 5 Clip 7 Landing Output E Bipolar
+Map	track5clip7landingfbipolar		Track 5 Clip 7 Landing Output F Bipolar
+
+Map	track6clip7landingabipolar		Track 6 Clip 7 Landing Output A Bipolar
+Map	track6clip7landingbbipolar		Track 6 Clip 7 Landing Output B Bipolar
+Map	track6clip7landingcbipolar		Track 6 Clip 7 Landing Output C Bipolar
+Map	track6clip7landingdbipolar		Track 6 Clip 7 Landing Output D Bipolar
+Map	track6clip7landingebipolar		Track 6 Clip 7 Landing Output E Bipolar
+Map	track6clip7landingfbipolar		Track 6 Clip 7 Landing Output F Bipolar
+
+Map	track7clip7landingabipolar		Track 7 Clip 7 Landing Output A Bipolar
+Map	track7clip7landingbbipolar		Track 7 Clip 7 Landing Output B Bipolar
+Map	track7clip7landingcbipolar		Track 7 Clip 7 Landing Output C Bipolar
+Map	track7clip7landingdbipolar		Track 7 Clip 7 Landing Output D Bipolar
+Map	track7clip7landingebipolar		Track 7 Clip 7 Landing Output E Bipolar
+Map	track7clip7landingfbipolar		Track 7 Clip 7 Landing Output F Bipolar
+
+Map	track8clip7landingabipolar		Track 8 Clip 7 Landing Output A Bipolar
+Map	track8clip7landingbbipolar		Track 8 Clip 7 Landing Output B Bipolar
+Map	track8clip7landingcbipolar		Track 8 Clip 7 Landing Output C Bipolar
+Map	track8clip7landingdbipolar		Track 8 Clip 7 Landing Output D Bipolar
+Map	track8clip7landingebipolar		Track 8 Clip 7 Landing Output E Bipolar
+Map	track8clip7landingfbipolar		Track 8 Clip 7 Landing Output F Bipolar
+
+Map	track1clip8landingabipolar		Track 1 Clip 8 Landing Output A Bipolar
+Map	track1clip8landingbbipolar		Track 1 Clip 8 Landing Output B Bipolar
+Map	track1clip8landingcbipolar		Track 1 Clip 8 Landing Output C Bipolar
+Map	track1clip8landingdbipolar		Track 1 Clip 8 Landing Output D Bipolar
+Map	track1clip8landingebipolar		Track 1 Clip 8 Landing Output E Bipolar
+Map	track1clip8landingfbipolar		Track 1 Clip 8 Landing Output F Bipolar
+
+Map	track2clip8landingabipolar		Track 2 Clip 8 Landing Output A Bipolar
+Map	track2clip8landingbbipolar		Track 2 Clip 8 Landing Output B Bipolar
+Map	track2clip8landingcbipolar		Track 2 Clip 8 Landing Output C Bipolar
+Map	track2clip8landingdbipolar		Track 2 Clip 8 Landing Output D Bipolar
+Map	track2clip8landingebipolar		Track 2 Clip 8 Landing Output E Bipolar
+Map	track2clip8landingfbipolar		Track 2 Clip 8 Landing Output F Bipolar
+
+Map	track3clip8landingabipolar		Track 3 Clip 8 Landing Output A Bipolar
+Map	track3clip8landingbbipolar		Track 3 Clip 8 Landing Output B Bipolar
+Map	track3clip8landingcbipolar		Track 3 Clip 8 Landing Output C Bipolar
+Map	track3clip8landingdbipolar		Track 3 Clip 8 Landing Output D Bipolar
+Map	track3clip8landingebipolar		Track 3 Clip 8 Landing Output E Bipolar
+Map	track3clip8landingfbipolar		Track 3 Clip 8 Landing Output F Bipolar
+
+Map	track4clip8landingabipolar		Track 4 Clip 8 Landing Output A Bipolar
+Map	track4clip8landingbbipolar		Track 4 Clip 8 Landing Output B Bipolar
+Map	track4clip8landingcbipolar		Track 4 Clip 8 Landing Output C Bipolar
+Map	track4clip8landingdbipolar		Track 4 Clip 8 Landing Output D Bipolar
+Map	track4clip8landingebipolar		Track 4 Clip 8 Landing Output E Bipolar
+Map	track4clip8landingfbipolar		Track 4 Clip 8 Landing Output F Bipolar
+
+Map	track5clip8landingabipolar		Track 5 Clip 8 Landing Output A Bipolar
+Map	track5clip8landingbbipolar		Track 5 Clip 8 Landing Output B Bipolar
+Map	track5clip8landingcbipolar		Track 5 Clip 8 Landing Output C Bipolar
+Map	track5clip8landingdbipolar		Track 5 Clip 8 Landing Output D Bipolar
+Map	track5clip8landingebipolar		Track 5 Clip 8 Landing Output E Bipolar
+Map	track5clip8landingfbipolar		Track 5 Clip 8 Landing Output F Bipolar
+
+Map	track6clip8landingabipolar		Track 6 Clip 8 Landing Output A Bipolar
+Map	track6clip8landingbbipolar		Track 6 Clip 8 Landing Output B Bipolar
+Map	track6clip8landingcbipolar		Track 6 Clip 8 Landing Output C Bipolar
+Map	track6clip8landingdbipolar		Track 6 Clip 8 Landing Output D Bipolar
+Map	track6clip8landingebipolar		Track 6 Clip 8 Landing Output E Bipolar
+Map	track6clip8landingfbipolar		Track 6 Clip 8 Landing Output F Bipolar
+
+Map	track7clip8landingabipolar		Track 7 Clip 8 Landing Output A Bipolar
+Map	track7clip8landingbbipolar		Track 7 Clip 8 Landing Output B Bipolar
+Map	track7clip8landingcbipolar		Track 7 Clip 8 Landing Output C Bipolar
+Map	track7clip8landingdbipolar		Track 7 Clip 8 Landing Output D Bipolar
+Map	track7clip8landingebipolar		Track 7 Clip 8 Landing Output E Bipolar
+Map	track7clip8landingfbipolar		Track 7 Clip 8 Landing Output F Bipolar
+
+Map	track8clip8landingabipolar		Track 8 Clip 8 Landing Output A Bipolar
+Map	track8clip8landingbbipolar		Track 8 Clip 8 Landing Output B Bipolar
+Map	track8clip8landingcbipolar		Track 8 Clip 8 Landing Output C Bipolar
+Map	track8clip8landingdbipolar		Track 8 Clip 8 Landing Output D Bipolar
+Map	track8clip8landingebipolar		Track 8 Clip 8 Landing Output E Bipolar
+Map	track8clip8landingfbipolar		Track 8 Clip 8 Landing Output F Bipolar
+
+Map	track1clip1landingatransition		Track 1 Clip 1 Landing Output A Transition
+Map	track1clip1landingbtransition		Track 1 Clip 1 Landing Output B Transition
+Map	track1clip1landingctransition		Track 1 Clip 1 Landing Output C Transition
+Map	track1clip1landingdtransition		Track 1 Clip 1 Landing Output D Transition
+Map	track1clip1landingetransition		Track 1 Clip 1 Landing Output E Transition
+Map	track1clip1landingftransition		Track 1 Clip 1 Landing Output F Transition
+
+Map	track2clip1landingatransition		Track 2 Clip 1 Landing Output A Transition
+Map	track2clip1landingbtransition		Track 2 Clip 1 Landing Output B Transition
+Map	track2clip1landingctransition		Track 2 Clip 1 Landing Output C Transition
+Map	track2clip1landingdtransition		Track 2 Clip 1 Landing Output D Transition
+Map	track2clip1landingetransition		Track 2 Clip 1 Landing Output E Transition
+Map	track2clip1landingftransition		Track 2 Clip 1 Landing Output F Transition
+
+Map	track3clip1landingatransition		Track 3 Clip 1 Landing Output A Transition
+Map	track3clip1landingbtransition		Track 3 Clip 1 Landing Output B Transition
+Map	track3clip1landingctransition		Track 3 Clip 1 Landing Output C Transition
+Map	track3clip1landingdtransition		Track 3 Clip 1 Landing Output D Transition
+Map	track3clip1landingetransition		Track 3 Clip 1 Landing Output E Transition
+Map	track3clip1landingftransition		Track 3 Clip 1 Landing Output F Transition
+
+Map	track4clip1landingatransition		Track 4 Clip 1 Landing Output A Transition
+Map	track4clip1landingbtransition		Track 4 Clip 1 Landing Output B Transition
+Map	track4clip1landingctransition		Track 4 Clip 1 Landing Output C Transition
+Map	track4clip1landingdtransition		Track 4 Clip 1 Landing Output D Transition
+Map	track4clip1landingetransition		Track 4 Clip 1 Landing Output E Transition
+Map	track4clip1landingftransition		Track 4 Clip 1 Landing Output F Transition
+
+Map	track5clip1landingatransition		Track 5 Clip 1 Landing Output A Transition
+Map	track5clip1landingbtransition		Track 5 Clip 1 Landing Output B Transition
+Map	track5clip1landingctransition		Track 5 Clip 1 Landing Output C Transition
+Map	track5clip1landingdtransition		Track 5 Clip 1 Landing Output D Transition
+Map	track5clip1landingetransition		Track 5 Clip 1 Landing Output E Transition
+Map	track5clip1landingftransition		Track 5 Clip 1 Landing Output F Transition
+
+Map	track6clip1landingatransition		Track 6 Clip 1 Landing Output A Transition
+Map	track6clip1landingbtransition		Track 6 Clip 1 Landing Output B Transition
+Map	track6clip1landingctransition		Track 6 Clip 1 Landing Output C Transition
+Map	track6clip1landingdtransition		Track 6 Clip 1 Landing Output D Transition
+Map	track6clip1landingetransition		Track 6 Clip 1 Landing Output E Transition
+Map	track6clip1landingftransition		Track 6 Clip 1 Landing Output F Transition
+
+Map	track7clip1landingatransition		Track 7 Clip 1 Landing Output A Transition
+Map	track7clip1landingbtransition		Track 7 Clip 1 Landing Output B Transition
+Map	track7clip1landingctransition		Track 7 Clip 1 Landing Output C Transition
+Map	track7clip1landingdtransition		Track 7 Clip 1 Landing Output D Transition
+Map	track7clip1landingetransition		Track 7 Clip 1 Landing Output E Transition
+Map	track7clip1landingftransition		Track 7 Clip 1 Landing Output F Transition
+
+Map	track8clip1landingatransition		Track 8 Clip 1 Landing Output A Transition
+Map	track8clip1landingbtransition		Track 8 Clip 1 Landing Output B Transition
+Map	track8clip1landingctransition		Track 8 Clip 1 Landing Output C Transition
+Map	track8clip1landingdtransition		Track 8 Clip 1 Landing Output D Transition
+Map	track8clip1landingetransition		Track 8 Clip 1 Landing Output E Transition
+Map	track8clip1landingftransition		Track 8 Clip 1 Landing Output F Transition
+
+Map	track1clip2landingatransition		Track 1 Clip 2 Landing Output A Transition
+Map	track1clip2landingbtransition		Track 1 Clip 2 Landing Output B Transition
+Map	track1clip2landingctransition		Track 1 Clip 2 Landing Output C Transition
+Map	track1clip2landingdtransition		Track 1 Clip 2 Landing Output D Transition
+Map	track1clip2landingetransition		Track 1 Clip 2 Landing Output E Transition
+Map	track1clip2landingftransition		Track 1 Clip 2 Landing Output F Transition
+
+Map	track2clip2landingatransition		Track 2 Clip 2 Landing Output A Transition
+Map	track2clip2landingbtransition		Track 2 Clip 2 Landing Output B Transition
+Map	track2clip2landingctransition		Track 2 Clip 2 Landing Output C Transition
+Map	track2clip2landingdtransition		Track 2 Clip 2 Landing Output D Transition
+Map	track2clip2landingetransition		Track 2 Clip 2 Landing Output E Transition
+Map	track2clip2landingftransition		Track 2 Clip 2 Landing Output F Transition
+
+Map	track3clip2landingatransition		Track 3 Clip 2 Landing Output A Transition
+Map	track3clip2landingbtransition		Track 3 Clip 2 Landing Output B Transition
+Map	track3clip2landingctransition		Track 3 Clip 2 Landing Output C Transition
+Map	track3clip2landingdtransition		Track 3 Clip 2 Landing Output D Transition
+Map	track3clip2landingetransition		Track 3 Clip 2 Landing Output E Transition
+Map	track3clip2landingftransition		Track 3 Clip 2 Landing Output F Transition
+
+Map	track4clip2landingatransition		Track 4 Clip 2 Landing Output A Transition
+Map	track4clip2landingbtransition		Track 4 Clip 2 Landing Output B Transition
+Map	track4clip2landingctransition		Track 4 Clip 2 Landing Output C Transition
+Map	track4clip2landingdtransition		Track 4 Clip 2 Landing Output D Transition
+Map	track4clip2landingetransition		Track 4 Clip 2 Landing Output E Transition
+Map	track4clip2landingftransition		Track 4 Clip 2 Landing Output F Transition
+
+Map	track5clip2landingatransition		Track 5 Clip 2 Landing Output A Transition
+Map	track5clip2landingbtransition		Track 5 Clip 2 Landing Output B Transition
+Map	track5clip2landingctransition		Track 5 Clip 2 Landing Output C Transition
+Map	track5clip2landingdtransition		Track 5 Clip 2 Landing Output D Transition
+Map	track5clip2landingetransition		Track 5 Clip 2 Landing Output E Transition
+Map	track5clip2landingftransition		Track 5 Clip 2 Landing Output F Transition
+
+Map	track6clip2landingatransition		Track 6 Clip 2 Landing Output A Transition
+Map	track6clip2landingbtransition		Track 6 Clip 2 Landing Output B Transition
+Map	track6clip2landingctransition		Track 6 Clip 2 Landing Output C Transition
+Map	track6clip2landingdtransition		Track 6 Clip 2 Landing Output D Transition
+Map	track6clip2landingetransition		Track 6 Clip 2 Landing Output E Transition
+Map	track6clip2landingftransition		Track 6 Clip 2 Landing Output F Transition
+
+Map	track7clip2landingatransition		Track 7 Clip 2 Landing Output A Transition
+Map	track7clip2landingbtransition		Track 7 Clip 2 Landing Output B Transition
+Map	track7clip2landingctransition		Track 7 Clip 2 Landing Output C Transition
+Map	track7clip2landingdtransition		Track 7 Clip 2 Landing Output D Transition
+Map	track7clip2landingetransition		Track 7 Clip 2 Landing Output E Transition
+Map	track7clip2landingftransition		Track 7 Clip 2 Landing Output F Transition
+
+Map	track8clip2landingatransition		Track 8 Clip 2 Landing Output A Transition
+Map	track8clip2landingbtransition		Track 8 Clip 2 Landing Output B Transition
+Map	track8clip2landingctransition		Track 8 Clip 2 Landing Output C Transition
+Map	track8clip2landingdtransition		Track 8 Clip 2 Landing Output D Transition
+Map	track8clip2landingetransition		Track 8 Clip 2 Landing Output E Transition
+Map	track8clip2landingftransition		Track 8 Clip 2 Landing Output F Transition
+
+Map	track1clip3landingatransition		Track 1 Clip 3 Landing Output A Transition
+Map	track1clip3landingbtransition		Track 1 Clip 3 Landing Output B Transition
+Map	track1clip3landingctransition		Track 1 Clip 3 Landing Output C Transition
+Map	track1clip3landingdtransition		Track 1 Clip 3 Landing Output D Transition
+Map	track1clip3landingetransition		Track 1 Clip 3 Landing Output E Transition
+Map	track1clip3landingftransition		Track 1 Clip 3 Landing Output F Transition
+
+Map	track2clip3landingatransition		Track 2 Clip 3 Landing Output A Transition
+Map	track2clip3landingbtransition		Track 2 Clip 3 Landing Output B Transition
+Map	track2clip3landingctransition		Track 2 Clip 3 Landing Output C Transition
+Map	track2clip3landingdtransition		Track 2 Clip 3 Landing Output D Transition
+Map	track2clip3landingetransition		Track 2 Clip 3 Landing Output E Transition
+Map	track2clip3landingftransition		Track 2 Clip 3 Landing Output F Transition
+
+Map	track3clip3landingatransition		Track 3 Clip 3 Landing Output A Transition
+Map	track3clip3landingbtransition		Track 3 Clip 3 Landing Output B Transition
+Map	track3clip3landingctransition		Track 3 Clip 3 Landing Output C Transition
+Map	track3clip3landingdtransition		Track 3 Clip 3 Landing Output D Transition
+Map	track3clip3landingetransition		Track 3 Clip 3 Landing Output E Transition
+Map	track3clip3landingftransition		Track 3 Clip 3 Landing Output F Transition
+
+Map	track4clip3landingatransition		Track 4 Clip 3 Landing Output A Transition
+Map	track4clip3landingbtransition		Track 4 Clip 3 Landing Output B Transition
+Map	track4clip3landingctransition		Track 4 Clip 3 Landing Output C Transition
+Map	track4clip3landingdtransition		Track 4 Clip 3 Landing Output D Transition
+Map	track4clip3landingetransition		Track 4 Clip 3 Landing Output E Transition
+Map	track4clip3landingftransition		Track 4 Clip 3 Landing Output F Transition
+
+Map	track5clip3landingatransition		Track 5 Clip 3 Landing Output A Transition
+Map	track5clip3landingbtransition		Track 5 Clip 3 Landing Output B Transition
+Map	track5clip3landingctransition		Track 5 Clip 3 Landing Output C Transition
+Map	track5clip3landingdtransition		Track 5 Clip 3 Landing Output D Transition
+Map	track5clip3landingetransition		Track 5 Clip 3 Landing Output E Transition
+Map	track5clip3landingftransition		Track 5 Clip 3 Landing Output F Transition
+
+Map	track6clip3landingatransition		Track 6 Clip 3 Landing Output A Transition
+Map	track6clip3landingbtransition		Track 6 Clip 3 Landing Output B Transition
+Map	track6clip3landingctransition		Track 6 Clip 3 Landing Output C Transition
+Map	track6clip3landingdtransition		Track 6 Clip 3 Landing Output D Transition
+Map	track6clip3landingetransition		Track 6 Clip 3 Landing Output E Transition
+Map	track6clip3landingftransition		Track 6 Clip 3 Landing Output F Transition
+
+Map	track7clip3landingatransition		Track 7 Clip 3 Landing Output A Transition
+Map	track7clip3landingbtransition		Track 7 Clip 3 Landing Output B Transition
+Map	track7clip3landingctransition		Track 7 Clip 3 Landing Output C Transition
+Map	track7clip3landingdtransition		Track 7 Clip 3 Landing Output D Transition
+Map	track7clip3landingetransition		Track 7 Clip 3 Landing Output E Transition
+Map	track7clip3landingftransition		Track 7 Clip 3 Landing Output F Transition
+
+Map	track8clip3landingatransition		Track 8 Clip 3 Landing Output A Transition
+Map	track8clip3landingbtransition		Track 8 Clip 3 Landing Output B Transition
+Map	track8clip3landingctransition		Track 8 Clip 3 Landing Output C Transition
+Map	track8clip3landingdtransition		Track 8 Clip 3 Landing Output D Transition
+Map	track8clip3landingetransition		Track 8 Clip 3 Landing Output E Transition
+Map	track8clip3landingftransition		Track 8 Clip 3 Landing Output F Transition
+
+Map	track1clip4landingatransition		Track 1 Clip 4 Landing Output A Transition
+Map	track1clip4landingbtransition		Track 1 Clip 4 Landing Output B Transition
+Map	track1clip4landingctransition		Track 1 Clip 4 Landing Output C Transition
+Map	track1clip4landingdtransition		Track 1 Clip 4 Landing Output D Transition
+Map	track1clip4landingetransition		Track 1 Clip 4 Landing Output E Transition
+Map	track1clip4landingftransition		Track 1 Clip 4 Landing Output F Transition
+
+Map	track2clip4landingatransition		Track 2 Clip 4 Landing Output A Transition
+Map	track2clip4landingbtransition		Track 2 Clip 4 Landing Output B Transition
+Map	track2clip4landingctransition		Track 2 Clip 4 Landing Output C Transition
+Map	track2clip4landingdtransition		Track 2 Clip 4 Landing Output D Transition
+Map	track2clip4landingetransition		Track 2 Clip 4 Landing Output E Transition
+Map	track2clip4landingftransition		Track 2 Clip 4 Landing Output F Transition
+
+Map	track3clip4landingatransition		Track 3 Clip 4 Landing Output A Transition
+Map	track3clip4landingbtransition		Track 3 Clip 4 Landing Output B Transition
+Map	track3clip4landingctransition		Track 3 Clip 4 Landing Output C Transition
+Map	track3clip4landingdtransition		Track 3 Clip 4 Landing Output D Transition
+Map	track3clip4landingetransition		Track 3 Clip 4 Landing Output E Transition
+Map	track3clip4landingftransition		Track 3 Clip 4 Landing Output F Transition
+
+Map	track4clip4landingatransition		Track 4 Clip 4 Landing Output A Transition
+Map	track4clip4landingbtransition		Track 4 Clip 4 Landing Output B Transition
+Map	track4clip4landingctransition		Track 4 Clip 4 Landing Output C Transition
+Map	track4clip4landingdtransition		Track 4 Clip 4 Landing Output D Transition
+Map	track4clip4landingetransition		Track 4 Clip 4 Landing Output E Transition
+Map	track4clip4landingftransition		Track 4 Clip 4 Landing Output F Transition
+
+Map	track5clip4landingatransition		Track 5 Clip 4 Landing Output A Transition
+Map	track5clip4landingbtransition		Track 5 Clip 4 Landing Output B Transition
+Map	track5clip4landingctransition		Track 5 Clip 4 Landing Output C Transition
+Map	track5clip4landingdtransition		Track 5 Clip 4 Landing Output D Transition
+Map	track5clip4landingetransition		Track 5 Clip 4 Landing Output E Transition
+Map	track5clip4landingftransition		Track 5 Clip 4 Landing Output F Transition
+
+Map	track6clip4landingatransition		Track 6 Clip 4 Landing Output A Transition
+Map	track6clip4landingbtransition		Track 6 Clip 4 Landing Output B Transition
+Map	track6clip4landingctransition		Track 6 Clip 4 Landing Output C Transition
+Map	track6clip4landingdtransition		Track 6 Clip 4 Landing Output D Transition
+Map	track6clip4landingetransition		Track 6 Clip 4 Landing Output E Transition
+Map	track6clip4landingftransition		Track 6 Clip 4 Landing Output F Transition
+
+Map	track7clip4landingatransition		Track 7 Clip 4 Landing Output A Transition
+Map	track7clip4landingbtransition		Track 7 Clip 4 Landing Output B Transition
+Map	track7clip4landingctransition		Track 7 Clip 4 Landing Output C Transition
+Map	track7clip4landingdtransition		Track 7 Clip 4 Landing Output D Transition
+Map	track7clip4landingetransition		Track 7 Clip 4 Landing Output E Transition
+Map	track7clip4landingftransition		Track 7 Clip 4 Landing Output F Transition
+
+Map	track8clip4landingatransition		Track 8 Clip 4 Landing Output A Transition
+Map	track8clip4landingbtransition		Track 8 Clip 4 Landing Output B Transition
+Map	track8clip4landingctransition		Track 8 Clip 4 Landing Output C Transition
+Map	track8clip4landingdtransition		Track 8 Clip 4 Landing Output D Transition
+Map	track8clip4landingetransition		Track 8 Clip 4 Landing Output E Transition
+Map	track8clip4landingftransition		Track 8 Clip 4 Landing Output F Transition
+
+Map	track1clip5landingatransition		Track 1 Clip 5 Landing Output A Transition
+Map	track1clip5landingbtransition		Track 1 Clip 5 Landing Output B Transition
+Map	track1clip5landingctransition		Track 1 Clip 5 Landing Output C Transition
+Map	track1clip5landingdtransition		Track 1 Clip 5 Landing Output D Transition
+Map	track1clip5landingetransition		Track 1 Clip 5 Landing Output E Transition
+Map	track1clip5landingftransition		Track 1 Clip 5 Landing Output F Transition
+
+Map	track2clip5landingatransition		Track 2 Clip 5 Landing Output A Transition
+Map	track2clip5landingbtransition		Track 2 Clip 5 Landing Output B Transition
+Map	track2clip5landingctransition		Track 2 Clip 5 Landing Output C Transition
+Map	track2clip5landingdtransition		Track 2 Clip 5 Landing Output D Transition
+Map	track2clip5landingetransition		Track 2 Clip 5 Landing Output E Transition
+Map	track2clip5landingftransition		Track 2 Clip 5 Landing Output F Transition
+
+Map	track3clip5landingatransition		Track 3 Clip 5 Landing Output A Transition
+Map	track3clip5landingbtransition		Track 3 Clip 5 Landing Output B Transition
+Map	track3clip5landingctransition		Track 3 Clip 5 Landing Output C Transition
+Map	track3clip5landingdtransition		Track 3 Clip 5 Landing Output D Transition
+Map	track3clip5landingetransition		Track 3 Clip 5 Landing Output E Transition
+Map	track3clip5landingftransition		Track 3 Clip 5 Landing Output F Transition
+
+Map	track4clip5landingatransition		Track 4 Clip 5 Landing Output A Transition
+Map	track4clip5landingbtransition		Track 4 Clip 5 Landing Output B Transition
+Map	track4clip5landingctransition		Track 4 Clip 5 Landing Output C Transition
+Map	track4clip5landingdtransition		Track 4 Clip 5 Landing Output D Transition
+Map	track4clip5landingetransition		Track 4 Clip 5 Landing Output E Transition
+Map	track4clip5landingftransition		Track 4 Clip 5 Landing Output F Transition
+
+Map	track5clip5landingatransition		Track 5 Clip 5 Landing Output A Transition
+Map	track5clip5landingbtransition		Track 5 Clip 5 Landing Output B Transition
+Map	track5clip5landingctransition		Track 5 Clip 5 Landing Output C Transition
+Map	track5clip5landingdtransition		Track 5 Clip 5 Landing Output D Transition
+Map	track5clip5landingetransition		Track 5 Clip 5 Landing Output E Transition
+Map	track5clip5landingftransition		Track 5 Clip 5 Landing Output F Transition
+
+Map	track6clip5landingatransition		Track 6 Clip 5 Landing Output A Transition
+Map	track6clip5landingbtransition		Track 6 Clip 5 Landing Output B Transition
+Map	track6clip5landingctransition		Track 6 Clip 5 Landing Output C Transition
+Map	track6clip5landingdtransition		Track 6 Clip 5 Landing Output D Transition
+Map	track6clip5landingetransition		Track 6 Clip 5 Landing Output E Transition
+Map	track6clip5landingftransition		Track 6 Clip 5 Landing Output F Transition
+
+Map	track7clip5landingatransition		Track 7 Clip 5 Landing Output A Transition
+Map	track7clip5landingbtransition		Track 7 Clip 5 Landing Output B Transition
+Map	track7clip5landingctransition		Track 7 Clip 5 Landing Output C Transition
+Map	track7clip5landingdtransition		Track 7 Clip 5 Landing Output D Transition
+Map	track7clip5landingetransition		Track 7 Clip 5 Landing Output E Transition
+Map	track7clip5landingftransition		Track 7 Clip 5 Landing Output F Transition
+
+Map	track8clip5landingatransition		Track 8 Clip 5 Landing Output A Transition
+Map	track8clip5landingbtransition		Track 8 Clip 5 Landing Output B Transition
+Map	track8clip5landingctransition		Track 8 Clip 5 Landing Output C Transition
+Map	track8clip5landingdtransition		Track 8 Clip 5 Landing Output D Transition
+Map	track8clip5landingetransition		Track 8 Clip 5 Landing Output E Transition
+Map	track8clip5landingftransition		Track 8 Clip 5 Landing Output F Transition
+
+Map	track1clip6landingatransition		Track 1 Clip 6 Landing Output A Transition
+Map	track1clip6landingbtransition		Track 1 Clip 6 Landing Output B Transition
+Map	track1clip6landingctransition		Track 1 Clip 6 Landing Output C Transition
+Map	track1clip6landingdtransition		Track 1 Clip 6 Landing Output D Transition
+Map	track1clip6landingetransition		Track 1 Clip 6 Landing Output E Transition
+Map	track1clip6landingftransition		Track 1 Clip 6 Landing Output F Transition
+
+Map	track2clip6landingatransition		Track 2 Clip 6 Landing Output A Transition
+Map	track2clip6landingbtransition		Track 2 Clip 6 Landing Output B Transition
+Map	track2clip6landingctransition		Track 2 Clip 6 Landing Output C Transition
+Map	track2clip6landingdtransition		Track 2 Clip 6 Landing Output D Transition
+Map	track2clip6landingetransition		Track 2 Clip 6 Landing Output E Transition
+Map	track2clip6landingftransition		Track 2 Clip 6 Landing Output F Transition
+
+Map	track3clip6landingatransition		Track 3 Clip 6 Landing Output A Transition
+Map	track3clip6landingbtransition		Track 3 Clip 6 Landing Output B Transition
+Map	track3clip6landingctransition		Track 3 Clip 6 Landing Output C Transition
+Map	track3clip6landingdtransition		Track 3 Clip 6 Landing Output D Transition
+Map	track3clip6landingetransition		Track 3 Clip 6 Landing Output E Transition
+Map	track3clip6landingftransition		Track 3 Clip 6 Landing Output F Transition
+
+Map	track4clip6landingatransition		Track 4 Clip 6 Landing Output A Transition
+Map	track4clip6landingbtransition		Track 4 Clip 6 Landing Output B Transition
+Map	track4clip6landingctransition		Track 4 Clip 6 Landing Output C Transition
+Map	track4clip6landingdtransition		Track 4 Clip 6 Landing Output D Transition
+Map	track4clip6landingetransition		Track 4 Clip 6 Landing Output E Transition
+Map	track4clip6landingftransition		Track 4 Clip 6 Landing Output F Transition
+
+Map	track5clip6landingatransition		Track 5 Clip 6 Landing Output A Transition
+Map	track5clip6landingbtransition		Track 5 Clip 6 Landing Output B Transition
+Map	track5clip6landingctransition		Track 5 Clip 6 Landing Output C Transition
+Map	track5clip6landingdtransition		Track 5 Clip 6 Landing Output D Transition
+Map	track5clip6landingetransition		Track 5 Clip 6 Landing Output E Transition
+Map	track5clip6landingftransition		Track 5 Clip 6 Landing Output F Transition
+
+Map	track6clip6landingatransition		Track 6 Clip 6 Landing Output A Transition
+Map	track6clip6landingbtransition		Track 6 Clip 6 Landing Output B Transition
+Map	track6clip6landingctransition		Track 6 Clip 6 Landing Output C Transition
+Map	track6clip6landingdtransition		Track 6 Clip 6 Landing Output D Transition
+Map	track6clip6landingetransition		Track 6 Clip 6 Landing Output E Transition
+Map	track6clip6landingftransition		Track 6 Clip 6 Landing Output F Transition
+
+Map	track7clip6landingatransition		Track 7 Clip 6 Landing Output A Transition
+Map	track7clip6landingbtransition		Track 7 Clip 6 Landing Output B Transition
+Map	track7clip6landingctransition		Track 7 Clip 6 Landing Output C Transition
+Map	track7clip6landingdtransition		Track 7 Clip 6 Landing Output D Transition
+Map	track7clip6landingetransition		Track 7 Clip 6 Landing Output E Transition
+Map	track7clip6landingftransition		Track 7 Clip 6 Landing Output F Transition
+
+Map	track8clip6landingatransition		Track 8 Clip 6 Landing Output A Transition
+Map	track8clip6landingbtransition		Track 8 Clip 6 Landing Output B Transition
+Map	track8clip6landingctransition		Track 8 Clip 6 Landing Output C Transition
+Map	track8clip6landingdtransition		Track 8 Clip 6 Landing Output D Transition
+Map	track8clip6landingetransition		Track 8 Clip 6 Landing Output E Transition
+Map	track8clip6landingftransition		Track 8 Clip 6 Landing Output F Transition
+
+Map	track1clip7landingatransition		Track 1 Clip 7 Landing Output A Transition
+Map	track1clip7landingbtransition		Track 1 Clip 7 Landing Output B Transition
+Map	track1clip7landingctransition		Track 1 Clip 7 Landing Output C Transition
+Map	track1clip7landingdtransition		Track 1 Clip 7 Landing Output D Transition
+Map	track1clip7landingetransition		Track 1 Clip 7 Landing Output E Transition
+Map	track1clip7landingftransition		Track 1 Clip 7 Landing Output F Transition
+
+Map	track2clip7landingatransition		Track 2 Clip 7 Landing Output A Transition
+Map	track2clip7landingbtransition		Track 2 Clip 7 Landing Output B Transition
+Map	track2clip7landingctransition		Track 2 Clip 7 Landing Output C Transition
+Map	track2clip7landingdtransition		Track 2 Clip 7 Landing Output D Transition
+Map	track2clip7landingetransition		Track 2 Clip 7 Landing Output E Transition
+Map	track2clip7landingftransition		Track 2 Clip 7 Landing Output F Transition
+
+Map	track3clip7landingatransition		Track 3 Clip 7 Landing Output A Transition
+Map	track3clip7landingbtransition		Track 3 Clip 7 Landing Output B Transition
+Map	track3clip7landingctransition		Track 3 Clip 7 Landing Output C Transition
+Map	track3clip7landingdtransition		Track 3 Clip 7 Landing Output D Transition
+Map	track3clip7landingetransition		Track 3 Clip 7 Landing Output E Transition
+Map	track3clip7landingftransition		Track 3 Clip 7 Landing Output F Transition
+
+Map	track4clip7landingatransition		Track 4 Clip 7 Landing Output A Transition
+Map	track4clip7landingbtransition		Track 4 Clip 7 Landing Output B Transition
+Map	track4clip7landingctransition		Track 4 Clip 7 Landing Output C Transition
+Map	track4clip7landingdtransition		Track 4 Clip 7 Landing Output D Transition
+Map	track4clip7landingetransition		Track 4 Clip 7 Landing Output E Transition
+Map	track4clip7landingftransition		Track 4 Clip 7 Landing Output F Transition
+
+Map	track5clip7landingatransition		Track 5 Clip 7 Landing Output A Transition
+Map	track5clip7landingbtransition		Track 5 Clip 7 Landing Output B Transition
+Map	track5clip7landingctransition		Track 5 Clip 7 Landing Output C Transition
+Map	track5clip7landingdtransition		Track 5 Clip 7 Landing Output D Transition
+Map	track5clip7landingetransition		Track 5 Clip 7 Landing Output E Transition
+Map	track5clip7landingftransition		Track 5 Clip 7 Landing Output F Transition
+
+Map	track6clip7landingatransition		Track 6 Clip 7 Landing Output A Transition
+Map	track6clip7landingbtransition		Track 6 Clip 7 Landing Output B Transition
+Map	track6clip7landingctransition		Track 6 Clip 7 Landing Output C Transition
+Map	track6clip7landingdtransition		Track 6 Clip 7 Landing Output D Transition
+Map	track6clip7landingetransition		Track 6 Clip 7 Landing Output E Transition
+Map	track6clip7landingftransition		Track 6 Clip 7 Landing Output F Transition
+
+Map	track7clip7landingatransition		Track 7 Clip 7 Landing Output A Transition
+Map	track7clip7landingbtransition		Track 7 Clip 7 Landing Output B Transition
+Map	track7clip7landingctransition		Track 7 Clip 7 Landing Output C Transition
+Map	track7clip7landingdtransition		Track 7 Clip 7 Landing Output D Transition
+Map	track7clip7landingetransition		Track 7 Clip 7 Landing Output E Transition
+Map	track7clip7landingftransition		Track 7 Clip 7 Landing Output F Transition
+
+Map	track8clip7landingatransition		Track 8 Clip 7 Landing Output A Transition
+Map	track8clip7landingbtransition		Track 8 Clip 7 Landing Output B Transition
+Map	track8clip7landingctransition		Track 8 Clip 7 Landing Output C Transition
+Map	track8clip7landingdtransition		Track 8 Clip 7 Landing Output D Transition
+Map	track8clip7landingetransition		Track 8 Clip 7 Landing Output E Transition
+Map	track8clip7landingftransition		Track 8 Clip 7 Landing Output F Transition
+
+Map	track1clip8landingatransition		Track 1 Clip 8 Landing Output A Transition
+Map	track1clip8landingbtransition		Track 1 Clip 8 Landing Output B Transition
+Map	track1clip8landingctransition		Track 1 Clip 8 Landing Output C Transition
+Map	track1clip8landingdtransition		Track 1 Clip 8 Landing Output D Transition
+Map	track1clip8landingetransition		Track 1 Clip 8 Landing Output E Transition
+Map	track1clip8landingftransition		Track 1 Clip 8 Landing Output F Transition
+
+Map	track2clip8landingatransition		Track 2 Clip 8 Landing Output A Transition
+Map	track2clip8landingbtransition		Track 2 Clip 8 Landing Output B Transition
+Map	track2clip8landingctransition		Track 2 Clip 8 Landing Output C Transition
+Map	track2clip8landingdtransition		Track 2 Clip 8 Landing Output D Transition
+Map	track2clip8landingetransition		Track 2 Clip 8 Landing Output E Transition
+Map	track2clip8landingftransition		Track 2 Clip 8 Landing Output F Transition
+
+Map	track3clip8landingatransition		Track 3 Clip 8 Landing Output A Transition
+Map	track3clip8landingbtransition		Track 3 Clip 8 Landing Output B Transition
+Map	track3clip8landingctransition		Track 3 Clip 8 Landing Output C Transition
+Map	track3clip8landingdtransition		Track 3 Clip 8 Landing Output D Transition
+Map	track3clip8landingetransition		Track 3 Clip 8 Landing Output E Transition
+Map	track3clip8landingftransition		Track 3 Clip 8 Landing Output F Transition
+
+Map	track4clip8landingatransition		Track 4 Clip 8 Landing Output A Transition
+Map	track4clip8landingbtransition		Track 4 Clip 8 Landing Output B Transition
+Map	track4clip8landingctransition		Track 4 Clip 8 Landing Output C Transition
+Map	track4clip8landingdtransition		Track 4 Clip 8 Landing Output D Transition
+Map	track4clip8landingetransition		Track 4 Clip 8 Landing Output E Transition
+Map	track4clip8landingftransition		Track 4 Clip 8 Landing Output F Transition
+
+Map	track5clip8landingatransition		Track 5 Clip 8 Landing Output A Transition
+Map	track5clip8landingbtransition		Track 5 Clip 8 Landing Output B Transition
+Map	track5clip8landingctransition		Track 5 Clip 8 Landing Output C Transition
+Map	track5clip8landingdtransition		Track 5 Clip 8 Landing Output D Transition
+Map	track5clip8landingetransition		Track 5 Clip 8 Landing Output E Transition
+Map	track5clip8landingftransition		Track 5 Clip 8 Landing Output F Transition
+
+Map	track6clip8landingatransition		Track 6 Clip 8 Landing Output A Transition
+Map	track6clip8landingbtransition		Track 6 Clip 8 Landing Output B Transition
+Map	track6clip8landingctransition		Track 6 Clip 8 Landing Output C Transition
+Map	track6clip8landingdtransition		Track 6 Clip 8 Landing Output D Transition
+Map	track6clip8landingetransition		Track 6 Clip 8 Landing Output E Transition
+Map	track6clip8landingftransition		Track 6 Clip 8 Landing Output F Transition
+
+Map	track7clip8landingatransition		Track 7 Clip 8 Landing Output A Transition
+Map	track7clip8landingbtransition		Track 7 Clip 8 Landing Output B Transition
+Map	track7clip8landingctransition		Track 7 Clip 8 Landing Output C Transition
+Map	track7clip8landingdtransition		Track 7 Clip 8 Landing Output D Transition
+Map	track7clip8landingetransition		Track 7 Clip 8 Landing Output E Transition
+Map	track7clip8landingftransition		Track 7 Clip 8 Landing Output F Transition
+
+Map	track8clip8landingatransition		Track 8 Clip 8 Landing Output A Transition
+Map	track8clip8landingbtransition		Track 8 Clip 8 Landing Output B Transition
+Map	track8clip8landingctransition		Track 8 Clip 8 Landing Output C Transition
+Map	track8clip8landingdtransition		Track 8 Clip 8 Landing Output D Transition
+Map	track8clip8landingetransition		Track 8 Clip 8 Landing Output E Transition
+Map	track8clip8landingftransition		Track 8 Clip 8 Landing Output F Transition

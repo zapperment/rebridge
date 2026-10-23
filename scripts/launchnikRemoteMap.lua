@@ -1,7 +1,7 @@
 -- The Launchnik part of the Launchpad Pro [MK3] Remote maps: one line for each
 -- of Launchnik's Remote items the codec uses, from "Map	deviceType" to the end
 -- of the file. Launchnik has thousands of them, one for each setting of each
--- CV output of each clip and fill-in, so the lines are generated rather than
+-- CV output of each clip, fill-in and landing, so the lines are generated rather than
 -- kept by hand; test/TestRemoteMaps.lua checks that the maps hold them.
 --
 -- Run from the root of the repository to rewrite both maps:
@@ -30,7 +30,7 @@ local function launchnikMap()
   map("switchinterval", "Switch Interval")
   map("fillin", "Fill-In")
   map("fillinlight", "Fill-In Light")
-  map("setfillinlight", "Set Fill-In Light")
+  map("forwardlight", "Forward Light")
   map("function", "Function")
 
   -- a group of eight lines for each row, one for each track
@@ -54,6 +54,7 @@ local function launchnikMap()
   clipGroups("colour", "Colour")
   trackGroup("mute", "Mute")
   trackGroup("solo", "Solo")
+  trackGroup("relaunch", "Relaunch")
   trackGroup("functionlight", "Function Light")
   gap()
   for scene = 1, 8 do
@@ -62,6 +63,10 @@ local function launchnikMap()
   trackGroup("selection", "Selection")
   clipGroups("fillinpresent", "Fill-In Present")
   clipGroups("fillincolour", "Fill-In Colour")
+  clipGroups("fillinonebarpattern", "Fill-In One-Bar Pattern")
+  clipGroups("landingpresent", "Landing Present")
+  clipGroups("landingcolour", "Landing Colour")
+  clipGroups("landingonebarpattern", "Landing One-Bar Pattern")
 
   -- the CV modes, a group of six for each track
   for track = 1, 8 do
@@ -71,9 +76,9 @@ local function launchnikMap()
     end
   end
 
-  -- the settings of the CV outputs of every clip and fill-in, a group of six
-  -- for each launch button and setting
-  for _, kind in ipairs({ { item = "", remotable = "" }, { item = "fillin", remotable = " Fill-In" } }) do
+  -- the settings of the CV outputs of every clip, fill-in and landing, a
+  -- group of six for each launch button and setting
+  for _, kind in ipairs({ { item = "", remotable = "" }, { item = "fillin", remotable = " Fill-In" }, { item = "landing", remotable = " Landing" } }) do
     for _, setting in ipairs(outputSettings) do
       for row = 1, 8 do
         for track = 1, 8 do

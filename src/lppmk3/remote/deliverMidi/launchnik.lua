@@ -21,13 +21,17 @@ local function logoColour(state)
   if launchnik.press.isFillInEditing(state.setup) then
     return col.config.red.vibrant
   end
+  if launchnik.press.isLandingEditing(state.setup) then
+    return col.config.blue.vibrant
+  end
   return col.config.yellow.vibrant
 end
 
 -- the back button, with the arrow pointing left beside Shift, shows the light
 -- of Launchnik's back button, which only depends on the setup state: dark in
 -- launch mode, vibrant white in clip picking, vibrant green in clip editing,
--- vibrant yellow in fill-in editing; it is dark while no Launchnik is mapped
+-- vibrant yellow in fill-in editing, vibrant red in landing editing; it is
+-- dark while no Launchnik is mapped
 local backButton = 91
 
 local function backButtonColour(state)
@@ -40,14 +44,17 @@ local function backButtonColour(state)
   if launchnik.press.isFillInEditing(state.setup) then
     return col.config.yellow.vibrant
   end
+  if launchnik.press.isLandingEditing(state.setup) then
+    return col.config.red.vibrant
+  end
   return col.config.green.vibrant
 end
 
 -- the button to the left of the sixth row of pads shows the light of
 -- Launchnik's fill-in button, the button above the second column of pads that
--- of its set fill-in button
+-- of its forward button
 local fillInButton = 30
-local setFillInButton = 92
+local forwardButton = 92
 
 -- Launchnik's colours in its order, each with the palette entries for dim and
 -- vibrant; white has no entry called vibrant
@@ -142,7 +149,7 @@ local function functionSelectColour(state, func)
   return col.config.white.dim
 end
 
--- the static colour a light of the fill-in button or the set fill-in button
+-- the static colour a light of the fill-in button or the forward button
 -- stands for; neither of them flashes
 local function lightColour(light)
   if light == 0 then
@@ -156,7 +163,7 @@ end
 -- buttons in their place, the function buttons and the function select
 -- buttons the lights of Launchnik's buttons of the same names,
 -- the scene buttons the lights of the scene buttons, the logo the mode colour,
--- and the back button, the set fill-in button and the fill-in button the
+-- and the back button, the forward button and the fill-in button the
 -- lights of Launchnik's buttons of the same names; each change is delivered
 -- once
 --
@@ -233,10 +240,10 @@ return function()
     table.insert(events, midi.makeColourEvent(fillInButton, colour))
   end
 
-  colour = state.mapped and lightColour(state.setFillInLight) or col.config.off
-  if colour ~= state.setFillInButtonColour then
-    state.setFillInButtonColour = colour
-    table.insert(events, midi.makeColourEvent(setFillInButton, colour))
+  colour = state.mapped and lightColour(state.forwardLight) or col.config.off
+  if colour ~= state.forwardButtonColour then
+    state.forwardButtonColour = colour
+    table.insert(events, midi.makeColourEvent(forwardButton, colour))
   end
 
   return events

@@ -13,8 +13,8 @@ local items = {
 -- track 1 first.
 
 -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 = fill-in
--- editing
-items.setup = { input = "value", output = "value", min = 0, max = 129, launchnik = { kind = "setup" } }
+-- editing, 130..193 = landing editing
+items.setup = { input = "value", output = "value", min = 0, max = 193, launchnik = { kind = "setup" } }
 
 -- the length of the switch interval: 0 = immediate, 1 = one beat, 2 = half a
 -- bar, 3..7 = 1, 2, 4, 8 and 16 bars
@@ -25,15 +25,16 @@ items.fillin = { input = "value", min = 0, max = 1 }
 -- what the function buttons do: 0 = stop, 1 = mute, 2 = solo
 items["function"] = { input = "value", output = "value", min = 0, max = 2, launchnik = { kind = "function" } }
 
--- the lights of the fill-in button and the set fill-in button, encoded like
--- the light of a launch button
+-- the lights of the fill-in button and the forward button, encoded like the
+-- light of a launch button
 items.fillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "fillinlight" } }
-items.setfillinlight = { output = "value", min = 0, max = 42, launchnik = { kind = "setfillinlight" } }
+items.forwardlight = { output = "value", min = 0, max = 42, launchnik = { kind = "forwardlight" } }
 
 -- the CV outputs A to F of each track, as in Launchnik's Remote items
 local outputLetters = { "a", "b", "c", "d", "e", "f" }
 
--- the settings of a CV output of a clip or a fill-in, and their ranges: eight
+-- the settings of a CV output of a clip, a fill-in or a landing, and their
+-- ranges: eight
 -- patterns, seven unipolar or bipolar values, five transitions (off, A to D)
 local outputSettings = {
   { name = "pattern", max = 7 },
@@ -55,6 +56,8 @@ for track = 1, 8 do
   -- 1 while the track's mute or solo button is held down, 0 once it is let go
   items["track" .. track .. "mute"] = { input = "value", min = 0, max = 1 }
   items["track" .. track .. "solo"] = { input = "value", min = 0, max = 1 }
+  -- 1 while a launch on the track is held down, 0 once it is let go
+  items["track" .. track .. "relaunch"] = { input = "value", min = 0, max = 1 }
   -- 0 stops the track, 1 to 8 select the clip in that row
   items["track" .. track .. "selection"] = { input = "value", min = 0, max = 8 }
 
@@ -67,18 +70,25 @@ for track = 1, 8 do
     items[clip .. "colour"] = { input = "value", min = 0, max = 13 }
     items[clip .. "fillinpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinpresent", index = index } }
     items[clip .. "fillincolour"] = { input = "value", min = 0, max = 13 }
-    -- the settings of the CV outputs, for example track1clip1apattern and
-    -- track1clip1fillinapattern; the codec reads the clip's, which a new
-    -- fill-in starts as a copy of, and the transitions, which a press moves on
+    items[clip .. "fillinonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinonebarpattern", index = index } }
+    items[clip .. "landingpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingpresent", index = index } }
+    items[clip .. "landingcolour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "landingonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingonebarpattern", index = index } }
+    -- the settings of the CV outputs, for example track1clip1apattern,
+    -- track1clip1fillinapattern and track1clip1landingapattern; the codec
+    -- reads the clip's, which a new fill-in or landing starts as a copy of,
+    -- and the transitions, which a press moves on
     for output, letter in ipairs(outputLetters) do
       for _, setting in ipairs(outputSettings) do
         items[clip .. letter .. setting.name] = { input = "value", output = "value", min = 0, max = setting.max, launchnik = { kind = setting.name, index = index, output = output } }
-        local fillIn = { input = "value", min = 0, max = setting.max }
-        if setting.name == "transition" then
-          fillIn.output = "value"
-          fillIn.launchnik = { kind = "fillintransition", index = index, output = output }
+        for _, prefix in ipairs({ "fillin", "landing" }) do
+          local overlay = { input = "value", min = 0, max = setting.max }
+          if setting.name == "transition" then
+            overlay.output = "value"
+            overlay.launchnik = { kind = prefix .. "transition", index = index, output = output }
+          end
+          items[clip .. prefix .. letter .. setting.name] = overlay
         end
-        items[clip .. "fillin" .. letter .. setting.name] = fillIn
       end
     end
   end

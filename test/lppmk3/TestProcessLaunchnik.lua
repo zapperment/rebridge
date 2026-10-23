@@ -45,10 +45,10 @@ end
 -- the host scales an item's range onto the remotable's, so the ranges have to
 -- be those of Launchnik's Remote items for the values to arrive unchanged
 function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
-  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 129 })
+  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 193 })
   lu.assertEquals({ items.fillin.min, items.fillin.max }, { 0, 1 })
   lu.assertEquals({ items.fillinlight.min, items.fillinlight.max }, { 0, 42 })
-  lu.assertEquals({ items.setfillinlight.min, items.setfillinlight.max }, { 0, 42 })
+  lu.assertEquals({ items.forwardlight.min, items.forwardlight.max }, { 0, 42 })
   for track = 1, 8 do
     local selection = items["track" .. track .. "selection"]
     lu.assertEquals({ selection.min, selection.max }, { 0, 8 })
@@ -59,8 +59,12 @@ function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
       lu.assertEquals({ items[clip .. "colour"].min, items[clip .. "colour"].max }, { 0, 13 })
       lu.assertEquals({ items[clip .. "fillinpresent"].min, items[clip .. "fillinpresent"].max }, { 0, 1 })
       lu.assertEquals({ items[clip .. "fillincolour"].min, items[clip .. "fillincolour"].max }, { 0, 13 })
+      lu.assertEquals({ items[clip .. "fillinonebarpattern"].min, items[clip .. "fillinonebarpattern"].max }, { 0, 1 })
+      lu.assertEquals({ items[clip .. "landingpresent"].min, items[clip .. "landingpresent"].max }, { 0, 1 })
+      lu.assertEquals({ items[clip .. "landingcolour"].min, items[clip .. "landingcolour"].max }, { 0, 13 })
+      lu.assertEquals({ items[clip .. "landingonebarpattern"].min, items[clip .. "landingonebarpattern"].max }, { 0, 1 })
       for _, letter in ipairs({ "a", "b", "c", "d", "e", "f" }) do
-        for _, kind in ipairs({ "", "fillin" }) do
+        for _, kind in ipairs({ "", "fillin", "landing" }) do
           local prefix = clip .. kind .. letter
           lu.assertEquals({ items[prefix .. "pattern"].min, items[prefix .. "pattern"].max }, { 0, 7 })
           lu.assertEquals({ items[prefix .. "unipolar"].min, items[prefix .. "unipolar"].max }, { 0, 6 })
@@ -84,18 +88,33 @@ function TestProcessLaunchnik:testEveryPadWithAClipSelectsItsRowOfItsTrack()
     for track = 1, 8 do
       remote.clearMocks()
       lu.assertTrue(receive(noteOn, pad(track, row), 127))
-      local input = handledInput()
-      lu.assertEquals(input.item, items["track" .. track .. "selection"].index)
-      lu.assertEquals(input.value, row)
+      local calls = remote.mock "handle_input".calls
+      lu.assertEquals(#calls, 2)
+      lu.assertEquals(calls[1][1].item, items["track" .. track .. "selection"].index)
+      lu.assertEquals(calls[1][1].value, row)
+      -- the relaunch press follows the selection, and is let go with the pad
+      lu.assertEquals(calls[2][1], { time_stamp = 0, item = items["track" .. track .. "relaunch"].index, value = 1 })
+      remote.clearMocks()
+      lu.assertTrue(receive(noteOn, pad(track, row), 0))
+      lu.assertEquals(handledInput(), { time_stamp = 0, item = items["track" .. track .. "relaunch"].index, value = 0 })
     end
   end
 end
 
 function TestProcessLaunchnik:testEmptyPadStopsItsTrack()
   lu.assertTrue(receive(noteOn, pad(3, 5), 127))
-  local input = handledInput()
-  lu.assertEquals(input.item, items.track3selection.index)
-  lu.assertEquals(input.value, 0)
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(calls[1][1].item, items.track3selection.index)
+  lu.assertEquals(calls[1][1].value, 0)
+end
+
+function TestProcessLaunchnik:testPadInSetupModeHoldsNoRelaunchPress()
+  state.setup = press.setupClipPicking
+  lu.assertTrue(receive(noteOn, pad(3, 5), 127))
+  lu.assertEquals(handledInput().item, items.setup.index)
+  remote.clearMocks()
+  lu.assertFalse(receive(noteOn, pad(3, 5), 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
 -- the function buttons are control changes 101 to 108
@@ -259,10 +278,20 @@ function TestProcessLaunchnik:testEverySceneButtonSelectsItsRowOnEveryTrack()
     local scene = 9 - fromBottom
     lu.assertTrue(receive(controlChange, controller, 127))
     local calls = remote.mock "handle_input".calls
-    lu.assertEquals(#calls, 8)
+    lu.assertEquals(#calls, 16)
     for track = 1, 8 do
       lu.assertEquals(calls[track][1].item, items["track" .. track .. "selection"].index)
       lu.assertEquals(calls[track][1].value, scene)
+      lu.assertEquals(calls[8 + track][1].item, items["track" .. track .. "relaunch"].index)
+      lu.assertEquals(calls[8 + track][1].value, 1)
+    end
+    -- letting go of the scene button lets go of every relaunch press
+    remote.clearMocks()
+    lu.assertTrue(receive(controlChange, controller, 0))
+    calls = remote.mock "handle_input".calls
+    lu.assertEquals(#calls, 8)
+    for track = 1, 8 do
+      lu.assertEquals(calls[track][1], { time_stamp = 0, item = items["track" .. track .. "relaunch"].index, value = 0 })
     end
   end
 end
@@ -271,7 +300,7 @@ function TestProcessLaunchnik:testSceneButtonStopsTracksWithAnEmptyLaunchButton(
   state.present[press.buttonIndex(2, 8)] = true
   lu.assertTrue(receive(controlChange, 0x13, 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 8)
+  lu.assertEquals(#calls, 16)
   for track = 1, 8 do
     lu.assertEquals(calls[track][1].item, items["track" .. track .. "selection"].index)
     lu.assertEquals(calls[track][1].value, track == 2 and 8 or 0)
@@ -353,15 +382,24 @@ function TestProcessLaunchnik:testFillInButtonIsHeldWhileItsButtonIs()
   end
 end
 
--- the button above the second column of pads sends control change 92
-function TestProcessLaunchnik:testSetFillInButtonGoesOnFromClipEditingOfAClip()
+-- the button above the second column of pads sends control change 92; it
+-- leads from clip editing to fill-in editing and on to landing editing
+function TestProcessLaunchnik:testForwardButtonGoesForwardOneStepWithAClip()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   state.present[press.buttonIndex(2, 3)] = true
   lu.assertTrue(receive(controlChange, 92, 127))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstFillInEditing + press.buttonIndex(2, 3) })
+  remote.clearMocks()
+  state.setup = press.setupFirstFillInEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstLandingEditing + press.buttonIndex(2, 3) })
+  remote.clearMocks()
+  state.setup = press.setupFirstLandingEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
-function TestProcessLaunchnik:testSetFillInButtonDoesNothingWithoutAClip()
+function TestProcessLaunchnik:testForwardButtonDoesNothingWithoutAClip()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   lu.assertTrue(receive(controlChange, 92, 127))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
@@ -370,7 +408,7 @@ function TestProcessLaunchnik:testSetFillInButtonDoesNothingWithoutAClip()
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
-function TestProcessLaunchnik:testReleasingSetFillInButtonDoesNothing()
+function TestProcessLaunchnik:testReleasingForwardButtonDoesNothing()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   state.present[press.buttonIndex(2, 3)] = true
   lu.assertFalse(receive(controlChange, 92, 0))
@@ -381,6 +419,74 @@ function TestProcessLaunchnik:testBackButtonReturnsFromFillInEditingToClipEditin
   state.setup = press.setupFirstFillInEditing + press.buttonIndex(2, 3)
   lu.assertTrue(receive(controlChange, 91, 127))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstClipEditing + press.buttonIndex(2, 3) })
+end
+
+function TestProcessLaunchnik:testBackButtonReturnsFromLandingEditingToFillInEditing()
+  state.setup = press.setupFirstLandingEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstFillInEditing + press.buttonIndex(2, 3) })
+end
+
+-- a new landing is a copy of its clip's values, with every transition off,
+-- in white, like a new fill-in
+function TestProcessLaunchnik:testTogglePadInLandingEditingSetsUpANewLanding()
+  local picked = press.buttonIndex(2, 3)
+  state.setup = press.setupFirstLandingEditing + picked
+  state.present[picked] = true
+  -- a fill-in makes no difference
+  state.fillInPresent[picked] = true
+  state.patterns[picked][1] = 6
+  state.unipolar[picked][2] = 4
+  state.bipolar[picked][6] = 1
+  lu.assertTrue(receive(noteOn, pad(8, 1), 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 3 + 4 * 6)
+  lu.assertEquals(calls[27][1], { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 0 })
+  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip3landingpresent.index, value = 1 })
+  lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track2clip3landingcolour.index, value = 0 })
+  lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.track2clip3landingapattern.index, value = 6 })
+  lu.assertEquals(calls[8][1], { time_stamp = 0, item = items.track2clip3landingbunipolar.index, value = 4 })
+  lu.assertEquals(calls[25][1], { time_stamp = 0, item = items.track2clip3landingfbipolar.index, value = 1 })
+  lu.assertEquals(calls[26][1], { time_stamp = 0, item = items.track2clip3landingftransition.index, value = 0 })
+end
+
+function TestProcessLaunchnik:testColourAndCVPadsInLandingEditingChangeTheLanding()
+  local picked = press.buttonIndex(2, 3)
+  state.setup = press.setupFirstLandingEditing + picked
+  state.present[picked] = true
+  state.landingPresent[picked] = true
+  -- the landing's transition counts, not the clip's or the fill-in's
+  state.transitions[picked][2] = 3
+  state.fillInTransitions[picked][2] = 0
+  state.landingTransitions[picked][2] = 4
+
+  lu.assertTrue(receive(noteOn, pad(8, 1), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingpresent.index, value = 0 })
+
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(4, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingcolour.index, value = 10 })
+
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(6, 3), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingapattern.index, value = 5 })
+
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(3, 4), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingbunipolar.index, value = 2 })
+
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(8, 4), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingbtransition.index, value = 0 })
+
+  -- the one-bar pattern switch goes on, and off again
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(8, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 1 })
+  remote.clearMocks()
+  state.landingOneBarPattern[picked] = true
+  lu.assertTrue(receive(noteOn, pad(8, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 0 })
 end
 
 -- a new fill-in is a copy of its clip's values, with every transition off,
@@ -394,7 +500,8 @@ function TestProcessLaunchnik:testTogglePadInFillInEditingSetsUpANewFillIn()
   state.bipolar[picked][6] = 1
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 2 + 4 * 6)
+  lu.assertEquals(#calls, 3 + 4 * 6)
+  lu.assertEquals(calls[27][1], { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
   lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip3fillinpresent.index, value = 1 })
   lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track2clip3fillincolour.index, value = 0 })
   lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.track2clip3fillinapattern.index, value = 6 })
@@ -431,8 +538,10 @@ function TestProcessLaunchnik:testColourAndCVPadsInFillInEditingChangeTheFillIn(
   lu.assertTrue(receive(noteOn, pad(8, 4), 127))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinbtransition.index, value = 2 })
 
-  -- the pad in the last track of the second colour row is swallowed
+  -- the pad in the last track of the second colour row switches one-bar
+  -- pattern
   remote.clearMocks()
+  state.fillInOneBarPattern[picked] = true
   lu.assertTrue(receive(noteOn, pad(8, 2), 127))
-  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
 end

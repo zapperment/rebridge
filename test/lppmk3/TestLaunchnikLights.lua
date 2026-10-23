@@ -255,9 +255,10 @@ function TestLaunchnikLights:testFunctionSelectButtonsShowTheFunction()
 end
 
 -- the logo shows Launchnik's mode colour: white in launch mode, green in clip
--- picking, yellow in clip editing,
--- and the back button the light of Launchnik's back button: vibrant white in
--- clip picking, vibrant green in clip editing, dark in launch mode
+-- picking, yellow in clip editing, red in fill-in editing, blue in landing
+-- editing, and the back button the light of Launchnik's back button: vibrant
+-- white in clip picking, vibrant green in clip editing, vibrant yellow in
+-- fill-in editing, vibrant red in landing editing, dark in launch mode
 function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   report { setup = 1 }
   lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
@@ -274,6 +275,12 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.red.vibrant),
     makeColourEvent(91, colours.yellow.vibrant),
+  })
+  -- in landing editing the logo is blue, the back button red
+  report { setup = 140 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.blue.vibrant),
+    makeColourEvent(91, colours.red.vibrant),
   })
   report { setup = 12 }
   lu.assertEquals(deliverLaunchnik(), {
@@ -371,6 +378,18 @@ function TestLaunchnikLights:testFlashingSceneLightsAreDeliveredAsDimPlusFlashin
   })
 end
 
+function TestLaunchnikLights:testKeepsLandings()
+  report { track2clip3landingpresent = 1, track2clip3landingctransition = 4 }
+  lu.assertTrue(state.landingPresent[launchnik.press.buttonIndex(2, 3)])
+  lu.assertEquals(state.landingTransitions[launchnik.press.buttonIndex(2, 3)][3], 4)
+  report { track2clip3landingpresent = 0 }
+  lu.assertFalse(state.landingPresent[launchnik.press.buttonIndex(2, 3)])
+  report { track2clip3landingonebarpattern = 1 }
+  lu.assertTrue(state.landingOneBarPattern[launchnik.press.buttonIndex(2, 3)])
+  report { track2clip3fillinonebarpattern = 1 }
+  lu.assertTrue(state.fillInOneBarPattern[launchnik.press.buttonIndex(2, 3)])
+end
+
 function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
   report { track2clip3bpattern = 5, track2clip3fillinpresent = 1 }
   lu.assertEquals(state.patterns[launchnik.press.buttonIndex(2, 3)][2], 5)
@@ -386,10 +405,10 @@ function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
 end
 
 -- the fill-in button's light is 1 (dim white) or 5 (vibrant red) and shows on
--- control change 30; the set fill-in button's is 0 (unlit) or 5 and shows on
--- control change 92
-function TestLaunchnikLights:testFillInAndSetFillInButtonsShowTheirLights()
-  report { setup = 0, fillinlight = 1, setfillinlight = 0 }
+-- control change 30; the forward button's is 0 (unlit), 5 (vibrant red) or 29
+-- (vibrant blue) and shows on control change 92
+function TestLaunchnikLights:testFillInAndForwardButtonsShowTheirLights()
+  report { setup = 0, fillinlight = 1, forwardlight = 0 }
   lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(30, colours.white.dim)
@@ -397,9 +416,11 @@ function TestLaunchnikLights:testFillInAndSetFillInButtonsShowTheirLights()
   report { fillinlight = 5 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(30, colours.red.vibrant) })
   lu.assertEquals(deliverLaunchnik(), {})
-  report { setfillinlight = 5 }
+  report { forwardlight = 5 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(92, colours.red.vibrant) })
-  report { setfillinlight = 0, fillinlight = 1 }
+  report { forwardlight = 29 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(92, colours.blue.vibrant) })
+  report { forwardlight = 0, fillinlight = 1 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(30, colours.white.dim),
     makeColourEvent(92, colours.off),
@@ -407,9 +428,9 @@ function TestLaunchnikLights:testFillInAndSetFillInButtonsShowTheirLights()
 end
 
 function TestLaunchnikLights:testFillInButtonsGoDarkWhenLaunchnikIsNoLongerMapped()
-  report { setup = 0, fillinlight = 5, setfillinlight = 5 }
+  report { setup = 0, fillinlight = 5, forwardlight = 5 }
   deliverLaunchnik()
-  report({ setup = 0, fillinlight = 5, setfillinlight = 5 }, false)
+  report({ setup = 0, fillinlight = 5, forwardlight = 5 }, false)
   lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(
     makeColourEvent(99, colours.off),
     makeColourEvent(30, colours.off),

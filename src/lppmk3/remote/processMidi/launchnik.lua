@@ -19,7 +19,7 @@ local lastSceneButton = 89
 -- the button with the arrow pointing left, beside Shift
 local backButton = 91
 -- the button in the top row above the second column of pads
-local setFillInButton = 92
+local forwardButton = 92
 -- the button to the left of the sixth row of pads from the top
 local fillInButton = 30
 
@@ -40,19 +40,21 @@ local function itemName(change)
   if change.kind == "function" then
     return "function"
   end
-  if change.kind == "mute" or change.kind == "solo" then
+  if change.kind == "mute" or change.kind == "solo" or change.kind == "relaunch" then
     return "track" .. change.track .. change.kind
   end
   local track = math.floor(change.index / 8) + 1
   local row = change.index % 8 + 1
   local clip = "track" .. track .. "clip" .. row
-  -- a setting of a CV output, such as track1clip1apattern or
-  -- track1clip1fillinapattern
+  -- a setting of a CV output, such as track1clip1apattern,
+  -- track1clip1fillinapattern or track1clip1landingapattern
   if change.output then
     local letter = string.char(string.byte("a") + change.output - 1)
-    local fillIn, setting = string.match(change.kind, "^(fillin)(.+)$")
-    if fillIn then
-      return clip .. "fillin" .. letter .. setting
+    for _, prefix in ipairs({ "fillin", "landing" }) do
+      local setting = string.match(change.kind, "^" .. prefix .. "(.+)$")
+      if setting then
+        return clip .. prefix .. letter .. setting
+      end
     end
     return clip .. letter .. change.kind
   end
@@ -69,12 +71,15 @@ local function write(event, change)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
 end
 
--- what a press in clip editing or fill-in editing needs to know of the clip
--- or fill-in being edited
-local function editedSettings(picked, fillIn)
+-- what a press in clip editing, fill-in editing or landing editing needs to
+-- know of the clip, fill-in or landing being edited
+local function editedSettings(picked)
   local track = math.floor(picked / 8) + 1
-  if fillIn then
-    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked])
+  if press.isFillInEditing(state.setup) then
+    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked], state.fillInOneBarPattern[picked])
+  end
+  if press.isLandingEditing(state.setup) then
+    return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked], state.landingOneBarPattern[picked])
   end
   return press.edited(state.present[picked], state.cvModes[track], state.transitions[picked])
 end
@@ -109,8 +114,33 @@ local function processFunctionButton(event, track, pressed)
   end
 end
 
+-- writes a change, and remembers a relaunch press held down, so that letting
+-- go of the pad or scene button lets go of it
+local function writeHeld(event, change)
+  if change and change.kind == "relaunch" then
+    state.heldRelaunches[change.track] = true
+  end
+  write(event, change)
+end
+
+-- lets go of the relaunch presses of the given tracks that are held down;
+-- returns whether there were any
+local function releaseRelaunches(event, tracks)
+  local released = false
+  for _, track in ipairs(tracks) do
+    if state.heldRelaunches[track] then
+      state.heldRelaunches[track] = nil
+      write(event, press.relaunchButton(state.setup, track, false))
+      released = true
+    end
+  end
+  return released
+end
+
+local allTracks = { 1, 2, 3, 4, 5, 6, 7, 8 }
+
 -- handles presses of the pads, the function buttons, the function select
--- buttons, the scene buttons, the back button, the set fill-in button and the
+-- buttons, the scene buttons, the back button, the forward button and the
 -- fill-in button: a pad means what a click on the launch button in its place
 -- means, a scene button what a click on the scene button of its row means, the
 -- other buttons what a click on the button of the same name on Launchnik
@@ -129,7 +159,16 @@ local function processPadsAndTrackButtons(event)
     processFunctionButton(event, ret.y - firstFunctionButton + 1, ret.z > 0)
     return true
   end
+  local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9
+  -- letting go of a pad lets go of its track's relaunch press, letting go of
+  -- a scene button those of every track
   if ret.z == 0 then
+    if ret.x == noteOn then
+      return releaseRelaunches(event, { ret.y % 10 })
+    end
+    if ret.x == controlChange and isSceneButton then
+      return releaseRelaunches(event, allTracks)
+    end
     return false
   end
   if ret.x == noteOn then
@@ -137,21 +176,26 @@ local function processPadsAndTrackButtons(event)
     local track = ret.y % 10
     local row = 9 - ((ret.y - track) / 10)
     local picked = press.pickedButton(state.setup)
-    if press.isFillInEditing(state.setup) then
+    local fillInEditing = press.isFillInEditing(state.setup)
+    if fillInEditing or press.isLandingEditing(state.setup) then
       local clipValues = { patterns = state.patterns[picked], unipolar = state.unipolar[picked], bipolar = state.bipolar[picked] }
-      for _, change in ipairs(press.fillInEditingLaunchButton(state.setup, track, row, editedSettings(picked, true), clipValues)) do
+      local editLaunchButton = fillInEditing and press.fillInEditingLaunchButton or press.landingEditingLaunchButton
+      for _, change in ipairs(editLaunchButton(state.setup, track, row, editedSettings(picked), clipValues)) do
         write(event, change)
       end
       return true
     end
     local pressedHoldsClip = state.present[press.buttonIndex(track, row)]
-    local pickedClip = picked ~= nil and editedSettings(picked, false) or press.edited(false)
+    local pickedClip = picked ~= nil and editedSettings(picked) or press.edited(false)
+    -- in launch mode the relaunch press follows the selection, which
+    -- Launchnik compares it with
     write(event, press.launchButton(state.setup, track, row, pressedHoldsClip, pickedClip))
+    writeHeld(event, press.relaunchButton(state.setup, track, true))
     return true
   end
-  if ret.x == controlChange and ret.y == setFillInButton then
+  if ret.x == controlChange and ret.y == forwardButton then
     local picked = press.pickedButton(state.setup)
-    write(event, press.setFillInButton(state.setup, picked ~= nil and state.present[picked]))
+    write(event, press.forwardButton(state.setup, picked ~= nil and state.present[picked]))
     return true
   end
   if ret.x == controlChange and functionSelectButtons[ret.y] then
@@ -162,7 +206,6 @@ local function processPadsAndTrackButtons(event)
     write(event, press.backButton(state.setup))
     return true
   end
-  local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9
   if ret.x == controlChange and isSceneButton then
     local scene = 9 - (ret.y - 9) / 10
     local holdsClip = {}
@@ -170,7 +213,7 @@ local function processPadsAndTrackButtons(event)
       holdsClip[track] = state.present[press.buttonIndex(track, scene)]
     end
     for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip)) do
-      write(event, change)
+      writeHeld(event, change)
     end
     return true
   end
