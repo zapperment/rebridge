@@ -5,19 +5,22 @@
 -- Tracks and rows are numbered from 1. A launch button's index is 0..63,
 -- counted down track 1 first. A change names one property and its new value:
 --   { kind = "selection", track = 1..8, value = 0..8 }
---   { kind = "setup", value = 0..129 }
+--   { kind = "setup", value = 0..193 }
 --   { kind = "length", value = 0..7 }
 --   { kind = "present" | "colour", index = 0..63, value = ... }
 --   { kind = "pattern" | "unipolar" | "bipolar" | "transition", index = 0..63, output = 1..6, value = ... }
 --   { kind = "fillinpresent" | "fillincolour", index = 0..63, value = ... }
 --   { kind = "fillinpattern" | "fillinunipolar" | "fillinbipolar" | "fillintransition", index = 0..63, output = 1..6, value = ... }
+--   { kind = "landingpresent" | "landingcolour", index = 0..63, value = ... }
+--   { kind = "landingpattern" | "landingunipolar" | "landingbipolar" | "landingtransition", index = 0..63, output = 1..6, value = ... }
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo", track = 1..8, value = 0..1 }
--- A press of a launch button outside fill-in editing, a function button, a
--- function select button, the setup button, the back button, the set fill-in
--- button or the fill-in button changes one property at most; a press of a scene button, or of a launch
--- button in fill-in editing, yields a list of changes.
+-- A press of a launch button outside fill-in editing and landing editing, a
+-- function button, a function select button, the setup button, the back
+-- button, the forward button or the fill-in button changes one property at
+-- most; a press of a scene button, or of a launch button in fill-in editing or
+-- landing editing, yields a list of changes.
 
 local selectionStop = 0
 
@@ -31,7 +34,8 @@ local setupLaunchMode = 0
 local setupClipPicking = 1
 local setupFirstClipEditing = 2
 local setupFirstFillInEditing = 66
-local setupCount = 130
+local setupFirstLandingEditing = 130
+local setupCount = 194
 
 local colourWhite = 0
 
@@ -59,8 +63,8 @@ local function defaultCVMode(output)
   return output == 1 and cvModePattern or cvModeUnipolar
 end
 
--- what a press in clip editing or fill-in editing needs to know of the
--- settings being edited: whether there are any, the CV modes of the picked
+-- what a press in clip editing, fill-in editing or landing editing needs to
+-- know of the settings being edited: whether there are any, the CV modes of the picked
 -- launch button's track and the transitions, by output; with present alone,
 -- the CV modes of a new device and every transition off
 local function edited(present, cvModes, transitions)
@@ -73,8 +77,8 @@ local function edited(present, cvModes, transitions)
 end
 
 -- what a press changes among the colours and the CV outputs of the settings
--- being edited, the clip's or, with prefix "fillin", the fill-in's, which
--- must be there; nil if nothing
+-- being edited, the clip's or, with prefix "fillin" or "landing", the
+-- fill-in's or the landing's, which must be there; nil if nothing
 local function editSetting(prefix, picked, track, row, settings)
   local isColourRow = row == firstColourRow or row == firstColourRow + 1
   if isColourRow and track <= coloursPerRow then
@@ -105,11 +109,15 @@ local function isClipEditing(setup)
 end
 
 local function isFillInEditing(setup)
-  return setup >= setupFirstFillInEditing and setup < setupCount
+  return setup >= setupFirstFillInEditing and setup < setupFirstLandingEditing
 end
 
--- the index of the launch button being edited in clip editing or fill-in
--- editing, or nil in launch mode and clip picking
+local function isLandingEditing(setup)
+  return setup >= setupFirstLandingEditing and setup < setupCount
+end
+
+-- the index of the launch button being edited in clip editing, fill-in
+-- editing or landing editing, or nil in launch mode and clip picking
 local function pickedButton(setup)
   if isClipEditing(setup) then
     return setup - setupFirstClipEditing
@@ -117,13 +125,17 @@ local function pickedButton(setup)
   if isFillInEditing(setup) then
     return setup - setupFirstFillInEditing
   end
+  if isLandingEditing(setup) then
+    return setup - setupFirstLandingEditing
+  end
   return nil
 end
 
 -- pressedHoldsClip says whether the pressed launch button holds a clip;
 -- pickedClip, made by edited(), describes the clip being edited and only
 -- matters in clip editing; returns nil if the press changes nothing, as in
--- fill-in editing, which fillInEditingLaunchButton handles
+-- fill-in editing and landing editing, which fillInEditingLaunchButton and
+-- landingEditingLaunchButton handle
 local function launchButton(setup, track, row, pressedHoldsClip, pickedClip)
   if setup == setupLaunchMode then
     -- an empty launch button stands in for the stop button
@@ -148,39 +160,54 @@ local function launchButton(setup, track, row, pressedHoldsClip, pickedClip)
   return editSetting("", picked, track, row, pickedClip)
 end
 
--- a press of a launch button in fill-in editing, where the grid stands for the
--- fill-in of the picked launch button as it stands for its clip in clip
--- editing; fillIn, made by edited(), describes the fill-in, clipValues the
--- values of its clip by output, { patterns = {}, unipolar = {}, bipolar = {} },
--- which a new fill-in starts as a copy of, with every transition off, in
--- white; returns a list of changes, empty outside fill-in editing
+-- a press of a launch button in fill-in editing or landing editing, with
+-- prefix "fillin" or "landing", where the grid stands for the fill-in or the
+-- landing of the picked launch button as it stands for its clip in clip
+-- editing; settings, made by edited(), describes the fill-in or landing,
+-- clipValues the values of its clip by output, { patterns = {}, unipolar =
+-- {}, bipolar = {} }, which a new one starts as a copy of, with every
+-- transition off, in white; returns a list of changes
+local function editOverlay(prefix, setup, track, row, settings, clipValues)
+  local picked = pickedButton(setup)
+  if track == toggle.track and row == toggle.row then
+    if settings.present then
+      return { { kind = prefix .. "present", index = picked, value = 0 } }
+    end
+    local changes = {
+      { kind = prefix .. "present", index = picked, value = 1 },
+      { kind = prefix .. "colour", index = picked, value = colourWhite },
+    }
+    for output = 1, outputCount do
+      table.insert(changes, { kind = prefix .. "pattern", index = picked, output = output, value = clipValues.patterns[output] })
+      table.insert(changes, { kind = prefix .. "unipolar", index = picked, output = output, value = clipValues.unipolar[output] })
+      table.insert(changes, { kind = prefix .. "bipolar", index = picked, output = output, value = clipValues.bipolar[output] })
+      table.insert(changes, { kind = prefix .. "transition", index = picked, output = output, value = transitionOff })
+    end
+    return changes
+  end
+  -- the colour and CV controls are not there without a fill-in or landing
+  if not settings.present then
+    return {}
+  end
+  local change = editSetting(prefix, picked, track, row, settings)
+  return change and { change } or {}
+end
+
+-- a press of a launch button in fill-in editing; returns a list of changes,
+-- empty outside fill-in editing
 local function fillInEditingLaunchButton(setup, track, row, fillIn, clipValues)
   if not isFillInEditing(setup) then
     return {}
   end
-  local picked = pickedButton(setup)
-  if track == toggle.track and row == toggle.row then
-    if fillIn.present then
-      return { { kind = "fillinpresent", index = picked, value = 0 } }
-    end
-    local changes = {
-      { kind = "fillinpresent", index = picked, value = 1 },
-      { kind = "fillincolour", index = picked, value = colourWhite },
-    }
-    for output = 1, outputCount do
-      table.insert(changes, { kind = "fillinpattern", index = picked, output = output, value = clipValues.patterns[output] })
-      table.insert(changes, { kind = "fillinunipolar", index = picked, output = output, value = clipValues.unipolar[output] })
-      table.insert(changes, { kind = "fillinbipolar", index = picked, output = output, value = clipValues.bipolar[output] })
-      table.insert(changes, { kind = "fillintransition", index = picked, output = output, value = transitionOff })
-    end
-    return changes
-  end
-  -- the colour and CV controls are not there without a fill-in
-  if not fillIn.present then
+  return editOverlay("fillin", setup, track, row, fillIn, clipValues)
+end
+
+-- the same in landing editing, for the landing
+local function landingEditingLaunchButton(setup, track, row, landing, clipValues)
+  if not isLandingEditing(setup) then
     return {}
   end
-  local change = editSetting("fillin", picked, track, row, fillIn)
-  return change and { change } or {}
+  return editOverlay("landing", setup, track, row, landing, clipValues)
 end
 
 local function stopButton(track)
@@ -250,12 +277,16 @@ local function setupButton(setup)
   return { kind = "setup", value = inSetupMode and setupLaunchMode or setupClipPicking }
 end
 
--- goes back one step of setup mode: from fill-in editing to clip editing of
--- the same launch button, from clip editing to clip picking, from clip picking
--- to launch mode; in launch mode it does nothing, so returns nil
+-- goes back one step of setup mode: from landing editing to fill-in editing
+-- and from fill-in editing to clip editing of the same launch button, from
+-- clip editing to clip picking, from clip picking to launch mode; in launch
+-- mode it does nothing, so returns nil
 local function backButton(setup)
   if setup == setupLaunchMode then
     return nil
+  end
+  if isLandingEditing(setup) then
+    return { kind = "setup", value = setupFirstFillInEditing + pickedButton(setup) }
   end
   if isFillInEditing(setup) then
     return { kind = "setup", value = setupFirstClipEditing + pickedButton(setup) }
@@ -263,13 +294,20 @@ local function backButton(setup)
   return { kind = "setup", value = setup == setupClipPicking and setupLaunchMode or setupClipPicking }
 end
 
--- goes on from clip editing to fill-in editing of the same launch button, but
+-- goes forward one step of setup mode: from clip editing to fill-in editing
+-- and from fill-in editing to landing editing of the same launch button, but
 -- only if it holds a clip; anywhere else it does nothing, so returns nil
-local function setFillInButton(setup, pickedHoldsClip)
-  if not isClipEditing(setup) or not pickedHoldsClip then
+local function forwardButton(setup, pickedHoldsClip)
+  if not pickedHoldsClip then
     return nil
   end
-  return { kind = "setup", value = setupFirstFillInEditing + pickedButton(setup) }
+  if isClipEditing(setup) then
+    return { kind = "setup", value = setupFirstFillInEditing + pickedButton(setup) }
+  end
+  if isFillInEditing(setup) then
+    return { kind = "setup", value = setupFirstLandingEditing + pickedButton(setup) }
+  end
+  return nil
 end
 
 -- holding down the fill-in button and letting it go; whether a press triggers
@@ -283,6 +321,7 @@ return {
   setupClipPicking = setupClipPicking,
   setupFirstClipEditing = setupFirstClipEditing,
   setupFirstFillInEditing = setupFirstFillInEditing,
+  setupFirstLandingEditing = setupFirstLandingEditing,
   functionStop = functionStop,
   functionMute = functionMute,
   functionSolo = functionSolo,
@@ -295,15 +334,17 @@ return {
   buttonIndex = buttonIndex,
   isClipEditing = isClipEditing,
   isFillInEditing = isFillInEditing,
+  isLandingEditing = isLandingEditing,
   pickedButton = pickedButton,
   launchButton = launchButton,
   fillInEditingLaunchButton = fillInEditingLaunchButton,
+  landingEditingLaunchButton = landingEditingLaunchButton,
   stopButton = stopButton,
   functionButton = functionButton,
   functionSelectButton = functionSelectButton,
   sceneButton = sceneButton,
   setupButton = setupButton,
   backButton = backButton,
-  setFillInButton = setFillInButton,
+  forwardButton = forwardButton,
   fillInButton = fillInButton,
 }

@@ -24,14 +24,15 @@ local outputSettings = {
   bipolar = "bipolar",
   transition = "transitions",
   fillintransition = "fillInTransitions",
+  landingtransition = "landingTransitions",
 }
 
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
--- the setup state, the function, which launch buttons hold a clip or a
--- fill-in, the CV modes, the values and transitions of every clip, the
--- transitions of every fill-in, and the light of every launch button,
--- function button and scene button, of the fill-in button and of the set
--- fill-in button;
+-- the setup state, the function, which launch buttons hold a clip, a fill-in
+-- or a landing, the CV modes, the values and transitions of every clip, the
+-- transitions of every fill-in and landing, and the light of every launch
+-- button, function button and scene button, of the fill-in button and of the
+-- forward button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
 -- device, so that the pads go dark
 local function setState(hostItems)
@@ -61,10 +62,12 @@ local function setState(hostItems)
         state.cvModes[item.launchnik.track][item.launchnik.output] = value
       elseif kind == "fillinpresent" then
         state.fillInPresent[item.launchnik.index] = value > 0
+      elseif kind == "landingpresent" then
+        state.landingPresent[item.launchnik.index] = value > 0
       elseif kind == "fillinlight" then
         state.fillInLight = value
-      elseif kind == "setfillinlight" then
-        state.setFillInLight = value
+      elseif kind == "forwardlight" then
+        state.forwardLight = value
       elseif kind == "functionlight" then
         if value ~= state.functionLights[item.launchnik.track] then
           state.functionLights[item.launchnik.track] = value

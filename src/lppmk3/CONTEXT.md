@@ -3,7 +3,8 @@
 Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
 Launchnik, and uses Launchnik's own words for everything that belongs to the
 device: track, launch button, function, function button, stop, mute, solo, clip, selection, light, launch mode,
-setup mode, clip picking, clip editing, fill-in, fill-in editing, scene,
+setup mode, clip picking, clip editing, fill-in, fill-in editing, landing, landing editing,
+forward button, scene,
 interval meter, length (of the switch interval), immediate, CV output, CV mode,
 pattern, unipolar value, bipolar value, transition. Those are defined in the glossary of the
 Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and
@@ -54,7 +55,7 @@ The button at the bottom left of the surface. It stands for the setup button of
 Launchnik: releasing it means what a click on that button means. It has no
 light; the surface's logo shows Launchnik's mode colour instead: white in
 launch mode, green in clip picking, yellow in clip editing, red in fill-in
-editing.
+editing, blue in landing editing.
 _Avoid_: settings button
 
 **Back button**:
@@ -62,15 +63,15 @@ The button with the arrow pointing left, beside Shift at the top left of the
 surface. It stands for the back button of Launchnik: pressing it means what a
 click on that button means, and it shows the same light: off in launch mode,
 vibrant white in clip picking, vibrant green in clip editing, vibrant yellow in
-fill-in editing.
+fill-in editing, vibrant red in landing editing.
 _Avoid_: left arrow, arrow button
 
-**Set fill-in button**:
+**Forward button**:
 The button in the top row above the second column of pads. It stands for the
-set fill-in button of Launchnik: pressing it means what a click on that button
-means, and it shows the same light: vibrant red in clip editing of a launch
-button that holds a clip, off otherwise.
-_Avoid_: right arrow, fill-in setup button
+forward button of Launchnik: pressing it means what a click on that button
+means, and it shows the same light: vibrant red in clip editing and vibrant
+blue in fill-in editing of a launch button that holds a clip, off otherwise.
+_Avoid_: right arrow, set fill-in button, fill-in setup button
 
 **Fill-in button**:
 The button in the left-hand column beside the sixth row of pads from the top.

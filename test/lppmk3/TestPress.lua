@@ -12,6 +12,7 @@ local clipPicking = press.setupClipPicking
 local editing = press.setupFirstClipEditing + press.buttonIndex(4, 6)
 local picked = press.buttonIndex(4, 6)
 local fillInEditing = press.setupFirstFillInEditing + press.buttonIndex(4, 6)
+local landingEditing = press.setupFirstLandingEditing + press.buttonIndex(4, 6)
 
 function TestPress:testButtonIndexCountsDownTrackOneFirst()
   lu.assertEquals(press.buttonIndex(1, 1), 0)
@@ -84,8 +85,10 @@ function TestPress:testBackButtonGoesBackOneStep()
   lu.assertNil(press.backButton(launchMode))
   lu.assertEquals(press.backButton(clipPicking), { kind = "setup", value = launchMode })
   lu.assertEquals(press.backButton(editing), { kind = "setup", value = clipPicking })
-  -- from fill-in editing it returns to clip editing of the same launch button
+  -- from fill-in editing it returns to clip editing of the same launch
+  -- button, and from landing editing to fill-in editing
   lu.assertEquals(press.backButton(fillInEditing), { kind = "setup", value = editing })
+  lu.assertEquals(press.backButton(landingEditing), { kind = "setup", value = fillInEditing })
 end
 
 -- output A in pattern mode, B unipolar, C bipolar, the others as on a new
@@ -198,22 +201,32 @@ function TestPress:testSetupNumbering()
   lu.assertTrue(press.isFillInEditing(66))
   lu.assertTrue(press.isFillInEditing(129))
   lu.assertFalse(press.isFillInEditing(130))
+  lu.assertEquals(press.setupFirstLandingEditing, 130)
+  lu.assertFalse(press.isLandingEditing(129))
+  lu.assertTrue(press.isLandingEditing(130))
+  lu.assertTrue(press.isLandingEditing(193))
+  lu.assertFalse(press.isLandingEditing(194))
   lu.assertNil(press.pickedButton(launchMode))
   lu.assertNil(press.pickedButton(clipPicking))
   lu.assertEquals(press.pickedButton(editing), picked)
   lu.assertEquals(press.pickedButton(fillInEditing), picked)
+  lu.assertEquals(press.pickedButton(landingEditing), picked)
 end
 
 function TestPress:testSetupButtonLeavesFillInEditing()
   lu.assertEquals(press.setupButton(fillInEditing), { kind = "setup", value = launchMode })
 end
 
-function TestPress:testSetFillInButtonGoesOnFromClipEditingOfAClip()
-  lu.assertEquals(press.setFillInButton(editing, true), { kind = "setup", value = fillInEditing })
-  lu.assertNil(press.setFillInButton(editing, false))
-  lu.assertNil(press.setFillInButton(launchMode, true))
-  lu.assertNil(press.setFillInButton(clipPicking, true))
-  lu.assertNil(press.setFillInButton(fillInEditing, true))
+function TestPress:testForwardButtonGoesForwardOneStepWithAClip()
+  lu.assertEquals(press.forwardButton(editing, true), { kind = "setup", value = fillInEditing })
+  lu.assertNil(press.forwardButton(editing, false))
+  lu.assertNil(press.forwardButton(launchMode, true))
+  lu.assertNil(press.forwardButton(clipPicking, true))
+  -- from fill-in editing on to landing editing, whether or not there is a
+  -- fill-in, but not beyond
+  lu.assertEquals(press.forwardButton(fillInEditing, true), { kind = "setup", value = landingEditing })
+  lu.assertNil(press.forwardButton(fillInEditing, false))
+  lu.assertNil(press.forwardButton(landingEditing, true))
 end
 
 function TestPress:testFillInButtonFollowsTheButton()
@@ -280,4 +293,41 @@ end
 function TestPress:testSceneButtonDoesNothingInFillInEditing()
   local holdsClip = { true, true, true, true, true, true, true, true }
   lu.assertEquals(press.sceneButton(fillInEditing, 3, holdsClip), {})
+  lu.assertEquals(press.sceneButton(landingEditing, 3, holdsClip), {})
+end
+
+function TestPress:testLandingEditingDoesNothingElsewhere()
+  lu.assertEquals(press.landingEditingLaunchButton(clipPicking, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertEquals(press.landingEditingLaunchButton(fillInEditing, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertEquals(press.fillInEditingLaunchButton(landingEditing, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertNil(press.launchButton(landingEditing, 8, 1, false, press.edited(true)))
+end
+
+-- a new landing is a copy of its clip's values, with every transition off, in
+-- white, like a new fill-in
+function TestPress:testLandingEditingToggleSetsUpANewLanding()
+  local expected = {
+    { kind = "landingpresent", index = picked, value = 1 },
+    { kind = "landingcolour", index = picked, value = 0 },
+  }
+  for output = 1, 6 do
+    table.insert(expected, { kind = "landingpattern", index = picked, output = output, value = output - 1 })
+    table.insert(expected, { kind = "landingunipolar", index = picked, output = output, value = 7 - output })
+    table.insert(expected, { kind = "landingbipolar", index = picked, output = output, value = output - 1 })
+    table.insert(expected, { kind = "landingtransition", index = picked, output = output, value = 0 })
+  end
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(false), someClipValues), expected)
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(true), someClipValues), {
+    { kind = "landingpresent", index = picked, value = 0 },
+  })
+end
+
+function TestPress:testLandingEditingColourAndCVRows()
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 2, mixedModes(true), someClipValues), { { kind = "landingcolour", index = picked, value = 9 } })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 6, 3, mixedModes(true), someClipValues), { { kind = "landingpattern", index = picked, output = 1, value = 5 } })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 5, 4, mixedModes(true), someClipValues), { { kind = "landingunipolar", index = picked, output = 2, value = 4 } })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 1, 5, mixedModes(true), someClipValues), { { kind = "landingbipolar", index = picked, output = 3, value = 0 } })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 6, mixedModes(true), someClipValues), { { kind = "landingtransition", index = picked, output = 4, value = 0 } })
+  -- without a landing there is nothing but the toggle
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 2, mixedModes(false), someClipValues), {})
 end

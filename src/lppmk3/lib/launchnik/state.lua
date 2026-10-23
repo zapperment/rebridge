@@ -10,7 +10,7 @@ local state = {}
 -- puts everything back to what a new device has, with nothing to deliver
 function state.reset()
   -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 =
-  -- fill-in editing
+  -- fill-in editing, 130..193 = landing editing
   state.setup = 0
   state.setupChanged = false
   -- 0 = stop, 1 = mute, 2 = solo
@@ -29,13 +29,13 @@ function state.reset()
   state.logoColour = 0
   -- the colour last delivered to the back button, which is dark to begin with
   state.backButtonColour = 0
-  -- the colours last delivered to the fill-in button and the set fill-in
-  -- button, which are dark to begin with
+  -- the colours last delivered to the fill-in button and the forward button,
+  -- which are dark to begin with
   state.fillInButtonColour = 0
-  state.setFillInButtonColour = 0
-  -- the lights of the fill-in button and the set fill-in button
+  state.forwardButtonColour = 0
+  -- the lights of the fill-in button and the forward button
   state.fillInLight = 0
-  state.setFillInLight = 0
+  state.forwardLight = 0
   -- by launch button index, 0..63; the settings of the CV outputs by index
   -- and then by output, 1..6
   state.present = {}
@@ -45,6 +45,8 @@ function state.reset()
   state.transitions = {}
   state.fillInPresent = {}
   state.fillInTransitions = {}
+  state.landingPresent = {}
+  state.landingTransitions = {}
   -- the CV modes by track, 1..8, and then by output: 0 = bipolar, 1 =
   -- unipolar, 2 = pattern
   state.cvModes = {}
@@ -73,6 +75,7 @@ function state.reset()
     state.bipolar[index] = {}
     state.transitions[index] = {}
     state.fillInTransitions[index] = {}
+    state.landingTransitions[index] = {}
     -- a new clip plays the pattern of its row, at unipolar and bipolar 0
     for output = 1, outputCount do
       state.patterns[index][output] = index % 8
@@ -80,8 +83,10 @@ function state.reset()
       state.bipolar[index][output] = 3
       state.transitions[index][output] = 0
       state.fillInTransitions[index][output] = 0
+      state.landingTransitions[index][output] = 0
     end
     state.fillInPresent[index] = false
+    state.landingPresent[index] = false
     state.lights[index] = 0
   end
   -- when the codec last switched the surface to programmer mode
