@@ -4,7 +4,7 @@ Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
 Launchnik, and uses Launchnik's own words for everything that belongs to the
 device: track, launch button, function, function button, stop, mute, solo, clip, selection, light, launch mode,
 setup mode, clip picking, clip editing, fill-in, fill-in editing, landing, landing editing,
-one-bar pattern, forward button, scene,
+one-bar pattern, relaunch, forward button, scene,
 interval meter, length (of the switch interval), immediate, CV output, CV mode,
 pattern, unipolar value, bipolar value, transition. Those are defined in the glossary of the
 Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and

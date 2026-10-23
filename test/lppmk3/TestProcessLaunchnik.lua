@@ -88,18 +88,33 @@ function TestProcessLaunchnik:testEveryPadWithAClipSelectsItsRowOfItsTrack()
     for track = 1, 8 do
       remote.clearMocks()
       lu.assertTrue(receive(noteOn, pad(track, row), 127))
-      local input = handledInput()
-      lu.assertEquals(input.item, items["track" .. track .. "selection"].index)
-      lu.assertEquals(input.value, row)
+      local calls = remote.mock "handle_input".calls
+      lu.assertEquals(#calls, 2)
+      lu.assertEquals(calls[1][1].item, items["track" .. track .. "selection"].index)
+      lu.assertEquals(calls[1][1].value, row)
+      -- the relaunch press follows the selection, and is let go with the pad
+      lu.assertEquals(calls[2][1], { time_stamp = 0, item = items["track" .. track .. "relaunch"].index, value = 1 })
+      remote.clearMocks()
+      lu.assertTrue(receive(noteOn, pad(track, row), 0))
+      lu.assertEquals(handledInput(), { time_stamp = 0, item = items["track" .. track .. "relaunch"].index, value = 0 })
     end
   end
 end
 
 function TestProcessLaunchnik:testEmptyPadStopsItsTrack()
   lu.assertTrue(receive(noteOn, pad(3, 5), 127))
-  local input = handledInput()
-  lu.assertEquals(input.item, items.track3selection.index)
-  lu.assertEquals(input.value, 0)
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(calls[1][1].item, items.track3selection.index)
+  lu.assertEquals(calls[1][1].value, 0)
+end
+
+function TestProcessLaunchnik:testPadInSetupModeHoldsNoRelaunchPress()
+  state.setup = press.setupClipPicking
+  lu.assertTrue(receive(noteOn, pad(3, 5), 127))
+  lu.assertEquals(handledInput().item, items.setup.index)
+  remote.clearMocks()
+  lu.assertFalse(receive(noteOn, pad(3, 5), 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
 -- the function buttons are control changes 101 to 108
@@ -263,10 +278,20 @@ function TestProcessLaunchnik:testEverySceneButtonSelectsItsRowOnEveryTrack()
     local scene = 9 - fromBottom
     lu.assertTrue(receive(controlChange, controller, 127))
     local calls = remote.mock "handle_input".calls
-    lu.assertEquals(#calls, 8)
+    lu.assertEquals(#calls, 16)
     for track = 1, 8 do
       lu.assertEquals(calls[track][1].item, items["track" .. track .. "selection"].index)
       lu.assertEquals(calls[track][1].value, scene)
+      lu.assertEquals(calls[8 + track][1].item, items["track" .. track .. "relaunch"].index)
+      lu.assertEquals(calls[8 + track][1].value, 1)
+    end
+    -- letting go of the scene button lets go of every relaunch press
+    remote.clearMocks()
+    lu.assertTrue(receive(controlChange, controller, 0))
+    calls = remote.mock "handle_input".calls
+    lu.assertEquals(#calls, 8)
+    for track = 1, 8 do
+      lu.assertEquals(calls[track][1], { time_stamp = 0, item = items["track" .. track .. "relaunch"].index, value = 0 })
     end
   end
 end
@@ -275,7 +300,7 @@ function TestProcessLaunchnik:testSceneButtonStopsTracksWithAnEmptyLaunchButton(
   state.present[press.buttonIndex(2, 8)] = true
   lu.assertTrue(receive(controlChange, 0x13, 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 8)
+  lu.assertEquals(#calls, 16)
   for track = 1, 8 do
     lu.assertEquals(calls[track][1].item, items["track" .. track .. "selection"].index)
     lu.assertEquals(calls[track][1].value, track == 2 and 8 or 0)

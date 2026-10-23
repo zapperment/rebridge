@@ -40,7 +40,7 @@ local function itemName(change)
   if change.kind == "function" then
     return "function"
   end
-  if change.kind == "mute" or change.kind == "solo" then
+  if change.kind == "mute" or change.kind == "solo" or change.kind == "relaunch" then
     return "track" .. change.track .. change.kind
   end
   local track = math.floor(change.index / 8) + 1
@@ -114,6 +114,31 @@ local function processFunctionButton(event, track, pressed)
   end
 end
 
+-- writes a change, and remembers a relaunch press held down, so that letting
+-- go of the pad or scene button lets go of it
+local function writeHeld(event, change)
+  if change and change.kind == "relaunch" then
+    state.heldRelaunches[change.track] = true
+  end
+  write(event, change)
+end
+
+-- lets go of the relaunch presses of the given tracks that are held down;
+-- returns whether there were any
+local function releaseRelaunches(event, tracks)
+  local released = false
+  for _, track in ipairs(tracks) do
+    if state.heldRelaunches[track] then
+      state.heldRelaunches[track] = nil
+      write(event, press.relaunchButton(state.setup, track, false))
+      released = true
+    end
+  end
+  return released
+end
+
+local allTracks = { 1, 2, 3, 4, 5, 6, 7, 8 }
+
 -- handles presses of the pads, the function buttons, the function select
 -- buttons, the scene buttons, the back button, the forward button and the
 -- fill-in button: a pad means what a click on the launch button in its place
@@ -134,7 +159,16 @@ local function processPadsAndTrackButtons(event)
     processFunctionButton(event, ret.y - firstFunctionButton + 1, ret.z > 0)
     return true
   end
+  local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9
+  -- letting go of a pad lets go of its track's relaunch press, letting go of
+  -- a scene button those of every track
   if ret.z == 0 then
+    if ret.x == noteOn then
+      return releaseRelaunches(event, { ret.y % 10 })
+    end
+    if ret.x == controlChange and isSceneButton then
+      return releaseRelaunches(event, allTracks)
+    end
     return false
   end
   if ret.x == noteOn then
@@ -153,7 +187,10 @@ local function processPadsAndTrackButtons(event)
     end
     local pressedHoldsClip = state.present[press.buttonIndex(track, row)]
     local pickedClip = picked ~= nil and editedSettings(picked) or press.edited(false)
+    -- in launch mode the relaunch press follows the selection, which
+    -- Launchnik compares it with
     write(event, press.launchButton(state.setup, track, row, pressedHoldsClip, pickedClip))
+    writeHeld(event, press.relaunchButton(state.setup, track, true))
     return true
   end
   if ret.x == controlChange and ret.y == forwardButton then
@@ -169,7 +206,6 @@ local function processPadsAndTrackButtons(event)
     write(event, press.backButton(state.setup))
     return true
   end
-  local isSceneButton = ret.y >= firstSceneButton and ret.y <= lastSceneButton and ret.y % 10 == 9
   if ret.x == controlChange and isSceneButton then
     local scene = 9 - (ret.y - 9) / 10
     local holdsClip = {}
@@ -177,7 +213,7 @@ local function processPadsAndTrackButtons(event)
       holdsClip[track] = state.present[press.buttonIndex(track, scene)]
     end
     for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip)) do
-      write(event, change)
+      writeHeld(event, change)
     end
     return true
   end

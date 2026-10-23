@@ -151,16 +151,27 @@ end
 function TestPress:testSceneButtonSelectsItsRowOnEveryTrack()
   local holdsClip = { true, true, true, true, true, true, true, true }
   local changes = press.sceneButton(press.setupLaunchMode, 3, holdsClip)
-  lu.assertEquals(#changes, 8)
+  lu.assertEquals(#changes, 16)
   for track = 1, 8 do
     lu.assertEquals(changes[track], { kind = "selection", track = track, value = 3 })
+    -- each track's relaunch press is held down as well
+    lu.assertEquals(changes[8 + track], { kind = "relaunch", track = track, value = 1 })
   end
+end
+
+function TestPress:testLaunchHoldsTheRelaunchPressInLaunchModeOnly()
+  lu.assertEquals(press.relaunchButton(launchMode, 3, true), { kind = "relaunch", track = 3, value = 1 })
+  lu.assertNil(press.relaunchButton(clipPicking, 3, true))
+  lu.assertNil(press.relaunchButton(editing, 3, true))
+  -- letting go is passed on in every mode
+  lu.assertEquals(press.relaunchButton(clipPicking, 3, false), { kind = "relaunch", track = 3, value = 0 })
+  lu.assertNil(press.relaunchButton(launchMode, 9, true))
 end
 
 function TestPress:testSceneButtonStopsTracksWithAnEmptyLaunchButton()
   local holdsClip = { true, false, false, true, false, false, false, true }
   local changes = press.sceneButton(press.setupLaunchMode, 8, holdsClip)
-  lu.assertEquals(#changes, 8)
+  lu.assertEquals(#changes, 16)
   for track = 1, 8 do
     lu.assertEquals(changes[track], { kind = "selection", track = track, value = holdsClip[track] and 8 or 0 })
   end
@@ -169,7 +180,7 @@ end
 function TestPress:testSceneButtonOfAnEmptySceneStopsEveryTrack()
   local holdsClip = { false, false, false, false, false, false, false, false }
   local changes = press.sceneButton(press.setupLaunchMode, 1, holdsClip)
-  lu.assertEquals(#changes, 8)
+  lu.assertEquals(#changes, 16)
   for track = 1, 8 do
     lu.assertEquals(changes[track], { kind = "selection", track = track, value = 0 })
   end

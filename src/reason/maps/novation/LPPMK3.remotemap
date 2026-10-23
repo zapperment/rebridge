@@ -260,6 +260,15 @@ Map	track6solo		Track 6 Solo
 Map	track7solo		Track 7 Solo
 Map	track8solo		Track 8 Solo
 
+Map	track1relaunch		Track 1 Relaunch
+Map	track2relaunch		Track 2 Relaunch
+Map	track3relaunch		Track 3 Relaunch
+Map	track4relaunch		Track 4 Relaunch
+Map	track5relaunch		Track 5 Relaunch
+Map	track6relaunch		Track 6 Relaunch
+Map	track7relaunch		Track 7 Relaunch
+Map	track8relaunch		Track 8 Relaunch
+
 Map	track1functionlight		Track 1 Function Light
 Map	track2functionlight		Track 2 Function Light
 Map	track3functionlight		Track 3 Function Light

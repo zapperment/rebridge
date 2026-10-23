@@ -54,6 +54,7 @@ local function launchnikMap()
   clipGroups("colour", "Colour")
   trackGroup("mute", "Mute")
   trackGroup("solo", "Solo")
+  trackGroup("relaunch", "Relaunch")
   trackGroup("functionlight", "Function Light")
   gap()
   for scene = 1, 8 do

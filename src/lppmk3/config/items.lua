@@ -56,6 +56,8 @@ for track = 1, 8 do
   -- 1 while the track's mute or solo button is held down, 0 once it is let go
   items["track" .. track .. "mute"] = { input = "value", min = 0, max = 1 }
   items["track" .. track .. "solo"] = { input = "value", min = 0, max = 1 }
+  -- 1 while a launch on the track is held down, 0 once it is let go
+  items["track" .. track .. "relaunch"] = { input = "value", min = 0, max = 1 }
   -- 0 stops the track, 1 to 8 select the clip in that row
   items["track" .. track .. "selection"] = { input = "value", min = 0, max = 8 }
 

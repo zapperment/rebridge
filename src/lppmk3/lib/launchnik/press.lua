@@ -15,7 +15,7 @@
 --   { kind = "landingpattern" | "landingunipolar" | "landingbipolar" | "landingtransition", index = 0..63, output = 1..6, value = ... }
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
---   { kind = "mute" | "solo", track = 1..8, value = 0..1 }
+--   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
 -- A press of a launch button outside fill-in editing and landing editing, a
 -- function button, a function select button, the setup button, the back
 -- button, the forward button or the fill-in button changes one property at
@@ -218,6 +218,18 @@ local function landingEditingLaunchButton(setup, track, row, landing, clipValues
   return editOverlay("landing", setup, track, row, landing, clipValues)
 end
 
+-- holding down a launch button and letting it go, or a scene button for each
+-- track: in launch mode a press holds the track's relaunch press down as well
+-- as choosing the selection; whether it relaunches is up to Launchnik;
+-- elsewhere a press changes nothing, so returns nil; letting go is always
+-- passed on
+local function relaunchButton(setup, track, pressed)
+  if track < 1 or track > 8 or (pressed and setup ~= setupLaunchMode) then
+    return nil
+  end
+  return { kind = "relaunch", track = track, value = pressed and 1 or 0 }
+end
+
 local function stopButton(track)
   return { kind = "selection", track = track, value = selectionStop }
 end
@@ -257,7 +269,7 @@ local function functionSelectButton(func)
 end
 
 -- in launch mode, a scene button means what the eight launch buttons of its
--- scene mean, track by track; in clip picking it chooses the length of the
+-- scene mean, track by track: the selections, then the relaunch presses; in clip picking it chooses the length of the
 -- switch interval it stands for, immediate at the bottom and sixteen bars at
 -- the top, and returns to launch mode; in clip editing it does nothing (see
 -- ADR 0004 of the Launchnik repository); holdsClip says of each track, 1..8,
@@ -276,6 +288,9 @@ local function sceneButton(setup, scene, holdsClip)
   end
   for track = 1, 8 do
     table.insert(changes, launchButton(setup, track, scene, holdsClip[track], edited(false)))
+  end
+  for track = 1, 8 do
+    table.insert(changes, relaunchButton(setup, track, true))
   end
   return changes
 end
@@ -347,6 +362,7 @@ return {
   launchButton = launchButton,
   fillInEditingLaunchButton = fillInEditingLaunchButton,
   landingEditingLaunchButton = landingEditingLaunchButton,
+  relaunchButton = relaunchButton,
   stopButton = stopButton,
   functionButton = functionButton,
   functionSelectButton = functionSelectButton,
