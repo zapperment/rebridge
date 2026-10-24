@@ -13,8 +13,8 @@ local items = {
 -- track 1 first.
 
 -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 = fill-in
--- editing, 130..193 = landing editing
-items.setup = { input = "value", output = "value", min = 0, max = 193, launchnik = { kind = "setup" } }
+-- editing, 130..193 = landing editing, 194 = clear mode
+items.setup = { input = "value", output = "value", min = 0, max = 194, launchnik = { kind = "setup" } }
 
 -- the length of the switch interval: 0 = immediate, 1 = one beat, 2 = half a
 -- bar, 3..7 = 1, 2, 4, 8 and 16 bars

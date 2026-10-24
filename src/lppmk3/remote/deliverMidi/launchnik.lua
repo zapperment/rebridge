@@ -18,8 +18,11 @@ local function logoColour(state)
   if state.setup == launchnik.press.setupClipPicking then
     return col.config.green.vibrant
   end
-  if launchnik.press.isFillInEditing(state.setup) then
+  if state.setup == launchnik.press.setupClearMode then
     return col.config.red.vibrant
+  end
+  if launchnik.press.isFillInEditing(state.setup) then
+    return col.config.orange.vibrant
   end
   if launchnik.press.isLandingEditing(state.setup) then
     return col.config.blue.vibrant
@@ -29,25 +32,44 @@ end
 
 -- the back button, with the arrow pointing left beside Shift, shows the light
 -- of Launchnik's back button, which only depends on the setup state: dark in
--- launch mode, vibrant white in clip picking, vibrant green in clip editing,
--- vibrant yellow in fill-in editing, vibrant red in landing editing; it is
--- dark while no Launchnik is mapped
+-- launch mode, vibrant white in clip picking and clear mode, vibrant green in
+-- clip editing, vibrant yellow in fill-in editing, vibrant orange in landing
+-- editing; it is dark while no Launchnik is mapped
 local backButton = 91
 
 local function backButtonColour(state)
   if not state.mapped or state.setup == launchnik.press.setupLaunchMode then
     return col.config.off
   end
-  if state.setup == launchnik.press.setupClipPicking then
+  if state.setup == launchnik.press.setupClipPicking or state.setup == launchnik.press.setupClearMode then
     return col.config.white.bright
   end
   if launchnik.press.isFillInEditing(state.setup) then
     return col.config.yellow.vibrant
   end
   if launchnik.press.isLandingEditing(state.setup) then
-    return col.config.red.vibrant
+    return col.config.orange.vibrant
   end
   return col.config.green.vibrant
+end
+
+-- the button to the left of the third row of pads shows the light of
+-- Launchnik's clear button, which only depends on the setup state: dim white
+-- in launch mode, vibrant white in clear mode, dark in setup mode, where it
+-- does nothing; it is dark while no Launchnik is mapped
+local clearButton = 60
+
+local function clearButtonColour(state)
+  if not state.mapped then
+    return col.config.off
+  end
+  if state.setup == launchnik.press.setupLaunchMode then
+    return col.config.white.dim
+  end
+  if state.setup == launchnik.press.setupClearMode then
+    return col.config.white.bright
+  end
+  return col.config.off
 end
 
 -- the button to the left of the sixth row of pads shows the light of
@@ -163,9 +185,9 @@ end
 -- buttons in their place, the function buttons and the function select
 -- buttons the lights of Launchnik's buttons of the same names,
 -- the scene buttons the lights of the scene buttons, the logo the mode colour,
--- and the back button, the forward button and the fill-in button the
--- lights of Launchnik's buttons of the same names; each change is delivered
--- once
+-- and the back button, the clear button, the forward button and the fill-in
+-- button the lights of Launchnik's buttons of the same names; each change is
+-- delivered once
 --
 -- In launch mode a vibrant launch button is one whose clip is playing, and its
 -- pad pulses, which the panel of Launchnik does not do. In setup mode vibrant
@@ -232,6 +254,12 @@ return function()
   if colour ~= state.backButtonColour then
     state.backButtonColour = colour
     table.insert(events, midi.makeColourEvent(backButton, colour))
+  end
+
+  colour = clearButtonColour(state)
+  if colour ~= state.clearButtonColour then
+    state.clearButtonColour = colour
+    table.insert(events, midi.makeColourEvent(clearButton, colour))
   end
 
   colour = state.mapped and lightColour(state.fillInLight) or col.config.off
