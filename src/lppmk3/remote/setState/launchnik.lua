@@ -23,14 +23,27 @@ local outputSettings = {
   unipolar = "unipolar",
   bipolar = "bipolar",
   transition = "transitions",
+  fillinpattern = "fillInPatterns",
+  fillinunipolar = "fillInUnipolar",
+  fillinbipolar = "fillInBipolar",
   fillintransition = "fillInTransitions",
+  landingpattern = "landingPatterns",
+  landingunipolar = "landingUnipolar",
+  landingbipolar = "landingBipolar",
   landingtransition = "landingTransitions",
+}
+
+-- the colours of the clips, fill-ins and landings, by the kind of their items
+local colourSettings = {
+  colour = "colours",
+  fillincolour = "fillInColours",
+  landingcolour = "landingColours",
 }
 
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
 -- the setup state, the function, which launch buttons hold a clip, a fill-in
--- or a landing, the CV modes, the values and transitions of every clip, the
--- transitions of every fill-in and landing, and the light of every launch
+-- or a landing, the CV modes, the colours, values and transitions of every
+-- clip, fill-in and landing, and the light of every launch
 -- button, function button and scene button, of the fill-in button and of the
 -- forward button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
@@ -56,6 +69,8 @@ local function setState(hostItems)
         end
       elseif kind == "present" then
         state.present[item.launchnik.index] = value > 0
+      elseif colourSettings[kind] then
+        state[colourSettings[kind]][item.launchnik.index] = value
       elseif outputSettings[kind] then
         state[outputSettings[kind]][item.launchnik.index][item.launchnik.output] = value
       elseif kind == "cvmode" then

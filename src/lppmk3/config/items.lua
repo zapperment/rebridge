@@ -13,8 +13,10 @@ local items = {
 -- track 1 first.
 
 -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 = fill-in
--- editing, 130..193 = landing editing, 194 = clear mode
-items.setup = { input = "value", output = "value", min = 0, max = 194, launchnik = { kind = "setup" } }
+-- editing, 130..193 = landing editing, 194 = clear mode, 195 = source picking,
+-- 196..259 = destination picking for a launch button and 260..267 for a scene
+-- as the source
+items.setup = { input = "value", output = "value", min = 0, max = 267, launchnik = { kind = "setup" } }
 
 -- the length of the switch interval: 0 = immediate, 1 = one beat, 2 = half a
 -- bar, 3..7 = 1, 2, 4, 8 and 16 bars
@@ -67,27 +69,22 @@ for track = 1, 8 do
     -- 0 = unlit, then dim, vibrant and flashing for each of the 14 colours
     items[clip .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "light", index = index } }
     items[clip .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "present", index = index } }
-    items[clip .. "colour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "colour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "colour", index = index } }
     items[clip .. "fillinpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinpresent", index = index } }
-    items[clip .. "fillincolour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "fillincolour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "fillincolour", index = index } }
     items[clip .. "fillinonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinonebarpattern", index = index } }
     items[clip .. "landingpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingpresent", index = index } }
-    items[clip .. "landingcolour"] = { input = "value", min = 0, max = 13 }
+    items[clip .. "landingcolour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "landingcolour", index = index } }
     items[clip .. "landingonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingonebarpattern", index = index } }
     -- the settings of the CV outputs, for example track1clip1apattern,
     -- track1clip1fillinapattern and track1clip1landingapattern; the codec
-    -- reads the clip's, which a new fill-in or landing starts as a copy of,
-    -- and the transitions, which a press moves on
+    -- reads them all: the clip's, which a new fill-in or landing starts as a
+    -- copy of, the transitions, which a press moves on, and everything, which
+    -- a duplicate copies
     for output, letter in ipairs(outputLetters) do
       for _, setting in ipairs(outputSettings) do
-        items[clip .. letter .. setting.name] = { input = "value", output = "value", min = 0, max = setting.max, launchnik = { kind = setting.name, index = index, output = output } }
-        for _, prefix in ipairs({ "fillin", "landing" }) do
-          local overlay = { input = "value", min = 0, max = setting.max }
-          if setting.name == "transition" then
-            overlay.output = "value"
-            overlay.launchnik = { kind = prefix .. "transition", index = index, output = output }
-          end
-          items[clip .. prefix .. letter .. setting.name] = overlay
+        for _, prefix in ipairs({ "", "fillin", "landing" }) do
+          items[clip .. prefix .. letter .. setting.name] = { input = "value", output = "value", min = 0, max = setting.max, launchnik = { kind = prefix .. setting.name, index = index, output = output } }
         end
       end
     end
