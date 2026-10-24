@@ -4,7 +4,8 @@ Vocabulary of the Launchpad Pro [MK3] remote codec for Reason. The codec drives
 Launchnik, and uses Launchnik's own words for everything that belongs to the
 device: track, launch button, function, function button, stop, mute, solo, clip, selection, light, launch mode,
 setup mode, clip picking, clip editing, fill-in, fill-in editing, landing, landing editing,
-one-bar pattern, relaunch, forward button, clear mode, scene,
+one-bar pattern, relaunch, forward button, clear mode, duplicate mode, source,
+destination, source picking, destination picking, scene,
 interval meter, length (of the switch interval), immediate, CV output, CV mode,
 pattern, unipolar value, bipolar value, transition. Those are defined in the glossary of the
 Launchnik repository (https://github.com/zapperment/launchnik, `CONTEXT.md`) and
@@ -55,14 +56,15 @@ The button at the bottom left of the surface. It stands for the setup button of
 Launchnik: releasing it means what a click on that button means. It has no
 light; the surface's logo shows Launchnik's mode colour instead: white in
 launch mode, green in clip picking, yellow in clip editing, orange in fill-in
-editing, blue in landing editing, red in clear mode.
+editing, blue in landing editing, red in clear mode, fuchsia in duplicate mode.
 _Avoid_: settings button
 
 **Back button**:
 The button with the arrow pointing left, beside Shift at the top left of the
 surface. It stands for the back button of Launchnik: pressing it means what a
 click on that button means, and it shows the same light: off in launch mode,
-vibrant white in clip picking and clear mode, vibrant green in clip editing,
+vibrant white in clip picking, clear mode and duplicate mode, vibrant green in
+clip editing,
 vibrant yellow in fill-in editing, vibrant orange in landing editing.
 _Avoid_: left arrow, arrow button
 
@@ -84,5 +86,13 @@ _Avoid_: fill button, side button
 The button in the left-hand column beside the third row of pads from the top
 (CC 60). It stands for the clear button of Launchnik: pressing it means what a
 click on that button means, and it shows the same light: dim white in launch
-mode, vibrant white in clear mode, off in setup mode.
+mode, vibrant red in clear mode, off in setup mode and duplicate mode.
 _Avoid_: delete button, side button
+
+**Duplicate button**:
+The button in the left-hand column beside the fourth row of pads from the top
+(CC 50). It stands for the duplicate button of Launchnik: pressing it means
+what a click on that button means, and it shows the same light: dim white in
+launch mode, vibrant fuchsia in duplicate mode, off in setup mode and clear
+mode.
+_Avoid_: copy button, side button

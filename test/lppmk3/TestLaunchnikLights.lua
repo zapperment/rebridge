@@ -148,6 +148,7 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(91, colours.off),
     makeColourEvent(60, colours.white.dim),
+    makeColourEvent(50, colours.white.dim),
   })
 end
 
@@ -298,20 +299,23 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(91, colours.off),
     makeColourEvent(60, colours.white.dim),
+    makeColourEvent(50, colours.white.dim),
   })
-  -- in clear mode the logo is red, the back button and the clear button
-  -- vibrant white
+  -- in clear mode the logo and the clear button are red, the back button
+  -- vibrant white and the duplicate button dark
   report { setup = 194 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.red.vibrant),
     makeColourEvent(91, colours.white.bright),
-    makeColourEvent(60, colours.white.bright),
+    makeColourEvent(60, colours.red.vibrant),
+    makeColourEvent(50, colours.off),
   })
   report { setup = 0 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(91, colours.off),
     makeColourEvent(60, colours.white.dim),
+    makeColourEvent(50, colours.white.dim),
   })
 end
 
@@ -322,14 +326,16 @@ function TestLaunchnikLights:testLogoTurnsWhiteWhenLaunchnikIsMapped()
   report { setup = 0 }
   lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
     makeColourEvent(99, colours.white.bright),
-    makeColourEvent(60, colours.white.dim)
+    makeColourEvent(60, colours.white.dim),
+    makeColourEvent(50, colours.white.dim)
   ))
   report { setup = 0 }
   lu.assertEquals(deliverLaunchnik(), {})
   report({ setup = 0 }, false)
   lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(
     makeColourEvent(99, colours.off),
-    makeColourEvent(60, colours.off)
+    makeColourEvent(60, colours.off),
+    makeColourEvent(50, colours.off)
   ))
 end
 
@@ -436,6 +442,7 @@ function TestLaunchnikLights:testFillInAndForwardButtonsShowTheirLights()
   lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(60, colours.white.dim),
+    makeColourEvent(50, colours.white.dim),
     makeColourEvent(30, colours.white.dim)
   ))
   report { fillinlight = 8 }
@@ -459,14 +466,16 @@ function TestLaunchnikLights:testFillInButtonsGoDarkWhenLaunchnikIsNoLongerMappe
   lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(
     makeColourEvent(99, colours.off),
     makeColourEvent(60, colours.off),
+    makeColourEvent(50, colours.off),
     makeColourEvent(30, colours.off),
     makeColourEvent(92, colours.off)
   ))
 end
 
--- in clear mode every launch button and scene button with something to clear
--- flashes red (light 6), which shows as dim red plus flashing vibrant red,
--- without pulsing
+-- in clear mode every launch button with something to clear flashes in its
+-- clip's colour, here red (light 6), and every scene button with something
+-- to clear flashes red, which shows as dim red plus flashing vibrant red,
+-- without pulsing; the clear button is red, the duplicate button dark
 function TestLaunchnikLights:testClearModeFlashesRed()
   report { setup = 194, track1clip1light = 6, scene1light = 6 }
   lu.assertEquals(deliverLaunchnik(), {
@@ -479,6 +488,50 @@ function TestLaunchnikLights:testClearModeFlashesRed()
     makeColourEvent(0x59, colours.red.vibrant, flashing),
     makeColourEvent(99, colours.red.vibrant),
     makeColourEvent(91, colours.white.bright),
-    makeColourEvent(60, colours.white.bright),
+    makeColourEvent(60, colours.red.vibrant),
   })
+end
+
+-- in duplicate mode the logo and the duplicate button are fuchsia, the back
+-- button vibrant white and the clear button dark; the button to the left of
+-- the fourth row of pads shows the duplicate button on control change 50
+function TestLaunchnikLights:testDuplicateModeWearsFuchsia()
+  report { setup = 0 }
+  deliverLaunchnik()
+  report { setup = 195 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.fuchsia.vibrant),
+    makeColourEvent(91, colours.white.bright),
+    makeColourEvent(60, colours.off),
+    makeColourEvent(50, colours.fuchsia.vibrant),
+  })
+  -- destination picking looks the same
+  report { setup = 200 }
+  lu.assertEquals(deliverLaunchnik(), {})
+  report { setup = 265 }
+  lu.assertEquals(deliverLaunchnik(), {})
+  report { setup = 0 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.white.bright),
+    makeColourEvent(91, colours.off),
+    makeColourEvent(60, colours.white.dim),
+    makeColourEvent(50, colours.white.dim),
+  })
+end
+
+-- the host reports the colours, values and transitions of every clip,
+-- fill-in and landing, which a duplicate copies
+function TestLaunchnikLights:testStateKeepsWhatADuplicateCopies()
+  report { track2clip3colour = 9, track2clip3fillincolour = 4, track2clip3landingcolour = 11, track2clip3fillinbpattern = 5, track2clip3landingcunipolar = 2, track2clip3fillindbipolar = 1 }
+  local index = launchnik.press.buttonIndex(2, 3)
+  lu.assertEquals(state.colours[index], 9)
+  lu.assertEquals(state.fillInColours[index], 4)
+  lu.assertEquals(state.landingColours[index], 11)
+  lu.assertEquals(state.fillInPatterns[index][2], 5)
+  lu.assertEquals(state.landingUnipolar[index][3], 2)
+  lu.assertEquals(state.fillInBipolar[index][4], 1)
+  local button = state.button(index)
+  lu.assertEquals(button.clip.colour, 9)
+  lu.assertEquals(button.fillIn.patterns[2], 5)
+  lu.assertEquals(button.landing.colour, 11)
 end

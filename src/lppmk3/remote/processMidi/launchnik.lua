@@ -24,6 +24,8 @@ local forwardButton = 92
 local fillInButton = 30
 -- the button to the left of the third row of pads from the top
 local clearButton = 60
+-- the button to the left of the fourth row of pads from the top
+local duplicateButton = 50
 
 -- the name of the item that carries a change to the host
 local function itemName(change)
@@ -143,7 +145,7 @@ local allTracks = { 1, 2, 3, 4, 5, 6, 7, 8 }
 
 -- handles presses of the pads, the function buttons, the function select
 -- buttons, the scene buttons, the back button, the forward button, the clear
--- button and the fill-in button: a pad means what a click on the launch button in its place
+-- button, the duplicate button and the fill-in button: a pad means what a click on the launch button in its place
 -- means, a scene button what a click on the scene button of its row means, the
 -- other buttons what a click on the button of the same name on Launchnik
 -- means; the fill-in button is held down for as long as its button on the
@@ -183,6 +185,14 @@ local function processPadsAndTrackButtons(event)
       end
       return true
     end
+    if press.isDuplicateMode(state.setup) then
+      local pressed = press.buttonIndex(track, row)
+      local source = state.button(press.sourceButton(state.setup) or pressed)
+      for _, change in ipairs(press.duplicateModeLaunchButton(state.setup, track, row, state.present[pressed], source)) do
+        write(event, change)
+      end
+      return true
+    end
     local picked = press.pickedButton(state.setup)
     local fillInEditing = press.isFillInEditing(state.setup)
     if fillInEditing or press.isLandingEditing(state.setup) then
@@ -218,11 +228,28 @@ local function processPadsAndTrackButtons(event)
     write(event, press.clearButton(state.setup))
     return true
   end
+  if ret.x == controlChange and ret.y == duplicateButton then
+    write(event, press.duplicateButton(state.setup))
+    return true
+  end
   if ret.x == controlChange and isSceneButton then
     local scene = 9 - (ret.y - 9) / 10
     local holdsClip = {}
+    local sceneHoldsClip = false
     for track = 1, 8 do
       holdsClip[track] = state.present[press.buttonIndex(track, scene)]
+      sceneHoldsClip = sceneHoldsClip or holdsClip[track]
+    end
+    if press.isDuplicateMode(state.setup) then
+      local source = press.sourceScene(state.setup) or scene
+      local sources = {}
+      for track = 1, 8 do
+        sources[track] = state.button(press.buttonIndex(track, source))
+      end
+      for _, change in ipairs(press.duplicateModeSceneButton(state.setup, scene, sceneHoldsClip, sources)) do
+        write(event, change)
+      end
+      return true
     end
     for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip)) do
       writeHeld(event, change)

@@ -5,7 +5,7 @@
 -- Tracks and rows are numbered from 1. A launch button's index is 0..63,
 -- counted down track 1 first. A change names one property and its new value:
 --   { kind = "selection", track = 1..8, value = 0..8 }
---   { kind = "setup", value = 0..194 }
+--   { kind = "setup", value = 0..267 }
 --   { kind = "length", value = 0..7 }
 --   { kind = "present" | "colour", index = 0..63, value = ... }
 --   { kind = "pattern" | "unipolar" | "bipolar" | "transition", index = 0..63, output = 1..6, value = ... }
@@ -16,12 +16,12 @@
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
--- A press of a launch button outside fill-in editing, landing editing and
--- clear mode, a function button, a function select button, the setup button,
--- the clear button, the back button, the forward button or the fill-in button
--- changes one property at most; a press of a scene button, or of a launch
--- button in fill-in editing, landing editing or clear mode, yields a list of
--- changes.
+-- A press of a launch button outside fill-in editing, landing editing, clear
+-- mode and duplicate mode, a function button, a function select button, the
+-- setup button, the clear button, the duplicate button, the back button, the
+-- forward button or the fill-in button changes one property at most; a press
+-- of a scene button, or of a launch button in fill-in editing, landing
+-- editing, clear mode or duplicate mode, yields a list of changes.
 
 local selectionStop = 0
 
@@ -36,8 +36,14 @@ local setupClipPicking = 1
 local setupFirstClipEditing = 2
 local setupFirstFillInEditing = 66
 local setupFirstLandingEditing = 130
--- clear mode is not part of setup mode
+-- clear mode and duplicate mode are not part of setup mode; duplicate mode is
+-- source picking, then destination picking for a launch button or a scene as
+-- the source
 local setupClearMode = 194
+local setupSourcePicking = 195
+local setupFirstClipDestinationPicking = 196
+local setupFirstSceneDestinationPicking = 260
+local setupCount = 268
 
 local colourWhite = 0
 
@@ -123,6 +129,30 @@ end
 
 local function isLandingEditing(setup)
   return setup >= setupFirstLandingEditing and setup < setupClearMode
+end
+
+-- whether a setup state is one of duplicate mode: source picking or
+-- destination picking
+local function isDuplicateMode(setup)
+  return setup >= setupSourcePicking and setup < setupCount
+end
+
+-- the index of the launch button that is the source in destination picking,
+-- or nil if there is none
+local function sourceButton(setup)
+  if setup >= setupFirstClipDestinationPicking and setup < setupFirstSceneDestinationPicking then
+    return setup - setupFirstClipDestinationPicking
+  end
+  return nil
+end
+
+-- the scene that is the source in destination picking, or nil if there is
+-- none
+local function sourceScene(setup)
+  if setup >= setupFirstSceneDestinationPicking and setup < setupCount then
+    return setup - setupFirstSceneDestinationPicking + 1
+  end
+  return nil
 end
 
 -- the index of the launch button being edited in clip editing, fill-in
@@ -236,6 +266,85 @@ local function clearModeLaunchButton(setup, track, row, pressedHoldsClip)
   return changes
 end
 
+-- the kinds of change for the settings of a clip, a fill-in and a landing, by
+-- the field of the settings they come from
+local settingsPrefixes = { clip = "", fillIn = "fillin", landing = "landing" }
+
+-- what makes a launch button, destination, exactly like source, which holds
+-- for each of clip, fillIn and landing: present, colour, and patterns,
+-- unipolar, bipolar and transitions by output; of fillIn and landing also
+-- oneBarPattern; returns a list of changes
+local function copyButton(source, destination)
+  local changes = {}
+  for _, field in ipairs({ "clip", "fillIn", "landing" }) do
+    local prefix = settingsPrefixes[field]
+    local settings = source[field]
+    table.insert(changes, { kind = prefix .. "present", index = destination, value = settings.present and 1 or 0 })
+    table.insert(changes, { kind = prefix .. "colour", index = destination, value = settings.colour })
+    for output = 1, outputCount do
+      table.insert(changes, { kind = prefix .. "pattern", index = destination, output = output, value = settings.patterns[output] })
+      table.insert(changes, { kind = prefix .. "unipolar", index = destination, output = output, value = settings.unipolar[output] })
+      table.insert(changes, { kind = prefix .. "bipolar", index = destination, output = output, value = settings.bipolar[output] })
+      table.insert(changes, { kind = prefix .. "transition", index = destination, output = output, value = settings.transitions[output] })
+    end
+    if prefix ~= "" then
+      table.insert(changes, { kind = prefix .. "onebarpattern", index = destination, value = settings.oneBarPattern and 1 or 0 })
+    end
+  end
+  return changes
+end
+
+-- a press of a launch button in duplicate mode: in source picking it picks
+-- the launch button as the source, if it holds a clip; in destination picking
+-- for a launch button it makes the pressed one exactly like the source,
+-- source, as copyButton describes it, and returns to launch mode; a press of
+-- the source itself does nothing, as does a press with a scene as the source
+-- or outside duplicate mode; returns a list of changes
+local function duplicateModeLaunchButton(setup, track, row, pressedHoldsClip, source)
+  if setup == setupSourcePicking then
+    if pressedHoldsClip then
+      return { { kind = "setup", value = setupFirstClipDestinationPicking + buttonIndex(track, row) } }
+    end
+    return {}
+  end
+  local sourceIndex = sourceButton(setup)
+  local pressed = buttonIndex(track, row)
+  if sourceIndex == nil or pressed == sourceIndex then
+    return {}
+  end
+  local changes = copyButton(source, pressed)
+  table.insert(changes, { kind = "setup", value = setupLaunchMode })
+  return changes
+end
+
+-- a press of a scene button in duplicate mode: in source picking it picks the
+-- scene as the source, if it holds a clip; in destination picking for a scene
+-- it makes every launch button of the pressed scene exactly like the one of
+-- the same track in the source scene, sources by track, 1..8, empty ones
+-- included, and returns to launch mode; a press of the source itself does
+-- nothing, as does a press with a launch button as the source or outside
+-- duplicate mode; returns a list of changes
+local function duplicateModeSceneButton(setup, scene, sceneHoldsClip, sources)
+  if setup == setupSourcePicking then
+    if sceneHoldsClip then
+      return { { kind = "setup", value = setupFirstSceneDestinationPicking + scene - 1 } }
+    end
+    return {}
+  end
+  local source = sourceScene(setup)
+  if source == nil or scene == source then
+    return {}
+  end
+  local changes = {}
+  for track = 1, 8 do
+    for _, change in ipairs(copyButton(sources[track], buttonIndex(track, scene))) do
+      table.insert(changes, change)
+    end
+  end
+  table.insert(changes, { kind = "setup", value = setupLaunchMode })
+  return changes
+end
+
 -- holding down a launch button and letting it go, or a scene button for each
 -- track: in launch mode a press holds the track's relaunch press down as well
 -- as choosing the selection; whether it relaunches is up to Launchnik;
@@ -291,7 +400,8 @@ end
 -- switch interval it stands for, immediate at the bottom and sixteen bars at
 -- the top, and returns to launch mode; in clear mode it empties every launch
 -- button of its scene that holds a clip and returns to launch mode; in clip
--- editing it does nothing (see
+-- editing it does nothing, and in duplicate mode nothing here, see
+-- duplicateModeSceneButton (see
 -- ADR 0004 of the Launchnik repository); holdsClip says of each track, 1..8,
 -- whether its launch button in the scene holds a clip; returns a list of
 -- changes
@@ -324,15 +434,15 @@ local function sceneButton(setup, scene, holdsClip)
   return changes
 end
 
--- from launch mode to clip picking, and from any step of setup mode or from
--- clear mode back to launch mode
+-- from launch mode to clip picking, and from any step of setup mode, from
+-- clear mode or from duplicate mode back to launch mode
 local function setupButton(setup)
   local inSetupMode = setup ~= setupLaunchMode
   return { kind = "setup", value = inSetupMode and setupLaunchMode or setupClipPicking }
 end
 
--- from launch mode to clear mode and back; in setup mode it does nothing, so
--- returns nil
+-- from launch mode to clear mode and back; in setup mode and duplicate mode it
+-- does nothing, so returns nil
 local function clearButton(setup)
   if setup == setupLaunchMode then
     return { kind = "setup", value = setupClearMode }
@@ -343,15 +453,28 @@ local function clearButton(setup)
   return nil
 end
 
+-- from launch mode to duplicate mode, and from either step of it back; in
+-- setup mode and clear mode it does nothing, so returns nil
+local function duplicateButton(setup)
+  if setup == setupLaunchMode then
+    return { kind = "setup", value = setupSourcePicking }
+  end
+  if isDuplicateMode(setup) then
+    return { kind = "setup", value = setupLaunchMode }
+  end
+  return nil
+end
+
 -- goes back one step of setup mode: from landing editing to fill-in editing
 -- and from fill-in editing to clip editing of the same launch button, from
--- clip editing to clip picking, from clip picking and from clear mode to
--- launch mode; in launch mode it does nothing, so returns nil
+-- clip editing to clip picking, from clip picking, from clear mode and from
+-- duplicate mode to launch mode; in launch mode it does nothing, so returns
+-- nil
 local function backButton(setup)
   if setup == setupLaunchMode then
     return nil
   end
-  if setup == setupClearMode then
+  if setup == setupClearMode or isDuplicateMode(setup) then
     return { kind = "setup", value = setupLaunchMode }
   end
   if isLandingEditing(setup) then
@@ -392,6 +515,10 @@ return {
   setupFirstFillInEditing = setupFirstFillInEditing,
   setupFirstLandingEditing = setupFirstLandingEditing,
   setupClearMode = setupClearMode,
+  setupSourcePicking = setupSourcePicking,
+  setupFirstClipDestinationPicking = setupFirstClipDestinationPicking,
+  setupFirstSceneDestinationPicking = setupFirstSceneDestinationPicking,
+  setupCount = setupCount,
   functionStop = functionStop,
   functionMute = functionMute,
   functionSolo = functionSolo,
@@ -406,6 +533,12 @@ return {
   isFillInEditing = isFillInEditing,
   isLandingEditing = isLandingEditing,
   pickedButton = pickedButton,
+  isDuplicateMode = isDuplicateMode,
+  sourceButton = sourceButton,
+  sourceScene = sourceScene,
+  copyButton = copyButton,
+  duplicateModeLaunchButton = duplicateModeLaunchButton,
+  duplicateModeSceneButton = duplicateModeSceneButton,
   launchButton = launchButton,
   fillInEditingLaunchButton = fillInEditingLaunchButton,
   landingEditingLaunchButton = landingEditingLaunchButton,
@@ -417,6 +550,7 @@ return {
   sceneButton = sceneButton,
   setupButton = setupButton,
   clearButton = clearButton,
+  duplicateButton = duplicateButton,
   backButton = backButton,
   forwardButton = forwardButton,
   fillInButton = fillInButton,

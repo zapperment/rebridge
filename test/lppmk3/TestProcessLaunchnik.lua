@@ -45,7 +45,7 @@ end
 -- the host scales an item's range onto the remotable's, so the ranges have to
 -- be those of Launchnik's Remote items for the values to arrive unchanged
 function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
-  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 194 })
+  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 267 })
   lu.assertEquals({ items.fillin.min, items.fillin.max }, { 0, 1 })
   lu.assertEquals({ items.fillinlight.min, items.fillinlight.max }, { 0, 42 })
   lu.assertEquals({ items.forwardlight.min, items.forwardlight.max }, { 0, 42 })
@@ -607,5 +607,127 @@ function TestProcessLaunchnik:testSceneButtonInClearModeClearsItsScene()
   lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip1present.index, value = 0 })
   lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track7clip1present.index, value = 0 })
   lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+  lu.assertEquals(state.heldRelaunches, {})
+end
+
+-- the button to the left of the fourth row of pads sends control change 50
+function TestProcessLaunchnik:testDuplicateButtonSwitchesBetweenLaunchModeAndDuplicateMode()
+  lu.assertTrue(receive(controlChange, 50, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupSourcePicking })
+
+  remote.clearMocks()
+  state.setup = press.setupFirstClipDestinationPicking + press.buttonIndex(3, 2)
+  lu.assertTrue(receive(controlChange, 50, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+function TestProcessLaunchnik:testDuplicateButtonDoesNothingInSetupModeAndClearMode()
+  for _, step in ipairs({ press.setupClipPicking, press.setupClearMode }) do
+    remote.clearMocks()
+    state.setup = step
+    lu.assertTrue(receive(controlChange, 50, 127))
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  end
+end
+
+function TestProcessLaunchnik:testReleasingDuplicateButtonDoesNothing()
+  lu.assertFalse(receive(controlChange, 50, 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testBackButtonLeavesDuplicateMode()
+  state.setup = press.setupSourcePicking
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+-- in source picking a pad with a clip picks its launch button, holding no
+-- relaunch press; an empty one does nothing
+function TestProcessLaunchnik:testPadInSourcePickingPicksTheSource()
+  state.setup = press.setupSourcePicking
+  state.present[press.buttonIndex(3, 2)] = true
+  lu.assertTrue(receive(noteOn, pad(3, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstClipDestinationPicking + press.buttonIndex(3, 2) })
+  lu.assertNil(state.heldRelaunches[3])
+
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(4, 2), 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+-- the values the host reports about every setting of track 3, row 2
+local function reportSource()
+  local source = press.buttonIndex(3, 2)
+  state.present[source] = true
+  state.colours[source] = 9
+  state.fillInPresent[source] = true
+  state.fillInColours[source] = 4
+  state.fillInOneBarPattern[source] = true
+  state.landingColours[source] = 11
+  for output = 1, 6 do
+    state.patterns[source][output] = output
+    state.unipolar[source][output] = 6 - output
+    state.fillInBipolar[source][output] = output
+    state.landingTransitions[source][output] = output % 5
+  end
+end
+
+-- in destination picking a pad writes every setting of the source to its
+-- launch button through the items of that launch button, then returns to
+-- launch mode
+function TestProcessLaunchnik:testPadInDestinationPickingCopiesTheSource()
+  reportSource()
+  state.setup = press.setupFirstClipDestinationPicking + press.buttonIndex(3, 2)
+  lu.assertTrue(receive(noteOn, pad(5, 7), 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 81)
+  local written = {}
+  for _, call in ipairs(calls) do
+    written[call[1].item] = call[1].value
+  end
+  lu.assertEquals(written[items.track5clip7present.index], 1)
+  lu.assertEquals(written[items.track5clip7colour.index], 9)
+  lu.assertEquals(written[items.track5clip7fillinpresent.index], 1)
+  lu.assertEquals(written[items.track5clip7fillincolour.index], 4)
+  lu.assertEquals(written[items.track5clip7fillinonebarpattern.index], 1)
+  lu.assertEquals(written[items.track5clip7landingpresent.index], 0)
+  lu.assertEquals(written[items.track5clip7landingcolour.index], 11)
+  lu.assertEquals(written[items.track5clip7cpattern.index], 3)
+  lu.assertEquals(written[items.track5clip7bunipolar.index], 4)
+  lu.assertEquals(written[items.track5clip7fillinfbipolar.index], 6)
+  lu.assertEquals(written[items.track5clip7landingdtransition.index], 4)
+  lu.assertEquals(calls[81][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+function TestProcessLaunchnik:testSourcePadInDestinationPickingDoesNothing()
+  reportSource()
+  state.setup = press.setupFirstClipDestinationPicking + press.buttonIndex(3, 2)
+  lu.assertTrue(receive(noteOn, pad(3, 2), 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+-- in source picking a scene button with a clip in its scene picks the scene;
+-- in destination picking another scene button copies the whole scene there,
+-- empty launch buttons included, and returns to launch mode
+function TestProcessLaunchnik:testSceneButtonsDuplicateAScene()
+  reportSource()
+  state.setup = press.setupSourcePicking
+  lu.assertTrue(receive(controlChange, 79, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstSceneDestinationPicking + 1 })
+
+  remote.clearMocks()
+  state.setup = press.setupFirstSceneDestinationPicking + 1
+  state.present[press.buttonIndex(6, 8)] = true
+  lu.assertTrue(receive(controlChange, 19, 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 8 * 80 + 1)
+  local written = {}
+  for _, call in ipairs(calls) do
+    written[call[1].item] = call[1].value
+  end
+  lu.assertEquals(written[items.track3clip8present.index], 1)
+  lu.assertEquals(written[items.track3clip8colour.index], 9)
+  lu.assertEquals(written[items.track6clip8present.index], 0)
+  lu.assertEquals(calls[#calls][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
   lu.assertEquals(state.heldRelaunches, {})
 end

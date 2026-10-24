@@ -10,7 +10,8 @@ local state = {}
 -- puts everything back to what a new device has, with nothing to deliver
 function state.reset()
   -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 =
-  -- fill-in editing, 130..193 = landing editing, 194 = clear mode
+  -- fill-in editing, 130..193 = landing editing, 194 = clear mode, 195 =
+  -- source picking, 196..259 and 260..267 = destination picking
   state.setup = 0
   state.setupChanged = false
   -- 0 = stop, 1 = mute, 2 = solo
@@ -30,10 +31,11 @@ function state.reset()
   state.mapped = false
   -- the colour last delivered to the logo, which is dark to begin with
   state.logoColour = 0
-  -- the colours last delivered to the back button and the clear button, which
-  -- are dark to begin with
+  -- the colours last delivered to the back button, the clear button and the
+  -- duplicate button, which are dark to begin with
   state.backButtonColour = 0
   state.clearButtonColour = 0
+  state.duplicateButtonColour = 0
   -- the colours last delivered to the fill-in button and the forward button,
   -- which are dark to begin with
   state.fillInButtonColour = 0
@@ -44,13 +46,22 @@ function state.reset()
   -- by launch button index, 0..63; the settings of the CV outputs by index
   -- and then by output, 1..6
   state.present = {}
+  state.colours = {}
   state.patterns = {}
   state.unipolar = {}
   state.bipolar = {}
   state.transitions = {}
   state.fillInPresent = {}
+  state.fillInColours = {}
+  state.fillInPatterns = {}
+  state.fillInUnipolar = {}
+  state.fillInBipolar = {}
   state.fillInTransitions = {}
   state.landingPresent = {}
+  state.landingColours = {}
+  state.landingPatterns = {}
+  state.landingUnipolar = {}
+  state.landingBipolar = {}
   state.landingTransitions = {}
   state.landingOneBarPattern = {}
   state.fillInOneBarPattern = {}
@@ -81,15 +92,33 @@ function state.reset()
     state.unipolar[index] = {}
     state.bipolar[index] = {}
     state.transitions[index] = {}
+    state.fillInPatterns[index] = {}
+    state.fillInUnipolar[index] = {}
+    state.fillInBipolar[index] = {}
     state.fillInTransitions[index] = {}
+    state.landingPatterns[index] = {}
+    state.landingUnipolar[index] = {}
+    state.landingBipolar[index] = {}
     state.landingTransitions[index] = {}
-    -- a new clip plays the pattern of its row, at unipolar and bipolar 0
+    -- a new clip plays the pattern of its row, at unipolar and bipolar 0, in
+    -- the colour of its track; a new device's fill-ins and landings are the
+    -- same, in white
+    local trackColours = { 1, 2, 3, 5, 7, 9, 11, 13 }
+    state.colours[index] = trackColours[math.floor(index / 8) + 1]
+    state.fillInColours[index] = 0
+    state.landingColours[index] = 0
     for output = 1, outputCount do
       state.patterns[index][output] = index % 8
       state.unipolar[index][output] = 0
       state.bipolar[index][output] = 3
       state.transitions[index][output] = 0
+      state.fillInPatterns[index][output] = index % 8
+      state.fillInUnipolar[index][output] = 0
+      state.fillInBipolar[index][output] = 3
       state.fillInTransitions[index][output] = 0
+      state.landingPatterns[index][output] = index % 8
+      state.landingUnipolar[index][output] = 0
+      state.landingBipolar[index][output] = 3
       state.landingTransitions[index][output] = 0
     end
     state.fillInPresent[index] = false
@@ -100,6 +129,26 @@ function state.reset()
   end
   -- when the codec last switched the surface to programmer mode
   state.preparedAt = nil
+end
+
+-- everything a launch button holds, as press.copyButton takes it
+function state.button(index)
+  return {
+    clip = {
+      present = state.present[index], colour = state.colours[index], patterns = state.patterns[index],
+      unipolar = state.unipolar[index], bipolar = state.bipolar[index], transitions = state.transitions[index],
+    },
+    fillIn = {
+      present = state.fillInPresent[index], colour = state.fillInColours[index], patterns = state.fillInPatterns[index],
+      unipolar = state.fillInUnipolar[index], bipolar = state.fillInBipolar[index], transitions = state.fillInTransitions[index],
+      oneBarPattern = state.fillInOneBarPattern[index],
+    },
+    landing = {
+      present = state.landingPresent[index], colour = state.landingColours[index], patterns = state.landingPatterns[index],
+      unipolar = state.landingUnipolar[index], bipolar = state.landingBipolar[index], transitions = state.landingTransitions[index],
+      oneBarPattern = state.landingOneBarPattern[index],
+    },
+  }
 end
 
 state.reset()
