@@ -10,7 +10,7 @@ local state = {}
 -- puts everything back to what a new device has, with nothing to deliver
 function state.reset()
   -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 =
-  -- fill-in editing, 130..193 = landing editing
+  -- fill-in editing, 130..193 = landing editing, 194 = clear mode
   state.setup = 0
   state.setupChanged = false
   -- 0 = stop, 1 = mute, 2 = solo
@@ -30,8 +30,10 @@ function state.reset()
   state.mapped = false
   -- the colour last delivered to the logo, which is dark to begin with
   state.logoColour = 0
-  -- the colour last delivered to the back button, which is dark to begin with
+  -- the colours last delivered to the back button and the clear button, which
+  -- are dark to begin with
   state.backButtonColour = 0
+  state.clearButtonColour = 0
   -- the colours last delivered to the fill-in button and the forward button,
   -- which are dark to begin with
   state.fillInButtonColour = 0

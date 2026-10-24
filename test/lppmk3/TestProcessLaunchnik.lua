@@ -45,7 +45,7 @@ end
 -- the host scales an item's range onto the remotable's, so the ranges have to
 -- be those of Launchnik's Remote items for the values to arrive unchanged
 function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
-  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 193 })
+  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 194 })
   lu.assertEquals({ items.fillin.min, items.fillin.max }, { 0, 1 })
   lu.assertEquals({ items.fillinlight.min, items.fillinlight.max }, { 0, 42 })
   lu.assertEquals({ items.forwardlight.min, items.forwardlight.max }, { 0, 42 })
@@ -544,4 +544,68 @@ function TestProcessLaunchnik:testColourAndCVPadsInFillInEditingChangeTheFillIn(
   state.fillInOneBarPattern[picked] = true
   lu.assertTrue(receive(noteOn, pad(8, 2), 127))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
+end
+
+-- the button to the left of the third row of pads from the top sends control
+-- change 60; it switches between launch mode and clear mode, and does
+-- nothing in setup mode
+function TestProcessLaunchnik:testClearButtonSwitchesBetweenLaunchModeAndClearMode()
+  lu.assertTrue(receive(controlChange, 60, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupClearMode })
+
+  remote.clearMocks()
+  state.setup = press.setupClearMode
+  lu.assertTrue(receive(controlChange, 60, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+function TestProcessLaunchnik:testClearButtonDoesNothingInSetupMode()
+  state.setup = press.setupClipPicking
+  lu.assertTrue(receive(controlChange, 60, 127))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testReleasingClearButtonDoesNothing()
+  lu.assertFalse(receive(controlChange, 60, 0))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+function TestProcessLaunchnik:testBackButtonLeavesClearMode()
+  state.setup = press.setupClearMode
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+-- a pad in clear mode empties its launch button and returns to launch mode,
+-- holding no relaunch press
+function TestProcessLaunchnik:testPadInClearModeClearsItsLaunchButton()
+  state.setup = press.setupClearMode
+  state.present[press.buttonIndex(3, 2)] = true
+  lu.assertTrue(receive(noteOn, pad(3, 2), 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 2)
+  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track3clip2present.index, value = 0 })
+  lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+  lu.assertNil(state.heldRelaunches[3])
+end
+
+function TestProcessLaunchnik:testEmptyPadInClearModeOnlyReturnsToLaunchMode()
+  state.setup = press.setupClearMode
+  lu.assertTrue(receive(noteOn, pad(3, 2), 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+end
+
+-- a scene button in clear mode empties every launch button of its scene that
+-- holds a clip and returns to launch mode; the top one sends 89
+function TestProcessLaunchnik:testSceneButtonInClearModeClearsItsScene()
+  state.setup = press.setupClearMode
+  state.present[press.buttonIndex(2, 1)] = true
+  state.present[press.buttonIndex(7, 1)] = true
+  lu.assertTrue(receive(controlChange, 89, 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 3)
+  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip1present.index, value = 0 })
+  lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track7clip1present.index, value = 0 })
+  lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+  lu.assertEquals(state.heldRelaunches, {})
 end

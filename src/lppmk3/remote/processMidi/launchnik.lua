@@ -22,6 +22,8 @@ local backButton = 91
 local forwardButton = 92
 -- the button to the left of the sixth row of pads from the top
 local fillInButton = 30
+-- the button to the left of the third row of pads from the top
+local clearButton = 60
 
 -- the name of the item that carries a change to the host
 local function itemName(change)
@@ -140,8 +142,8 @@ end
 local allTracks = { 1, 2, 3, 4, 5, 6, 7, 8 }
 
 -- handles presses of the pads, the function buttons, the function select
--- buttons, the scene buttons, the back button, the forward button and the
--- fill-in button: a pad means what a click on the launch button in its place
+-- buttons, the scene buttons, the back button, the forward button, the clear
+-- button and the fill-in button: a pad means what a click on the launch button in its place
 -- means, a scene button what a click on the scene button of its row means, the
 -- other buttons what a click on the button of the same name on Launchnik
 -- means; the fill-in button is held down for as long as its button on the
@@ -175,6 +177,12 @@ local function processPadsAndTrackButtons(event)
     -- the pads send note 11 at the bottom left to 88 at the top right
     local track = ret.y % 10
     local row = 9 - ((ret.y - track) / 10)
+    if state.setup == press.setupClearMode then
+      for _, change in ipairs(press.clearModeLaunchButton(state.setup, track, row, state.present[press.buttonIndex(track, row)])) do
+        write(event, change)
+      end
+      return true
+    end
     local picked = press.pickedButton(state.setup)
     local fillInEditing = press.isFillInEditing(state.setup)
     if fillInEditing or press.isLandingEditing(state.setup) then
@@ -204,6 +212,10 @@ local function processPadsAndTrackButtons(event)
   end
   if ret.x == controlChange and ret.y == backButton then
     write(event, press.backButton(state.setup))
+    return true
+  end
+  if ret.x == controlChange and ret.y == clearButton then
+    write(event, press.clearButton(state.setup))
     return true
   end
   if ret.x == controlChange and isSceneButton then

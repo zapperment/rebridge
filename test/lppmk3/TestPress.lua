@@ -217,6 +217,8 @@ function TestPress:testSetupNumbering()
   lu.assertTrue(press.isLandingEditing(130))
   lu.assertTrue(press.isLandingEditing(193))
   lu.assertFalse(press.isLandingEditing(194))
+  lu.assertEquals(press.setupClearMode, 194)
+  lu.assertNil(press.pickedButton(press.setupClearMode))
   lu.assertNil(press.pickedButton(launchMode))
   lu.assertNil(press.pickedButton(clipPicking))
   lu.assertEquals(press.pickedButton(editing), picked)
@@ -356,4 +358,56 @@ function TestPress:testOneBarPatternSwitchGoesOnAndOff()
   -- in fill-in editing it is the fill-in's
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), { { kind = "fillinonebarpattern", index = picked, value = 1 } })
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(false), someClipValues), {})
+end
+
+-- the cases of the clear mode tests of PressTest.cpp
+local clearMode = press.setupClearMode
+
+function TestPress:testClearButtonSwitchesBetweenLaunchModeAndClearMode()
+  lu.assertEquals(press.clearButton(launchMode), { kind = "setup", value = clearMode })
+  lu.assertEquals(press.clearButton(clearMode), { kind = "setup", value = launchMode })
+  -- in setup mode it does nothing
+  lu.assertNil(press.clearButton(clipPicking))
+  lu.assertNil(press.clearButton(editing))
+  lu.assertNil(press.clearButton(fillInEditing))
+  lu.assertNil(press.clearButton(landingEditing))
+end
+
+function TestPress:testSetupAndBackButtonsLeaveClearMode()
+  lu.assertEquals(press.setupButton(clearMode), { kind = "setup", value = launchMode })
+  lu.assertEquals(press.backButton(clearMode), { kind = "setup", value = launchMode })
+  lu.assertNil(press.forwardButton(clearMode, true))
+end
+
+function TestPress:testClearModeEmptiesThePressedLaunchButtonAndReturns()
+  lu.assertEquals(press.clearModeLaunchButton(clearMode, 4, 6, true), {
+    { kind = "present", index = press.buttonIndex(4, 6), value = 0 },
+    { kind = "setup", value = launchMode },
+  })
+end
+
+function TestPress:testClearModeLeavesAnEmptyLaunchButtonEmpty()
+  lu.assertEquals(press.clearModeLaunchButton(clearMode, 4, 6, false), { { kind = "setup", value = launchMode } })
+end
+
+function TestPress:testClearModeLaunchButtonDoesNothingElsewhere()
+  lu.assertEquals(press.clearModeLaunchButton(launchMode, 4, 6, true), {})
+  lu.assertEquals(press.clearModeLaunchButton(clipPicking, 4, 6, true), {})
+  lu.assertEquals(press.clearModeLaunchButton(editing, 4, 6, true), {})
+  -- and the ordinary rules do nothing in clear mode, not even a relaunch
+  lu.assertNil(press.launchButton(clearMode, 4, 6, true, press.edited(false)))
+  lu.assertNil(press.relaunchButton(clearMode, 4, true))
+end
+
+function TestPress:testSceneButtonInClearModeEmptiesItsSceneAndReturns()
+  local holdsClip = { true, false, true, false, false, false, false, true }
+  lu.assertEquals(press.sceneButton(clearMode, 5, holdsClip), {
+    { kind = "present", index = press.buttonIndex(1, 5), value = 0 },
+    { kind = "present", index = press.buttonIndex(3, 5), value = 0 },
+    { kind = "present", index = press.buttonIndex(8, 5), value = 0 },
+    { kind = "setup", value = launchMode },
+  })
+  -- a scene without clips only returns to launch mode
+  local none = { false, false, false, false, false, false, false, false }
+  lu.assertEquals(press.sceneButton(clearMode, 5, none), { { kind = "setup", value = launchMode } })
 end

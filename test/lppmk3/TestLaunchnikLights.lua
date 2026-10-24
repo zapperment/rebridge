@@ -147,6 +147,7 @@ function TestLaunchnikLights:testVibrantPadIsDeliveredAgainWhenTheModeChanges()
     makeColourEvent(81, colours.red.vibrant, pulsing),
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(91, colours.off),
+    makeColourEvent(60, colours.white.dim),
   })
 end
 
@@ -255,10 +256,12 @@ function TestLaunchnikLights:testFunctionSelectButtonsShowTheFunction()
 end
 
 -- the logo shows Launchnik's mode colour: white in launch mode, green in clip
--- picking, yellow in clip editing, red in fill-in editing, blue in landing
--- editing, and the back button the light of Launchnik's back button: vibrant
--- white in clip picking, vibrant green in clip editing, vibrant yellow in
--- fill-in editing, vibrant red in landing editing, dark in launch mode
+-- picking, yellow in clip editing, orange in fill-in editing, blue in landing
+-- editing, red in clear mode, and the back button the light of Launchnik's
+-- back button: vibrant white in clip picking and clear mode, vibrant green in
+-- clip editing, vibrant yellow in fill-in editing, vibrant orange in landing
+-- editing, dark in launch mode; the clear button, on control change 60, is
+-- dim white in launch mode, vibrant white in clear mode and dark in setup mode
 function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   report { setup = 1 }
   lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
@@ -270,17 +273,17 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
     makeColourEvent(99, colours.yellow.vibrant),
     makeColourEvent(91, colours.green.vibrant),
   })
-  -- in fill-in editing the logo is red, the back button yellow
+  -- in fill-in editing the logo is orange, the back button yellow
   report { setup = 76 }
   lu.assertEquals(deliverLaunchnik(), {
-    makeColourEvent(99, colours.red.vibrant),
+    makeColourEvent(99, colours.orange.vibrant),
     makeColourEvent(91, colours.yellow.vibrant),
   })
-  -- in landing editing the logo is blue, the back button red
+  -- in landing editing the logo is blue, the back button orange
   report { setup = 140 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.blue.vibrant),
-    makeColourEvent(91, colours.red.vibrant),
+    makeColourEvent(91, colours.orange.vibrant),
   })
   report { setup = 12 }
   lu.assertEquals(deliverLaunchnik(), {
@@ -294,6 +297,21 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.white.bright),
     makeColourEvent(91, colours.off),
+    makeColourEvent(60, colours.white.dim),
+  })
+  -- in clear mode the logo is red, the back button and the clear button
+  -- vibrant white
+  report { setup = 194 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.red.vibrant),
+    makeColourEvent(91, colours.white.bright),
+    makeColourEvent(60, colours.white.bright),
+  })
+  report { setup = 0 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.white.bright),
+    makeColourEvent(91, colours.off),
+    makeColourEvent(60, colours.white.dim),
   })
 end
 
@@ -302,11 +320,17 @@ end
 function TestLaunchnikLights:testLogoTurnsWhiteWhenLaunchnikIsMapped()
   lu.assertEquals(deliverLaunchnik(), {})
   report { setup = 0 }
-  lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(makeColourEvent(99, colours.white.bright)))
+  lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
+    makeColourEvent(99, colours.white.bright),
+    makeColourEvent(60, colours.white.dim)
+  ))
   report { setup = 0 }
   lu.assertEquals(deliverLaunchnik(), {})
   report({ setup = 0 }, false)
-  lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(makeColourEvent(99, colours.off)))
+  lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(
+    makeColourEvent(99, colours.off),
+    makeColourEvent(60, colours.off)
+  ))
 end
 
 -- while no Launchnik is mapped, its items are disabled
@@ -404,20 +428,21 @@ function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
   lu.assertFalse(state.fillInPresent[launchnik.press.buttonIndex(2, 3)])
 end
 
--- the fill-in button's light is 1 (dim white) or 5 (vibrant red) and shows on
--- control change 30; the forward button's is 0 (unlit), 5 (vibrant red) or 29
--- (vibrant blue) and shows on control change 92
+-- the fill-in button's light is 1 (dim white) or 8 (vibrant orange) and
+-- shows on control change 30; the forward button's is 0 (unlit), 8 (vibrant
+-- orange) or 29 (vibrant blue) and shows on control change 92
 function TestLaunchnikLights:testFillInAndForwardButtonsShowTheirLights()
   report { setup = 0, fillinlight = 1, forwardlight = 0 }
   lu.assertEquals(deliverLaunchnik(), mappedFunctionSelect(
     makeColourEvent(99, colours.white.bright),
+    makeColourEvent(60, colours.white.dim),
     makeColourEvent(30, colours.white.dim)
   ))
-  report { fillinlight = 5 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(30, colours.red.vibrant) })
+  report { fillinlight = 8 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(30, colours.orange.vibrant) })
   lu.assertEquals(deliverLaunchnik(), {})
-  report { forwardlight = 5 }
-  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(92, colours.red.vibrant) })
+  report { forwardlight = 8 }
+  lu.assertEquals(deliverLaunchnik(), { makeColourEvent(92, colours.orange.vibrant) })
   report { forwardlight = 29 }
   lu.assertEquals(deliverLaunchnik(), { makeColourEvent(92, colours.blue.vibrant) })
   report { forwardlight = 0, fillinlight = 1 }
@@ -428,12 +453,32 @@ function TestLaunchnikLights:testFillInAndForwardButtonsShowTheirLights()
 end
 
 function TestLaunchnikLights:testFillInButtonsGoDarkWhenLaunchnikIsNoLongerMapped()
-  report { setup = 0, fillinlight = 5, forwardlight = 5 }
+  report { setup = 0, fillinlight = 8, forwardlight = 8 }
   deliverLaunchnik()
-  report({ setup = 0, fillinlight = 5, forwardlight = 5 }, false)
+  report({ setup = 0, fillinlight = 8, forwardlight = 8 }, false)
   lu.assertEquals(deliverLaunchnik(), unmappedFunctionSelect(
     makeColourEvent(99, colours.off),
+    makeColourEvent(60, colours.off),
     makeColourEvent(30, colours.off),
     makeColourEvent(92, colours.off)
   ))
+end
+
+-- in clear mode every launch button and scene button with something to clear
+-- flashes red (light 6), which shows as dim red plus flashing vibrant red,
+-- without pulsing
+function TestLaunchnikLights:testClearModeFlashesRed()
+  report { setup = 194, track1clip1light = 6, scene1light = 6 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(81, colours.red.dim),
+    makeColourEvent(81, colours.red.vibrant, flashing),
+    makeColourEvent(2, colours.white.dim),
+    makeColourEvent(3, colours.white.dim),
+    makeColourEvent(8, colours.red.vibrant),
+    makeColourEvent(0x59, colours.red.dim),
+    makeColourEvent(0x59, colours.red.vibrant, flashing),
+    makeColourEvent(99, colours.red.vibrant),
+    makeColourEvent(91, colours.white.bright),
+    makeColourEvent(60, colours.white.bright),
+  })
 end

@@ -5,7 +5,7 @@
 -- Tracks and rows are numbered from 1. A launch button's index is 0..63,
 -- counted down track 1 first. A change names one property and its new value:
 --   { kind = "selection", track = 1..8, value = 0..8 }
---   { kind = "setup", value = 0..193 }
+--   { kind = "setup", value = 0..194 }
 --   { kind = "length", value = 0..7 }
 --   { kind = "present" | "colour", index = 0..63, value = ... }
 --   { kind = "pattern" | "unipolar" | "bipolar" | "transition", index = 0..63, output = 1..6, value = ... }
@@ -16,11 +16,12 @@
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
--- A press of a launch button outside fill-in editing and landing editing, a
--- function button, a function select button, the setup button, the back
--- button, the forward button or the fill-in button changes one property at
--- most; a press of a scene button, or of a launch button in fill-in editing or
--- landing editing, yields a list of changes.
+-- A press of a launch button outside fill-in editing, landing editing and
+-- clear mode, a function button, a function select button, the setup button,
+-- the clear button, the back button, the forward button or the fill-in button
+-- changes one property at most; a press of a scene button, or of a launch
+-- button in fill-in editing, landing editing or clear mode, yields a list of
+-- changes.
 
 local selectionStop = 0
 
@@ -35,7 +36,8 @@ local setupClipPicking = 1
 local setupFirstClipEditing = 2
 local setupFirstFillInEditing = 66
 local setupFirstLandingEditing = 130
-local setupCount = 194
+-- clear mode is not part of setup mode
+local setupClearMode = 194
 
 local colourWhite = 0
 
@@ -120,11 +122,12 @@ local function isFillInEditing(setup)
 end
 
 local function isLandingEditing(setup)
-  return setup >= setupFirstLandingEditing and setup < setupCount
+  return setup >= setupFirstLandingEditing and setup < setupClearMode
 end
 
 -- the index of the launch button being edited in clip editing, fill-in
--- editing or landing editing, or nil in launch mode and clip picking
+-- editing or landing editing, or nil in launch mode, clip picking and clear
+-- mode
 local function pickedButton(setup)
   if isClipEditing(setup) then
     return setup - setupFirstClipEditing
@@ -218,6 +221,21 @@ local function landingEditingLaunchButton(setup, track, row, landing, clipValues
   return editOverlay("landing", setup, track, row, landing, clipValues)
 end
 
+-- a press of a launch button in clear mode empties it, if it holds a clip, as
+-- SET/CLEAR does in clip editing, and returns to launch mode; returns a list
+-- of changes, empty outside clear mode
+local function clearModeLaunchButton(setup, track, row, pressedHoldsClip)
+  if setup ~= setupClearMode then
+    return {}
+  end
+  local changes = {}
+  if pressedHoldsClip then
+    table.insert(changes, { kind = "present", index = buttonIndex(track, row), value = 0 })
+  end
+  table.insert(changes, { kind = "setup", value = setupLaunchMode })
+  return changes
+end
+
 -- holding down a launch button and letting it go, or a scene button for each
 -- track: in launch mode a press holds the track's relaunch press down as well
 -- as choosing the selection; whether it relaunches is up to Launchnik;
@@ -271,7 +289,9 @@ end
 -- in launch mode, a scene button means what the eight launch buttons of its
 -- scene mean, track by track: the selections, then the relaunch presses; in clip picking it chooses the length of the
 -- switch interval it stands for, immediate at the bottom and sixteen bars at
--- the top, and returns to launch mode; in clip editing it does nothing (see
+-- the top, and returns to launch mode; in clear mode it empties every launch
+-- button of its scene that holds a clip and returns to launch mode; in clip
+-- editing it does nothing (see
 -- ADR 0004 of the Launchnik repository); holdsClip says of each track, 1..8,
 -- whether its launch button in the scene holds a clip; returns a list of
 -- changes
@@ -282,6 +302,15 @@ local function sceneButton(setup, scene, holdsClip)
       { kind = "length", value = 8 - scene },
       { kind = "setup", value = setupLaunchMode },
     }
+  end
+  if setup == setupClearMode then
+    for track = 1, 8 do
+      if holdsClip[track] then
+        table.insert(changes, { kind = "present", index = buttonIndex(track, scene), value = 0 })
+      end
+    end
+    table.insert(changes, { kind = "setup", value = setupLaunchMode })
+    return changes
   end
   if setup ~= setupLaunchMode then
     return changes
@@ -295,18 +324,35 @@ local function sceneButton(setup, scene, holdsClip)
   return changes
 end
 
+-- from launch mode to clip picking, and from any step of setup mode or from
+-- clear mode back to launch mode
 local function setupButton(setup)
   local inSetupMode = setup ~= setupLaunchMode
   return { kind = "setup", value = inSetupMode and setupLaunchMode or setupClipPicking }
 end
 
+-- from launch mode to clear mode and back; in setup mode it does nothing, so
+-- returns nil
+local function clearButton(setup)
+  if setup == setupLaunchMode then
+    return { kind = "setup", value = setupClearMode }
+  end
+  if setup == setupClearMode then
+    return { kind = "setup", value = setupLaunchMode }
+  end
+  return nil
+end
+
 -- goes back one step of setup mode: from landing editing to fill-in editing
 -- and from fill-in editing to clip editing of the same launch button, from
--- clip editing to clip picking, from clip picking to launch mode; in launch
--- mode it does nothing, so returns nil
+-- clip editing to clip picking, from clip picking and from clear mode to
+-- launch mode; in launch mode it does nothing, so returns nil
 local function backButton(setup)
   if setup == setupLaunchMode then
     return nil
+  end
+  if setup == setupClearMode then
+    return { kind = "setup", value = setupLaunchMode }
   end
   if isLandingEditing(setup) then
     return { kind = "setup", value = setupFirstFillInEditing + pickedButton(setup) }
@@ -345,6 +391,7 @@ return {
   setupFirstClipEditing = setupFirstClipEditing,
   setupFirstFillInEditing = setupFirstFillInEditing,
   setupFirstLandingEditing = setupFirstLandingEditing,
+  setupClearMode = setupClearMode,
   functionStop = functionStop,
   functionMute = functionMute,
   functionSolo = functionSolo,
@@ -362,12 +409,14 @@ return {
   launchButton = launchButton,
   fillInEditingLaunchButton = fillInEditingLaunchButton,
   landingEditingLaunchButton = landingEditingLaunchButton,
+  clearModeLaunchButton = clearModeLaunchButton,
   relaunchButton = relaunchButton,
   stopButton = stopButton,
   functionButton = functionButton,
   functionSelectButton = functionSelectButton,
   sceneButton = sceneButton,
   setupButton = setupButton,
+  clearButton = clearButton,
   backButton = backButton,
   forwardButton = forwardButton,
   fillInButton = fillInButton,
