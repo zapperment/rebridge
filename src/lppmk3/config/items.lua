@@ -42,6 +42,11 @@ local outputLetters = { "a", "b", "c", "d", "e", "f" }
 -- to D), 1960 values in all
 local outputSettingsMax = 8 * 7 * 7 * 5 - 1
 
+-- whether there is a clip, fill-in, landing, intro or outro (1), plus 2
+-- times its colour (0..13), plus 28 if one-bar pattern is on, as Launchnik
+-- has them in one item (its ADR 0008); a clip's one-bar pattern is always off
+local switchesMax = 2 * 14 * 2 - 1
+
 for track = 1, 8 do
   -- the CV mode of each CV output: 0 = bipolar, 1 = unipolar, 2 = pattern; the
   -- codec only reads it, to tell what a press in clip editing means
@@ -65,18 +70,11 @@ for track = 1, 8 do
     local index = (track - 1) * 8 + (row - 1)
     -- 0 = unlit, then dim, vibrant and flashing for each of the 14 colours
     items[clip .. "light"] = { output = "value", min = 0, max = 42, launchnik = { kind = "light", index = index } }
-    items[clip .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "present", index = index } }
-    items[clip .. "colour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "colour", index = index } }
-    items[clip .. "fillinpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinpresent", index = index } }
-    items[clip .. "fillincolour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "fillincolour", index = index } }
-    items[clip .. "fillinonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "fillinonebarpattern", index = index } }
-    items[clip .. "landingpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingpresent", index = index } }
-    items[clip .. "landingcolour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "landingcolour", index = index } }
-    items[clip .. "landingonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingonebarpattern", index = index } }
-    for _, overlay in ipairs({ "intro", "outro" }) do
-      items[clip .. overlay .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = overlay .. "present", index = index } }
-      items[clip .. overlay .. "colour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = overlay .. "colour", index = index } }
-      items[clip .. overlay .. "onebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = overlay .. "onebarpattern", index = index } }
+    -- whether there is a clip, fill-in, landing, intro or outro, its colour
+    -- and one-bar pattern, all in one item (see Launchnik's ADR 0008), for
+    -- example track1clip1switches and track1clip1fillinswitches
+    for _, prefix in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
+      items[clip .. prefix .. "switches"] = { input = "value", output = "value", min = 0, max = switchesMax, launchnik = { kind = prefix .. "switches", index = index } }
     end
     -- the settings of the CV outputs, for example track1clip1a,
     -- track1clip1fillina, track1clip1landinga, track1clip1introa and

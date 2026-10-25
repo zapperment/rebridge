@@ -7,15 +7,17 @@
 --   { kind = "selection", track = 1..8, value = 0..8 }
 --   { kind = "setup", value = 0..395 }
 --   { kind = "length", value = 0..7 }
---   { kind = "present" | "colour", index = 0..63, value = ... }
+--   { kind = "switches", index = 0..63, value = 0..55 }
 --   { kind = "output", index = 0..63, output = 1..6, value = 0..1959 }
---   { kind = "fillinpresent" | "fillincolour" | "fillinonebarpattern", index = 0..63, value = ... }
+--   { kind = "fillinswitches", index = 0..63, value = 0..55 }
 --   { kind = "fillinoutput", index = 0..63, output = 1..6, value = 0..1959 }
---   { kind = "landingpresent" | "landingcolour" | "landingonebarpattern", index = 0..63, value = ... }
+--   { kind = "landingswitches", index = 0..63, value = 0..55 }
 --   { kind = "landingoutput", index = 0..63, output = 1..6, value = 0..1959 }
 --   and the same with "intro" and "outro" in place of "landing"
 -- The value of an output is all four of its settings in one number, see
--- packOutputSettings.
+-- packOutputSettings; that of the switches is whether there is a clip,
+-- fill-in, landing, intro or outro, its colour and one-bar pattern, see
+-- packSwitches.
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
@@ -74,6 +76,19 @@ local function packOutputSettings(pattern, unipolar, bipolar, transition)
   return pattern + patternCount * (unipolar + valueCount * (bipolar + valueCount * transition))
 end
 
+-- whether there is a clip, fill-in, landing, intro or outro, its colour and
+-- one-bar pattern as one number, as Launchnik keeps them (see its ADR
+-- 0008): 1 if it is there, plus 2 times the colour, plus 28 if one-bar
+-- pattern is on
+local function packSwitches(present, colour, oneBarPattern)
+  return (present and 1 or 0) + 2 * colour + (oneBarPattern and 28 or 0)
+end
+
+-- the other way round: present, colour, oneBarPattern
+local function unpackSwitches(packed)
+  return packed % 2 == 1, math.floor(packed / 2) % 14, packed >= 28
+end
+
 -- the other way round: pattern, unipolar, bipolar, transition
 local function unpackOutputSettings(packed)
   local pattern = packed % patternCount
@@ -105,11 +120,12 @@ end
 -- launch button's track and the transitions, by output; with present alone,
 -- the CV modes of a new device and every transition off; oneBarPattern says
 -- of a fill-in, a landing, an intro or an outro whether one-bar pattern is on;
--- values holds the other settings by output, { patterns = {}, unipolar = {},
--- bipolar = {} }, which a press keeps, since all four settings of an output
--- are one item; without it, pattern 1 and unipolar and bipolar 0
+-- values holds the colour and the other settings by output, { colour = ...,
+-- patterns = {}, unipolar = {}, bipolar = {} }, which a press keeps, since
+-- the switches are one item, and all four settings of an output another;
+-- without it, white, pattern 1 and unipolar and bipolar 0
 local function edited(present, cvModes, transitions, oneBarPattern, values)
-  local result = { present = present, cvModes = {}, transitions = {}, patterns = {}, unipolar = {}, bipolar = {}, oneBarPattern = oneBarPattern or false }
+  local result = { present = present, colour = values and values.colour or colourWhite, cvModes = {}, transitions = {}, patterns = {}, unipolar = {}, bipolar = {}, oneBarPattern = oneBarPattern or false }
   for output = 1, outputCount do
     result.cvModes[output] = cvModes and cvModes[output] or defaultCVMode(output)
     result.transitions[output] = transitions and transitions[output] or transitionOff
@@ -127,10 +143,11 @@ end
 local function editSetting(prefix, picked, track, row, settings)
   local isColourRow = row == firstColourRow or row == firstColourRow + 1
   if isColourRow and track <= coloursPerRow then
-    return { kind = prefix .. "colour", index = picked, value = (row - firstColourRow) * coloursPerRow + track - 1 }
+    local colour = (row - firstColourRow) * coloursPerRow + track - 1
+    return { kind = prefix .. "switches", index = picked, value = packSwitches(settings.present, colour, settings.oneBarPattern) }
   end
   if prefix ~= "" and track == oneBarPattern.track and row == oneBarPattern.row then
-    return { kind = prefix .. "onebarpattern", index = picked, value = settings.oneBarPattern and 0 or 1 }
+    return { kind = prefix .. "switches", index = picked, value = packSwitches(settings.present, settings.colour, not settings.oneBarPattern) }
   end
   local output = row - firstOutputRow + 1
   if output < 1 or output > outputCount or track < 1 or track > 8 then
@@ -231,7 +248,7 @@ local function launchButton(setup, track, row, pressedHoldsClip, pickedClip)
 
   local picked = pickedButton(setup)
   if track == toggle.track and row == toggle.row then
-    return { kind = "present", index = picked, value = pickedClip.present and 0 or 1 }
+    return { kind = "switches", index = picked, value = packSwitches(not pickedClip.present, pickedClip.colour, false) }
   end
   -- the colour and CV controls are not there without a clip
   if not pickedClip.present then
@@ -251,17 +268,15 @@ local function editOverlay(prefix, setup, track, row, settings, clipValues)
   local picked = pickedButton(setup)
   if track == toggle.track and row == toggle.row then
     if settings.present then
-      return { { kind = prefix .. "present", index = picked, value = 0 } }
+      return { { kind = prefix .. "switches", index = picked, value = packSwitches(false, settings.colour, settings.oneBarPattern) } }
     end
     local changes = {
-      { kind = prefix .. "present", index = picked, value = 1 },
-      { kind = prefix .. "colour", index = picked, value = colourWhite },
+      { kind = prefix .. "switches", index = picked, value = packSwitches(true, colourWhite, false) },
     }
     for output = 1, outputCount do
       local value = packOutputSettings(clipValues.patterns[output], clipValues.unipolar[output], clipValues.bipolar[output], transitionOff)
       table.insert(changes, { kind = prefix .. "output", index = picked, output = output, value = value })
     end
-    table.insert(changes, { kind = prefix .. "onebarpattern", index = picked, value = 0 })
     return changes
   end
   -- the colour and CV controls are not there without a fill-in or landing
@@ -306,15 +321,15 @@ local function outroEditingLaunchButton(setup, track, row, outro, clipValues)
 end
 
 -- a press of a launch button in clear mode empties it, if it holds a clip, as
--- SET/CLEAR does in clip editing, and returns to launch mode; returns a list
--- of changes, empty outside clear mode
-local function clearModeLaunchButton(setup, track, row, pressedHoldsClip)
+-- SET/CLEAR does in clip editing, keeping its colour, pressedColour, and
+-- returns to launch mode; returns a list of changes, empty outside clear mode
+local function clearModeLaunchButton(setup, track, row, pressedHoldsClip, pressedColour)
   if setup ~= setupClearMode then
     return {}
   end
   local changes = {}
   if pressedHoldsClip then
-    table.insert(changes, { kind = "present", index = buttonIndex(track, row), value = 0 })
+    table.insert(changes, { kind = "switches", index = buttonIndex(track, row), value = packSwitches(false, pressedColour, false) })
   end
   table.insert(changes, { kind = "setup", value = setupLaunchMode })
   return changes
@@ -333,14 +348,11 @@ local function copyButton(source, destination)
   for _, field in ipairs({ "clip", "fillIn", "landing", "intro", "outro" }) do
     local prefix = settingsPrefixes[field]
     local settings = source[field]
-    table.insert(changes, { kind = prefix .. "present", index = destination, value = settings.present and 1 or 0 })
-    table.insert(changes, { kind = prefix .. "colour", index = destination, value = settings.colour })
+    local oneBar = prefix ~= "" and settings.oneBarPattern
+    table.insert(changes, { kind = prefix .. "switches", index = destination, value = packSwitches(settings.present, settings.colour, oneBar) })
     for output = 1, outputCount do
       local value = packOutputSettings(settings.patterns[output], settings.unipolar[output], settings.bipolar[output], settings.transitions[output])
       table.insert(changes, { kind = prefix .. "output", index = destination, output = output, value = value })
-    end
-    if prefix ~= "" then
-      table.insert(changes, { kind = prefix .. "onebarpattern", index = destination, value = settings.oneBarPattern and 1 or 0 })
     end
   end
   return changes
@@ -455,9 +467,9 @@ end
 -- editing it does nothing, and in duplicate mode nothing here, see
 -- duplicateModeSceneButton (see
 -- ADR 0004 of the Launchnik repository); holdsClip says of each track, 1..8,
--- whether its launch button in the scene holds a clip; returns a list of
--- changes
-local function sceneButton(setup, scene, holdsClip)
+-- whether its launch button in the scene holds a clip, and colours its clip's
+-- colour, which clearing keeps; returns a list of changes
+local function sceneButton(setup, scene, holdsClip, colours)
   local changes = {}
   if setup == setupClipPicking then
     return {
@@ -468,7 +480,7 @@ local function sceneButton(setup, scene, holdsClip)
   if setup == setupClearMode then
     for track = 1, 8 do
       if holdsClip[track] then
-        table.insert(changes, { kind = "present", index = buttonIndex(track, scene), value = 0 })
+        table.insert(changes, { kind = "switches", index = buttonIndex(track, scene), value = packSwitches(false, colours[track], false) })
       end
     end
     table.insert(changes, { kind = "setup", value = setupLaunchMode })
@@ -596,6 +608,8 @@ return {
   cvModePattern = cvModePattern,
   defaultCVMode = defaultCVMode,
   packOutputSettings = packOutputSettings,
+  packSwitches = packSwitches,
+  unpackSwitches = unpackSwitches,
   unpackOutputSettings = unpackOutputSettings,
   edited = edited,
   buttonIndex = buttonIndex,

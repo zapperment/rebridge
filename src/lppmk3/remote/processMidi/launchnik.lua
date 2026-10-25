@@ -180,7 +180,7 @@ local function processPadsAndTrackButtons(event)
     local track = ret.y % 10
     local row = 9 - ((ret.y - track) / 10)
     if state.setup == press.setupClearMode then
-      for _, change in ipairs(press.clearModeLaunchButton(state.setup, track, row, state.present[press.buttonIndex(track, row)])) do
+      for _, change in ipairs(press.clearModeLaunchButton(state.setup, track, row, state.present[press.buttonIndex(track, row)], state.colours[press.buttonIndex(track, row)])) do
         write(event, change)
       end
       return true
@@ -241,9 +241,11 @@ local function processPadsAndTrackButtons(event)
   if ret.x == controlChange and isSceneButton then
     local scene = 9 - (ret.y - 9) / 10
     local holdsClip = {}
+    local colours = {}
     local sceneHoldsClip = false
     for track = 1, 8 do
       holdsClip[track] = state.present[press.buttonIndex(track, scene)]
+      colours[track] = state.colours[press.buttonIndex(track, scene)]
       sceneHoldsClip = sceneHoldsClip or holdsClip[track]
     end
     if press.isDuplicateMode(state.setup) then
@@ -257,7 +259,7 @@ local function processPadsAndTrackButtons(event)
       end
       return true
     end
-    for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip)) do
+    for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip, colours)) do
       writeHeld(event, change)
     end
     return true

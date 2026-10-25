@@ -45,8 +45,7 @@ local function launchnikMap()
   end
 
   clipGroups("light", "Light")
-  clipGroups("present", "Present")
-  clipGroups("colour", "Colour")
+  clipGroups("switches", "Switches")
   trackGroup("mute", "Mute")
   trackGroup("solo", "Solo")
   trackGroup("relaunch", "Relaunch")
@@ -56,18 +55,10 @@ local function launchnikMap()
     map("scene" .. scene .. "light", "Scene " .. scene .. " Light")
   end
   trackGroup("selection", "Selection")
-  clipGroups("fillinpresent", "Fill-In Present")
-  clipGroups("fillincolour", "Fill-In Colour")
-  clipGroups("fillinonebarpattern", "Fill-In One-Bar Pattern")
-  clipGroups("landingpresent", "Landing Present")
-  clipGroups("landingcolour", "Landing Colour")
-  clipGroups("landingonebarpattern", "Landing One-Bar Pattern")
-  clipGroups("intropresent", "Intro Present")
-  clipGroups("introcolour", "Intro Colour")
-  clipGroups("introonebarpattern", "Intro One-Bar Pattern")
-  clipGroups("outropresent", "Outro Present")
-  clipGroups("outrocolour", "Outro Colour")
-  clipGroups("outroonebarpattern", "Outro One-Bar Pattern")
+  clipGroups("fillinswitches", "Fill-In Switches")
+  clipGroups("landingswitches", "Landing Switches")
+  clipGroups("introswitches", "Intro Switches")
+  clipGroups("outroswitches", "Outro Switches")
 
   -- the CV modes, a group of six for each track
   for track = 1, 8 do
