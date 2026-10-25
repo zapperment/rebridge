@@ -103,6 +103,15 @@ local function mixedModes(present)
   return press.edited(present, { 2, 1, 0, 1, 1, 1 }, { 0, 0, 2, 4, 0, 0 })
 end
 
+-- the change a press makes to one setting of an output of mixedModes, whose
+-- other settings are those of a new clip in row 1 and its transitions: all
+-- four are one value
+local function settingChange(prefix, setting, output, value)
+  local settings = { pattern = 0, unipolar = 0, bipolar = 3, transition = ({ 0, 0, 2, 4, 0, 0 })[output] }
+  settings[setting] = value
+  return { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(settings.pattern, settings.unipolar, settings.bipolar, settings.transition) }
+end
+
 function TestPress:testClipEditingColourRows()
   for column = 1, 7 do
     lu.assertEquals(press.launchButton(editing, column, 1, false, press.edited(true)),
@@ -118,29 +127,29 @@ function TestPress:testClipEditingPatternMode()
   -- output A, in row 3, is in pattern mode: all eight columns are patterns
   for column = 1, 8 do
     lu.assertEquals(press.launchButton(editing, column, 3, false, mixedModes(true)),
-      { kind = "pattern", index = picked, output = 1, value = column - 1 })
+      settingChange("", "pattern", 1, column - 1))
   end
 end
 
 function TestPress:testClipEditingUnipolarAndBipolarValues()
   for column = 1, 7 do
     lu.assertEquals(press.launchButton(editing, column, 4, false, mixedModes(true)),
-      { kind = "unipolar", index = picked, output = 2, value = column - 1 })
+      settingChange("", "unipolar", 2, column - 1))
     lu.assertEquals(press.launchButton(editing, column, 5, false, mixedModes(true)),
-      { kind = "bipolar", index = picked, output = 3, value = column - 1 })
+      settingChange("", "bipolar", 3, column - 1))
     lu.assertEquals(press.launchButton(editing, column, 8, false, mixedModes(true)),
-      { kind = "unipolar", index = picked, output = 6, value = column - 1 })
+      settingChange("", "unipolar", 6, column - 1))
   end
 end
 
 function TestPress:testClipEditingTransitionButtonGoesRound()
   lu.assertEquals(press.launchButton(editing, 8, 4, false, mixedModes(true)),
-    { kind = "transition", index = picked, output = 2, value = 1 })
+    settingChange("", "transition", 2, 1))
   lu.assertEquals(press.launchButton(editing, 8, 5, false, mixedModes(true)),
-    { kind = "transition", index = picked, output = 3, value = 3 })
+    settingChange("", "transition", 3, 3))
   -- after D it is off again
   lu.assertEquals(press.launchButton(editing, 8, 6, false, mixedModes(true)),
-    { kind = "transition", index = picked, output = 4, value = 0 })
+    settingChange("", "transition", 4, 0))
 end
 
 function TestPress:testClipEditingUnusedLaunchButtonsDoNothing()
@@ -293,10 +302,7 @@ function TestPress:testFillInEditingToggleSetsUpANewFillIn()
     { kind = "fillincolour", index = picked, value = 0 },
   }
   for output = 1, 6 do
-    table.insert(expected, { kind = "fillinpattern", index = picked, output = output, value = output - 1 })
-    table.insert(expected, { kind = "fillinunipolar", index = picked, output = output, value = 7 - output })
-    table.insert(expected, { kind = "fillinbipolar", index = picked, output = output, value = output - 1 })
-    table.insert(expected, { kind = "fillintransition", index = picked, output = output, value = 0 })
+    table.insert(expected, { kind = "fillin" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
   end
   table.insert(expected, { kind = "fillinonebarpattern", index = picked, value = 0 })
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), someClipValues), expected)
@@ -309,13 +315,13 @@ function TestPress:testFillInEditingColourAndCVRows()
   for column = 1, 7 do
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 1, mixedModes(true), someClipValues), { { kind = "fillincolour", index = picked, value = column - 1 } })
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 2, mixedModes(true), someClipValues), { { kind = "fillincolour", index = picked, value = 6 + column } })
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 4, mixedModes(true), someClipValues), { { kind = "fillinunipolar", index = picked, output = 2, value = column - 1 } })
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, mixedModes(true), someClipValues), { { kind = "fillinbipolar", index = picked, output = 3, value = column - 1 } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 4, mixedModes(true), someClipValues), { settingChange("fillin", "unipolar", 2, column - 1) })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, mixedModes(true), someClipValues), { settingChange("fillin", "bipolar", 3, column - 1) })
   end
   for column = 1, 8 do
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { { kind = "fillinpattern", index = picked, output = 1, value = column - 1 } })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { settingChange("fillin", "pattern", 1, column - 1) })
   end
-  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 5, mixedModes(true), someClipValues), { { kind = "fillintransition", index = picked, output = 3, value = 3 } })
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 5, mixedModes(true), someClipValues), { settingChange("fillin", "transition", 3, 3) })
   -- the last track of the second colour row is the one-bar pattern switch
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 2, mixedModes(true), someClipValues), { { kind = "fillinonebarpattern", index = picked, value = 1 } })
 end
@@ -347,10 +353,7 @@ function TestPress:testLandingEditingToggleSetsUpANewLanding()
     { kind = "landingcolour", index = picked, value = 0 },
   }
   for output = 1, 6 do
-    table.insert(expected, { kind = "landingpattern", index = picked, output = output, value = output - 1 })
-    table.insert(expected, { kind = "landingunipolar", index = picked, output = output, value = 7 - output })
-    table.insert(expected, { kind = "landingbipolar", index = picked, output = output, value = output - 1 })
-    table.insert(expected, { kind = "landingtransition", index = picked, output = output, value = 0 })
+    table.insert(expected, { kind = "landing" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
   end
   table.insert(expected, { kind = "landingonebarpattern", index = picked, value = 0 })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(false), someClipValues), expected)
@@ -361,10 +364,10 @@ end
 
 function TestPress:testLandingEditingColourAndCVRows()
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 2, mixedModes(true), someClipValues), { { kind = "landingcolour", index = picked, value = 9 } })
-  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 6, 3, mixedModes(true), someClipValues), { { kind = "landingpattern", index = picked, output = 1, value = 5 } })
-  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 5, 4, mixedModes(true), someClipValues), { { kind = "landingunipolar", index = picked, output = 2, value = 4 } })
-  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 1, 5, mixedModes(true), someClipValues), { { kind = "landingbipolar", index = picked, output = 3, value = 0 } })
-  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 6, mixedModes(true), someClipValues), { { kind = "landingtransition", index = picked, output = 4, value = 0 } })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 6, 3, mixedModes(true), someClipValues), { settingChange("landing", "pattern", 1, 5) })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 5, 4, mixedModes(true), someClipValues), { settingChange("landing", "unipolar", 2, 4) })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 1, 5, mixedModes(true), someClipValues), { settingChange("landing", "bipolar", 3, 0) })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 6, mixedModes(true), someClipValues), { settingChange("landing", "transition", 4, 0) })
   -- without a landing there is nothing but the toggle
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 2, mixedModes(false), someClipValues), {})
 end
@@ -503,9 +506,7 @@ for prefix, field in pairs({ [""] = "clip", fillin = "fillIn", landing = "landin
   copiedSettings[prefix .. "present"] = { field, "present" }
   copiedSettings[prefix .. "colour"] = { field, "colour" }
   copiedSettings[prefix .. "onebarpattern"] = { field, "oneBarPattern" }
-  for name, setting in pairs({ pattern = "patterns", unipolar = "unipolar", bipolar = "bipolar", transition = "transitions" }) do
-    copiedSettings[prefix .. name] = { field, setting }
-  end
+  copiedSettings[prefix .. "output"] = { field, "output" }
 end
 
 -- plays the changes to one launch button back into the shape of a button,
@@ -522,7 +523,11 @@ local function replay(changes, index)
       local field, setting = unpack(copiedSettings[change.kind])
       local settings = button[field]
       if change.output then
-        settings[setting][change.output] = change.value
+        local pattern, unipolar, bipolar, transition = press.unpackOutputSettings(change.value)
+        settings.patterns[change.output] = pattern
+        settings.unipolar[change.output] = unipolar
+        settings.bipolar[change.output] = bipolar
+        settings.transitions[change.output] = transition
       elseif setting == "colour" then
         settings.colour = change.value
       else
@@ -550,10 +555,10 @@ function TestPress:testClipDestinationPickingCopiesEverythingAndReturns()
   -- the destination may be on another track, empty or not
   for _, held in ipairs({ false, true }) do
     local changes = press.duplicateModeLaunchButton(324 + picked, 6, 3, held, source)
-    lu.assertEquals(#changes, 135)
-    lu.assertEquals(changes[135], { kind = "setup", value = launchMode })
+    lu.assertEquals(#changes, 45)
+    lu.assertEquals(changes[45], { kind = "setup", value = launchMode })
     local copy, count = replay(changes, press.buttonIndex(6, 3))
-    lu.assertEquals(count, 134)
+    lu.assertEquals(count, 44)
     lu.assertEquals(copy, withoutClipOneBarPattern(someButton(2)))
   end
 end
@@ -584,11 +589,11 @@ function TestPress:testSceneDestinationPickingCopiesTheWholeSceneAndReturns()
   lu.assertTrue(sources[2].clip.present)
   -- with clips or without, any scene but the source is a destination
   local changes = press.duplicateModeSceneButton(393, 2, false, sources)
-  lu.assertEquals(#changes, 8 * 134 + 1)
+  lu.assertEquals(#changes, 8 * 44 + 1)
   lu.assertEquals(changes[#changes], { kind = "setup", value = launchMode })
   for track = 1, 8 do
     local copy, count = replay(changes, press.buttonIndex(track, 2))
-    lu.assertEquals(count, 134)
+    lu.assertEquals(count, 44)
     lu.assertEquals(copy, withoutClipOneBarPattern(someButton(track)))
   end
 end
@@ -621,18 +626,46 @@ function TestPress:testIntroAndOutroEditing()
       { kind = prefix .. "colour", index = picked, value = 0 },
     }
     for output = 1, 6 do
-      table.insert(expected, { kind = prefix .. "pattern", index = picked, output = output, value = output - 1 })
-      table.insert(expected, { kind = prefix .. "unipolar", index = picked, output = output, value = 7 - output })
-      table.insert(expected, { kind = prefix .. "bipolar", index = picked, output = output, value = output - 1 })
-      table.insert(expected, { kind = prefix .. "transition", index = picked, output = output, value = 0 })
+      table.insert(expected, { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
     end
     table.insert(expected, { kind = prefix .. "onebarpattern", index = picked, value = 0 })
     lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(false), someClipValues), expected)
     lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(true), someClipValues), { { kind = prefix .. "present", index = picked, value = 0 } })
     lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(true), someClipValues), { { kind = prefix .. "colour", index = picked, value = 9 } })
-    lu.assertEquals(editLaunchButton(setup, 5, 4, mixedModes(true), someClipValues), { { kind = prefix .. "unipolar", index = picked, output = 2, value = 4 } })
-    lu.assertEquals(editLaunchButton(setup, 8, 6, mixedModes(true), someClipValues), { { kind = prefix .. "transition", index = picked, output = 4, value = 0 } })
+    lu.assertEquals(editLaunchButton(setup, 5, 4, mixedModes(true), someClipValues), { settingChange(prefix, "unipolar", 2, 4) })
+    lu.assertEquals(editLaunchButton(setup, 8, 6, mixedModes(true), someClipValues), { settingChange(prefix, "transition", 4, 0) })
     lu.assertEquals(editLaunchButton(setup, 8, 2, mixedModes(true), someClipValues), { { kind = prefix .. "onebarpattern", index = picked, value = 1 } })
     lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(false), someClipValues), {})
   end
+end
+
+-- the same cases as TestOutputSettingsPackIntoOneNumber of LauncherTest.cpp:
+-- the four settings of a CV output are one number, every combination its own
+function TestPress:testOutputSettingsPackIntoOneNumber()
+  local seen = {}
+  for pattern = 0, 7 do
+    for unipolar = 0, 6 do
+      for bipolar = 0, 6 do
+        for transition = 0, 4 do
+          local packed = press.packOutputSettings(pattern, unipolar, bipolar, transition)
+          lu.assertTrue(packed >= 0 and packed < 1960 and not seen[packed])
+          seen[packed] = true
+          lu.assertEquals({ press.unpackOutputSettings(packed) }, { pattern, unipolar, bipolar, transition })
+        end
+      end
+    end
+  end
+  -- what a new clip has in row 1
+  lu.assertEquals(press.packOutputSettings(0, 0, 3, 0), 168)
+end
+
+-- the same cases as TestEditingKeepsTheOtherSettingsOfTheOutput of
+-- PressTest.cpp: a press changes one setting and hands on the other three
+function TestPress:testEditingKeepsTheOtherSettingsOfTheOutput()
+  local values = { patterns = { 0, 5, 0, 0, 0, 0 }, unipolar = { 0, 2, 0, 0, 0, 0 }, bipolar = { 3, 6, 3, 3, 3, 3 } }
+  local settings = press.edited(true, { 2, 1, 0, 1, 1, 1 }, { 0, 2, 0, 0, 0, 0 }, false, values)
+  -- output B is unipolar: column 4 sets the unipolar value 3
+  lu.assertEquals(press.launchButton(editing, 4, 4, false, settings), { kind = "output", index = picked, output = 2, value = press.packOutputSettings(5, 3, 6, 2) })
+  -- the transition button moves the transition on and keeps the values
+  lu.assertEquals(press.launchButton(editing, 8, 4, false, settings), { kind = "output", index = picked, output = 2, value = press.packOutputSettings(5, 2, 6, 3) })
 end

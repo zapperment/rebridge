@@ -16,6 +16,12 @@ local state = launchnik.state
 local flashing = const.colourBehaviour.flashing
 local pulsing = const.colourBehaviour.pulsing
 
+-- the settings of a CV output as the host reports them, all four in one
+-- value: those of a new clip in row 1, unless given
+local function packed(settings)
+  return launchnik.press.packOutputSettings(settings.pattern or 0, settings.unipolar or 0, settings.bipolar or 3, settings.transition or 0)
+end
+
 -- simulates the host reporting new values for the named items
 local function report(values, isEnabled)
   local byIndex = {}
@@ -421,7 +427,7 @@ function TestLaunchnikLights:testFlashingSceneLightsAreDeliveredAsDimPlusFlashin
 end
 
 function TestLaunchnikLights:testKeepsLandings()
-  report { track2clip3landingpresent = 1, track2clip3landingctransition = 4 }
+  report { track2clip3landingpresent = 1, track2clip3landingc = packed { transition = 4 } }
   lu.assertTrue(state.landingPresent[launchnik.press.buttonIndex(2, 3)])
   lu.assertEquals(state.landingTransitions[launchnik.press.buttonIndex(2, 3)][3], 4)
   report { track2clip3landingpresent = 0 }
@@ -434,12 +440,12 @@ end
 
 function TestLaunchnikLights:testKeepsIntrosAndOutros()
   local index = launchnik.press.buttonIndex(2, 3)
-  report { track2clip3intropresent = 1, track2clip3introcolour = 4, track2clip3introonebarpattern = 1, track2clip3introbpattern = 5 }
+  report { track2clip3intropresent = 1, track2clip3introcolour = 4, track2clip3introonebarpattern = 1, track2clip3introb = packed { pattern = 5 } }
   lu.assertTrue(state.introPresent[index])
   lu.assertEquals(state.introColours[index], 4)
   lu.assertTrue(state.introOneBarPattern[index])
   lu.assertEquals(state.introPatterns[index][2], 5)
-  report { track2clip3outropresent = 1, track2clip3outrocolour = 6, track2clip3outroctransition = 3, track2clip3outrodunipolar = 2 }
+  report { track2clip3outropresent = 1, track2clip3outrocolour = 6, track2clip3outroc = packed { transition = 3 }, track2clip3outrod = packed { unipolar = 2 } }
   lu.assertTrue(state.outroPresent[index])
   lu.assertEquals(state.outroColours[index], 6)
   lu.assertEquals(state.outroTransitions[index][3], 3)
@@ -452,9 +458,9 @@ function TestLaunchnikLights:testKeepsIntrosAndOutros()
 end
 
 function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
-  report { track2clip3bpattern = 5, track2clip3fillinpresent = 1 }
+  report { track2clip3b = packed { pattern = 5 }, track2clip3fillinpresent = 1 }
   lu.assertEquals(state.patterns[launchnik.press.buttonIndex(2, 3)][2], 5)
-  report { track2clip3cunipolar = 4, track2clip3dbipolar = 1, track2clip3etransition = 2, track2clip3fillinftransition = 3, track2cvmodec = 0 }
+  report { track2clip3c = packed { unipolar = 4 }, track2clip3d = packed { bipolar = 1 }, track2clip3e = packed { transition = 2 }, track2clip3fillinf = packed { transition = 3 }, track2cvmodec = 0 }
   lu.assertEquals(state.unipolar[launchnik.press.buttonIndex(2, 3)][3], 4)
   lu.assertEquals(state.bipolar[launchnik.press.buttonIndex(2, 3)][4], 1)
   lu.assertEquals(state.transitions[launchnik.press.buttonIndex(2, 3)][5], 2)
@@ -553,7 +559,7 @@ end
 -- the host reports the colours, values and transitions of every clip,
 -- fill-in and landing, which a duplicate copies
 function TestLaunchnikLights:testStateKeepsWhatADuplicateCopies()
-  report { track2clip3colour = 9, track2clip3fillincolour = 4, track2clip3landingcolour = 11, track2clip3fillinbpattern = 5, track2clip3landingcunipolar = 2, track2clip3fillindbipolar = 1 }
+  report { track2clip3colour = 9, track2clip3fillincolour = 4, track2clip3landingcolour = 11, track2clip3fillinb = packed { pattern = 5 }, track2clip3landingc = packed { unipolar = 2 }, track2clip3fillind = packed { bipolar = 1 } }
   local index = launchnik.press.buttonIndex(2, 3)
   lu.assertEquals(state.colours[index], 9)
   lu.assertEquals(state.fillInColours[index], 4)

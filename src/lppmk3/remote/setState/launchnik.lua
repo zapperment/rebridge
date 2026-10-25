@@ -17,28 +17,15 @@ local function findItem(index)
   return itemsByIndex[index]
 end
 
--- the settings of the CV outputs the codec keeps, by the kind of their items
+-- the settings of the CV outputs the codec keeps, by the kind of their items,
+-- which hold all four in one number: the names of the patterns, unipolar
+-- values, bipolar values and transitions in the state
 local outputSettings = {
-  pattern = "patterns",
-  unipolar = "unipolar",
-  bipolar = "bipolar",
-  transition = "transitions",
-  fillinpattern = "fillInPatterns",
-  fillinunipolar = "fillInUnipolar",
-  fillinbipolar = "fillInBipolar",
-  fillintransition = "fillInTransitions",
-  landingpattern = "landingPatterns",
-  landingunipolar = "landingUnipolar",
-  landingbipolar = "landingBipolar",
-  landingtransition = "landingTransitions",
-  intropattern = "introPatterns",
-  introunipolar = "introUnipolar",
-  introbipolar = "introBipolar",
-  introtransition = "introTransitions",
-  outropattern = "outroPatterns",
-  outrounipolar = "outroUnipolar",
-  outrobipolar = "outroBipolar",
-  outrotransition = "outroTransitions",
+  output = { "patterns", "unipolar", "bipolar", "transitions" },
+  fillinoutput = { "fillInPatterns", "fillInUnipolar", "fillInBipolar", "fillInTransitions" },
+  landingoutput = { "landingPatterns", "landingUnipolar", "landingBipolar", "landingTransitions" },
+  introoutput = { "introPatterns", "introUnipolar", "introBipolar", "introTransitions" },
+  outrooutput = { "outroPatterns", "outroUnipolar", "outroBipolar", "outroTransitions" },
 }
 
 -- the colours of the clips, fill-ins, landings, intros and outros, by the
@@ -96,7 +83,12 @@ local function setState(hostItems)
       elseif colourSettings[kind] then
         state[colourSettings[kind]][item.launchnik.index] = value
       elseif outputSettings[kind] then
-        state[outputSettings[kind]][item.launchnik.index][item.launchnik.output] = value
+        local names, index, output = outputSettings[kind], item.launchnik.index, item.launchnik.output
+        local pattern, unipolar, bipolar, transition = launchnik.press.unpackOutputSettings(value)
+        state[names[1]][index][output] = pattern
+        state[names[2]][index][output] = unipolar
+        state[names[3]][index][output] = bipolar
+        state[names[4]][index][output] = transition
       elseif kind == "cvmode" then
         state.cvModes[item.launchnik.track][item.launchnik.output] = value
       elseif switchSettings[kind] then

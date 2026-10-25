@@ -50,18 +50,11 @@ local function itemName(change)
   local track = math.floor(change.index / 8) + 1
   local row = change.index % 8 + 1
   local clip = "track" .. track .. "clip" .. row
-  -- a setting of a CV output, such as track1clip1apattern,
-  -- track1clip1fillinapattern, track1clip1landingapattern,
-  -- track1clip1introapattern or track1clip1outroapattern
+  -- the settings of a CV output, such as track1clip1a, track1clip1fillina,
+  -- track1clip1landinga, track1clip1introa or track1clip1outroa
   if change.output then
     local letter = string.char(string.byte("a") + change.output - 1)
-    for _, prefix in ipairs({ "fillin", "landing", "intro", "outro" }) do
-      local setting = string.match(change.kind, "^" .. prefix .. "(.+)$")
-      if setting then
-        return clip .. prefix .. letter .. setting
-      end
-    end
-    return clip .. letter .. change.kind
+    return clip .. string.match(change.kind, "^(.*)output$") .. letter
   end
   return clip .. change.kind
 end
@@ -80,19 +73,19 @@ end
 -- editing or outro editing needs to know of what is being edited
 local function editedSettings(picked)
   local track = math.floor(picked / 8) + 1
+  -- what is being edited, as state.button has it
+  local field = "clip"
   if press.isFillInEditing(state.setup) then
-    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked], state.fillInOneBarPattern[picked])
+    field = "fillIn"
+  elseif press.isLandingEditing(state.setup) then
+    field = "landing"
+  elseif press.isIntroEditing(state.setup) then
+    field = "intro"
+  elseif press.isOutroEditing(state.setup) then
+    field = "outro"
   end
-  if press.isLandingEditing(state.setup) then
-    return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked], state.landingOneBarPattern[picked])
-  end
-  if press.isIntroEditing(state.setup) then
-    return press.edited(state.introPresent[picked], state.cvModes[track], state.introTransitions[picked], state.introOneBarPattern[picked])
-  end
-  if press.isOutroEditing(state.setup) then
-    return press.edited(state.outroPresent[picked], state.cvModes[track], state.outroTransitions[picked], state.outroOneBarPattern[picked])
-  end
-  return press.edited(state.present[picked], state.cvModes[track], state.transitions[picked])
+  local settings = state.button(picked)[field]
+  return press.edited(settings.present, state.cvModes[track], settings.transitions, settings.oneBarPattern, settings)
 end
 
 -- whether any launch button of a track holds a clip

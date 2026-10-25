@@ -37,15 +37,10 @@ items.forwardlight = { output = "value", min = 0, max = 42, launchnik = { kind =
 local outputLetters = { "a", "b", "c", "d", "e", "f" }
 
 -- the settings of a CV output of a clip, a fill-in, a landing, an intro or an
--- outro, and their
--- ranges: eight
--- patterns, seven unipolar or bipolar values, five transitions (off, A to D)
-local outputSettings = {
-  { name = "pattern", max = 7 },
-  { name = "unipolar", max = 6 },
-  { name = "bipolar", max = 6 },
-  { name = "transition", max = 4 },
-}
+-- outro, all four in one item (see Launchnik's ADR 0008): eight patterns,
+-- seven unipolar values, seven bipolar values and five transitions (off, A
+-- to D), 1960 values in all
+local outputSettingsMax = 8 * 7 * 7 * 5 - 1
 
 for track = 1, 8 do
   -- the CV mode of each CV output: 0 = bipolar, 1 = unipolar, 2 = pattern; the
@@ -83,17 +78,15 @@ for track = 1, 8 do
       items[clip .. overlay .. "colour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = overlay .. "colour", index = index } }
       items[clip .. overlay .. "onebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = overlay .. "onebarpattern", index = index } }
     end
-    -- the settings of the CV outputs, for example track1clip1apattern,
-    -- track1clip1fillinapattern, track1clip1landingapattern,
-    -- track1clip1introapattern and track1clip1outroapattern; the codec reads
-    -- them all: the clip's, which a new fill-in, landing, intro or outro starts as a
-    -- copy of, the transitions, which a press moves on, and everything, which
-    -- a duplicate copies
+    -- the settings of the CV outputs, for example track1clip1a,
+    -- track1clip1fillina, track1clip1landinga, track1clip1introa and
+    -- track1clip1outroa; the codec reads them all: the clip's, which a new
+    -- fill-in, landing, intro or outro starts as a copy of, those being
+    -- edited, which a press keeps all but one of, and everything, which a
+    -- duplicate copies
     for output, letter in ipairs(outputLetters) do
-      for _, setting in ipairs(outputSettings) do
-        for _, prefix in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
-          items[clip .. prefix .. letter .. setting.name] = { input = "value", output = "value", min = 0, max = setting.max, launchnik = { kind = prefix .. setting.name, index = index, output = output } }
-        end
+      for _, prefix in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
+        items[clip .. prefix .. letter] = { input = "value", output = "value", min = 0, max = outputSettingsMax, launchnik = { kind = prefix .. "output", index = index, output = output } }
       end
     end
   end

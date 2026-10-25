@@ -8,12 +8,14 @@
 --   { kind = "setup", value = 0..395 }
 --   { kind = "length", value = 0..7 }
 --   { kind = "present" | "colour", index = 0..63, value = ... }
---   { kind = "pattern" | "unipolar" | "bipolar" | "transition", index = 0..63, output = 1..6, value = ... }
+--   { kind = "output", index = 0..63, output = 1..6, value = 0..1959 }
 --   { kind = "fillinpresent" | "fillincolour" | "fillinonebarpattern", index = 0..63, value = ... }
---   { kind = "fillinpattern" | "fillinunipolar" | "fillinbipolar" | "fillintransition", index = 0..63, output = 1..6, value = ... }
+--   { kind = "fillinoutput", index = 0..63, output = 1..6, value = 0..1959 }
 --   { kind = "landingpresent" | "landingcolour" | "landingonebarpattern", index = 0..63, value = ... }
---   { kind = "landingpattern" | "landingunipolar" | "landingbipolar" | "landingtransition", index = 0..63, output = 1..6, value = ... }
+--   { kind = "landingoutput", index = 0..63, output = 1..6, value = 0..1959 }
 --   and the same with "intro" and "outro" in place of "landing"
+-- The value of an output is all four of its settings in one number, see
+-- packOutputSettings.
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
@@ -61,6 +63,25 @@ local cvModePattern = 2
 -- transitions: 0 = off, then A, B, C and D
 local transitionOff = 0
 local transitionCount = 5
+local patternCount = 8
+local valueCount = 7
+local bipolarZero = 3
+
+-- the four settings of a CV output as one number, as Launchnik keeps them
+-- (see its ADR 0008): the pattern, plus 8 times the unipolar value, plus 56
+-- times the bipolar value, plus 392 times the transition
+local function packOutputSettings(pattern, unipolar, bipolar, transition)
+  return pattern + patternCount * (unipolar + valueCount * (bipolar + valueCount * transition))
+end
+
+-- the other way round: pattern, unipolar, bipolar, transition
+local function unpackOutputSettings(packed)
+  local pattern = packed % patternCount
+  packed = math.floor(packed / patternCount)
+  local unipolar = packed % valueCount
+  packed = math.floor(packed / valueCount)
+  return pattern, unipolar, packed % valueCount, math.floor(packed / valueCount)
+end
 
 -- where the controls of clip editing sit on the grid: the colours fill the
 -- first seven tracks of rows 1 and 2, and rows 3 to 8 stand for the CV outputs
@@ -83,12 +104,18 @@ end
 -- editing or outro editing needs to know of the settings being edited: whether there are any, the CV modes of the picked
 -- launch button's track and the transitions, by output; with present alone,
 -- the CV modes of a new device and every transition off; oneBarPattern says
--- of a fill-in, a landing, an intro or an outro whether one-bar pattern is on
-local function edited(present, cvModes, transitions, oneBarPattern)
-  local result = { present = present, cvModes = {}, transitions = {}, oneBarPattern = oneBarPattern or false }
+-- of a fill-in, a landing, an intro or an outro whether one-bar pattern is on;
+-- values holds the other settings by output, { patterns = {}, unipolar = {},
+-- bipolar = {} }, which a press keeps, since all four settings of an output
+-- are one item; without it, pattern 1 and unipolar and bipolar 0
+local function edited(present, cvModes, transitions, oneBarPattern, values)
+  local result = { present = present, cvModes = {}, transitions = {}, patterns = {}, unipolar = {}, bipolar = {}, oneBarPattern = oneBarPattern or false }
   for output = 1, outputCount do
     result.cvModes[output] = cvModes and cvModes[output] or defaultCVMode(output)
     result.transitions[output] = transitions and transitions[output] or transitionOff
+    result.patterns[output] = values and values.patterns[output] or 0
+    result.unipolar[output] = values and values.unipolar[output] or 0
+    result.bipolar[output] = values and values.bipolar[output] or bipolarZero
   end
   return result
 end
@@ -109,16 +136,20 @@ local function editSetting(prefix, picked, track, row, settings)
   if output < 1 or output > outputCount or track < 1 or track > 8 then
     return nil
   end
+  -- a press changes one of the output's settings and keeps the others
+  local pattern, unipolar, bipolar, transition = settings.patterns[output], settings.unipolar[output], settings.bipolar[output], settings.transitions[output]
   local cvMode = settings.cvModes[output]
   if cvMode == cvModePattern then
-    return { kind = prefix .. "pattern", index = picked, output = output, value = track - 1 }
-  end
+    pattern = track - 1
   -- the transition button goes round from off through A to D
-  if track == transitionTrack then
-    return { kind = prefix .. "transition", index = picked, output = output, value = (settings.transitions[output] + 1) % transitionCount }
+  elseif track == transitionTrack then
+    transition = (transition + 1) % transitionCount
+  elseif cvMode == cvModeUnipolar then
+    unipolar = track - 1
+  else
+    bipolar = track - 1
   end
-  local kind = cvMode == cvModeUnipolar and "unipolar" or "bipolar"
-  return { kind = prefix .. kind, index = picked, output = output, value = track - 1 }
+  return { kind = prefix .. "output", index = picked, output = output, value = packOutputSettings(pattern, unipolar, bipolar, transition) }
 end
 
 local function buttonIndex(track, row)
@@ -227,10 +258,8 @@ local function editOverlay(prefix, setup, track, row, settings, clipValues)
       { kind = prefix .. "colour", index = picked, value = colourWhite },
     }
     for output = 1, outputCount do
-      table.insert(changes, { kind = prefix .. "pattern", index = picked, output = output, value = clipValues.patterns[output] })
-      table.insert(changes, { kind = prefix .. "unipolar", index = picked, output = output, value = clipValues.unipolar[output] })
-      table.insert(changes, { kind = prefix .. "bipolar", index = picked, output = output, value = clipValues.bipolar[output] })
-      table.insert(changes, { kind = prefix .. "transition", index = picked, output = output, value = transitionOff })
+      local value = packOutputSettings(clipValues.patterns[output], clipValues.unipolar[output], clipValues.bipolar[output], transitionOff)
+      table.insert(changes, { kind = prefix .. "output", index = picked, output = output, value = value })
     end
     table.insert(changes, { kind = prefix .. "onebarpattern", index = picked, value = 0 })
     return changes
@@ -307,10 +336,8 @@ local function copyButton(source, destination)
     table.insert(changes, { kind = prefix .. "present", index = destination, value = settings.present and 1 or 0 })
     table.insert(changes, { kind = prefix .. "colour", index = destination, value = settings.colour })
     for output = 1, outputCount do
-      table.insert(changes, { kind = prefix .. "pattern", index = destination, output = output, value = settings.patterns[output] })
-      table.insert(changes, { kind = prefix .. "unipolar", index = destination, output = output, value = settings.unipolar[output] })
-      table.insert(changes, { kind = prefix .. "bipolar", index = destination, output = output, value = settings.bipolar[output] })
-      table.insert(changes, { kind = prefix .. "transition", index = destination, output = output, value = settings.transitions[output] })
+      local value = packOutputSettings(settings.patterns[output], settings.unipolar[output], settings.bipolar[output], settings.transitions[output])
+      table.insert(changes, { kind = prefix .. "output", index = destination, output = output, value = value })
     end
     if prefix ~= "" then
       table.insert(changes, { kind = prefix .. "onebarpattern", index = destination, value = settings.oneBarPattern and 1 or 0 })
@@ -568,6 +595,8 @@ return {
   cvModeUnipolar = cvModeUnipolar,
   cvModePattern = cvModePattern,
   defaultCVMode = defaultCVMode,
+  packOutputSettings = packOutputSettings,
+  unpackOutputSettings = unpackOutputSettings,
   edited = edited,
   buttonIndex = buttonIndex,
   isClipEditing = isClipEditing,

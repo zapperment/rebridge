@@ -1,18 +1,13 @@
 -- The Launchnik part of the Launchpad Pro [MK3] Remote maps: one line for each
 -- of Launchnik's Remote items the codec uses, from "Map	deviceType" to the end
--- of the file. Launchnik has thousands of them, one for each setting of each
--- CV output of each clip, fill-in, landing, intro and outro, so the lines are generated rather than
--- kept by hand; test/TestRemoteMaps.lua checks that the maps hold them.
+-- of the file. Launchnik has thousands of them, one for each CV output of
+-- each clip, fill-in, landing, intro and outro, so the lines are generated
+-- rather than kept by hand; test/TestRemoteMaps.lua checks that the maps hold them.
 --
 -- Run from the root of the repository to rewrite both maps:
 --   luajit scripts/launchnikRemoteMap.lua
 
 local outputLetters = { "a", "b", "c", "d", "e", "f" }
-local outputSettings = { "pattern", "unipolar", "bipolar", "transition" }
-
-local function capitalise(word)
-  return (word:gsub("^%l", string.upper))
-end
 
 local function launchnikMap()
   local lines = {}
@@ -83,18 +78,16 @@ local function launchnikMap()
   end
 
   -- the settings of the CV outputs of every clip, fill-in, landing, intro and
-  -- outro, a
-  -- group of six for each launch button and setting
+  -- outro, all four of an output in one item, a group of six for each launch
+  -- button
   for _, kind in ipairs({ { item = "", remotable = "" }, { item = "fillin", remotable = " Fill-In" }, { item = "landing", remotable = " Landing" }, { item = "intro", remotable = " Intro" }, { item = "outro", remotable = " Outro" } }) do
-    for _, setting in ipairs(outputSettings) do
-      for row = 1, 8 do
-        for track = 1, 8 do
-          gap()
-          for _, letter in ipairs(outputLetters) do
-            local item = "track" .. track .. "clip" .. row .. kind.item .. letter .. setting
-            local remotable = "Track " .. track .. " Clip " .. row .. kind.remotable .. " Output " .. letter:upper() .. " " .. capitalise(setting)
-            map(item, remotable)
-          end
+    for row = 1, 8 do
+      for track = 1, 8 do
+        gap()
+        for _, letter in ipairs(outputLetters) do
+          local item = "track" .. track .. "clip" .. row .. kind.item .. letter
+          local remotable = "Track " .. track .. " Clip " .. row .. kind.remotable .. " Output " .. letter:upper()
+          map(item, remotable)
         end
       end
     end
