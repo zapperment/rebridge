@@ -29,15 +29,15 @@ local outputSettings = {
 }
 
 -- the switches of the clips, fill-ins, landings, intros and outros, by the
--- kind of their items, which hold all three in one number: the names of
--- whether there is one, its colour and its one-bar pattern in the state; a
--- clip has no one-bar pattern
+-- kind of their items, which hold all of them in one number: the names of
+-- whether there is one, its colour, its one-bar pattern and whether it has
+-- been set up before in the state; a clip has neither of the last two
 local switchSettings = {
   switches = { "present", "colours" },
-  fillinswitches = { "fillInPresent", "fillInColours", "fillInOneBarPattern" },
-  landingswitches = { "landingPresent", "landingColours", "landingOneBarPattern" },
-  introswitches = { "introPresent", "introColours", "introOneBarPattern" },
-  outroswitches = { "outroPresent", "outroColours", "outroOneBarPattern" },
+  fillinswitches = { "fillInPresent", "fillInColours", "fillInOneBarPattern", "fillInSetUp" },
+  landingswitches = { "landingPresent", "landingColours", "landingOneBarPattern", "landingSetUp" },
+  introswitches = { "introPresent", "introColours", "introOneBarPattern", "introSetUp" },
+  outroswitches = { "outroPresent", "outroColours", "outroOneBarPattern", "outroSetUp" },
 }
 
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
@@ -78,11 +78,12 @@ local function setState(hostItems)
         state.cvModes[item.launchnik.track][item.launchnik.output] = value
       elseif switchSettings[kind] then
         local names, index = switchSettings[kind], item.launchnik.index
-        local present, colour, oneBarPattern = launchnik.press.unpackSwitches(value)
+        local present, colour, oneBarPattern, setUp = launchnik.press.unpackSwitches(value)
         state[names[1]][index] = present
         state[names[2]][index] = colour
         if names[3] then
           state[names[3]][index] = oneBarPattern
+          state[names[4]][index] = setUp
         end
       elseif kind == "fillinlight" then
         state.fillInLight = value

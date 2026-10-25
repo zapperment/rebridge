@@ -43,9 +43,10 @@ local outputLetters = { "a", "b", "c", "d", "e", "f" }
 local outputSettingsMax = 8 * 7 * 7 * 5 - 1
 
 -- whether there is a clip, fill-in, landing, intro or outro (1), plus 2
--- times its colour (0..13), plus 28 if one-bar pattern is on, as Launchnik
--- has them in one item (its ADR 0008); a clip's one-bar pattern is always off
-local switchesMax = 2 * 14 * 2 - 1
+-- times its colour (0..13), plus 28 if one-bar pattern is on, plus 56 if it
+-- has been set up before, as Launchnik has them in one item (its ADR 0008);
+-- a clip's one-bar pattern is always off
+local switchesMax = 2 * 14 * 2 * 2 - 1
 
 for track = 1, 8 do
   -- the CV mode of each CV output: 0 = bipolar, 1 = unipolar, 2 = pattern; the

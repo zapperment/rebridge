@@ -91,7 +91,7 @@ function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
       -- and one-bar pattern, all in one item
       for _, kind in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
         local item = items[clip .. kind .. "switches"]
-        lu.assertEquals({ item.min, item.max }, { 0, 55 })
+        lu.assertEquals({ item.min, item.max }, { 0, 111 })
       end
       for _, letter in ipairs({ "a", "b", "c", "d", "e", "f" }) do
         for _, kind in ipairs({ "", "fillin", "landing", "intro", "outro" }) do

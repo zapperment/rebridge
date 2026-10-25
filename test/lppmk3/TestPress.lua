@@ -301,14 +301,14 @@ end
 -- white
 function TestPress:testFillInEditingToggleSetsUpANewFillIn()
   local expected = {
-    { kind = "fillinswitches", index = picked, value = 1 },
+    { kind = "fillinswitches", index = picked, value = 1 + 56 },
   }
   for output = 1, 6 do
     table.insert(expected, { kind = "fillin" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
   end
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), someClipValues), expected)
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(true), someClipValues), {
-    { kind = "fillinswitches", index = picked, value = 0 },
+    { kind = "fillinswitches", index = picked, value = 56 },
   })
 end
 
@@ -350,14 +350,14 @@ end
 -- white, like a new fill-in
 function TestPress:testLandingEditingToggleSetsUpANewLanding()
   local expected = {
-    { kind = "landingswitches", index = picked, value = 1 },
+    { kind = "landingswitches", index = picked, value = 1 + 56 },
   }
   for output = 1, 6 do
     table.insert(expected, { kind = "landing" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
   end
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(false), someClipValues), expected)
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(true), someClipValues), {
-    { kind = "landingswitches", index = picked, value = 0 },
+    { kind = "landingswitches", index = picked, value = 56 },
   })
 end
 
@@ -485,7 +485,7 @@ end
 -- settings that differ from one another and from a new clip's, so that a
 -- copy can be told from them; even seeds hold a clip, odd ones are empty
 local function someSettings(seed)
-  local settings = { present = seed % 2 == 0, colour = seed % 14, patterns = {}, unipolar = {}, bipolar = {}, transitions = {}, oneBarPattern = seed % 3 == 0 }
+  local settings = { present = seed % 2 == 0, colour = seed % 14, patterns = {}, unipolar = {}, bipolar = {}, transitions = {}, oneBarPattern = seed % 3 == 0, setUp = seed % 4 < 2 }
   for output = 1, press.outputCount do
     settings.patterns[output] = (seed + output) % 8
     settings.unipolar[output] = (seed + output + 1) % 7
@@ -526,10 +526,11 @@ local function replay(changes, index)
         settings.bipolar[change.output] = bipolar
         settings.transitions[change.output] = transition
       else
-        local present, colour, oneBarPattern = press.unpackSwitches(change.value)
+        local present, colour, oneBarPattern, setUp = press.unpackSwitches(change.value)
         settings.present, settings.colour = present, colour
         if field ~= "clip" then
           settings.oneBarPattern = oneBarPattern
+          settings.setUp = setUp
         end
       end
     end
@@ -537,9 +538,11 @@ local function replay(changes, index)
   return button, count
 end
 
--- a clip has no one-bar pattern of its own, so the copy leaves it out
+-- a clip has no one-bar pattern of its own, and is never set up, so the copy
+-- leaves both out
 local function withoutClipOneBarPattern(button)
   button.clip.oneBarPattern = nil
+  button.clip.setUp = nil
   return button
 end
 
@@ -621,13 +624,13 @@ function TestPress:testIntroAndOutroEditing()
   for _, case in ipairs({ { "intro", introEditing, press.introEditingLaunchButton }, { "outro", outroEditing, press.outroEditingLaunchButton } }) do
     local prefix, setup, editLaunchButton = case[1], case[2], case[3]
     local expected = {
-      { kind = prefix .. "switches", index = picked, value = 1 },
+      { kind = prefix .. "switches", index = picked, value = 1 + 56 },
     }
     for output = 1, 6 do
       table.insert(expected, { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
     end
     lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(false), someClipValues), expected)
-    lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(true), someClipValues), { { kind = prefix .. "switches", index = picked, value = 0 } })
+    lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(true), someClipValues), { { kind = prefix .. "switches", index = picked, value = 56 } })
     lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(true), someClipValues), { { kind = prefix .. "switches", index = picked, value = 1 + 2 * 9 } })
     lu.assertEquals(editLaunchButton(setup, 5, 4, mixedModes(true), someClipValues), { settingChange(prefix, "unipolar", 2, 4) })
     lu.assertEquals(editLaunchButton(setup, 8, 6, mixedModes(true), someClipValues), { settingChange(prefix, "transition", 4, 0) })
@@ -673,13 +676,17 @@ function TestPress:testSwitchesPackIntoOneNumber()
   for _, present in ipairs({ false, true }) do
     for colour = 0, 13 do
       for _, oneBarPattern in ipairs({ false, true }) do
-        local packed = press.packSwitches(present, colour, oneBarPattern)
-        lu.assertTrue(packed >= 0 and packed < 56 and not seen[packed])
-        seen[packed] = true
-        lu.assertEquals({ press.unpackSwitches(packed) }, { present, colour, oneBarPattern })
+        for _, setUp in ipairs({ false, true }) do
+          local packed = press.packSwitches(present, colour, oneBarPattern, setUp)
+          lu.assertTrue(packed >= 0 and packed < 112 and not seen[packed])
+          seen[packed] = true
+          lu.assertEquals({ press.unpackSwitches(packed) }, { present, colour, oneBarPattern, setUp })
+        end
       end
     end
   end
+  -- what Launchnik 1.0.0d21 saved, without the flag, reads as never set up
+  lu.assertEquals({ press.unpackSwitches(55) }, { true, 13, true, false })
 end
 
 -- the same cases as TestSwitchesKeepEachOther of PressTest.cpp: a press
@@ -690,6 +697,21 @@ function TestPress:testSwitchesKeepEachOther()
   local landing = press.edited(true, nil, nil, true, { colour = 9, patterns = {}, unipolar = {}, bipolar = {} })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 1, landing, someClipValues), { { kind = "landingswitches", index = picked, value = press.packSwitches(true, 2, true) } })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 2, landing, someClipValues), { { kind = "landingswitches", index = picked, value = press.packSwitches(true, 9, false) } })
-  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, landing, someClipValues), { { kind = "landingswitches", index = picked, value = press.packSwitches(false, 9, true) } })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, landing, someClipValues), { { kind = "landingswitches", index = picked, value = press.packSwitches(false, 9, true, true) } })
   lu.assertEquals(press.clearModeLaunchButton(clearMode, 4, 6, true, 11)[1], { kind = "switches", index = picked, value = press.packSwitches(false, 11, false) })
+end
+
+-- the same cases as TestSwitchingAnOverlayOnAgainKeepsItsSettings of
+-- PressTest.cpp: a fill-in, landing, intro or outro switched off and on again
+-- keeps its settings; only the first time is it a copy of its clip
+function TestPress:testSwitchingAnOverlayOnAgainKeepsItsSettings()
+  local values = { colour = 9, setUp = true, patterns = {}, unipolar = {}, bipolar = {} }
+  local fillIn = press.edited(true, nil, nil, true, values)
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, fillIn, someClipValues), { { kind = "fillinswitches", index = picked, value = press.packSwitches(false, 9, true, true) } })
+  fillIn = press.edited(false, nil, nil, true, values)
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, fillIn, someClipValues), { { kind = "fillinswitches", index = picked, value = press.packSwitches(true, 9, true, true) } })
+  values.setUp = false
+  local first = press.fillInEditingLaunchButton(fillInEditing, 8, 1, press.edited(false, nil, nil, true, values), someClipValues)
+  lu.assertEquals(#first, 7)
+  lu.assertEquals(first[1], { kind = "fillinswitches", index = picked, value = press.packSwitches(true, 0, false, true) })
 end
