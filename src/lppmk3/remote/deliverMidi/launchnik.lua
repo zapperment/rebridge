@@ -30,6 +30,12 @@ local function logoColour(state)
   if launchnik.press.isLandingEditing(state.setup) then
     return col.config.blue.vibrant
   end
+  if launchnik.press.isIntroEditing(state.setup) then
+    return col.config.pink.vibrant
+  end
+  if launchnik.press.isOutroEditing(state.setup) then
+    return col.config.turquoise.vibrant
+  end
   return col.config.yellow.vibrant
 end
 
@@ -38,7 +44,8 @@ end
 -- launch mode, vibrant white in clip picking, clear mode and duplicate mode,
 -- vibrant green in
 -- clip editing, vibrant yellow in fill-in editing, vibrant orange in landing
--- editing; it is dark while no Launchnik is mapped
+-- editing, vibrant blue in intro editing, vibrant pink in outro editing; it is
+-- dark while no Launchnik is mapped
 local backButton = 91
 
 local function backButtonColour(state)
@@ -53,6 +60,12 @@ local function backButtonColour(state)
   end
   if launchnik.press.isLandingEditing(state.setup) then
     return col.config.orange.vibrant
+  end
+  if launchnik.press.isIntroEditing(state.setup) then
+    return col.config.blue.vibrant
+  end
+  if launchnik.press.isOutroEditing(state.setup) then
+    return col.config.pink.vibrant
   end
   return col.config.green.vibrant
 end

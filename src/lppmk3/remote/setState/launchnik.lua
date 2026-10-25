@@ -31,19 +31,43 @@ local outputSettings = {
   landingunipolar = "landingUnipolar",
   landingbipolar = "landingBipolar",
   landingtransition = "landingTransitions",
+  intropattern = "introPatterns",
+  introunipolar = "introUnipolar",
+  introbipolar = "introBipolar",
+  introtransition = "introTransitions",
+  outropattern = "outroPatterns",
+  outrounipolar = "outroUnipolar",
+  outrobipolar = "outroBipolar",
+  outrotransition = "outroTransitions",
 }
 
--- the colours of the clips, fill-ins and landings, by the kind of their items
+-- the colours of the clips, fill-ins, landings, intros and outros, by the
+-- kind of their items
 local colourSettings = {
   colour = "colours",
   fillincolour = "fillInColours",
   landingcolour = "landingColours",
+  introcolour = "introColours",
+  outrocolour = "outroColours",
+}
+
+-- the switches of the fill-ins, landings, intros and outros: whether there is
+-- one and its one-bar pattern, by the kind of their items
+local switchSettings = {
+  fillinpresent = "fillInPresent",
+  landingpresent = "landingPresent",
+  intropresent = "introPresent",
+  outropresent = "outroPresent",
+  fillinonebarpattern = "fillInOneBarPattern",
+  landingonebarpattern = "landingOneBarPattern",
+  introonebarpattern = "introOneBarPattern",
+  outroonebarpattern = "outroOneBarPattern",
 }
 
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
--- the setup state, the function, which launch buttons hold a clip, a fill-in
--- or a landing, the CV modes, the colours, values and transitions of every
--- clip, fill-in and landing, and the light of every launch
+-- the setup state, the function, which launch buttons hold a clip, a fill-in,
+-- a landing, an intro or an outro, the CV modes, the colours, values and
+-- transitions of every clip, fill-in, landing, intro and outro, and the light of every launch
 -- button, function button and scene button, of the fill-in button and of the
 -- forward button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
@@ -75,14 +99,8 @@ local function setState(hostItems)
         state[outputSettings[kind]][item.launchnik.index][item.launchnik.output] = value
       elseif kind == "cvmode" then
         state.cvModes[item.launchnik.track][item.launchnik.output] = value
-      elseif kind == "fillinpresent" then
-        state.fillInPresent[item.launchnik.index] = value > 0
-      elseif kind == "landingpresent" then
-        state.landingPresent[item.launchnik.index] = value > 0
-      elseif kind == "landingonebarpattern" then
-        state.landingOneBarPattern[item.launchnik.index] = value > 0
-      elseif kind == "fillinonebarpattern" then
-        state.fillInOneBarPattern[item.launchnik.index] = value > 0
+      elseif switchSettings[kind] then
+        state[switchSettings[kind]][item.launchnik.index] = value > 0
       elseif kind == "fillinlight" then
         state.fillInLight = value
       elseif kind == "forwardlight" then

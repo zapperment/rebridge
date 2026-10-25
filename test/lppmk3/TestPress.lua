@@ -13,6 +13,8 @@ local editing = press.setupFirstClipEditing + press.buttonIndex(4, 6)
 local picked = press.buttonIndex(4, 6)
 local fillInEditing = press.setupFirstFillInEditing + press.buttonIndex(4, 6)
 local landingEditing = press.setupFirstLandingEditing + press.buttonIndex(4, 6)
+local introEditing = press.setupFirstIntroEditing + press.buttonIndex(4, 6)
+local outroEditing = press.setupFirstOutroEditing + press.buttonIndex(4, 6)
 
 function TestPress:testButtonIndexCountsDownTrackOneFirst()
   lu.assertEquals(press.buttonIndex(1, 1), 0)
@@ -89,6 +91,10 @@ function TestPress:testBackButtonGoesBackOneStep()
   -- button, and from landing editing to fill-in editing
   lu.assertEquals(press.backButton(fillInEditing), { kind = "setup", value = editing })
   lu.assertEquals(press.backButton(landingEditing), { kind = "setup", value = fillInEditing })
+  -- from intro editing to landing editing, and from outro editing to intro
+  -- editing
+  lu.assertEquals(press.backButton(introEditing), { kind = "setup", value = landingEditing })
+  lu.assertEquals(press.backButton(outroEditing), { kind = "setup", value = introEditing })
 end
 
 -- output A in pattern mode, B unipolar, C bipolar, the others as on a new
@@ -217,14 +223,25 @@ function TestPress:testSetupNumbering()
   lu.assertTrue(press.isLandingEditing(130))
   lu.assertTrue(press.isLandingEditing(193))
   lu.assertFalse(press.isLandingEditing(194))
-  lu.assertEquals(press.setupClearMode, 194)
+  lu.assertEquals(press.setupClearMode, 322)
   lu.assertNil(press.pickedButton(press.setupClearMode))
   lu.assertNil(press.pickedButton(launchMode))
   lu.assertNil(press.pickedButton(clipPicking))
   lu.assertEquals(press.pickedButton(editing), picked)
   lu.assertEquals(press.pickedButton(fillInEditing), picked)
   lu.assertEquals(press.pickedButton(landingEditing), picked)
+  lu.assertEquals(press.setupFirstIntroEditing, 194)
+  lu.assertTrue(press.isIntroEditing(194))
+  lu.assertTrue(press.isIntroEditing(257))
+  lu.assertFalse(press.isIntroEditing(258))
+  lu.assertEquals(press.setupFirstOutroEditing, 258)
+  lu.assertTrue(press.isOutroEditing(258))
+  lu.assertTrue(press.isOutroEditing(321))
+  lu.assertFalse(press.isOutroEditing(322))
+  lu.assertEquals(press.pickedButton(introEditing), picked)
+  lu.assertEquals(press.pickedButton(outroEditing), picked)
 end
+
 
 function TestPress:testSetupButtonLeavesFillInEditing()
   lu.assertEquals(press.setupButton(fillInEditing), { kind = "setup", value = launchMode })
@@ -235,11 +252,15 @@ function TestPress:testForwardButtonGoesForwardOneStepWithAClip()
   lu.assertNil(press.forwardButton(editing, false))
   lu.assertNil(press.forwardButton(launchMode, true))
   lu.assertNil(press.forwardButton(clipPicking, true))
-  -- from fill-in editing on to landing editing, whether or not there is a
-  -- fill-in, but not beyond
+  -- from fill-in editing on to landing editing, intro editing and outro
+  -- editing, whether or not there is a fill-in, landing or intro, but not
+  -- beyond
   lu.assertEquals(press.forwardButton(fillInEditing, true), { kind = "setup", value = landingEditing })
   lu.assertNil(press.forwardButton(fillInEditing, false))
-  lu.assertNil(press.forwardButton(landingEditing, true))
+  lu.assertEquals(press.forwardButton(landingEditing, true), { kind = "setup", value = introEditing })
+  lu.assertEquals(press.forwardButton(introEditing, true), { kind = "setup", value = outroEditing })
+  lu.assertNil(press.forwardButton(introEditing, false))
+  lu.assertNil(press.forwardButton(outroEditing, true))
 end
 
 function TestPress:testFillInButtonFollowsTheButton()
@@ -415,27 +436,27 @@ end
 local sourcePicking = press.setupSourcePicking
 
 function TestPress:testDuplicateModeStates()
-  lu.assertEquals(sourcePicking, 195)
-  lu.assertEquals(press.setupFirstClipDestinationPicking, 196)
-  lu.assertEquals(press.setupFirstSceneDestinationPicking, 260)
-  lu.assertEquals(press.setupCount, 268)
+  lu.assertEquals(sourcePicking, 323)
+  lu.assertEquals(press.setupFirstClipDestinationPicking, 324)
+  lu.assertEquals(press.setupFirstSceneDestinationPicking, 388)
+  lu.assertEquals(press.setupCount, 396)
   lu.assertFalse(press.isDuplicateMode(press.setupClearMode))
   lu.assertTrue(press.isDuplicateMode(sourcePicking))
-  lu.assertTrue(press.isDuplicateMode(267))
-  lu.assertFalse(press.isDuplicateMode(268))
+  lu.assertTrue(press.isDuplicateMode(395))
+  lu.assertFalse(press.isDuplicateMode(396))
   lu.assertFalse(press.isLandingEditing(sourcePicking))
-  lu.assertNil(press.pickedButton(196))
-  lu.assertEquals(press.sourceButton(196 + press.buttonIndex(4, 6)), press.buttonIndex(4, 6))
+  lu.assertNil(press.pickedButton(324))
+  lu.assertEquals(press.sourceButton(324 + press.buttonIndex(4, 6)), press.buttonIndex(4, 6))
   lu.assertNil(press.sourceButton(sourcePicking))
-  lu.assertNil(press.sourceButton(265))
-  lu.assertEquals(press.sourceScene(265), 6)
-  lu.assertNil(press.sourceScene(196))
+  lu.assertNil(press.sourceButton(393))
+  lu.assertEquals(press.sourceScene(393), 6)
+  lu.assertNil(press.sourceScene(324))
 end
 
 function TestPress:testDuplicateButtonSwitchesBetweenLaunchModeAndDuplicateMode()
   lu.assertEquals(press.duplicateButton(launchMode), { kind = "setup", value = sourcePicking })
   -- from either step it returns to launch mode, copying nothing
-  for _, step in ipairs({ sourcePicking, 196, 265 }) do
+  for _, step in ipairs({ sourcePicking, 324, 393 }) do
     lu.assertEquals(press.duplicateButton(step), { kind = "setup", value = launchMode })
   end
   -- in setup mode and clear mode it does nothing
@@ -444,11 +465,11 @@ function TestPress:testDuplicateButtonSwitchesBetweenLaunchModeAndDuplicateMode(
   end
   -- nor does the clear button in duplicate mode
   lu.assertNil(press.clearButton(sourcePicking))
-  lu.assertNil(press.clearButton(196))
+  lu.assertNil(press.clearButton(324))
 end
 
 function TestPress:testSetupAndBackButtonsLeaveDuplicateMode()
-  for _, step in ipairs({ sourcePicking, 196 + picked, 265 }) do
+  for _, step in ipairs({ sourcePicking, 324 + picked, 393 }) do
     lu.assertEquals(press.setupButton(step), { kind = "setup", value = launchMode })
     lu.assertEquals(press.backButton(step), { kind = "setup", value = launchMode })
     lu.assertNil(press.forwardButton(step, true))
@@ -473,12 +494,12 @@ local function someSettings(seed)
 end
 
 local function someButton(seed)
-  return { clip = someSettings(seed), fillIn = someSettings(seed + 5), landing = someSettings(seed + 10) }
+  return { clip = someSettings(seed), fillIn = someSettings(seed + 5), landing = someSettings(seed + 10), intro = someSettings(seed + 15), outro = someSettings(seed + 20) }
 end
 
 -- the field of a button and of its settings that each kind of change sets
 local copiedSettings = {}
-for prefix, field in pairs({ [""] = "clip", fillin = "fillIn", landing = "landing" }) do
+for prefix, field in pairs({ [""] = "clip", fillin = "fillIn", landing = "landing", intro = "intro", outro = "outro" }) do
   copiedSettings[prefix .. "present"] = { field, "present" }
   copiedSettings[prefix .. "colour"] = { field, "colour" }
   copiedSettings[prefix .. "onebarpattern"] = { field, "oneBarPattern" }
@@ -491,7 +512,7 @@ end
 -- and counts them
 local function replay(changes, index)
   local button = {}
-  for _, field in ipairs({ "clip", "fillIn", "landing" }) do
+  for _, field in ipairs({ "clip", "fillIn", "landing", "intro", "outro" }) do
     button[field] = { patterns = {}, unipolar = {}, bipolar = {}, transitions = {} }
   end
   local count = 0
@@ -519,7 +540,7 @@ local function withoutClipOneBarPattern(button)
 end
 
 function TestPress:testSourcePickingPicksALaunchButtonWithAClip()
-  lu.assertEquals(press.duplicateModeLaunchButton(sourcePicking, 4, 6, true, someButton(1)), { { kind = "setup", value = 196 + picked } })
+  lu.assertEquals(press.duplicateModeLaunchButton(sourcePicking, 4, 6, true, someButton(1)), { { kind = "setup", value = 324 + picked } })
   -- an empty launch button cannot be the source
   lu.assertEquals(press.duplicateModeLaunchButton(sourcePicking, 4, 6, false, someButton(1)), {})
 end
@@ -528,27 +549,27 @@ function TestPress:testClipDestinationPickingCopiesEverythingAndReturns()
   local source = someButton(2)
   -- the destination may be on another track, empty or not
   for _, held in ipairs({ false, true }) do
-    local changes = press.duplicateModeLaunchButton(196 + picked, 6, 3, held, source)
-    lu.assertEquals(#changes, 81)
-    lu.assertEquals(changes[81], { kind = "setup", value = launchMode })
+    local changes = press.duplicateModeLaunchButton(324 + picked, 6, 3, held, source)
+    lu.assertEquals(#changes, 135)
+    lu.assertEquals(changes[135], { kind = "setup", value = launchMode })
     local copy, count = replay(changes, press.buttonIndex(6, 3))
-    lu.assertEquals(count, 80)
+    lu.assertEquals(count, 134)
     lu.assertEquals(copy, withoutClipOneBarPattern(someButton(2)))
   end
 end
 
 function TestPress:testClipDestinationPickingIgnoresTheSource()
-  lu.assertEquals(press.duplicateModeLaunchButton(196 + picked, 4, 6, true, someButton(2)), {})
+  lu.assertEquals(press.duplicateModeLaunchButton(324 + picked, 4, 6, true, someButton(2)), {})
 end
 
 function TestPress:testDuplicateModeLaunchButtonDoesNothingElsewhere()
-  for _, step in ipairs({ launchMode, clipPicking, press.setupClearMode, 265 }) do
+  for _, step in ipairs({ launchMode, clipPicking, press.setupClearMode, 393 }) do
     lu.assertEquals(press.duplicateModeLaunchButton(step, 4, 3, true, someButton(2)), {})
   end
 end
 
 function TestPress:testSourcePickingPicksASceneWithAClip()
-  lu.assertEquals(press.duplicateModeSceneButton(sourcePicking, 6, true, {}), { { kind = "setup", value = 265 } })
+  lu.assertEquals(press.duplicateModeSceneButton(sourcePicking, 6, true, {}), { { kind = "setup", value = 393 } })
   -- a scene without clips cannot be the source
   lu.assertEquals(press.duplicateModeSceneButton(sourcePicking, 6, false, {}), {})
 end
@@ -562,22 +583,56 @@ function TestPress:testSceneDestinationPickingCopiesTheWholeSceneAndReturns()
   lu.assertFalse(sources[1].clip.present)
   lu.assertTrue(sources[2].clip.present)
   -- with clips or without, any scene but the source is a destination
-  local changes = press.duplicateModeSceneButton(265, 2, false, sources)
-  lu.assertEquals(#changes, 8 * 80 + 1)
+  local changes = press.duplicateModeSceneButton(393, 2, false, sources)
+  lu.assertEquals(#changes, 8 * 134 + 1)
   lu.assertEquals(changes[#changes], { kind = "setup", value = launchMode })
   for track = 1, 8 do
     local copy, count = replay(changes, press.buttonIndex(track, 2))
-    lu.assertEquals(count, 80)
+    lu.assertEquals(count, 134)
     lu.assertEquals(copy, withoutClipOneBarPattern(someButton(track)))
   end
 end
 
 function TestPress:testDuplicateModeSceneButtonDoesNothingElsewhere()
   -- the source itself
-  lu.assertEquals(press.duplicateModeSceneButton(265, 6, true, {}), {})
+  lu.assertEquals(press.duplicateModeSceneButton(393, 6, true, {}), {})
   -- with a launch button as the source, scene buttons do nothing
-  lu.assertEquals(press.duplicateModeSceneButton(196 + picked, 2, true, {}), {})
+  lu.assertEquals(press.duplicateModeSceneButton(324 + picked, 2, true, {}), {})
   for _, step in ipairs({ launchMode, clipPicking, press.setupClearMode }) do
     lu.assertEquals(press.duplicateModeSceneButton(step, 2, true, {}), {})
+  end
+end
+
+-- the same cases as TestIntroAndOutroEditing of PressTest.cpp
+function TestPress:testIntroAndOutroEditing()
+  -- nothing changes outside its own step
+  lu.assertEquals(press.introEditingLaunchButton(outroEditing, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertEquals(press.outroEditingLaunchButton(introEditing, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertEquals(press.landingEditingLaunchButton(introEditing, 8, 1, press.edited(false), someClipValues), {})
+  lu.assertNil(press.launchButton(introEditing, 8, 1, false, press.edited(true)))
+  lu.assertNil(press.launchButton(outroEditing, 8, 1, false, press.edited(true)))
+
+  -- a new intro or outro is a copy of its clip's values, with every
+  -- transition off and one-bar pattern off, in white
+  for _, case in ipairs({ { "intro", introEditing, press.introEditingLaunchButton }, { "outro", outroEditing, press.outroEditingLaunchButton } }) do
+    local prefix, setup, editLaunchButton = case[1], case[2], case[3]
+    local expected = {
+      { kind = prefix .. "present", index = picked, value = 1 },
+      { kind = prefix .. "colour", index = picked, value = 0 },
+    }
+    for output = 1, 6 do
+      table.insert(expected, { kind = prefix .. "pattern", index = picked, output = output, value = output - 1 })
+      table.insert(expected, { kind = prefix .. "unipolar", index = picked, output = output, value = 7 - output })
+      table.insert(expected, { kind = prefix .. "bipolar", index = picked, output = output, value = output - 1 })
+      table.insert(expected, { kind = prefix .. "transition", index = picked, output = output, value = 0 })
+    end
+    table.insert(expected, { kind = prefix .. "onebarpattern", index = picked, value = 0 })
+    lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(false), someClipValues), expected)
+    lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(true), someClipValues), { { kind = prefix .. "present", index = picked, value = 0 } })
+    lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(true), someClipValues), { { kind = prefix .. "colour", index = picked, value = 9 } })
+    lu.assertEquals(editLaunchButton(setup, 5, 4, mixedModes(true), someClipValues), { { kind = prefix .. "unipolar", index = picked, output = 2, value = 4 } })
+    lu.assertEquals(editLaunchButton(setup, 8, 6, mixedModes(true), someClipValues), { { kind = prefix .. "transition", index = picked, output = 4, value = 0 } })
+    lu.assertEquals(editLaunchButton(setup, 8, 2, mixedModes(true), someClipValues), { { kind = prefix .. "onebarpattern", index = picked, value = 1 } })
+    lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(false), someClipValues), {})
   end
 end

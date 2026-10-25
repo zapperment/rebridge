@@ -1,7 +1,7 @@
 -- The Launchnik part of the Launchpad Pro [MK3] Remote maps: one line for each
 -- of Launchnik's Remote items the codec uses, from "Map	deviceType" to the end
 -- of the file. Launchnik has thousands of them, one for each setting of each
--- CV output of each clip, fill-in and landing, so the lines are generated rather than
+-- CV output of each clip, fill-in, landing, intro and outro, so the lines are generated rather than
 -- kept by hand; test/TestRemoteMaps.lua checks that the maps hold them.
 --
 -- Run from the root of the repository to rewrite both maps:
@@ -67,6 +67,12 @@ local function launchnikMap()
   clipGroups("landingpresent", "Landing Present")
   clipGroups("landingcolour", "Landing Colour")
   clipGroups("landingonebarpattern", "Landing One-Bar Pattern")
+  clipGroups("intropresent", "Intro Present")
+  clipGroups("introcolour", "Intro Colour")
+  clipGroups("introonebarpattern", "Intro One-Bar Pattern")
+  clipGroups("outropresent", "Outro Present")
+  clipGroups("outrocolour", "Outro Colour")
+  clipGroups("outroonebarpattern", "Outro One-Bar Pattern")
 
   -- the CV modes, a group of six for each track
   for track = 1, 8 do
@@ -76,9 +82,10 @@ local function launchnikMap()
     end
   end
 
-  -- the settings of the CV outputs of every clip, fill-in and landing, a
+  -- the settings of the CV outputs of every clip, fill-in, landing, intro and
+  -- outro, a
   -- group of six for each launch button and setting
-  for _, kind in ipairs({ { item = "", remotable = "" }, { item = "fillin", remotable = " Fill-In" }, { item = "landing", remotable = " Landing" } }) do
+  for _, kind in ipairs({ { item = "", remotable = "" }, { item = "fillin", remotable = " Fill-In" }, { item = "landing", remotable = " Landing" }, { item = "intro", remotable = " Intro" }, { item = "outro", remotable = " Outro" } }) do
     for _, setting in ipairs(outputSettings) do
       for row = 1, 8 do
         for track = 1, 8 do

@@ -13,10 +13,11 @@ local items = {
 -- track 1 first.
 
 -- 0 = launch mode, 1 = clip picking, 2..65 = clip editing, 66..129 = fill-in
--- editing, 130..193 = landing editing, 194 = clear mode, 195 = source picking,
--- 196..259 = destination picking for a launch button and 260..267 for a scene
--- as the source
-items.setup = { input = "value", output = "value", min = 0, max = 267, launchnik = { kind = "setup" } }
+-- editing, 130..193 = landing editing, 194..257 = intro editing, 258..321 =
+-- outro editing, 322 = clear mode, 323 = source picking, 324..387 =
+-- destination picking for a launch button and 388..395 for a scene as the
+-- source
+items.setup = { input = "value", output = "value", min = 0, max = 395, launchnik = { kind = "setup" } }
 
 -- the length of the switch interval: 0 = immediate, 1 = one beat, 2 = half a
 -- bar, 3..7 = 1, 2, 4, 8 and 16 bars
@@ -35,7 +36,8 @@ items.forwardlight = { output = "value", min = 0, max = 42, launchnik = { kind =
 -- the CV outputs A to F of each track, as in Launchnik's Remote items
 local outputLetters = { "a", "b", "c", "d", "e", "f" }
 
--- the settings of a CV output of a clip, a fill-in or a landing, and their
+-- the settings of a CV output of a clip, a fill-in, a landing, an intro or an
+-- outro, and their
 -- ranges: eight
 -- patterns, seven unipolar or bipolar values, five transitions (off, A to D)
 local outputSettings = {
@@ -76,14 +78,20 @@ for track = 1, 8 do
     items[clip .. "landingpresent"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingpresent", index = index } }
     items[clip .. "landingcolour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = "landingcolour", index = index } }
     items[clip .. "landingonebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = "landingonebarpattern", index = index } }
+    for _, overlay in ipairs({ "intro", "outro" }) do
+      items[clip .. overlay .. "present"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = overlay .. "present", index = index } }
+      items[clip .. overlay .. "colour"] = { input = "value", output = "value", min = 0, max = 13, launchnik = { kind = overlay .. "colour", index = index } }
+      items[clip .. overlay .. "onebarpattern"] = { input = "value", output = "value", min = 0, max = 1, launchnik = { kind = overlay .. "onebarpattern", index = index } }
+    end
     -- the settings of the CV outputs, for example track1clip1apattern,
-    -- track1clip1fillinapattern and track1clip1landingapattern; the codec
-    -- reads them all: the clip's, which a new fill-in or landing starts as a
+    -- track1clip1fillinapattern, track1clip1landingapattern,
+    -- track1clip1introapattern and track1clip1outroapattern; the codec reads
+    -- them all: the clip's, which a new fill-in, landing, intro or outro starts as a
     -- copy of, the transitions, which a press moves on, and everything, which
     -- a duplicate copies
     for output, letter in ipairs(outputLetters) do
       for _, setting in ipairs(outputSettings) do
-        for _, prefix in ipairs({ "", "fillin", "landing" }) do
+        for _, prefix in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
           items[clip .. prefix .. letter .. setting.name] = { input = "value", output = "value", min = 0, max = setting.max, launchnik = { kind = prefix .. setting.name, index = index, output = output } }
         end
       end

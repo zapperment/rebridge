@@ -51,10 +51,11 @@ local function itemName(change)
   local row = change.index % 8 + 1
   local clip = "track" .. track .. "clip" .. row
   -- a setting of a CV output, such as track1clip1apattern,
-  -- track1clip1fillinapattern or track1clip1landingapattern
+  -- track1clip1fillinapattern, track1clip1landingapattern,
+  -- track1clip1introapattern or track1clip1outroapattern
   if change.output then
     local letter = string.char(string.byte("a") + change.output - 1)
-    for _, prefix in ipairs({ "fillin", "landing" }) do
+    for _, prefix in ipairs({ "fillin", "landing", "intro", "outro" }) do
       local setting = string.match(change.kind, "^" .. prefix .. "(.+)$")
       if setting then
         return clip .. prefix .. letter .. setting
@@ -75,8 +76,8 @@ local function write(event, change)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
 end
 
--- what a press in clip editing, fill-in editing or landing editing needs to
--- know of the clip, fill-in or landing being edited
+-- what a press in clip editing, fill-in editing, landing editing, intro
+-- editing or outro editing needs to know of what is being edited
 local function editedSettings(picked)
   local track = math.floor(picked / 8) + 1
   if press.isFillInEditing(state.setup) then
@@ -84,6 +85,12 @@ local function editedSettings(picked)
   end
   if press.isLandingEditing(state.setup) then
     return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked], state.landingOneBarPattern[picked])
+  end
+  if press.isIntroEditing(state.setup) then
+    return press.edited(state.introPresent[picked], state.cvModes[track], state.introTransitions[picked], state.introOneBarPattern[picked])
+  end
+  if press.isOutroEditing(state.setup) then
+    return press.edited(state.outroPresent[picked], state.cvModes[track], state.outroTransitions[picked], state.outroOneBarPattern[picked])
   end
   return press.edited(state.present[picked], state.cvModes[track], state.transitions[picked])
 end
@@ -194,10 +201,16 @@ local function processPadsAndTrackButtons(event)
       return true
     end
     local picked = press.pickedButton(state.setup)
-    local fillInEditing = press.isFillInEditing(state.setup)
-    if fillInEditing or press.isLandingEditing(state.setup) then
+    if picked ~= nil and not press.isClipEditing(state.setup) then
       local clipValues = { patterns = state.patterns[picked], unipolar = state.unipolar[picked], bipolar = state.bipolar[picked] }
-      local editLaunchButton = fillInEditing and press.fillInEditingLaunchButton or press.landingEditingLaunchButton
+      local editLaunchButton = press.outroEditingLaunchButton
+      if press.isFillInEditing(state.setup) then
+        editLaunchButton = press.fillInEditingLaunchButton
+      elseif press.isLandingEditing(state.setup) then
+        editLaunchButton = press.landingEditingLaunchButton
+      elseif press.isIntroEditing(state.setup) then
+        editLaunchButton = press.introEditingLaunchButton
+      end
       for _, change in ipairs(editLaunchButton(state.setup, track, row, editedSettings(picked), clipValues)) do
         write(event, change)
       end

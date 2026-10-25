@@ -286,6 +286,18 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
     makeColourEvent(99, colours.blue.vibrant),
     makeColourEvent(91, colours.orange.vibrant),
   })
+  -- in intro editing the logo is pink, the back button blue
+  report { setup = 204 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.pink.vibrant),
+    makeColourEvent(91, colours.blue.vibrant),
+  })
+  -- in outro editing the logo is turquoise, the back button pink
+  report { setup = 268 }
+  lu.assertEquals(deliverLaunchnik(), {
+    makeColourEvent(99, colours.turquoise.vibrant),
+    makeColourEvent(91, colours.pink.vibrant),
+  })
   report { setup = 12 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.yellow.vibrant),
@@ -303,7 +315,7 @@ function TestLaunchnikLights:testLogoAndBackButtonShowTheSetupState()
   })
   -- in clear mode the logo and the clear button are red, the back button
   -- vibrant white and the duplicate button dark
-  report { setup = 194 }
+  report { setup = 322 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.red.vibrant),
     makeColourEvent(91, colours.white.bright),
@@ -420,6 +432,25 @@ function TestLaunchnikLights:testKeepsLandings()
   lu.assertTrue(state.fillInOneBarPattern[launchnik.press.buttonIndex(2, 3)])
 end
 
+function TestLaunchnikLights:testKeepsIntrosAndOutros()
+  local index = launchnik.press.buttonIndex(2, 3)
+  report { track2clip3intropresent = 1, track2clip3introcolour = 4, track2clip3introonebarpattern = 1, track2clip3introbpattern = 5 }
+  lu.assertTrue(state.introPresent[index])
+  lu.assertEquals(state.introColours[index], 4)
+  lu.assertTrue(state.introOneBarPattern[index])
+  lu.assertEquals(state.introPatterns[index][2], 5)
+  report { track2clip3outropresent = 1, track2clip3outrocolour = 6, track2clip3outroctransition = 3, track2clip3outrodunipolar = 2 }
+  lu.assertTrue(state.outroPresent[index])
+  lu.assertEquals(state.outroColours[index], 6)
+  lu.assertEquals(state.outroTransitions[index][3], 3)
+  lu.assertEquals(state.outroUnipolar[index][4], 2)
+  local button = state.button(index)
+  lu.assertEquals(button.intro.colour, 4)
+  lu.assertEquals(button.outro.transitions[3], 3)
+  report { track2clip3intropresent = 0 }
+  lu.assertFalse(state.introPresent[index])
+end
+
 function TestLaunchnikLights:testKeepsCVSettingsAndFillIns()
   report { track2clip3bpattern = 5, track2clip3fillinpresent = 1 }
   lu.assertEquals(state.patterns[launchnik.press.buttonIndex(2, 3)][2], 5)
@@ -477,7 +508,7 @@ end
 -- to clear flashes red, which shows as dim red plus flashing vibrant red,
 -- without pulsing; the clear button is red, the duplicate button dark
 function TestLaunchnikLights:testClearModeFlashesRed()
-  report { setup = 194, track1clip1light = 6, scene1light = 6 }
+  report { setup = 322, track1clip1light = 6, scene1light = 6 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(81, colours.red.dim),
     makeColourEvent(81, colours.red.vibrant, flashing),
@@ -498,7 +529,7 @@ end
 function TestLaunchnikLights:testDuplicateModeWearsFuchsia()
   report { setup = 0 }
   deliverLaunchnik()
-  report { setup = 195 }
+  report { setup = 323 }
   lu.assertEquals(deliverLaunchnik(), {
     makeColourEvent(99, colours.fuchsia.vibrant),
     makeColourEvent(91, colours.white.bright),
@@ -506,9 +537,9 @@ function TestLaunchnikLights:testDuplicateModeWearsFuchsia()
     makeColourEvent(50, colours.fuchsia.vibrant),
   })
   -- destination picking looks the same
-  report { setup = 200 }
+  report { setup = 330 }
   lu.assertEquals(deliverLaunchnik(), {})
-  report { setup = 265 }
+  report { setup = 393 }
   lu.assertEquals(deliverLaunchnik(), {})
   report { setup = 0 }
   lu.assertEquals(deliverLaunchnik(), {
