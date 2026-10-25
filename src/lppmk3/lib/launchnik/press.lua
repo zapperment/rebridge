@@ -564,6 +564,20 @@ local function backButton(setup)
   return { kind = "setup", value = setup == setupClipPicking and setupLaunchMode or setupClipPicking }
 end
 
+-- holding the back button, that is letting it go after keeping it down for
+-- holdMilliseconds or more: from fill-in editing, landing editing, intro
+-- editing and outro editing it goes straight back to clip picking, so that the
+-- user can pick another launch button; anywhere else it does what backButton
+-- does
+local holdMilliseconds = 200
+
+local function heldBackButton(setup)
+  if isFillInEditing(setup) or isLandingEditing(setup) or isIntroEditing(setup) or isOutroEditing(setup) then
+    return { kind = "setup", value = setupClipPicking }
+  end
+  return backButton(setup)
+end
+
 -- goes forward one step of setup mode: from clip editing to fill-in editing,
 -- from fill-in editing to landing editing, from landing editing to intro
 -- editing and from intro editing to outro editing of the same launch button,
@@ -647,6 +661,8 @@ return {
   clearButton = clearButton,
   duplicateButton = duplicateButton,
   backButton = backButton,
+  heldBackButton = heldBackButton,
+  holdMilliseconds = holdMilliseconds,
   forwardButton = forwardButton,
   fillInButton = fillInButton,
 }

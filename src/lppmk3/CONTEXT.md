@@ -68,15 +68,18 @@ click on that button means, and it shows the same light: off in launch mode,
 vibrant white in clip picking, clear mode and duplicate mode, vibrant green in
 clip editing,
 vibrant yellow in fill-in editing, vibrant orange in landing editing, vibrant
-blue in intro editing, vibrant pink in outro editing.
-_Avoid_: left arrow, arrow button
+blue in intro editing, vibrant pink in outro editing. Like Launchnik's, it
+acts when it is let go; holding it down for 200 milliseconds or more goes straight
+back to clip picking from fill-in, landing, intro and outro editing.
+_Avoid_: left arrow, arrow button, long press
 
 **Forward button**:
 The button in the top row above the second column of pads. It stands for the
 forward button of Launchnik: pressing it means what a click on that button
 means, and it shows the same light: vibrant orange in clip editing, vibrant
 blue in fill-in editing, vibrant pink in landing editing and vibrant turquoise
-in intro editing of a launch button that holds a clip, off otherwise.
+in intro editing of a launch button that holds a clip, off otherwise. Like
+the back button, it acts when it is let go.
 _Avoid_: right arrow, set fill-in button, fill-in setup button
 
 **Fill-in button**:

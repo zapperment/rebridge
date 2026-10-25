@@ -100,6 +100,20 @@ function TestPress:testBackButtonGoesBackOneStep()
   lu.assertEquals(press.backButton(outroEditing), { kind = "setup", value = introEditing })
 end
 
+-- held, it goes straight back to clip picking from fill-in, landing, intro
+-- and outro editing; elsewhere it does what a click does
+function TestPress:testHeldBackButtonReturnsToClipPicking()
+  for _, step in ipairs({ fillInEditing, landingEditing, introEditing, outroEditing }) do
+    lu.assertEquals(press.heldBackButton(step), { kind = "setup", value = clipPicking })
+  end
+  lu.assertEquals(press.heldBackButton(editing), { kind = "setup", value = clipPicking })
+  lu.assertEquals(press.heldBackButton(clipPicking), { kind = "setup", value = launchMode })
+  lu.assertEquals(press.heldBackButton(press.setupClearMode), { kind = "setup", value = launchMode })
+  lu.assertEquals(press.heldBackButton(press.setupSourcePicking), { kind = "setup", value = launchMode })
+  lu.assertNil(press.heldBackButton(launchMode))
+  lu.assertEquals(press.holdMilliseconds, 200)
+end
+
 -- output A in pattern mode, B unipolar, C bipolar, the others as on a new
 -- device; transitions off, except C at B and D at D
 local function mixedModes(present)

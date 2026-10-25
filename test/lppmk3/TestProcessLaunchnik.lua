@@ -20,6 +20,23 @@ local function receive(status, data1, data2)
   return processLaunchnik.processPadsAndTrackButtons({ time_stamp = 0 })
 end
 
+local function setTime(ms)
+  remote.mock "get_time_ms":impl(function()
+    return ms
+  end)
+end
+
+-- simulates pressing the button that sends the given control change and
+-- letting it go after heldMs milliseconds, 0 unless given; true if both were
+-- handled
+local function click(data1, heldMs)
+  setTime(100000)
+  local pressed = receive(controlChange, data1, 127)
+  setTime(100000 + (heldMs or 0))
+  local released = receive(controlChange, data1, 0)
+  return pressed and released
+end
+
 -- the pad in the given place sends this note; row 1 is the top row
 local function pad(track, row)
   return (9 - row) * 10 + track
@@ -377,24 +394,64 @@ end
 -- the button with the arrow pointing left sends control change 91
 function TestProcessLaunchnik:testBackButtonGoesBackOneStep()
   state.setup = press.setupFirstClipEditing + 12
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupClipPicking })
 
   remote.clearMocks()
   state.setup = press.setupClipPicking
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
 end
 
 function TestProcessLaunchnik:testBackButtonDoesNothingInLaunchMode()
+  lu.assertTrue(click(91))
+  lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+-- the back button acts when it is let go, so that a hold can be told from a
+-- click
+function TestProcessLaunchnik:testPressingBackButtonDoesNothingUntilItIsLetGo()
+  state.setup = press.setupClipPicking
   lu.assertTrue(receive(controlChange, 91, 127))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
-function TestProcessLaunchnik:testReleasingBackButtonDoesNothing()
+-- held for 200 milliseconds or more, it goes straight back to clip picking from
+-- fill-in, landing, intro and outro editing
+function TestProcessLaunchnik:testHoldingBackButtonReturnsToClipPicking()
+  for _, first in ipairs({ press.setupFirstFillInEditing, press.setupFirstLandingEditing, press.setupFirstIntroEditing, press.setupFirstOutroEditing }) do
+    remote.clearMocks()
+    state.setup = first + press.buttonIndex(2, 3)
+    lu.assertTrue(click(91, 200))
+    lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupClipPicking })
+  end
+end
+
+function TestProcessLaunchnik:testBackButtonLetGoSoonerGoesBackOneStep()
+  state.setup = press.setupFirstOutroEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(click(91, 199))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstIntroEditing + press.buttonIndex(2, 3) })
+end
+
+-- elsewhere a hold does what a click does
+function TestProcessLaunchnik:testHoldingBackButtonElsewhereGoesBackOneStep()
   state.setup = press.setupClipPicking
-  lu.assertFalse(receive(controlChange, 91, 0))
+  lu.assertTrue(click(91, 3000))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+  remote.clearMocks()
+  state.setup = press.setupLaunchMode
+  lu.assertTrue(click(91, 3000))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
+end
+
+-- the step at the moment of letting go counts
+function TestProcessLaunchnik:testBackButtonGoesBackFromTheStepWhenItIsLetGo()
+  state.setup = press.setupFirstOutroEditing + press.buttonIndex(2, 3)
+  setTime(100000)
+  receive(controlChange, 91, 127)
+  state.setup = press.setupFirstIntroEditing + press.buttonIndex(2, 3)
+  receive(controlChange, 91, 0)
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstLandingEditing + press.buttonIndex(2, 3) })
 end
 
 -- the button to the left of the sixth row of pads sends control change 30; it
@@ -418,55 +475,56 @@ end
 function TestProcessLaunchnik:testForwardButtonGoesForwardOneStepWithAClip()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   state.present[press.buttonIndex(2, 3)] = true
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstFillInEditing + press.buttonIndex(2, 3) })
   remote.clearMocks()
   state.setup = press.setupFirstFillInEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstLandingEditing + press.buttonIndex(2, 3) })
   remote.clearMocks()
   state.setup = press.setupFirstLandingEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstIntroEditing + press.buttonIndex(2, 3) })
   remote.clearMocks()
   state.setup = press.setupFirstIntroEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstOutroEditing + press.buttonIndex(2, 3) })
   remote.clearMocks()
   state.setup = press.setupFirstOutroEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
 function TestProcessLaunchnik:testForwardButtonDoesNothingWithoutAClip()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
   state.setup = press.setupLaunchMode
-  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertTrue(click(92))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
-function TestProcessLaunchnik:testReleasingForwardButtonDoesNothing()
+-- like the back button, the forward button acts when it is let go
+function TestProcessLaunchnik:testPressingForwardButtonDoesNothingUntilItIsLetGo()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   state.present[press.buttonIndex(2, 3)] = true
-  lu.assertFalse(receive(controlChange, 92, 0))
+  lu.assertTrue(receive(controlChange, 92, 127))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
 
 function TestProcessLaunchnik:testBackButtonReturnsFromFillInEditingToClipEditing()
   state.setup = press.setupFirstFillInEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstClipEditing + press.buttonIndex(2, 3) })
 end
 
 function TestProcessLaunchnik:testBackButtonReturnsFromOutroAndIntroEditing()
   state.setup = press.setupFirstOutroEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstIntroEditing + press.buttonIndex(2, 3) })
   remote.clearMocks()
   state.setup = press.setupFirstIntroEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstLandingEditing + press.buttonIndex(2, 3) })
 end
 
@@ -498,7 +556,7 @@ end
 
 function TestProcessLaunchnik:testBackButtonReturnsFromLandingEditingToFillInEditing()
   state.setup = press.setupFirstLandingEditing + press.buttonIndex(2, 3)
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstFillInEditing + press.buttonIndex(2, 3) })
 end
 
@@ -647,7 +705,7 @@ end
 
 function TestProcessLaunchnik:testBackButtonLeavesClearMode()
   state.setup = press.setupClearMode
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
 end
 
@@ -712,7 +770,7 @@ end
 
 function TestProcessLaunchnik:testBackButtonLeavesDuplicateMode()
   state.setup = press.setupSourcePicking
-  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertTrue(click(91))
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
 end
 
