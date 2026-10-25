@@ -17,33 +17,33 @@ local function findItem(index)
   return itemsByIndex[index]
 end
 
--- the settings of the CV outputs the codec keeps, by the kind of their items
+-- the settings of the CV outputs the codec keeps, by the kind of their items,
+-- which hold all four in one number: the names of the patterns, unipolar
+-- values, bipolar values and transitions in the state
 local outputSettings = {
-  pattern = "patterns",
-  unipolar = "unipolar",
-  bipolar = "bipolar",
-  transition = "transitions",
-  fillinpattern = "fillInPatterns",
-  fillinunipolar = "fillInUnipolar",
-  fillinbipolar = "fillInBipolar",
-  fillintransition = "fillInTransitions",
-  landingpattern = "landingPatterns",
-  landingunipolar = "landingUnipolar",
-  landingbipolar = "landingBipolar",
-  landingtransition = "landingTransitions",
+  output = { "patterns", "unipolar", "bipolar", "transitions" },
+  fillinoutput = { "fillInPatterns", "fillInUnipolar", "fillInBipolar", "fillInTransitions" },
+  landingoutput = { "landingPatterns", "landingUnipolar", "landingBipolar", "landingTransitions" },
+  introoutput = { "introPatterns", "introUnipolar", "introBipolar", "introTransitions" },
+  outrooutput = { "outroPatterns", "outroUnipolar", "outroBipolar", "outroTransitions" },
 }
 
--- the colours of the clips, fill-ins and landings, by the kind of their items
-local colourSettings = {
-  colour = "colours",
-  fillincolour = "fillInColours",
-  landingcolour = "landingColours",
+-- the switches of the clips, fill-ins, landings, intros and outros, by the
+-- kind of their items, which hold all of them in one number: the names of
+-- whether there is one, its colour, its one-bar pattern and whether it has
+-- been set up before in the state; a clip has neither of the last two
+local switchSettings = {
+  switches = { "present", "colours" },
+  fillinswitches = { "fillInPresent", "fillInColours", "fillInOneBarPattern", "fillInSetUp" },
+  landingswitches = { "landingPresent", "landingColours", "landingOneBarPattern", "landingSetUp" },
+  introswitches = { "introPresent", "introColours", "introOneBarPattern", "introSetUp" },
+  outroswitches = { "outroPresent", "outroColours", "outroOneBarPattern", "outroSetUp" },
 }
 
 -- keeps a copy of what the host reports about Launchnik: whether it is mapped,
--- the setup state, the function, which launch buttons hold a clip, a fill-in
--- or a landing, the CV modes, the colours, values and transitions of every
--- clip, fill-in and landing, and the light of every launch
+-- the setup state, the function, which launch buttons hold a clip, a fill-in,
+-- a landing, an intro or an outro, the CV modes, the colours, values and
+-- transitions of every clip, fill-in, landing, intro and outro, and the light of every launch
 -- button, function button and scene button, of the fill-in button and of the
 -- forward button;
 -- while no Launchnik is mapped, its items are disabled and count as a new
@@ -67,22 +67,24 @@ local function setState(hostItems)
           state["function"] = value
           state.functionChanged = true
         end
-      elseif kind == "present" then
-        state.present[item.launchnik.index] = value > 0
-      elseif colourSettings[kind] then
-        state[colourSettings[kind]][item.launchnik.index] = value
       elseif outputSettings[kind] then
-        state[outputSettings[kind]][item.launchnik.index][item.launchnik.output] = value
+        local names, index, output = outputSettings[kind], item.launchnik.index, item.launchnik.output
+        local pattern, unipolar, bipolar, transition = launchnik.press.unpackOutputSettings(value)
+        state[names[1]][index][output] = pattern
+        state[names[2]][index][output] = unipolar
+        state[names[3]][index][output] = bipolar
+        state[names[4]][index][output] = transition
       elseif kind == "cvmode" then
         state.cvModes[item.launchnik.track][item.launchnik.output] = value
-      elseif kind == "fillinpresent" then
-        state.fillInPresent[item.launchnik.index] = value > 0
-      elseif kind == "landingpresent" then
-        state.landingPresent[item.launchnik.index] = value > 0
-      elseif kind == "landingonebarpattern" then
-        state.landingOneBarPattern[item.launchnik.index] = value > 0
-      elseif kind == "fillinonebarpattern" then
-        state.fillInOneBarPattern[item.launchnik.index] = value > 0
+      elseif switchSettings[kind] then
+        local names, index = switchSettings[kind], item.launchnik.index
+        local present, colour, oneBarPattern, setUp = launchnik.press.unpackSwitches(value)
+        state[names[1]][index] = present
+        state[names[2]][index] = colour
+        if names[3] then
+          state[names[3]][index] = oneBarPattern
+          state[names[4]][index] = setUp
+        end
       elseif kind == "fillinlight" then
         state.fillInLight = value
       elseif kind == "forwardlight" then

@@ -26,6 +26,38 @@ local function pad(track, row)
 end
 
 -- the input passed to the only call of remote.handle_input
+-- asserts that an input sets the settings of a CV output, which are all in
+-- one item, with one of them value
+local function assertSetting(input, item, setting, value)
+  lu.assertEquals({ input.time_stamp, input.item }, { 0, items[item].index })
+  local settings = {}
+  settings.pattern, settings.unipolar, settings.bipolar, settings.transition = press.unpackOutputSettings(input.value)
+  lu.assertEquals(settings[setting], value)
+end
+
+-- asserts that an input sets the switches of a clip, fill-in, landing, intro
+-- or outro, which are all in one item, with one of them value, 1 or 0 for
+-- present and oneBarPattern
+local function assertSwitch(input, item, switch, value)
+  lu.assertEquals({ input.time_stamp, input.item }, { 0, items[item].index })
+  local switches = {}
+  switches.present, switches.colour, switches.oneBarPattern = press.unpackSwitches(input.value)
+  local actual = switches[switch]
+  if type(actual) == "boolean" then
+    actual = actual and 1 or 0
+  end
+  lu.assertEquals(actual, value)
+end
+
+-- the same for the values written to items, by item index
+local function assertWrittenSetting(written, item, setting, value)
+  assertSetting({ time_stamp = 0, item = items[item].index, value = written[items[item].index] }, item, setting, value)
+end
+
+local function assertWrittenSwitch(written, item, switch, value)
+  assertSwitch({ time_stamp = 0, item = items[item].index, value = written[items[item].index] }, item, switch, value)
+end
+
 local function handledInput()
   local calls = remote.mock "handle_input".calls
   lu.assertEquals(#calls, 1)
@@ -45,7 +77,7 @@ end
 -- the host scales an item's range onto the remotable's, so the ranges have to
 -- be those of Launchnik's Remote items for the values to arrive unchanged
 function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
-  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 267 })
+  lu.assertEquals({ items.setup.min, items.setup.max }, { 0, 395 })
   lu.assertEquals({ items.fillin.min, items.fillin.max }, { 0, 1 })
   lu.assertEquals({ items.fillinlight.min, items.fillinlight.max }, { 0, 42 })
   lu.assertEquals({ items.forwardlight.min, items.forwardlight.max }, { 0, 42 })
@@ -55,21 +87,17 @@ function TestProcessLaunchnik:testItemRangesAreThoseOfLaunchniksRemoteItems()
     for row = 1, 8 do
       local clip = "track" .. track .. "clip" .. row
       lu.assertEquals({ items[clip .. "light"].min, items[clip .. "light"].max }, { 0, 42 })
-      lu.assertEquals({ items[clip .. "present"].min, items[clip .. "present"].max }, { 0, 1 })
-      lu.assertEquals({ items[clip .. "colour"].min, items[clip .. "colour"].max }, { 0, 13 })
-      lu.assertEquals({ items[clip .. "fillinpresent"].min, items[clip .. "fillinpresent"].max }, { 0, 1 })
-      lu.assertEquals({ items[clip .. "fillincolour"].min, items[clip .. "fillincolour"].max }, { 0, 13 })
-      lu.assertEquals({ items[clip .. "fillinonebarpattern"].min, items[clip .. "fillinonebarpattern"].max }, { 0, 1 })
-      lu.assertEquals({ items[clip .. "landingpresent"].min, items[clip .. "landingpresent"].max }, { 0, 1 })
-      lu.assertEquals({ items[clip .. "landingcolour"].min, items[clip .. "landingcolour"].max }, { 0, 13 })
-      lu.assertEquals({ items[clip .. "landingonebarpattern"].min, items[clip .. "landingonebarpattern"].max }, { 0, 1 })
+      -- whether there is a clip, fill-in, landing, intro or outro, its colour
+      -- and one-bar pattern, all in one item
+      for _, kind in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
+        local item = items[clip .. kind .. "switches"]
+        lu.assertEquals({ item.min, item.max }, { 0, 111 })
+      end
       for _, letter in ipairs({ "a", "b", "c", "d", "e", "f" }) do
-        for _, kind in ipairs({ "", "fillin", "landing" }) do
-          local prefix = clip .. kind .. letter
-          lu.assertEquals({ items[prefix .. "pattern"].min, items[prefix .. "pattern"].max }, { 0, 7 })
-          lu.assertEquals({ items[prefix .. "unipolar"].min, items[prefix .. "unipolar"].max }, { 0, 6 })
-          lu.assertEquals({ items[prefix .. "bipolar"].min, items[prefix .. "bipolar"].max }, { 0, 6 })
-          lu.assertEquals({ items[prefix .. "transition"].min, items[prefix .. "transition"].max }, { 0, 4 })
+        for _, kind in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
+          -- all four settings of an output in one item
+          local item = items[clip .. kind .. letter]
+          lu.assertEquals({ item.min, item.max }, { 0, 1959 })
         end
       end
     end
@@ -206,15 +234,17 @@ function TestProcessLaunchnik:testTogglePadInClipEditingSwitchesThePickedClipOn(
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
   local input = handledInput()
-  lu.assertEquals(input.item, items.track2clip3present.index)
-  lu.assertEquals(input.value, 1)
+  assertSwitch(input, "track2clip3switches", "present", 1)
 end
 
 function TestProcessLaunchnik:testTogglePadInClipEditingSwitchesThePickedClipOff()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   state.present[press.buttonIndex(2, 3)] = true
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
-  lu.assertEquals(handledInput().value, 0)
+  -- the colour stays
+  local input = handledInput()
+  assertSwitch(input, "track2clip3switches", "present", 0)
+  assertSwitch(input, "track2clip3switches", "colour", 2)
 end
 
 function TestProcessLaunchnik:testColourAndCVPadsInClipEditingChangeThePickedClip()
@@ -225,29 +255,29 @@ function TestProcessLaunchnik:testColourAndCVPadsInClipEditingChangeThePickedCli
   state.transitions[picked][2] = 4
 
   lu.assertTrue(receive(noteOn, pad(4, 2), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3colour.index, value = 10 })
+  assertSwitch(handledInput(), "track2clip3switches", "colour", 10)
 
   -- output A is in pattern mode, B unipolar, C bipolar
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(6, 3), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3apattern.index, value = 5 })
+  assertSetting(handledInput(), "track2clip3a", "pattern", 5)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(6, 4), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3bunipolar.index, value = 5 })
+  assertSetting(handledInput(), "track2clip3b", "unipolar", 5)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(2, 5), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3cbipolar.index, value = 1 })
+  assertSetting(handledInput(), "track2clip3c", "bipolar", 1)
 
   -- the transition goes round from what the host last reported
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(8, 4), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3btransition.index, value = 0 })
+  assertSetting(handledInput(), "track2clip3b", "transition", 0)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(8, 5), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3ctransition.index, value = 1 })
+  assertSetting(handledInput(), "track2clip3c", "transition", 1)
 end
 
 function TestProcessLaunchnik:testPadWithoutMeaningIsSwallowed()
@@ -383,7 +413,8 @@ function TestProcessLaunchnik:testFillInButtonIsHeldWhileItsButtonIs()
 end
 
 -- the button above the second column of pads sends control change 92; it
--- leads from clip editing to fill-in editing and on to landing editing
+-- leads from clip editing to fill-in editing and on to landing editing, intro
+-- editing and outro editing
 function TestProcessLaunchnik:testForwardButtonGoesForwardOneStepWithAClip()
   state.setup = press.setupFirstClipEditing + press.buttonIndex(2, 3)
   state.present[press.buttonIndex(2, 3)] = true
@@ -395,6 +426,14 @@ function TestProcessLaunchnik:testForwardButtonGoesForwardOneStepWithAClip()
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstLandingEditing + press.buttonIndex(2, 3) })
   remote.clearMocks()
   state.setup = press.setupFirstLandingEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstIntroEditing + press.buttonIndex(2, 3) })
+  remote.clearMocks()
+  state.setup = press.setupFirstIntroEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 92, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstOutroEditing + press.buttonIndex(2, 3) })
+  remote.clearMocks()
+  state.setup = press.setupFirstOutroEditing + press.buttonIndex(2, 3)
   lu.assertTrue(receive(controlChange, 92, 127))
   lu.assertEquals(#remote.mock "handle_input".calls, 0)
 end
@@ -421,6 +460,42 @@ function TestProcessLaunchnik:testBackButtonReturnsFromFillInEditingToClipEditin
   lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstClipEditing + press.buttonIndex(2, 3) })
 end
 
+function TestProcessLaunchnik:testBackButtonReturnsFromOutroAndIntroEditing()
+  state.setup = press.setupFirstOutroEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstIntroEditing + press.buttonIndex(2, 3) })
+  remote.clearMocks()
+  state.setup = press.setupFirstIntroEditing + press.buttonIndex(2, 3)
+  lu.assertTrue(receive(controlChange, 91, 127))
+  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.setup.index, value = press.setupFirstLandingEditing + press.buttonIndex(2, 3) })
+end
+
+-- a new intro or outro is a copy of its clip's values, like a new landing;
+-- presses in its editing change it, with its own transitions
+function TestProcessLaunchnik:testPadsInIntroAndOutroEditingChangeThem()
+  local picked = press.buttonIndex(2, 3)
+  state.setup = press.setupFirstIntroEditing + picked
+  state.present[picked] = true
+  state.patterns[picked][1] = 6
+  lu.assertTrue(receive(noteOn, pad(8, 1), 127))
+  local calls = remote.mock "handle_input".calls
+  lu.assertEquals(#calls, 1 + 6)
+  assertSwitch(calls[1][1], "track2clip3introswitches", "present", 1)
+  assertSetting(calls[2][1], "track2clip3introa", "pattern", 6)
+  assertSwitch(calls[1][1], "track2clip3introswitches", "oneBarPattern", 0)
+
+  remote.clearMocks()
+  state.setup = press.setupFirstOutroEditing + picked
+  state.outroPresent[picked] = true
+  state.transitions[picked][2] = 3
+  state.outroTransitions[picked][2] = 1
+  lu.assertTrue(receive(noteOn, pad(8, 4), 127))
+  assertSetting(handledInput(), "track2clip3outrob", "transition", 2)
+  remote.clearMocks()
+  lu.assertTrue(receive(noteOn, pad(8, 2), 127))
+  assertSwitch(handledInput(), "track2clip3outroswitches", "oneBarPattern", 1)
+end
+
 function TestProcessLaunchnik:testBackButtonReturnsFromLandingEditingToFillInEditing()
   state.setup = press.setupFirstLandingEditing + press.buttonIndex(2, 3)
   lu.assertTrue(receive(controlChange, 91, 127))
@@ -440,14 +515,14 @@ function TestProcessLaunchnik:testTogglePadInLandingEditingSetsUpANewLanding()
   state.bipolar[picked][6] = 1
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 3 + 4 * 6)
-  lu.assertEquals(calls[27][1], { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 0 })
-  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip3landingpresent.index, value = 1 })
-  lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track2clip3landingcolour.index, value = 0 })
-  lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.track2clip3landingapattern.index, value = 6 })
-  lu.assertEquals(calls[8][1], { time_stamp = 0, item = items.track2clip3landingbunipolar.index, value = 4 })
-  lu.assertEquals(calls[25][1], { time_stamp = 0, item = items.track2clip3landingfbipolar.index, value = 1 })
-  lu.assertEquals(calls[26][1], { time_stamp = 0, item = items.track2clip3landingftransition.index, value = 0 })
+  lu.assertEquals(#calls, 1 + 6)
+  assertSwitch(calls[1][1], "track2clip3landingswitches", "oneBarPattern", 0)
+  assertSwitch(calls[1][1], "track2clip3landingswitches", "present", 1)
+  assertSwitch(calls[1][1], "track2clip3landingswitches", "colour", 0)
+  assertSetting(calls[2][1], "track2clip3landinga", "pattern", 6)
+  assertSetting(calls[3][1], "track2clip3landingb", "unipolar", 4)
+  assertSetting(calls[7][1], "track2clip3landingf", "bipolar", 1)
+  assertSetting(calls[7][1], "track2clip3landingf", "transition", 0)
 end
 
 function TestProcessLaunchnik:testColourAndCVPadsInLandingEditingChangeTheLanding()
@@ -461,32 +536,32 @@ function TestProcessLaunchnik:testColourAndCVPadsInLandingEditingChangeTheLandin
   state.landingTransitions[picked][2] = 4
 
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingpresent.index, value = 0 })
+  assertSwitch(handledInput(), "track2clip3landingswitches", "present", 0)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(4, 2), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingcolour.index, value = 10 })
+  assertSwitch(handledInput(), "track2clip3landingswitches", "colour", 10)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(6, 3), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingapattern.index, value = 5 })
+  assertSetting(handledInput(), "track2clip3landinga", "pattern", 5)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(3, 4), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingbunipolar.index, value = 2 })
+  assertSetting(handledInput(), "track2clip3landingb", "unipolar", 2)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(8, 4), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingbtransition.index, value = 0 })
+  assertSetting(handledInput(), "track2clip3landingb", "transition", 0)
 
   -- the one-bar pattern switch goes on, and off again
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(8, 2), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 1 })
+  assertSwitch(handledInput(), "track2clip3landingswitches", "oneBarPattern", 1)
   remote.clearMocks()
   state.landingOneBarPattern[picked] = true
   lu.assertTrue(receive(noteOn, pad(8, 2), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3landingonebarpattern.index, value = 0 })
+  assertSwitch(handledInput(), "track2clip3landingswitches", "oneBarPattern", 0)
 end
 
 -- a new fill-in is a copy of its clip's values, with every transition off,
@@ -500,14 +575,14 @@ function TestProcessLaunchnik:testTogglePadInFillInEditingSetsUpANewFillIn()
   state.bipolar[picked][6] = 1
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 3 + 4 * 6)
-  lu.assertEquals(calls[27][1], { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
-  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip3fillinpresent.index, value = 1 })
-  lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track2clip3fillincolour.index, value = 0 })
-  lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.track2clip3fillinapattern.index, value = 6 })
-  lu.assertEquals(calls[8][1], { time_stamp = 0, item = items.track2clip3fillinbunipolar.index, value = 4 })
-  lu.assertEquals(calls[25][1], { time_stamp = 0, item = items.track2clip3fillinfbipolar.index, value = 1 })
-  lu.assertEquals(calls[26][1], { time_stamp = 0, item = items.track2clip3fillinftransition.index, value = 0 })
+  lu.assertEquals(#calls, 1 + 6)
+  assertSwitch(calls[1][1], "track2clip3fillinswitches", "oneBarPattern", 0)
+  assertSwitch(calls[1][1], "track2clip3fillinswitches", "present", 1)
+  assertSwitch(calls[1][1], "track2clip3fillinswitches", "colour", 0)
+  assertSetting(calls[2][1], "track2clip3fillina", "pattern", 6)
+  assertSetting(calls[3][1], "track2clip3fillinb", "unipolar", 4)
+  assertSetting(calls[7][1], "track2clip3fillinf", "bipolar", 1)
+  assertSetting(calls[7][1], "track2clip3fillinf", "transition", 0)
 end
 
 function TestProcessLaunchnik:testColourAndCVPadsInFillInEditingChangeTheFillIn()
@@ -520,30 +595,30 @@ function TestProcessLaunchnik:testColourAndCVPadsInFillInEditingChangeTheFillIn(
   state.fillInTransitions[picked][2] = 1
 
   lu.assertTrue(receive(noteOn, pad(8, 1), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinpresent.index, value = 0 })
+  assertSwitch(handledInput(), "track2clip3fillinswitches", "present", 0)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(4, 2), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillincolour.index, value = 10 })
+  assertSwitch(handledInput(), "track2clip3fillinswitches", "colour", 10)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(6, 3), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinapattern.index, value = 5 })
+  assertSetting(handledInput(), "track2clip3fillina", "pattern", 5)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(3, 4), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinbunipolar.index, value = 2 })
+  assertSetting(handledInput(), "track2clip3fillinb", "unipolar", 2)
 
   remote.clearMocks()
   lu.assertTrue(receive(noteOn, pad(8, 4), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinbtransition.index, value = 2 })
+  assertSetting(handledInput(), "track2clip3fillinb", "transition", 2)
 
   -- the pad in the last track of the second colour row switches one-bar
   -- pattern
   remote.clearMocks()
   state.fillInOneBarPattern[picked] = true
   lu.assertTrue(receive(noteOn, pad(8, 2), 127))
-  lu.assertEquals(handledInput(), { time_stamp = 0, item = items.track2clip3fillinonebarpattern.index, value = 0 })
+  assertSwitch(handledInput(), "track2clip3fillinswitches", "oneBarPattern", 0)
 end
 
 -- the button to the left of the third row of pads from the top sends control
@@ -584,7 +659,7 @@ function TestProcessLaunchnik:testPadInClearModeClearsItsLaunchButton()
   lu.assertTrue(receive(noteOn, pad(3, 2), 127))
   local calls = remote.mock "handle_input".calls
   lu.assertEquals(#calls, 2)
-  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track3clip2present.index, value = 0 })
+  assertSwitch(calls[1][1], "track3clip2switches", "present", 0)
   lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
   lu.assertNil(state.heldRelaunches[3])
 end
@@ -604,8 +679,8 @@ function TestProcessLaunchnik:testSceneButtonInClearModeClearsItsScene()
   lu.assertTrue(receive(controlChange, 89, 127))
   local calls = remote.mock "handle_input".calls
   lu.assertEquals(#calls, 3)
-  lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track2clip1present.index, value = 0 })
-  lu.assertEquals(calls[2][1], { time_stamp = 0, item = items.track7clip1present.index, value = 0 })
+  assertSwitch(calls[1][1], "track2clip1switches", "present", 0)
+  assertSwitch(calls[2][1], "track7clip1switches", "present", 0)
   lu.assertEquals(calls[3][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
   lu.assertEquals(state.heldRelaunches, {})
 end
@@ -680,23 +755,23 @@ function TestProcessLaunchnik:testPadInDestinationPickingCopiesTheSource()
   state.setup = press.setupFirstClipDestinationPicking + press.buttonIndex(3, 2)
   lu.assertTrue(receive(noteOn, pad(5, 7), 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 81)
+  lu.assertEquals(#calls, 36)
   local written = {}
   for _, call in ipairs(calls) do
     written[call[1].item] = call[1].value
   end
-  lu.assertEquals(written[items.track5clip7present.index], 1)
-  lu.assertEquals(written[items.track5clip7colour.index], 9)
-  lu.assertEquals(written[items.track5clip7fillinpresent.index], 1)
-  lu.assertEquals(written[items.track5clip7fillincolour.index], 4)
-  lu.assertEquals(written[items.track5clip7fillinonebarpattern.index], 1)
-  lu.assertEquals(written[items.track5clip7landingpresent.index], 0)
-  lu.assertEquals(written[items.track5clip7landingcolour.index], 11)
-  lu.assertEquals(written[items.track5clip7cpattern.index], 3)
-  lu.assertEquals(written[items.track5clip7bunipolar.index], 4)
-  lu.assertEquals(written[items.track5clip7fillinfbipolar.index], 6)
-  lu.assertEquals(written[items.track5clip7landingdtransition.index], 4)
-  lu.assertEquals(calls[81][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
+  assertWrittenSwitch(written, "track5clip7switches", "present", 1)
+  assertWrittenSwitch(written, "track5clip7switches", "colour", 9)
+  assertWrittenSwitch(written, "track5clip7fillinswitches", "present", 1)
+  assertWrittenSwitch(written, "track5clip7fillinswitches", "colour", 4)
+  assertWrittenSwitch(written, "track5clip7fillinswitches", "oneBarPattern", 1)
+  assertWrittenSwitch(written, "track5clip7landingswitches", "present", 0)
+  assertWrittenSwitch(written, "track5clip7landingswitches", "colour", 11)
+  assertWrittenSetting(written, "track5clip7c", "pattern", 3)
+  assertWrittenSetting(written, "track5clip7b", "unipolar", 4)
+  assertWrittenSetting(written, "track5clip7fillinf", "bipolar", 6)
+  assertWrittenSetting(written, "track5clip7landingd", "transition", 4)
+  lu.assertEquals(calls[36][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
 end
 
 function TestProcessLaunchnik:testSourcePadInDestinationPickingDoesNothing()
@@ -720,14 +795,14 @@ function TestProcessLaunchnik:testSceneButtonsDuplicateAScene()
   state.present[press.buttonIndex(6, 8)] = true
   lu.assertTrue(receive(controlChange, 19, 127))
   local calls = remote.mock "handle_input".calls
-  lu.assertEquals(#calls, 8 * 80 + 1)
+  lu.assertEquals(#calls, 8 * 35 + 1)
   local written = {}
   for _, call in ipairs(calls) do
     written[call[1].item] = call[1].value
   end
-  lu.assertEquals(written[items.track3clip8present.index], 1)
-  lu.assertEquals(written[items.track3clip8colour.index], 9)
-  lu.assertEquals(written[items.track6clip8present.index], 0)
+  assertWrittenSwitch(written, "track3clip8switches", "present", 1)
+  assertWrittenSwitch(written, "track3clip8switches", "colour", 9)
+  assertWrittenSwitch(written, "track6clip8switches", "present", 0)
   lu.assertEquals(calls[#calls][1], { time_stamp = 0, item = items.setup.index, value = press.setupLaunchMode })
   lu.assertEquals(state.heldRelaunches, {})
 end

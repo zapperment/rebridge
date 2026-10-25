@@ -50,17 +50,11 @@ local function itemName(change)
   local track = math.floor(change.index / 8) + 1
   local row = change.index % 8 + 1
   local clip = "track" .. track .. "clip" .. row
-  -- a setting of a CV output, such as track1clip1apattern,
-  -- track1clip1fillinapattern or track1clip1landingapattern
+  -- the settings of a CV output, such as track1clip1a, track1clip1fillina,
+  -- track1clip1landinga, track1clip1introa or track1clip1outroa
   if change.output then
     local letter = string.char(string.byte("a") + change.output - 1)
-    for _, prefix in ipairs({ "fillin", "landing" }) do
-      local setting = string.match(change.kind, "^" .. prefix .. "(.+)$")
-      if setting then
-        return clip .. prefix .. letter .. setting
-      end
-    end
-    return clip .. letter .. change.kind
+    return clip .. string.match(change.kind, "^(.*)output$") .. letter
   end
   return clip .. change.kind
 end
@@ -75,17 +69,23 @@ local function write(event, change)
   remote.handle_input({ time_stamp = event.time_stamp, item = items[name].index, value = change.value })
 end
 
--- what a press in clip editing, fill-in editing or landing editing needs to
--- know of the clip, fill-in or landing being edited
+-- what a press in clip editing, fill-in editing, landing editing, intro
+-- editing or outro editing needs to know of what is being edited
 local function editedSettings(picked)
   local track = math.floor(picked / 8) + 1
+  -- what is being edited, as state.button has it
+  local field = "clip"
   if press.isFillInEditing(state.setup) then
-    return press.edited(state.fillInPresent[picked], state.cvModes[track], state.fillInTransitions[picked], state.fillInOneBarPattern[picked])
+    field = "fillIn"
+  elseif press.isLandingEditing(state.setup) then
+    field = "landing"
+  elseif press.isIntroEditing(state.setup) then
+    field = "intro"
+  elseif press.isOutroEditing(state.setup) then
+    field = "outro"
   end
-  if press.isLandingEditing(state.setup) then
-    return press.edited(state.landingPresent[picked], state.cvModes[track], state.landingTransitions[picked], state.landingOneBarPattern[picked])
-  end
-  return press.edited(state.present[picked], state.cvModes[track], state.transitions[picked])
+  local settings = state.button(picked)[field]
+  return press.edited(settings.present, state.cvModes[track], settings.transitions, settings.oneBarPattern, settings)
 end
 
 -- whether any launch button of a track holds a clip
@@ -180,7 +180,7 @@ local function processPadsAndTrackButtons(event)
     local track = ret.y % 10
     local row = 9 - ((ret.y - track) / 10)
     if state.setup == press.setupClearMode then
-      for _, change in ipairs(press.clearModeLaunchButton(state.setup, track, row, state.present[press.buttonIndex(track, row)])) do
+      for _, change in ipairs(press.clearModeLaunchButton(state.setup, track, row, state.present[press.buttonIndex(track, row)], state.colours[press.buttonIndex(track, row)])) do
         write(event, change)
       end
       return true
@@ -194,10 +194,16 @@ local function processPadsAndTrackButtons(event)
       return true
     end
     local picked = press.pickedButton(state.setup)
-    local fillInEditing = press.isFillInEditing(state.setup)
-    if fillInEditing or press.isLandingEditing(state.setup) then
+    if picked ~= nil and not press.isClipEditing(state.setup) then
       local clipValues = { patterns = state.patterns[picked], unipolar = state.unipolar[picked], bipolar = state.bipolar[picked] }
-      local editLaunchButton = fillInEditing and press.fillInEditingLaunchButton or press.landingEditingLaunchButton
+      local editLaunchButton = press.outroEditingLaunchButton
+      if press.isFillInEditing(state.setup) then
+        editLaunchButton = press.fillInEditingLaunchButton
+      elseif press.isLandingEditing(state.setup) then
+        editLaunchButton = press.landingEditingLaunchButton
+      elseif press.isIntroEditing(state.setup) then
+        editLaunchButton = press.introEditingLaunchButton
+      end
       for _, change in ipairs(editLaunchButton(state.setup, track, row, editedSettings(picked), clipValues)) do
         write(event, change)
       end
@@ -235,9 +241,11 @@ local function processPadsAndTrackButtons(event)
   if ret.x == controlChange and isSceneButton then
     local scene = 9 - (ret.y - 9) / 10
     local holdsClip = {}
+    local colours = {}
     local sceneHoldsClip = false
     for track = 1, 8 do
       holdsClip[track] = state.present[press.buttonIndex(track, scene)]
+      colours[track] = state.colours[press.buttonIndex(track, scene)]
       sceneHoldsClip = sceneHoldsClip or holdsClip[track]
     end
     if press.isDuplicateMode(state.setup) then
@@ -251,7 +259,7 @@ local function processPadsAndTrackButtons(event)
       end
       return true
     end
-    for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip)) do
+    for _, change in ipairs(press.sceneButton(state.setup, scene, holdsClip, colours)) do
       writeHeld(event, change)
     end
     return true

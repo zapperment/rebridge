@@ -5,23 +5,29 @@
 -- Tracks and rows are numbered from 1. A launch button's index is 0..63,
 -- counted down track 1 first. A change names one property and its new value:
 --   { kind = "selection", track = 1..8, value = 0..8 }
---   { kind = "setup", value = 0..267 }
+--   { kind = "setup", value = 0..395 }
 --   { kind = "length", value = 0..7 }
---   { kind = "present" | "colour", index = 0..63, value = ... }
---   { kind = "pattern" | "unipolar" | "bipolar" | "transition", index = 0..63, output = 1..6, value = ... }
---   { kind = "fillinpresent" | "fillincolour" | "fillinonebarpattern", index = 0..63, value = ... }
---   { kind = "fillinpattern" | "fillinunipolar" | "fillinbipolar" | "fillintransition", index = 0..63, output = 1..6, value = ... }
---   { kind = "landingpresent" | "landingcolour" | "landingonebarpattern", index = 0..63, value = ... }
---   { kind = "landingpattern" | "landingunipolar" | "landingbipolar" | "landingtransition", index = 0..63, output = 1..6, value = ... }
+--   { kind = "switches", index = 0..63, value = 0..55 }
+--   { kind = "output", index = 0..63, output = 1..6, value = 0..1959 }
+--   { kind = "fillinswitches", index = 0..63, value = 0..55 }
+--   { kind = "fillinoutput", index = 0..63, output = 1..6, value = 0..1959 }
+--   { kind = "landingswitches", index = 0..63, value = 0..55 }
+--   { kind = "landingoutput", index = 0..63, output = 1..6, value = 0..1959 }
+--   and the same with "intro" and "outro" in place of "landing"
+-- The value of an output is all four of its settings in one number, see
+-- packOutputSettings; that of the switches is whether there is a clip,
+-- fill-in, landing, intro or outro, its colour and one-bar pattern, see
+-- packSwitches.
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
--- A press of a launch button outside fill-in editing, landing editing, clear
--- mode and duplicate mode, a function button, a function select button, the
+-- A press of a launch button outside fill-in editing, landing editing, intro
+-- editing, outro editing, clear mode and duplicate mode, a function button, a function select button, the
 -- setup button, the clear button, the duplicate button, the back button, the
 -- forward button or the fill-in button changes one property at most; a press
 -- of a scene button, or of a launch button in fill-in editing, landing
--- editing, clear mode or duplicate mode, yields a list of changes.
+-- editing, intro editing, outro editing, clear mode or duplicate mode, yields
+-- a list of changes.
 
 local selectionStop = 0
 
@@ -36,14 +42,16 @@ local setupClipPicking = 1
 local setupFirstClipEditing = 2
 local setupFirstFillInEditing = 66
 local setupFirstLandingEditing = 130
+local setupFirstIntroEditing = 194
+local setupFirstOutroEditing = 258
 -- clear mode and duplicate mode are not part of setup mode; duplicate mode is
 -- source picking, then destination picking for a launch button or a scene as
 -- the source
-local setupClearMode = 194
-local setupSourcePicking = 195
-local setupFirstClipDestinationPicking = 196
-local setupFirstSceneDestinationPicking = 260
-local setupCount = 268
+local setupClearMode = 322
+local setupSourcePicking = 323
+local setupFirstClipDestinationPicking = 324
+local setupFirstSceneDestinationPicking = 388
+local setupCount = 396
 
 local colourWhite = 0
 
@@ -57,6 +65,39 @@ local cvModePattern = 2
 -- transitions: 0 = off, then A, B, C and D
 local transitionOff = 0
 local transitionCount = 5
+local patternCount = 8
+local valueCount = 7
+local bipolarZero = 3
+
+-- the four settings of a CV output as one number, as Launchnik keeps them
+-- (see its ADR 0008): the pattern, plus 8 times the unipolar value, plus 56
+-- times the bipolar value, plus 392 times the transition
+local function packOutputSettings(pattern, unipolar, bipolar, transition)
+  return pattern + patternCount * (unipolar + valueCount * (bipolar + valueCount * transition))
+end
+
+-- whether there is a clip, fill-in, landing, intro or outro, its colour, its
+-- one-bar pattern and whether it has been set up before as one number, as
+-- Launchnik keeps them (see its ADR 0008): 1 if it is there, plus 2 times
+-- the colour, plus 28 if one-bar pattern is on, plus 56 if it has been set
+-- up
+local function packSwitches(present, colour, oneBarPattern, setUp)
+  return (present and 1 or 0) + 2 * colour + (oneBarPattern and 28 or 0) + (setUp and 56 or 0)
+end
+
+-- the other way round: present, colour, oneBarPattern, setUp
+local function unpackSwitches(packed)
+  return packed % 2 == 1, math.floor(packed / 2) % 14, math.floor(packed / 28) % 2 == 1, packed >= 56
+end
+
+-- the other way round: pattern, unipolar, bipolar, transition
+local function unpackOutputSettings(packed)
+  local pattern = packed % patternCount
+  packed = math.floor(packed / patternCount)
+  local unipolar = packed % valueCount
+  packed = math.floor(packed / valueCount)
+  return pattern, unipolar, packed % valueCount, math.floor(packed / valueCount)
+end
 
 -- where the controls of clip editing sit on the grid: the colours fill the
 -- first seven tracks of rows 1 and 2, and rows 3 to 8 stand for the CV outputs
@@ -66,7 +107,8 @@ local firstColourRow = 1
 local coloursPerRow = 7
 local firstOutputRow = 3
 local transitionTrack = 8
--- in fill-in editing and landing editing only, the one-bar pattern switch
+-- in fill-in editing, landing editing, intro editing and outro editing only,
+-- the one-bar pattern switch
 -- sits in the last track of the second colour row
 local oneBarPattern = { track = 8, row = 2 }
 
@@ -74,45 +116,60 @@ local function defaultCVMode(output)
   return output == 1 and cvModePattern or cvModeUnipolar
 end
 
--- what a press in clip editing, fill-in editing or landing editing needs to
--- know of the settings being edited: whether there are any, the CV modes of the picked
+-- what a press in clip editing, fill-in editing, landing editing, intro
+-- editing or outro editing needs to know of the settings being edited: whether there are any, the CV modes of the picked
 -- launch button's track and the transitions, by output; with present alone,
 -- the CV modes of a new device and every transition off; oneBarPattern says
--- of a fill-in or a landing whether one-bar pattern is on
-local function edited(present, cvModes, transitions, oneBarPattern)
-  local result = { present = present, cvModes = {}, transitions = {}, oneBarPattern = oneBarPattern or false }
+-- of a fill-in, a landing, an intro or an outro whether one-bar pattern is on;
+-- values holds the colour, whether a fill-in, landing, intro or outro has
+-- been set up before, and the other settings by output, { colour = ...,
+-- setUp = ..., patterns = {}, unipolar = {}, bipolar = {} }, which a press
+-- keeps, since the switches are one item, and all four settings of an output
+-- another; without it, white, never set up, pattern 1 and unipolar and
+-- bipolar 0
+local function edited(present, cvModes, transitions, oneBarPattern, values)
+  local result = { present = present, colour = values and values.colour or colourWhite, setUp = values and values.setUp or false, cvModes = {}, transitions = {}, patterns = {}, unipolar = {}, bipolar = {}, oneBarPattern = oneBarPattern or false }
   for output = 1, outputCount do
     result.cvModes[output] = cvModes and cvModes[output] or defaultCVMode(output)
     result.transitions[output] = transitions and transitions[output] or transitionOff
+    result.patterns[output] = values and values.patterns[output] or 0
+    result.unipolar[output] = values and values.unipolar[output] or 0
+    result.bipolar[output] = values and values.bipolar[output] or bipolarZero
   end
   return result
 end
 
 -- what a press changes among the colours and the CV outputs of the settings
--- being edited, the clip's or, with prefix "fillin" or "landing", the
--- fill-in's or the landing's, which must be there; nil if nothing
+-- being edited, the clip's or, with prefix "fillin", "landing", "intro" or
+-- "outro", the fill-in's, the landing's, the intro's or the outro's, which
+-- must be there; nil if nothing
 local function editSetting(prefix, picked, track, row, settings)
   local isColourRow = row == firstColourRow or row == firstColourRow + 1
   if isColourRow and track <= coloursPerRow then
-    return { kind = prefix .. "colour", index = picked, value = (row - firstColourRow) * coloursPerRow + track - 1 }
+    local colour = (row - firstColourRow) * coloursPerRow + track - 1
+    return { kind = prefix .. "switches", index = picked, value = packSwitches(settings.present, colour, settings.oneBarPattern, settings.setUp) }
   end
   if prefix ~= "" and track == oneBarPattern.track and row == oneBarPattern.row then
-    return { kind = prefix .. "onebarpattern", index = picked, value = settings.oneBarPattern and 0 or 1 }
+    return { kind = prefix .. "switches", index = picked, value = packSwitches(settings.present, settings.colour, not settings.oneBarPattern, settings.setUp) }
   end
   local output = row - firstOutputRow + 1
   if output < 1 or output > outputCount or track < 1 or track > 8 then
     return nil
   end
+  -- a press changes one of the output's settings and keeps the others
+  local pattern, unipolar, bipolar, transition = settings.patterns[output], settings.unipolar[output], settings.bipolar[output], settings.transitions[output]
   local cvMode = settings.cvModes[output]
   if cvMode == cvModePattern then
-    return { kind = prefix .. "pattern", index = picked, output = output, value = track - 1 }
-  end
+    pattern = track - 1
   -- the transition button goes round from off through A to D
-  if track == transitionTrack then
-    return { kind = prefix .. "transition", index = picked, output = output, value = (settings.transitions[output] + 1) % transitionCount }
+  elseif track == transitionTrack then
+    transition = (transition + 1) % transitionCount
+  elseif cvMode == cvModeUnipolar then
+    unipolar = track - 1
+  else
+    bipolar = track - 1
   end
-  local kind = cvMode == cvModeUnipolar and "unipolar" or "bipolar"
-  return { kind = prefix .. kind, index = picked, output = output, value = track - 1 }
+  return { kind = prefix .. "output", index = picked, output = output, value = packOutputSettings(pattern, unipolar, bipolar, transition) }
 end
 
 local function buttonIndex(track, row)
@@ -128,7 +185,15 @@ local function isFillInEditing(setup)
 end
 
 local function isLandingEditing(setup)
-  return setup >= setupFirstLandingEditing and setup < setupClearMode
+  return setup >= setupFirstLandingEditing and setup < setupFirstIntroEditing
+end
+
+local function isIntroEditing(setup)
+  return setup >= setupFirstIntroEditing and setup < setupFirstOutroEditing
+end
+
+local function isOutroEditing(setup)
+  return setup >= setupFirstOutroEditing and setup < setupClearMode
 end
 
 -- whether a setup state is one of duplicate mode: source picking or
@@ -156,17 +221,12 @@ local function sourceScene(setup)
 end
 
 -- the index of the launch button being edited in clip editing, fill-in
--- editing or landing editing, or nil in launch mode, clip picking and clear
--- mode
+-- editing, landing editing, intro editing or outro editing, or nil in launch
+-- mode, clip picking, clear mode and duplicate mode; the editing steps follow
+-- one another, each with every launch button in turn
 local function pickedButton(setup)
-  if isClipEditing(setup) then
-    return setup - setupFirstClipEditing
-  end
-  if isFillInEditing(setup) then
-    return setup - setupFirstFillInEditing
-  end
-  if isLandingEditing(setup) then
-    return setup - setupFirstLandingEditing
+  if setup >= setupFirstClipEditing and setup < setupClearMode then
+    return (setup - setupFirstClipEditing) % 64
   end
   return nil
 end
@@ -191,7 +251,7 @@ local function launchButton(setup, track, row, pressedHoldsClip, pickedClip)
 
   local picked = pickedButton(setup)
   if track == toggle.track and row == toggle.row then
-    return { kind = "present", index = picked, value = pickedClip.present and 0 or 1 }
+    return { kind = "switches", index = picked, value = packSwitches(not pickedClip.present, pickedClip.colour, false, false) }
   end
   -- the colour and CV controls are not there without a clip
   if not pickedClip.present then
@@ -205,25 +265,24 @@ end
 -- landing of the picked launch button as it stands for its clip in clip
 -- editing; settings, made by edited(), describes the fill-in or landing,
 -- clipValues the values of its clip by output, { patterns = {}, unipolar =
--- {}, bipolar = {} }, which a new one starts as a copy of, with every
--- transition off and one-bar pattern off, in white; returns a list of changes
+-- {}, bipolar = {} }, which one that has never been set up starts as a copy
+-- of, with every transition off and one-bar pattern off, in white; returns a
+-- list of changes
 local function editOverlay(prefix, setup, track, row, settings, clipValues)
   local picked = pickedButton(setup)
   if track == toggle.track and row == toggle.row then
-    if settings.present then
-      return { { kind = prefix .. "present", index = picked, value = 0 } }
+    -- switched off and on again, it keeps its settings, like a clip
+    if settings.present or settings.setUp then
+      return { { kind = prefix .. "switches", index = picked, value = packSwitches(not settings.present, settings.colour, settings.oneBarPattern, true) } }
     end
+    -- the first time, it starts as a copy of its clip
     local changes = {
-      { kind = prefix .. "present", index = picked, value = 1 },
-      { kind = prefix .. "colour", index = picked, value = colourWhite },
+      { kind = prefix .. "switches", index = picked, value = packSwitches(true, colourWhite, false, true) },
     }
     for output = 1, outputCount do
-      table.insert(changes, { kind = prefix .. "pattern", index = picked, output = output, value = clipValues.patterns[output] })
-      table.insert(changes, { kind = prefix .. "unipolar", index = picked, output = output, value = clipValues.unipolar[output] })
-      table.insert(changes, { kind = prefix .. "bipolar", index = picked, output = output, value = clipValues.bipolar[output] })
-      table.insert(changes, { kind = prefix .. "transition", index = picked, output = output, value = transitionOff })
+      local value = packOutputSettings(clipValues.patterns[output], clipValues.unipolar[output], clipValues.bipolar[output], transitionOff)
+      table.insert(changes, { kind = prefix .. "output", index = picked, output = output, value = value })
     end
-    table.insert(changes, { kind = prefix .. "onebarpattern", index = picked, value = 0 })
     return changes
   end
   -- the colour and CV controls are not there without a fill-in or landing
@@ -251,44 +310,56 @@ local function landingEditingLaunchButton(setup, track, row, landing, clipValues
   return editOverlay("landing", setup, track, row, landing, clipValues)
 end
 
+-- the same in intro editing, for the intro
+local function introEditingLaunchButton(setup, track, row, intro, clipValues)
+  if not isIntroEditing(setup) then
+    return {}
+  end
+  return editOverlay("intro", setup, track, row, intro, clipValues)
+end
+
+-- the same in outro editing, for the outro
+local function outroEditingLaunchButton(setup, track, row, outro, clipValues)
+  if not isOutroEditing(setup) then
+    return {}
+  end
+  return editOverlay("outro", setup, track, row, outro, clipValues)
+end
+
 -- a press of a launch button in clear mode empties it, if it holds a clip, as
--- SET/CLEAR does in clip editing, and returns to launch mode; returns a list
--- of changes, empty outside clear mode
-local function clearModeLaunchButton(setup, track, row, pressedHoldsClip)
+-- SET/CLEAR does in clip editing, keeping its colour, pressedColour, and
+-- returns to launch mode; returns a list of changes, empty outside clear mode
+local function clearModeLaunchButton(setup, track, row, pressedHoldsClip, pressedColour)
   if setup ~= setupClearMode then
     return {}
   end
   local changes = {}
   if pressedHoldsClip then
-    table.insert(changes, { kind = "present", index = buttonIndex(track, row), value = 0 })
+    table.insert(changes, { kind = "switches", index = buttonIndex(track, row), value = packSwitches(false, pressedColour, false, false) })
   end
   table.insert(changes, { kind = "setup", value = setupLaunchMode })
   return changes
 end
 
--- the kinds of change for the settings of a clip, a fill-in and a landing, by
--- the field of the settings they come from
-local settingsPrefixes = { clip = "", fillIn = "fillin", landing = "landing" }
+-- the kinds of change for the settings of a clip, a fill-in, a landing, an
+-- intro and an outro, by the field of the settings they come from
+local settingsPrefixes = { clip = "", fillIn = "fillin", landing = "landing", intro = "intro", outro = "outro" }
 
 -- what makes a launch button, destination, exactly like source, which holds
--- for each of clip, fillIn and landing: present, colour, and patterns,
--- unipolar, bipolar and transitions by output; of fillIn and landing also
+-- for each of clip, fillIn, landing, intro and outro: present, colour, and
+-- patterns, unipolar, bipolar and transitions by output; of all but clip also
 -- oneBarPattern; returns a list of changes
 local function copyButton(source, destination)
   local changes = {}
-  for _, field in ipairs({ "clip", "fillIn", "landing" }) do
+  for _, field in ipairs({ "clip", "fillIn", "landing", "intro", "outro" }) do
     local prefix = settingsPrefixes[field]
     local settings = source[field]
-    table.insert(changes, { kind = prefix .. "present", index = destination, value = settings.present and 1 or 0 })
-    table.insert(changes, { kind = prefix .. "colour", index = destination, value = settings.colour })
+    local oneBar = prefix ~= "" and settings.oneBarPattern
+    local setUp = prefix ~= "" and settings.setUp
+    table.insert(changes, { kind = prefix .. "switches", index = destination, value = packSwitches(settings.present, settings.colour, oneBar, setUp) })
     for output = 1, outputCount do
-      table.insert(changes, { kind = prefix .. "pattern", index = destination, output = output, value = settings.patterns[output] })
-      table.insert(changes, { kind = prefix .. "unipolar", index = destination, output = output, value = settings.unipolar[output] })
-      table.insert(changes, { kind = prefix .. "bipolar", index = destination, output = output, value = settings.bipolar[output] })
-      table.insert(changes, { kind = prefix .. "transition", index = destination, output = output, value = settings.transitions[output] })
-    end
-    if prefix ~= "" then
-      table.insert(changes, { kind = prefix .. "onebarpattern", index = destination, value = settings.oneBarPattern and 1 or 0 })
+      local value = packOutputSettings(settings.patterns[output], settings.unipolar[output], settings.bipolar[output], settings.transitions[output])
+      table.insert(changes, { kind = prefix .. "output", index = destination, output = output, value = value })
     end
   end
   return changes
@@ -403,9 +474,9 @@ end
 -- editing it does nothing, and in duplicate mode nothing here, see
 -- duplicateModeSceneButton (see
 -- ADR 0004 of the Launchnik repository); holdsClip says of each track, 1..8,
--- whether its launch button in the scene holds a clip; returns a list of
--- changes
-local function sceneButton(setup, scene, holdsClip)
+-- whether its launch button in the scene holds a clip, and colours its clip's
+-- colour, which clearing keeps; returns a list of changes
+local function sceneButton(setup, scene, holdsClip, colours)
   local changes = {}
   if setup == setupClipPicking then
     return {
@@ -416,7 +487,7 @@ local function sceneButton(setup, scene, holdsClip)
   if setup == setupClearMode then
     for track = 1, 8 do
       if holdsClip[track] then
-        table.insert(changes, { kind = "present", index = buttonIndex(track, scene), value = 0 })
+        table.insert(changes, { kind = "switches", index = buttonIndex(track, scene), value = packSwitches(false, colours[track], false, false) })
       end
     end
     table.insert(changes, { kind = "setup", value = setupLaunchMode })
@@ -465,7 +536,8 @@ local function duplicateButton(setup)
   return nil
 end
 
--- goes back one step of setup mode: from landing editing to fill-in editing
+-- goes back one step of setup mode: from outro editing to intro editing, from
+-- intro editing to landing editing, from landing editing to fill-in editing
 -- and from fill-in editing to clip editing of the same launch button, from
 -- clip editing to clip picking, from clip picking, from clear mode and from
 -- duplicate mode to launch mode; in launch mode it does nothing, so returns
@@ -477,6 +549,12 @@ local function backButton(setup)
   if setup == setupClearMode or isDuplicateMode(setup) then
     return { kind = "setup", value = setupLaunchMode }
   end
+  if isOutroEditing(setup) then
+    return { kind = "setup", value = setupFirstIntroEditing + pickedButton(setup) }
+  end
+  if isIntroEditing(setup) then
+    return { kind = "setup", value = setupFirstLandingEditing + pickedButton(setup) }
+  end
   if isLandingEditing(setup) then
     return { kind = "setup", value = setupFirstFillInEditing + pickedButton(setup) }
   end
@@ -486,9 +564,10 @@ local function backButton(setup)
   return { kind = "setup", value = setup == setupClipPicking and setupLaunchMode or setupClipPicking }
 end
 
--- goes forward one step of setup mode: from clip editing to fill-in editing
--- and from fill-in editing to landing editing of the same launch button, but
--- only if it holds a clip; anywhere else it does nothing, so returns nil
+-- goes forward one step of setup mode: from clip editing to fill-in editing,
+-- from fill-in editing to landing editing, from landing editing to intro
+-- editing and from intro editing to outro editing of the same launch button,
+-- but only if it holds a clip; anywhere else it does nothing, so returns nil
 local function forwardButton(setup, pickedHoldsClip)
   if not pickedHoldsClip then
     return nil
@@ -498,6 +577,12 @@ local function forwardButton(setup, pickedHoldsClip)
   end
   if isFillInEditing(setup) then
     return { kind = "setup", value = setupFirstLandingEditing + pickedButton(setup) }
+  end
+  if isLandingEditing(setup) then
+    return { kind = "setup", value = setupFirstIntroEditing + pickedButton(setup) }
+  end
+  if isIntroEditing(setup) then
+    return { kind = "setup", value = setupFirstOutroEditing + pickedButton(setup) }
   end
   return nil
 end
@@ -514,6 +599,8 @@ return {
   setupFirstClipEditing = setupFirstClipEditing,
   setupFirstFillInEditing = setupFirstFillInEditing,
   setupFirstLandingEditing = setupFirstLandingEditing,
+  setupFirstIntroEditing = setupFirstIntroEditing,
+  setupFirstOutroEditing = setupFirstOutroEditing,
   setupClearMode = setupClearMode,
   setupSourcePicking = setupSourcePicking,
   setupFirstClipDestinationPicking = setupFirstClipDestinationPicking,
@@ -527,11 +614,17 @@ return {
   cvModeUnipolar = cvModeUnipolar,
   cvModePattern = cvModePattern,
   defaultCVMode = defaultCVMode,
+  packOutputSettings = packOutputSettings,
+  packSwitches = packSwitches,
+  unpackSwitches = unpackSwitches,
+  unpackOutputSettings = unpackOutputSettings,
   edited = edited,
   buttonIndex = buttonIndex,
   isClipEditing = isClipEditing,
   isFillInEditing = isFillInEditing,
   isLandingEditing = isLandingEditing,
+  isIntroEditing = isIntroEditing,
+  isOutroEditing = isOutroEditing,
   pickedButton = pickedButton,
   isDuplicateMode = isDuplicateMode,
   sourceButton = sourceButton,
@@ -542,6 +635,8 @@ return {
   launchButton = launchButton,
   fillInEditingLaunchButton = fillInEditingLaunchButton,
   landingEditingLaunchButton = landingEditingLaunchButton,
+  introEditingLaunchButton = introEditingLaunchButton,
+  outroEditingLaunchButton = outroEditingLaunchButton,
   clearModeLaunchButton = clearModeLaunchButton,
   relaunchButton = relaunchButton,
   stopButton = stopButton,
