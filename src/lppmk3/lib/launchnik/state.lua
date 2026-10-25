@@ -162,6 +162,9 @@ function state.reset()
   end
   -- when the codec last switched the surface to programmer mode
   state.preparedAt = nil
+  -- when the surface's back button went down, so that letting it go can
+  -- tell a hold from a click
+  state.backPressedAt = nil
 end
 
 -- everything a launch button holds, as press.copyButton takes it

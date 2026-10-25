@@ -159,6 +159,25 @@ local function processPadsAndTrackButtons(event)
     write(event, press.fillInButton(ret.z > 0))
     return true
   end
+  -- the back button and the forward button act when they are let go, so
+  -- that a hold of the back button can be told from a click
+  if ret.x == controlChange and ret.y == backButton then
+    if ret.z > 0 then
+      state.backPressedAt = remote.get_time_ms()
+      return true
+    end
+    local held = state.backPressedAt ~= nil and remote.get_time_ms() - state.backPressedAt >= press.holdMilliseconds
+    state.backPressedAt = nil
+    write(event, held and press.heldBackButton(state.setup) or press.backButton(state.setup))
+    return true
+  end
+  if ret.x == controlChange and ret.y == forwardButton then
+    if ret.z == 0 then
+      local picked = press.pickedButton(state.setup)
+      write(event, press.forwardButton(state.setup, picked ~= nil and state.present[picked]))
+    end
+    return true
+  end
   if ret.x == controlChange and ret.y >= firstFunctionButton and ret.y <= lastFunctionButton then
     processFunctionButton(event, ret.y - firstFunctionButton + 1, ret.z > 0)
     return true
@@ -217,17 +236,8 @@ local function processPadsAndTrackButtons(event)
     writeHeld(event, press.relaunchButton(state.setup, track, true))
     return true
   end
-  if ret.x == controlChange and ret.y == forwardButton then
-    local picked = press.pickedButton(state.setup)
-    write(event, press.forwardButton(state.setup, picked ~= nil and state.present[picked]))
-    return true
-  end
   if ret.x == controlChange and functionSelectButtons[ret.y] then
     write(event, press.functionSelectButton(functionSelectButtons[ret.y]))
-    return true
-  end
-  if ret.x == controlChange and ret.y == backButton then
-    write(event, press.backButton(state.setup))
     return true
   end
   if ret.x == controlChange and ret.y == clearButton then
