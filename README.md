@@ -86,7 +86,7 @@ Please remember that the project maintainer is developing this in his free time,
 
 ## Launchpad Pro [MK3] with Launchnik
 
-The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d9 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
+The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launchnik) rack extension, version 1.0.0d23 or later, and nothing else yet. The surface then behaves like Launchnik's front panel:
 
 - The 8×8 pads stand for the launch buttons in the same places, show their lights in the clips' colours and do what a click on them does, in launch mode and in setup mode alike. In launch mode a pad, like a scene button, holds the track's relaunch press down while it is held, so that launching the clip that is already playing relaunches it.
 - The eight track buttons in the upper row beneath the pads stand for the stop buttons and light up as they do: dark for a track without clips, dim red while it is stopped, vibrant red while a clip plays, flashing while it is about to stop.
@@ -97,6 +97,14 @@ The Launchpad codec controls the [Launchnik](https://github.com/zapperment/launc
 - Flashing pads flash at the Launchpad's own tempo, not in step with Reason.
 
 When adding the surface in Reason's settings, set **two** input ports: "Input (LPProMK3 MIDI)" to the Launchpad's MIDI port and "Input (LPProMK3 DAW)" to its DAW port. The Setup button only reaches the codec through the DAW port.
+
+### Installation
+
+Download the **Launchpad Pro [MK3] remote codec for Launchnik**, a zip with the codec, the remote map and a readme.txt that explains how to install them on a Mac or on Windows:
+
+[Launchpad-Pro-MK3-remote-codec-for-Launchnik.zip](https://github.com/zapperment/rebridge/releases/download/lppmk3-latest/Launchpad-Pro-MK3-remote-codec-for-Launchnik.zip)
+
+A GitHub Actions workflow (`.github/workflows/lppmk3-release.yml`) builds it whenever a change to the Launchpad codec reaches `main`, and replaces the zip in the [pre-release](https://github.com/zapperment/rebridge/releases/tag/lppmk3-latest) `lppmk3-latest`, so this link always gets the latest version. The workflow can also be started by hand from the repository's Actions tab. To build the zip locally, run `yarn package:lppmk3`; it ends up in `temp/release`.
 
 ## “This is AI Slop”
 

@@ -103,3 +103,10 @@ what a click on that button means, and it shows the same light: dim white in
 launch mode, vibrant fuchsia in duplicate mode, off in setup mode and clear
 mode.
 _Avoid_: copy button, side button
+
+**Remote codec for Launchnik**:
+The codec and its remote map, built for Reason rather than for development, as
+published for anyone to download, with instructions on how to install them on
+a Mac or on Windows. In full: the Launchpad Pro [MK3] remote codec for
+Launchnik.
+_Avoid_: remote surface (the surface is the hardware), artefact, dev version

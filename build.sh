@@ -61,15 +61,14 @@ esac
 log() { echo "$@"; }
 log_verbose() { [[ "$verbose" == true ]] && echo "$@"; return 0; }
 
-if [[ ! -f "$env_file" ]]; then
-  echo "Error: $env_file not found" >&2
-  exit 1
+# Building needs none of the paths in .env, so it may be missing (as it is on
+# GitHub Actions)
+if [[ -f "$env_file" ]]; then
+  set -a
+  # shellcheck disable=SC1090
+  source "$env_file"
+  set +a
 fi
-
-set -a
-# shellcheck disable=SC1090
-source "$env_file"
-set +a
 
 log_verbose "Building for controller ${controller}"
 
