@@ -50,6 +50,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
+          # Its automatic cache would call Yarn before corepack is enabled
+          # below, and find the runner's Yarn 1 instead of the project's
+          package-manager-cache: false
 
       - name: Install dependencies
         run: |
