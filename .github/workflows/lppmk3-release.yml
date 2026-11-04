@@ -20,6 +20,11 @@ on:
       - "yarn.lock"
       - ".github/workflows/lppmk3-release.yml"
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Replace the zip in the release (off to only test and package)
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -33,17 +38,21 @@ env:
   CONTROLLER: LPPMK3
   TAG: lppmk3-latest
   TITLE: Launchpad Pro [MK3] remote codec for Launchnik
-  ZIP: temp/release/Launchpad-Pro-MK3-remote-codec-for-Launchnik.zip
+  # Not "ZIP": zip reads that variable as extra command-line arguments
+  ZIP_FILE: temp/release/Launchpad-Pro-MK3-remote-codec-for-Launchnik.zip
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
+          # Its automatic cache would call Yarn before corepack is enabled
+          # below, and find the runner's Yarn 1 instead of the project's
+          package-manager-cache: false
 
       - name: Install dependencies
         run: |
@@ -67,24 +76,26 @@ jobs:
       # Move the tag to this commit first, so that the release, created or
       # replaced below, points to it
       - name: Tag
+        if: github.event_name == 'push' || inputs.publish
         run: |
           git tag -f "$TAG" "$GITHUB_SHA"
           git push -f origin "refs/tags/$TAG"
 
       - name: Publish
+        if: github.event_name == 'push' || inputs.publish
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           commit="$(git rev-parse --short HEAD)"
           notes="Built on $(date -u +%Y-%m-%d) from commit ${commit}.
 
-          Download **$(basename "$ZIP")** below; how to install it is in the readme.txt inside the zip.
+          Download **$(basename "$ZIP_FILE")** below; how to install it is in the readme.txt inside the zip.
 
           This release is replaced whenever the codec changes, so its download link always gets the latest version:
-          https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/$(basename "$ZIP")"
+          https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/$(basename "$ZIP_FILE")"
           if gh release view "$TAG" > /dev/null 2>&1; then
-            gh release upload "$TAG" "$ZIP" --clobber
+            gh release upload "$TAG" "$ZIP_FILE" --clobber
             gh release edit "$TAG" --title "$TITLE" --notes "$notes" --prerelease
           else
-            gh release create "$TAG" "$ZIP" --title "$TITLE" --notes "$notes" --prerelease --verify-tag
+            gh release create "$TAG" "$ZIP_FILE" --title "$TITLE" --notes "$notes" --prerelease --verify-tag
           fi

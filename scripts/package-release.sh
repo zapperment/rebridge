@@ -73,7 +73,9 @@ if grep -q '@[A-Z_]*@' "$stage_dir/readme.txt"; then
   exit 1
 fi
 
-(cd "$stage_dir" && zip -q -r -X "$root_dir/$zip_path" readme.txt Remote)
+# zip reads the variables ZIP and ZIPOPT as extra command-line arguments
+(cd "$stage_dir" &&
+  env -u ZIP -u ZIPOPT zip -q -r -X "$root_dir/$zip_path" readme.txt Remote)
 
 # The zip must hold exactly these files, in these places
 expected="$(printf '%s\n' \
