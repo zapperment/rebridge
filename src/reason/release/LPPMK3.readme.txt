@@ -1,0 +1,118 @@
+Launchpad Pro [MK3] remote codec for Launchnik
+==============================================
+
+Version @VERSION@, built on @BUILD_DATE@ from commit @COMMIT@
+https://github.com/zapperment/rebridge
+
+This remote codec lets you control the Launchnik rack extension in Reason
+with a Novation Launchpad Pro [MK3]: the 8x8 pads stand for Launchnik's launch
+buttons, and the buttons around them for its function, scene, setup, back,
+forward, fill-in, clear and duplicate buttons.
+
+You need:
+
+- Reason (stand-alone, not Reason Rack Plugin)
+- Launchnik, version 1.0.0d23 or later
+  (https://github.com/zapperment/launchnik)
+- a Novation Launchpad Pro [MK3], connected by USB
+
+
+What is in this zip
+-------------------
+
+readme.txt                                   this file
+Remote/Codecs/Lua Codecs/Novation/LPPMK3.lua       the codec
+Remote/Codecs/Lua Codecs/Novation/LPPMK3.luacodec  the codec's description
+Remote/Codecs/Lua Codecs/Novation/LPPMK3.png       the picture Reason shows
+Remote/Maps/Novation/LPPMK3.remotemap              the remote map
+
+
+Installing on a Mac
+-------------------
+
+1. Quit Reason.
+2. In the Finder, choose Go > Go to Folder... and enter:
+
+     ~/Library/Application Support/Propellerhead Software
+
+   (The Library folder is hidden; Go to Folder gets you there anyway.)
+3. If there is no folder named "Remote" in it, create one.
+4. Copy the files from the zip into it, keeping their folders:
+
+     LPPMK3.lua, LPPMK3.luacodec and LPPMK3.png
+       go to  Remote/Codecs/Lua Codecs/Novation
+     LPPMK3.remotemap
+       goes to  Remote/Maps/Novation
+
+   Create any of these folders that do not exist yet. Do not drag the zip's
+   "Remote" folder onto the existing one: the Finder would replace the
+   folder, and with it any other codecs and maps you have installed.
+
+
+Installing on Windows
+---------------------
+
+1. Quit Reason.
+2. In File Explorer, click the address bar, enter the following and press
+   Enter:
+
+     %APPDATA%\Propellerhead Software
+
+   (The AppData folder is hidden; typing the address gets you there anyway.)
+3. If there is no folder named "Remote" in it, create one.
+4. Copy the files from the zip into it, keeping their folders:
+
+     LPPMK3.lua, LPPMK3.luacodec and LPPMK3.png
+       go to  Remote\Codecs\Lua Codecs\Novation
+     LPPMK3.remotemap
+       goes to  Remote\Maps\Novation
+
+   Create any of these folders that do not exist yet. Dragging the zip's
+   "Remote" folder onto the existing one is fine on Windows: File Explorer
+   merges the folders.
+
+
+Adding the Launchpad in Reason
+------------------------------
+
+1. Start Reason and open Settings (Preferences on older versions), then the
+   MIDI page.
+2. Under "Remote keyboards and controllers", click "Add manually".
+3. Choose manufacturer "Novation" and model "Launchpad Pro [MK3]".
+4. Set the ports. The codec needs BOTH input ports:
+
+     Input (LPProMK3 MIDI)   the Launchpad's MIDI port
+     Input (LPProMK3 DAW)    the Launchpad's DAW port
+     Output (LPProMK3 MIDI)  the Launchpad's MIDI port
+
+   The Setup button only reaches the codec through the DAW port.
+5. Click OK, add a Launchnik to your rack and select its track in the
+   sequencer: the Launchpad now controls it.
+
+
+Updating
+--------
+
+Copy the new files over the old ones, as when installing. Reason need not be
+restarted: in Settings > MIDI, switch the Launchpad's "Active" box off and on
+again.
+
+
+Removing
+--------
+
+Remove the Launchpad in Settings > MIDI, quit Reason and delete the four
+LPPMK3 files.
+
+
+Disclaimer
+----------
+
+The project maintainer is in no way associated with Novation nor Reason
+Studios. Company and product names are trademarks of Novation or Reason
+Studios.
+
+The project is strictly non-commercial, free to use by anyone without
+limitations. It comes without any warranty of any kind. The project maintainer
+cannot be held accountable for any problems with your music production setup
+that may be caused by this software.

@@ -11,6 +11,7 @@
     "build:lcxl3:dev": "./build.sh LCXL3 --dev",
     "build:lppmk3": "./build.sh LPPMK3",
     "build:lppmk3:dev": "./build.sh LPPMK3 --dev",
+    "package:lppmk3": "./scripts/package-release.sh LPPMK3",
     "sync": "./sync.sh",
     "setup": "yarn setup:lcxl3",
     "setup:dev": "yarn setup:lcxl3:dev",
