@@ -2,7 +2,7 @@
 require "test.lib.mockRemote"
 
 return {
-    luaUnit = require "test.lib.luaUnit",
+    luaUnit = require "test.lib.luaunit",
     MockFunction = require "test.lib.MockFunction",
     resetState = require "test.lib.resetState",
     reportSelection = require "test.lib.reportSelection"
