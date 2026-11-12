@@ -1,8 +1,8 @@
-local press = require "src.lpp.lib.launchnik.press"
+local press = require "src.lppcommon.lib.launchnik.press"
 
 -- The control changes of the surface's round buttons in programmer mode that
 -- the codec uses, other than the scene buttons, the play button and the
--- record button, which are the same on the Launchpad Pro [MK2]. The pads send
+-- record button, which are the same on the Launchpad Pro. The pads send
 -- notes 11 at the bottom left to 88 at the top right, the scene buttons the
 -- control change that continues the numbering of the pads in their row.
 return {

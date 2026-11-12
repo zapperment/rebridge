@@ -1,4 +1,4 @@
--- The Launchnik part of the Launchpad Pro [MK2] and [MK3] Remote maps: one
+-- The Launchnik part of the Launchpad Pro and Launchpad Pro [MK3] Remote maps: one
 -- line for each of Launchnik's Remote items the codecs use, from
 -- "Map	deviceType" to the end of the file. Launchnik has thousands of them, one for each CV output of
 -- each clip, fill-in, landing, intro and outro, so the lines are generated
@@ -98,7 +98,7 @@ local function withLaunchnikMap(content)
 end
 
 if arg and arg[0] and arg[0]:match("launchnikRemoteMap%.lua$") then
-  for _, name in ipairs({ "LPPMK3.remotemap", "LPPMK3.dev.remotemap", "LPPMK2.remotemap", "LPPMK2.dev.remotemap" }) do
+  for _, name in ipairs({ "LPPMK3.remotemap", "LPPMK3.dev.remotemap", "LPP.remotemap", "LPP.dev.remotemap" }) do
     local path = mapsDir .. name
     local file = assert(io.open(path, "r"))
     local content = file:read "*a"

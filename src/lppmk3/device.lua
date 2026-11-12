@@ -1,11 +1,11 @@
 local const = require "src.lppmk3.config.constants"
 local controls = require "src.lppmk3.config.controls"
 local midi = require "src.lppmk3.lib.midi._"
-local launchnik = require "src.lpp.lib.launchnik._"
+local launchnik = require "src.lppcommon.lib.launchnik._"
 local processSetupButton = require "src.lppmk3.remote.processMidi.setupButton"
 
--- What sets the Launchpad Pro [MK3] apart from the [MK2]; the codec and its
--- parts in src/lpp are made from it.
+-- What sets the Launchpad Pro [MK3] apart from the original Launchpad Pro; the codec and its
+-- parts in src/lppcommon are made from it.
 return {
   id = "LPPMK3",
   name = "Novation Launchpad Pro [MK3]",

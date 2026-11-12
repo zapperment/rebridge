@@ -1,6 +1,6 @@
 local const = require "src.lppmk3.config.constants"
-local launchnik = require "src.lpp.lib.launchnik._"
-local write = require "src.lpp.remote.processMidi.write"
+local launchnik = require "src.lppcommon.lib.launchnik._"
+local write = require "src.lppcommon.remote.processMidi.write"
 
 -- the surface reports its layout whenever it changes
 local layoutReportMidi = "f0 00 20 29 02 0e 00 xx yy 00 f7"

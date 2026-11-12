@@ -1,4 +1,4 @@
-local const = require "src.lpp.config.constants"
+local const = require "src.lppcommon.config.constants"
 local tbl = require "src.lib.table._"
 
 return tbl.merge(const, {

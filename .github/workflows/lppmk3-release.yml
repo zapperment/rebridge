@@ -1,12 +1,12 @@
 # Publishes the Launchpad Pro [MK3] remote codec for Launchnik as a zip, see
-# lpp-release.yml, whenever anything it is made from changes on main.
+# lppcommon-release.yml, whenever anything it is made from changes on main.
 name: Launchpad Pro [MK3] release
 
 on:
   push:
     branches: [main]
     paths:
-      - "src/lpp/**"
+      - "src/lppcommon/**"
       - "src/lppmk3/**"
       - "src/lib/**"
       - "src/config/constants.lua"
@@ -17,7 +17,7 @@ on:
       - "scripts/package-release.sh"
       - "package.json"
       - "yarn.lock"
-      - ".github/workflows/lpp-release.yml"
+      - ".github/workflows/lppcommon-release.yml"
       - ".github/workflows/lppmk3-release.yml"
   workflow_dispatch:
     inputs:
@@ -36,7 +36,7 @@ concurrency:
 
 jobs:
   release:
-    uses: ./.github/workflows/lpp-release.yml
+    uses: ./.github/workflows/lppcommon-release.yml
     with:
       controller: LPPMK3
       tag: lppmk3-latest
