@@ -1,6 +1,6 @@
 local const = require "src.lppmk3.config.constants"
-local launchnik = require "src.lppmk3.lib.launchnik._"
-local processLaunchnik = require "src.lppmk3.remote.processMidi.launchnik"
+local launchnik = require "src.lppcommon.lib.launchnik._"
+local write = require "src.lppcommon.remote.processMidi.write"
 
 -- the surface reports its layout whenever it changes
 local layoutReportMidi = "f0 00 20 29 02 0e 00 xx yy 00 f7"
@@ -20,7 +20,7 @@ return function(event)
   local answersPrepare = state.preparedAt ~= nil
       and remote.get_time_ms() - state.preparedAt < const.setupButtonQuietTime
   if report.x == programmerLayout and not answersPrepare then
-    processLaunchnik.write(event, launchnik.press.setupButton(state.setup))
+    write(event, launchnik.press.setupButton(state.setup))
   end
   return true
 end

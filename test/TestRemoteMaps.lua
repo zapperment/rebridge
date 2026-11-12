@@ -33,6 +33,17 @@ end
 
 function TestRemoteMaps:testLaunchpadMapsMatch()
     assertMapsMatch("LPPMK3", "Launchpad Pro [MK3]")
+    assertMapsMatch("LPP", "Launchpad Pro")
+end
+
+-- both Launchpad Pro codecs have the same items, so their maps differ in the
+-- model alone
+function TestRemoteMaps:testLaunchpadProMapIsThatOfTheMK3()
+    for _, suffix in ipairs({ ".remotemap", ".dev.remotemap" }) do
+        local lpp = read(mapsDir .. "LPP" .. suffix)
+        local mk3 = read(mapsDir .. "LPPMK3" .. suffix)
+        lu.assertEquals(lpp, (string.gsub(mk3, "Launchpad Pro %[MK3%]", "Launchpad Pro")))
+    end
 end
 
 -- the Launchnik part of the Launchpad map is generated, and maps every item
@@ -44,7 +55,7 @@ function TestRemoteMaps:testLaunchnikMapIsGenerated()
 end
 
 function TestRemoteMaps:testLaunchnikMapUsesTheCodecsItems()
-    local items = require "src.lppmk3.config.items"
+    local items = require "src.lppcommon.config.items"
     local devMap = read(mapsDir .. "LPPMK3.dev.remotemap")
     local mapped = {}
     for item in string.gmatch(devMap, "\nMap\t(%w+)\t") do

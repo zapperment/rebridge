@@ -1,0 +1,45 @@
+# Publishes the Launchpad Pro remote codec for Launchnik as a zip, see
+# lppcommon-release.yml, whenever anything it is made from changes on main.
+name: Launchpad Pro release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/lppcommon/**"
+      - "src/lpp/**"
+      - "src/lib/**"
+      - "src/config/constants.lua"
+      - "src/reason/codecs/novation/LPP*"
+      - "src/reason/maps/novation/LPP*"
+      - "src/reason/release/LPP*"
+      - "build.sh"
+      - "scripts/package-release.sh"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/lppcommon-release.yml"
+      - ".github/workflows/lpp-release.yml"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Replace the zip in the release (off to only test and package)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+# Two runs must not replace the release at the same time
+concurrency:
+  group: lpp-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: ./.github/workflows/lppcommon-release.yml
+    with:
+      controller: LPP
+      tag: lpp-latest
+      title: Launchpad Pro remote codec for Launchnik
+      zip-file: temp/release/Launchpad-Pro-remote-codec-for-Launchnik.zip
+      publish: ${{ github.event_name == 'push' || inputs.publish }}

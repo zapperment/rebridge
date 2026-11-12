@@ -12,6 +12,7 @@ usage() {
   echo "Usage: $(basename "$0") <controller>" >&2
   echo "" >&2
   echo "  controller   the controller to package, one of:" >&2
+  echo "                 LPP     Novation Launchpad Pro" >&2
   echo "                 LPPMK3  Novation Launchpad Pro [MK3]" >&2
 }
 
@@ -22,6 +23,10 @@ fi
 
 controller="$(echo "$1" | tr '[:lower:]' '[:upper:]')"
 case "$controller" in
+  LPP)
+    zip_name="Launchpad-Pro-remote-codec-for-Launchnik.zip"
+    constants="src/lpp/config/constants.lua"
+    ;;
   LPPMK3)
     zip_name="Launchpad-Pro-MK3-remote-codec-for-Launchnik.zip"
     constants="src/lppmk3/config/constants.lua"

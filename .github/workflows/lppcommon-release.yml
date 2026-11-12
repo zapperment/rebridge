@@ -1,0 +1,97 @@
+# Publishes the remote codec for Launchnik of a Launchpad Pro: a zip with the
+# production codec, the remote map and installation instructions, attached to
+# one pre-release that every run replaces, so that its download link never
+# changes and anyone can download it without a GitHub account. Called by
+# lpp-release.yml and lppmk3-release.yml, which say when and for which
+# Launchpad Pro.
+name: Launchpad Pro release
+
+on:
+  workflow_call:
+    inputs:
+      controller:
+        description: The controller, as build.sh and scripts/package-release.sh take it
+        type: string
+        required: true
+      tag:
+        description: The tag of the pre-release, which every run moves
+        type: string
+        required: true
+      title:
+        description: The title of the pre-release
+        type: string
+        required: true
+      zip-file:
+        description: Where scripts/package-release.sh puts the zip
+        type: string
+        required: true
+      publish:
+        description: Whether to replace the zip in the release, rather than only test and package
+        type: boolean
+        required: true
+
+env:
+  CONTROLLER: ${{ inputs.controller }}
+  TAG: ${{ inputs.tag }}
+  TITLE: ${{ inputs.title }}
+  # Not "ZIP": zip reads that variable as extra command-line arguments
+  ZIP_FILE: ${{ inputs.zip-file }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          # Its automatic cache would call Yarn before corepack is enabled
+          # below, and find the runner's Yarn 1 instead of the project's
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          yarn install --immutable
+
+      # Lua 5.1 is the version Reason's remote codec engine runs, as in the dev
+      # container
+      - name: Install Lua 5.1
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lua5.1
+          sudo ln -sf /usr/bin/lua5.1 /usr/local/bin/lua
+
+      - name: Test
+        run: yarn test
+
+      - name: Package
+        run: ./scripts/package-release.sh "$CONTROLLER"
+
+      # Move the tag to this commit first, so that the release, created or
+      # replaced below, points to it
+      - name: Tag
+        if: inputs.publish
+        run: |
+          git tag -f "$TAG" "$GITHUB_SHA"
+          git push -f origin "refs/tags/$TAG"
+
+      - name: Publish
+        if: inputs.publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          commit="$(git rev-parse --short HEAD)"
+          notes="Built on $(date -u +%Y-%m-%d) from commit ${commit}.
+
+          Download **$(basename "$ZIP_FILE")** below; how to install it is in the readme.txt inside the zip.
+
+          This release is replaced whenever the codec changes, so its download link always gets the latest version:
+          https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/$(basename "$ZIP_FILE")"
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" "$ZIP_FILE" --clobber
+            gh release edit "$TAG" --title "$TITLE" --notes "$notes" --prerelease
+          else
+            gh release create "$TAG" "$ZIP_FILE" --title "$TITLE" --notes "$notes" --prerelease --verify-tag
+          fi
