@@ -4,7 +4,7 @@
 
 The goal of this project is to allow you to use Reason rack devices without having to look at the screen, for a “DAW-less experience”.
 
-ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3 and the Launchpad Pro \[MK3\].
+ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3, the Launchpad Pro \[MK3\] and the Launchpad Pro \[MK2\].
 
 While the Launchpad codec is still in its early stages of development, the Launch Control codec is already quite useful.
 
@@ -255,3 +255,16 @@ If you use the IDE VS Code with the Dev Container extension, the dev container w
 You will have to run the command in a terminal outside the dev container (i.e. not in your IDE).
 
 If you are working on the build and installation scripts, you can use the `.env.devcontainer` file to simlulate a Reason installation on the dev container system, but this is only to see if the files are deployed to the proper file system locations.
+
+## Launchpad Pro [MK2] with Launchnik
+
+The Launchpad Pro that came before the [MK3] (called just “Launchpad Pro” by Novation, [MK2] here) controls Launchnik in the same way, with the same code. It has fewer buttons, so some of Launchnik's buttons are on buttons with a different caption:
+
+- *Session* stands for Launchnik's setup button, which acts when it is released; the surface's own *Setup* button sends nothing the codec could use.
+- The *Left* and *Right* arrows stand for the back and forward buttons.
+- *Delete*, *Duplicate* and *Quantise* stand for the clear, duplicate and fill-in buttons.
+- *Double* and *Record* start and stop Reason's transport and switch recording on and off.
+- The row of buttons beneath the grid are the function buttons of the eight tracks. Hold *Shift* and press *Mute*, *Solo* or *Stop Clip* in that row to choose their function; while *Shift* is held, the row shows which function is chosen.
+- The LED on the front edge of the surface shows Launchnik's mode colour.
+
+When adding the surface in Reason's settings (model “Launchpad Pro [MK2]”), set its input and output to the Launchpad's standalone port: “Launchpad Pro Standalone Port” on a Mac, “MIDIIN2 (Launchpad Pro)” and “MIDIOUT2 (Launchpad Pro)” on Windows.

@@ -1,10 +1,10 @@
--- The Launchnik part of the Launchpad Pro [MK3] Remote maps: one line for each
--- of Launchnik's Remote items the codec uses, from "Map	deviceType" to the end
--- of the file. Launchnik has thousands of them, one for each CV output of
+-- The Launchnik part of the Launchpad Pro [MK2] and [MK3] Remote maps: one
+-- line for each of Launchnik's Remote items the codecs use, from
+-- "Map	deviceType" to the end of the file. Launchnik has thousands of them, one for each CV output of
 -- each clip, fill-in, landing, intro and outro, so the lines are generated
 -- rather than kept by hand; test/TestRemoteMaps.lua checks that the maps hold them.
 --
--- Run from the root of the repository to rewrite both maps:
+-- Run from the root of the repository to rewrite all four maps:
 --   luajit scripts/launchnikRemoteMap.lua
 
 local outputLetters = { "a", "b", "c", "d", "e", "f" }
@@ -98,7 +98,7 @@ local function withLaunchnikMap(content)
 end
 
 if arg and arg[0] and arg[0]:match("launchnikRemoteMap%.lua$") then
-  for _, name in ipairs({ "LPPMK3.remotemap", "LPPMK3.dev.remotemap" }) do
+  for _, name in ipairs({ "LPPMK3.remotemap", "LPPMK3.dev.remotemap", "LPPMK2.remotemap", "LPPMK2.dev.remotemap" }) do
     local path = mapsDir .. name
     local file = assert(io.open(path, "r"))
     local content = file:read "*a"

@@ -1,0 +1,2809 @@
+Propellerhead Remote Mapping File
+File Format Version	1.0.0
+Control Surface Manufacturer	Novation
+Control Surface Model	Launchpad Pro [MK2]
+Map Version	3.0.1
+
+Scope	Propellerheads	Reason Document
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	playButton		Play
+Map	stopButton		Stop
+Map	recordButton		Record
+
+Scope	Zapperment	rocks.zapperment.Launchnik
+
+//	Control Surface Item	Key	Remotable Item	Scale	Mode
+
+Map	deviceType		"launchnik"
+Map	deviceName		Device Name
+
+Map	setup		Setup
+Map	switchinterval		Switch Interval
+Map	fillin		Fill-In
+Map	fillinlight		Fill-In Light
+Map	forwardlight		Forward Light
+Map	function		Function
+
+Map	track1clip1light		Track 1 Clip 1 Light
+Map	track2clip1light		Track 2 Clip 1 Light
+Map	track3clip1light		Track 3 Clip 1 Light
+Map	track4clip1light		Track 4 Clip 1 Light
+Map	track5clip1light		Track 5 Clip 1 Light
+Map	track6clip1light		Track 6 Clip 1 Light
+Map	track7clip1light		Track 7 Clip 1 Light
+Map	track8clip1light		Track 8 Clip 1 Light
+
+Map	track1clip2light		Track 1 Clip 2 Light
+Map	track2clip2light		Track 2 Clip 2 Light
+Map	track3clip2light		Track 3 Clip 2 Light
+Map	track4clip2light		Track 4 Clip 2 Light
+Map	track5clip2light		Track 5 Clip 2 Light
+Map	track6clip2light		Track 6 Clip 2 Light
+Map	track7clip2light		Track 7 Clip 2 Light
+Map	track8clip2light		Track 8 Clip 2 Light
+
+Map	track1clip3light		Track 1 Clip 3 Light
+Map	track2clip3light		Track 2 Clip 3 Light
+Map	track3clip3light		Track 3 Clip 3 Light
+Map	track4clip3light		Track 4 Clip 3 Light
+Map	track5clip3light		Track 5 Clip 3 Light
+Map	track6clip3light		Track 6 Clip 3 Light
+Map	track7clip3light		Track 7 Clip 3 Light
+Map	track8clip3light		Track 8 Clip 3 Light
+
+Map	track1clip4light		Track 1 Clip 4 Light
+Map	track2clip4light		Track 2 Clip 4 Light
+Map	track3clip4light		Track 3 Clip 4 Light
+Map	track4clip4light		Track 4 Clip 4 Light
+Map	track5clip4light		Track 5 Clip 4 Light
+Map	track6clip4light		Track 6 Clip 4 Light
+Map	track7clip4light		Track 7 Clip 4 Light
+Map	track8clip4light		Track 8 Clip 4 Light
+
+Map	track1clip5light		Track 1 Clip 5 Light
+Map	track2clip5light		Track 2 Clip 5 Light
+Map	track3clip5light		Track 3 Clip 5 Light
+Map	track4clip5light		Track 4 Clip 5 Light
+Map	track5clip5light		Track 5 Clip 5 Light
+Map	track6clip5light		Track 6 Clip 5 Light
+Map	track7clip5light		Track 7 Clip 5 Light
+Map	track8clip5light		Track 8 Clip 5 Light
+
+Map	track1clip6light		Track 1 Clip 6 Light
+Map	track2clip6light		Track 2 Clip 6 Light
+Map	track3clip6light		Track 3 Clip 6 Light
+Map	track4clip6light		Track 4 Clip 6 Light
+Map	track5clip6light		Track 5 Clip 6 Light
+Map	track6clip6light		Track 6 Clip 6 Light
+Map	track7clip6light		Track 7 Clip 6 Light
+Map	track8clip6light		Track 8 Clip 6 Light
+
+Map	track1clip7light		Track 1 Clip 7 Light
+Map	track2clip7light		Track 2 Clip 7 Light
+Map	track3clip7light		Track 3 Clip 7 Light
+Map	track4clip7light		Track 4 Clip 7 Light
+Map	track5clip7light		Track 5 Clip 7 Light
+Map	track6clip7light		Track 6 Clip 7 Light
+Map	track7clip7light		Track 7 Clip 7 Light
+Map	track8clip7light		Track 8 Clip 7 Light
+
+Map	track1clip8light		Track 1 Clip 8 Light
+Map	track2clip8light		Track 2 Clip 8 Light
+Map	track3clip8light		Track 3 Clip 8 Light
+Map	track4clip8light		Track 4 Clip 8 Light
+Map	track5clip8light		Track 5 Clip 8 Light
+Map	track6clip8light		Track 6 Clip 8 Light
+Map	track7clip8light		Track 7 Clip 8 Light
+Map	track8clip8light		Track 8 Clip 8 Light
+
+Map	track1clip1switches		Track 1 Clip 1 Switches
+Map	track2clip1switches		Track 2 Clip 1 Switches
+Map	track3clip1switches		Track 3 Clip 1 Switches
+Map	track4clip1switches		Track 4 Clip 1 Switches
+Map	track5clip1switches		Track 5 Clip 1 Switches
+Map	track6clip1switches		Track 6 Clip 1 Switches
+Map	track7clip1switches		Track 7 Clip 1 Switches
+Map	track8clip1switches		Track 8 Clip 1 Switches
+
+Map	track1clip2switches		Track 1 Clip 2 Switches
+Map	track2clip2switches		Track 2 Clip 2 Switches
+Map	track3clip2switches		Track 3 Clip 2 Switches
+Map	track4clip2switches		Track 4 Clip 2 Switches
+Map	track5clip2switches		Track 5 Clip 2 Switches
+Map	track6clip2switches		Track 6 Clip 2 Switches
+Map	track7clip2switches		Track 7 Clip 2 Switches
+Map	track8clip2switches		Track 8 Clip 2 Switches
+
+Map	track1clip3switches		Track 1 Clip 3 Switches
+Map	track2clip3switches		Track 2 Clip 3 Switches
+Map	track3clip3switches		Track 3 Clip 3 Switches
+Map	track4clip3switches		Track 4 Clip 3 Switches
+Map	track5clip3switches		Track 5 Clip 3 Switches
+Map	track6clip3switches		Track 6 Clip 3 Switches
+Map	track7clip3switches		Track 7 Clip 3 Switches
+Map	track8clip3switches		Track 8 Clip 3 Switches
+
+Map	track1clip4switches		Track 1 Clip 4 Switches
+Map	track2clip4switches		Track 2 Clip 4 Switches
+Map	track3clip4switches		Track 3 Clip 4 Switches
+Map	track4clip4switches		Track 4 Clip 4 Switches
+Map	track5clip4switches		Track 5 Clip 4 Switches
+Map	track6clip4switches		Track 6 Clip 4 Switches
+Map	track7clip4switches		Track 7 Clip 4 Switches
+Map	track8clip4switches		Track 8 Clip 4 Switches
+
+Map	track1clip5switches		Track 1 Clip 5 Switches
+Map	track2clip5switches		Track 2 Clip 5 Switches
+Map	track3clip5switches		Track 3 Clip 5 Switches
+Map	track4clip5switches		Track 4 Clip 5 Switches
+Map	track5clip5switches		Track 5 Clip 5 Switches
+Map	track6clip5switches		Track 6 Clip 5 Switches
+Map	track7clip5switches		Track 7 Clip 5 Switches
+Map	track8clip5switches		Track 8 Clip 5 Switches
+
+Map	track1clip6switches		Track 1 Clip 6 Switches
+Map	track2clip6switches		Track 2 Clip 6 Switches
+Map	track3clip6switches		Track 3 Clip 6 Switches
+Map	track4clip6switches		Track 4 Clip 6 Switches
+Map	track5clip6switches		Track 5 Clip 6 Switches
+Map	track6clip6switches		Track 6 Clip 6 Switches
+Map	track7clip6switches		Track 7 Clip 6 Switches
+Map	track8clip6switches		Track 8 Clip 6 Switches
+
+Map	track1clip7switches		Track 1 Clip 7 Switches
+Map	track2clip7switches		Track 2 Clip 7 Switches
+Map	track3clip7switches		Track 3 Clip 7 Switches
+Map	track4clip7switches		Track 4 Clip 7 Switches
+Map	track5clip7switches		Track 5 Clip 7 Switches
+Map	track6clip7switches		Track 6 Clip 7 Switches
+Map	track7clip7switches		Track 7 Clip 7 Switches
+Map	track8clip7switches		Track 8 Clip 7 Switches
+
+Map	track1clip8switches		Track 1 Clip 8 Switches
+Map	track2clip8switches		Track 2 Clip 8 Switches
+Map	track3clip8switches		Track 3 Clip 8 Switches
+Map	track4clip8switches		Track 4 Clip 8 Switches
+Map	track5clip8switches		Track 5 Clip 8 Switches
+Map	track6clip8switches		Track 6 Clip 8 Switches
+Map	track7clip8switches		Track 7 Clip 8 Switches
+Map	track8clip8switches		Track 8 Clip 8 Switches
+
+Map	track1mute		Track 1 Mute
+Map	track2mute		Track 2 Mute
+Map	track3mute		Track 3 Mute
+Map	track4mute		Track 4 Mute
+Map	track5mute		Track 5 Mute
+Map	track6mute		Track 6 Mute
+Map	track7mute		Track 7 Mute
+Map	track8mute		Track 8 Mute
+
+Map	track1solo		Track 1 Solo
+Map	track2solo		Track 2 Solo
+Map	track3solo		Track 3 Solo
+Map	track4solo		Track 4 Solo
+Map	track5solo		Track 5 Solo
+Map	track6solo		Track 6 Solo
+Map	track7solo		Track 7 Solo
+Map	track8solo		Track 8 Solo
+
+Map	track1relaunch		Track 1 Relaunch
+Map	track2relaunch		Track 2 Relaunch
+Map	track3relaunch		Track 3 Relaunch
+Map	track4relaunch		Track 4 Relaunch
+Map	track5relaunch		Track 5 Relaunch
+Map	track6relaunch		Track 6 Relaunch
+Map	track7relaunch		Track 7 Relaunch
+Map	track8relaunch		Track 8 Relaunch
+
+Map	track1functionlight		Track 1 Function Light
+Map	track2functionlight		Track 2 Function Light
+Map	track3functionlight		Track 3 Function Light
+Map	track4functionlight		Track 4 Function Light
+Map	track5functionlight		Track 5 Function Light
+Map	track6functionlight		Track 6 Function Light
+Map	track7functionlight		Track 7 Function Light
+Map	track8functionlight		Track 8 Function Light
+
+Map	scene1light		Scene 1 Light
+Map	scene2light		Scene 2 Light
+Map	scene3light		Scene 3 Light
+Map	scene4light		Scene 4 Light
+Map	scene5light		Scene 5 Light
+Map	scene6light		Scene 6 Light
+Map	scene7light		Scene 7 Light
+Map	scene8light		Scene 8 Light
+
+Map	track1selection		Track 1 Selection
+Map	track2selection		Track 2 Selection
+Map	track3selection		Track 3 Selection
+Map	track4selection		Track 4 Selection
+Map	track5selection		Track 5 Selection
+Map	track6selection		Track 6 Selection
+Map	track7selection		Track 7 Selection
+Map	track8selection		Track 8 Selection
+
+Map	track1clip1fillinswitches		Track 1 Clip 1 Fill-In Switches
+Map	track2clip1fillinswitches		Track 2 Clip 1 Fill-In Switches
+Map	track3clip1fillinswitches		Track 3 Clip 1 Fill-In Switches
+Map	track4clip1fillinswitches		Track 4 Clip 1 Fill-In Switches
+Map	track5clip1fillinswitches		Track 5 Clip 1 Fill-In Switches
+Map	track6clip1fillinswitches		Track 6 Clip 1 Fill-In Switches
+Map	track7clip1fillinswitches		Track 7 Clip 1 Fill-In Switches
+Map	track8clip1fillinswitches		Track 8 Clip 1 Fill-In Switches
+
+Map	track1clip2fillinswitches		Track 1 Clip 2 Fill-In Switches
+Map	track2clip2fillinswitches		Track 2 Clip 2 Fill-In Switches
+Map	track3clip2fillinswitches		Track 3 Clip 2 Fill-In Switches
+Map	track4clip2fillinswitches		Track 4 Clip 2 Fill-In Switches
+Map	track5clip2fillinswitches		Track 5 Clip 2 Fill-In Switches
+Map	track6clip2fillinswitches		Track 6 Clip 2 Fill-In Switches
+Map	track7clip2fillinswitches		Track 7 Clip 2 Fill-In Switches
+Map	track8clip2fillinswitches		Track 8 Clip 2 Fill-In Switches
+
+Map	track1clip3fillinswitches		Track 1 Clip 3 Fill-In Switches
+Map	track2clip3fillinswitches		Track 2 Clip 3 Fill-In Switches
+Map	track3clip3fillinswitches		Track 3 Clip 3 Fill-In Switches
+Map	track4clip3fillinswitches		Track 4 Clip 3 Fill-In Switches
+Map	track5clip3fillinswitches		Track 5 Clip 3 Fill-In Switches
+Map	track6clip3fillinswitches		Track 6 Clip 3 Fill-In Switches
+Map	track7clip3fillinswitches		Track 7 Clip 3 Fill-In Switches
+Map	track8clip3fillinswitches		Track 8 Clip 3 Fill-In Switches
+
+Map	track1clip4fillinswitches		Track 1 Clip 4 Fill-In Switches
+Map	track2clip4fillinswitches		Track 2 Clip 4 Fill-In Switches
+Map	track3clip4fillinswitches		Track 3 Clip 4 Fill-In Switches
+Map	track4clip4fillinswitches		Track 4 Clip 4 Fill-In Switches
+Map	track5clip4fillinswitches		Track 5 Clip 4 Fill-In Switches
+Map	track6clip4fillinswitches		Track 6 Clip 4 Fill-In Switches
+Map	track7clip4fillinswitches		Track 7 Clip 4 Fill-In Switches
+Map	track8clip4fillinswitches		Track 8 Clip 4 Fill-In Switches
+
+Map	track1clip5fillinswitches		Track 1 Clip 5 Fill-In Switches
+Map	track2clip5fillinswitches		Track 2 Clip 5 Fill-In Switches
+Map	track3clip5fillinswitches		Track 3 Clip 5 Fill-In Switches
+Map	track4clip5fillinswitches		Track 4 Clip 5 Fill-In Switches
+Map	track5clip5fillinswitches		Track 5 Clip 5 Fill-In Switches
+Map	track6clip5fillinswitches		Track 6 Clip 5 Fill-In Switches
+Map	track7clip5fillinswitches		Track 7 Clip 5 Fill-In Switches
+Map	track8clip5fillinswitches		Track 8 Clip 5 Fill-In Switches
+
+Map	track1clip6fillinswitches		Track 1 Clip 6 Fill-In Switches
+Map	track2clip6fillinswitches		Track 2 Clip 6 Fill-In Switches
+Map	track3clip6fillinswitches		Track 3 Clip 6 Fill-In Switches
+Map	track4clip6fillinswitches		Track 4 Clip 6 Fill-In Switches
+Map	track5clip6fillinswitches		Track 5 Clip 6 Fill-In Switches
+Map	track6clip6fillinswitches		Track 6 Clip 6 Fill-In Switches
+Map	track7clip6fillinswitches		Track 7 Clip 6 Fill-In Switches
+Map	track8clip6fillinswitches		Track 8 Clip 6 Fill-In Switches
+
+Map	track1clip7fillinswitches		Track 1 Clip 7 Fill-In Switches
+Map	track2clip7fillinswitches		Track 2 Clip 7 Fill-In Switches
+Map	track3clip7fillinswitches		Track 3 Clip 7 Fill-In Switches
+Map	track4clip7fillinswitches		Track 4 Clip 7 Fill-In Switches
+Map	track5clip7fillinswitches		Track 5 Clip 7 Fill-In Switches
+Map	track6clip7fillinswitches		Track 6 Clip 7 Fill-In Switches
+Map	track7clip7fillinswitches		Track 7 Clip 7 Fill-In Switches
+Map	track8clip7fillinswitches		Track 8 Clip 7 Fill-In Switches
+
+Map	track1clip8fillinswitches		Track 1 Clip 8 Fill-In Switches
+Map	track2clip8fillinswitches		Track 2 Clip 8 Fill-In Switches
+Map	track3clip8fillinswitches		Track 3 Clip 8 Fill-In Switches
+Map	track4clip8fillinswitches		Track 4 Clip 8 Fill-In Switches
+Map	track5clip8fillinswitches		Track 5 Clip 8 Fill-In Switches
+Map	track6clip8fillinswitches		Track 6 Clip 8 Fill-In Switches
+Map	track7clip8fillinswitches		Track 7 Clip 8 Fill-In Switches
+Map	track8clip8fillinswitches		Track 8 Clip 8 Fill-In Switches
+
+Map	track1clip1landingswitches		Track 1 Clip 1 Landing Switches
+Map	track2clip1landingswitches		Track 2 Clip 1 Landing Switches
+Map	track3clip1landingswitches		Track 3 Clip 1 Landing Switches
+Map	track4clip1landingswitches		Track 4 Clip 1 Landing Switches
+Map	track5clip1landingswitches		Track 5 Clip 1 Landing Switches
+Map	track6clip1landingswitches		Track 6 Clip 1 Landing Switches
+Map	track7clip1landingswitches		Track 7 Clip 1 Landing Switches
+Map	track8clip1landingswitches		Track 8 Clip 1 Landing Switches
+
+Map	track1clip2landingswitches		Track 1 Clip 2 Landing Switches
+Map	track2clip2landingswitches		Track 2 Clip 2 Landing Switches
+Map	track3clip2landingswitches		Track 3 Clip 2 Landing Switches
+Map	track4clip2landingswitches		Track 4 Clip 2 Landing Switches
+Map	track5clip2landingswitches		Track 5 Clip 2 Landing Switches
+Map	track6clip2landingswitches		Track 6 Clip 2 Landing Switches
+Map	track7clip2landingswitches		Track 7 Clip 2 Landing Switches
+Map	track8clip2landingswitches		Track 8 Clip 2 Landing Switches
+
+Map	track1clip3landingswitches		Track 1 Clip 3 Landing Switches
+Map	track2clip3landingswitches		Track 2 Clip 3 Landing Switches
+Map	track3clip3landingswitches		Track 3 Clip 3 Landing Switches
+Map	track4clip3landingswitches		Track 4 Clip 3 Landing Switches
+Map	track5clip3landingswitches		Track 5 Clip 3 Landing Switches
+Map	track6clip3landingswitches		Track 6 Clip 3 Landing Switches
+Map	track7clip3landingswitches		Track 7 Clip 3 Landing Switches
+Map	track8clip3landingswitches		Track 8 Clip 3 Landing Switches
+
+Map	track1clip4landingswitches		Track 1 Clip 4 Landing Switches
+Map	track2clip4landingswitches		Track 2 Clip 4 Landing Switches
+Map	track3clip4landingswitches		Track 3 Clip 4 Landing Switches
+Map	track4clip4landingswitches		Track 4 Clip 4 Landing Switches
+Map	track5clip4landingswitches		Track 5 Clip 4 Landing Switches
+Map	track6clip4landingswitches		Track 6 Clip 4 Landing Switches
+Map	track7clip4landingswitches		Track 7 Clip 4 Landing Switches
+Map	track8clip4landingswitches		Track 8 Clip 4 Landing Switches
+
+Map	track1clip5landingswitches		Track 1 Clip 5 Landing Switches
+Map	track2clip5landingswitches		Track 2 Clip 5 Landing Switches
+Map	track3clip5landingswitches		Track 3 Clip 5 Landing Switches
+Map	track4clip5landingswitches		Track 4 Clip 5 Landing Switches
+Map	track5clip5landingswitches		Track 5 Clip 5 Landing Switches
+Map	track6clip5landingswitches		Track 6 Clip 5 Landing Switches
+Map	track7clip5landingswitches		Track 7 Clip 5 Landing Switches
+Map	track8clip5landingswitches		Track 8 Clip 5 Landing Switches
+
+Map	track1clip6landingswitches		Track 1 Clip 6 Landing Switches
+Map	track2clip6landingswitches		Track 2 Clip 6 Landing Switches
+Map	track3clip6landingswitches		Track 3 Clip 6 Landing Switches
+Map	track4clip6landingswitches		Track 4 Clip 6 Landing Switches
+Map	track5clip6landingswitches		Track 5 Clip 6 Landing Switches
+Map	track6clip6landingswitches		Track 6 Clip 6 Landing Switches
+Map	track7clip6landingswitches		Track 7 Clip 6 Landing Switches
+Map	track8clip6landingswitches		Track 8 Clip 6 Landing Switches
+
+Map	track1clip7landingswitches		Track 1 Clip 7 Landing Switches
+Map	track2clip7landingswitches		Track 2 Clip 7 Landing Switches
+Map	track3clip7landingswitches		Track 3 Clip 7 Landing Switches
+Map	track4clip7landingswitches		Track 4 Clip 7 Landing Switches
+Map	track5clip7landingswitches		Track 5 Clip 7 Landing Switches
+Map	track6clip7landingswitches		Track 6 Clip 7 Landing Switches
+Map	track7clip7landingswitches		Track 7 Clip 7 Landing Switches
+Map	track8clip7landingswitches		Track 8 Clip 7 Landing Switches
+
+Map	track1clip8landingswitches		Track 1 Clip 8 Landing Switches
+Map	track2clip8landingswitches		Track 2 Clip 8 Landing Switches
+Map	track3clip8landingswitches		Track 3 Clip 8 Landing Switches
+Map	track4clip8landingswitches		Track 4 Clip 8 Landing Switches
+Map	track5clip8landingswitches		Track 5 Clip 8 Landing Switches
+Map	track6clip8landingswitches		Track 6 Clip 8 Landing Switches
+Map	track7clip8landingswitches		Track 7 Clip 8 Landing Switches
+Map	track8clip8landingswitches		Track 8 Clip 8 Landing Switches
+
+Map	track1clip1introswitches		Track 1 Clip 1 Intro Switches
+Map	track2clip1introswitches		Track 2 Clip 1 Intro Switches
+Map	track3clip1introswitches		Track 3 Clip 1 Intro Switches
+Map	track4clip1introswitches		Track 4 Clip 1 Intro Switches
+Map	track5clip1introswitches		Track 5 Clip 1 Intro Switches
+Map	track6clip1introswitches		Track 6 Clip 1 Intro Switches
+Map	track7clip1introswitches		Track 7 Clip 1 Intro Switches
+Map	track8clip1introswitches		Track 8 Clip 1 Intro Switches
+
+Map	track1clip2introswitches		Track 1 Clip 2 Intro Switches
+Map	track2clip2introswitches		Track 2 Clip 2 Intro Switches
+Map	track3clip2introswitches		Track 3 Clip 2 Intro Switches
+Map	track4clip2introswitches		Track 4 Clip 2 Intro Switches
+Map	track5clip2introswitches		Track 5 Clip 2 Intro Switches
+Map	track6clip2introswitches		Track 6 Clip 2 Intro Switches
+Map	track7clip2introswitches		Track 7 Clip 2 Intro Switches
+Map	track8clip2introswitches		Track 8 Clip 2 Intro Switches
+
+Map	track1clip3introswitches		Track 1 Clip 3 Intro Switches
+Map	track2clip3introswitches		Track 2 Clip 3 Intro Switches
+Map	track3clip3introswitches		Track 3 Clip 3 Intro Switches
+Map	track4clip3introswitches		Track 4 Clip 3 Intro Switches
+Map	track5clip3introswitches		Track 5 Clip 3 Intro Switches
+Map	track6clip3introswitches		Track 6 Clip 3 Intro Switches
+Map	track7clip3introswitches		Track 7 Clip 3 Intro Switches
+Map	track8clip3introswitches		Track 8 Clip 3 Intro Switches
+
+Map	track1clip4introswitches		Track 1 Clip 4 Intro Switches
+Map	track2clip4introswitches		Track 2 Clip 4 Intro Switches
+Map	track3clip4introswitches		Track 3 Clip 4 Intro Switches
+Map	track4clip4introswitches		Track 4 Clip 4 Intro Switches
+Map	track5clip4introswitches		Track 5 Clip 4 Intro Switches
+Map	track6clip4introswitches		Track 6 Clip 4 Intro Switches
+Map	track7clip4introswitches		Track 7 Clip 4 Intro Switches
+Map	track8clip4introswitches		Track 8 Clip 4 Intro Switches
+
+Map	track1clip5introswitches		Track 1 Clip 5 Intro Switches
+Map	track2clip5introswitches		Track 2 Clip 5 Intro Switches
+Map	track3clip5introswitches		Track 3 Clip 5 Intro Switches
+Map	track4clip5introswitches		Track 4 Clip 5 Intro Switches
+Map	track5clip5introswitches		Track 5 Clip 5 Intro Switches
+Map	track6clip5introswitches		Track 6 Clip 5 Intro Switches
+Map	track7clip5introswitches		Track 7 Clip 5 Intro Switches
+Map	track8clip5introswitches		Track 8 Clip 5 Intro Switches
+
+Map	track1clip6introswitches		Track 1 Clip 6 Intro Switches
+Map	track2clip6introswitches		Track 2 Clip 6 Intro Switches
+Map	track3clip6introswitches		Track 3 Clip 6 Intro Switches
+Map	track4clip6introswitches		Track 4 Clip 6 Intro Switches
+Map	track5clip6introswitches		Track 5 Clip 6 Intro Switches
+Map	track6clip6introswitches		Track 6 Clip 6 Intro Switches
+Map	track7clip6introswitches		Track 7 Clip 6 Intro Switches
+Map	track8clip6introswitches		Track 8 Clip 6 Intro Switches
+
+Map	track1clip7introswitches		Track 1 Clip 7 Intro Switches
+Map	track2clip7introswitches		Track 2 Clip 7 Intro Switches
+Map	track3clip7introswitches		Track 3 Clip 7 Intro Switches
+Map	track4clip7introswitches		Track 4 Clip 7 Intro Switches
+Map	track5clip7introswitches		Track 5 Clip 7 Intro Switches
+Map	track6clip7introswitches		Track 6 Clip 7 Intro Switches
+Map	track7clip7introswitches		Track 7 Clip 7 Intro Switches
+Map	track8clip7introswitches		Track 8 Clip 7 Intro Switches
+
+Map	track1clip8introswitches		Track 1 Clip 8 Intro Switches
+Map	track2clip8introswitches		Track 2 Clip 8 Intro Switches
+Map	track3clip8introswitches		Track 3 Clip 8 Intro Switches
+Map	track4clip8introswitches		Track 4 Clip 8 Intro Switches
+Map	track5clip8introswitches		Track 5 Clip 8 Intro Switches
+Map	track6clip8introswitches		Track 6 Clip 8 Intro Switches
+Map	track7clip8introswitches		Track 7 Clip 8 Intro Switches
+Map	track8clip8introswitches		Track 8 Clip 8 Intro Switches
+
+Map	track1clip1outroswitches		Track 1 Clip 1 Outro Switches
+Map	track2clip1outroswitches		Track 2 Clip 1 Outro Switches
+Map	track3clip1outroswitches		Track 3 Clip 1 Outro Switches
+Map	track4clip1outroswitches		Track 4 Clip 1 Outro Switches
+Map	track5clip1outroswitches		Track 5 Clip 1 Outro Switches
+Map	track6clip1outroswitches		Track 6 Clip 1 Outro Switches
+Map	track7clip1outroswitches		Track 7 Clip 1 Outro Switches
+Map	track8clip1outroswitches		Track 8 Clip 1 Outro Switches
+
+Map	track1clip2outroswitches		Track 1 Clip 2 Outro Switches
+Map	track2clip2outroswitches		Track 2 Clip 2 Outro Switches
+Map	track3clip2outroswitches		Track 3 Clip 2 Outro Switches
+Map	track4clip2outroswitches		Track 4 Clip 2 Outro Switches
+Map	track5clip2outroswitches		Track 5 Clip 2 Outro Switches
+Map	track6clip2outroswitches		Track 6 Clip 2 Outro Switches
+Map	track7clip2outroswitches		Track 7 Clip 2 Outro Switches
+Map	track8clip2outroswitches		Track 8 Clip 2 Outro Switches
+
+Map	track1clip3outroswitches		Track 1 Clip 3 Outro Switches
+Map	track2clip3outroswitches		Track 2 Clip 3 Outro Switches
+Map	track3clip3outroswitches		Track 3 Clip 3 Outro Switches
+Map	track4clip3outroswitches		Track 4 Clip 3 Outro Switches
+Map	track5clip3outroswitches		Track 5 Clip 3 Outro Switches
+Map	track6clip3outroswitches		Track 6 Clip 3 Outro Switches
+Map	track7clip3outroswitches		Track 7 Clip 3 Outro Switches
+Map	track8clip3outroswitches		Track 8 Clip 3 Outro Switches
+
+Map	track1clip4outroswitches		Track 1 Clip 4 Outro Switches
+Map	track2clip4outroswitches		Track 2 Clip 4 Outro Switches
+Map	track3clip4outroswitches		Track 3 Clip 4 Outro Switches
+Map	track4clip4outroswitches		Track 4 Clip 4 Outro Switches
+Map	track5clip4outroswitches		Track 5 Clip 4 Outro Switches
+Map	track6clip4outroswitches		Track 6 Clip 4 Outro Switches
+Map	track7clip4outroswitches		Track 7 Clip 4 Outro Switches
+Map	track8clip4outroswitches		Track 8 Clip 4 Outro Switches
+
+Map	track1clip5outroswitches		Track 1 Clip 5 Outro Switches
+Map	track2clip5outroswitches		Track 2 Clip 5 Outro Switches
+Map	track3clip5outroswitches		Track 3 Clip 5 Outro Switches
+Map	track4clip5outroswitches		Track 4 Clip 5 Outro Switches
+Map	track5clip5outroswitches		Track 5 Clip 5 Outro Switches
+Map	track6clip5outroswitches		Track 6 Clip 5 Outro Switches
+Map	track7clip5outroswitches		Track 7 Clip 5 Outro Switches
+Map	track8clip5outroswitches		Track 8 Clip 5 Outro Switches
+
+Map	track1clip6outroswitches		Track 1 Clip 6 Outro Switches
+Map	track2clip6outroswitches		Track 2 Clip 6 Outro Switches
+Map	track3clip6outroswitches		Track 3 Clip 6 Outro Switches
+Map	track4clip6outroswitches		Track 4 Clip 6 Outro Switches
+Map	track5clip6outroswitches		Track 5 Clip 6 Outro Switches
+Map	track6clip6outroswitches		Track 6 Clip 6 Outro Switches
+Map	track7clip6outroswitches		Track 7 Clip 6 Outro Switches
+Map	track8clip6outroswitches		Track 8 Clip 6 Outro Switches
+
+Map	track1clip7outroswitches		Track 1 Clip 7 Outro Switches
+Map	track2clip7outroswitches		Track 2 Clip 7 Outro Switches
+Map	track3clip7outroswitches		Track 3 Clip 7 Outro Switches
+Map	track4clip7outroswitches		Track 4 Clip 7 Outro Switches
+Map	track5clip7outroswitches		Track 5 Clip 7 Outro Switches
+Map	track6clip7outroswitches		Track 6 Clip 7 Outro Switches
+Map	track7clip7outroswitches		Track 7 Clip 7 Outro Switches
+Map	track8clip7outroswitches		Track 8 Clip 7 Outro Switches
+
+Map	track1clip8outroswitches		Track 1 Clip 8 Outro Switches
+Map	track2clip8outroswitches		Track 2 Clip 8 Outro Switches
+Map	track3clip8outroswitches		Track 3 Clip 8 Outro Switches
+Map	track4clip8outroswitches		Track 4 Clip 8 Outro Switches
+Map	track5clip8outroswitches		Track 5 Clip 8 Outro Switches
+Map	track6clip8outroswitches		Track 6 Clip 8 Outro Switches
+Map	track7clip8outroswitches		Track 7 Clip 8 Outro Switches
+Map	track8clip8outroswitches		Track 8 Clip 8 Outro Switches
+
+Map	track1cvmodea		Track 1 Output A CV Mode
+Map	track1cvmodeb		Track 1 Output B CV Mode
+Map	track1cvmodec		Track 1 Output C CV Mode
+Map	track1cvmoded		Track 1 Output D CV Mode
+Map	track1cvmodee		Track 1 Output E CV Mode
+Map	track1cvmodef		Track 1 Output F CV Mode
+
+Map	track2cvmodea		Track 2 Output A CV Mode
+Map	track2cvmodeb		Track 2 Output B CV Mode
+Map	track2cvmodec		Track 2 Output C CV Mode
+Map	track2cvmoded		Track 2 Output D CV Mode
+Map	track2cvmodee		Track 2 Output E CV Mode
+Map	track2cvmodef		Track 2 Output F CV Mode
+
+Map	track3cvmodea		Track 3 Output A CV Mode
+Map	track3cvmodeb		Track 3 Output B CV Mode
+Map	track3cvmodec		Track 3 Output C CV Mode
+Map	track3cvmoded		Track 3 Output D CV Mode
+Map	track3cvmodee		Track 3 Output E CV Mode
+Map	track3cvmodef		Track 3 Output F CV Mode
+
+Map	track4cvmodea		Track 4 Output A CV Mode
+Map	track4cvmodeb		Track 4 Output B CV Mode
+Map	track4cvmodec		Track 4 Output C CV Mode
+Map	track4cvmoded		Track 4 Output D CV Mode
+Map	track4cvmodee		Track 4 Output E CV Mode
+Map	track4cvmodef		Track 4 Output F CV Mode
+
+Map	track5cvmodea		Track 5 Output A CV Mode
+Map	track5cvmodeb		Track 5 Output B CV Mode
+Map	track5cvmodec		Track 5 Output C CV Mode
+Map	track5cvmoded		Track 5 Output D CV Mode
+Map	track5cvmodee		Track 5 Output E CV Mode
+Map	track5cvmodef		Track 5 Output F CV Mode
+
+Map	track6cvmodea		Track 6 Output A CV Mode
+Map	track6cvmodeb		Track 6 Output B CV Mode
+Map	track6cvmodec		Track 6 Output C CV Mode
+Map	track6cvmoded		Track 6 Output D CV Mode
+Map	track6cvmodee		Track 6 Output E CV Mode
+Map	track6cvmodef		Track 6 Output F CV Mode
+
+Map	track7cvmodea		Track 7 Output A CV Mode
+Map	track7cvmodeb		Track 7 Output B CV Mode
+Map	track7cvmodec		Track 7 Output C CV Mode
+Map	track7cvmoded		Track 7 Output D CV Mode
+Map	track7cvmodee		Track 7 Output E CV Mode
+Map	track7cvmodef		Track 7 Output F CV Mode
+
+Map	track8cvmodea		Track 8 Output A CV Mode
+Map	track8cvmodeb		Track 8 Output B CV Mode
+Map	track8cvmodec		Track 8 Output C CV Mode
+Map	track8cvmoded		Track 8 Output D CV Mode
+Map	track8cvmodee		Track 8 Output E CV Mode
+Map	track8cvmodef		Track 8 Output F CV Mode
+
+Map	track1clip1a		Track 1 Clip 1 Output A
+Map	track1clip1b		Track 1 Clip 1 Output B
+Map	track1clip1c		Track 1 Clip 1 Output C
+Map	track1clip1d		Track 1 Clip 1 Output D
+Map	track1clip1e		Track 1 Clip 1 Output E
+Map	track1clip1f		Track 1 Clip 1 Output F
+
+Map	track2clip1a		Track 2 Clip 1 Output A
+Map	track2clip1b		Track 2 Clip 1 Output B
+Map	track2clip1c		Track 2 Clip 1 Output C
+Map	track2clip1d		Track 2 Clip 1 Output D
+Map	track2clip1e		Track 2 Clip 1 Output E
+Map	track2clip1f		Track 2 Clip 1 Output F
+
+Map	track3clip1a		Track 3 Clip 1 Output A
+Map	track3clip1b		Track 3 Clip 1 Output B
+Map	track3clip1c		Track 3 Clip 1 Output C
+Map	track3clip1d		Track 3 Clip 1 Output D
+Map	track3clip1e		Track 3 Clip 1 Output E
+Map	track3clip1f		Track 3 Clip 1 Output F
+
+Map	track4clip1a		Track 4 Clip 1 Output A
+Map	track4clip1b		Track 4 Clip 1 Output B
+Map	track4clip1c		Track 4 Clip 1 Output C
+Map	track4clip1d		Track 4 Clip 1 Output D
+Map	track4clip1e		Track 4 Clip 1 Output E
+Map	track4clip1f		Track 4 Clip 1 Output F
+
+Map	track5clip1a		Track 5 Clip 1 Output A
+Map	track5clip1b		Track 5 Clip 1 Output B
+Map	track5clip1c		Track 5 Clip 1 Output C
+Map	track5clip1d		Track 5 Clip 1 Output D
+Map	track5clip1e		Track 5 Clip 1 Output E
+Map	track5clip1f		Track 5 Clip 1 Output F
+
+Map	track6clip1a		Track 6 Clip 1 Output A
+Map	track6clip1b		Track 6 Clip 1 Output B
+Map	track6clip1c		Track 6 Clip 1 Output C
+Map	track6clip1d		Track 6 Clip 1 Output D
+Map	track6clip1e		Track 6 Clip 1 Output E
+Map	track6clip1f		Track 6 Clip 1 Output F
+
+Map	track7clip1a		Track 7 Clip 1 Output A
+Map	track7clip1b		Track 7 Clip 1 Output B
+Map	track7clip1c		Track 7 Clip 1 Output C
+Map	track7clip1d		Track 7 Clip 1 Output D
+Map	track7clip1e		Track 7 Clip 1 Output E
+Map	track7clip1f		Track 7 Clip 1 Output F
+
+Map	track8clip1a		Track 8 Clip 1 Output A
+Map	track8clip1b		Track 8 Clip 1 Output B
+Map	track8clip1c		Track 8 Clip 1 Output C
+Map	track8clip1d		Track 8 Clip 1 Output D
+Map	track8clip1e		Track 8 Clip 1 Output E
+Map	track8clip1f		Track 8 Clip 1 Output F
+
+Map	track1clip2a		Track 1 Clip 2 Output A
+Map	track1clip2b		Track 1 Clip 2 Output B
+Map	track1clip2c		Track 1 Clip 2 Output C
+Map	track1clip2d		Track 1 Clip 2 Output D
+Map	track1clip2e		Track 1 Clip 2 Output E
+Map	track1clip2f		Track 1 Clip 2 Output F
+
+Map	track2clip2a		Track 2 Clip 2 Output A
+Map	track2clip2b		Track 2 Clip 2 Output B
+Map	track2clip2c		Track 2 Clip 2 Output C
+Map	track2clip2d		Track 2 Clip 2 Output D
+Map	track2clip2e		Track 2 Clip 2 Output E
+Map	track2clip2f		Track 2 Clip 2 Output F
+
+Map	track3clip2a		Track 3 Clip 2 Output A
+Map	track3clip2b		Track 3 Clip 2 Output B
+Map	track3clip2c		Track 3 Clip 2 Output C
+Map	track3clip2d		Track 3 Clip 2 Output D
+Map	track3clip2e		Track 3 Clip 2 Output E
+Map	track3clip2f		Track 3 Clip 2 Output F
+
+Map	track4clip2a		Track 4 Clip 2 Output A
+Map	track4clip2b		Track 4 Clip 2 Output B
+Map	track4clip2c		Track 4 Clip 2 Output C
+Map	track4clip2d		Track 4 Clip 2 Output D
+Map	track4clip2e		Track 4 Clip 2 Output E
+Map	track4clip2f		Track 4 Clip 2 Output F
+
+Map	track5clip2a		Track 5 Clip 2 Output A
+Map	track5clip2b		Track 5 Clip 2 Output B
+Map	track5clip2c		Track 5 Clip 2 Output C
+Map	track5clip2d		Track 5 Clip 2 Output D
+Map	track5clip2e		Track 5 Clip 2 Output E
+Map	track5clip2f		Track 5 Clip 2 Output F
+
+Map	track6clip2a		Track 6 Clip 2 Output A
+Map	track6clip2b		Track 6 Clip 2 Output B
+Map	track6clip2c		Track 6 Clip 2 Output C
+Map	track6clip2d		Track 6 Clip 2 Output D
+Map	track6clip2e		Track 6 Clip 2 Output E
+Map	track6clip2f		Track 6 Clip 2 Output F
+
+Map	track7clip2a		Track 7 Clip 2 Output A
+Map	track7clip2b		Track 7 Clip 2 Output B
+Map	track7clip2c		Track 7 Clip 2 Output C
+Map	track7clip2d		Track 7 Clip 2 Output D
+Map	track7clip2e		Track 7 Clip 2 Output E
+Map	track7clip2f		Track 7 Clip 2 Output F
+
+Map	track8clip2a		Track 8 Clip 2 Output A
+Map	track8clip2b		Track 8 Clip 2 Output B
+Map	track8clip2c		Track 8 Clip 2 Output C
+Map	track8clip2d		Track 8 Clip 2 Output D
+Map	track8clip2e		Track 8 Clip 2 Output E
+Map	track8clip2f		Track 8 Clip 2 Output F
+
+Map	track1clip3a		Track 1 Clip 3 Output A
+Map	track1clip3b		Track 1 Clip 3 Output B
+Map	track1clip3c		Track 1 Clip 3 Output C
+Map	track1clip3d		Track 1 Clip 3 Output D
+Map	track1clip3e		Track 1 Clip 3 Output E
+Map	track1clip3f		Track 1 Clip 3 Output F
+
+Map	track2clip3a		Track 2 Clip 3 Output A
+Map	track2clip3b		Track 2 Clip 3 Output B
+Map	track2clip3c		Track 2 Clip 3 Output C
+Map	track2clip3d		Track 2 Clip 3 Output D
+Map	track2clip3e		Track 2 Clip 3 Output E
+Map	track2clip3f		Track 2 Clip 3 Output F
+
+Map	track3clip3a		Track 3 Clip 3 Output A
+Map	track3clip3b		Track 3 Clip 3 Output B
+Map	track3clip3c		Track 3 Clip 3 Output C
+Map	track3clip3d		Track 3 Clip 3 Output D
+Map	track3clip3e		Track 3 Clip 3 Output E
+Map	track3clip3f		Track 3 Clip 3 Output F
+
+Map	track4clip3a		Track 4 Clip 3 Output A
+Map	track4clip3b		Track 4 Clip 3 Output B
+Map	track4clip3c		Track 4 Clip 3 Output C
+Map	track4clip3d		Track 4 Clip 3 Output D
+Map	track4clip3e		Track 4 Clip 3 Output E
+Map	track4clip3f		Track 4 Clip 3 Output F
+
+Map	track5clip3a		Track 5 Clip 3 Output A
+Map	track5clip3b		Track 5 Clip 3 Output B
+Map	track5clip3c		Track 5 Clip 3 Output C
+Map	track5clip3d		Track 5 Clip 3 Output D
+Map	track5clip3e		Track 5 Clip 3 Output E
+Map	track5clip3f		Track 5 Clip 3 Output F
+
+Map	track6clip3a		Track 6 Clip 3 Output A
+Map	track6clip3b		Track 6 Clip 3 Output B
+Map	track6clip3c		Track 6 Clip 3 Output C
+Map	track6clip3d		Track 6 Clip 3 Output D
+Map	track6clip3e		Track 6 Clip 3 Output E
+Map	track6clip3f		Track 6 Clip 3 Output F
+
+Map	track7clip3a		Track 7 Clip 3 Output A
+Map	track7clip3b		Track 7 Clip 3 Output B
+Map	track7clip3c		Track 7 Clip 3 Output C
+Map	track7clip3d		Track 7 Clip 3 Output D
+Map	track7clip3e		Track 7 Clip 3 Output E
+Map	track7clip3f		Track 7 Clip 3 Output F
+
+Map	track8clip3a		Track 8 Clip 3 Output A
+Map	track8clip3b		Track 8 Clip 3 Output B
+Map	track8clip3c		Track 8 Clip 3 Output C
+Map	track8clip3d		Track 8 Clip 3 Output D
+Map	track8clip3e		Track 8 Clip 3 Output E
+Map	track8clip3f		Track 8 Clip 3 Output F
+
+Map	track1clip4a		Track 1 Clip 4 Output A
+Map	track1clip4b		Track 1 Clip 4 Output B
+Map	track1clip4c		Track 1 Clip 4 Output C
+Map	track1clip4d		Track 1 Clip 4 Output D
+Map	track1clip4e		Track 1 Clip 4 Output E
+Map	track1clip4f		Track 1 Clip 4 Output F
+
+Map	track2clip4a		Track 2 Clip 4 Output A
+Map	track2clip4b		Track 2 Clip 4 Output B
+Map	track2clip4c		Track 2 Clip 4 Output C
+Map	track2clip4d		Track 2 Clip 4 Output D
+Map	track2clip4e		Track 2 Clip 4 Output E
+Map	track2clip4f		Track 2 Clip 4 Output F
+
+Map	track3clip4a		Track 3 Clip 4 Output A
+Map	track3clip4b		Track 3 Clip 4 Output B
+Map	track3clip4c		Track 3 Clip 4 Output C
+Map	track3clip4d		Track 3 Clip 4 Output D
+Map	track3clip4e		Track 3 Clip 4 Output E
+Map	track3clip4f		Track 3 Clip 4 Output F
+
+Map	track4clip4a		Track 4 Clip 4 Output A
+Map	track4clip4b		Track 4 Clip 4 Output B
+Map	track4clip4c		Track 4 Clip 4 Output C
+Map	track4clip4d		Track 4 Clip 4 Output D
+Map	track4clip4e		Track 4 Clip 4 Output E
+Map	track4clip4f		Track 4 Clip 4 Output F
+
+Map	track5clip4a		Track 5 Clip 4 Output A
+Map	track5clip4b		Track 5 Clip 4 Output B
+Map	track5clip4c		Track 5 Clip 4 Output C
+Map	track5clip4d		Track 5 Clip 4 Output D
+Map	track5clip4e		Track 5 Clip 4 Output E
+Map	track5clip4f		Track 5 Clip 4 Output F
+
+Map	track6clip4a		Track 6 Clip 4 Output A
+Map	track6clip4b		Track 6 Clip 4 Output B
+Map	track6clip4c		Track 6 Clip 4 Output C
+Map	track6clip4d		Track 6 Clip 4 Output D
+Map	track6clip4e		Track 6 Clip 4 Output E
+Map	track6clip4f		Track 6 Clip 4 Output F
+
+Map	track7clip4a		Track 7 Clip 4 Output A
+Map	track7clip4b		Track 7 Clip 4 Output B
+Map	track7clip4c		Track 7 Clip 4 Output C
+Map	track7clip4d		Track 7 Clip 4 Output D
+Map	track7clip4e		Track 7 Clip 4 Output E
+Map	track7clip4f		Track 7 Clip 4 Output F
+
+Map	track8clip4a		Track 8 Clip 4 Output A
+Map	track8clip4b		Track 8 Clip 4 Output B
+Map	track8clip4c		Track 8 Clip 4 Output C
+Map	track8clip4d		Track 8 Clip 4 Output D
+Map	track8clip4e		Track 8 Clip 4 Output E
+Map	track8clip4f		Track 8 Clip 4 Output F
+
+Map	track1clip5a		Track 1 Clip 5 Output A
+Map	track1clip5b		Track 1 Clip 5 Output B
+Map	track1clip5c		Track 1 Clip 5 Output C
+Map	track1clip5d		Track 1 Clip 5 Output D
+Map	track1clip5e		Track 1 Clip 5 Output E
+Map	track1clip5f		Track 1 Clip 5 Output F
+
+Map	track2clip5a		Track 2 Clip 5 Output A
+Map	track2clip5b		Track 2 Clip 5 Output B
+Map	track2clip5c		Track 2 Clip 5 Output C
+Map	track2clip5d		Track 2 Clip 5 Output D
+Map	track2clip5e		Track 2 Clip 5 Output E
+Map	track2clip5f		Track 2 Clip 5 Output F
+
+Map	track3clip5a		Track 3 Clip 5 Output A
+Map	track3clip5b		Track 3 Clip 5 Output B
+Map	track3clip5c		Track 3 Clip 5 Output C
+Map	track3clip5d		Track 3 Clip 5 Output D
+Map	track3clip5e		Track 3 Clip 5 Output E
+Map	track3clip5f		Track 3 Clip 5 Output F
+
+Map	track4clip5a		Track 4 Clip 5 Output A
+Map	track4clip5b		Track 4 Clip 5 Output B
+Map	track4clip5c		Track 4 Clip 5 Output C
+Map	track4clip5d		Track 4 Clip 5 Output D
+Map	track4clip5e		Track 4 Clip 5 Output E
+Map	track4clip5f		Track 4 Clip 5 Output F
+
+Map	track5clip5a		Track 5 Clip 5 Output A
+Map	track5clip5b		Track 5 Clip 5 Output B
+Map	track5clip5c		Track 5 Clip 5 Output C
+Map	track5clip5d		Track 5 Clip 5 Output D
+Map	track5clip5e		Track 5 Clip 5 Output E
+Map	track5clip5f		Track 5 Clip 5 Output F
+
+Map	track6clip5a		Track 6 Clip 5 Output A
+Map	track6clip5b		Track 6 Clip 5 Output B
+Map	track6clip5c		Track 6 Clip 5 Output C
+Map	track6clip5d		Track 6 Clip 5 Output D
+Map	track6clip5e		Track 6 Clip 5 Output E
+Map	track6clip5f		Track 6 Clip 5 Output F
+
+Map	track7clip5a		Track 7 Clip 5 Output A
+Map	track7clip5b		Track 7 Clip 5 Output B
+Map	track7clip5c		Track 7 Clip 5 Output C
+Map	track7clip5d		Track 7 Clip 5 Output D
+Map	track7clip5e		Track 7 Clip 5 Output E
+Map	track7clip5f		Track 7 Clip 5 Output F
+
+Map	track8clip5a		Track 8 Clip 5 Output A
+Map	track8clip5b		Track 8 Clip 5 Output B
+Map	track8clip5c		Track 8 Clip 5 Output C
+Map	track8clip5d		Track 8 Clip 5 Output D
+Map	track8clip5e		Track 8 Clip 5 Output E
+Map	track8clip5f		Track 8 Clip 5 Output F
+
+Map	track1clip6a		Track 1 Clip 6 Output A
+Map	track1clip6b		Track 1 Clip 6 Output B
+Map	track1clip6c		Track 1 Clip 6 Output C
+Map	track1clip6d		Track 1 Clip 6 Output D
+Map	track1clip6e		Track 1 Clip 6 Output E
+Map	track1clip6f		Track 1 Clip 6 Output F
+
+Map	track2clip6a		Track 2 Clip 6 Output A
+Map	track2clip6b		Track 2 Clip 6 Output B
+Map	track2clip6c		Track 2 Clip 6 Output C
+Map	track2clip6d		Track 2 Clip 6 Output D
+Map	track2clip6e		Track 2 Clip 6 Output E
+Map	track2clip6f		Track 2 Clip 6 Output F
+
+Map	track3clip6a		Track 3 Clip 6 Output A
+Map	track3clip6b		Track 3 Clip 6 Output B
+Map	track3clip6c		Track 3 Clip 6 Output C
+Map	track3clip6d		Track 3 Clip 6 Output D
+Map	track3clip6e		Track 3 Clip 6 Output E
+Map	track3clip6f		Track 3 Clip 6 Output F
+
+Map	track4clip6a		Track 4 Clip 6 Output A
+Map	track4clip6b		Track 4 Clip 6 Output B
+Map	track4clip6c		Track 4 Clip 6 Output C
+Map	track4clip6d		Track 4 Clip 6 Output D
+Map	track4clip6e		Track 4 Clip 6 Output E
+Map	track4clip6f		Track 4 Clip 6 Output F
+
+Map	track5clip6a		Track 5 Clip 6 Output A
+Map	track5clip6b		Track 5 Clip 6 Output B
+Map	track5clip6c		Track 5 Clip 6 Output C
+Map	track5clip6d		Track 5 Clip 6 Output D
+Map	track5clip6e		Track 5 Clip 6 Output E
+Map	track5clip6f		Track 5 Clip 6 Output F
+
+Map	track6clip6a		Track 6 Clip 6 Output A
+Map	track6clip6b		Track 6 Clip 6 Output B
+Map	track6clip6c		Track 6 Clip 6 Output C
+Map	track6clip6d		Track 6 Clip 6 Output D
+Map	track6clip6e		Track 6 Clip 6 Output E
+Map	track6clip6f		Track 6 Clip 6 Output F
+
+Map	track7clip6a		Track 7 Clip 6 Output A
+Map	track7clip6b		Track 7 Clip 6 Output B
+Map	track7clip6c		Track 7 Clip 6 Output C
+Map	track7clip6d		Track 7 Clip 6 Output D
+Map	track7clip6e		Track 7 Clip 6 Output E
+Map	track7clip6f		Track 7 Clip 6 Output F
+
+Map	track8clip6a		Track 8 Clip 6 Output A
+Map	track8clip6b		Track 8 Clip 6 Output B
+Map	track8clip6c		Track 8 Clip 6 Output C
+Map	track8clip6d		Track 8 Clip 6 Output D
+Map	track8clip6e		Track 8 Clip 6 Output E
+Map	track8clip6f		Track 8 Clip 6 Output F
+
+Map	track1clip7a		Track 1 Clip 7 Output A
+Map	track1clip7b		Track 1 Clip 7 Output B
+Map	track1clip7c		Track 1 Clip 7 Output C
+Map	track1clip7d		Track 1 Clip 7 Output D
+Map	track1clip7e		Track 1 Clip 7 Output E
+Map	track1clip7f		Track 1 Clip 7 Output F
+
+Map	track2clip7a		Track 2 Clip 7 Output A
+Map	track2clip7b		Track 2 Clip 7 Output B
+Map	track2clip7c		Track 2 Clip 7 Output C
+Map	track2clip7d		Track 2 Clip 7 Output D
+Map	track2clip7e		Track 2 Clip 7 Output E
+Map	track2clip7f		Track 2 Clip 7 Output F
+
+Map	track3clip7a		Track 3 Clip 7 Output A
+Map	track3clip7b		Track 3 Clip 7 Output B
+Map	track3clip7c		Track 3 Clip 7 Output C
+Map	track3clip7d		Track 3 Clip 7 Output D
+Map	track3clip7e		Track 3 Clip 7 Output E
+Map	track3clip7f		Track 3 Clip 7 Output F
+
+Map	track4clip7a		Track 4 Clip 7 Output A
+Map	track4clip7b		Track 4 Clip 7 Output B
+Map	track4clip7c		Track 4 Clip 7 Output C
+Map	track4clip7d		Track 4 Clip 7 Output D
+Map	track4clip7e		Track 4 Clip 7 Output E
+Map	track4clip7f		Track 4 Clip 7 Output F
+
+Map	track5clip7a		Track 5 Clip 7 Output A
+Map	track5clip7b		Track 5 Clip 7 Output B
+Map	track5clip7c		Track 5 Clip 7 Output C
+Map	track5clip7d		Track 5 Clip 7 Output D
+Map	track5clip7e		Track 5 Clip 7 Output E
+Map	track5clip7f		Track 5 Clip 7 Output F
+
+Map	track6clip7a		Track 6 Clip 7 Output A
+Map	track6clip7b		Track 6 Clip 7 Output B
+Map	track6clip7c		Track 6 Clip 7 Output C
+Map	track6clip7d		Track 6 Clip 7 Output D
+Map	track6clip7e		Track 6 Clip 7 Output E
+Map	track6clip7f		Track 6 Clip 7 Output F
+
+Map	track7clip7a		Track 7 Clip 7 Output A
+Map	track7clip7b		Track 7 Clip 7 Output B
+Map	track7clip7c		Track 7 Clip 7 Output C
+Map	track7clip7d		Track 7 Clip 7 Output D
+Map	track7clip7e		Track 7 Clip 7 Output E
+Map	track7clip7f		Track 7 Clip 7 Output F
+
+Map	track8clip7a		Track 8 Clip 7 Output A
+Map	track8clip7b		Track 8 Clip 7 Output B
+Map	track8clip7c		Track 8 Clip 7 Output C
+Map	track8clip7d		Track 8 Clip 7 Output D
+Map	track8clip7e		Track 8 Clip 7 Output E
+Map	track8clip7f		Track 8 Clip 7 Output F
+
+Map	track1clip8a		Track 1 Clip 8 Output A
+Map	track1clip8b		Track 1 Clip 8 Output B
+Map	track1clip8c		Track 1 Clip 8 Output C
+Map	track1clip8d		Track 1 Clip 8 Output D
+Map	track1clip8e		Track 1 Clip 8 Output E
+Map	track1clip8f		Track 1 Clip 8 Output F
+
+Map	track2clip8a		Track 2 Clip 8 Output A
+Map	track2clip8b		Track 2 Clip 8 Output B
+Map	track2clip8c		Track 2 Clip 8 Output C
+Map	track2clip8d		Track 2 Clip 8 Output D
+Map	track2clip8e		Track 2 Clip 8 Output E
+Map	track2clip8f		Track 2 Clip 8 Output F
+
+Map	track3clip8a		Track 3 Clip 8 Output A
+Map	track3clip8b		Track 3 Clip 8 Output B
+Map	track3clip8c		Track 3 Clip 8 Output C
+Map	track3clip8d		Track 3 Clip 8 Output D
+Map	track3clip8e		Track 3 Clip 8 Output E
+Map	track3clip8f		Track 3 Clip 8 Output F
+
+Map	track4clip8a		Track 4 Clip 8 Output A
+Map	track4clip8b		Track 4 Clip 8 Output B
+Map	track4clip8c		Track 4 Clip 8 Output C
+Map	track4clip8d		Track 4 Clip 8 Output D
+Map	track4clip8e		Track 4 Clip 8 Output E
+Map	track4clip8f		Track 4 Clip 8 Output F
+
+Map	track5clip8a		Track 5 Clip 8 Output A
+Map	track5clip8b		Track 5 Clip 8 Output B
+Map	track5clip8c		Track 5 Clip 8 Output C
+Map	track5clip8d		Track 5 Clip 8 Output D
+Map	track5clip8e		Track 5 Clip 8 Output E
+Map	track5clip8f		Track 5 Clip 8 Output F
+
+Map	track6clip8a		Track 6 Clip 8 Output A
+Map	track6clip8b		Track 6 Clip 8 Output B
+Map	track6clip8c		Track 6 Clip 8 Output C
+Map	track6clip8d		Track 6 Clip 8 Output D
+Map	track6clip8e		Track 6 Clip 8 Output E
+Map	track6clip8f		Track 6 Clip 8 Output F
+
+Map	track7clip8a		Track 7 Clip 8 Output A
+Map	track7clip8b		Track 7 Clip 8 Output B
+Map	track7clip8c		Track 7 Clip 8 Output C
+Map	track7clip8d		Track 7 Clip 8 Output D
+Map	track7clip8e		Track 7 Clip 8 Output E
+Map	track7clip8f		Track 7 Clip 8 Output F
+
+Map	track8clip8a		Track 8 Clip 8 Output A
+Map	track8clip8b		Track 8 Clip 8 Output B
+Map	track8clip8c		Track 8 Clip 8 Output C
+Map	track8clip8d		Track 8 Clip 8 Output D
+Map	track8clip8e		Track 8 Clip 8 Output E
+Map	track8clip8f		Track 8 Clip 8 Output F
+
+Map	track1clip1fillina		Track 1 Clip 1 Fill-In Output A
+Map	track1clip1fillinb		Track 1 Clip 1 Fill-In Output B
+Map	track1clip1fillinc		Track 1 Clip 1 Fill-In Output C
+Map	track1clip1fillind		Track 1 Clip 1 Fill-In Output D
+Map	track1clip1filline		Track 1 Clip 1 Fill-In Output E
+Map	track1clip1fillinf		Track 1 Clip 1 Fill-In Output F
+
+Map	track2clip1fillina		Track 2 Clip 1 Fill-In Output A
+Map	track2clip1fillinb		Track 2 Clip 1 Fill-In Output B
+Map	track2clip1fillinc		Track 2 Clip 1 Fill-In Output C
+Map	track2clip1fillind		Track 2 Clip 1 Fill-In Output D
+Map	track2clip1filline		Track 2 Clip 1 Fill-In Output E
+Map	track2clip1fillinf		Track 2 Clip 1 Fill-In Output F
+
+Map	track3clip1fillina		Track 3 Clip 1 Fill-In Output A
+Map	track3clip1fillinb		Track 3 Clip 1 Fill-In Output B
+Map	track3clip1fillinc		Track 3 Clip 1 Fill-In Output C
+Map	track3clip1fillind		Track 3 Clip 1 Fill-In Output D
+Map	track3clip1filline		Track 3 Clip 1 Fill-In Output E
+Map	track3clip1fillinf		Track 3 Clip 1 Fill-In Output F
+
+Map	track4clip1fillina		Track 4 Clip 1 Fill-In Output A
+Map	track4clip1fillinb		Track 4 Clip 1 Fill-In Output B
+Map	track4clip1fillinc		Track 4 Clip 1 Fill-In Output C
+Map	track4clip1fillind		Track 4 Clip 1 Fill-In Output D
+Map	track4clip1filline		Track 4 Clip 1 Fill-In Output E
+Map	track4clip1fillinf		Track 4 Clip 1 Fill-In Output F
+
+Map	track5clip1fillina		Track 5 Clip 1 Fill-In Output A
+Map	track5clip1fillinb		Track 5 Clip 1 Fill-In Output B
+Map	track5clip1fillinc		Track 5 Clip 1 Fill-In Output C
+Map	track5clip1fillind		Track 5 Clip 1 Fill-In Output D
+Map	track5clip1filline		Track 5 Clip 1 Fill-In Output E
+Map	track5clip1fillinf		Track 5 Clip 1 Fill-In Output F
+
+Map	track6clip1fillina		Track 6 Clip 1 Fill-In Output A
+Map	track6clip1fillinb		Track 6 Clip 1 Fill-In Output B
+Map	track6clip1fillinc		Track 6 Clip 1 Fill-In Output C
+Map	track6clip1fillind		Track 6 Clip 1 Fill-In Output D
+Map	track6clip1filline		Track 6 Clip 1 Fill-In Output E
+Map	track6clip1fillinf		Track 6 Clip 1 Fill-In Output F
+
+Map	track7clip1fillina		Track 7 Clip 1 Fill-In Output A
+Map	track7clip1fillinb		Track 7 Clip 1 Fill-In Output B
+Map	track7clip1fillinc		Track 7 Clip 1 Fill-In Output C
+Map	track7clip1fillind		Track 7 Clip 1 Fill-In Output D
+Map	track7clip1filline		Track 7 Clip 1 Fill-In Output E
+Map	track7clip1fillinf		Track 7 Clip 1 Fill-In Output F
+
+Map	track8clip1fillina		Track 8 Clip 1 Fill-In Output A
+Map	track8clip1fillinb		Track 8 Clip 1 Fill-In Output B
+Map	track8clip1fillinc		Track 8 Clip 1 Fill-In Output C
+Map	track8clip1fillind		Track 8 Clip 1 Fill-In Output D
+Map	track8clip1filline		Track 8 Clip 1 Fill-In Output E
+Map	track8clip1fillinf		Track 8 Clip 1 Fill-In Output F
+
+Map	track1clip2fillina		Track 1 Clip 2 Fill-In Output A
+Map	track1clip2fillinb		Track 1 Clip 2 Fill-In Output B
+Map	track1clip2fillinc		Track 1 Clip 2 Fill-In Output C
+Map	track1clip2fillind		Track 1 Clip 2 Fill-In Output D
+Map	track1clip2filline		Track 1 Clip 2 Fill-In Output E
+Map	track1clip2fillinf		Track 1 Clip 2 Fill-In Output F
+
+Map	track2clip2fillina		Track 2 Clip 2 Fill-In Output A
+Map	track2clip2fillinb		Track 2 Clip 2 Fill-In Output B
+Map	track2clip2fillinc		Track 2 Clip 2 Fill-In Output C
+Map	track2clip2fillind		Track 2 Clip 2 Fill-In Output D
+Map	track2clip2filline		Track 2 Clip 2 Fill-In Output E
+Map	track2clip2fillinf		Track 2 Clip 2 Fill-In Output F
+
+Map	track3clip2fillina		Track 3 Clip 2 Fill-In Output A
+Map	track3clip2fillinb		Track 3 Clip 2 Fill-In Output B
+Map	track3clip2fillinc		Track 3 Clip 2 Fill-In Output C
+Map	track3clip2fillind		Track 3 Clip 2 Fill-In Output D
+Map	track3clip2filline		Track 3 Clip 2 Fill-In Output E
+Map	track3clip2fillinf		Track 3 Clip 2 Fill-In Output F
+
+Map	track4clip2fillina		Track 4 Clip 2 Fill-In Output A
+Map	track4clip2fillinb		Track 4 Clip 2 Fill-In Output B
+Map	track4clip2fillinc		Track 4 Clip 2 Fill-In Output C
+Map	track4clip2fillind		Track 4 Clip 2 Fill-In Output D
+Map	track4clip2filline		Track 4 Clip 2 Fill-In Output E
+Map	track4clip2fillinf		Track 4 Clip 2 Fill-In Output F
+
+Map	track5clip2fillina		Track 5 Clip 2 Fill-In Output A
+Map	track5clip2fillinb		Track 5 Clip 2 Fill-In Output B
+Map	track5clip2fillinc		Track 5 Clip 2 Fill-In Output C
+Map	track5clip2fillind		Track 5 Clip 2 Fill-In Output D
+Map	track5clip2filline		Track 5 Clip 2 Fill-In Output E
+Map	track5clip2fillinf		Track 5 Clip 2 Fill-In Output F
+
+Map	track6clip2fillina		Track 6 Clip 2 Fill-In Output A
+Map	track6clip2fillinb		Track 6 Clip 2 Fill-In Output B
+Map	track6clip2fillinc		Track 6 Clip 2 Fill-In Output C
+Map	track6clip2fillind		Track 6 Clip 2 Fill-In Output D
+Map	track6clip2filline		Track 6 Clip 2 Fill-In Output E
+Map	track6clip2fillinf		Track 6 Clip 2 Fill-In Output F
+
+Map	track7clip2fillina		Track 7 Clip 2 Fill-In Output A
+Map	track7clip2fillinb		Track 7 Clip 2 Fill-In Output B
+Map	track7clip2fillinc		Track 7 Clip 2 Fill-In Output C
+Map	track7clip2fillind		Track 7 Clip 2 Fill-In Output D
+Map	track7clip2filline		Track 7 Clip 2 Fill-In Output E
+Map	track7clip2fillinf		Track 7 Clip 2 Fill-In Output F
+
+Map	track8clip2fillina		Track 8 Clip 2 Fill-In Output A
+Map	track8clip2fillinb		Track 8 Clip 2 Fill-In Output B
+Map	track8clip2fillinc		Track 8 Clip 2 Fill-In Output C
+Map	track8clip2fillind		Track 8 Clip 2 Fill-In Output D
+Map	track8clip2filline		Track 8 Clip 2 Fill-In Output E
+Map	track8clip2fillinf		Track 8 Clip 2 Fill-In Output F
+
+Map	track1clip3fillina		Track 1 Clip 3 Fill-In Output A
+Map	track1clip3fillinb		Track 1 Clip 3 Fill-In Output B
+Map	track1clip3fillinc		Track 1 Clip 3 Fill-In Output C
+Map	track1clip3fillind		Track 1 Clip 3 Fill-In Output D
+Map	track1clip3filline		Track 1 Clip 3 Fill-In Output E
+Map	track1clip3fillinf		Track 1 Clip 3 Fill-In Output F
+
+Map	track2clip3fillina		Track 2 Clip 3 Fill-In Output A
+Map	track2clip3fillinb		Track 2 Clip 3 Fill-In Output B
+Map	track2clip3fillinc		Track 2 Clip 3 Fill-In Output C
+Map	track2clip3fillind		Track 2 Clip 3 Fill-In Output D
+Map	track2clip3filline		Track 2 Clip 3 Fill-In Output E
+Map	track2clip3fillinf		Track 2 Clip 3 Fill-In Output F
+
+Map	track3clip3fillina		Track 3 Clip 3 Fill-In Output A
+Map	track3clip3fillinb		Track 3 Clip 3 Fill-In Output B
+Map	track3clip3fillinc		Track 3 Clip 3 Fill-In Output C
+Map	track3clip3fillind		Track 3 Clip 3 Fill-In Output D
+Map	track3clip3filline		Track 3 Clip 3 Fill-In Output E
+Map	track3clip3fillinf		Track 3 Clip 3 Fill-In Output F
+
+Map	track4clip3fillina		Track 4 Clip 3 Fill-In Output A
+Map	track4clip3fillinb		Track 4 Clip 3 Fill-In Output B
+Map	track4clip3fillinc		Track 4 Clip 3 Fill-In Output C
+Map	track4clip3fillind		Track 4 Clip 3 Fill-In Output D
+Map	track4clip3filline		Track 4 Clip 3 Fill-In Output E
+Map	track4clip3fillinf		Track 4 Clip 3 Fill-In Output F
+
+Map	track5clip3fillina		Track 5 Clip 3 Fill-In Output A
+Map	track5clip3fillinb		Track 5 Clip 3 Fill-In Output B
+Map	track5clip3fillinc		Track 5 Clip 3 Fill-In Output C
+Map	track5clip3fillind		Track 5 Clip 3 Fill-In Output D
+Map	track5clip3filline		Track 5 Clip 3 Fill-In Output E
+Map	track5clip3fillinf		Track 5 Clip 3 Fill-In Output F
+
+Map	track6clip3fillina		Track 6 Clip 3 Fill-In Output A
+Map	track6clip3fillinb		Track 6 Clip 3 Fill-In Output B
+Map	track6clip3fillinc		Track 6 Clip 3 Fill-In Output C
+Map	track6clip3fillind		Track 6 Clip 3 Fill-In Output D
+Map	track6clip3filline		Track 6 Clip 3 Fill-In Output E
+Map	track6clip3fillinf		Track 6 Clip 3 Fill-In Output F
+
+Map	track7clip3fillina		Track 7 Clip 3 Fill-In Output A
+Map	track7clip3fillinb		Track 7 Clip 3 Fill-In Output B
+Map	track7clip3fillinc		Track 7 Clip 3 Fill-In Output C
+Map	track7clip3fillind		Track 7 Clip 3 Fill-In Output D
+Map	track7clip3filline		Track 7 Clip 3 Fill-In Output E
+Map	track7clip3fillinf		Track 7 Clip 3 Fill-In Output F
+
+Map	track8clip3fillina		Track 8 Clip 3 Fill-In Output A
+Map	track8clip3fillinb		Track 8 Clip 3 Fill-In Output B
+Map	track8clip3fillinc		Track 8 Clip 3 Fill-In Output C
+Map	track8clip3fillind		Track 8 Clip 3 Fill-In Output D
+Map	track8clip3filline		Track 8 Clip 3 Fill-In Output E
+Map	track8clip3fillinf		Track 8 Clip 3 Fill-In Output F
+
+Map	track1clip4fillina		Track 1 Clip 4 Fill-In Output A
+Map	track1clip4fillinb		Track 1 Clip 4 Fill-In Output B
+Map	track1clip4fillinc		Track 1 Clip 4 Fill-In Output C
+Map	track1clip4fillind		Track 1 Clip 4 Fill-In Output D
+Map	track1clip4filline		Track 1 Clip 4 Fill-In Output E
+Map	track1clip4fillinf		Track 1 Clip 4 Fill-In Output F
+
+Map	track2clip4fillina		Track 2 Clip 4 Fill-In Output A
+Map	track2clip4fillinb		Track 2 Clip 4 Fill-In Output B
+Map	track2clip4fillinc		Track 2 Clip 4 Fill-In Output C
+Map	track2clip4fillind		Track 2 Clip 4 Fill-In Output D
+Map	track2clip4filline		Track 2 Clip 4 Fill-In Output E
+Map	track2clip4fillinf		Track 2 Clip 4 Fill-In Output F
+
+Map	track3clip4fillina		Track 3 Clip 4 Fill-In Output A
+Map	track3clip4fillinb		Track 3 Clip 4 Fill-In Output B
+Map	track3clip4fillinc		Track 3 Clip 4 Fill-In Output C
+Map	track3clip4fillind		Track 3 Clip 4 Fill-In Output D
+Map	track3clip4filline		Track 3 Clip 4 Fill-In Output E
+Map	track3clip4fillinf		Track 3 Clip 4 Fill-In Output F
+
+Map	track4clip4fillina		Track 4 Clip 4 Fill-In Output A
+Map	track4clip4fillinb		Track 4 Clip 4 Fill-In Output B
+Map	track4clip4fillinc		Track 4 Clip 4 Fill-In Output C
+Map	track4clip4fillind		Track 4 Clip 4 Fill-In Output D
+Map	track4clip4filline		Track 4 Clip 4 Fill-In Output E
+Map	track4clip4fillinf		Track 4 Clip 4 Fill-In Output F
+
+Map	track5clip4fillina		Track 5 Clip 4 Fill-In Output A
+Map	track5clip4fillinb		Track 5 Clip 4 Fill-In Output B
+Map	track5clip4fillinc		Track 5 Clip 4 Fill-In Output C
+Map	track5clip4fillind		Track 5 Clip 4 Fill-In Output D
+Map	track5clip4filline		Track 5 Clip 4 Fill-In Output E
+Map	track5clip4fillinf		Track 5 Clip 4 Fill-In Output F
+
+Map	track6clip4fillina		Track 6 Clip 4 Fill-In Output A
+Map	track6clip4fillinb		Track 6 Clip 4 Fill-In Output B
+Map	track6clip4fillinc		Track 6 Clip 4 Fill-In Output C
+Map	track6clip4fillind		Track 6 Clip 4 Fill-In Output D
+Map	track6clip4filline		Track 6 Clip 4 Fill-In Output E
+Map	track6clip4fillinf		Track 6 Clip 4 Fill-In Output F
+
+Map	track7clip4fillina		Track 7 Clip 4 Fill-In Output A
+Map	track7clip4fillinb		Track 7 Clip 4 Fill-In Output B
+Map	track7clip4fillinc		Track 7 Clip 4 Fill-In Output C
+Map	track7clip4fillind		Track 7 Clip 4 Fill-In Output D
+Map	track7clip4filline		Track 7 Clip 4 Fill-In Output E
+Map	track7clip4fillinf		Track 7 Clip 4 Fill-In Output F
+
+Map	track8clip4fillina		Track 8 Clip 4 Fill-In Output A
+Map	track8clip4fillinb		Track 8 Clip 4 Fill-In Output B
+Map	track8clip4fillinc		Track 8 Clip 4 Fill-In Output C
+Map	track8clip4fillind		Track 8 Clip 4 Fill-In Output D
+Map	track8clip4filline		Track 8 Clip 4 Fill-In Output E
+Map	track8clip4fillinf		Track 8 Clip 4 Fill-In Output F
+
+Map	track1clip5fillina		Track 1 Clip 5 Fill-In Output A
+Map	track1clip5fillinb		Track 1 Clip 5 Fill-In Output B
+Map	track1clip5fillinc		Track 1 Clip 5 Fill-In Output C
+Map	track1clip5fillind		Track 1 Clip 5 Fill-In Output D
+Map	track1clip5filline		Track 1 Clip 5 Fill-In Output E
+Map	track1clip5fillinf		Track 1 Clip 5 Fill-In Output F
+
+Map	track2clip5fillina		Track 2 Clip 5 Fill-In Output A
+Map	track2clip5fillinb		Track 2 Clip 5 Fill-In Output B
+Map	track2clip5fillinc		Track 2 Clip 5 Fill-In Output C
+Map	track2clip5fillind		Track 2 Clip 5 Fill-In Output D
+Map	track2clip5filline		Track 2 Clip 5 Fill-In Output E
+Map	track2clip5fillinf		Track 2 Clip 5 Fill-In Output F
+
+Map	track3clip5fillina		Track 3 Clip 5 Fill-In Output A
+Map	track3clip5fillinb		Track 3 Clip 5 Fill-In Output B
+Map	track3clip5fillinc		Track 3 Clip 5 Fill-In Output C
+Map	track3clip5fillind		Track 3 Clip 5 Fill-In Output D
+Map	track3clip5filline		Track 3 Clip 5 Fill-In Output E
+Map	track3clip5fillinf		Track 3 Clip 5 Fill-In Output F
+
+Map	track4clip5fillina		Track 4 Clip 5 Fill-In Output A
+Map	track4clip5fillinb		Track 4 Clip 5 Fill-In Output B
+Map	track4clip5fillinc		Track 4 Clip 5 Fill-In Output C
+Map	track4clip5fillind		Track 4 Clip 5 Fill-In Output D
+Map	track4clip5filline		Track 4 Clip 5 Fill-In Output E
+Map	track4clip5fillinf		Track 4 Clip 5 Fill-In Output F
+
+Map	track5clip5fillina		Track 5 Clip 5 Fill-In Output A
+Map	track5clip5fillinb		Track 5 Clip 5 Fill-In Output B
+Map	track5clip5fillinc		Track 5 Clip 5 Fill-In Output C
+Map	track5clip5fillind		Track 5 Clip 5 Fill-In Output D
+Map	track5clip5filline		Track 5 Clip 5 Fill-In Output E
+Map	track5clip5fillinf		Track 5 Clip 5 Fill-In Output F
+
+Map	track6clip5fillina		Track 6 Clip 5 Fill-In Output A
+Map	track6clip5fillinb		Track 6 Clip 5 Fill-In Output B
+Map	track6clip5fillinc		Track 6 Clip 5 Fill-In Output C
+Map	track6clip5fillind		Track 6 Clip 5 Fill-In Output D
+Map	track6clip5filline		Track 6 Clip 5 Fill-In Output E
+Map	track6clip5fillinf		Track 6 Clip 5 Fill-In Output F
+
+Map	track7clip5fillina		Track 7 Clip 5 Fill-In Output A
+Map	track7clip5fillinb		Track 7 Clip 5 Fill-In Output B
+Map	track7clip5fillinc		Track 7 Clip 5 Fill-In Output C
+Map	track7clip5fillind		Track 7 Clip 5 Fill-In Output D
+Map	track7clip5filline		Track 7 Clip 5 Fill-In Output E
+Map	track7clip5fillinf		Track 7 Clip 5 Fill-In Output F
+
+Map	track8clip5fillina		Track 8 Clip 5 Fill-In Output A
+Map	track8clip5fillinb		Track 8 Clip 5 Fill-In Output B
+Map	track8clip5fillinc		Track 8 Clip 5 Fill-In Output C
+Map	track8clip5fillind		Track 8 Clip 5 Fill-In Output D
+Map	track8clip5filline		Track 8 Clip 5 Fill-In Output E
+Map	track8clip5fillinf		Track 8 Clip 5 Fill-In Output F
+
+Map	track1clip6fillina		Track 1 Clip 6 Fill-In Output A
+Map	track1clip6fillinb		Track 1 Clip 6 Fill-In Output B
+Map	track1clip6fillinc		Track 1 Clip 6 Fill-In Output C
+Map	track1clip6fillind		Track 1 Clip 6 Fill-In Output D
+Map	track1clip6filline		Track 1 Clip 6 Fill-In Output E
+Map	track1clip6fillinf		Track 1 Clip 6 Fill-In Output F
+
+Map	track2clip6fillina		Track 2 Clip 6 Fill-In Output A
+Map	track2clip6fillinb		Track 2 Clip 6 Fill-In Output B
+Map	track2clip6fillinc		Track 2 Clip 6 Fill-In Output C
+Map	track2clip6fillind		Track 2 Clip 6 Fill-In Output D
+Map	track2clip6filline		Track 2 Clip 6 Fill-In Output E
+Map	track2clip6fillinf		Track 2 Clip 6 Fill-In Output F
+
+Map	track3clip6fillina		Track 3 Clip 6 Fill-In Output A
+Map	track3clip6fillinb		Track 3 Clip 6 Fill-In Output B
+Map	track3clip6fillinc		Track 3 Clip 6 Fill-In Output C
+Map	track3clip6fillind		Track 3 Clip 6 Fill-In Output D
+Map	track3clip6filline		Track 3 Clip 6 Fill-In Output E
+Map	track3clip6fillinf		Track 3 Clip 6 Fill-In Output F
+
+Map	track4clip6fillina		Track 4 Clip 6 Fill-In Output A
+Map	track4clip6fillinb		Track 4 Clip 6 Fill-In Output B
+Map	track4clip6fillinc		Track 4 Clip 6 Fill-In Output C
+Map	track4clip6fillind		Track 4 Clip 6 Fill-In Output D
+Map	track4clip6filline		Track 4 Clip 6 Fill-In Output E
+Map	track4clip6fillinf		Track 4 Clip 6 Fill-In Output F
+
+Map	track5clip6fillina		Track 5 Clip 6 Fill-In Output A
+Map	track5clip6fillinb		Track 5 Clip 6 Fill-In Output B
+Map	track5clip6fillinc		Track 5 Clip 6 Fill-In Output C
+Map	track5clip6fillind		Track 5 Clip 6 Fill-In Output D
+Map	track5clip6filline		Track 5 Clip 6 Fill-In Output E
+Map	track5clip6fillinf		Track 5 Clip 6 Fill-In Output F
+
+Map	track6clip6fillina		Track 6 Clip 6 Fill-In Output A
+Map	track6clip6fillinb		Track 6 Clip 6 Fill-In Output B
+Map	track6clip6fillinc		Track 6 Clip 6 Fill-In Output C
+Map	track6clip6fillind		Track 6 Clip 6 Fill-In Output D
+Map	track6clip6filline		Track 6 Clip 6 Fill-In Output E
+Map	track6clip6fillinf		Track 6 Clip 6 Fill-In Output F
+
+Map	track7clip6fillina		Track 7 Clip 6 Fill-In Output A
+Map	track7clip6fillinb		Track 7 Clip 6 Fill-In Output B
+Map	track7clip6fillinc		Track 7 Clip 6 Fill-In Output C
+Map	track7clip6fillind		Track 7 Clip 6 Fill-In Output D
+Map	track7clip6filline		Track 7 Clip 6 Fill-In Output E
+Map	track7clip6fillinf		Track 7 Clip 6 Fill-In Output F
+
+Map	track8clip6fillina		Track 8 Clip 6 Fill-In Output A
+Map	track8clip6fillinb		Track 8 Clip 6 Fill-In Output B
+Map	track8clip6fillinc		Track 8 Clip 6 Fill-In Output C
+Map	track8clip6fillind		Track 8 Clip 6 Fill-In Output D
+Map	track8clip6filline		Track 8 Clip 6 Fill-In Output E
+Map	track8clip6fillinf		Track 8 Clip 6 Fill-In Output F
+
+Map	track1clip7fillina		Track 1 Clip 7 Fill-In Output A
+Map	track1clip7fillinb		Track 1 Clip 7 Fill-In Output B
+Map	track1clip7fillinc		Track 1 Clip 7 Fill-In Output C
+Map	track1clip7fillind		Track 1 Clip 7 Fill-In Output D
+Map	track1clip7filline		Track 1 Clip 7 Fill-In Output E
+Map	track1clip7fillinf		Track 1 Clip 7 Fill-In Output F
+
+Map	track2clip7fillina		Track 2 Clip 7 Fill-In Output A
+Map	track2clip7fillinb		Track 2 Clip 7 Fill-In Output B
+Map	track2clip7fillinc		Track 2 Clip 7 Fill-In Output C
+Map	track2clip7fillind		Track 2 Clip 7 Fill-In Output D
+Map	track2clip7filline		Track 2 Clip 7 Fill-In Output E
+Map	track2clip7fillinf		Track 2 Clip 7 Fill-In Output F
+
+Map	track3clip7fillina		Track 3 Clip 7 Fill-In Output A
+Map	track3clip7fillinb		Track 3 Clip 7 Fill-In Output B
+Map	track3clip7fillinc		Track 3 Clip 7 Fill-In Output C
+Map	track3clip7fillind		Track 3 Clip 7 Fill-In Output D
+Map	track3clip7filline		Track 3 Clip 7 Fill-In Output E
+Map	track3clip7fillinf		Track 3 Clip 7 Fill-In Output F
+
+Map	track4clip7fillina		Track 4 Clip 7 Fill-In Output A
+Map	track4clip7fillinb		Track 4 Clip 7 Fill-In Output B
+Map	track4clip7fillinc		Track 4 Clip 7 Fill-In Output C
+Map	track4clip7fillind		Track 4 Clip 7 Fill-In Output D
+Map	track4clip7filline		Track 4 Clip 7 Fill-In Output E
+Map	track4clip7fillinf		Track 4 Clip 7 Fill-In Output F
+
+Map	track5clip7fillina		Track 5 Clip 7 Fill-In Output A
+Map	track5clip7fillinb		Track 5 Clip 7 Fill-In Output B
+Map	track5clip7fillinc		Track 5 Clip 7 Fill-In Output C
+Map	track5clip7fillind		Track 5 Clip 7 Fill-In Output D
+Map	track5clip7filline		Track 5 Clip 7 Fill-In Output E
+Map	track5clip7fillinf		Track 5 Clip 7 Fill-In Output F
+
+Map	track6clip7fillina		Track 6 Clip 7 Fill-In Output A
+Map	track6clip7fillinb		Track 6 Clip 7 Fill-In Output B
+Map	track6clip7fillinc		Track 6 Clip 7 Fill-In Output C
+Map	track6clip7fillind		Track 6 Clip 7 Fill-In Output D
+Map	track6clip7filline		Track 6 Clip 7 Fill-In Output E
+Map	track6clip7fillinf		Track 6 Clip 7 Fill-In Output F
+
+Map	track7clip7fillina		Track 7 Clip 7 Fill-In Output A
+Map	track7clip7fillinb		Track 7 Clip 7 Fill-In Output B
+Map	track7clip7fillinc		Track 7 Clip 7 Fill-In Output C
+Map	track7clip7fillind		Track 7 Clip 7 Fill-In Output D
+Map	track7clip7filline		Track 7 Clip 7 Fill-In Output E
+Map	track7clip7fillinf		Track 7 Clip 7 Fill-In Output F
+
+Map	track8clip7fillina		Track 8 Clip 7 Fill-In Output A
+Map	track8clip7fillinb		Track 8 Clip 7 Fill-In Output B
+Map	track8clip7fillinc		Track 8 Clip 7 Fill-In Output C
+Map	track8clip7fillind		Track 8 Clip 7 Fill-In Output D
+Map	track8clip7filline		Track 8 Clip 7 Fill-In Output E
+Map	track8clip7fillinf		Track 8 Clip 7 Fill-In Output F
+
+Map	track1clip8fillina		Track 1 Clip 8 Fill-In Output A
+Map	track1clip8fillinb		Track 1 Clip 8 Fill-In Output B
+Map	track1clip8fillinc		Track 1 Clip 8 Fill-In Output C
+Map	track1clip8fillind		Track 1 Clip 8 Fill-In Output D
+Map	track1clip8filline		Track 1 Clip 8 Fill-In Output E
+Map	track1clip8fillinf		Track 1 Clip 8 Fill-In Output F
+
+Map	track2clip8fillina		Track 2 Clip 8 Fill-In Output A
+Map	track2clip8fillinb		Track 2 Clip 8 Fill-In Output B
+Map	track2clip8fillinc		Track 2 Clip 8 Fill-In Output C
+Map	track2clip8fillind		Track 2 Clip 8 Fill-In Output D
+Map	track2clip8filline		Track 2 Clip 8 Fill-In Output E
+Map	track2clip8fillinf		Track 2 Clip 8 Fill-In Output F
+
+Map	track3clip8fillina		Track 3 Clip 8 Fill-In Output A
+Map	track3clip8fillinb		Track 3 Clip 8 Fill-In Output B
+Map	track3clip8fillinc		Track 3 Clip 8 Fill-In Output C
+Map	track3clip8fillind		Track 3 Clip 8 Fill-In Output D
+Map	track3clip8filline		Track 3 Clip 8 Fill-In Output E
+Map	track3clip8fillinf		Track 3 Clip 8 Fill-In Output F
+
+Map	track4clip8fillina		Track 4 Clip 8 Fill-In Output A
+Map	track4clip8fillinb		Track 4 Clip 8 Fill-In Output B
+Map	track4clip8fillinc		Track 4 Clip 8 Fill-In Output C
+Map	track4clip8fillind		Track 4 Clip 8 Fill-In Output D
+Map	track4clip8filline		Track 4 Clip 8 Fill-In Output E
+Map	track4clip8fillinf		Track 4 Clip 8 Fill-In Output F
+
+Map	track5clip8fillina		Track 5 Clip 8 Fill-In Output A
+Map	track5clip8fillinb		Track 5 Clip 8 Fill-In Output B
+Map	track5clip8fillinc		Track 5 Clip 8 Fill-In Output C
+Map	track5clip8fillind		Track 5 Clip 8 Fill-In Output D
+Map	track5clip8filline		Track 5 Clip 8 Fill-In Output E
+Map	track5clip8fillinf		Track 5 Clip 8 Fill-In Output F
+
+Map	track6clip8fillina		Track 6 Clip 8 Fill-In Output A
+Map	track6clip8fillinb		Track 6 Clip 8 Fill-In Output B
+Map	track6clip8fillinc		Track 6 Clip 8 Fill-In Output C
+Map	track6clip8fillind		Track 6 Clip 8 Fill-In Output D
+Map	track6clip8filline		Track 6 Clip 8 Fill-In Output E
+Map	track6clip8fillinf		Track 6 Clip 8 Fill-In Output F
+
+Map	track7clip8fillina		Track 7 Clip 8 Fill-In Output A
+Map	track7clip8fillinb		Track 7 Clip 8 Fill-In Output B
+Map	track7clip8fillinc		Track 7 Clip 8 Fill-In Output C
+Map	track7clip8fillind		Track 7 Clip 8 Fill-In Output D
+Map	track7clip8filline		Track 7 Clip 8 Fill-In Output E
+Map	track7clip8fillinf		Track 7 Clip 8 Fill-In Output F
+
+Map	track8clip8fillina		Track 8 Clip 8 Fill-In Output A
+Map	track8clip8fillinb		Track 8 Clip 8 Fill-In Output B
+Map	track8clip8fillinc		Track 8 Clip 8 Fill-In Output C
+Map	track8clip8fillind		Track 8 Clip 8 Fill-In Output D
+Map	track8clip8filline		Track 8 Clip 8 Fill-In Output E
+Map	track8clip8fillinf		Track 8 Clip 8 Fill-In Output F
+
+Map	track1clip1landinga		Track 1 Clip 1 Landing Output A
+Map	track1clip1landingb		Track 1 Clip 1 Landing Output B
+Map	track1clip1landingc		Track 1 Clip 1 Landing Output C
+Map	track1clip1landingd		Track 1 Clip 1 Landing Output D
+Map	track1clip1landinge		Track 1 Clip 1 Landing Output E
+Map	track1clip1landingf		Track 1 Clip 1 Landing Output F
+
+Map	track2clip1landinga		Track 2 Clip 1 Landing Output A
+Map	track2clip1landingb		Track 2 Clip 1 Landing Output B
+Map	track2clip1landingc		Track 2 Clip 1 Landing Output C
+Map	track2clip1landingd		Track 2 Clip 1 Landing Output D
+Map	track2clip1landinge		Track 2 Clip 1 Landing Output E
+Map	track2clip1landingf		Track 2 Clip 1 Landing Output F
+
+Map	track3clip1landinga		Track 3 Clip 1 Landing Output A
+Map	track3clip1landingb		Track 3 Clip 1 Landing Output B
+Map	track3clip1landingc		Track 3 Clip 1 Landing Output C
+Map	track3clip1landingd		Track 3 Clip 1 Landing Output D
+Map	track3clip1landinge		Track 3 Clip 1 Landing Output E
+Map	track3clip1landingf		Track 3 Clip 1 Landing Output F
+
+Map	track4clip1landinga		Track 4 Clip 1 Landing Output A
+Map	track4clip1landingb		Track 4 Clip 1 Landing Output B
+Map	track4clip1landingc		Track 4 Clip 1 Landing Output C
+Map	track4clip1landingd		Track 4 Clip 1 Landing Output D
+Map	track4clip1landinge		Track 4 Clip 1 Landing Output E
+Map	track4clip1landingf		Track 4 Clip 1 Landing Output F
+
+Map	track5clip1landinga		Track 5 Clip 1 Landing Output A
+Map	track5clip1landingb		Track 5 Clip 1 Landing Output B
+Map	track5clip1landingc		Track 5 Clip 1 Landing Output C
+Map	track5clip1landingd		Track 5 Clip 1 Landing Output D
+Map	track5clip1landinge		Track 5 Clip 1 Landing Output E
+Map	track5clip1landingf		Track 5 Clip 1 Landing Output F
+
+Map	track6clip1landinga		Track 6 Clip 1 Landing Output A
+Map	track6clip1landingb		Track 6 Clip 1 Landing Output B
+Map	track6clip1landingc		Track 6 Clip 1 Landing Output C
+Map	track6clip1landingd		Track 6 Clip 1 Landing Output D
+Map	track6clip1landinge		Track 6 Clip 1 Landing Output E
+Map	track6clip1landingf		Track 6 Clip 1 Landing Output F
+
+Map	track7clip1landinga		Track 7 Clip 1 Landing Output A
+Map	track7clip1landingb		Track 7 Clip 1 Landing Output B
+Map	track7clip1landingc		Track 7 Clip 1 Landing Output C
+Map	track7clip1landingd		Track 7 Clip 1 Landing Output D
+Map	track7clip1landinge		Track 7 Clip 1 Landing Output E
+Map	track7clip1landingf		Track 7 Clip 1 Landing Output F
+
+Map	track8clip1landinga		Track 8 Clip 1 Landing Output A
+Map	track8clip1landingb		Track 8 Clip 1 Landing Output B
+Map	track8clip1landingc		Track 8 Clip 1 Landing Output C
+Map	track8clip1landingd		Track 8 Clip 1 Landing Output D
+Map	track8clip1landinge		Track 8 Clip 1 Landing Output E
+Map	track8clip1landingf		Track 8 Clip 1 Landing Output F
+
+Map	track1clip2landinga		Track 1 Clip 2 Landing Output A
+Map	track1clip2landingb		Track 1 Clip 2 Landing Output B
+Map	track1clip2landingc		Track 1 Clip 2 Landing Output C
+Map	track1clip2landingd		Track 1 Clip 2 Landing Output D
+Map	track1clip2landinge		Track 1 Clip 2 Landing Output E
+Map	track1clip2landingf		Track 1 Clip 2 Landing Output F
+
+Map	track2clip2landinga		Track 2 Clip 2 Landing Output A
+Map	track2clip2landingb		Track 2 Clip 2 Landing Output B
+Map	track2clip2landingc		Track 2 Clip 2 Landing Output C
+Map	track2clip2landingd		Track 2 Clip 2 Landing Output D
+Map	track2clip2landinge		Track 2 Clip 2 Landing Output E
+Map	track2clip2landingf		Track 2 Clip 2 Landing Output F
+
+Map	track3clip2landinga		Track 3 Clip 2 Landing Output A
+Map	track3clip2landingb		Track 3 Clip 2 Landing Output B
+Map	track3clip2landingc		Track 3 Clip 2 Landing Output C
+Map	track3clip2landingd		Track 3 Clip 2 Landing Output D
+Map	track3clip2landinge		Track 3 Clip 2 Landing Output E
+Map	track3clip2landingf		Track 3 Clip 2 Landing Output F
+
+Map	track4clip2landinga		Track 4 Clip 2 Landing Output A
+Map	track4clip2landingb		Track 4 Clip 2 Landing Output B
+Map	track4clip2landingc		Track 4 Clip 2 Landing Output C
+Map	track4clip2landingd		Track 4 Clip 2 Landing Output D
+Map	track4clip2landinge		Track 4 Clip 2 Landing Output E
+Map	track4clip2landingf		Track 4 Clip 2 Landing Output F
+
+Map	track5clip2landinga		Track 5 Clip 2 Landing Output A
+Map	track5clip2landingb		Track 5 Clip 2 Landing Output B
+Map	track5clip2landingc		Track 5 Clip 2 Landing Output C
+Map	track5clip2landingd		Track 5 Clip 2 Landing Output D
+Map	track5clip2landinge		Track 5 Clip 2 Landing Output E
+Map	track5clip2landingf		Track 5 Clip 2 Landing Output F
+
+Map	track6clip2landinga		Track 6 Clip 2 Landing Output A
+Map	track6clip2landingb		Track 6 Clip 2 Landing Output B
+Map	track6clip2landingc		Track 6 Clip 2 Landing Output C
+Map	track6clip2landingd		Track 6 Clip 2 Landing Output D
+Map	track6clip2landinge		Track 6 Clip 2 Landing Output E
+Map	track6clip2landingf		Track 6 Clip 2 Landing Output F
+
+Map	track7clip2landinga		Track 7 Clip 2 Landing Output A
+Map	track7clip2landingb		Track 7 Clip 2 Landing Output B
+Map	track7clip2landingc		Track 7 Clip 2 Landing Output C
+Map	track7clip2landingd		Track 7 Clip 2 Landing Output D
+Map	track7clip2landinge		Track 7 Clip 2 Landing Output E
+Map	track7clip2landingf		Track 7 Clip 2 Landing Output F
+
+Map	track8clip2landinga		Track 8 Clip 2 Landing Output A
+Map	track8clip2landingb		Track 8 Clip 2 Landing Output B
+Map	track8clip2landingc		Track 8 Clip 2 Landing Output C
+Map	track8clip2landingd		Track 8 Clip 2 Landing Output D
+Map	track8clip2landinge		Track 8 Clip 2 Landing Output E
+Map	track8clip2landingf		Track 8 Clip 2 Landing Output F
+
+Map	track1clip3landinga		Track 1 Clip 3 Landing Output A
+Map	track1clip3landingb		Track 1 Clip 3 Landing Output B
+Map	track1clip3landingc		Track 1 Clip 3 Landing Output C
+Map	track1clip3landingd		Track 1 Clip 3 Landing Output D
+Map	track1clip3landinge		Track 1 Clip 3 Landing Output E
+Map	track1clip3landingf		Track 1 Clip 3 Landing Output F
+
+Map	track2clip3landinga		Track 2 Clip 3 Landing Output A
+Map	track2clip3landingb		Track 2 Clip 3 Landing Output B
+Map	track2clip3landingc		Track 2 Clip 3 Landing Output C
+Map	track2clip3landingd		Track 2 Clip 3 Landing Output D
+Map	track2clip3landinge		Track 2 Clip 3 Landing Output E
+Map	track2clip3landingf		Track 2 Clip 3 Landing Output F
+
+Map	track3clip3landinga		Track 3 Clip 3 Landing Output A
+Map	track3clip3landingb		Track 3 Clip 3 Landing Output B
+Map	track3clip3landingc		Track 3 Clip 3 Landing Output C
+Map	track3clip3landingd		Track 3 Clip 3 Landing Output D
+Map	track3clip3landinge		Track 3 Clip 3 Landing Output E
+Map	track3clip3landingf		Track 3 Clip 3 Landing Output F
+
+Map	track4clip3landinga		Track 4 Clip 3 Landing Output A
+Map	track4clip3landingb		Track 4 Clip 3 Landing Output B
+Map	track4clip3landingc		Track 4 Clip 3 Landing Output C
+Map	track4clip3landingd		Track 4 Clip 3 Landing Output D
+Map	track4clip3landinge		Track 4 Clip 3 Landing Output E
+Map	track4clip3landingf		Track 4 Clip 3 Landing Output F
+
+Map	track5clip3landinga		Track 5 Clip 3 Landing Output A
+Map	track5clip3landingb		Track 5 Clip 3 Landing Output B
+Map	track5clip3landingc		Track 5 Clip 3 Landing Output C
+Map	track5clip3landingd		Track 5 Clip 3 Landing Output D
+Map	track5clip3landinge		Track 5 Clip 3 Landing Output E
+Map	track5clip3landingf		Track 5 Clip 3 Landing Output F
+
+Map	track6clip3landinga		Track 6 Clip 3 Landing Output A
+Map	track6clip3landingb		Track 6 Clip 3 Landing Output B
+Map	track6clip3landingc		Track 6 Clip 3 Landing Output C
+Map	track6clip3landingd		Track 6 Clip 3 Landing Output D
+Map	track6clip3landinge		Track 6 Clip 3 Landing Output E
+Map	track6clip3landingf		Track 6 Clip 3 Landing Output F
+
+Map	track7clip3landinga		Track 7 Clip 3 Landing Output A
+Map	track7clip3landingb		Track 7 Clip 3 Landing Output B
+Map	track7clip3landingc		Track 7 Clip 3 Landing Output C
+Map	track7clip3landingd		Track 7 Clip 3 Landing Output D
+Map	track7clip3landinge		Track 7 Clip 3 Landing Output E
+Map	track7clip3landingf		Track 7 Clip 3 Landing Output F
+
+Map	track8clip3landinga		Track 8 Clip 3 Landing Output A
+Map	track8clip3landingb		Track 8 Clip 3 Landing Output B
+Map	track8clip3landingc		Track 8 Clip 3 Landing Output C
+Map	track8clip3landingd		Track 8 Clip 3 Landing Output D
+Map	track8clip3landinge		Track 8 Clip 3 Landing Output E
+Map	track8clip3landingf		Track 8 Clip 3 Landing Output F
+
+Map	track1clip4landinga		Track 1 Clip 4 Landing Output A
+Map	track1clip4landingb		Track 1 Clip 4 Landing Output B
+Map	track1clip4landingc		Track 1 Clip 4 Landing Output C
+Map	track1clip4landingd		Track 1 Clip 4 Landing Output D
+Map	track1clip4landinge		Track 1 Clip 4 Landing Output E
+Map	track1clip4landingf		Track 1 Clip 4 Landing Output F
+
+Map	track2clip4landinga		Track 2 Clip 4 Landing Output A
+Map	track2clip4landingb		Track 2 Clip 4 Landing Output B
+Map	track2clip4landingc		Track 2 Clip 4 Landing Output C
+Map	track2clip4landingd		Track 2 Clip 4 Landing Output D
+Map	track2clip4landinge		Track 2 Clip 4 Landing Output E
+Map	track2clip4landingf		Track 2 Clip 4 Landing Output F
+
+Map	track3clip4landinga		Track 3 Clip 4 Landing Output A
+Map	track3clip4landingb		Track 3 Clip 4 Landing Output B
+Map	track3clip4landingc		Track 3 Clip 4 Landing Output C
+Map	track3clip4landingd		Track 3 Clip 4 Landing Output D
+Map	track3clip4landinge		Track 3 Clip 4 Landing Output E
+Map	track3clip4landingf		Track 3 Clip 4 Landing Output F
+
+Map	track4clip4landinga		Track 4 Clip 4 Landing Output A
+Map	track4clip4landingb		Track 4 Clip 4 Landing Output B
+Map	track4clip4landingc		Track 4 Clip 4 Landing Output C
+Map	track4clip4landingd		Track 4 Clip 4 Landing Output D
+Map	track4clip4landinge		Track 4 Clip 4 Landing Output E
+Map	track4clip4landingf		Track 4 Clip 4 Landing Output F
+
+Map	track5clip4landinga		Track 5 Clip 4 Landing Output A
+Map	track5clip4landingb		Track 5 Clip 4 Landing Output B
+Map	track5clip4landingc		Track 5 Clip 4 Landing Output C
+Map	track5clip4landingd		Track 5 Clip 4 Landing Output D
+Map	track5clip4landinge		Track 5 Clip 4 Landing Output E
+Map	track5clip4landingf		Track 5 Clip 4 Landing Output F
+
+Map	track6clip4landinga		Track 6 Clip 4 Landing Output A
+Map	track6clip4landingb		Track 6 Clip 4 Landing Output B
+Map	track6clip4landingc		Track 6 Clip 4 Landing Output C
+Map	track6clip4landingd		Track 6 Clip 4 Landing Output D
+Map	track6clip4landinge		Track 6 Clip 4 Landing Output E
+Map	track6clip4landingf		Track 6 Clip 4 Landing Output F
+
+Map	track7clip4landinga		Track 7 Clip 4 Landing Output A
+Map	track7clip4landingb		Track 7 Clip 4 Landing Output B
+Map	track7clip4landingc		Track 7 Clip 4 Landing Output C
+Map	track7clip4landingd		Track 7 Clip 4 Landing Output D
+Map	track7clip4landinge		Track 7 Clip 4 Landing Output E
+Map	track7clip4landingf		Track 7 Clip 4 Landing Output F
+
+Map	track8clip4landinga		Track 8 Clip 4 Landing Output A
+Map	track8clip4landingb		Track 8 Clip 4 Landing Output B
+Map	track8clip4landingc		Track 8 Clip 4 Landing Output C
+Map	track8clip4landingd		Track 8 Clip 4 Landing Output D
+Map	track8clip4landinge		Track 8 Clip 4 Landing Output E
+Map	track8clip4landingf		Track 8 Clip 4 Landing Output F
+
+Map	track1clip5landinga		Track 1 Clip 5 Landing Output A
+Map	track1clip5landingb		Track 1 Clip 5 Landing Output B
+Map	track1clip5landingc		Track 1 Clip 5 Landing Output C
+Map	track1clip5landingd		Track 1 Clip 5 Landing Output D
+Map	track1clip5landinge		Track 1 Clip 5 Landing Output E
+Map	track1clip5landingf		Track 1 Clip 5 Landing Output F
+
+Map	track2clip5landinga		Track 2 Clip 5 Landing Output A
+Map	track2clip5landingb		Track 2 Clip 5 Landing Output B
+Map	track2clip5landingc		Track 2 Clip 5 Landing Output C
+Map	track2clip5landingd		Track 2 Clip 5 Landing Output D
+Map	track2clip5landinge		Track 2 Clip 5 Landing Output E
+Map	track2clip5landingf		Track 2 Clip 5 Landing Output F
+
+Map	track3clip5landinga		Track 3 Clip 5 Landing Output A
+Map	track3clip5landingb		Track 3 Clip 5 Landing Output B
+Map	track3clip5landingc		Track 3 Clip 5 Landing Output C
+Map	track3clip5landingd		Track 3 Clip 5 Landing Output D
+Map	track3clip5landinge		Track 3 Clip 5 Landing Output E
+Map	track3clip5landingf		Track 3 Clip 5 Landing Output F
+
+Map	track4clip5landinga		Track 4 Clip 5 Landing Output A
+Map	track4clip5landingb		Track 4 Clip 5 Landing Output B
+Map	track4clip5landingc		Track 4 Clip 5 Landing Output C
+Map	track4clip5landingd		Track 4 Clip 5 Landing Output D
+Map	track4clip5landinge		Track 4 Clip 5 Landing Output E
+Map	track4clip5landingf		Track 4 Clip 5 Landing Output F
+
+Map	track5clip5landinga		Track 5 Clip 5 Landing Output A
+Map	track5clip5landingb		Track 5 Clip 5 Landing Output B
+Map	track5clip5landingc		Track 5 Clip 5 Landing Output C
+Map	track5clip5landingd		Track 5 Clip 5 Landing Output D
+Map	track5clip5landinge		Track 5 Clip 5 Landing Output E
+Map	track5clip5landingf		Track 5 Clip 5 Landing Output F
+
+Map	track6clip5landinga		Track 6 Clip 5 Landing Output A
+Map	track6clip5landingb		Track 6 Clip 5 Landing Output B
+Map	track6clip5landingc		Track 6 Clip 5 Landing Output C
+Map	track6clip5landingd		Track 6 Clip 5 Landing Output D
+Map	track6clip5landinge		Track 6 Clip 5 Landing Output E
+Map	track6clip5landingf		Track 6 Clip 5 Landing Output F
+
+Map	track7clip5landinga		Track 7 Clip 5 Landing Output A
+Map	track7clip5landingb		Track 7 Clip 5 Landing Output B
+Map	track7clip5landingc		Track 7 Clip 5 Landing Output C
+Map	track7clip5landingd		Track 7 Clip 5 Landing Output D
+Map	track7clip5landinge		Track 7 Clip 5 Landing Output E
+Map	track7clip5landingf		Track 7 Clip 5 Landing Output F
+
+Map	track8clip5landinga		Track 8 Clip 5 Landing Output A
+Map	track8clip5landingb		Track 8 Clip 5 Landing Output B
+Map	track8clip5landingc		Track 8 Clip 5 Landing Output C
+Map	track8clip5landingd		Track 8 Clip 5 Landing Output D
+Map	track8clip5landinge		Track 8 Clip 5 Landing Output E
+Map	track8clip5landingf		Track 8 Clip 5 Landing Output F
+
+Map	track1clip6landinga		Track 1 Clip 6 Landing Output A
+Map	track1clip6landingb		Track 1 Clip 6 Landing Output B
+Map	track1clip6landingc		Track 1 Clip 6 Landing Output C
+Map	track1clip6landingd		Track 1 Clip 6 Landing Output D
+Map	track1clip6landinge		Track 1 Clip 6 Landing Output E
+Map	track1clip6landingf		Track 1 Clip 6 Landing Output F
+
+Map	track2clip6landinga		Track 2 Clip 6 Landing Output A
+Map	track2clip6landingb		Track 2 Clip 6 Landing Output B
+Map	track2clip6landingc		Track 2 Clip 6 Landing Output C
+Map	track2clip6landingd		Track 2 Clip 6 Landing Output D
+Map	track2clip6landinge		Track 2 Clip 6 Landing Output E
+Map	track2clip6landingf		Track 2 Clip 6 Landing Output F
+
+Map	track3clip6landinga		Track 3 Clip 6 Landing Output A
+Map	track3clip6landingb		Track 3 Clip 6 Landing Output B
+Map	track3clip6landingc		Track 3 Clip 6 Landing Output C
+Map	track3clip6landingd		Track 3 Clip 6 Landing Output D
+Map	track3clip6landinge		Track 3 Clip 6 Landing Output E
+Map	track3clip6landingf		Track 3 Clip 6 Landing Output F
+
+Map	track4clip6landinga		Track 4 Clip 6 Landing Output A
+Map	track4clip6landingb		Track 4 Clip 6 Landing Output B
+Map	track4clip6landingc		Track 4 Clip 6 Landing Output C
+Map	track4clip6landingd		Track 4 Clip 6 Landing Output D
+Map	track4clip6landinge		Track 4 Clip 6 Landing Output E
+Map	track4clip6landingf		Track 4 Clip 6 Landing Output F
+
+Map	track5clip6landinga		Track 5 Clip 6 Landing Output A
+Map	track5clip6landingb		Track 5 Clip 6 Landing Output B
+Map	track5clip6landingc		Track 5 Clip 6 Landing Output C
+Map	track5clip6landingd		Track 5 Clip 6 Landing Output D
+Map	track5clip6landinge		Track 5 Clip 6 Landing Output E
+Map	track5clip6landingf		Track 5 Clip 6 Landing Output F
+
+Map	track6clip6landinga		Track 6 Clip 6 Landing Output A
+Map	track6clip6landingb		Track 6 Clip 6 Landing Output B
+Map	track6clip6landingc		Track 6 Clip 6 Landing Output C
+Map	track6clip6landingd		Track 6 Clip 6 Landing Output D
+Map	track6clip6landinge		Track 6 Clip 6 Landing Output E
+Map	track6clip6landingf		Track 6 Clip 6 Landing Output F
+
+Map	track7clip6landinga		Track 7 Clip 6 Landing Output A
+Map	track7clip6landingb		Track 7 Clip 6 Landing Output B
+Map	track7clip6landingc		Track 7 Clip 6 Landing Output C
+Map	track7clip6landingd		Track 7 Clip 6 Landing Output D
+Map	track7clip6landinge		Track 7 Clip 6 Landing Output E
+Map	track7clip6landingf		Track 7 Clip 6 Landing Output F
+
+Map	track8clip6landinga		Track 8 Clip 6 Landing Output A
+Map	track8clip6landingb		Track 8 Clip 6 Landing Output B
+Map	track8clip6landingc		Track 8 Clip 6 Landing Output C
+Map	track8clip6landingd		Track 8 Clip 6 Landing Output D
+Map	track8clip6landinge		Track 8 Clip 6 Landing Output E
+Map	track8clip6landingf		Track 8 Clip 6 Landing Output F
+
+Map	track1clip7landinga		Track 1 Clip 7 Landing Output A
+Map	track1clip7landingb		Track 1 Clip 7 Landing Output B
+Map	track1clip7landingc		Track 1 Clip 7 Landing Output C
+Map	track1clip7landingd		Track 1 Clip 7 Landing Output D
+Map	track1clip7landinge		Track 1 Clip 7 Landing Output E
+Map	track1clip7landingf		Track 1 Clip 7 Landing Output F
+
+Map	track2clip7landinga		Track 2 Clip 7 Landing Output A
+Map	track2clip7landingb		Track 2 Clip 7 Landing Output B
+Map	track2clip7landingc		Track 2 Clip 7 Landing Output C
+Map	track2clip7landingd		Track 2 Clip 7 Landing Output D
+Map	track2clip7landinge		Track 2 Clip 7 Landing Output E
+Map	track2clip7landingf		Track 2 Clip 7 Landing Output F
+
+Map	track3clip7landinga		Track 3 Clip 7 Landing Output A
+Map	track3clip7landingb		Track 3 Clip 7 Landing Output B
+Map	track3clip7landingc		Track 3 Clip 7 Landing Output C
+Map	track3clip7landingd		Track 3 Clip 7 Landing Output D
+Map	track3clip7landinge		Track 3 Clip 7 Landing Output E
+Map	track3clip7landingf		Track 3 Clip 7 Landing Output F
+
+Map	track4clip7landinga		Track 4 Clip 7 Landing Output A
+Map	track4clip7landingb		Track 4 Clip 7 Landing Output B
+Map	track4clip7landingc		Track 4 Clip 7 Landing Output C
+Map	track4clip7landingd		Track 4 Clip 7 Landing Output D
+Map	track4clip7landinge		Track 4 Clip 7 Landing Output E
+Map	track4clip7landingf		Track 4 Clip 7 Landing Output F
+
+Map	track5clip7landinga		Track 5 Clip 7 Landing Output A
+Map	track5clip7landingb		Track 5 Clip 7 Landing Output B
+Map	track5clip7landingc		Track 5 Clip 7 Landing Output C
+Map	track5clip7landingd		Track 5 Clip 7 Landing Output D
+Map	track5clip7landinge		Track 5 Clip 7 Landing Output E
+Map	track5clip7landingf		Track 5 Clip 7 Landing Output F
+
+Map	track6clip7landinga		Track 6 Clip 7 Landing Output A
+Map	track6clip7landingb		Track 6 Clip 7 Landing Output B
+Map	track6clip7landingc		Track 6 Clip 7 Landing Output C
+Map	track6clip7landingd		Track 6 Clip 7 Landing Output D
+Map	track6clip7landinge		Track 6 Clip 7 Landing Output E
+Map	track6clip7landingf		Track 6 Clip 7 Landing Output F
+
+Map	track7clip7landinga		Track 7 Clip 7 Landing Output A
+Map	track7clip7landingb		Track 7 Clip 7 Landing Output B
+Map	track7clip7landingc		Track 7 Clip 7 Landing Output C
+Map	track7clip7landingd		Track 7 Clip 7 Landing Output D
+Map	track7clip7landinge		Track 7 Clip 7 Landing Output E
+Map	track7clip7landingf		Track 7 Clip 7 Landing Output F
+
+Map	track8clip7landinga		Track 8 Clip 7 Landing Output A
+Map	track8clip7landingb		Track 8 Clip 7 Landing Output B
+Map	track8clip7landingc		Track 8 Clip 7 Landing Output C
+Map	track8clip7landingd		Track 8 Clip 7 Landing Output D
+Map	track8clip7landinge		Track 8 Clip 7 Landing Output E
+Map	track8clip7landingf		Track 8 Clip 7 Landing Output F
+
+Map	track1clip8landinga		Track 1 Clip 8 Landing Output A
+Map	track1clip8landingb		Track 1 Clip 8 Landing Output B
+Map	track1clip8landingc		Track 1 Clip 8 Landing Output C
+Map	track1clip8landingd		Track 1 Clip 8 Landing Output D
+Map	track1clip8landinge		Track 1 Clip 8 Landing Output E
+Map	track1clip8landingf		Track 1 Clip 8 Landing Output F
+
+Map	track2clip8landinga		Track 2 Clip 8 Landing Output A
+Map	track2clip8landingb		Track 2 Clip 8 Landing Output B
+Map	track2clip8landingc		Track 2 Clip 8 Landing Output C
+Map	track2clip8landingd		Track 2 Clip 8 Landing Output D
+Map	track2clip8landinge		Track 2 Clip 8 Landing Output E
+Map	track2clip8landingf		Track 2 Clip 8 Landing Output F
+
+Map	track3clip8landinga		Track 3 Clip 8 Landing Output A
+Map	track3clip8landingb		Track 3 Clip 8 Landing Output B
+Map	track3clip8landingc		Track 3 Clip 8 Landing Output C
+Map	track3clip8landingd		Track 3 Clip 8 Landing Output D
+Map	track3clip8landinge		Track 3 Clip 8 Landing Output E
+Map	track3clip8landingf		Track 3 Clip 8 Landing Output F
+
+Map	track4clip8landinga		Track 4 Clip 8 Landing Output A
+Map	track4clip8landingb		Track 4 Clip 8 Landing Output B
+Map	track4clip8landingc		Track 4 Clip 8 Landing Output C
+Map	track4clip8landingd		Track 4 Clip 8 Landing Output D
+Map	track4clip8landinge		Track 4 Clip 8 Landing Output E
+Map	track4clip8landingf		Track 4 Clip 8 Landing Output F
+
+Map	track5clip8landinga		Track 5 Clip 8 Landing Output A
+Map	track5clip8landingb		Track 5 Clip 8 Landing Output B
+Map	track5clip8landingc		Track 5 Clip 8 Landing Output C
+Map	track5clip8landingd		Track 5 Clip 8 Landing Output D
+Map	track5clip8landinge		Track 5 Clip 8 Landing Output E
+Map	track5clip8landingf		Track 5 Clip 8 Landing Output F
+
+Map	track6clip8landinga		Track 6 Clip 8 Landing Output A
+Map	track6clip8landingb		Track 6 Clip 8 Landing Output B
+Map	track6clip8landingc		Track 6 Clip 8 Landing Output C
+Map	track6clip8landingd		Track 6 Clip 8 Landing Output D
+Map	track6clip8landinge		Track 6 Clip 8 Landing Output E
+Map	track6clip8landingf		Track 6 Clip 8 Landing Output F
+
+Map	track7clip8landinga		Track 7 Clip 8 Landing Output A
+Map	track7clip8landingb		Track 7 Clip 8 Landing Output B
+Map	track7clip8landingc		Track 7 Clip 8 Landing Output C
+Map	track7clip8landingd		Track 7 Clip 8 Landing Output D
+Map	track7clip8landinge		Track 7 Clip 8 Landing Output E
+Map	track7clip8landingf		Track 7 Clip 8 Landing Output F
+
+Map	track8clip8landinga		Track 8 Clip 8 Landing Output A
+Map	track8clip8landingb		Track 8 Clip 8 Landing Output B
+Map	track8clip8landingc		Track 8 Clip 8 Landing Output C
+Map	track8clip8landingd		Track 8 Clip 8 Landing Output D
+Map	track8clip8landinge		Track 8 Clip 8 Landing Output E
+Map	track8clip8landingf		Track 8 Clip 8 Landing Output F
+
+Map	track1clip1introa		Track 1 Clip 1 Intro Output A
+Map	track1clip1introb		Track 1 Clip 1 Intro Output B
+Map	track1clip1introc		Track 1 Clip 1 Intro Output C
+Map	track1clip1introd		Track 1 Clip 1 Intro Output D
+Map	track1clip1introe		Track 1 Clip 1 Intro Output E
+Map	track1clip1introf		Track 1 Clip 1 Intro Output F
+
+Map	track2clip1introa		Track 2 Clip 1 Intro Output A
+Map	track2clip1introb		Track 2 Clip 1 Intro Output B
+Map	track2clip1introc		Track 2 Clip 1 Intro Output C
+Map	track2clip1introd		Track 2 Clip 1 Intro Output D
+Map	track2clip1introe		Track 2 Clip 1 Intro Output E
+Map	track2clip1introf		Track 2 Clip 1 Intro Output F
+
+Map	track3clip1introa		Track 3 Clip 1 Intro Output A
+Map	track3clip1introb		Track 3 Clip 1 Intro Output B
+Map	track3clip1introc		Track 3 Clip 1 Intro Output C
+Map	track3clip1introd		Track 3 Clip 1 Intro Output D
+Map	track3clip1introe		Track 3 Clip 1 Intro Output E
+Map	track3clip1introf		Track 3 Clip 1 Intro Output F
+
+Map	track4clip1introa		Track 4 Clip 1 Intro Output A
+Map	track4clip1introb		Track 4 Clip 1 Intro Output B
+Map	track4clip1introc		Track 4 Clip 1 Intro Output C
+Map	track4clip1introd		Track 4 Clip 1 Intro Output D
+Map	track4clip1introe		Track 4 Clip 1 Intro Output E
+Map	track4clip1introf		Track 4 Clip 1 Intro Output F
+
+Map	track5clip1introa		Track 5 Clip 1 Intro Output A
+Map	track5clip1introb		Track 5 Clip 1 Intro Output B
+Map	track5clip1introc		Track 5 Clip 1 Intro Output C
+Map	track5clip1introd		Track 5 Clip 1 Intro Output D
+Map	track5clip1introe		Track 5 Clip 1 Intro Output E
+Map	track5clip1introf		Track 5 Clip 1 Intro Output F
+
+Map	track6clip1introa		Track 6 Clip 1 Intro Output A
+Map	track6clip1introb		Track 6 Clip 1 Intro Output B
+Map	track6clip1introc		Track 6 Clip 1 Intro Output C
+Map	track6clip1introd		Track 6 Clip 1 Intro Output D
+Map	track6clip1introe		Track 6 Clip 1 Intro Output E
+Map	track6clip1introf		Track 6 Clip 1 Intro Output F
+
+Map	track7clip1introa		Track 7 Clip 1 Intro Output A
+Map	track7clip1introb		Track 7 Clip 1 Intro Output B
+Map	track7clip1introc		Track 7 Clip 1 Intro Output C
+Map	track7clip1introd		Track 7 Clip 1 Intro Output D
+Map	track7clip1introe		Track 7 Clip 1 Intro Output E
+Map	track7clip1introf		Track 7 Clip 1 Intro Output F
+
+Map	track8clip1introa		Track 8 Clip 1 Intro Output A
+Map	track8clip1introb		Track 8 Clip 1 Intro Output B
+Map	track8clip1introc		Track 8 Clip 1 Intro Output C
+Map	track8clip1introd		Track 8 Clip 1 Intro Output D
+Map	track8clip1introe		Track 8 Clip 1 Intro Output E
+Map	track8clip1introf		Track 8 Clip 1 Intro Output F
+
+Map	track1clip2introa		Track 1 Clip 2 Intro Output A
+Map	track1clip2introb		Track 1 Clip 2 Intro Output B
+Map	track1clip2introc		Track 1 Clip 2 Intro Output C
+Map	track1clip2introd		Track 1 Clip 2 Intro Output D
+Map	track1clip2introe		Track 1 Clip 2 Intro Output E
+Map	track1clip2introf		Track 1 Clip 2 Intro Output F
+
+Map	track2clip2introa		Track 2 Clip 2 Intro Output A
+Map	track2clip2introb		Track 2 Clip 2 Intro Output B
+Map	track2clip2introc		Track 2 Clip 2 Intro Output C
+Map	track2clip2introd		Track 2 Clip 2 Intro Output D
+Map	track2clip2introe		Track 2 Clip 2 Intro Output E
+Map	track2clip2introf		Track 2 Clip 2 Intro Output F
+
+Map	track3clip2introa		Track 3 Clip 2 Intro Output A
+Map	track3clip2introb		Track 3 Clip 2 Intro Output B
+Map	track3clip2introc		Track 3 Clip 2 Intro Output C
+Map	track3clip2introd		Track 3 Clip 2 Intro Output D
+Map	track3clip2introe		Track 3 Clip 2 Intro Output E
+Map	track3clip2introf		Track 3 Clip 2 Intro Output F
+
+Map	track4clip2introa		Track 4 Clip 2 Intro Output A
+Map	track4clip2introb		Track 4 Clip 2 Intro Output B
+Map	track4clip2introc		Track 4 Clip 2 Intro Output C
+Map	track4clip2introd		Track 4 Clip 2 Intro Output D
+Map	track4clip2introe		Track 4 Clip 2 Intro Output E
+Map	track4clip2introf		Track 4 Clip 2 Intro Output F
+
+Map	track5clip2introa		Track 5 Clip 2 Intro Output A
+Map	track5clip2introb		Track 5 Clip 2 Intro Output B
+Map	track5clip2introc		Track 5 Clip 2 Intro Output C
+Map	track5clip2introd		Track 5 Clip 2 Intro Output D
+Map	track5clip2introe		Track 5 Clip 2 Intro Output E
+Map	track5clip2introf		Track 5 Clip 2 Intro Output F
+
+Map	track6clip2introa		Track 6 Clip 2 Intro Output A
+Map	track6clip2introb		Track 6 Clip 2 Intro Output B
+Map	track6clip2introc		Track 6 Clip 2 Intro Output C
+Map	track6clip2introd		Track 6 Clip 2 Intro Output D
+Map	track6clip2introe		Track 6 Clip 2 Intro Output E
+Map	track6clip2introf		Track 6 Clip 2 Intro Output F
+
+Map	track7clip2introa		Track 7 Clip 2 Intro Output A
+Map	track7clip2introb		Track 7 Clip 2 Intro Output B
+Map	track7clip2introc		Track 7 Clip 2 Intro Output C
+Map	track7clip2introd		Track 7 Clip 2 Intro Output D
+Map	track7clip2introe		Track 7 Clip 2 Intro Output E
+Map	track7clip2introf		Track 7 Clip 2 Intro Output F
+
+Map	track8clip2introa		Track 8 Clip 2 Intro Output A
+Map	track8clip2introb		Track 8 Clip 2 Intro Output B
+Map	track8clip2introc		Track 8 Clip 2 Intro Output C
+Map	track8clip2introd		Track 8 Clip 2 Intro Output D
+Map	track8clip2introe		Track 8 Clip 2 Intro Output E
+Map	track8clip2introf		Track 8 Clip 2 Intro Output F
+
+Map	track1clip3introa		Track 1 Clip 3 Intro Output A
+Map	track1clip3introb		Track 1 Clip 3 Intro Output B
+Map	track1clip3introc		Track 1 Clip 3 Intro Output C
+Map	track1clip3introd		Track 1 Clip 3 Intro Output D
+Map	track1clip3introe		Track 1 Clip 3 Intro Output E
+Map	track1clip3introf		Track 1 Clip 3 Intro Output F
+
+Map	track2clip3introa		Track 2 Clip 3 Intro Output A
+Map	track2clip3introb		Track 2 Clip 3 Intro Output B
+Map	track2clip3introc		Track 2 Clip 3 Intro Output C
+Map	track2clip3introd		Track 2 Clip 3 Intro Output D
+Map	track2clip3introe		Track 2 Clip 3 Intro Output E
+Map	track2clip3introf		Track 2 Clip 3 Intro Output F
+
+Map	track3clip3introa		Track 3 Clip 3 Intro Output A
+Map	track3clip3introb		Track 3 Clip 3 Intro Output B
+Map	track3clip3introc		Track 3 Clip 3 Intro Output C
+Map	track3clip3introd		Track 3 Clip 3 Intro Output D
+Map	track3clip3introe		Track 3 Clip 3 Intro Output E
+Map	track3clip3introf		Track 3 Clip 3 Intro Output F
+
+Map	track4clip3introa		Track 4 Clip 3 Intro Output A
+Map	track4clip3introb		Track 4 Clip 3 Intro Output B
+Map	track4clip3introc		Track 4 Clip 3 Intro Output C
+Map	track4clip3introd		Track 4 Clip 3 Intro Output D
+Map	track4clip3introe		Track 4 Clip 3 Intro Output E
+Map	track4clip3introf		Track 4 Clip 3 Intro Output F
+
+Map	track5clip3introa		Track 5 Clip 3 Intro Output A
+Map	track5clip3introb		Track 5 Clip 3 Intro Output B
+Map	track5clip3introc		Track 5 Clip 3 Intro Output C
+Map	track5clip3introd		Track 5 Clip 3 Intro Output D
+Map	track5clip3introe		Track 5 Clip 3 Intro Output E
+Map	track5clip3introf		Track 5 Clip 3 Intro Output F
+
+Map	track6clip3introa		Track 6 Clip 3 Intro Output A
+Map	track6clip3introb		Track 6 Clip 3 Intro Output B
+Map	track6clip3introc		Track 6 Clip 3 Intro Output C
+Map	track6clip3introd		Track 6 Clip 3 Intro Output D
+Map	track6clip3introe		Track 6 Clip 3 Intro Output E
+Map	track6clip3introf		Track 6 Clip 3 Intro Output F
+
+Map	track7clip3introa		Track 7 Clip 3 Intro Output A
+Map	track7clip3introb		Track 7 Clip 3 Intro Output B
+Map	track7clip3introc		Track 7 Clip 3 Intro Output C
+Map	track7clip3introd		Track 7 Clip 3 Intro Output D
+Map	track7clip3introe		Track 7 Clip 3 Intro Output E
+Map	track7clip3introf		Track 7 Clip 3 Intro Output F
+
+Map	track8clip3introa		Track 8 Clip 3 Intro Output A
+Map	track8clip3introb		Track 8 Clip 3 Intro Output B
+Map	track8clip3introc		Track 8 Clip 3 Intro Output C
+Map	track8clip3introd		Track 8 Clip 3 Intro Output D
+Map	track8clip3introe		Track 8 Clip 3 Intro Output E
+Map	track8clip3introf		Track 8 Clip 3 Intro Output F
+
+Map	track1clip4introa		Track 1 Clip 4 Intro Output A
+Map	track1clip4introb		Track 1 Clip 4 Intro Output B
+Map	track1clip4introc		Track 1 Clip 4 Intro Output C
+Map	track1clip4introd		Track 1 Clip 4 Intro Output D
+Map	track1clip4introe		Track 1 Clip 4 Intro Output E
+Map	track1clip4introf		Track 1 Clip 4 Intro Output F
+
+Map	track2clip4introa		Track 2 Clip 4 Intro Output A
+Map	track2clip4introb		Track 2 Clip 4 Intro Output B
+Map	track2clip4introc		Track 2 Clip 4 Intro Output C
+Map	track2clip4introd		Track 2 Clip 4 Intro Output D
+Map	track2clip4introe		Track 2 Clip 4 Intro Output E
+Map	track2clip4introf		Track 2 Clip 4 Intro Output F
+
+Map	track3clip4introa		Track 3 Clip 4 Intro Output A
+Map	track3clip4introb		Track 3 Clip 4 Intro Output B
+Map	track3clip4introc		Track 3 Clip 4 Intro Output C
+Map	track3clip4introd		Track 3 Clip 4 Intro Output D
+Map	track3clip4introe		Track 3 Clip 4 Intro Output E
+Map	track3clip4introf		Track 3 Clip 4 Intro Output F
+
+Map	track4clip4introa		Track 4 Clip 4 Intro Output A
+Map	track4clip4introb		Track 4 Clip 4 Intro Output B
+Map	track4clip4introc		Track 4 Clip 4 Intro Output C
+Map	track4clip4introd		Track 4 Clip 4 Intro Output D
+Map	track4clip4introe		Track 4 Clip 4 Intro Output E
+Map	track4clip4introf		Track 4 Clip 4 Intro Output F
+
+Map	track5clip4introa		Track 5 Clip 4 Intro Output A
+Map	track5clip4introb		Track 5 Clip 4 Intro Output B
+Map	track5clip4introc		Track 5 Clip 4 Intro Output C
+Map	track5clip4introd		Track 5 Clip 4 Intro Output D
+Map	track5clip4introe		Track 5 Clip 4 Intro Output E
+Map	track5clip4introf		Track 5 Clip 4 Intro Output F
+
+Map	track6clip4introa		Track 6 Clip 4 Intro Output A
+Map	track6clip4introb		Track 6 Clip 4 Intro Output B
+Map	track6clip4introc		Track 6 Clip 4 Intro Output C
+Map	track6clip4introd		Track 6 Clip 4 Intro Output D
+Map	track6clip4introe		Track 6 Clip 4 Intro Output E
+Map	track6clip4introf		Track 6 Clip 4 Intro Output F
+
+Map	track7clip4introa		Track 7 Clip 4 Intro Output A
+Map	track7clip4introb		Track 7 Clip 4 Intro Output B
+Map	track7clip4introc		Track 7 Clip 4 Intro Output C
+Map	track7clip4introd		Track 7 Clip 4 Intro Output D
+Map	track7clip4introe		Track 7 Clip 4 Intro Output E
+Map	track7clip4introf		Track 7 Clip 4 Intro Output F
+
+Map	track8clip4introa		Track 8 Clip 4 Intro Output A
+Map	track8clip4introb		Track 8 Clip 4 Intro Output B
+Map	track8clip4introc		Track 8 Clip 4 Intro Output C
+Map	track8clip4introd		Track 8 Clip 4 Intro Output D
+Map	track8clip4introe		Track 8 Clip 4 Intro Output E
+Map	track8clip4introf		Track 8 Clip 4 Intro Output F
+
+Map	track1clip5introa		Track 1 Clip 5 Intro Output A
+Map	track1clip5introb		Track 1 Clip 5 Intro Output B
+Map	track1clip5introc		Track 1 Clip 5 Intro Output C
+Map	track1clip5introd		Track 1 Clip 5 Intro Output D
+Map	track1clip5introe		Track 1 Clip 5 Intro Output E
+Map	track1clip5introf		Track 1 Clip 5 Intro Output F
+
+Map	track2clip5introa		Track 2 Clip 5 Intro Output A
+Map	track2clip5introb		Track 2 Clip 5 Intro Output B
+Map	track2clip5introc		Track 2 Clip 5 Intro Output C
+Map	track2clip5introd		Track 2 Clip 5 Intro Output D
+Map	track2clip5introe		Track 2 Clip 5 Intro Output E
+Map	track2clip5introf		Track 2 Clip 5 Intro Output F
+
+Map	track3clip5introa		Track 3 Clip 5 Intro Output A
+Map	track3clip5introb		Track 3 Clip 5 Intro Output B
+Map	track3clip5introc		Track 3 Clip 5 Intro Output C
+Map	track3clip5introd		Track 3 Clip 5 Intro Output D
+Map	track3clip5introe		Track 3 Clip 5 Intro Output E
+Map	track3clip5introf		Track 3 Clip 5 Intro Output F
+
+Map	track4clip5introa		Track 4 Clip 5 Intro Output A
+Map	track4clip5introb		Track 4 Clip 5 Intro Output B
+Map	track4clip5introc		Track 4 Clip 5 Intro Output C
+Map	track4clip5introd		Track 4 Clip 5 Intro Output D
+Map	track4clip5introe		Track 4 Clip 5 Intro Output E
+Map	track4clip5introf		Track 4 Clip 5 Intro Output F
+
+Map	track5clip5introa		Track 5 Clip 5 Intro Output A
+Map	track5clip5introb		Track 5 Clip 5 Intro Output B
+Map	track5clip5introc		Track 5 Clip 5 Intro Output C
+Map	track5clip5introd		Track 5 Clip 5 Intro Output D
+Map	track5clip5introe		Track 5 Clip 5 Intro Output E
+Map	track5clip5introf		Track 5 Clip 5 Intro Output F
+
+Map	track6clip5introa		Track 6 Clip 5 Intro Output A
+Map	track6clip5introb		Track 6 Clip 5 Intro Output B
+Map	track6clip5introc		Track 6 Clip 5 Intro Output C
+Map	track6clip5introd		Track 6 Clip 5 Intro Output D
+Map	track6clip5introe		Track 6 Clip 5 Intro Output E
+Map	track6clip5introf		Track 6 Clip 5 Intro Output F
+
+Map	track7clip5introa		Track 7 Clip 5 Intro Output A
+Map	track7clip5introb		Track 7 Clip 5 Intro Output B
+Map	track7clip5introc		Track 7 Clip 5 Intro Output C
+Map	track7clip5introd		Track 7 Clip 5 Intro Output D
+Map	track7clip5introe		Track 7 Clip 5 Intro Output E
+Map	track7clip5introf		Track 7 Clip 5 Intro Output F
+
+Map	track8clip5introa		Track 8 Clip 5 Intro Output A
+Map	track8clip5introb		Track 8 Clip 5 Intro Output B
+Map	track8clip5introc		Track 8 Clip 5 Intro Output C
+Map	track8clip5introd		Track 8 Clip 5 Intro Output D
+Map	track8clip5introe		Track 8 Clip 5 Intro Output E
+Map	track8clip5introf		Track 8 Clip 5 Intro Output F
+
+Map	track1clip6introa		Track 1 Clip 6 Intro Output A
+Map	track1clip6introb		Track 1 Clip 6 Intro Output B
+Map	track1clip6introc		Track 1 Clip 6 Intro Output C
+Map	track1clip6introd		Track 1 Clip 6 Intro Output D
+Map	track1clip6introe		Track 1 Clip 6 Intro Output E
+Map	track1clip6introf		Track 1 Clip 6 Intro Output F
+
+Map	track2clip6introa		Track 2 Clip 6 Intro Output A
+Map	track2clip6introb		Track 2 Clip 6 Intro Output B
+Map	track2clip6introc		Track 2 Clip 6 Intro Output C
+Map	track2clip6introd		Track 2 Clip 6 Intro Output D
+Map	track2clip6introe		Track 2 Clip 6 Intro Output E
+Map	track2clip6introf		Track 2 Clip 6 Intro Output F
+
+Map	track3clip6introa		Track 3 Clip 6 Intro Output A
+Map	track3clip6introb		Track 3 Clip 6 Intro Output B
+Map	track3clip6introc		Track 3 Clip 6 Intro Output C
+Map	track3clip6introd		Track 3 Clip 6 Intro Output D
+Map	track3clip6introe		Track 3 Clip 6 Intro Output E
+Map	track3clip6introf		Track 3 Clip 6 Intro Output F
+
+Map	track4clip6introa		Track 4 Clip 6 Intro Output A
+Map	track4clip6introb		Track 4 Clip 6 Intro Output B
+Map	track4clip6introc		Track 4 Clip 6 Intro Output C
+Map	track4clip6introd		Track 4 Clip 6 Intro Output D
+Map	track4clip6introe		Track 4 Clip 6 Intro Output E
+Map	track4clip6introf		Track 4 Clip 6 Intro Output F
+
+Map	track5clip6introa		Track 5 Clip 6 Intro Output A
+Map	track5clip6introb		Track 5 Clip 6 Intro Output B
+Map	track5clip6introc		Track 5 Clip 6 Intro Output C
+Map	track5clip6introd		Track 5 Clip 6 Intro Output D
+Map	track5clip6introe		Track 5 Clip 6 Intro Output E
+Map	track5clip6introf		Track 5 Clip 6 Intro Output F
+
+Map	track6clip6introa		Track 6 Clip 6 Intro Output A
+Map	track6clip6introb		Track 6 Clip 6 Intro Output B
+Map	track6clip6introc		Track 6 Clip 6 Intro Output C
+Map	track6clip6introd		Track 6 Clip 6 Intro Output D
+Map	track6clip6introe		Track 6 Clip 6 Intro Output E
+Map	track6clip6introf		Track 6 Clip 6 Intro Output F
+
+Map	track7clip6introa		Track 7 Clip 6 Intro Output A
+Map	track7clip6introb		Track 7 Clip 6 Intro Output B
+Map	track7clip6introc		Track 7 Clip 6 Intro Output C
+Map	track7clip6introd		Track 7 Clip 6 Intro Output D
+Map	track7clip6introe		Track 7 Clip 6 Intro Output E
+Map	track7clip6introf		Track 7 Clip 6 Intro Output F
+
+Map	track8clip6introa		Track 8 Clip 6 Intro Output A
+Map	track8clip6introb		Track 8 Clip 6 Intro Output B
+Map	track8clip6introc		Track 8 Clip 6 Intro Output C
+Map	track8clip6introd		Track 8 Clip 6 Intro Output D
+Map	track8clip6introe		Track 8 Clip 6 Intro Output E
+Map	track8clip6introf		Track 8 Clip 6 Intro Output F
+
+Map	track1clip7introa		Track 1 Clip 7 Intro Output A
+Map	track1clip7introb		Track 1 Clip 7 Intro Output B
+Map	track1clip7introc		Track 1 Clip 7 Intro Output C
+Map	track1clip7introd		Track 1 Clip 7 Intro Output D
+Map	track1clip7introe		Track 1 Clip 7 Intro Output E
+Map	track1clip7introf		Track 1 Clip 7 Intro Output F
+
+Map	track2clip7introa		Track 2 Clip 7 Intro Output A
+Map	track2clip7introb		Track 2 Clip 7 Intro Output B
+Map	track2clip7introc		Track 2 Clip 7 Intro Output C
+Map	track2clip7introd		Track 2 Clip 7 Intro Output D
+Map	track2clip7introe		Track 2 Clip 7 Intro Output E
+Map	track2clip7introf		Track 2 Clip 7 Intro Output F
+
+Map	track3clip7introa		Track 3 Clip 7 Intro Output A
+Map	track3clip7introb		Track 3 Clip 7 Intro Output B
+Map	track3clip7introc		Track 3 Clip 7 Intro Output C
+Map	track3clip7introd		Track 3 Clip 7 Intro Output D
+Map	track3clip7introe		Track 3 Clip 7 Intro Output E
+Map	track3clip7introf		Track 3 Clip 7 Intro Output F
+
+Map	track4clip7introa		Track 4 Clip 7 Intro Output A
+Map	track4clip7introb		Track 4 Clip 7 Intro Output B
+Map	track4clip7introc		Track 4 Clip 7 Intro Output C
+Map	track4clip7introd		Track 4 Clip 7 Intro Output D
+Map	track4clip7introe		Track 4 Clip 7 Intro Output E
+Map	track4clip7introf		Track 4 Clip 7 Intro Output F
+
+Map	track5clip7introa		Track 5 Clip 7 Intro Output A
+Map	track5clip7introb		Track 5 Clip 7 Intro Output B
+Map	track5clip7introc		Track 5 Clip 7 Intro Output C
+Map	track5clip7introd		Track 5 Clip 7 Intro Output D
+Map	track5clip7introe		Track 5 Clip 7 Intro Output E
+Map	track5clip7introf		Track 5 Clip 7 Intro Output F
+
+Map	track6clip7introa		Track 6 Clip 7 Intro Output A
+Map	track6clip7introb		Track 6 Clip 7 Intro Output B
+Map	track6clip7introc		Track 6 Clip 7 Intro Output C
+Map	track6clip7introd		Track 6 Clip 7 Intro Output D
+Map	track6clip7introe		Track 6 Clip 7 Intro Output E
+Map	track6clip7introf		Track 6 Clip 7 Intro Output F
+
+Map	track7clip7introa		Track 7 Clip 7 Intro Output A
+Map	track7clip7introb		Track 7 Clip 7 Intro Output B
+Map	track7clip7introc		Track 7 Clip 7 Intro Output C
+Map	track7clip7introd		Track 7 Clip 7 Intro Output D
+Map	track7clip7introe		Track 7 Clip 7 Intro Output E
+Map	track7clip7introf		Track 7 Clip 7 Intro Output F
+
+Map	track8clip7introa		Track 8 Clip 7 Intro Output A
+Map	track8clip7introb		Track 8 Clip 7 Intro Output B
+Map	track8clip7introc		Track 8 Clip 7 Intro Output C
+Map	track8clip7introd		Track 8 Clip 7 Intro Output D
+Map	track8clip7introe		Track 8 Clip 7 Intro Output E
+Map	track8clip7introf		Track 8 Clip 7 Intro Output F
+
+Map	track1clip8introa		Track 1 Clip 8 Intro Output A
+Map	track1clip8introb		Track 1 Clip 8 Intro Output B
+Map	track1clip8introc		Track 1 Clip 8 Intro Output C
+Map	track1clip8introd		Track 1 Clip 8 Intro Output D
+Map	track1clip8introe		Track 1 Clip 8 Intro Output E
+Map	track1clip8introf		Track 1 Clip 8 Intro Output F
+
+Map	track2clip8introa		Track 2 Clip 8 Intro Output A
+Map	track2clip8introb		Track 2 Clip 8 Intro Output B
+Map	track2clip8introc		Track 2 Clip 8 Intro Output C
+Map	track2clip8introd		Track 2 Clip 8 Intro Output D
+Map	track2clip8introe		Track 2 Clip 8 Intro Output E
+Map	track2clip8introf		Track 2 Clip 8 Intro Output F
+
+Map	track3clip8introa		Track 3 Clip 8 Intro Output A
+Map	track3clip8introb		Track 3 Clip 8 Intro Output B
+Map	track3clip8introc		Track 3 Clip 8 Intro Output C
+Map	track3clip8introd		Track 3 Clip 8 Intro Output D
+Map	track3clip8introe		Track 3 Clip 8 Intro Output E
+Map	track3clip8introf		Track 3 Clip 8 Intro Output F
+
+Map	track4clip8introa		Track 4 Clip 8 Intro Output A
+Map	track4clip8introb		Track 4 Clip 8 Intro Output B
+Map	track4clip8introc		Track 4 Clip 8 Intro Output C
+Map	track4clip8introd		Track 4 Clip 8 Intro Output D
+Map	track4clip8introe		Track 4 Clip 8 Intro Output E
+Map	track4clip8introf		Track 4 Clip 8 Intro Output F
+
+Map	track5clip8introa		Track 5 Clip 8 Intro Output A
+Map	track5clip8introb		Track 5 Clip 8 Intro Output B
+Map	track5clip8introc		Track 5 Clip 8 Intro Output C
+Map	track5clip8introd		Track 5 Clip 8 Intro Output D
+Map	track5clip8introe		Track 5 Clip 8 Intro Output E
+Map	track5clip8introf		Track 5 Clip 8 Intro Output F
+
+Map	track6clip8introa		Track 6 Clip 8 Intro Output A
+Map	track6clip8introb		Track 6 Clip 8 Intro Output B
+Map	track6clip8introc		Track 6 Clip 8 Intro Output C
+Map	track6clip8introd		Track 6 Clip 8 Intro Output D
+Map	track6clip8introe		Track 6 Clip 8 Intro Output E
+Map	track6clip8introf		Track 6 Clip 8 Intro Output F
+
+Map	track7clip8introa		Track 7 Clip 8 Intro Output A
+Map	track7clip8introb		Track 7 Clip 8 Intro Output B
+Map	track7clip8introc		Track 7 Clip 8 Intro Output C
+Map	track7clip8introd		Track 7 Clip 8 Intro Output D
+Map	track7clip8introe		Track 7 Clip 8 Intro Output E
+Map	track7clip8introf		Track 7 Clip 8 Intro Output F
+
+Map	track8clip8introa		Track 8 Clip 8 Intro Output A
+Map	track8clip8introb		Track 8 Clip 8 Intro Output B
+Map	track8clip8introc		Track 8 Clip 8 Intro Output C
+Map	track8clip8introd		Track 8 Clip 8 Intro Output D
+Map	track8clip8introe		Track 8 Clip 8 Intro Output E
+Map	track8clip8introf		Track 8 Clip 8 Intro Output F
+
+Map	track1clip1outroa		Track 1 Clip 1 Outro Output A
+Map	track1clip1outrob		Track 1 Clip 1 Outro Output B
+Map	track1clip1outroc		Track 1 Clip 1 Outro Output C
+Map	track1clip1outrod		Track 1 Clip 1 Outro Output D
+Map	track1clip1outroe		Track 1 Clip 1 Outro Output E
+Map	track1clip1outrof		Track 1 Clip 1 Outro Output F
+
+Map	track2clip1outroa		Track 2 Clip 1 Outro Output A
+Map	track2clip1outrob		Track 2 Clip 1 Outro Output B
+Map	track2clip1outroc		Track 2 Clip 1 Outro Output C
+Map	track2clip1outrod		Track 2 Clip 1 Outro Output D
+Map	track2clip1outroe		Track 2 Clip 1 Outro Output E
+Map	track2clip1outrof		Track 2 Clip 1 Outro Output F
+
+Map	track3clip1outroa		Track 3 Clip 1 Outro Output A
+Map	track3clip1outrob		Track 3 Clip 1 Outro Output B
+Map	track3clip1outroc		Track 3 Clip 1 Outro Output C
+Map	track3clip1outrod		Track 3 Clip 1 Outro Output D
+Map	track3clip1outroe		Track 3 Clip 1 Outro Output E
+Map	track3clip1outrof		Track 3 Clip 1 Outro Output F
+
+Map	track4clip1outroa		Track 4 Clip 1 Outro Output A
+Map	track4clip1outrob		Track 4 Clip 1 Outro Output B
+Map	track4clip1outroc		Track 4 Clip 1 Outro Output C
+Map	track4clip1outrod		Track 4 Clip 1 Outro Output D
+Map	track4clip1outroe		Track 4 Clip 1 Outro Output E
+Map	track4clip1outrof		Track 4 Clip 1 Outro Output F
+
+Map	track5clip1outroa		Track 5 Clip 1 Outro Output A
+Map	track5clip1outrob		Track 5 Clip 1 Outro Output B
+Map	track5clip1outroc		Track 5 Clip 1 Outro Output C
+Map	track5clip1outrod		Track 5 Clip 1 Outro Output D
+Map	track5clip1outroe		Track 5 Clip 1 Outro Output E
+Map	track5clip1outrof		Track 5 Clip 1 Outro Output F
+
+Map	track6clip1outroa		Track 6 Clip 1 Outro Output A
+Map	track6clip1outrob		Track 6 Clip 1 Outro Output B
+Map	track6clip1outroc		Track 6 Clip 1 Outro Output C
+Map	track6clip1outrod		Track 6 Clip 1 Outro Output D
+Map	track6clip1outroe		Track 6 Clip 1 Outro Output E
+Map	track6clip1outrof		Track 6 Clip 1 Outro Output F
+
+Map	track7clip1outroa		Track 7 Clip 1 Outro Output A
+Map	track7clip1outrob		Track 7 Clip 1 Outro Output B
+Map	track7clip1outroc		Track 7 Clip 1 Outro Output C
+Map	track7clip1outrod		Track 7 Clip 1 Outro Output D
+Map	track7clip1outroe		Track 7 Clip 1 Outro Output E
+Map	track7clip1outrof		Track 7 Clip 1 Outro Output F
+
+Map	track8clip1outroa		Track 8 Clip 1 Outro Output A
+Map	track8clip1outrob		Track 8 Clip 1 Outro Output B
+Map	track8clip1outroc		Track 8 Clip 1 Outro Output C
+Map	track8clip1outrod		Track 8 Clip 1 Outro Output D
+Map	track8clip1outroe		Track 8 Clip 1 Outro Output E
+Map	track8clip1outrof		Track 8 Clip 1 Outro Output F
+
+Map	track1clip2outroa		Track 1 Clip 2 Outro Output A
+Map	track1clip2outrob		Track 1 Clip 2 Outro Output B
+Map	track1clip2outroc		Track 1 Clip 2 Outro Output C
+Map	track1clip2outrod		Track 1 Clip 2 Outro Output D
+Map	track1clip2outroe		Track 1 Clip 2 Outro Output E
+Map	track1clip2outrof		Track 1 Clip 2 Outro Output F
+
+Map	track2clip2outroa		Track 2 Clip 2 Outro Output A
+Map	track2clip2outrob		Track 2 Clip 2 Outro Output B
+Map	track2clip2outroc		Track 2 Clip 2 Outro Output C
+Map	track2clip2outrod		Track 2 Clip 2 Outro Output D
+Map	track2clip2outroe		Track 2 Clip 2 Outro Output E
+Map	track2clip2outrof		Track 2 Clip 2 Outro Output F
+
+Map	track3clip2outroa		Track 3 Clip 2 Outro Output A
+Map	track3clip2outrob		Track 3 Clip 2 Outro Output B
+Map	track3clip2outroc		Track 3 Clip 2 Outro Output C
+Map	track3clip2outrod		Track 3 Clip 2 Outro Output D
+Map	track3clip2outroe		Track 3 Clip 2 Outro Output E
+Map	track3clip2outrof		Track 3 Clip 2 Outro Output F
+
+Map	track4clip2outroa		Track 4 Clip 2 Outro Output A
+Map	track4clip2outrob		Track 4 Clip 2 Outro Output B
+Map	track4clip2outroc		Track 4 Clip 2 Outro Output C
+Map	track4clip2outrod		Track 4 Clip 2 Outro Output D
+Map	track4clip2outroe		Track 4 Clip 2 Outro Output E
+Map	track4clip2outrof		Track 4 Clip 2 Outro Output F
+
+Map	track5clip2outroa		Track 5 Clip 2 Outro Output A
+Map	track5clip2outrob		Track 5 Clip 2 Outro Output B
+Map	track5clip2outroc		Track 5 Clip 2 Outro Output C
+Map	track5clip2outrod		Track 5 Clip 2 Outro Output D
+Map	track5clip2outroe		Track 5 Clip 2 Outro Output E
+Map	track5clip2outrof		Track 5 Clip 2 Outro Output F
+
+Map	track6clip2outroa		Track 6 Clip 2 Outro Output A
+Map	track6clip2outrob		Track 6 Clip 2 Outro Output B
+Map	track6clip2outroc		Track 6 Clip 2 Outro Output C
+Map	track6clip2outrod		Track 6 Clip 2 Outro Output D
+Map	track6clip2outroe		Track 6 Clip 2 Outro Output E
+Map	track6clip2outrof		Track 6 Clip 2 Outro Output F
+
+Map	track7clip2outroa		Track 7 Clip 2 Outro Output A
+Map	track7clip2outrob		Track 7 Clip 2 Outro Output B
+Map	track7clip2outroc		Track 7 Clip 2 Outro Output C
+Map	track7clip2outrod		Track 7 Clip 2 Outro Output D
+Map	track7clip2outroe		Track 7 Clip 2 Outro Output E
+Map	track7clip2outrof		Track 7 Clip 2 Outro Output F
+
+Map	track8clip2outroa		Track 8 Clip 2 Outro Output A
+Map	track8clip2outrob		Track 8 Clip 2 Outro Output B
+Map	track8clip2outroc		Track 8 Clip 2 Outro Output C
+Map	track8clip2outrod		Track 8 Clip 2 Outro Output D
+Map	track8clip2outroe		Track 8 Clip 2 Outro Output E
+Map	track8clip2outrof		Track 8 Clip 2 Outro Output F
+
+Map	track1clip3outroa		Track 1 Clip 3 Outro Output A
+Map	track1clip3outrob		Track 1 Clip 3 Outro Output B
+Map	track1clip3outroc		Track 1 Clip 3 Outro Output C
+Map	track1clip3outrod		Track 1 Clip 3 Outro Output D
+Map	track1clip3outroe		Track 1 Clip 3 Outro Output E
+Map	track1clip3outrof		Track 1 Clip 3 Outro Output F
+
+Map	track2clip3outroa		Track 2 Clip 3 Outro Output A
+Map	track2clip3outrob		Track 2 Clip 3 Outro Output B
+Map	track2clip3outroc		Track 2 Clip 3 Outro Output C
+Map	track2clip3outrod		Track 2 Clip 3 Outro Output D
+Map	track2clip3outroe		Track 2 Clip 3 Outro Output E
+Map	track2clip3outrof		Track 2 Clip 3 Outro Output F
+
+Map	track3clip3outroa		Track 3 Clip 3 Outro Output A
+Map	track3clip3outrob		Track 3 Clip 3 Outro Output B
+Map	track3clip3outroc		Track 3 Clip 3 Outro Output C
+Map	track3clip3outrod		Track 3 Clip 3 Outro Output D
+Map	track3clip3outroe		Track 3 Clip 3 Outro Output E
+Map	track3clip3outrof		Track 3 Clip 3 Outro Output F
+
+Map	track4clip3outroa		Track 4 Clip 3 Outro Output A
+Map	track4clip3outrob		Track 4 Clip 3 Outro Output B
+Map	track4clip3outroc		Track 4 Clip 3 Outro Output C
+Map	track4clip3outrod		Track 4 Clip 3 Outro Output D
+Map	track4clip3outroe		Track 4 Clip 3 Outro Output E
+Map	track4clip3outrof		Track 4 Clip 3 Outro Output F
+
+Map	track5clip3outroa		Track 5 Clip 3 Outro Output A
+Map	track5clip3outrob		Track 5 Clip 3 Outro Output B
+Map	track5clip3outroc		Track 5 Clip 3 Outro Output C
+Map	track5clip3outrod		Track 5 Clip 3 Outro Output D
+Map	track5clip3outroe		Track 5 Clip 3 Outro Output E
+Map	track5clip3outrof		Track 5 Clip 3 Outro Output F
+
+Map	track6clip3outroa		Track 6 Clip 3 Outro Output A
+Map	track6clip3outrob		Track 6 Clip 3 Outro Output B
+Map	track6clip3outroc		Track 6 Clip 3 Outro Output C
+Map	track6clip3outrod		Track 6 Clip 3 Outro Output D
+Map	track6clip3outroe		Track 6 Clip 3 Outro Output E
+Map	track6clip3outrof		Track 6 Clip 3 Outro Output F
+
+Map	track7clip3outroa		Track 7 Clip 3 Outro Output A
+Map	track7clip3outrob		Track 7 Clip 3 Outro Output B
+Map	track7clip3outroc		Track 7 Clip 3 Outro Output C
+Map	track7clip3outrod		Track 7 Clip 3 Outro Output D
+Map	track7clip3outroe		Track 7 Clip 3 Outro Output E
+Map	track7clip3outrof		Track 7 Clip 3 Outro Output F
+
+Map	track8clip3outroa		Track 8 Clip 3 Outro Output A
+Map	track8clip3outrob		Track 8 Clip 3 Outro Output B
+Map	track8clip3outroc		Track 8 Clip 3 Outro Output C
+Map	track8clip3outrod		Track 8 Clip 3 Outro Output D
+Map	track8clip3outroe		Track 8 Clip 3 Outro Output E
+Map	track8clip3outrof		Track 8 Clip 3 Outro Output F
+
+Map	track1clip4outroa		Track 1 Clip 4 Outro Output A
+Map	track1clip4outrob		Track 1 Clip 4 Outro Output B
+Map	track1clip4outroc		Track 1 Clip 4 Outro Output C
+Map	track1clip4outrod		Track 1 Clip 4 Outro Output D
+Map	track1clip4outroe		Track 1 Clip 4 Outro Output E
+Map	track1clip4outrof		Track 1 Clip 4 Outro Output F
+
+Map	track2clip4outroa		Track 2 Clip 4 Outro Output A
+Map	track2clip4outrob		Track 2 Clip 4 Outro Output B
+Map	track2clip4outroc		Track 2 Clip 4 Outro Output C
+Map	track2clip4outrod		Track 2 Clip 4 Outro Output D
+Map	track2clip4outroe		Track 2 Clip 4 Outro Output E
+Map	track2clip4outrof		Track 2 Clip 4 Outro Output F
+
+Map	track3clip4outroa		Track 3 Clip 4 Outro Output A
+Map	track3clip4outrob		Track 3 Clip 4 Outro Output B
+Map	track3clip4outroc		Track 3 Clip 4 Outro Output C
+Map	track3clip4outrod		Track 3 Clip 4 Outro Output D
+Map	track3clip4outroe		Track 3 Clip 4 Outro Output E
+Map	track3clip4outrof		Track 3 Clip 4 Outro Output F
+
+Map	track4clip4outroa		Track 4 Clip 4 Outro Output A
+Map	track4clip4outrob		Track 4 Clip 4 Outro Output B
+Map	track4clip4outroc		Track 4 Clip 4 Outro Output C
+Map	track4clip4outrod		Track 4 Clip 4 Outro Output D
+Map	track4clip4outroe		Track 4 Clip 4 Outro Output E
+Map	track4clip4outrof		Track 4 Clip 4 Outro Output F
+
+Map	track5clip4outroa		Track 5 Clip 4 Outro Output A
+Map	track5clip4outrob		Track 5 Clip 4 Outro Output B
+Map	track5clip4outroc		Track 5 Clip 4 Outro Output C
+Map	track5clip4outrod		Track 5 Clip 4 Outro Output D
+Map	track5clip4outroe		Track 5 Clip 4 Outro Output E
+Map	track5clip4outrof		Track 5 Clip 4 Outro Output F
+
+Map	track6clip4outroa		Track 6 Clip 4 Outro Output A
+Map	track6clip4outrob		Track 6 Clip 4 Outro Output B
+Map	track6clip4outroc		Track 6 Clip 4 Outro Output C
+Map	track6clip4outrod		Track 6 Clip 4 Outro Output D
+Map	track6clip4outroe		Track 6 Clip 4 Outro Output E
+Map	track6clip4outrof		Track 6 Clip 4 Outro Output F
+
+Map	track7clip4outroa		Track 7 Clip 4 Outro Output A
+Map	track7clip4outrob		Track 7 Clip 4 Outro Output B
+Map	track7clip4outroc		Track 7 Clip 4 Outro Output C
+Map	track7clip4outrod		Track 7 Clip 4 Outro Output D
+Map	track7clip4outroe		Track 7 Clip 4 Outro Output E
+Map	track7clip4outrof		Track 7 Clip 4 Outro Output F
+
+Map	track8clip4outroa		Track 8 Clip 4 Outro Output A
+Map	track8clip4outrob		Track 8 Clip 4 Outro Output B
+Map	track8clip4outroc		Track 8 Clip 4 Outro Output C
+Map	track8clip4outrod		Track 8 Clip 4 Outro Output D
+Map	track8clip4outroe		Track 8 Clip 4 Outro Output E
+Map	track8clip4outrof		Track 8 Clip 4 Outro Output F
+
+Map	track1clip5outroa		Track 1 Clip 5 Outro Output A
+Map	track1clip5outrob		Track 1 Clip 5 Outro Output B
+Map	track1clip5outroc		Track 1 Clip 5 Outro Output C
+Map	track1clip5outrod		Track 1 Clip 5 Outro Output D
+Map	track1clip5outroe		Track 1 Clip 5 Outro Output E
+Map	track1clip5outrof		Track 1 Clip 5 Outro Output F
+
+Map	track2clip5outroa		Track 2 Clip 5 Outro Output A
+Map	track2clip5outrob		Track 2 Clip 5 Outro Output B
+Map	track2clip5outroc		Track 2 Clip 5 Outro Output C
+Map	track2clip5outrod		Track 2 Clip 5 Outro Output D
+Map	track2clip5outroe		Track 2 Clip 5 Outro Output E
+Map	track2clip5outrof		Track 2 Clip 5 Outro Output F
+
+Map	track3clip5outroa		Track 3 Clip 5 Outro Output A
+Map	track3clip5outrob		Track 3 Clip 5 Outro Output B
+Map	track3clip5outroc		Track 3 Clip 5 Outro Output C
+Map	track3clip5outrod		Track 3 Clip 5 Outro Output D
+Map	track3clip5outroe		Track 3 Clip 5 Outro Output E
+Map	track3clip5outrof		Track 3 Clip 5 Outro Output F
+
+Map	track4clip5outroa		Track 4 Clip 5 Outro Output A
+Map	track4clip5outrob		Track 4 Clip 5 Outro Output B
+Map	track4clip5outroc		Track 4 Clip 5 Outro Output C
+Map	track4clip5outrod		Track 4 Clip 5 Outro Output D
+Map	track4clip5outroe		Track 4 Clip 5 Outro Output E
+Map	track4clip5outrof		Track 4 Clip 5 Outro Output F
+
+Map	track5clip5outroa		Track 5 Clip 5 Outro Output A
+Map	track5clip5outrob		Track 5 Clip 5 Outro Output B
+Map	track5clip5outroc		Track 5 Clip 5 Outro Output C
+Map	track5clip5outrod		Track 5 Clip 5 Outro Output D
+Map	track5clip5outroe		Track 5 Clip 5 Outro Output E
+Map	track5clip5outrof		Track 5 Clip 5 Outro Output F
+
+Map	track6clip5outroa		Track 6 Clip 5 Outro Output A
+Map	track6clip5outrob		Track 6 Clip 5 Outro Output B
+Map	track6clip5outroc		Track 6 Clip 5 Outro Output C
+Map	track6clip5outrod		Track 6 Clip 5 Outro Output D
+Map	track6clip5outroe		Track 6 Clip 5 Outro Output E
+Map	track6clip5outrof		Track 6 Clip 5 Outro Output F
+
+Map	track7clip5outroa		Track 7 Clip 5 Outro Output A
+Map	track7clip5outrob		Track 7 Clip 5 Outro Output B
+Map	track7clip5outroc		Track 7 Clip 5 Outro Output C
+Map	track7clip5outrod		Track 7 Clip 5 Outro Output D
+Map	track7clip5outroe		Track 7 Clip 5 Outro Output E
+Map	track7clip5outrof		Track 7 Clip 5 Outro Output F
+
+Map	track8clip5outroa		Track 8 Clip 5 Outro Output A
+Map	track8clip5outrob		Track 8 Clip 5 Outro Output B
+Map	track8clip5outroc		Track 8 Clip 5 Outro Output C
+Map	track8clip5outrod		Track 8 Clip 5 Outro Output D
+Map	track8clip5outroe		Track 8 Clip 5 Outro Output E
+Map	track8clip5outrof		Track 8 Clip 5 Outro Output F
+
+Map	track1clip6outroa		Track 1 Clip 6 Outro Output A
+Map	track1clip6outrob		Track 1 Clip 6 Outro Output B
+Map	track1clip6outroc		Track 1 Clip 6 Outro Output C
+Map	track1clip6outrod		Track 1 Clip 6 Outro Output D
+Map	track1clip6outroe		Track 1 Clip 6 Outro Output E
+Map	track1clip6outrof		Track 1 Clip 6 Outro Output F
+
+Map	track2clip6outroa		Track 2 Clip 6 Outro Output A
+Map	track2clip6outrob		Track 2 Clip 6 Outro Output B
+Map	track2clip6outroc		Track 2 Clip 6 Outro Output C
+Map	track2clip6outrod		Track 2 Clip 6 Outro Output D
+Map	track2clip6outroe		Track 2 Clip 6 Outro Output E
+Map	track2clip6outrof		Track 2 Clip 6 Outro Output F
+
+Map	track3clip6outroa		Track 3 Clip 6 Outro Output A
+Map	track3clip6outrob		Track 3 Clip 6 Outro Output B
+Map	track3clip6outroc		Track 3 Clip 6 Outro Output C
+Map	track3clip6outrod		Track 3 Clip 6 Outro Output D
+Map	track3clip6outroe		Track 3 Clip 6 Outro Output E
+Map	track3clip6outrof		Track 3 Clip 6 Outro Output F
+
+Map	track4clip6outroa		Track 4 Clip 6 Outro Output A
+Map	track4clip6outrob		Track 4 Clip 6 Outro Output B
+Map	track4clip6outroc		Track 4 Clip 6 Outro Output C
+Map	track4clip6outrod		Track 4 Clip 6 Outro Output D
+Map	track4clip6outroe		Track 4 Clip 6 Outro Output E
+Map	track4clip6outrof		Track 4 Clip 6 Outro Output F
+
+Map	track5clip6outroa		Track 5 Clip 6 Outro Output A
+Map	track5clip6outrob		Track 5 Clip 6 Outro Output B
+Map	track5clip6outroc		Track 5 Clip 6 Outro Output C
+Map	track5clip6outrod		Track 5 Clip 6 Outro Output D
+Map	track5clip6outroe		Track 5 Clip 6 Outro Output E
+Map	track5clip6outrof		Track 5 Clip 6 Outro Output F
+
+Map	track6clip6outroa		Track 6 Clip 6 Outro Output A
+Map	track6clip6outrob		Track 6 Clip 6 Outro Output B
+Map	track6clip6outroc		Track 6 Clip 6 Outro Output C
+Map	track6clip6outrod		Track 6 Clip 6 Outro Output D
+Map	track6clip6outroe		Track 6 Clip 6 Outro Output E
+Map	track6clip6outrof		Track 6 Clip 6 Outro Output F
+
+Map	track7clip6outroa		Track 7 Clip 6 Outro Output A
+Map	track7clip6outrob		Track 7 Clip 6 Outro Output B
+Map	track7clip6outroc		Track 7 Clip 6 Outro Output C
+Map	track7clip6outrod		Track 7 Clip 6 Outro Output D
+Map	track7clip6outroe		Track 7 Clip 6 Outro Output E
+Map	track7clip6outrof		Track 7 Clip 6 Outro Output F
+
+Map	track8clip6outroa		Track 8 Clip 6 Outro Output A
+Map	track8clip6outrob		Track 8 Clip 6 Outro Output B
+Map	track8clip6outroc		Track 8 Clip 6 Outro Output C
+Map	track8clip6outrod		Track 8 Clip 6 Outro Output D
+Map	track8clip6outroe		Track 8 Clip 6 Outro Output E
+Map	track8clip6outrof		Track 8 Clip 6 Outro Output F
+
+Map	track1clip7outroa		Track 1 Clip 7 Outro Output A
+Map	track1clip7outrob		Track 1 Clip 7 Outro Output B
+Map	track1clip7outroc		Track 1 Clip 7 Outro Output C
+Map	track1clip7outrod		Track 1 Clip 7 Outro Output D
+Map	track1clip7outroe		Track 1 Clip 7 Outro Output E
+Map	track1clip7outrof		Track 1 Clip 7 Outro Output F
+
+Map	track2clip7outroa		Track 2 Clip 7 Outro Output A
+Map	track2clip7outrob		Track 2 Clip 7 Outro Output B
+Map	track2clip7outroc		Track 2 Clip 7 Outro Output C
+Map	track2clip7outrod		Track 2 Clip 7 Outro Output D
+Map	track2clip7outroe		Track 2 Clip 7 Outro Output E
+Map	track2clip7outrof		Track 2 Clip 7 Outro Output F
+
+Map	track3clip7outroa		Track 3 Clip 7 Outro Output A
+Map	track3clip7outrob		Track 3 Clip 7 Outro Output B
+Map	track3clip7outroc		Track 3 Clip 7 Outro Output C
+Map	track3clip7outrod		Track 3 Clip 7 Outro Output D
+Map	track3clip7outroe		Track 3 Clip 7 Outro Output E
+Map	track3clip7outrof		Track 3 Clip 7 Outro Output F
+
+Map	track4clip7outroa		Track 4 Clip 7 Outro Output A
+Map	track4clip7outrob		Track 4 Clip 7 Outro Output B
+Map	track4clip7outroc		Track 4 Clip 7 Outro Output C
+Map	track4clip7outrod		Track 4 Clip 7 Outro Output D
+Map	track4clip7outroe		Track 4 Clip 7 Outro Output E
+Map	track4clip7outrof		Track 4 Clip 7 Outro Output F
+
+Map	track5clip7outroa		Track 5 Clip 7 Outro Output A
+Map	track5clip7outrob		Track 5 Clip 7 Outro Output B
+Map	track5clip7outroc		Track 5 Clip 7 Outro Output C
+Map	track5clip7outrod		Track 5 Clip 7 Outro Output D
+Map	track5clip7outroe		Track 5 Clip 7 Outro Output E
+Map	track5clip7outrof		Track 5 Clip 7 Outro Output F
+
+Map	track6clip7outroa		Track 6 Clip 7 Outro Output A
+Map	track6clip7outrob		Track 6 Clip 7 Outro Output B
+Map	track6clip7outroc		Track 6 Clip 7 Outro Output C
+Map	track6clip7outrod		Track 6 Clip 7 Outro Output D
+Map	track6clip7outroe		Track 6 Clip 7 Outro Output E
+Map	track6clip7outrof		Track 6 Clip 7 Outro Output F
+
+Map	track7clip7outroa		Track 7 Clip 7 Outro Output A
+Map	track7clip7outrob		Track 7 Clip 7 Outro Output B
+Map	track7clip7outroc		Track 7 Clip 7 Outro Output C
+Map	track7clip7outrod		Track 7 Clip 7 Outro Output D
+Map	track7clip7outroe		Track 7 Clip 7 Outro Output E
+Map	track7clip7outrof		Track 7 Clip 7 Outro Output F
+
+Map	track8clip7outroa		Track 8 Clip 7 Outro Output A
+Map	track8clip7outrob		Track 8 Clip 7 Outro Output B
+Map	track8clip7outroc		Track 8 Clip 7 Outro Output C
+Map	track8clip7outrod		Track 8 Clip 7 Outro Output D
+Map	track8clip7outroe		Track 8 Clip 7 Outro Output E
+Map	track8clip7outrof		Track 8 Clip 7 Outro Output F
+
+Map	track1clip8outroa		Track 1 Clip 8 Outro Output A
+Map	track1clip8outrob		Track 1 Clip 8 Outro Output B
+Map	track1clip8outroc		Track 1 Clip 8 Outro Output C
+Map	track1clip8outrod		Track 1 Clip 8 Outro Output D
+Map	track1clip8outroe		Track 1 Clip 8 Outro Output E
+Map	track1clip8outrof		Track 1 Clip 8 Outro Output F
+
+Map	track2clip8outroa		Track 2 Clip 8 Outro Output A
+Map	track2clip8outrob		Track 2 Clip 8 Outro Output B
+Map	track2clip8outroc		Track 2 Clip 8 Outro Output C
+Map	track2clip8outrod		Track 2 Clip 8 Outro Output D
+Map	track2clip8outroe		Track 2 Clip 8 Outro Output E
+Map	track2clip8outrof		Track 2 Clip 8 Outro Output F
+
+Map	track3clip8outroa		Track 3 Clip 8 Outro Output A
+Map	track3clip8outrob		Track 3 Clip 8 Outro Output B
+Map	track3clip8outroc		Track 3 Clip 8 Outro Output C
+Map	track3clip8outrod		Track 3 Clip 8 Outro Output D
+Map	track3clip8outroe		Track 3 Clip 8 Outro Output E
+Map	track3clip8outrof		Track 3 Clip 8 Outro Output F
+
+Map	track4clip8outroa		Track 4 Clip 8 Outro Output A
+Map	track4clip8outrob		Track 4 Clip 8 Outro Output B
+Map	track4clip8outroc		Track 4 Clip 8 Outro Output C
+Map	track4clip8outrod		Track 4 Clip 8 Outro Output D
+Map	track4clip8outroe		Track 4 Clip 8 Outro Output E
+Map	track4clip8outrof		Track 4 Clip 8 Outro Output F
+
+Map	track5clip8outroa		Track 5 Clip 8 Outro Output A
+Map	track5clip8outrob		Track 5 Clip 8 Outro Output B
+Map	track5clip8outroc		Track 5 Clip 8 Outro Output C
+Map	track5clip8outrod		Track 5 Clip 8 Outro Output D
+Map	track5clip8outroe		Track 5 Clip 8 Outro Output E
+Map	track5clip8outrof		Track 5 Clip 8 Outro Output F
+
+Map	track6clip8outroa		Track 6 Clip 8 Outro Output A
+Map	track6clip8outrob		Track 6 Clip 8 Outro Output B
+Map	track6clip8outroc		Track 6 Clip 8 Outro Output C
+Map	track6clip8outrod		Track 6 Clip 8 Outro Output D
+Map	track6clip8outroe		Track 6 Clip 8 Outro Output E
+Map	track6clip8outrof		Track 6 Clip 8 Outro Output F
+
+Map	track7clip8outroa		Track 7 Clip 8 Outro Output A
+Map	track7clip8outrob		Track 7 Clip 8 Outro Output B
+Map	track7clip8outroc		Track 7 Clip 8 Outro Output C
+Map	track7clip8outrod		Track 7 Clip 8 Outro Output D
+Map	track7clip8outroe		Track 7 Clip 8 Outro Output E
+Map	track7clip8outrof		Track 7 Clip 8 Outro Output F
+
+Map	track8clip8outroa		Track 8 Clip 8 Outro Output A
+Map	track8clip8outrob		Track 8 Clip 8 Outro Output B
+Map	track8clip8outroc		Track 8 Clip 8 Outro Output C
+Map	track8clip8outrod		Track 8 Clip 8 Outro Output D
+Map	track8clip8outroe		Track 8 Clip 8 Outro Output E
+Map	track8clip8outrof		Track 8 Clip 8 Outro Output F

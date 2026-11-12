@@ -1,13 +1,16 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local const = require "src.lppmk3.config.constants"
-local items = require "src.lppmk3.config.items"
-local launchnik = require "src.lppmk3.lib.launchnik._"
+local items = require "src.lpp.config.items"
+local launchnik = require "src.lpp.lib.launchnik._"
 local processSetupButton = require "src.lppmk3.remote.processMidi.setupButton"
-local processSurface = require "src.lppmk3.remote.processMidi.surface"
-local defineItemIndices = require "test.lppmk3.defineItemIndices"
+local makeProcessSurface = require "src.lpp.remote.processMidi.surface"
+local device = require "src.lppmk3.device"
+local defineItemIndices = require "test.lpp.defineItemIndices"
 
 TestProcessSetupButton = {}
+
+local processSurface = makeProcessSurface(device)
 
 local layoutReportMidi = "f0 00 20 29 02 0e 00 xx yy 00 f7"
 local programmerLayout = 17

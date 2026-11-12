@@ -30,16 +30,23 @@ require "test.lcxl3.TestRemoteInit"
 require "test.lcxl3.TestShouldDisplay"
 require "test.lcxl3.TestStateManagement"
 
+-- Launchpad Pro [MK2] and [MK3]
+require "test.lpp.TestPress"
+require "test.lpp.TestStateShift"
+for _, entry in ipairs(require "test.lpp.devices") do
+  for _, name in ipairs({ "TestCodec", "TestLaunchnikLights", "TestPadsOff", "TestProcessLaunchnik", "TestProcessShift", "TestSurfacePorts", "TestTransport" }) do
+    require("test.lpp." .. name)(entry.device, entry.suffix)
+  end
+end
+
 -- Launchpad Pro [MK3]
 require "test.lppmk3.TestMakeColourEvent"
-require "test.lppmk3.TestPadsOff"
-require "test.lppmk3.TestProcessShift"
-require "test.lppmk3.TestLaunchnikLights"
-require "test.lppmk3.TestPress"
-require "test.lppmk3.TestProcessLaunchnik"
 require "test.lppmk3.TestProcessSetupButton"
-require "test.lppmk3.TestSurfacePorts"
-require "test.lppmk3.TestStateShift"
-require "test.lppmk3.TestTransport"
+
+-- Launchpad Pro [MK2]
+require "test.lppmk2.TestDevice"
+require "test.lppmk2.TestFunctionSelect"
+require "test.lppmk2.TestMakeColourEvent"
+require "test.lppmk2.TestProcessSetupButton"
 
 os.exit(lu.LuaUnit.run())
