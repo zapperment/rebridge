@@ -1,0 +1,157 @@
+Launchpad X remote codec for Launchnik
+======================================
+
+Version @VERSION@, built on @BUILD_DATE@ from commit @COMMIT@
+https://github.com/zapperment/rebridge
+
+This remote codec lets you control the Launchnik rack extension in Reason
+with a Novation Launchpad X: the 8x8 pads stand for Launchnik's launch
+buttons, and the buttons around them for its scene, setup, back, forward,
+fill-in, clear and duplicate buttons. The Launchpad X has few buttons, so
+Launchnik's function buttons are on the pads of the bottom row while the
+Capture MIDI button is held down.
+
+You need:
+
+- Reason (stand-alone, not Reason Rack Plugin)
+- Launchnik, version 1.0.0d23 or later
+  (https://github.com/zapperment/launchnik)
+- a Novation Launchpad X, connected by USB
+
+
+What is in this zip
+-------------------
+
+readme.txt                                      this file
+Remote/Codecs/Lua Codecs/Novation/LPX.lua       the codec
+Remote/Codecs/Lua Codecs/Novation/LPX.luacodec  the codec's description
+Remote/Codecs/Lua Codecs/Novation/LPX.png       the picture Reason shows
+Remote/Maps/Novation/LPX.remotemap              the remote map
+
+
+Installing on a Mac
+-------------------
+
+1. Quit Reason.
+2. In the Finder, choose Go > Go to Folder... and enter:
+
+     ~/Library/Application Support/Propellerhead Software
+
+   (The Library folder is hidden; Go to Folder gets you there anyway.)
+3. If there is no folder named "Remote" in it, create one.
+4. Copy the files from the zip into it, keeping their folders:
+
+     LPX.lua, LPX.luacodec and LPX.png
+       go to  Remote/Codecs/Lua Codecs/Novation
+     LPX.remotemap
+       goes to  Remote/Maps/Novation
+
+   Create any of these folders that do not exist yet. Do not drag the zip's
+   "Remote" folder onto the existing one: the Finder would replace the
+   folder, and with it any other codecs and maps you have installed.
+
+
+Installing on Windows
+---------------------
+
+1. Quit Reason.
+2. In File Explorer, click the address bar, enter the following and press
+   Enter:
+
+     %APPDATA%\Propellerhead Software
+
+   (The AppData folder is hidden; typing the address gets you there anyway.)
+3. If there is no folder named "Remote" in it, create one.
+4. Copy the files from the zip into it, keeping their folders:
+
+     LPX.lua, LPX.luacodec and LPX.png
+       go to  Remote\Codecs\Lua Codecs\Novation
+     LPX.remotemap
+       goes to  Remote\Maps\Novation
+
+   Create any of these folders that do not exist yet. Dragging the zip's
+   "Remote" folder onto the existing one is fine on Windows: File Explorer
+   merges the folders.
+
+
+Adding the Launchpad in Reason
+------------------------------
+
+1. Start Reason and open Settings (Preferences on older versions), then the
+   MIDI page.
+2. Under "Remote keyboards and controllers", click "Add manually".
+3. Choose manufacturer "Novation" and model "Launchpad X".
+4. Set the ports to the Launchpad's MIDI port, not its DAW port:
+
+     Input (LPX MIDI)
+       on a Mac:    Launchpad X LPX MIDI Out
+       on Windows:  MIDIIN2 (LPX MIDI)
+     Output (LPX MIDI)
+       on a Mac:    Launchpad X LPX MIDI In
+       on Windows:  MIDIOUT2 (LPX MIDI)
+
+5. Click OK, add a Launchnik to your rack and select its track in the
+   sequencer: the Launchpad now controls it.
+
+
+Buttons
+-------
+
+The Launchpad X has only sixteen buttons, so Launchnik's buttons are on
+buttons with a different caption, and some of them on pads and buttons
+while the Capture MIDI button is held down:
+
+  Session                 Launchnik's setup button (acts when let go)
+  Left / Right arrows     back and forward buttons
+  Up arrow                play (Reason's transport)
+  Down arrow              fill-in button (held for as long as it is)
+  Note                    clear button
+  Custom                  duplicate button
+  Capture MIDI            Shift: hold it down for the following
+  scene buttons (right)   Launchnik's scene buttons
+  Novation logo           Launchnik's mode colour
+
+While Capture MIDI is held down:
+
+  pads of the bottom row  function buttons of the eight tracks
+  lowest three scene buttons
+                          choose the function of the function buttons:
+                          stop, solo and mute, from the top
+  Up arrow                record (Reason's transport)
+
+The pads of the bottom row and the three scene buttons show the lights of
+those buttons for as long as Capture MIDI is held down, and what they showed
+before once it is let go.
+
+The pads act however lightly they are pressed; their pressure is not used.
+
+While Reason uses the Launchpad, holding Session does not open the
+Launchpad's own setup page.
+
+
+Updating
+--------
+
+Copy the new files over the old ones, as when installing. Reason need not be
+restarted: in Settings > MIDI, switch the Launchpad's "Active" box off and on
+again.
+
+
+Removing
+--------
+
+Remove the Launchpad in Settings > MIDI, quit Reason and delete the four
+LPX files.
+
+
+Disclaimer
+----------
+
+The project maintainer is in no way associated with Novation nor Reason
+Studios. Company and product names are trademarks of Novation or Reason
+Studios.
+
+The project is strictly non-commercial, free to use by anyone without
+limitations. It comes without any warranty of any kind. The project maintainer
+cannot be held accountable for any problems with your music production setup
+that may be caused by this software.

@@ -12,7 +12,10 @@ usage() {
   echo "Usage: $(basename "$0") <controller>" >&2
   echo "" >&2
   echo "  controller   the controller to package, one of:" >&2
+  echo "                 LPMMK3  Novation Launchpad Mini [MK3]" >&2
+  echo "                 LPP     Novation Launchpad Pro" >&2
   echo "                 LPPMK3  Novation Launchpad Pro [MK3]" >&2
+  echo "                 LPX     Novation Launchpad X" >&2
 }
 
 if [[ $# -ne 1 ]]; then
@@ -22,9 +25,21 @@ fi
 
 controller="$(echo "$1" | tr '[:lower:]' '[:upper:]')"
 case "$controller" in
+  LPMMK3)
+    zip_name="Launchpad-Mini-MK3-remote-codec-for-Launchnik.zip"
+    constants="src/lpmmk3/config/constants.lua"
+    ;;
+  LPP)
+    zip_name="Launchpad-Pro-remote-codec-for-Launchnik.zip"
+    constants="src/lpp/config/constants.lua"
+    ;;
   LPPMK3)
     zip_name="Launchpad-Pro-MK3-remote-codec-for-Launchnik.zip"
     constants="src/lppmk3/config/constants.lua"
+    ;;
+  LPX)
+    zip_name="Launchpad-X-remote-codec-for-Launchnik.zip"
+    constants="src/lpx/config/constants.lua"
     ;;
   *)
     echo "Error: unsupported controller '$1'" >&2

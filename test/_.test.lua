@@ -30,16 +30,30 @@ require "test.lcxl3.TestRemoteInit"
 require "test.lcxl3.TestShouldDisplay"
 require "test.lcxl3.TestStateManagement"
 
+-- the Launchpads
+require "test.lpcommon.TestPress"
+require "test.lpcommon.TestMakeChannelColourEvent"
+require "test.lpcommon.TestShiftLayer"
+require "test.lpcommon.TestStateShift"
+for _, entry in ipairs(require "test.lpcommon.devices") do
+  for _, name in ipairs({ "TestCodec", "TestLaunchnikLights", "TestPadsOff", "TestProcessLaunchnik", "TestProcessShift", "TestSurfaceInput", "TestSurfacePorts", "TestTransport" }) do
+    require("test.lpcommon." .. name)(entry.device, entry.suffix)
+  end
+end
+
 -- Launchpad Pro [MK3]
-require "test.lppmk3.TestMakeColourEvent"
-require "test.lppmk3.TestPadsOff"
-require "test.lppmk3.TestProcessShift"
-require "test.lppmk3.TestLaunchnikLights"
-require "test.lppmk3.TestPress"
-require "test.lppmk3.TestProcessLaunchnik"
 require "test.lppmk3.TestProcessSetupButton"
-require "test.lppmk3.TestSurfacePorts"
-require "test.lppmk3.TestStateShift"
-require "test.lppmk3.TestTransport"
+
+-- Launchpad Pro
+require "test.lpp.TestDevice"
+require "test.lpp.TestFunctionSelect"
+require "test.lpp.TestMakeColourEvent"
+require "test.lpp.TestProcessSetupButton"
+
+-- Launchpad Mini [MK3] and Launchpad X
+for _, entry in ipairs(require "test.lpcommon.sixteenButtonDevices") do
+  require "test.lpcommon.TestSixteenButtonDevice"(entry.device, entry.suffix, entry.sysexHeader)
+  require "test.lpcommon.TestSixteenButtonShiftLayer"(entry.device, entry.suffix)
+end
 
 os.exit(lu.LuaUnit.run())

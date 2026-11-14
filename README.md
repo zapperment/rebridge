@@ -4,7 +4,7 @@
 
 The goal of this project is to allow you to use Reason rack devices without having to look at the screen, for a “DAW-less experience”.
 
-ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3 and the Launchpad Pro \[MK3\].
+ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3, the Launchpad Pro \[MK3\], the Launchpad Pro, the Launchpad Mini \[MK3\] and the Launchpad X.
 
 While the Launchpad codec is still in its early stages of development, the Launch Control codec is already quite useful.
 
@@ -255,3 +255,43 @@ If you use the IDE VS Code with the Dev Container extension, the dev container w
 You will have to run the command in a terminal outside the dev container (i.e. not in your IDE).
 
 If you are working on the build and installation scripts, you can use the `.env.devcontainer` file to simlulate a Reason installation on the dev container system, but this is only to see if the files are deployed to the proper file system locations.
+
+## Launchpad Pro with Launchnik
+
+The original Launchpad Pro, which came before the Launchpad Pro \[MK3\], controls Launchnik in the same way, with the same code. It has fewer buttons, so some of Launchnik's buttons are on buttons with a different caption:
+
+- *Session* stands for Launchnik's setup button, which acts when it is released; the surface's own *Setup* button sends nothing the codec could use.
+- The *Left* and *Right* arrows stand for the back and forward buttons.
+- *Delete*, *Duplicate* and *Quantise* stand for the clear, duplicate and fill-in buttons.
+- *Double* and *Record* start and stop Reason's transport and switch recording on and off.
+- The row of buttons beneath the grid are the function buttons of the eight tracks. Hold *Shift* and press *Mute*, *Solo* or *Stop Clip* in that row to choose their function; while *Shift* is held, the row shows which function is chosen.
+- The LED on the front edge of the surface shows Launchnik's mode colour.
+
+When adding the surface in Reason's settings (model “Launchpad Pro”), set its input and output to the Launchpad's standalone port: “Launchpad Pro Standalone Port” on a Mac, “MIDIIN2 (Launchpad Pro)” and “MIDIOUT2 (Launchpad Pro)” on Windows.
+
+## Launchpad Mini [MK3] with Launchnik
+
+The Launchpad Mini \[MK3\] controls Launchnik with the same code, too. It has only the sixteen buttons of its top row and right-hand column, so Launchnik's buttons are on buttons with a different caption, and some of them only while *User* is held down:
+
+- *Session* stands for Launchnik's setup button, which acts when it is released. While Reason uses the surface, holding *Session* does not open the surface's own setup page.
+- The *Left* and *Right* arrows stand for the back and forward buttons.
+- The *Up* arrow starts and stops Reason's transport; the *Down* arrow stands for the fill-in button.
+- *Drums* and *Keys* stand for the clear and duplicate buttons.
+- *User* is Shift. While it is held:
+  - the pads of the bottom row are the function buttons of the eight tracks, and show their lights;
+  - the lowest three scene buttons choose their function (stop, solo and mute, from the top) and show which one is chosen;
+  - the *Up* arrow switches Reason's recording on and off, and shows whether it is on.
+- The Novation logo shows Launchnik's mode colour.
+
+When adding the surface in Reason's settings (model “Launchpad Mini \[MK3\]”), set its input and output to the Launchpad's MIDI port, not its DAW port: “LPMiniMK3 MIDI Out” and “LPMiniMK3 MIDI In” on a Mac, “MIDIIN2 (LPMiniMK3 MIDI)” and “MIDIOUT2 (LPMiniMK3 MIDI)” on Windows.
+
+## Launchpad X with Launchnik
+
+The Launchpad X has the same pads and buttons in the same places as the Launchpad Mini \[MK3\], and controls Launchnik in the same way. Only the captions of three buttons differ:
+
+- *Note* and *Custom* stand for the clear and duplicate buttons.
+- *Capture MIDI* is Shift.
+
+The pads act however lightly they are pressed; their pressure is not used.
+
+When adding the surface in Reason's settings (model “Launchpad X”), set its input and output to the Launchpad's MIDI port, not its DAW port: “LPX MIDI Out” and “LPX MIDI In” on a Mac, “MIDIIN2 (LPX MIDI)” and “MIDIOUT2 (LPX MIDI)” on Windows.

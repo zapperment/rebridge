@@ -1,0 +1,22 @@
+version = { 0, 0, 1 }
+
+function remote_supported_control_surfaces()
+  local surfaces = {
+    {
+      manufacturer = "Novation",
+      model = "Launchpad X",
+      source = "LPX.lua",
+      picture = "LPX.png",
+      in_ports = {
+        { description = "Input (LPX MIDI)" },
+      },
+      out_ports = {
+        { description = "Output (LPX MIDI)" },
+      },
+      setup_info_text =
+      "Launchpad X is Novation's essential grid controller, with velocity and pressure-sensitive pads. This remote codec makes it control the Launchnik rack extension.",
+      has_keyboard = false
+    }
+  }
+  return surfaces
+end

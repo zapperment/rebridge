@@ -1,0 +1,23 @@
+version = { 0, 0, 1 }
+
+function remote_supported_control_surfaces()
+  local surfaces = {
+    {
+      manufacturer = "Novation",
+      model = "Launchpad Pro (developer version)",
+      source = "LPP.lua",
+      picture = "LPP.png",
+      in_ports = {
+        { description = "Input (Launchpad Pro Standalone Port)" },
+      },
+      out_ports = {
+        { description = "Output (Launchpad Pro Standalone Port)" },
+        { description = "Output (log)" },
+      },
+      setup_info_text =
+      "Launchpad Pro is Novation's grid controller for producing and performing. This remote codec makes it control the Launchnik rack extension. This version of the remote codec has an additional port which is used to send log messages for developers",
+      has_keyboard = false
+    }
+  }
+  return surfaces
+end
