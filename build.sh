@@ -73,6 +73,11 @@ if [[ -f "$env_file" ]]; then
   set +a
 fi
 
+# luabundler is one of the project's dependencies; yarn puts their commands on
+# the path, but this script also runs without yarn (as scripts/package-release.sh
+# runs it on GitHub Actions)
+PATH="$script_dir/node_modules/.bin:$PATH"
+
 log_verbose "Building for controller ${controller}"
 
 # The dist dirs are shared by all controllers, so only replace this controller's files
