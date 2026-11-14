@@ -1,10 +1,9 @@
-local press = require "src.lppcommon.lib.launchnik.press"
+local press = require "src.lpcommon.lib.launchnik.press"
 
 -- The control changes of the surface's round buttons in programmer mode that
--- the codec uses, other than the scene buttons, the play button and the
--- record button, which are the same on the Launchpad Pro. The pads send
--- notes 11 at the bottom left to 88 at the top right, the scene buttons the
--- control change that continues the numbering of the pads in their row.
+-- the codec uses, other than the scene buttons. The pads send notes 11 at the
+-- bottom left to 88 at the top right, the scene buttons the control change
+-- that continues the numbering of the pads in their row.
 return {
   shift = 90,
   -- the button with the arrow pointing left, beside Shift
@@ -31,6 +30,7 @@ return {
     [3] = press.functionSolo,
     [8] = press.functionStop,
   },
-  -- they are buttons of their own, not the function buttons with Shift held
-  functionSelectWithShift = false,
+  -- the Play and Record buttons at the bottom of the left-hand column
+  play = 20,
+  record = 10,
 }

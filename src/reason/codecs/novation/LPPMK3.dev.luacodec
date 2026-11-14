@@ -12,7 +12,7 @@ function remote_supported_control_surfaces()
         { description = "Input (LPProMK3 DAW)" },
       },
       out_ports = {
-        { description = "Input (LPProMK3 MIDI)" },
+        { description = "Output (LPProMK3 MIDI)" },
         { description = "Output (log)" },
       },
       setup_info_text =

@@ -1,5 +1,4 @@
 local const = require "src.lpp.config.constants"
+local midi = require "src.lpcommon.lib.midi._"
 
-return function(payload, options)
-  return remote.make_midi(const.sysexHeader .. " " .. payload .. " f7", options or {})
-end
+return midi.makeSysexEvent(const.sysexHeader)

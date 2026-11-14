@@ -2,7 +2,7 @@
 
 Vocabulary of the Launchpad Pro remote codec for Reason. It drives
 Launchnik as the Launchpad Pro [MK3] codec does, from the same code in
-`src/lppcommon`, and uses the words of the [MK3] glossary
+`src/lpcommon`, and uses the words of the [MK3] glossary
 (`src/lppmk3/CONTEXT.md`), which this one only adds to: where the Launchpad
 Pro lacks a button the [MK3] has, a button with the closest caption stands
 in.
@@ -25,11 +25,14 @@ _Avoid_: programmer mode (that is the [MK3]'s word)
 One of the eight buttons in the only row beneath the grid (CC 1 to 8), as on
 the [MK3].
 
+**Shift layer**:
+The controls that buttons stand for while Shift is held, and whose lights
+they show for as long as it is (see `src/lpmmk3/CONTEXT.md`).
+
 **Function select button**:
-The function button printed Mute (CC 3), Solo (CC 4) or Stop Clip (CC 8)
-while Shift is held. While Shift is held, the row shows the function select
-buttons' lights, the other five buttons of the row dark, instead of the
-function buttons' lights.
+The function button printed Mute (CC 3), Solo (CC 4) or Stop Clip (CC 8) on
+the Shift layer, where the other five buttons of the row are dark and do
+nothing.
 _Avoid_: mode button
 
 **Setup button**:

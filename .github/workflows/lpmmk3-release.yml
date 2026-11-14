@@ -1,0 +1,45 @@
+# Publishes the Launchpad Mini [MK3] remote codec for Launchnik as a zip, see
+# lpcommon-release.yml, whenever anything it is made from changes on main.
+name: Launchpad Mini [MK3] release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/lpcommon/**"
+      - "src/lpmmk3/**"
+      - "src/lib/**"
+      - "src/config/constants.lua"
+      - "src/reason/codecs/novation/LPMMK3*"
+      - "src/reason/maps/novation/LPMMK3*"
+      - "src/reason/release/LPMMK3*"
+      - "build.sh"
+      - "scripts/package-release.sh"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/lpcommon-release.yml"
+      - ".github/workflows/lpmmk3-release.yml"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Replace the zip in the release (off to only test and package)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+# Two runs must not replace the release at the same time
+concurrency:
+  group: lpmmk3-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: ./.github/workflows/lpcommon-release.yml
+    with:
+      controller: LPMMK3
+      tag: lpmmk3-latest
+      title: Launchpad Mini [MK3] remote codec for Launchnik
+      zip-file: temp/release/Launchpad-Mini-MK3-remote-codec-for-Launchnik.zip
+      publish: ${{ github.event_name == 'push' || inputs.publish }}

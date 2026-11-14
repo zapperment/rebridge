@@ -1,12 +1,12 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local const = require "src.lppmk3.config.constants"
-local items = require "src.lppcommon.config.items"
-local launchnik = require "src.lppcommon.lib.launchnik._"
+local items = require "src.lpcommon.config.items"
+local launchnik = require "src.lpcommon.lib.launchnik._"
 local processSetupButton = require "src.lppmk3.remote.processMidi.setupButton"
-local makeProcessSurface = require "src.lppcommon.remote.processMidi.surface"
+local makeProcessSurface = require "src.lpcommon.remote.processMidi.surface"
 local device = require "src.lppmk3.device"
-local defineItemIndices = require "test.lppcommon.defineItemIndices"
+local defineItemIndices = require "test.lpcommon.defineItemIndices"
 
 TestProcessSetupButton = {}
 

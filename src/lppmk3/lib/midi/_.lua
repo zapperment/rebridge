@@ -1,4 +1,7 @@
+local const = require "src.lppmk3.config.constants"
+local midi = require "src.lpcommon.lib.midi._"
+
 return {
-  makeSysexEvent = require "src.lppmk3.lib.midi.makeSysexEvent",
-  makeColourEvent = require "src.lppmk3.lib.midi.makeColourEvent",
+  makeSysexEvent = midi.makeSysexEvent(const.sysexHeader),
+  makeColourEvent = midi.makeChannelColourEvent,
 }

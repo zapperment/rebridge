@@ -1,7 +1,6 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
-local items = require "src.lppcommon.config.items"
-local press = require "src.lppcommon.lib.launchnik.press"
+local press = require "src.lpcommon.lib.launchnik.press"
 local device = require "src.lpp.device"
 
 TestDeviceLPP = {}
@@ -28,10 +27,20 @@ function TestDeviceLPP:testButtonsAreThoseWithTheClosestCaption()
   lu.assertEquals(c.setup, 95)
   lu.assertEquals(c.logo, 99)
   lu.assertEquals(c.firstFunctionButton, 1)
-  lu.assertEquals(c.functionSelectButtons, { [3] = press.functionMute, [4] = press.functionSolo, [8] = press.functionStop })
-  lu.assertTrue(c.functionSelectWithShift)
   -- Double and Record
-  lu.assertEquals({ items.playButton.controller, items.recordButton.controller }, { 20, 10 })
+  lu.assertEquals({ c.play, c.record }, { 20, 10 })
+end
+
+-- with Shift held, the function buttons printed Mute (3), Solo (4) and Stop
+-- Clip (8) are the function select buttons, and the rest of the row nothing
+function TestDeviceLPP:testFunctionSelectButtonsAreOnTheShiftLayer()
+  local functions = {}
+  for place = 1, 8 do
+    local control = c.shiftLayer[place]
+    lu.assertNotNil(control)
+    functions[place] = control and c.functionSelectButtons[control]
+  end
+  lu.assertEquals(functions, { false, false, press.functionMute, press.functionSolo, false, false, false, press.functionStop })
 end
 
 -- every control the codec uses is a different one
@@ -41,15 +50,16 @@ function TestDeviceLPP:testControlsDoNotOverlap()
     lu.assertNil(used[control], "control " .. control .. " used twice")
     used[control] = true
   end
-  for _, name in ipairs({ "shift", "back", "forward", "clear", "duplicate", "fillIn", "setup", "logo" }) do
+  for _, name in ipairs({ "shift", "back", "forward", "clear", "duplicate", "fillIn", "setup", "logo", "play", "record" }) do
     use(c[name])
   end
-  use(items.playButton.controller)
-  use(items.recordButton.controller)
   for control = c.firstFunctionButton, c.firstFunctionButton + 7 do
     use(control)
   end
   for row = 1, 8 do
     use(row * 10 + 9)
+  end
+  for control in pairs(c.functionSelectButtons) do
+    use(control)
   end
 end

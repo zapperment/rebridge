@@ -1,11 +1,11 @@
 local test = require "test.lib._"
 local lu = test.luaUnit
 local const = require "src.lpp.config.constants"
-local items = require "src.lppcommon.config.items"
-local launchnik = require "src.lppcommon.lib.launchnik._"
-local makeProcessSurface = require "src.lppcommon.remote.processMidi.surface"
+local items = require "src.lpcommon.config.items"
+local launchnik = require "src.lpcommon.lib.launchnik._"
+local makeProcessSurface = require "src.lpcommon.remote.processMidi.surface"
 local device = require "src.lpp.device"
-local defineItemIndices = require "test.lppcommon.defineItemIndices"
+local defineItemIndices = require "test.lpcommon.defineItemIndices"
 
 -- the surface's own Setup button sends nothing in programmer layout; the
 -- Session button, control change 95, stands for Launchnik's setup button

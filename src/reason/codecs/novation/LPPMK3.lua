@@ -1,4 +1,4 @@
-local makeCodec = require "src.lppcommon.codec"
+local makeCodec = require "src.lpcommon.codec"
 local device = require "src.lppmk3.device"
 
 local codec = makeCodec(device)

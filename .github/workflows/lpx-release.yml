@@ -1,0 +1,45 @@
+# Publishes the Launchpad X remote codec for Launchnik as a zip, see
+# lpcommon-release.yml, whenever anything it is made from changes on main.
+name: Launchpad X release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/lpcommon/**"
+      - "src/lpx/**"
+      - "src/lib/**"
+      - "src/config/constants.lua"
+      - "src/reason/codecs/novation/LPX*"
+      - "src/reason/maps/novation/LPX*"
+      - "src/reason/release/LPX*"
+      - "build.sh"
+      - "scripts/package-release.sh"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/lpcommon-release.yml"
+      - ".github/workflows/lpx-release.yml"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Replace the zip in the release (off to only test and package)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+# Two runs must not replace the release at the same time
+concurrency:
+  group: lpx-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: ./.github/workflows/lpcommon-release.yml
+    with:
+      controller: LPX
+      tag: lpx-latest
+      title: Launchpad X remote codec for Launchnik
+      zip-file: temp/release/Launchpad-X-remote-codec-for-Launchnik.zip
+      publish: ${{ github.event_name == 'push' || inputs.publish }}

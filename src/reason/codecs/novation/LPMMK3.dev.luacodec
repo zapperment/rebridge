@@ -1,0 +1,23 @@
+version = { 0, 0, 1 }
+
+function remote_supported_control_surfaces()
+  local surfaces = {
+    {
+      manufacturer = "Novation",
+      model = "Launchpad Mini [MK3] (developer version)",
+      source = "LPMMK3.lua",
+      picture = "LPMMK3.png",
+      in_ports = {
+        { description = "Input (LPMiniMK3 MIDI)" },
+      },
+      out_ports = {
+        { description = "Output (LPMiniMK3 MIDI)" },
+        { description = "Output (log)" },
+      },
+      setup_info_text =
+      "Launchpad Mini [MK3] is Novation's most compact and portable grid controller. This remote codec makes it control the Launchnik rack extension. This version of the remote codec has an additional port which is used to send log messages for developers",
+      has_keyboard = false
+    }
+  }
+  return surfaces
+end
