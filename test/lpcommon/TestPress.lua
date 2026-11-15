@@ -123,8 +123,18 @@ end
 -- the change a press makes to one setting of an output of mixedModes, whose
 -- other settings are those of a new clip in row 1 and its transitions: all
 -- four are one value
+-- a step of a unipolar or bipolar value, which is counted in quarter steps
+local step = press.quarterStepCount
+
+-- the value that the button of a column gives an output of mixedModes: the
+-- values are unipolar 0 and bipolar 0, whose own buttons raise them by a
+-- quarter step, while the other buttons set their step
+local function columnValue(setting, column)
+  return press.pressedValue(setting == "unipolar" and 0 or press.bipolarZero, column - 1)
+end
+
 local function settingChange(prefix, setting, output, value)
-  local settings = { pattern = 0, unipolar = 0, bipolar = 3, transition = ({ 0, 0, 2, 4, 0, 0 })[output] }
+  local settings = { pattern = 0, unipolar = 0, bipolar = 12, transition = ({ 0, 0, 2, 4, 0, 0 })[output] }
   settings[setting] = value
   return { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(settings.pattern, settings.unipolar, settings.bipolar, settings.transition) }
 end
@@ -151,12 +161,57 @@ end
 function TestPress:testClipEditingUnipolarAndBipolarValues()
   for column = 1, 7 do
     lu.assertEquals(press.launchButton(editing, column, 4, false, mixedModes(true)),
-      settingChange("", "unipolar", 2, column - 1))
+      settingChange("", "unipolar", 2, columnValue("unipolar", column)))
     lu.assertEquals(press.launchButton(editing, column, 5, false, mixedModes(true)),
-      settingChange("", "bipolar", 3, column - 1))
+      settingChange("", "bipolar", 3, columnValue("bipolar", column)))
     lu.assertEquals(press.launchButton(editing, column, 8, false, mixedModes(true)),
-      settingChange("", "unipolar", 6, column - 1))
+      settingChange("", "unipolar", 6, columnValue("unipolar", column)))
   end
+end
+
+-- the same cases as TestAPressOfTheLitButtonRaisesByAQuarterStep of
+-- LauncherTest.cpp
+function TestPress:testPressedValue()
+  lu.assertEquals(press.pressedValue(0, 2), 2 * step)
+  lu.assertEquals(press.pressedValue(2 * step, 2), 2 * step + 1)
+  lu.assertEquals(press.pressedValue(2 * step + 1, 2), 2 * step + 2)
+  lu.assertEquals(press.pressedValue(2 * step + 2, 2), 2 * step + 3)
+  lu.assertEquals(press.pressedValue(2 * step + 3, 2), 2 * step)
+  lu.assertEquals(press.pressedValue(2 * step + 3, 4), 4 * step)
+  lu.assertEquals(press.pressedValue(2 * step + 3, 1), 1 * step)
+  lu.assertEquals(press.pressedValue(0, 0), 1)
+  lu.assertEquals(press.pressedValue(6 * step, 6), 6 * step)
+end
+
+-- the same cases as TestAPressOfTheLitButtonRaisesTheValue of PressTest.cpp:
+-- a press of the button that is lit raises the value by a quarter of the way
+-- to the next button, three times, and then goes back; any other button sets
+-- its own value; the top button stays as it is
+function TestPress:testAPressOfTheLitButtonRaisesTheValue()
+  local values = { patterns = { 0, 0, 0, 0, 0, 0 }, unipolar = { 0, 2 * step, 0, 0, 0, 0 }, bipolar = { 12, 12, 4 * step, 12, 12, 12 } }
+  local function settings()
+    return press.edited(true, { 2, 1, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0 }, false, values)
+  end
+  for count = 1, 4 do
+    local unipolar = press.launchButton(editing, 3, 4, false, settings())
+    lu.assertEquals(unipolar, { kind = "output", index = picked, output = 2, value = press.packOutputSettings(0, 2 * step + count % 4, 12, 0) })
+    values.unipolar[2] = 2 * step + count % 4
+    local bipolar = press.launchButton(editing, 5, 5, false, settings())
+    lu.assertEquals(bipolar, { kind = "output", index = picked, output = 3, value = press.packOutputSettings(0, 0, 4 * step + count % 4, 0) })
+    values.bipolar[3] = 4 * step + count % 4
+  end
+  -- another button forgets the quarter steps
+  values.unipolar[2] = 2 * step + 3
+  lu.assertEquals(press.launchButton(editing, 6, 4, false, settings()).value, press.packOutputSettings(0, 5 * step, 12, 0))
+  lu.assertEquals(press.launchButton(editing, 2, 4, false, settings()).value, press.packOutputSettings(0, 1 * step, 12, 0))
+  -- the top button does not raise, the bottom one of a bipolar output does
+  values.unipolar[2] = 6 * step
+  lu.assertEquals(press.launchButton(editing, 7, 4, false, settings()).value, press.packOutputSettings(0, 6 * step, 12, 0))
+  values.bipolar[3] = 0
+  lu.assertEquals(press.launchButton(editing, 1, 5, false, settings()).value, press.packOutputSettings(0, 0, 1, 0))
+  -- the same goes for a fill-in
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 1, 5, settings(), values),
+    { { kind = "fillinoutput", index = picked, output = 3, value = press.packOutputSettings(0, 0, 1, 0) } })
 end
 
 function TestPress:testClipEditingTransitionButtonGoesRound()
@@ -301,8 +356,9 @@ end
 
 local someClipValues = {
   patterns = { 0, 1, 2, 3, 4, 5 },
-  unipolar = { 6, 5, 4, 3, 2, 1 },
-  bipolar = { 0, 1, 2, 3, 4, 5 },
+  -- with quarter steps, which are copied too
+  unipolar = { 24, 21, 18, 15, 8, 5 },
+  bipolar = { 1, 6, 11, 12, 17, 22 },
 }
 
 function TestPress:testFillInEditingDoesNothingElsewhere()
@@ -318,7 +374,7 @@ function TestPress:testFillInEditingToggleSetsUpANewFillIn()
     { kind = "fillinswitches", index = picked, value = 1 + 56 },
   }
   for output = 1, 6 do
-    table.insert(expected, { kind = "fillin" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
+    table.insert(expected, { kind = "fillin" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
   end
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), someClipValues), expected)
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(true), someClipValues), {
@@ -330,8 +386,8 @@ function TestPress:testFillInEditingColourAndCVRows()
   for column = 1, 7 do
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 1, mixedModes(true), someClipValues), { { kind = "fillinswitches", index = picked, value = 1 + 2 * (column - 1) } })
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 2, mixedModes(true), someClipValues), { { kind = "fillinswitches", index = picked, value = 1 + 2 * (6 + column) } })
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 4, mixedModes(true), someClipValues), { settingChange("fillin", "unipolar", 2, column - 1) })
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, mixedModes(true), someClipValues), { settingChange("fillin", "bipolar", 3, column - 1) })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 4, mixedModes(true), someClipValues), { settingChange("fillin", "unipolar", 2, columnValue("unipolar", column)) })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, mixedModes(true), someClipValues), { settingChange("fillin", "bipolar", 3, columnValue("bipolar", column)) })
   end
   for column = 1, 8 do
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { settingChange("fillin", "pattern", 1, column - 1) })
@@ -367,7 +423,7 @@ function TestPress:testLandingEditingToggleSetsUpANewLanding()
     { kind = "landingswitches", index = picked, value = 1 + 56 },
   }
   for output = 1, 6 do
-    table.insert(expected, { kind = "landing" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
+    table.insert(expected, { kind = "landing" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
   end
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(false), someClipValues), expected)
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 1, mixedModes(true), someClipValues), {
@@ -378,7 +434,7 @@ end
 function TestPress:testLandingEditingColourAndCVRows()
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 3, 2, mixedModes(true), someClipValues), { { kind = "landingswitches", index = picked, value = 1 + 2 * (9) } })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 6, 3, mixedModes(true), someClipValues), { settingChange("landing", "pattern", 1, 5) })
-  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 5, 4, mixedModes(true), someClipValues), { settingChange("landing", "unipolar", 2, 4) })
+  lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 5, 4, mixedModes(true), someClipValues), { settingChange("landing", "unipolar", 2, 4 * step) })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 1, 5, mixedModes(true), someClipValues), { settingChange("landing", "bipolar", 3, 0) })
   lu.assertEquals(press.landingEditingLaunchButton(landingEditing, 8, 6, mixedModes(true), someClipValues), { settingChange("landing", "transition", 4, 0) })
   -- without a landing there is nothing but the toggle
@@ -502,8 +558,8 @@ local function someSettings(seed)
   local settings = { present = seed % 2 == 0, colour = seed % 14, patterns = {}, unipolar = {}, bipolar = {}, transitions = {}, oneBarPattern = seed % 3 == 0, setUp = seed % 4 < 2 }
   for output = 1, press.outputCount do
     settings.patterns[output] = (seed + output) % 8
-    settings.unipolar[output] = (seed + output + 1) % 7
-    settings.bipolar[output] = (seed + output + 2) % 7
+    settings.unipolar[output] = (seed + output + 1) % 25
+    settings.bipolar[output] = (seed * 3 + output + 2) % 25
     settings.transitions[output] = (seed + output) % 5
   end
   return settings
@@ -641,12 +697,12 @@ function TestPress:testIntroAndOutroEditing()
       { kind = prefix .. "switches", index = picked, value = 1 + 56 },
     }
     for output = 1, 6 do
-      table.insert(expected, { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, 7 - output, output - 1, 0) })
+      table.insert(expected, { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
     end
     lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(false), someClipValues), expected)
     lu.assertEquals(editLaunchButton(setup, 8, 1, mixedModes(true), someClipValues), { { kind = prefix .. "switches", index = picked, value = 56 } })
     lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(true), someClipValues), { { kind = prefix .. "switches", index = picked, value = 1 + 2 * 9 } })
-    lu.assertEquals(editLaunchButton(setup, 5, 4, mixedModes(true), someClipValues), { settingChange(prefix, "unipolar", 2, 4) })
+    lu.assertEquals(editLaunchButton(setup, 5, 4, mixedModes(true), someClipValues), { settingChange(prefix, "unipolar", 2, 4 * step) })
     lu.assertEquals(editLaunchButton(setup, 8, 6, mixedModes(true), someClipValues), { settingChange(prefix, "transition", 4, 0) })
     lu.assertEquals(editLaunchButton(setup, 8, 2, mixedModes(true), someClipValues), { { kind = prefix .. "switches", index = picked, value = 1 + 28 } })
     lu.assertEquals(editLaunchButton(setup, 3, 2, mixedModes(false), someClipValues), {})
@@ -658,11 +714,11 @@ end
 function TestPress:testOutputSettingsPackIntoOneNumber()
   local seen = {}
   for pattern = 0, 7 do
-    for unipolar = 0, 6 do
-      for bipolar = 0, 6 do
+    for unipolar = 0, 24 do
+      for bipolar = 0, 24 do
         for transition = 0, 4 do
           local packed = press.packOutputSettings(pattern, unipolar, bipolar, transition)
-          lu.assertTrue(packed >= 0 and packed < 1960 and not seen[packed])
+          lu.assertTrue(packed >= 0 and packed < 31360 and not seen[packed])
           seen[packed] = true
           lu.assertEquals({ press.unpackOutputSettings(packed) }, { pattern, unipolar, bipolar, transition })
         end
@@ -670,18 +726,25 @@ function TestPress:testOutputSettingsPackIntoOneNumber()
     end
   end
   -- what a new clip has in row 1
-  lu.assertEquals(press.packOutputSettings(0, 0, 3, 0), 168)
+  lu.assertEquals(press.packOutputSettings(0, 0, 12, 0), 168)
+  -- a number from before there were quarter steps reads as it did
+  lu.assertEquals({ press.unpackOutputSettings(5 + 8 * 2 + 56 * 6 + 392 * 4) }, { 5, 2 * step, 6 * step, 4 })
+  -- the quarter steps lie above that
+  lu.assertEquals(press.packOutputSettings(5, 2 * step + 3, 1 * step + 2, 4), 5 + 8 * 2 + 56 * 1 + 392 * 4 + 1960 * 3 + 7840 * 2)
+  -- the top step cannot be raised
+  lu.assertEquals(({ press.unpackOutputSettings(8 * 6 + 1960 * 3) })[2], 24)
+  lu.assertEquals(({ press.unpackOutputSettings(56 * 6 + 7840 * 3) })[3], 24)
 end
 
 -- the same cases as TestEditingKeepsTheOtherSettingsOfTheOutput of
 -- PressTest.cpp: a press changes one setting and hands on the other three
 function TestPress:testEditingKeepsTheOtherSettingsOfTheOutput()
-  local values = { patterns = { 0, 5, 0, 0, 0, 0 }, unipolar = { 0, 2, 0, 0, 0, 0 }, bipolar = { 3, 6, 3, 3, 3, 3 } }
+  local values = { patterns = { 0, 5, 0, 0, 0, 0 }, unipolar = { 0, 2 * step, 0, 0, 0, 0 }, bipolar = { 12, 6 * step, 12, 12, 12, 12 } }
   local settings = press.edited(true, { 2, 1, 0, 1, 1, 1 }, { 0, 2, 0, 0, 0, 0 }, false, values)
   -- output B is unipolar: column 4 sets the unipolar value 3
-  lu.assertEquals(press.launchButton(editing, 4, 4, false, settings), { kind = "output", index = picked, output = 2, value = press.packOutputSettings(5, 3, 6, 2) })
+  lu.assertEquals(press.launchButton(editing, 4, 4, false, settings), { kind = "output", index = picked, output = 2, value = press.packOutputSettings(5, 3 * step, 6 * step, 2) })
   -- the transition button moves the transition on and keeps the values
-  lu.assertEquals(press.launchButton(editing, 8, 4, false, settings), { kind = "output", index = picked, output = 2, value = press.packOutputSettings(5, 2, 6, 3) })
+  lu.assertEquals(press.launchButton(editing, 8, 4, false, settings), { kind = "output", index = picked, output = 2, value = press.packOutputSettings(5, 2 * step, 6 * step, 3) })
 end
 
 -- the same cases as TestSwitchesPackIntoOneNumber of LauncherTest.cpp

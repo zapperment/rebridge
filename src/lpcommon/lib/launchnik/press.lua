@@ -8,11 +8,11 @@
 --   { kind = "setup", value = 0..395 }
 --   { kind = "length", value = 0..7 }
 --   { kind = "switches", index = 0..63, value = 0..55 }
---   { kind = "output", index = 0..63, output = 1..6, value = 0..1959 }
+--   { kind = "output", index = 0..63, output = 1..6, value = 0..31359 }
 --   { kind = "fillinswitches", index = 0..63, value = 0..55 }
---   { kind = "fillinoutput", index = 0..63, output = 1..6, value = 0..1959 }
+--   { kind = "fillinoutput", index = 0..63, output = 1..6, value = 0..31359 }
 --   { kind = "landingswitches", index = 0..63, value = 0..55 }
---   { kind = "landingoutput", index = 0..63, output = 1..6, value = 0..1959 }
+--   { kind = "landingoutput", index = 0..63, output = 1..6, value = 0..31359 }
 --   and the same with "intro" and "outro" in place of "landing"
 -- The value of an output is all four of its settings in one number, see
 -- packOutputSettings; that of the switches is whether there is a clip,
@@ -67,13 +67,36 @@ local transitionOff = 0
 local transitionCount = 5
 local patternCount = 8
 local valueCount = 7
-local bipolarZero = 3
+-- a unipolar or bipolar value is counted in quarter steps, four to each of
+-- the six steps between the seven buttons of an output: 0..24, with bipolar
+-- 0 in the middle
+local quarterStepCount = 4
+local topValue = (valueCount - 1) * quarterStepCount
+local bipolarZero = 3 * quarterStepCount
+-- how many numbers the settings have without quarter steps
+local stepSettingsCount = patternCount * valueCount * valueCount * transitionCount
+
+-- the value that a press of a step's button, 0..6, gives an output whose
+-- value is value: the step itself, or, if that is the value's step already,
+-- the value raised by a quarter step, going back to the step after three;
+-- the top step stays as it is
+local function pressedValue(value, step)
+  local stepValue = step * quarterStepCount
+  if math.floor(value / quarterStepCount) ~= step or stepValue >= topValue then
+    return stepValue
+  end
+  return stepValue + (value - stepValue + 1) % quarterStepCount
+end
 
 -- the four settings of a CV output as one number, as Launchnik keeps them
--- (see its ADR 0008): the pattern, plus 8 times the unipolar value, plus 56
--- times the bipolar value, plus 392 times the transition
+-- (see its ADRs 0008 and 0010): the pattern, plus 8 times the step of the
+-- unipolar value, plus 56 times the step of the bipolar value, plus 392 times
+-- the transition, plus 1960 times the quarter steps of the unipolar value,
+-- plus 7840 times those of the bipolar value
 local function packOutputSettings(pattern, unipolar, bipolar, transition)
-  return pattern + patternCount * (unipolar + valueCount * (bipolar + valueCount * transition))
+  local steps = pattern + patternCount * (math.floor(unipolar / quarterStepCount) + valueCount * (math.floor(bipolar / quarterStepCount) + valueCount * transition))
+  local quarterSteps = unipolar % quarterStepCount + quarterStepCount * (bipolar % quarterStepCount)
+  return steps + stepSettingsCount * quarterSteps
 end
 
 -- whether there is a clip, fill-in, landing, intro or outro, its colour, its
@@ -92,11 +115,15 @@ end
 
 -- the other way round: pattern, unipolar, bipolar, transition
 local function unpackOutputSettings(packed)
+  local quarterSteps = math.floor(packed / stepSettingsCount)
+  packed = packed % stepSettingsCount
   local pattern = packed % patternCount
   packed = math.floor(packed / patternCount)
-  local unipolar = packed % valueCount
+  local unipolar = packed % valueCount * quarterStepCount + quarterSteps % quarterStepCount
   packed = math.floor(packed / valueCount)
-  return pattern, unipolar, packed % valueCount, math.floor(packed / valueCount)
+  local bipolar = packed % valueCount * quarterStepCount + math.floor(quarterSteps / quarterStepCount)
+  -- the top step cannot be raised
+  return pattern, math.min(unipolar, topValue), math.min(bipolar, topValue), math.floor(packed / valueCount)
 end
 
 -- where the controls of clip editing sit on the grid: the colours fill the
@@ -164,10 +191,12 @@ local function editSetting(prefix, picked, track, row, settings)
   -- the transition button goes round from off through A to D
   elseif track == transitionTrack then
     transition = (transition + 1) % transitionCount
+  -- the button of another step sets that step; the button of the value's
+  -- own step raises it by a quarter step
   elseif cvMode == cvModeUnipolar then
-    unipolar = track - 1
+    unipolar = pressedValue(unipolar, track - 1)
   else
-    bipolar = track - 1
+    bipolar = pressedValue(bipolar, track - 1)
   end
   return { kind = prefix .. "output", index = picked, output = output, value = packOutputSettings(pattern, unipolar, bipolar, transition) }
 end
@@ -628,6 +657,9 @@ return {
   cvModeUnipolar = cvModeUnipolar,
   cvModePattern = cvModePattern,
   defaultCVMode = defaultCVMode,
+  quarterStepCount = quarterStepCount,
+  bipolarZero = bipolarZero,
+  pressedValue = pressedValue,
   packOutputSettings = packOutputSettings,
   packSwitches = packSwitches,
   unpackSwitches = unpackSwitches,

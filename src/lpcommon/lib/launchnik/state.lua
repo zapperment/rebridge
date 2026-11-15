@@ -127,11 +127,12 @@ function state.reset()
       for output = 1, outputCount do
         state[overlay .. "Patterns"][index][output] = index % 8
         state[overlay .. "Unipolar"][index][output] = 0
-        state[overlay .. "Bipolar"][index][output] = 3
+        state[overlay .. "Bipolar"][index][output] = 12
         state[overlay .. "Transitions"][index][output] = 0
       end
     end
-    -- a new clip plays the pattern of its row, at unipolar and bipolar 0, in
+    -- a new clip plays the pattern of its row, at unipolar and bipolar 0
+    -- (values are counted in quarter steps, so bipolar 0 is 12), in
     -- the colour of its track; a new device's fill-ins, landings, intros and
     -- outros are the same, in white
     local trackColours = { 1, 2, 3, 5, 7, 9, 11, 13 }
@@ -141,15 +142,15 @@ function state.reset()
     for output = 1, outputCount do
       state.patterns[index][output] = index % 8
       state.unipolar[index][output] = 0
-      state.bipolar[index][output] = 3
+      state.bipolar[index][output] = 12
       state.transitions[index][output] = 0
       state.fillInPatterns[index][output] = index % 8
       state.fillInUnipolar[index][output] = 0
-      state.fillInBipolar[index][output] = 3
+      state.fillInBipolar[index][output] = 12
       state.fillInTransitions[index][output] = 0
       state.landingPatterns[index][output] = index % 8
       state.landingUnipolar[index][output] = 0
-      state.landingBipolar[index][output] = 3
+      state.landingBipolar[index][output] = 12
       state.landingTransitions[index][output] = 0
     end
     state.fillInPresent[index] = false
