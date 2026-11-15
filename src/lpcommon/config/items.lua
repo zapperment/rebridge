@@ -39,8 +39,9 @@ local outputLetters = { "a", "b", "c", "d", "e", "f" }
 -- the settings of a CV output of a clip, a fill-in, a landing, an intro or an
 -- outro, all four in one item (see Launchnik's ADR 0008): eight patterns,
 -- seven unipolar values, seven bipolar values and five transitions (off, A
--- to D), 1960 values in all
-local outputSettingsMax = 8 * 7 * 7 * 5 - 1
+-- to D), and up to three quarter steps for each of the two values (its ADR
+-- 0010), 31360 values in all
+local outputSettingsMax = 8 * 7 * 7 * 5 * 4 * 4 - 1
 
 -- whether there is a clip, fill-in, landing, intro or outro (1), plus 2
 -- times its colour (0..13), plus 28 if one-bar pattern is on, plus 56 if it

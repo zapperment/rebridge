@@ -128,7 +128,7 @@ return function(device, suffix)
           for _, kind in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
             -- all four settings of an output in one item
             local item = items[clip .. kind .. letter]
-            lu.assertEquals({ item.min, item.max }, { 0, 1959 })
+            lu.assertEquals({ item.min, item.max }, { 0, 31359 })
           end
         end
       end
@@ -303,11 +303,18 @@ return function(device, suffix)
 
     remote.clearMocks()
     lu.assertTrue(receive(noteOn, pad(6, 4), 127))
-    assertSetting(handledInput(), "track2clip3b", "unipolar", 5)
+    assertSetting(handledInput(), "track2clip3b", "unipolar", 20)
+
+    -- once the host has reported that value, the same pad raises it by a
+    -- quarter step
+    state.unipolar[press.buttonIndex(2, 3)][2] = 20
+    remote.clearMocks()
+    lu.assertTrue(receive(noteOn, pad(6, 4), 127))
+    assertSetting(handledInput(), "track2clip3b", "unipolar", 21)
 
     remote.clearMocks()
     lu.assertTrue(receive(noteOn, pad(2, 5), 127))
-    assertSetting(handledInput(), "track2clip3c", "bipolar", 1)
+    assertSetting(handledInput(), "track2clip3c", "bipolar", 4)
 
     -- the transition goes round from what the host last reported
     remote.clearMocks()
@@ -626,7 +633,7 @@ return function(device, suffix)
 
     remote.clearMocks()
     lu.assertTrue(receive(noteOn, pad(3, 4), 127))
-    assertSetting(handledInput(), "track2clip3landingb", "unipolar", 2)
+    assertSetting(handledInput(), "track2clip3landingb", "unipolar", 8)
 
     remote.clearMocks()
     lu.assertTrue(receive(noteOn, pad(8, 4), 127))
@@ -685,7 +692,7 @@ return function(device, suffix)
 
     remote.clearMocks()
     lu.assertTrue(receive(noteOn, pad(3, 4), 127))
-    assertSetting(handledInput(), "track2clip3fillinb", "unipolar", 2)
+    assertSetting(handledInput(), "track2clip3fillinb", "unipolar", 8)
 
     remote.clearMocks()
     lu.assertTrue(receive(noteOn, pad(8, 4), 127))

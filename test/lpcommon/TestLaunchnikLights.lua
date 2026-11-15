@@ -54,7 +54,7 @@ return function(device, suffix)
   -- the settings of a CV output as the host reports them, all four in one
   -- value: those of a new clip in row 1, unless given
   local function packed(settings)
-    return launchnik.press.packOutputSettings(settings.pattern or 0, settings.unipolar or 0, settings.bipolar or 3, settings.transition or 0)
+    return launchnik.press.packOutputSettings(settings.pattern or 0, settings.unipolar or 0, settings.bipolar or 12, settings.transition or 0)
   end
 
   -- the switches of a clip, fill-in, landing, intro or outro as the host
