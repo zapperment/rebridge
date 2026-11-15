@@ -6,6 +6,9 @@ local press = require "src.lpcommon.lib.launchnik.press"
 -- that continues the numbering of the pads in their row.
 return {
   shift = 90,
+  -- with Shift held, a pad shows its clip in Launchnik's big display
+  -- instead of launching it
+  shiftShows = true,
   -- the button with the arrow pointing left, beside Shift
   back = 91,
   -- the button with the arrow pointing right, above the second column of pads

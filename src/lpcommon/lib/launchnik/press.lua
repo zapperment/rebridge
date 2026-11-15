@@ -21,6 +21,7 @@
 --   { kind = "fillin", value = 0..1 }
 --   { kind = "function", value = 0..2 }
 --   { kind = "mute" | "solo" | "relaunch", track = 1..8, value = 0..1 }
+--   { kind = "show", value = 0..64 }
 -- A press of a launch button outside fill-in editing, landing editing, intro
 -- editing, outro editing, clear mode and duplicate mode, a function button, a function select button, the
 -- setup button, the clear button, the duplicate button, the back button, the
@@ -457,6 +458,21 @@ local function relaunchButton(setup, track, pressed)
   return { kind = "relaunch", track = track, value = pressed and 1 or 0 }
 end
 
+-- a show press: a press of a pad with the surface's Shift button held. In
+-- launch mode, on a launch button that holds a clip, it makes that clip the
+-- shown clip of Launchnik's big display and launches nothing; anywhere else
+-- it changes nothing, so returns nil. It is held down like a relaunch press,
+-- as the number of the launch button from 1; letting go is always passed on
+local function showButton(setup, track, row, pressedHoldsClip, pressed)
+  if not pressed then
+    return { kind = "show", value = 0 }
+  end
+  if setup ~= setupLaunchMode or not pressedHoldsClip or track < 1 or track > 8 or row < 1 or row > 8 then
+    return nil
+  end
+  return { kind = "show", value = buttonIndex(track, row) + 1 }
+end
+
 local function stopButton(track)
   return { kind = "selection", track = track, value = selectionStop }
 end
@@ -685,6 +701,7 @@ return {
   outroEditingLaunchButton = outroEditingLaunchButton,
   clearModeLaunchButton = clearModeLaunchButton,
   relaunchButton = relaunchButton,
+  showButton = showButton,
   stopButton = stopButton,
   functionButton = functionButton,
   functionSelectButton = functionSelectButton,

@@ -15,6 +15,9 @@ local function itemName(change)
   if change.kind == "fillin" then
     return "fillin"
   end
+  if change.kind == "show" then
+    return "show"
+  end
   if change.kind == "function" then
     return "function"
   end

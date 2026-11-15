@@ -255,6 +255,19 @@ function TestPress:testLaunchHoldsTheRelaunchPressInLaunchModeOnly()
   lu.assertNil(press.relaunchButton(launchMode, 9, true))
 end
 
+function TestPress:testAShowPressShowsAClipInLaunchModeOnly()
+  lu.assertEquals(press.showButton(launchMode, 3, 6, true, true), { kind = "show", value = press.buttonIndex(3, 6) + 1 })
+  lu.assertEquals(press.showButton(launchMode, 1, 1, true, true), { kind = "show", value = 1 })
+  lu.assertEquals(press.showButton(launchMode, 8, 8, true, true), { kind = "show", value = 64 })
+  -- an empty launch button shows nothing
+  lu.assertNil(press.showButton(launchMode, 3, 6, false, true))
+  lu.assertNil(press.showButton(clipPicking, 3, 6, true, true))
+  lu.assertNil(press.showButton(editing, 3, 6, true, true))
+  lu.assertNil(press.showButton(launchMode, 9, 6, true, true))
+  -- letting go is passed on in every mode
+  lu.assertEquals(press.showButton(clipPicking, 3, 6, false, false), { kind = "show", value = 0 })
+end
+
 function TestPress:testSceneButtonStopsTracksWithAnEmptyLaunchButton()
   local holdsClip = { true, false, false, true, false, false, false, true }
   local changes = press.sceneButton(press.setupLaunchMode, 8, holdsClip, sceneColours)

@@ -729,6 +729,59 @@ return function(device, suffix)
     lu.assertEquals(#remote.mock "handle_input".calls, 0)
   end
 
+  -- on a surface with a Shift button of its own, a pad pressed with Shift
+  -- held shows its clip and launches nothing; on any other surface Shift
+  -- changes nothing here
+  function TestProcessLaunchnik:testPadWithShiftHeldShowsItsClip()
+    state.present[press.buttonIndex(3, 2)] = true
+    shift.setShifted(true)
+    lu.assertTrue(receive(noteOn, pad(3, 2), 127))
+    local calls = remote.mock "handle_input".calls
+    if not c.shiftShows then
+      lu.assertEquals(#calls, 2)
+      lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.track3selection.index, value = 2 })
+      return
+    end
+    lu.assertEquals(#calls, 1)
+    lu.assertEquals(calls[1][1], { time_stamp = 0, item = items.show.index, value = press.buttonIndex(3, 2) + 1 })
+    -- letting go of the pad lets go of the show press, even after Shift
+    remote.clearMocks()
+    shift.setShifted(false)
+    lu.assertTrue(receive(noteOn, pad(3, 2), 0))
+    lu.assertEquals(handledInput(), { time_stamp = 0, item = items.show.index, value = 0 })
+    -- and only once
+    remote.clearMocks()
+    receive(noteOn, pad(3, 2), 0)
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  end
+
+  -- with Shift held, an empty pad and a scene button do nothing, so that
+  -- nothing is launched or stopped by accident
+  function TestProcessLaunchnik:testEmptyPadAndSceneButtonWithShiftHeldDoNothing()
+    if not c.shiftShows then
+      return
+    end
+    state.present[press.buttonIndex(3, 2)] = true
+    shift.setShifted(true)
+    lu.assertTrue(receive(noteOn, pad(4, 2), 127))
+    lu.assertTrue(receive(controlChange, 79, 127))
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+    receive(noteOn, pad(4, 2), 0)
+    receive(controlChange, 79, 0)
+    lu.assertEquals(#remote.mock "handle_input".calls, 0)
+  end
+
+  -- outside launch mode Shift means nothing to a pad
+  function TestProcessLaunchnik:testPadWithShiftHeldPicksAClipInClipPicking()
+    state.setup = press.setupClipPicking
+    state.present[press.buttonIndex(3, 2)] = true
+    shift.setShifted(true)
+    lu.assertTrue(receive(noteOn, pad(3, 2), 127))
+    local calls = remote.mock "handle_input".calls
+    lu.assertEquals(#calls, 1)
+    lu.assertEquals(calls[1][1].item, items.setup.index)
+  end
+
   function TestProcessLaunchnik:testBackButtonLeavesClearMode()
     state.setup = press.setupClearMode
     lu.assertTrue(click(c.back))

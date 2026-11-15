@@ -28,6 +28,9 @@ function state.reset()
   -- the tracks whose relaunch press a pad or scene button on the surface
   -- holds down, so that letting go of it lets go of the press
   state.heldRelaunches = {}
+  -- the pad on the surface that holds a show press down, so that letting go
+  -- of it lets go of the press; nil while there is none
+  state.heldShow = nil
   -- whether a Launchnik is mapped, which the setup item tells
   state.mapped = false
   -- the colour last delivered to the logo, which is dark to begin with
