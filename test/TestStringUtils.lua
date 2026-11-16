@@ -64,7 +64,22 @@ function TestStringUtils:testSerialise10()
         baz = 3
     })
     local errorMessage = "Serialisation of simple key-value table failed"
-    lu.assertEquals(result, "{[\"baz\"]=3,[\"bar\"]=2,[\"foo\"]=1}", errorMessage)
+    lu.assertEquals(result, "{[\"bar\"]=2,[\"baz\"]=3,[\"foo\"]=1}", errorMessage)
+end
+
+-- the entries are in the order of their keys, whatever order the table
+-- gives them in: numbers first, then the other keys
+function TestStringUtils:testSerialiseOrdersEntriesByKey()
+    local result = str.serialise({
+        zebra = 1,
+        [10] = "ten",
+        apple = 2,
+        [2] = "two",
+        [1] = "one",
+        mango = 3
+    })
+    lu.assertEquals(result,
+        "{[1]=\"one\",[2]=\"two\",[10]=\"ten\",[\"apple\"]=2,[\"mango\"]=3,[\"zebra\"]=1}")
 end
 
 function TestStringUtils:testSerialise11()
