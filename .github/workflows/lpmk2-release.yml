@@ -1,0 +1,45 @@
+# Publishes the Launchpad MK2 remote codec for Launchnik as a zip, see
+# lpcommon-release.yml, whenever anything it is made from changes on main.
+name: Launchpad MK2 release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/lpcommon/**"
+      - "src/lpmk2/**"
+      - "src/lib/**"
+      - "src/config/constants.lua"
+      - "src/reason/codecs/novation/LPMK2*"
+      - "src/reason/maps/novation/LPMK2*"
+      - "src/reason/release/LPMK2*"
+      - "build.sh"
+      - "scripts/package-release.sh"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/lpcommon-release.yml"
+      - ".github/workflows/lpmk2-release.yml"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Replace the zip in the release (off to only test and package)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+# Two runs must not replace the release at the same time
+concurrency:
+  group: lpmk2-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: ./.github/workflows/lpcommon-release.yml
+    with:
+      controller: LPMK2
+      tag: lpmk2-latest
+      title: Launchpad MK2 remote codec for Launchnik
+      zip-file: temp/release/Launchpad-MK2-remote-codec-for-Launchnik.zip
+      publish: ${{ github.event_name == 'push' || inputs.publish }}

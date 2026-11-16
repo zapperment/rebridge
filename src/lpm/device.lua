@@ -1,5 +1,5 @@
 local const = require "src.lpm.config.constants"
-local controls = require "src.lpm.config.controls"
+local controls = require "src.lpcommon.config.sixteenButtonControlsWithoutLogo"
 local midi = require "src.lpm.lib.midi._"
 
 -- What sets the Launchpad Mini apart from the other Launchpads; the

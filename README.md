@@ -4,7 +4,7 @@
 
 The goal of this project is to allow you to use Reason rack devices without having to look at the screen, for a “DAW-less experience”.
 
-ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3, the Launchpad Pro \[MK3\], the Launchpad Pro, the Launchpad Mini \[MK3\], the Launchpad X and the Launchpad Mini.
+ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3, the Launchpad Pro \[MK3\], the Launchpad Pro, the Launchpad Mini \[MK3\], the Launchpad X, the Launchpad Mini and the Launchpad MK2.
 
 While the Launchpad codec is still in its early stages of development, the Launch Control codec is already quite useful.
 
@@ -311,3 +311,13 @@ The Launchpad Mini (the original and the MK2, which differ only in looks) has it
 The surface is programmed as the first Launchpad was, so that one and the Launchpad S may work with this codec too; this has not been tried.
 
 When adding the surface in Reason's settings (model “Launchpad Mini”), set its input and output to its only port, “Launchpad Mini”.
+
+## Launchpad MK2 with Launchnik
+
+The Launchpad MK2 has its sixteen buttons in the same places as the Launchpad Mini \[MK3\], and controls Launchnik in the same way, with these differences:
+
+- *User 1* and *User 2* stand for the clear and duplicate buttons.
+- *Mixer* is Shift.
+- It has no logo that lights up: the light of *Session*, the setup button, shows Launchnik's mode colour.
+
+Reason comes with a codec of its own for the Launchpad MK2, which does not control Launchnik. To tell the two apart, and so that both can be installed, this one's model is “Launchpad MK2 for Launchnik”. Choose that model when adding the surface in Reason's settings, and set its input and output to its only port, “Launchpad MK2”. Only one of the two codecs should be active for the Launchpad at a time, as both light its pads.

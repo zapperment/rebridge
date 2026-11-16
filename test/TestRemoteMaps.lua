@@ -37,6 +37,7 @@ function TestRemoteMaps:testLaunchpadMapsMatch()
     assertMapsMatch("LPMMK3", "Launchpad Mini [MK3]")
     assertMapsMatch("LPX", "Launchpad X")
     assertMapsMatch("LPM", "Launchpad Mini")
+    assertMapsMatch("LPMK2", "Launchpad MK2 for Launchnik")
 end
 
 -- the Launchpad codecs all have the same items, so their maps differ in the
@@ -44,7 +45,7 @@ end
 function TestRemoteMaps:testLaunchpadMapsAreThatOfTheProMK3()
     for _, suffix in ipairs({ ".remotemap", ".dev.remotemap" }) do
         local mk3 = read(mapsDir .. "LPPMK3" .. suffix)
-        for controller, model in pairs({ LPP = "Launchpad Pro", LPMMK3 = "Launchpad Mini [MK3]", LPX = "Launchpad X", LPM = "Launchpad Mini" }) do
+        for controller, model in pairs({ LPP = "Launchpad Pro", LPMMK3 = "Launchpad Mini [MK3]", LPX = "Launchpad X", LPM = "Launchpad Mini", LPMK2 = "Launchpad MK2 for Launchnik" }) do
             local map = read(mapsDir .. controller .. suffix)
             lu.assertEquals(map, (string.gsub(mk3, "Launchpad Pro %[MK3%]", model)))
         end

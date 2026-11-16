@@ -2,8 +2,8 @@
 # production codec, the remote map and installation instructions, attached to
 # one pre-release that every run replaces, so that its download link never
 # changes and anyone can download it without a GitHub account. Called by
-# lpm-release.yml, lpmmk3-release.yml, lpp-release.yml, lppmk3-release.yml and
-# lpx-release.yml, which say when and for which Launchpad.
+# lpm-release.yml, lpmk2-release.yml, lpmmk3-release.yml, lpp-release.yml,
+# lppmk3-release.yml and lpx-release.yml, which say when and for which Launchpad.
 name: Launchpad release
 
 on:
