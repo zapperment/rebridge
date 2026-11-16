@@ -8,6 +8,9 @@ local press = require "src.lpcommon.lib.launchnik.press"
 return {
   -- the top button of the left-hand column
   shift = 80,
+  -- with Shift held, a pad shows its clip in Launchnik's big display
+  -- instead of launching it
+  shiftShows = true,
   -- the buttons with the arrows pointing left and right, in the top row
   back = 93,
   forward = 94,

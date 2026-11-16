@@ -26,6 +26,7 @@ local function launchnikMap()
   map("fillin", "Fill-In")
   map("fillinlight", "Fill-In Light")
   map("forwardlight", "Forward Light")
+  map("show", "Show Clip")
   map("function", "Function")
 
   -- a group of eight lines for each row, one for each track

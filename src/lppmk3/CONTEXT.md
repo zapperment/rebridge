@@ -27,6 +27,13 @@ _Avoid_: DAW
 One of the 64 square pads in the surface's 8x8 grid. It stands for the launch
 button in the same row and column of Launchnik, shows that launch button's
 light, and a press of it means what a click on that launch button means.
+With Shift held in launch mode, a press of it is a show press, as a click
+with the shift key is on Launchnik: it makes the clip of its launch button the
+shown clip of Launchnik's big display and launches nothing, while an empty pad
+and a scene button do nothing. The lights stay as they are. Only surfaces
+with a Shift button of their own do this, the Launchpad Pro [MK3] and the
+Launchpad Pro; on the Launchpad Mini [MK3] and the Launchpad X, Shift is only
+the Shift layer.
 _Avoid_: slot, cell, button (for a pad)
 
 **Function button**:

@@ -24,6 +24,7 @@ Map	switchinterval		Switch Interval
 Map	fillin		Fill-In
 Map	fillinlight		Fill-In Light
 Map	forwardlight		Forward Light
+Map	show		Show Clip
 Map	function		Function
 
 Map	track1clip1light		Track 1 Clip 1 Light

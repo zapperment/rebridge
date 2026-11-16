@@ -25,6 +25,9 @@ items.switchinterval = { input = "value", min = 0, max = 7 }
 
 -- 1 while the fill-in button is held down, 0 once it is let go
 items.fillin = { input = "value", min = 0, max = 1 }
+-- 1..64 for a launch button, counted down track 1 first, while a show press
+-- of it is held down, 0 once it is let go
+items.show = { input = "value", min = 0, max = 64 }
 -- what the function buttons do: 0 = stop, 1 = mute, 2 = solo
 items["function"] = { input = "value", output = "value", min = 0, max = 2, launchnik = { kind = "function" } }
 

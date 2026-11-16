@@ -1,5 +1,6 @@
 local launchnik = require "src.lpcommon.lib.launchnik._"
 local write = require "src.lpcommon.remote.processMidi.write"
+local shift = require "src.lpcommon.lib.state._"
 
 local press = launchnik.press
 local state = launchnik.state
@@ -107,6 +108,9 @@ return function(device)
   local firstFunctionButton = controls.firstFunctionButton
   local lastFunctionButton = firstFunctionButton + 7
   local functionSelectButtons = controls.functionSelectButtons
+  -- whether a pad pressed with Shift held is a show press: only on surfaces
+  -- that have a Shift button of their own
+  local shiftShows = controls.shiftShows == true
 
   local function processPadsAndTrackButtons(input)
     local control, value = input.control, input.value
@@ -150,6 +154,12 @@ return function(device)
     -- letting go of a pad lets go of its track's relaunch press, letting go of
     -- a scene button those of every track
     if value == 0 then
+      -- letting go of the pad that holds a show press lets go of the press
+      if input.pad and state.heldShow == control then
+        state.heldShow = nil
+        write(input, press.showButton(state.setup, 0, 0, false, false))
+        return true
+      end
       if input.pad then
         return releaseRelaunches(input, { control % 10 })
       end
@@ -158,10 +168,23 @@ return function(device)
       end
       return false
     end
+    -- in launch mode, with Shift held, nothing is launched: a pad whose
+    -- launch button holds a clip is a show press, and any other pad and a
+    -- scene button do nothing
+    local showing = shiftShows and state.setup == press.setupLaunchMode and shift.isShifted() == true
     if input.pad then
       -- the pads send note 11 at the bottom left to 88 at the top right
       local track = control % 10
       local row = 9 - ((control - track) / 10)
+      if showing then
+        local change = press.showButton(state.setup, track, row, state.present[press.buttonIndex(track, row)], true)
+        if change then
+          -- one show press at a time: the pad pressed last holds it
+          state.heldShow = control
+          write(input, change)
+        end
+        return true
+      end
       if state.setup == press.setupClearMode then
         for _, change in ipairs(press.clearModeLaunchButton(state.setup, track, row, state.present[press.buttonIndex(track, row)], state.colours[press.buttonIndex(track, row)])) do
           write(input, change)
@@ -213,6 +236,9 @@ return function(device)
       return true
     end
     if isButton and isSceneButton then
+      if showing then
+        return true
+      end
       local scene = 9 - (control - 9) / 10
       local holdsClip = {}
       local colours = {}
