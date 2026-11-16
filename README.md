@@ -4,7 +4,7 @@
 
 The goal of this project is to allow you to use Reason rack devices without having to look at the screen, for a “DAW-less experience”.
 
-ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3, the Launchpad Pro \[MK3\], the Launchpad Pro, the Launchpad Mini \[MK3\] and the Launchpad X.
+ReBridge currently provides drivers (“Remote Codecs”) for the Launch Control XL3, the Launchpad Pro \[MK3\], the Launchpad Pro, the Launchpad Mini \[MK3\], the Launchpad X and the Launchpad Mini.
 
 While the Launchpad codec is still in its early stages of development, the Launch Control codec is already quite useful.
 
@@ -297,3 +297,17 @@ The Launchpad X has the same pads and buttons in the same places as the Launchpa
 The pads act however lightly they are pressed; their pressure is not used.
 
 When adding the surface in Reason's settings (model “Launchpad X”), set its input and output to the Launchpad's MIDI port, not its DAW port: “LPX MIDI Out” and “LPX MIDI In” on a Mac, “MIDIIN2 (LPX MIDI)” and “MIDIOUT2 (LPX MIDI)” on Windows.
+
+## Launchpad Mini with Launchnik
+
+The Launchpad Mini (the original and the MK2, which differ only in looks) has its sixteen buttons in the same places as the Launchpad Mini \[MK3\], and controls Launchnik in the same way, with these differences:
+
+- *User 1* and *User 2* stand for the clear and duplicate buttons.
+- *Mixer* is Shift.
+- It has no logo that lights up: the light of *Session*, the setup button, shows Launchnik's mode colour.
+- Its lights are red, green or both, which gives amber, so each of Launchnik's colours shows as the nearest of the three: red for red, purple, fuchsia and pink; amber for white, orange and yellow; green for lime, green, turquoise, cyan and the blues.
+- The launch button of a playing clip flashes between bright and dark instead of pulsing.
+
+The surface is programmed as the first Launchpad was, so that one and the Launchpad S may work with this codec too; this has not been tried.
+
+When adding the surface in Reason's settings (model “Launchpad Mini”), set its input and output to its only port, “Launchpad Mini”.

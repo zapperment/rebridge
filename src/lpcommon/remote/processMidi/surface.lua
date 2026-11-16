@@ -43,18 +43,26 @@ return function(device)
     if status == noteOff then
       status, value = noteOn, 0
     end
-    -- the pads send notes, the buttons control changes
     if status ~= noteOn and status ~= controlChange then
       return false
     end
-    if (status == noteOn) ~= surface.isPad(ret.y) then
+    -- on most Launchpads the pads send notes and the buttons control changes,
+    -- each with the number of its place; a device that numbers them in its
+    -- own way says where a message comes from
+    local place
+    if device.midi.placeOf then
+      place = device.midi.placeOf(status, ret.y)
+    elseif (status == noteOn) == surface.isPad(ret.y) then
+      place = ret.y
+    end
+    if not place then
       return false
     end
-    local input = { time_stamp = event.time_stamp, control = ret.y, value = value, pad = status == noteOn }
+    local input = { time_stamp = event.time_stamp, control = place, value = value, pad = surface.isPad(place) }
     if processShift(input) then
       return true
     end
-    local control = shiftLayer.translate(ret.y, value)
+    local control = shiftLayer.translate(place, value)
     if control == false then
       return true
     end

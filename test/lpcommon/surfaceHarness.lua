@@ -9,9 +9,7 @@ local makeProcessSurface = require "src.lpcommon.remote.processMidi.surface"
 local makeDeliverSurface = require "src.lpcommon.remote.deliverMidi.surface"
 local defineItemIndices = require "test.lpcommon.defineItemIndices"
 local receiveMidi = require "test.lpcommon.receiveMidi"
-
-local noteOn = 144
-local controlChange = 176
+local sendOf = require "test.lpcommon.sendOf"
 
 -- makes what a test needs to drive the codec of the device given from the
 -- outside: with the MIDI the surface sends and gets, and what the host
@@ -36,15 +34,16 @@ return function(device)
     end
   end
 
-  -- simulates a pad being pressed, or let go with velocity 0
-  function harness.pad(note, velocity)
-    return receiveMidi(processSurface, noteOn, note, velocity)
+  -- simulates the pad at the place given being pressed, or let go with
+  -- velocity 0
+  function harness.pad(place, velocity)
+    local status, number = sendOf(device, place)
+    return receiveMidi(processSurface, status, number, velocity)
   end
 
-  -- simulates a button being pressed, or let go with value 0
-  function harness.button(control, value)
-    return receiveMidi(processSurface, controlChange, control, value)
-  end
+  -- simulates the button at the place given being pressed, or let go with
+  -- value 0
+  harness.button = harness.pad
 
   function harness.holdShift(held)
     harness.button(device.controls.shift, held and 127 or 0)

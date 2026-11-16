@@ -6,6 +6,7 @@ local surface = require "src.lpcommon.lib.surface._"
 local makeHarness = require "test.lpcommon.surfaceHarness"
 local makeProcessSurface = require "src.lpcommon.remote.processMidi.surface"
 local receiveMidi = require "test.lpcommon.receiveMidi"
+local sendOf = require "test.lpcommon.sendOf"
 
 -- which numbers are pads
 TestIsPad = {}
@@ -63,7 +64,8 @@ return function(device, suffix)
     state.present[press.buttonIndex(3, 5)] = true
     harness.pad(43, 127)
     remote.clearMocks()
-    lu.assertTrue(receiveMidi(processSurface, noteOff, 43, 64))
+    local _, number = sendOf(device, 43)
+    lu.assertTrue(receiveMidi(processSurface, noteOff, number, 64))
     lu.assertEquals(harness.handledInputs(), { { time_stamp = 0, item = items.track3relaunch.index, value = 0 } })
     lu.assertEquals(state.heldRelaunches, {})
   end
@@ -83,11 +85,14 @@ return function(device, suffix)
   end
 
   -- a control change with the number of a pad is not a press of it, nor is a
-  -- note with the number of a button a press of that
+  -- note with the number of a button a press of that; a device that numbers
+  -- its pads and buttons in its own way has its own tests for this
   function TestSurfaceInput:testOtherMidiIsLeftAlone()
-    lu.assertFalse(receiveMidi(processSurface, controlChange, 81, 127))
-    lu.assertFalse(receiveMidi(processSurface, noteOn, c.fillIn, 127))
-    lu.assertFalse(receiveMidi(processSurface, noteOn, c.shift, 127))
+    if not device.midi.placeOf then
+      lu.assertFalse(receiveMidi(processSurface, controlChange, 81, 127))
+      lu.assertFalse(receiveMidi(processSurface, noteOn, c.fillIn, 127))
+      lu.assertFalse(receiveMidi(processSurface, noteOn, c.shift, 127))
+    end
     -- polyphonic aftertouch
     lu.assertFalse(receiveMidi(processSurface, 160, 81, 127))
     remote.mock "match_midi":impl(function()

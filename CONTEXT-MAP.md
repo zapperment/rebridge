@@ -14,18 +14,24 @@
   on its Shift layer
 - [Launchpad X](./src/lpx/CONTEXT.md): does the same with the Launchpad X,
   which has the pads and buttons of the Mini [MK3] under other captions
+- [Launchpad Mini](./src/lpm/CONTEXT.md): does the same with the
+  Launchpad Mini, which has the buttons of the Mini [MK3] but numbers
+  them in its own way and has lights of three colours only
 
 ## Relationships
 
 - **Launch Control XL3 ↔ the Launchpads**: independent codecs that share only
   generic library code.
-- **Launchpad Pro ↔ Launchpad Pro [MK3] ↔ Launchpad Mini [MK3] ↔ Launchpad
-  X**: one codec, in `src/lpcommon`, made for each surface from what sets it
-  apart (`device.lua` in `src/lpp`, `src/lppmk3`, `src/lpmmk3` and
-  `src/lpx`): its controls, how it lights them and how it is switched to and
-  from the layout the codec uses. A surface with fewer buttons than Launchnik
-  puts controls on its Shift layer
-  (`src/lpcommon/lib/surface/shiftLayer.lua`).
+- **The Launchpads among themselves**: one codec, in `src/lpcommon`, made
+  for each surface from what sets it apart (`device.lua` in `src/lpp`,
+  `src/lppmk3`, `src/lpmmk3`, `src/lpx` and `src/lpm`): its controls, how it
+  lights them and how it is switched to and from the layout the codec uses.
+  A surface with fewer buttons than Launchnik puts controls on its Shift
+  layer (`src/lpcommon/lib/surface/shiftLayer.lua`).
+- **Launchpad Mini ↔ Launchpad Mini [MK3]**: the same controls
+  (`src/lpcommon/config/sixteenButtonControls.lua`). The Mini's device
+  turns its own numbers into the places the codec knows, and the codec's
+  palette colours into red, amber and green (`src/lpm/lib/midi`).
 - **Launchpad Mini [MK3] ↔ Launchpad X**: the same device but for its name
   and the header of its system exclusive messages, made by
   `src/lpcommon/sixteenButtonDevice.lua`.
