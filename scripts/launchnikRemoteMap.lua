@@ -99,7 +99,7 @@ local function withLaunchnikMap(content)
 end
 
 if arg and arg[0] and arg[0]:match("launchnikRemoteMap%.lua$") then
-  for _, name in ipairs({ "LPPMK3.remotemap", "LPPMK3.dev.remotemap", "LPP.remotemap", "LPP.dev.remotemap", "LPMMK3.remotemap", "LPMMK3.dev.remotemap", "LPX.remotemap", "LPX.dev.remotemap", "LPM.remotemap", "LPM.dev.remotemap" }) do
+  for _, name in ipairs({ "LPPMK3.remotemap", "LPPMK3.dev.remotemap", "LPP.remotemap", "LPP.dev.remotemap", "LPMMK3.remotemap", "LPMMK3.dev.remotemap", "LPX.remotemap", "LPX.dev.remotemap", "LPM.remotemap", "LPM.dev.remotemap", "LPMK2.remotemap", "LPMK2.dev.remotemap" }) do
     local path = mapsDir .. name
     local file = assert(io.open(path, "r"))
     local content = file:read "*a"

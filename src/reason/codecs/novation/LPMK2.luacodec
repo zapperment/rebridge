@@ -1,0 +1,22 @@
+version = { 0, 0, 1 }
+
+function remote_supported_control_surfaces()
+  local surfaces = {
+    {
+      manufacturer = "Novation",
+      model = "Launchpad MK2 for Launchnik",
+      source = "LPMK2.lua",
+      picture = "LPMK2.png",
+      in_ports = {
+        { description = "Input (Launchpad MK2)" },
+      },
+      out_ports = {
+        { description = "Output (Launchpad MK2)" },
+      },
+      setup_info_text =
+      "Launchpad MK2 is Novation's grid controller with RGB pads. This remote codec makes it control the Launchnik rack extension.",
+      has_keyboard = false
+    }
+  }
+  return surfaces
+end

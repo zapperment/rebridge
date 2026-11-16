@@ -63,4 +63,10 @@ require "test.lpm.TestLedColour"
 require "test.lpm.TestMakeColourEvent"
 require "test.lpm.TestDevice"
 
+-- Launchpad MK2, which has them too
+require "test.lpcommon.TestSixteenButtonShiftLayer"(require "src.lpmk2.device", "LPMK2")
+require "test.lpmk2.TestAddress"
+require "test.lpmk2.TestMakeColourEvent"
+require "test.lpmk2.TestDevice"
+
 os.exit(lu.LuaUnit.run())
