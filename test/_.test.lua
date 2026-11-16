@@ -56,4 +56,11 @@ for _, entry in ipairs(require "test.lpcommon.sixteenButtonDevices") do
   require "test.lpcommon.TestSixteenButtonShiftLayer"(entry.device, entry.suffix)
 end
 
+-- Launchpad Mini, which has the same controls as those two
+require "test.lpcommon.TestSixteenButtonShiftLayer"(require "src.lpm.device", "LPM")
+require "test.lpm.TestAddress"
+require "test.lpm.TestLedColour"
+require "test.lpm.TestMakeColourEvent"
+require "test.lpm.TestDevice"
+
 os.exit(lu.LuaUnit.run())

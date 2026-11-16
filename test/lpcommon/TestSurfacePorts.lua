@@ -9,6 +9,7 @@ local makeDeliverSurface = require "src.lpcommon.remote.deliverMidi.surface"
 local surface = require "src.lpcommon.lib.surface._"
 local defineItemIndices = require "test.lpcommon.defineItemIndices"
 local receiveMidi = require "test.lpcommon.receiveMidi"
+local sendOf = require "test.lpcommon.sendOf"
 
 -- defines the test class TestSurfacePorts<suffix> for the device given (see
 -- src/lppmk3/device.lua)
@@ -21,7 +22,6 @@ return function(device, suffix)
   local deliverSurface = makeDeliverSurface(device)
 
   local c = device.controls
-  local controlChange = 176
 
   -- a port that is not the surface's
   local otherPort = const.ports.log
@@ -30,7 +30,8 @@ return function(device, suffix)
   -- on the Launchpads of the [MK3] generation it is also the colour event
   -- that lights the button while the transport is stopped
   local function receivePlayButtonMidi(port)
-    return receiveMidi(processSurface, controlChange, c.play, colours.green.dim, port)
+    local status, number = sendOf(device, c.play)
+    return receiveMidi(processSurface, status, number, colours.green.dim, port)
   end
 
   -- the transport's lights as the surface gets them from the start: the play

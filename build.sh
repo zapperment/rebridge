@@ -14,6 +14,7 @@ usage() {
   echo "" >&2
   echo "  controller   the controller to build for, one of:" >&2
   echo "                 LCXL3   Novation Launch Control XL3" >&2
+  echo "                 LPM     Novation Launchpad Mini" >&2
   echo "                 LPMMK3  Novation Launchpad Mini [MK3]" >&2
   echo "                 LPP     Novation Launchpad Pro" >&2
   echo "                 LPPMK3  Novation Launchpad Pro [MK3]" >&2
@@ -53,7 +54,7 @@ if [[ -z "$controller" ]]; then
 fi
 
 case "$controller" in
-  LCXL3|LPMMK3|LPP|LPPMK3|LPX) ;;
+  LCXL3|LPM|LPMMK3|LPP|LPPMK3|LPX) ;;
   *)
     echo "Error: unsupported controller '$controller'" >&2
     usage

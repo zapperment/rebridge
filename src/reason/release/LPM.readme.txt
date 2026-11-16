@@ -1,0 +1,166 @@
+Launchpad Mini remote codec for Launchnik
+=============================================
+
+Version @VERSION@, built on @BUILD_DATE@ from commit @COMMIT@
+https://github.com/zapperment/rebridge
+
+This remote codec lets you control the Launchnik rack extension in Reason
+with a Novation Launchpad Mini: the 8x8 pads stand for Launchnik's
+launch buttons, and the buttons around them for its scene, setup, back,
+forward, fill-in, clear and duplicate buttons. The Launchpad has few
+buttons, so Launchnik's function buttons are on the pads of the bottom row
+while the Mixer button is held down. Its lights are red, green and amber
+only, so Launchnik's colours show as the nearest of those.
+
+You need:
+
+- Reason (stand-alone, not Reason Rack Plugin)
+- Launchnik, version 1.0.0d23 or later
+  (https://github.com/zapperment/launchnik)
+- a Novation Launchpad Mini (the original and the MK2 differ only in
+  looks), connected by USB. The first Launchpad and the Launchpad S are
+  programmed the same way and may work too; this has not been tried
+
+
+What is in this zip
+-------------------
+
+readme.txt                                      this file
+Remote/Codecs/Lua Codecs/Novation/LPM.lua       the codec
+Remote/Codecs/Lua Codecs/Novation/LPM.luacodec  the codec's description
+Remote/Codecs/Lua Codecs/Novation/LPM.png       the picture Reason shows
+Remote/Maps/Novation/LPM.remotemap              the remote map
+
+
+Installing on a Mac
+-------------------
+
+1. Quit Reason.
+2. In the Finder, choose Go > Go to Folder... and enter:
+
+     ~/Library/Application Support/Propellerhead Software
+
+   (The Library folder is hidden; Go to Folder gets you there anyway.)
+3. If there is no folder named "Remote" in it, create one.
+4. Copy the files from the zip into it, keeping their folders:
+
+     LPM.lua, LPM.luacodec and LPM.png
+       go to  Remote/Codecs/Lua Codecs/Novation
+     LPM.remotemap
+       goes to  Remote/Maps/Novation
+
+   Create any of these folders that do not exist yet. Do not drag the zip's
+   "Remote" folder onto the existing one: the Finder would replace the
+   folder, and with it any other codecs and maps you have installed.
+
+
+Installing on Windows
+---------------------
+
+1. Quit Reason.
+2. In File Explorer, click the address bar, enter the following and press
+   Enter:
+
+     %APPDATA%\Propellerhead Software
+
+   (The AppData folder is hidden; typing the address gets you there anyway.)
+3. If there is no folder named "Remote" in it, create one.
+4. Copy the files from the zip into it, keeping their folders:
+
+     LPM.lua, LPM.luacodec and LPM.png
+       go to  Remote\Codecs\Lua Codecs\Novation
+     LPM.remotemap
+       goes to  Remote\Maps\Novation
+
+   Create any of these folders that do not exist yet. Dragging the zip's
+   "Remote" folder onto the existing one is fine on Windows: File Explorer
+   merges the folders.
+
+
+Adding the Launchpad in Reason
+------------------------------
+
+1. Start Reason and open Settings (Preferences on older versions), then the
+   MIDI page.
+2. Under "Remote keyboards and controllers", click "Add manually".
+3. Choose manufacturer "Novation" and model "Launchpad Mini".
+4. Set both ports to the Launchpad, which has only one:
+
+     Input (Launchpad Mini)    Launchpad Mini
+     Output (Launchpad Mini)   Launchpad Mini
+
+5. Click OK, add a Launchnik to your rack and select its track in the
+   sequencer: the Launchpad now controls it.
+
+
+Buttons
+-------
+
+The Launchpad Mini has only sixteen buttons, so Launchnik's buttons are
+on buttons with a different caption, and some of them on pads and buttons
+while the Mixer button is held down:
+
+  Session                 Launchnik's setup button (acts when let go);
+                          its light shows Launchnik's mode colour
+  Left / Right arrows     back and forward buttons
+  Up arrow                play (Reason's transport)
+  Down arrow              fill-in button (held for as long as it is)
+  User 1                  clear button
+  User 2                  duplicate button
+  Mixer                   Shift: hold it down for the following
+  scene buttons (right)   Launchnik's scene buttons
+
+While Mixer is held down:
+
+  pads of the bottom row  function buttons of the eight tracks
+  lowest three scene buttons
+                          choose the function of the function buttons:
+                          stop, solo and mute, from the top
+  Up arrow                record (Reason's transport)
+
+The pads of the bottom row and the three scene buttons show the lights of
+those buttons for as long as Mixer is held down, and what they showed
+before once it is let go.
+
+
+Lights
+------
+
+The Launchpad's lights are red, green or both, which gives amber. Each of
+Launchnik's colours shows as the nearest of the three:
+
+  red                     red, purple, fuchsia and pink
+  amber                   white, orange and yellow
+  green                   lime, green, turquoise, cyan and the blues
+
+A dim light is dim, a vibrant one bright, as on Launchnik's panel. The
+launch button of a playing clip, which pulses on the newer Launchpads,
+flashes between bright and dark.
+
+
+Updating
+--------
+
+Copy the new files over the old ones, as when installing. Reason need not be
+restarted: in Settings > MIDI, switch the Launchpad's "Active" box off and on
+again.
+
+
+Removing
+--------
+
+Remove the Launchpad in Settings > MIDI, quit Reason and delete the four
+LPM files.
+
+
+Disclaimer
+----------
+
+The project maintainer is in no way associated with Novation nor Reason
+Studios. Company and product names are trademarks of Novation or Reason
+Studios.
+
+The project is strictly non-commercial, free to use by anyone without
+limitations. It comes without any warranty of any kind. The project maintainer
+cannot be held accountable for any problems with your music production setup
+that may be caused by this software.

@@ -5,4 +5,5 @@ return {
   { suffix = "LPP", device = require "src.lpp.device" },
   { suffix = "LPMMK3", device = require "src.lpmmk3.device" },
   { suffix = "LPX", device = require "src.lpx.device" },
+  { suffix = "LPM", device = require "src.lpm.device" },
 }

@@ -1,0 +1,23 @@
+version = { 0, 0, 1 }
+
+function remote_supported_control_surfaces()
+  local surfaces = {
+    {
+      manufacturer = "Novation",
+      model = "Launchpad Mini (developer version)",
+      source = "LPM.lua",
+      picture = "LPM.png",
+      in_ports = {
+        { description = "Input (Launchpad Mini)" },
+      },
+      out_ports = {
+        { description = "Output (Launchpad Mini)" },
+        { description = "Output (log)" },
+      },
+      setup_info_text =
+      "Launchpad Mini is Novation's compact grid controller with red, green and amber lights. This remote codec makes it control the Launchnik rack extension. This version of the remote codec has an additional port which is used to send log messages for developers",
+      has_keyboard = false
+    }
+  }
+  return surfaces
+end
