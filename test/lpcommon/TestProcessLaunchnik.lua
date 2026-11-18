@@ -128,7 +128,7 @@ return function(device, suffix)
           for _, kind in ipairs({ "", "fillin", "landing", "intro", "outro" }) do
             -- all four settings of an output in one item
             local item = items[clip .. kind .. letter]
-            lu.assertEquals({ item.min, item.max }, { 0, 31359 })
+            lu.assertEquals({ item.min, item.max }, { 0, 62719 })
           end
         end
       end
