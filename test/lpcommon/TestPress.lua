@@ -390,11 +390,11 @@ function TestPress:testFillInEditingDoesNothingElsewhere()
   lu.assertEquals(press.fillInEditingLaunchButton(editing, 8, 1, press.edited(false), someClipValues), {})
 end
 
--- a new fill-in is a copy of its clip's values, with every transition off, in
--- white
+-- a new fill-in is a copy of its clip's values, with every transition off and
+-- one-bar pattern on, in white
 function TestPress:testFillInEditingToggleSetsUpANewFillIn()
   local expected = {
-    { kind = "fillinswitches", index = picked, value = 1 + 56 },
+    { kind = "fillinswitches", index = picked, value = 1 + 28 + 56 },
   }
   for output = 1, 6 do
     table.insert(expected, { kind = "fillin" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
@@ -443,11 +443,11 @@ function TestPress:testLandingEditingDoesNothingElsewhere()
   lu.assertNil(press.launchButton(landingEditing, 8, 1, false, press.edited(true)))
 end
 
--- a new landing is a copy of its clip's values, with every transition off, in
--- white, like a new fill-in
+-- a new landing is a copy of its clip's values, with every transition off and
+-- one-bar pattern on, in white, like a new fill-in
 function TestPress:testLandingEditingToggleSetsUpANewLanding()
   local expected = {
-    { kind = "landingswitches", index = picked, value = 1 + 56 },
+    { kind = "landingswitches", index = picked, value = 1 + 28 + 56 },
   }
   for output = 1, 6 do
     table.insert(expected, { kind = "landing" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
@@ -717,11 +717,11 @@ function TestPress:testIntroAndOutroEditing()
   lu.assertNil(press.launchButton(outroEditing, 8, 1, false, press.edited(true)))
 
   -- a new intro or outro is a copy of its clip's values, with every
-  -- transition off and one-bar pattern off, in white
+  -- transition off and one-bar pattern on, in white
   for _, case in ipairs({ { "intro", introEditing, press.introEditingLaunchButton }, { "outro", outroEditing, press.outroEditingLaunchButton } }) do
     local prefix, setup, editLaunchButton = case[1], case[2], case[3]
     local expected = {
-      { kind = prefix .. "switches", index = picked, value = 1 + 56 },
+      { kind = prefix .. "switches", index = picked, value = 1 + 28 + 56 },
     }
     for output = 1, 6 do
       table.insert(expected, { kind = prefix .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
@@ -818,7 +818,8 @@ function TestPress:testSwitchingAnOverlayOnAgainKeepsItsSettings()
   fillIn = press.edited(false, nil, nil, true, values)
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, fillIn, someClipValues), { { kind = "fillinswitches", index = picked, value = press.packSwitches(true, 9, true, true) } })
   values.setUp = false
-  local first = press.fillInEditingLaunchButton(fillInEditing, 8, 1, press.edited(false, nil, nil, true, values), someClipValues)
+  -- even one with one-bar pattern off starts with it on
+  local first = press.fillInEditingLaunchButton(fillInEditing, 8, 1, press.edited(false, nil, nil, false, values), someClipValues)
   lu.assertEquals(#first, 7)
-  lu.assertEquals(first[1], { kind = "fillinswitches", index = picked, value = press.packSwitches(true, 0, false, true) })
+  lu.assertEquals(first[1], { kind = "fillinswitches", index = picked, value = press.packSwitches(true, 0, true, true) })
 end
