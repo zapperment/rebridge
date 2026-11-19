@@ -151,9 +151,19 @@ function TestPress:testClipEditingColourRows()
 end
 
 function TestPress:testClipEditingPatternMode()
-  -- output A, in row 3, is in pattern mode: all eight columns are patterns
-  for column = 1, 8 do
+  -- output A, in row 3, is in pattern mode: all eight columns are patterns;
+  -- the first is the one chosen, and clicking it leaves no pattern
+  lu.assertEquals(press.launchButton(editing, 1, 3, false, mixedModes(true)),
+    settingChange("", "pattern", 1, press.noPattern))
+  for column = 2, 8 do
     lu.assertEquals(press.launchButton(editing, column, 3, false, mixedModes(true)),
+      settingChange("", "pattern", 1, column - 1))
+  end
+  -- with no pattern, any column chooses its pattern, the first included
+  local none = mixedModes(true)
+  none.patterns[1] = press.noPattern
+  for column = 1, 8 do
+    lu.assertEquals(press.launchButton(editing, column, 3, false, none),
       settingChange("", "pattern", 1, column - 1))
   end
 end
@@ -390,6 +400,10 @@ function TestPress:testFillInEditingToggleSetsUpANewFillIn()
     table.insert(expected, { kind = "fillin" .. "output", index = picked, output = output, value = press.packOutputSettings(output - 1, someClipValues.unipolar[output], someClipValues.bipolar[output], 0) })
   end
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), someClipValues), expected)
+  -- a clip's output with no pattern is copied as it is
+  local silent = { patterns = { 0, press.noPattern, 2, 3, 4, 5 }, unipolar = someClipValues.unipolar, bipolar = someClipValues.bipolar }
+  lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(false), silent)[3],
+    { kind = "fillinoutput", index = picked, output = 2, value = press.packOutputSettings(press.noPattern, someClipValues.unipolar[2], someClipValues.bipolar[2], 0) })
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 1, mixedModes(true), someClipValues), {
     { kind = "fillinswitches", index = picked, value = 56 },
   })
@@ -403,7 +417,7 @@ function TestPress:testFillInEditingColourAndCVRows()
     lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 5, mixedModes(true), someClipValues), { settingChange("fillin", "bipolar", 3, columnValue("bipolar", column)) })
   end
   for column = 1, 8 do
-    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { settingChange("fillin", "pattern", 1, column - 1) })
+    lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, column, 3, mixedModes(true), someClipValues), { settingChange("fillin", "pattern", 1, column == 1 and press.noPattern or column - 1) })
   end
   lu.assertEquals(press.fillInEditingLaunchButton(fillInEditing, 8, 5, mixedModes(true), someClipValues), { settingChange("fillin", "transition", 3, 3) })
   -- the last track of the second colour row is the one-bar pattern switch
@@ -726,12 +740,12 @@ end
 -- the four settings of a CV output are one number, every combination its own
 function TestPress:testOutputSettingsPackIntoOneNumber()
   local seen = {}
-  for pattern = 0, 7 do
+  for pattern = press.noPattern, 7 do
     for unipolar = 0, 24 do
       for bipolar = 0, 24 do
         for transition = 0, 4 do
           local packed = press.packOutputSettings(pattern, unipolar, bipolar, transition)
-          lu.assertTrue(packed >= 0 and packed < 31360 and not seen[packed])
+          lu.assertTrue(packed >= 0 and packed < 62720 and not seen[packed])
           seen[packed] = true
           lu.assertEquals({ press.unpackOutputSettings(packed) }, { pattern, unipolar, bipolar, transition })
         end
@@ -747,6 +761,9 @@ function TestPress:testOutputSettingsPackIntoOneNumber()
   -- the top step cannot be raised
   lu.assertEquals(({ press.unpackOutputSettings(8 * 6 + 1960 * 3) })[2], 24)
   lu.assertEquals(({ press.unpackOutputSettings(56 * 6 + 7840 * 3) })[3], 24)
+  -- no pattern lies above that, and leaves the rest as it was
+  lu.assertEquals({ press.unpackOutputSettings(31360 + 5 + 8 * 2 + 56 * 6 + 392 * 4 + 1960 * 3) }, { press.noPattern, 2 * step + 3, 6 * step, 4 })
+  lu.assertEquals(press.packOutputSettings(press.noPattern, 0, 12, 0), 31360 + 168)
 end
 
 -- the same cases as TestEditingKeepsTheOtherSettingsOfTheOutput of

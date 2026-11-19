@@ -67,6 +67,8 @@ local cvModePattern = 2
 local transitionOff = 0
 local transitionCount = 5
 local patternCount = 8
+-- the pattern of an output that has no pattern and emits 0
+local noPattern = -1
 local valueCount = 7
 -- a unipolar or bipolar value is counted in quarter steps, four to each of
 -- the six steps between the seven buttons of an output: 0..24, with bipolar
@@ -76,6 +78,8 @@ local topValue = (valueCount - 1) * quarterStepCount
 local bipolarZero = 3 * quarterStepCount
 -- how many numbers the settings have without quarter steps
 local stepSettingsCount = patternCount * valueCount * valueCount * transitionCount
+-- how many numbers the settings have with quarter steps, but without no pattern
+local quarterStepSettingsCount = stepSettingsCount * quarterStepCount * quarterStepCount
 
 -- the value that a press of a step's button, 0..6, gives an output whose
 -- value is value: the step itself, or, if that is the value's step already,
@@ -90,14 +94,16 @@ local function pressedValue(value, step)
 end
 
 -- the four settings of a CV output as one number, as Launchnik keeps them
--- (see its ADRs 0008 and 0010): the pattern, plus 8 times the step of the
--- unipolar value, plus 56 times the step of the bipolar value, plus 392 times
--- the transition, plus 1960 times the quarter steps of the unipolar value,
--- plus 7840 times those of the bipolar value
+-- (see its ADRs 0008, 0010 and 0012): the pattern, plus 8 times the step of
+-- the unipolar value, plus 56 times the step of the bipolar value, plus 392
+-- times the transition, plus 1960 times the quarter steps of the unipolar
+-- value, plus 7840 times those of the bipolar value, plus 31360 if there is
+-- no pattern
 local function packOutputSettings(pattern, unipolar, bipolar, transition)
-  local steps = pattern + patternCount * (math.floor(unipolar / quarterStepCount) + valueCount * (math.floor(bipolar / quarterStepCount) + valueCount * transition))
+  local none = pattern == noPattern
+  local steps = (none and 0 or pattern) + patternCount * (math.floor(unipolar / quarterStepCount) + valueCount * (math.floor(bipolar / quarterStepCount) + valueCount * transition))
   local quarterSteps = unipolar % quarterStepCount + quarterStepCount * (bipolar % quarterStepCount)
-  return steps + stepSettingsCount * quarterSteps
+  return steps + stepSettingsCount * quarterSteps + (none and quarterStepSettingsCount or 0)
 end
 
 -- whether there is a clip, fill-in, landing, intro or outro, its colour, its
@@ -116,9 +122,11 @@ end
 
 -- the other way round: pattern, unipolar, bipolar, transition
 local function unpackOutputSettings(packed)
+  local none = packed >= quarterStepSettingsCount
+  packed = packed % quarterStepSettingsCount
   local quarterSteps = math.floor(packed / stepSettingsCount)
   packed = packed % stepSettingsCount
-  local pattern = packed % patternCount
+  local pattern = none and noPattern or packed % patternCount
   packed = math.floor(packed / patternCount)
   local unipolar = packed % valueCount * quarterStepCount + quarterSteps % quarterStepCount
   packed = math.floor(packed / valueCount)
@@ -187,8 +195,9 @@ local function editSetting(prefix, picked, track, row, settings)
   -- a press changes one of the output's settings and keeps the others
   local pattern, unipolar, bipolar, transition = settings.patterns[output], settings.unipolar[output], settings.bipolar[output], settings.transitions[output]
   local cvMode = settings.cvModes[output]
+  -- clicking the pattern chosen leaves the output with no pattern
   if cvMode == cvModePattern then
-    pattern = track - 1
+    pattern = pattern == track - 1 and noPattern or track - 1
   -- the transition button goes round from off through A to D
   elseif track == transitionTrack then
     transition = (transition + 1) % transitionCount
@@ -672,6 +681,7 @@ return {
   cvModeBipolar = cvModeBipolar,
   cvModeUnipolar = cvModeUnipolar,
   cvModePattern = cvModePattern,
+  noPattern = noPattern,
   defaultCVMode = defaultCVMode,
   quarterStepCount = quarterStepCount,
   bipolarZero = bipolarZero,
