@@ -305,7 +305,7 @@ end
 -- editing; settings, made by edited(), describes the fill-in or landing,
 -- clipValues the values of its clip by output, { patterns = {}, unipolar =
 -- {}, bipolar = {} }, which one that has never been set up starts as a copy
--- of, with every transition off and one-bar pattern off, in white; returns a
+-- of, with every transition off and one-bar pattern on, in white; returns a
 -- list of changes
 local function editOverlay(prefix, setup, track, row, settings, clipValues)
   local picked = pickedButton(setup)
@@ -314,9 +314,10 @@ local function editOverlay(prefix, setup, track, row, settings, clipValues)
     if settings.present or settings.setUp then
       return { { kind = prefix .. "switches", index = picked, value = packSwitches(not settings.present, settings.colour, settings.oneBarPattern, true) } }
     end
-    -- the first time, it starts as a copy of its clip
+    -- the first time, it starts as a copy of its clip, with one-bar pattern on,
+    -- which is what a fill-in, landing, intro or outro is mostly wanted for
     local changes = {
-      { kind = prefix .. "switches", index = picked, value = packSwitches(true, colourWhite, false, true) },
+      { kind = prefix .. "switches", index = picked, value = packSwitches(true, colourWhite, true, true) },
     }
     for output = 1, outputCount do
       local value = packOutputSettings(clipValues.patterns[output], clipValues.unipolar[output], clipValues.bipolar[output], transitionOff)
